@@ -36,6 +36,16 @@ func capture() -> void:
 		game.on_swap(move[0],move[1])
 		while game.board_view.busy: await process_frame
 	await snapshot("victory")
+	for height in [1170,1200]:
+		root.size = Vector2i(540,height)
+		root.content_scale_size = Vector2i(540,960)
+		root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+		root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+		await create_timer(.2).timeout
+		game.start_level(6)
+		print("Viewport extent: ",root.size," / ",game.size," / ",game.stage.size)
+		await snapshot("game_"+str(height))
+
 	var save_path: String = game.save.path
 	game.queue_free()
 	await process_frame

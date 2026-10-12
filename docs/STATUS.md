@@ -1,3 +1,11 @@
+# Güncel sürüm: PRİZMA 0.3.0 — Büyülü Kristaller
+
+Görsel kalite revizyonu tamamlandı; ilk 10 bölüm ve Match-3 kuralları korundu. Yeni durum, gerçek ölçümler, test sonuçları ve cihazda henüz doğrulanmayanlar: [QUALITY_REVISION.md](QUALITY_REVISION.md). 21.969 motor + 71 kalite kontrolü ve 100 geçerli/100 engellenen ScreenTouch kaydırması doğrulandı. Fiziksel Android kabul testi bekleniyor.
+
+Aşağıdaki 0.2.0 raporu önceki motor revizyonunun geçmiş kaydıdır.
+
+---
+
 # PRİZMA 0.2.0 Match-3 revizyonu — Durum raporu
 
 ## Doğrulanan motor

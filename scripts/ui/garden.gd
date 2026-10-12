@@ -1,6 +1,9 @@
 extends Control
 const Palette = preload("res://scripts/ui/palette.gd")
 ## Calm, layered world; monochrome slowly restores with collected color energy.
+var quality := "balanced"
+var refresh_age := 0.0
+var backdrop: TextureRect
 var vitality: float = 0.35
 var clock: float = 0.0
 var reduced_motion := false
@@ -12,25 +15,36 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var color_material := ShaderMaterial.new()
 	color_material.shader = load("res://assets/art/restore_color.gdshader")
-	material = color_material
+
 	if ResourceLoader.exists("res://assets/art/garden.png"):
 		artwork = load("res://assets/art/garden.png")
+		backdrop = TextureRect.new()
+		backdrop.texture = artwork
+		backdrop.material = color_material
+		backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		backdrop.show_behind_parent = true
+		add_child(backdrop)
+		backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		resized.connect(queue_redraw)
 
 func _process(delta: float) -> void:
 	if not reduced_motion: clock += delta
-	displayed_vitality = vitality if reduced_motion else lerpf(displayed_vitality, vitality, minf(1, delta * 2.5))
-	material.set_shader_parameter("vitality", displayed_vitality)
-	queue_redraw()
+	var previous_vitality := displayed_vitality
+	displayed_vitality = vitality if reduced_motion else lerpf(displayed_vitality,vitality,minf(1,delta*2.5))
+	if backdrop and absf(previous_vitality-displayed_vitality)>.0005:
+		backdrop.material.set_shader_parameter("vitality",displayed_vitality)
+	refresh_age += delta
+	var interval := .05 if quality == "high" else .1
+	if refresh_age >= interval and (not reduced_motion and quality != "performance"):
+		refresh_age = 0
+		queue_redraw()
 
 func _draw() -> void:
 	var extent := size
-	draw_rect(Rect2(Vector2.ZERO, extent), Color("0b162b"))
 	if artwork:
-		var texture_size := artwork.get_size()
-		var ratio := maxf(extent.x / texture_size.x, extent.y / texture_size.y)
-		var destination := Rect2((extent - texture_size * ratio) * 0.5, texture_size * ratio)
-		draw_texture_rect(artwork, destination, false)
-		draw_rect(Rect2(Vector2.ZERO, extent), Color(0.018, 0.035, 0.085, 0.34))
+		draw_rect(Rect2(Vector2.ZERO,extent),Color(.018,.035,.085,.38))
 	else:
 		# Original vector fallback, usable offline while optional painted art imports.
 		for layer in 3:
@@ -47,7 +61,7 @@ func _draw() -> void:
 				var tip := base + Vector2(70 if side == 0 else -70, -66)
 				draw_line(base, tip, Color("25474b"), 9)
 				draw_circle(tip, 27, Color("244d51"))
-	for i in 24:
+	for i in (24 if quality == "high" else 12) if quality != "performance" else 0:
 		var pos := Vector2(fmod(i * 93.3 + 18, extent.x), fmod(i * 137.7 + 34, extent.y))
 		pos += Vector2(sin(clock * 0.45 + i) * 4, cos(clock * 0.35 + i) * 6)
 		var opacity := (0.2 + 0.18 * sin(clock + i)) * (0.3 + vitality)

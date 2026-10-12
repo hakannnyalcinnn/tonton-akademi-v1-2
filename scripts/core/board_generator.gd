@@ -17,7 +17,8 @@ static func repair_start(cells: Array, rng, width: int, height: int) -> void:
 					cells[i].c = color
 					break
 	if not Match.has_move(cells, width, height):
-		assert(shuffle(cells, rng, width, height), "No playable arrangement for this level multiset")
+		var repaired := shuffle(cells,rng,width,height)
+		assert(repaired, "No playable arrangement for this level multiset")
 	assert(Match.find(cells, width, height).is_empty())
 	assert(Match.has_move(cells, width, height))
 
@@ -52,4 +53,19 @@ static func place(cells: Array, positions: Array, pools: Array, order: Array, cu
 		cells[i] = cell
 		if place(cells, positions, pools, order, cursor + 1, width, height, budget): return true
 		pools[color].append(cell)
+	return false
+
+static func emergency_stabilize(cells: Array, rng, width: int, height: int) -> bool:
+	# Only diagnosed cascade corruption uses new colors. Ordinary no-move shuffles
+	# still preserve their color multiset, specials, cell identities and blockers.
+	for attempt in 32:
+		for i in cells.size():
+			if not Match.normal(cells[i]): continue
+			var start: int = rng.next_int(5)
+			for offset in 5:
+				var color := (start+offset)%5
+				if not forbidden_prefix(cells,i,color,width):
+					cells[i].c=color
+					break
+		if Match.find(cells,width,height).is_empty() and Match.has_move(cells,width,height): return true
 	return false

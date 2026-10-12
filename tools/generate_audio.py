@@ -44,9 +44,12 @@ if __name__ == "__main__":
     write("win", 1.25, [(i * .13, f, .5) for i, f in enumerate([523.25, 659.25, 783.99, 1046.5, 1318.5])], .23)
     write("lose", .75, [(0, 392, .32), (.23, 329.63, .48)], .2)
     write("invalid", .18, [(0, 220, .16)], .15)
+    write("rocket", .27, [(0, 196, .2), (.025, 784, .22), (.07, 1568, .17)], .23, .28)
+    write("color", .44, [(i*.035, f, .3) for i, f in enumerate([587.33,739.99,880,1174.66,1479.98])], .20, .14)
+    write("cascade", .24, [(0, 659.25, .18), (.04, 987.77, .19), (.09, 1318.5, .14)], .20, .09)
     melody = [261.63, 329.63, 392, 493.88, 440, 392, 329.63, 293.66,
               261.63, 392, 523.25, 493.88, 440, 329.63, 293.66, 392]
     notes = [(i * 1.5, f, 1.3) for i, f in enumerate(melody)]
     notes += [(i * 6, f, 5.8) for i, f in enumerate([130.81, 110, 146.83, 130.81])]
     write("garden", 24, notes, .16)
-    print("10 original WAV assets generated")
+    print("13 original WAV assets generated")

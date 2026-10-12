@@ -1,4 +1,5 @@
 extends RefCounted
+const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 
 const Match = preload("res://scripts/core/match_detector.gd")
 const Generator = preload("res://scripts/core/board_generator.gd")
@@ -42,6 +43,12 @@ func _init(definition: Dictionary = {}) -> void:
 	for key in level.get("powers", {}): cells[int(key)].p = level.powers[key]
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT)
 
+func find_matches() -> Array:
+	var started := Time.get_ticks_usec()
+	var result: Array = Match.find(cells, WIDTH, HEIGHT)
+	Metrics.elapsed("match_scan", started)
+	return result
+
 func make_cell(color: int = -1, power: String = "") -> Dictionary:
 	serial += 1
 	return {"c": rng.next_int(5) if color < 0 else color, "p": power, "id": serial}
@@ -51,7 +58,7 @@ func transition(next_state: State) -> void:
 	state_trace.append(next_state)
 
 func frame(kind: String, before: Array, extra: Dictionary = {}) -> void:
-	var item := {"kind": kind, "before": before.duplicate(true), "after": cells.duplicate(true), "state": state, "direction": direction}
+	var item := {"kind": kind, "before": before, "after": cells.duplicate(true), "state": state, "direction": direction}
 	item.merge(extra)
 	frames.append(item)
 
@@ -70,7 +77,7 @@ func swap(a: int, b: int) -> Dictionary:
 	cells[b] = first
 	frame("swap", before, {"a": a, "b": b})
 	transition(State.CHECKING_MATCHES)
-	var matches: Array = Match.find(cells, WIDTH, HEIGHT)
+	var matches: Array = find_matches()
 	var matched: Array = Match.indices(matches)
 	var special: bool = cells[a].p != "" or cells[b].p != ""
 	if not special and (cells[a].c == cells[b].c or (a not in matched and b not in matched)):
@@ -80,7 +87,7 @@ func swap(a: int, b: int) -> Dictionary:
 		cells[a] = first
 		frame("revert", swapped, {"a": a, "b": b})
 		transition(State.READY)
-		return {"accepted": false, "attempted": true, "invalid": true, "frames": frames.duplicate(true), "points": 0}
+		return {"accepted": false, "attempted": true, "invalid": true, "frames": frames.duplicate(), "points": 0}
 	moves -= 1
 	var combined: bool = cells[a].p != "" and cells[b].p != ""
 	var extra: Array = []
@@ -110,7 +117,7 @@ func activate(index: int, selected_color: int = -1) -> Dictionary:
 	moves -= 1
 	resonance.reset()
 	if selected_color < 0: selected_color = Powers.dominant_color(cells)
-	return resolve(Match.find(cells, WIDTH, HEIGHT), Powers.area(index, cells[index].p, cells, WIDTH, selected_color), [], -1, selected_color, true, false)
+	return resolve(find_matches(), Powers.area(index, cells[index].p, cells, WIDTH, selected_color), [], -1, selected_color, true, false)
 
 func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int, selected_color: int, special: bool, combined: bool) -> Dictionary:
 	var original_score := score
@@ -123,11 +130,21 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		depth += 1
 		if depth > MAX_CASCADES:
 			guarded = true
+			Metrics.incident("Cascade limit exceeded; stable shuffle recovery", {"level":level.id,"seed_state":rng.state,"direction":direction,"depth":depth,"remaining_refill_stream":refill_stream.size(),"refill_sample":refill_stream.slice(0,8),"cells":cells.duplicate(true)})
+			refill_stream.clear()
 			transition(State.SHUFFLING)
 			var old := cells.duplicate(true)
-			assert(Generator.shuffle(cells, rng, WIDTH, HEIGHT), "Cascade guard could not find a stable arrangement")
+			var recovered := Generator.shuffle(cells,rng,WIDTH,HEIGHT)
+			if not recovered:
+				Metrics.incident("Cascade multiset cannot be stabilized; regenerate normal colors, preserve IDs and blockers", {"level":level.id,"depth":depth})
+				recovered = Generator.emergency_stabilize(cells,rng,WIDTH,HEIGHT)
+			if not recovered:
+				Metrics.incident("Cascade recovery failed", {"level":level.id,"depth":depth})
+				outcome = "lost"
+			assert(recovered, "Cascade guard could not find a stable arrangement")
 			frame("shuffle", old)
 			break
+		var clear_started := Time.get_ticks_usec()
 		transition(State.RESOLVING_MATCHES)
 		var before := cells.duplicate(true)
 		var matched: Array = Match.indices(matches)
@@ -183,28 +200,33 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
+		Metrics.elapsed("clear_logic", clear_started)
 		settle(true)
 		transition(State.CHECKING_CASCADES)
-		matches = Match.find(cells, WIDTH, HEIGHT)
+		matches = find_matches()
 		extra = []
 		special = false
 		combined = false
 	var shuffled := ensure_move()
 	finish_if_needed()
-	return {"accepted": true, "attempted": true, "invalid": false, "frames": frames.duplicate(true), "points": score - original_score, "resonated": did_resonate, "created_count": power_count, "cascade_count": depth, "normal_count": total_removed, "shuffled": shuffled, "cascade_guard": guarded}
+	return {"accepted": true, "attempted": true, "invalid": false, "frames": frames.duplicate(), "points": score - original_score, "resonated": did_resonate, "created_count": power_count, "cascade_count": depth, "normal_count": total_removed, "shuffled": shuffled, "cascade_guard": guarded}
 
 func settle(record: bool = false) -> void:
 	var before := cells.duplicate(true) if record else []
 	transition(State.APPLYING_GRAVITY)
+	var gravity_started := Time.get_ticks_usec()
 	Gravity.compact(cells, WIDTH, HEIGHT, direction)
+	Metrics.elapsed("gravity_logic", gravity_started)
 	if record: frame("fall", before)
 	before = cells.duplicate(true) if record else []
 	transition(State.REFILLING)
+	var refill_started := Time.get_ticks_usec()
 	for line in Gravity.lines(WIDTH, HEIGHT, direction):
 		for index in line:
 			if cells[index] == null:
 				cells[index] = make_cell(int(refill_stream.pop_front())) if not refill_stream.is_empty() else make_cell()
+	Metrics.elapsed("refill_logic", refill_started)
 	if record: frame("refill", before)
 
 func change_gravity(next_direction: String) -> Dictionary:
@@ -215,7 +237,7 @@ func change_gravity(next_direction: String) -> Dictionary:
 	direction = next_direction
 	settle(true)
 	transition(State.CHECKING_CASCADES)
-	var event := resolve(Match.find(cells, WIDTH, HEIGHT), [], [], -1, Powers.dominant_color(cells), false, false)
+	var event := resolve(find_matches(), [], [], -1, Powers.dominant_color(cells), false, false)
 	event.gravity = true
 	return event
 
@@ -223,7 +245,11 @@ func ensure_move() -> bool:
 	if Match.has_move(cells, WIDTH, HEIGHT): return false
 	transition(State.SHUFFLING)
 	var before := cells.duplicate(true)
-	assert(Generator.shuffle(cells, rng, WIDTH, HEIGHT), "No legal Match-3 arrangement")
+	var recovered := Generator.shuffle(cells,rng,WIDTH,HEIGHT)
+	if not recovered:
+		Metrics.incident("No legal shuffle arrangement", {"level":level.id})
+		outcome = "lost"
+	assert(recovered, "No legal Match-3 arrangement")
 	frame("shuffle", before)
 	return true
 

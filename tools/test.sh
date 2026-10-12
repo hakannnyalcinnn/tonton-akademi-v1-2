@@ -25,3 +25,17 @@ for action in write read; do
     cat "build/persistence-$action.log"
     if rg -q '^SCRIPT ERROR:|^ERROR:' "build/persistence-$action.log"; then exit 1; fi
 done
+
+if ! bash tools/godot.sh --headless --script tests/quality_tests.gd > build/quality-results.log 2>&1; then
+    cat build/quality-results.log
+    exit 1
+fi
+cat build/quality-results.log
+if rg -q '^SCRIPT ERROR:|^ERROR:' build/quality-results.log; then exit 1; fi
+
+if ! bash tools/godot.sh --headless --audio-driver Dummy --max-fps 60 --script tests/swipe_stress.gd > build/swipe-stress.log 2>&1; then
+    cat build/swipe-stress.log
+    exit 1
+fi
+cat build/swipe-stress.log
+if rg -q '^SCRIPT ERROR:|^ERROR:' build/swipe-stress.log; then exit 1; fi

@@ -1,5 +1,6 @@
 extends Control
 
+const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 const Board = preload("res://scripts/core/board.gd")
 const Catalog = preload("res://scripts/core/level_catalog.gd")
 const Save = preload("res://scripts/core/save_manager.gd")
@@ -19,6 +20,14 @@ var garden
 var stage: Control
 var page: Control
 var overlay: Control
+var overlay_root: Control
+var footer_nodes: Array[Control] = []
+var safe_rect_override := Rect2()
+var quality_buttons: Dictionary = {}
+var settings_dirty := false
+var reported_save_error := ""
+var score_display := 0.0
+var score_target := 0.0
 var board_view
 var screen := "home"
 var paused := false
@@ -33,6 +42,8 @@ var toast_label: Label
 
 func _ready() -> void:
 	save = Save.new()
+	save.background_writes = true
+	Engine.max_fps = 60
 	audio = Audio.new()
 	add_child(audio)
 	audio.apply_settings(save.data.settings)
@@ -46,13 +57,57 @@ func _ready() -> void:
 	show_home()
 	layout_stage()
 
+func safe_rect() -> Rect2:
+	if safe_rect_override.has_area(): return safe_rect_override
+	if OS.get_name() != "Android": return Rect2(Vector2.ZERO,size)
+	var physical := DisplayServer.get_display_safe_area()
+	var window_size := Vector2(DisplayServer.window_get_size())
+	if not physical.has_area() or window_size.x<=0 or window_size.y<=0: return Rect2(Vector2.ZERO,size)
+	var scale_to_canvas := size/window_size
+	return Rect2(Vector2(physical.position)*scale_to_canvas,Vector2(physical.size)*scale_to_canvas).intersection(Rect2(Vector2.ZERO,size))
+
 func layout_stage() -> void:
 	if stage == null: return
-	var factor := minf(size.x / 540.0, size.y / 960.0)
-	stage.size = Vector2(540, 960)
-	stage.scale = Vector2.ONE * factor
-	stage.position = (size - stage.size * factor) * 0.5
+	var area := safe_rect()
+	var factor := minf(area.size.x/540.0,area.size.y/960.0)
+	if factor<=0: return
+	stage.size = Vector2(540,area.size.y/factor)
+	stage.scale = Vector2.ONE*factor
+	stage.position = area.position+Vector2((area.size.x-540*factor)*.5,0)
 	garden.size = size
+	var extra := stage.size.y-960
+	if page:
+		page.position.y = 0 if screen == "game" else extra*.5
+	if screen == "game" and board_view:
+		board_view.position.y = 270+extra*.5
+		for node in footer_nodes:
+			if is_instance_valid(node): node.position.y = float(node.get_meta("base_y"))+extra
+	if overlay_root:
+		overlay_root.size = stage.size
+		overlay_root.get_child(0).size = stage.size
+		overlay.position.y = extra*.5
+
+func _process(delta: float) -> void:
+	if save:
+		save.poll_flush()
+		if save.last_error!="" and save.last_error!=reported_save_error:
+			reported_save_error=save.last_error
+			Metrics.incident("Save operation failed",{"error":save.last_error})
+			if screen=="game": set_hint(save.last_error)
+		elif save.last_error=="": reported_save_error=""
+	if score_label and is_instance_valid(score_label) and screen == "game":
+		if absf(score_display-score_target)>1:
+			score_display = lerpf(score_display,score_target,minf(1,delta*14))
+			score_label.text = str(int(round(score_display)))
+		elif score_display!=score_target:
+			score_display = score_target
+			score_label.text = str(int(score_target))
+	if board_view and is_instance_valid(board_view): garden.quality = board_view.quality
+
+func _exit_tree() -> void:
+	if save:
+		if settings_dirty: save.flush()
+		save.finish_writes()
 
 func _notification(what: int) -> void:
 	if save == null: return
@@ -60,10 +115,12 @@ func _notification(what: int) -> void:
 		go_back()
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
 		persist_board()
+		save.finish_writes()
 		get_tree().quit()
 	elif what == NOTIFICATION_APPLICATION_PAUSED:
 		persist_board()
-		if screen == "game" and (board.outcome == "playing" or (board_view != null and board_view.busy)): show_pause()
+		save.finish_writes()
+		if screen == "game" and (board.outcome == "playing" or (board_view != null and board_view.busy)): show_pause(true)
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -79,12 +136,15 @@ func go_back() -> void:
 		show_home()
 	else:
 		persist_board()
+		save.finish_writes()
 		get_tree().quit()
 
 func persist_board() -> void:
 	if board != null and screen == "game":
 		if board.outcome == "won": save.complete(board)
 		elif board.outcome == "playing": save.save_active(board)
+	elif settings_dirty: save.flush()
+	settings_dirty = false
 
 func begin_page(next_screen: String) -> void:
 	close_overlay()
@@ -97,7 +157,10 @@ func begin_page(next_screen: String) -> void:
 	stage.add_child(page)
 	screen = next_screen
 	board_view = null
-	garden.reduced_motion = save.data.settings.reduced_motion
+	footer_nodes.clear()
+	garden.reduced_motion = save.data.settings.reduced_motion or save.data.settings.get("reduced_effects",false)
+	garden.quality = save.data.settings.get("quality","balanced")
+	layout_stage()
 
 func label(parent: Node, text: String, rect: Rect2, font_size: int = 20, color: Color = Palette.INK, alignment: int = HORIZONTAL_ALIGNMENT_LEFT) -> Label:
 	var result := Label.new()
@@ -219,6 +282,7 @@ func start_level(number: int, resume: bool = false) -> void:
 	board_view.size = Vector2(476, 536)
 	board_view.reduced_motion = save.data.settings.reduced_motion
 	board_view.colorblind = save.data.settings.colorblind
+	board_view.settings = save.data.settings
 	page.add_child(board_view)
 	board_view.set_board(board)
 	board_view.swap_requested.connect(on_swap)
@@ -236,6 +300,11 @@ func start_level(number: int, resume: bool = false) -> void:
 	button(page, "Nasıl oynanır?", Rect2(274, 854, 235, 42), show_help, false, 15)
 	hint_label = label(page, "", Rect2(26, 903, 488, 46), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	for node in page.get_children():
+		if node is Control and node.position.y>=816:
+			node.set_meta("base_y",node.position.y)
+			footer_nodes.append(node)
+	layout_stage()
 	update_hud()
 	if board.outcome != "playing":
 		show_result()
@@ -248,6 +317,8 @@ func start_level(number: int, resume: bool = false) -> void:
 	save.save_active(board)
 
 func update_hud() -> void:
+	score_target = board.score
+	score_display = board.score
 	score_label.text = str(board.score)
 	moves_label.text = str(board.moves)
 	var descriptions: Array = []
@@ -274,7 +345,10 @@ func set_hint(text: String) -> void:
 
 func on_swap(a: int, b: int) -> void:
 	if screen != "game" or paused or board_view.busy or not board.available(): return
-	process_event(board.swap(a, b))
+	var started := Time.get_ticks_usec()
+	var event: Dictionary = board.swap(a,b)
+	Metrics.elapsed("swap_and_cascades",started)
+	process_event(event)
 
 func on_special(index: int) -> void:
 	if screen != "game" or paused or board_view.busy or not board.available() or board.cells[index].p == "": return
@@ -292,30 +366,45 @@ func process_event(event: Dictionary) -> void:
 		set_hint(Strings.text("invalid"))
 		board_view.animate(event)
 		return
-	save.mark_tutorial("m3_level_%d" % int(board.level.id))
-	if event.get("resonated", false): save.mark_tutorial("m3_resonance")
-	if event.get("gravity", false): save.mark_tutorial("m3_gravity")
+	var tutorial := "m3_level_%d" % int(board.level.id)
+	if tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
+	if event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
+	if event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
 	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Bahçe renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
 	update_hud()
-	score_label.text = str(board.score - int(event.points))
+	score_display = board.score - int(event.points)
+	score_target = score_display
+	score_label.text = str(int(score_display))
 	# Persist only the completely settled logical result, before cosmetic playback.
 	if board.outcome == "won": save.complete(board)
 	else: save.save_active(board)
 	board_view.animate(event)
 
 func on_wave(data: Dictionary) -> void:
-	score_label.text = str(data.score)
+	score_target = data.score
 	if data.resonated:
 		audio.play("resonance")
 		audio.vibrate(true)
 	elif data.get("special", false):
-		audio.play("power")
+		var power_key := "power"
+		for index in data.get("triggered",[]):
+			if data.before[index].p == "color": power_key = "color"; break
+			if data.before[index].p.begins_with("rocket"): power_key = "rocket"
+		audio.play(power_key)
+		audio.vibrate(true)
+	elif not data.get("creations",[]).is_empty():
+		var key := "rocket"
+		for creation in data.creations:
+			if creation.kind=="color": key="color"; break
+			if creation.kind=="prism": key="power"
+		audio.play(key)
 		audio.vibrate(true)
 	else:
 		audio.play("large" if data.removed.size() >= 4 else "pop")
 		audio.vibrate()
 	if data.combo > 1:
+		audio.play("cascade",mini(4,int(data.combo)-1))
 		var names := ["Kombo!", "Süper Kombo!", "Muhteşem!", "Efsanevi Zincir!"]
 		set_hint("%s  ·  x%d  ·  +%d puan" % [names[mini(3, int(data.combo) - 2)], data.multiplier, data.points])
 
@@ -356,14 +445,18 @@ func open_overlay(title: String, subtitle: String = "") -> Control:
 	if screen == "game" and board != null and (board.outcome == "playing" or (board_view != null and board_view.busy)):
 		board.pause()
 		if board_view != null: board_view.cancel_drag()
-	overlay = Control.new()
-	overlay.size = Vector2(540, 960)
-	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
-	stage.add_child(overlay)
+	overlay_root = Control.new()
+	overlay_root.size = stage.size
+	overlay_root.mouse_filter = Control.MOUSE_FILTER_STOP
+	stage.add_child(overlay_root)
 	var dim := ColorRect.new()
 	dim.color = Color(0.01, 0.02, 0.07, 0.83)
-	dim.size = Vector2(540, 960)
-	overlay.add_child(dim)
+	dim.size = stage.size
+	overlay_root.add_child(dim)
+	overlay = Control.new()
+	overlay.size = Vector2(540,960)
+	overlay.position.y = (stage.size.y-960)*.5
+	overlay_root.add_child(overlay)
 	card(overlay, Rect2(32, 225, 476, 512))
 	label(overlay, title, Rect2(48, 247, 444, 56), 29, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 	var sub := label(overlay, subtitle, Rect2(57, 311, 426, 65), 16, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
@@ -372,19 +465,21 @@ func open_overlay(title: String, subtitle: String = "") -> Control:
 
 func close_overlay() -> void:
 	if overlay != null:
-		overlay.hide()
-		overlay.queue_free()
+		overlay_root.hide()
+		overlay_root.queue_free()
 		overlay = null
+		overlay_root = null
 	paused = false
 	if board != null: board.resume()
 
-func show_pause() -> void:
+func show_pause(already_saved: bool = false) -> void:
 	if screen != "game": return
 	if board.outcome != "playing" and (board_view == null or not board_view.busy):
 		show_result()
 		return
-	persist_board()
-	open_overlay(Strings.text("pause"), "Bahçe seni bekler. İlerlemen kaydedildi.")
+	if not already_saved: persist_board()
+	save.finish_writes()
+	open_overlay(Strings.text("pause"), "Bahçe seni bekler. İlerlemen kaydedildi." if save.last_error=="" else save.last_error)
 	button(overlay, Strings.text("resume"), Rect2(68, 401, 404, 59), close_overlay, true)
 	button(overlay, Strings.text("settings"), Rect2(68, 480, 404, 55), show_settings)
 	button(overlay, Strings.text("replay"), Rect2(68, 553, 404, 55), func(): confirm_restart())
@@ -415,7 +510,7 @@ func show_result() -> void:
 	audio.play("win" if won else "lose")
 	open_overlay(Strings.text("won") if won else Strings.text("lost"), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya düşüş yönü dene.")
 	if won:
-		if not save.data.settings.reduced_motion:
+		if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 			var confetti := Celebration.new()
 			overlay.add_child(confetti)
 		var stars: int = Score.stars(board.score, board.level.stars)
@@ -437,20 +532,87 @@ func show_result() -> void:
 func show_settings() -> void:
 	persist_board()
 	begin_page("settings")
-	title_header(Strings.text("settings"), "OYUNU KENDİ RİTMİNDE OYNA")
-	var definitions := [["music", "Bahçenin müziği"], ["sfx", "Patlama sesleri"], ["haptics", "Dokunma titreşimi"], ["reduced_motion", "Daha az hareket"], ["colorblind", "Renk erişilebilirliği"]]
+	title_header(Strings.text("settings"), "KRİSTALLERİ KENDİ RİTMİNDE UYANDIR")
+	label(page,"GÖRSEL KALİTE",Rect2(43,190,350,27),14,Palette.GOLD)
+	var modes := ["auto","high","balanced","performance"]
+	var names := ["Otomatik","Yüksek","Dengeli","Performans"]
+	quality_buttons.clear()
+	for i in 4:
+		var mode: String = modes[i]
+		quality_buttons[mode] = button(page,names[i],Rect2(32+i*122,225,113,43),set_quality.bind(mode),save.data.settings.get("quality","auto")==mode,13)
+	var definitions := [["shake","Hafif ekran sarsıntısı"],["reduced_effects","Azaltılmış efektler"],["reduced_motion","Daha az hareket"],["haptics","Dokunma titreşimi"],["colorblind","Şekille renk erişimi"]]
 	for k in definitions.size():
 		var key: String = definitions[k][0]
-		card(page, Rect2(32, 222 + k * 91, 476, 74))
-		label(page, definitions[k][1], Rect2(51, 231 + k * 91, 325, 56), 20)
-		var toggle := button(page, "AÇIK" if save.data.settings[key] else "KAPALI", Rect2(368, 240 + k * 91, 119, 39), func(): toggle_setting(key), save.data.settings[key], 14)
+		var y := 287+k*62
+		card(page,Rect2(32,y,476,54))
+		label(page,definitions[k][1],Rect2(48,y+7,314,40),18)
+		var toggle := button(page,"AÇIK" if save.data.settings[key] else "KAPALI",Rect2(371,y+8,119,38),func(): toggle_setting(key),save.data.settings[key],13)
 		toggle.name = key
-	label(page, "Her blok kendi sembolünü taşır.\nTitreşim yalnızca destekleyen Android cihazlarda çalışır.", Rect2(42, 700, 456, 76), 14, Palette.MUTED).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	button(page, Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"), Rect2(42, 812, 456, 62), play_latest if not save.data.active.is_empty() else show_home, true)
-	label(page, "PRİZMA 0.2 · MATCH-3", Rect2(32, 895, 476, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+	volume_slider("music","Müzik",620)
+	volume_slider("sfx","Efekt sesi",693)
+	button(page,"Performans ölçümü / rapor",Rect2(42,771,456,44),show_diagnostics,false,15)
+	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
+	label(page,"PRİZMA 0.3 · BÜYÜLÜ KRİSTALLER",Rect2(32,905,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+
+func volume_slider(key: String, title: String, y: float) -> void:
+	label(page,title,Rect2(44,y,175,29),17)
+	var toggle := button(page,"AÇIK" if save.data.settings[key] else "KAPALI",Rect2(371,y-2,119,33),func(): toggle_setting(key),save.data.settings[key],12)
+	toggle.name = key
+	var slider := HSlider.new()
+	slider.position = Vector2(44,y+34)
+	slider.size = Vector2(446,25)
+	slider.max_value = 1
+	slider.step = .05
+	slider.value = save.data.settings.get(key+"_volume",.7)
+	page.add_child(slider)
+	slider.value_changed.connect(func(value: float):
+		save.data.settings[key+"_volume"] = value
+		settings_dirty = true
+		audio.apply_settings(save.data.settings))
+	slider.drag_ended.connect(func(_changed: bool):
+		save.flush()
+		settings_dirty=false)
 
 func toggle_setting(key: String) -> void:
 	save.data.settings[key] = not save.data.settings[key]
 	save.flush()
 	audio.apply_settings(save.data.settings)
-	show_settings()
+	var toggle := page.get_node_or_null(NodePath(key)) as Button
+	if toggle:
+		toggle.text = "AÇIK" if save.data.settings[key] else "KAPALI"
+		update_option_style(toggle,save.data.settings[key])
+	garden.reduced_motion = save.data.settings.reduced_motion or save.data.settings.get("reduced_effects",false)
+
+func update_option_style(btn: Button, active: bool) -> void:
+	var base := Color("8ce1c5") if active else Color("17283f")
+	(btn.get_theme_stylebox("normal") as StyleBoxFlat).bg_color = base
+	(btn.get_theme_stylebox("hover") as StyleBoxFlat).bg_color = base.lightened(.08)
+	(btn.get_theme_stylebox("pressed") as StyleBoxFlat).bg_color = base.darkened(.15)
+	for key in ["font_color","font_hover_color","font_pressed_color"]:
+		btn.add_theme_color_override(key,Color("102d32") if active else Palette.INK)
+
+func set_quality(mode: String) -> void:
+	save.data.settings.quality = mode
+	save.flush()
+	for key in quality_buttons:
+		if is_instance_valid(quality_buttons[key]): update_option_style(quality_buttons[key],key==mode)
+	garden.quality = "balanced" if mode=="auto" else mode
+
+func show_diagnostics() -> void:
+	var report: Dictionary = Metrics.report(save.data.settings)
+	open_overlay("Cihaz performansı", "Son 2048 örnek · 60 FPS hedefi: 16,7 ms")
+	var frame_metric: Dictionary = report.metrics.get("frame_interval",{})
+	var fps := 1000.0/maxf(.001,frame_metric.get("mean_ms",0.0)) if not frame_metric.is_empty() else 0.0
+	var lines := "Oynanış ort.: %.1f FPS · %s\n\n" % [fps,OS.get_model_name()]
+	for key in ["frame_interval","touch_to_visual_submit","swap_and_cascades","match_scan","clear_logic","gravity_logic","refill_logic","board_draw_cpu","save_worker"]:
+		if report.metrics.has(key): lines += "%s: %.2f ms (p95)\n" % [key,report.metrics[key].p95_ms]
+	var body := label(overlay,lines,Rect2(59,375,425,240),14)
+	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button(overlay,"RAPORU KOPYALA",Rect2(68,620,404,44),func():
+		var content := JSON.stringify(Metrics.report(save.data.settings),"  ")
+		DisplayServer.clipboard_set(content)
+		var file := FileAccess.open("user://prizma-performance.json",FileAccess.WRITE)
+		if file: file.store_string(content)
+		print("PRIZMA_PERF "+content)
+		body.text = "Rapor panoya ve cihazdaki oyun verisine kaydedildi.\n\nBu raporu cihaz testinden sonra paylaşabilirsin.",true,15)
+	button(overlay,"KAPAT",Rect2(68,677,404,38),close_overlay,false,14)

@@ -1,6 +1,6 @@
 # PRİZMA — Renklerin Uyanışı · Match-3
 
-Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mevcut PRİZMA projesi korunarak temel motor **sürükle → bir komşuyla takas → yatay/dikey 3+ eşleşme → otomatik zincir** sistemine dönüştürüldü. Normal dokunarak patlatma yoktur. Yalnızca ilk aşamanın 10 bölümü ve kullanıcının istediği Match-3 revizyonu uygulanır.
+Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mevcut PRİZMA projesi korunarak temel motor **sürükle → bir komşuyla takas → yatay/dikey 3+ eşleşme → otomatik zincir** sistemine dönüştürüldü. Normal dokunarak patlatma yoktur. 0.3.0 görsel kalite revizyonunda beş özgün büyülü kristal, havuzlanmış kırılma efektleri ve ölçümlü performans iyileştirmeleri eklendi. Bölümler ve oyun kuralları korunur.
 
 ## Oyna
 Godot Project Manager'da `project.godot` açın ve F5 ile çalıştırın. **OYNA** açık bölüme, **DEVAM ET** kayıtlı aynı tahtaya döner. Harita tamamlanan bölümleri tekrar açar.
@@ -11,7 +11,7 @@ Godot Project Manager'da `project.godot` açın ve F5 ile çalıştırın. **OYN
 - 4. bölümden itibaren 12 normal blok bir yön enerjisi verir, kapasite iki. Yön seçimi normal hamle harcamaz. Dolu tahtada yön seçimi sonraki düşüşü değiştirir; boşluk/eşleşme varsa otomatik çözülür.
 - 6. bölümden itibaren aynı renkte üç başarılı normal oyuncu takası rezonans oluşturur. Otomatik zincirler ayrı hamle sayılmaz. Çok renkli takasta hedef hücrenin eşleşme rengi esas alınır.
 - **Nasıl oynanır?** yeni eşleşme kurallarını gösterir. El eğitimi gerçekten kaydırma yönünü gösterir.
-- Ayarlar: müzik, efekt, titreşim, azaltılmış hareket, erişilebilir renk paleti. Her renkte ayrı sembol her zaman bulunur.
+- Ayarlar: otomatik/yüksek/dengeli/performans kalitesi, sarsıntı, azaltılmış efekt/hareket, titreşim, müzik/efekt seviyeleri ve şekil kontrastı. Her kristalin silüeti farklıdır.
 
 ## Geliştirme ve otomatik test
 Gerekenler: Godot 4.6.3 standart sürüm, Python 3, Bash ve `rg`. Oyun çalışma anında Python veya internet istemez.
@@ -51,7 +51,9 @@ bash tools/build_android.sh
 
 Varsayılan çıktı **`build/prizma-match3.apk`**, uygulama adı **PRİZMA Match-3**, test kimliği `com.prizma.renklerinuyanisi.match3`. Android 7.0+, hedef SDK 36, ARMv7/ARM64, internet izni yok. Build sarmalayıcısı önce test eder, sonra v2/v3 imzasını, manifesti, bölüm verisini ve kitaplıkları doğrular.
 
-**Eski uygulama/veri korunur:** v0.1.0 GitHub APK'sı geçici CI debug anahtarıyla imzalandı. O özel anahtar mevcut olmadığından yeni paket onun üzerine güvenli güncelleme olarak kurulamaz. Yeni test kimliği eski uygulamanın yanına kurulur; eski uygulamayı kaldırmanız gerekmez. Yeni test profili ayrı başlar; telefondaki eski profili otomatik okuyup aktardığı iddia edilmez.
+**0.3.0, yayımlanan 0.2.0 Match-3 APK’sı ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
+
+**0.1.0’dan ayrı profile geçiş geçmişi:** v0.1.0 GitHub APK'sı geçici CI debug anahtarıyla imzalandı. O özel anahtar mevcut olmadığından yeni paket onun üzerine güvenli güncelleme olarak kurulamaz. Yeni test kimliği eski uygulamanın yanına kurulur; eski uygulamayı kaldırmanız gerekmez. Yeni test profili ayrı başlar; telefondaki eski profili otomatik okuyup aktardığı iddia edilmez.
 
 Mevcut orijinal Android preset de korunur. Önceki sürümü aynı imzayla güncelleyen geliştirme/yayın sahibi için:
 
@@ -76,3 +78,15 @@ Schema/rules **2**. Atomik `user://prizma-save.json`, `.bak` ve eski schema dosy
 - `build/`: üretilmiş APK, checksum, test logları ve gerçek Godot ekran görüntüleri; Git dışında tutulur.
 
 Fiziksel telefon FPS, titreşim, Android yaşam döngüsü ve gerçek telefonda kayıt geçişi ayrıca doğrulanmalıdır. Başsız testler veya APK imza doğrulaması cihaz testi yerine geçmez. Mağaza, ödeme/reklam, yeni dünyalar veya başka bir geliştirme aşaması eklenmez.
+
+## Görsel kalite ve cihaz ölçümü
+Ayarlar → **Performans ölçümü / rapor** → **Raporu kopyala**. Oynanış kareleri, dokunma/görsel tepki, takas/zincir, eşleşme, yer çekimi, dolum, çizim ve kayıt sürelerinin p50/p95/en yüksek değerleri ile bellek/nesne tepe değerleri raporlanır. Son 2048 örnek tutulur; rapor panoya ve `user://prizma-performance.json` dosyasına yazılır. Dokunma süresi uygulamanın olayı almasından çizim komutunu göndermesine kadardır; ekranın fiziksel tarama gecikmesini içermez.
+
+Ayrıntılı gerçek test sonuçları, bulut ölçümünün sınırları ve telefon test adımları: [Görsel kalite revizyonu](docs/QUALITY_REVISION.md). Mantık testlerine ek olarak `tools/test.sh` havuz/kayıt/ekran uyumu testlerini ve 100 geçerli + 100 engellenen ScreenTouch kaydırmasını çalıştırır. Çizim karşılaştırması için grafik ortamında:
+
+```bash
+bash tools/godot.sh --audio-driver Dummy --max-fps 60 --profiling --script tests/visual_performance.gd
+bash tools/godot.sh --audio-driver Dummy --max-fps 60 --profiling --script tests/visual_performance.gd -- low
+```
+
+Bu ölçüm fiziksel Android testinin yerini tutmaz. Yeni dünyalar, bölümler, mağaza veya yeni mekanikler eklenmedi.

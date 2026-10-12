@@ -4,6 +4,10 @@ const SCHEMA := 2
 const Catalog = preload("res://scripts/core/level_catalog.gd")
 const Board = preload("res://scripts/core/board.gd")
 const Score = preload("res://scripts/core/score.gd")
+const Metrics = preload("res://scripts/ui/performance_metrics.gd")
+var background_writes := false
+var writer: Thread
+var pending: Dictionary = {}
 var path: String
 var data: Dictionary
 var last_error: String = ""
@@ -15,7 +19,7 @@ func _init(save_path: String = "user://prizma-save.json") -> void:
 	load_save()
 
 static func defaults() -> Dictionary:
-	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "active": {}, "tutorials": [], "settings": {"music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
+	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "active": {}, "tutorials": [], "settings": {"music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false, "quality": "auto", "shake": true, "reduced_effects": false, "music_volume": 0.65, "sfx_volume": 0.8}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
 
 static func canonical(value: Variant) -> Variant:
 	if value is Dictionary:
@@ -33,8 +37,13 @@ func valid_meta(parsed: Variant, version: int) -> bool:
 	if not parsed is Dictionary or not parsed.has_all(["version", "unlocked", "results", "rewarded", "active", "tutorials", "settings"]): return false
 	if not Board.whole(parsed.version, version, version) or not Board.whole(parsed.unlocked, 1, 10): return false
 	if not parsed.results is Dictionary or not parsed.active is Dictionary or not parsed.settings is Dictionary or not parsed.rewarded is Array or not parsed.tutorials is Array: return false
-	for key in defaults().settings:
+	for key in ["music", "sfx", "haptics", "reduced_motion", "colorblind"]:
 		if not parsed.settings.has(key) or not parsed.settings[key] is bool: return false
+	for key in ["shake", "reduced_effects"]:
+		if parsed.settings.has(key) and not parsed.settings[key] is bool: return false
+	if parsed.settings.has("quality") and parsed.settings.quality not in ["auto","high","balanced","performance"]: return false
+	for key in ["music_volume","sfx_volume"]:
+		if parsed.settings.has(key) and (not (parsed.settings[key] is float or parsed.settings[key] is int) or parsed.settings[key] < 0 or parsed.settings[key] > 1): return false
 	for key in parsed.results:
 		if not str(key).is_valid_int() or int(key) < 1 or int(key) > 10: return false
 		var result = parsed.results[key]
@@ -58,6 +67,9 @@ func load_save() -> bool:
 		var parsed = canonical(parser.data) if parse_error == OK else null
 		if valid(parsed):
 			data = parsed
+			var merged: Dictionary = defaults().settings
+			merged.merge(data.settings, true)
+			data.settings = merged
 			data.unlocked = int(data.unlocked)
 			return true
 		if valid_meta(parsed, 1):
@@ -79,6 +91,9 @@ func load_save() -> bool:
 func migrate(legacy: Dictionary) -> Dictionary:
 	var result := defaults()
 	for key in ["unlocked", "results", "rewarded", "settings"]: result[key] = legacy[key].duplicate(true) if legacy[key] is Dictionary or legacy[key] is Array else int(legacy[key])
+	var merged: Dictionary = defaults().settings
+	merged.merge(result.settings, true)
+	result.settings = merged
 	result.legacy_results = legacy.results.duplicate(true)
 	result.legacy_active = legacy.active.duplicate(true)
 	result.migrated_from = 1
@@ -89,12 +104,50 @@ func migrate(legacy: Dictionary) -> Dictionary:
 
 func flush() -> bool:
 	if read_only: return false
+	if background_writes:
+		pending = data.duplicate(true)
+		poll_flush()
+		return true
+	var started := Time.get_ticks_usec()
+	var error := write_snapshot(data)
+	Metrics.elapsed("save_sync", started)
+	last_error = error
+	return error == ""
+
+func poll_flush() -> void:
+	if writer != null:
+		if writer.is_alive(): return
+		var result: Dictionary = writer.wait_to_finish()
+		last_error = result.error
+		Metrics.record("save_worker", result.ms)
+		writer = null
+	if pending.is_empty(): return
+	var payload := pending
+	pending = {}
+	writer = Thread.new()
+	var error := writer.start(func() -> Dictionary:
+		var started := Time.get_ticks_usec()
+		var problem := write_snapshot(payload)
+		return {"error":problem,"ms":float(Time.get_ticks_usec()-started)/1000.0})
+	if error != OK:
+		writer = null
+		last_error = write_snapshot(payload)
+
+func finish_writes() -> void:
+	# Lifecycle boundary: guarantee durability before suspending/exiting.
+	while writer != null or not pending.is_empty():
+		if writer != null:
+			var result: Dictionary = writer.wait_to_finish()
+			last_error = result.error
+			Metrics.record("save_worker", result.ms)
+			writer = null
+		poll_flush()
+
+func write_snapshot(payload: Dictionary) -> String:
 	var temp := path + ".tmp"
 	var file := FileAccess.open(temp, FileAccess.WRITE)
-	if file == null:
-		last_error = "Kayıt yazılamadı: " + str(FileAccess.get_open_error())
-		return false
-	file.store_string(JSON.stringify(data))
+	if file == null: return "Kayıt yazılamadı."
+	file.store_string(JSON.stringify(payload))
 	file.flush()
 	file.close()
 	var absolute := ProjectSettings.globalize_path(path)
@@ -103,16 +156,9 @@ func flush() -> bool:
 		var parse_error := old_parser.parse(FileAccess.get_file_as_string(path))
 		var old_data = old_parser.data if parse_error == OK else null
 		if valid(old_data) or valid_meta(old_data, 1):
-			var backup_error := DirAccess.copy_absolute(absolute, absolute + ".bak")
-			if backup_error != OK:
-				last_error = "Kayıt yedeği yazılamadı."
-				return false
+			if DirAccess.copy_absolute(absolute, absolute + ".bak") != OK: return "Kayıt yedeği yazılamadı."
 	var error := DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), absolute)
-	if error != OK:
-		last_error = "Kayıt değiştirilemedi: " + str(error)
-		return false
-	last_error = ""
-	return true
+	return "" if error == OK else "Kayıt değiştirilemedi: " + str(error)
 
 func save_active(board) -> bool:
 	data.active = board.snapshot()

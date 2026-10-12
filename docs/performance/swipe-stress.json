@@ -1,0 +1,167 @@
+{
+  "audio_output_latency_ms": 0.0,
+  "counters": {
+    "active_quality": "performance",
+    "frames": 1550,
+    "frames_over_33ms": 16,
+    "peak_live_objects": 1855,
+    "peak_static_memory_bytes": 49509444
+  },
+  "device_model": "GenericDevice",
+  "display": {
+    "height": 0,
+    "refresh_rate_hz": null,
+    "safe_area": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 0
+  },
+  "incidents": [],
+  "metrics": {
+    "animation_clear": {
+      "max_ms": 140.392669677734,
+      "mean_ms": 33.7830002042982,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 216
+    },
+    "animation_fall": {
+      "max_ms": 35.7286682128906,
+      "mean_ms": 33.3306242006796,
+      "p50_ms": 33.3320007324219,
+      "p95_ms": 33.3333320617676,
+      "samples": 216
+    },
+    "animation_refill": {
+      "max_ms": 33.359001159668,
+      "mean_ms": 33.319906561463,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 216
+    },
+    "animation_swap": {
+      "max_ms": 42.9406661987305,
+      "mean_ms": 33.3835765457153,
+      "p50_ms": 33.3320007324219,
+      "p95_ms": 33.3333320617676,
+      "samples": 100
+    },
+    "board_draw_cpu": {
+      "max_ms": 1.29499995708466,
+      "mean_ms": 0.175696670765611,
+      "p50_ms": 0.165999993681908,
+      "p95_ms": 0.252000004053116,
+      "samples": 1622
+    },
+    "clear_logic": {
+      "max_ms": 0.287000000476837,
+      "mean_ms": 0.0863379630156689,
+      "p50_ms": 0.0780000016093254,
+      "p95_ms": 0.148000001907349,
+      "samples": 216
+    },
+    "drag_motion_to_visual_submit": {
+      "max_ms": 6.56300020217896,
+      "mean_ms": 2.21352001011372,
+      "p50_ms": 1.93099999427795,
+      "p95_ms": 4.28200006484985,
+      "samples": 100
+    },
+    "frame_interval": {
+      "max_ms": 46.0270004272461,
+      "mean_ms": 16.6645491117816,
+      "p50_ms": 16.6650009155273,
+      "p95_ms": 21.8549995422363,
+      "samples": 1550
+    },
+    "gesture_threshold_elapsed": {
+      "max_ms": 0.170000001788139,
+      "mean_ms": 0.027390000037849,
+      "p50_ms": 0.0240000002086163,
+      "p95_ms": 0.0450000017881393,
+      "samples": 100
+    },
+    "gravity_logic": {
+      "max_ms": 0.237000003457069,
+      "mean_ms": 0.0551759260189202,
+      "p50_ms": 0.0529999993741512,
+      "p95_ms": 0.0759999975562096,
+      "samples": 216
+    },
+    "main_thread_cpu": {
+      "max_ms": 49.3390007019043,
+      "mean_ms": 18.9576517046652,
+      "p50_ms": 18.1590003967285,
+      "p95_ms": 27.113000869751,
+      "samples": 1550
+    },
+    "match_scan": {
+      "max_ms": 0.794000029563904,
+      "mean_ms": 0.098278481159595,
+      "p50_ms": 0.0869999974966049,
+      "p95_ms": 0.146999999880791,
+      "samples": 316
+    },
+    "refill_logic": {
+      "max_ms": 0.165999993681908,
+      "mean_ms": 0.0248611110728234,
+      "p50_ms": 0.0219999998807907,
+      "p95_ms": 0.0350000001490116,
+      "samples": 216
+    },
+    "save_worker": {
+      "max_ms": 3.51500010490417,
+      "mean_ms": 1.2240828023215,
+      "p50_ms": 1.34500002861023,
+      "p95_ms": 1.96700000762939,
+      "samples": 157
+    },
+    "swap_and_cascades": {
+      "max_ms": 5.59899997711182,
+      "mean_ms": 1.61811999559402,
+      "p50_ms": 1.3639999628067,
+      "p95_ms": 3.69099998474121,
+      "samples": 100
+    },
+    "touch_callback": {
+      "max_ms": 0.00400000018998981,
+      "mean_ms": 0.00162000006530434,
+      "p50_ms": 0.0020000000949949,
+      "p95_ms": 0.00300000002607703,
+      "samples": 100
+    },
+    "touch_to_swap_request": {
+      "max_ms": 0.180999994277954,
+      "mean_ms": 0.0371000000461936,
+      "p50_ms": 0.0329999998211861,
+      "p95_ms": 0.0570000000298023,
+      "samples": 100
+    },
+    "touch_to_visual_submit": {
+      "max_ms": 6.58199977874756,
+      "mean_ms": 2.23002999961376,
+      "p50_ms": 1.94400000572205,
+      "p95_ms": 4.29500007629395,
+      "samples": 100
+    }
+  },
+  "platform": "Linux",
+  "renderer": "",
+  "settings": {
+    "colorblind": false,
+    "haptics": true,
+    "music": false,
+    "music_volume": 0.65,
+    "quality": "performance",
+    "reduced_effects": false,
+    "reduced_motion": true,
+    "sfx": true,
+    "sfx_volume": 0.8,
+    "shake": true
+  },
+  "slow_frames": [],
+  "version": "0.3.0"
+}

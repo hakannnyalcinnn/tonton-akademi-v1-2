@@ -1,0 +1,58 @@
+{
+  "cascade_waves": 228,
+  "frames": 3781,
+  "metrics": {
+    "draw_calls": {
+      "count": 3781,
+      "max": 841.0,
+      "mean": 691.816715154721,
+      "p50": 692.0,
+      "p95": 759.0
+    },
+    "engine_delta_ms": {
+      "count": 3781,
+      "max": 82.7703333333333,
+      "mean": 31.0077294837256,
+      "p50": 30.549,
+      "p95": 37.9726666666671
+    },
+    "engine_swap_ms": {
+      "count": 100,
+      "max": 5.955,
+      "mean": 2.55831,
+      "p50": 2.171,
+      "p95": 5.623
+    },
+    "frame_interval_ms": {
+      "count": 3780,
+      "max": 74.443,
+      "mean": 31.0043068783068,
+      "p50": 30.231,
+      "p95": 39.494
+    },
+    "objects": {
+      "count": 3781,
+      "max": 1665.0,
+      "mean": 1625.74583443533,
+      "p50": 1626.0,
+      "p95": 1628.0
+    },
+    "presentation_and_save_ms": {
+      "count": 100,
+      "max": 8.612,
+      "mean": 2.45224,
+      "p50": 2.275,
+      "p95": 3.231
+    },
+    "process_cpu_ms": {
+      "count": 3781,
+      "max": 93.027,
+      "mean": 44.0485514414177,
+      "p50": 41.983,
+      "p95": 58.489
+    }
+  },
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "successful_swaps": 100
+}
