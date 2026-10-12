@@ -1,25 +1,41 @@
 extends RefCounted
 
-static func created(group: Array, width: int) -> String:
-	if group.size() >= 10: return "color"
-	if group.size() >= 7: return "prism"
-	if group.size() >= 5:
-		var min_x := width
-		var max_x := 0
-		var min_y := 999
-		var max_y := 0
-		for i in group:
-			min_x = mini(min_x, i % width)
-			max_x = maxi(max_x, i % width)
-			min_y = mini(min_y, int(i / width))
-			max_y = maxi(max_y, int(i / width))
-		return "rocket_h" if max_x - min_x >= max_y - min_y else "rocket_v"
+static func created(component: Dictionary) -> String:
+	for line in component.lines:
+		if line.cells.size() >= 5: return "color"
+	var horizontal := false
+	var vertical := false
+	for line in component.lines:
+		horizontal = horizontal or line.axis == "h"
+		vertical = vertical or line.axis == "v"
+	if horizontal and vertical and component.cells.size() >= 5: return "prism"
+	for line in component.lines:
+		if line.cells.size() == 4: return "rocket_h" if line.axis == "h" else "rocket_v"
 	return ""
+
+static func origin(component: Dictionary, preferred: Array) -> int:
+	for i in preferred:
+		if i in component.cells: return i
+	for i in component.cells:
+		var count := 0
+		for line in component.lines:
+			if i in line.cells: count += 1
+		if count > 1: return i
+	return component.cells[0]
+
+static func dominant_color(cells: Array) -> int:
+	var counts: Array = [0, 0, 0, 0, 0]
+	for cell in cells:
+		if cell != null and cell.p == "" and not cell.get("fixed", false): counts[cell.c] += 1
+	var result := 0
+	for c in 5:
+		if counts[c] > counts[result]: result = c
+	return result
 
 static func area(index: int, kind: String, cells: Array, width: int, selected_color: int = -1) -> Array:
 	var result: Array = [index]
 	for i in cells.size():
-		if cells[i] == null: continue
+		if cells[i] == null or cells[i].get("fixed", false): continue
 		var dx: int = absi(i % width - index % width)
 		var dy: int = absi(int(i / width) - int(index / width))
 		if (kind == "rocket_h" and dy == 0) or (kind == "rocket_v" and dx == 0): result.append(i)
@@ -31,7 +47,10 @@ static func combo_area(a: int, b: int, cells: Array, width: int, selected_color:
 	var result: Array = [a, b]
 	var first: String = cells[a].p
 	var second: String = cells[b].p
-	if "color" in [first, second]:
+	if first == "color" and second == "color":
+		for i in cells.size():
+			if cells[i] != null and not cells[i].get("fixed", false): result.append(i)
+	elif "color" in [first, second]:
 		var other: String = second if first == "color" else first
 		for i in cells.size():
 			if cells[i] != null and cells[i].p == "" and cells[i].c == selected_color:

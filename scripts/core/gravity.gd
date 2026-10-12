@@ -21,8 +21,18 @@ static func lines(width: int, height: int, direction: String) -> Array:
 static func compact(cells: Array, width: int, height: int, direction: String) -> void:
 	assert(direction in ["down", "up", "left", "right"])
 	for line in lines(width, height, direction):
-		var surviving: Array = []
+		var segment: Array = []
 		for index in line:
-			if cells[index] != null: surviving.append(cells[index])
-		for k in line.size():
-			cells[line[k]] = surviving[k] if k < surviving.size() else null
+			if cells[index] != null and cells[index].get("fixed", false):
+				compact_segment(cells, segment)
+				segment.clear()
+			else:
+				segment.append(index)
+		compact_segment(cells, segment)
+
+static func compact_segment(cells: Array, segment: Array) -> void:
+	var surviving: Array = []
+	for index in segment:
+		if cells[index] != null: surviving.append(cells[index])
+	for k in segment.size():
+		cells[segment[k]] = surviving[k] if k < surviving.size() else null

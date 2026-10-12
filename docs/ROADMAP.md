@@ -1,24 +1,24 @@
 # Geliştirme planı
 
-## Aşama 1 — Bu teslim
-1. Godot projesi, gereksinim ve bu plan.
-2. Ayrılmış oyun mantığı: 8×9, gruplar, deterministik dolum, dört yön, rezonans, temel güçler, puan.
-3. 10 bölüm, simülasyonla oynanabilirlik, ilerleme ve aktif oyun kaydı.
-4. Bahçe sanat yönü, dokunmatik arayüz, efekt/ses, eğitim ve ayarlar.
-5. Gerçek Godot testleri, masaüstü görsel kontrol, Android export denemesi, durum raporu ve Git commit.
+## İlk aşama — Mevcut proje
+On bölümlü Godot çekirdeği, sanat/menu, dört yön, rezonans, güçler, puan ve kayıt tamamlandı. Kullanıcının acil talimatıyla temel oyun tap-blast'tan Match-3'e dönüştürülür. Bu bir sonraki aşamaya geçiş değildir.
 
-Bu aşamaya mekaniklerin bir kısmı özellikle öne alınmıştır: kullanıcının üst talimatı ilk sürümde yer çekimi ve rezonans da istiyor. Alt metindeki Faz 2 otomatik olarak başlatılmış sayılmaz.
+## Acil Match-3 revizyonu — Bu teslim
+1. Eski Git commit, etiket ve bundle'ı koru.
+2. Düz çizgi eşleşmeleri, komşu takas/geri alma, kontrollü durum makinesi.
+3. Otomatik patlama/düşüş/dolum/zincir döngüsü; hamle ve hedef kontrolü.
+4. Match-3 özel güçleri ve tek oyuncu hamlesi temelli rezonans.
+5. Hazır eşleşmesiz başlangıçlar, geçerli takas garantili ücretsiz karıştırma.
+6. Sürükleme, el eğitimi, yardım, mevcut arayüz ve 10 yeniden düzenlenmiş bölüm.
+7. Schema 1 arşivi → schema 2 dönüşümü; aktif tahta, ilerleme ve ayar koruması.
+8. Binlerce durum, tüm bölümler, gerçek UI girişleri, görsel kontrol, yeni APK, Git commit ve durum raporu.
 
-## Aşama 2 — Kullanıcı talimatıyla
-Engeller, zincir şimşeği, kapsamlı güç birleşimleri, engelli yer çekimi ve yeni öğretici bölümler. Önce mevcut testler korunur; yeni etkileşim testleri eklenir.
+Bu revizyon tamamlanınca durulur; başka aşama için kullanıcı talimatı gerekir.
 
-## Aşama 3 — Kullanıcı talimatıyla
-Yeni dünyalar, sanat ve ses iyileştirmeleri, cihaz performansı, kapsamlı erişilebilirlik ve animasyon seçenekleri.
+## Sonraki aşamalar — Yalnızca kullanıcı talimatıyla
+- İleri engeller ve güçler: buz, taş, kilit, portal, ışık küresi, zincir şimşeği; 20 mekanik mimarisini mevcut çekirdek üzerine genişletme.
+- Dünya/sanat/ses ve cihaz performansı; görsel referanstaki altı dünya.
+- 50+ dengelenmiş bölüm, günlük/sonsuz mod, görevler ve başarımlar.
+- Gerçek kozmetik ekonomi, mağaza, PRO/Billing ve isteğe bağlı reklam; yayın imzası/AAB/Play Store.
 
-## Aşama 4 — Kullanıcı talimatıyla
-50+ dengelenmiş bölüm, günlük/sonsuz mod, görev ve başarımlar, ayrıntılı profil. Ekli altı dünya konsepti aşamalı uygulanır.
-
-## Aşama 5 — Kullanıcı talimatıyla
-Kozmetik ekonomi, gerçek Billing/PRO, açıkça isteğe bağlı reklamlar, mağaza yayını; imzalama, gizlilik ve cihaz matrisi. Sahte canlı servis başarıları kullanılmaz.
-
-Her aşamada derlenebilir çalışan çekirdek korunur, testler gerçekten yürütülür ve bir Git commit oluşturulur. Bu teslimden sonra otomatik olarak başka aşamaya geçilmez.
+Her aşama çalışan kodu ve kayıtları korur; ilgili testler gerçekten çalıştırılır ve ayrı Git commit oluşturulur. Sahte ödeme/reklam veya boş menü eklenmez.

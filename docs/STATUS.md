@@ -1,32 +1,47 @@
-# İlk aşama durum raporu
+# PRİZMA 0.2.0 Match-3 revizyonu — Durum raporu
 
-## Doğrulanan ilk aşama
-Godot 4.6.3 ile 8×9 / beş sembollü renk, ortogonal patlatma, deterministik dolum, dört yönlü yer çekimi, enerji, rezonans, roket/prizma/renk bombası ve temel komşu birleşimleri çalışır. 10 bölüm sırayla açılır; puan/yıldız, tekrar oynama, aktif oyun ve ayarlar atomik yerel kayıtta saklanır. Dolu tahtada yön değişimi sonraki dolumu etkiler; mevcut blokları yapay olarak karıştırmaz.
+## Doğrulanan motor
+Mevcut Godot projesi korunarak normal dokunarak patlatma kaldırıldı. Sürükleme yalnızca dört yönde bir komşuya takas yapar. En az üçlü yatay/dikey çizgiler ve kesişimleri çözülür; düzensiz kümeler/ikili/çapraz patlamaz. Geçersiz takas animasyonla geri alınır, bütün sayaçlar ve RNG korunur. Otomatik patlat → yer çekimi → dolum → yeniden tara zinciri tek oyuncu hamlesiyle tamamen çözülür.
 
-Ana menü, bölüm haritası, oyun, duraklatma, kazanma/kaybetme ve ayarlar gerçek sahne kontrolleridir. Bahçe, toplanan renklerle doygunluk kazanır ve renk sembolleri canlanır. Blokların büyüme/patlama/düşüş efektleri, rezonans dalgası ve zafer kutlaması; yerel müzik ve dokuz sentez efekt vardır. Menü navigasyonu, oyun giriş kilidi ve kayıt devamı otomatik UI testinde doğrulandı.
+4 düz roket, 5 düz renk bombası, T/L prizma; üretim önceliği/konumu ve güç istisnaları açık tanımlıdır. Yeni güç ilk dalgada kendiliğinden tetiklenmez. Rezonans ilk dalgadaki bir oyuncu hamlesine bir kez ilerler; çok renkli eşleşme hedef hücreye göre seçilir. Dört yön, enerji ve ücretsiz karıştırma korunur. Sabit hücreler sıkıştırma segmentini böler ve karıştırmada yerinde kalır; ilk on bölüme engel oyunu eklenmez.
 
-## Gerçek çalıştırma kanıtı
-`PRIZMA_TOOLS_DIR=/workspace/prizma-tools bash tools/test.sh`:
-- **5.991 kontrol, 0 başarısızlık**.
-- **300 oyun simülasyonu, 1.861 hamle**; her bölümde 30 farklı dolum seed'i. Bu hedef odaklı otomatik oyuncu tüm 300 oyunu kazandı. Bu sonuç insan oyuncular için kapsamlı zorluk dengelemesi yerine geçmez.
-- Grup, çapraz/tek blok, büyük grup, güç üretim yeri, güç dalgaları ve birleşimlerin tek sayımı.
-- Dört yönlü sıkıştırma, doğru kaynak kenarı, enerji sınırı, rezonans sırası/mesafesi/tie-break.
-- Skor ve son hamlede kazanma, negatif sayaç/çift ödül engeli, açılma ve en iyi sonuç.
-- Ölü tahta karıştırmasının renk çoklu kümesini koruması; sabit seed ve eylemle durum eşitliği.
-- Tam kayıt/RNG devamı; bozuk JSON'da yedek, hatalı tür/kesirli renk/tekrarlı kimlik/toplam reddi.
-- Gerçek GUI mouse/touch emülasyon giriş yolu, hızlı dokunma kilidi, duraklatma, ayar ve devam.
-- 360×640, 360×800, 768×1024, 1080×2400 geometride 540×960 sahnenin taşmadan sığması.
-- İki **ayrı Godot sürecinde** kayıt ve aynı sonraki hamlenin tahta/RNG/puan eşitliği.
+READY → SWAPPING/CHECKING_MATCHES → RESOLVING_MATCHES/PLAYING_EFFECTS → APPLYING_GRAVITY/REFILLING/CHECKING_CASCADES → CHECKING_OBJECTIVES → READY/LEVEL_COMPLETED/LEVEL_FAILED; REVERTING_SWAP, SHUFFLING ve PAUSED kontrollü kullanılır. Mantık son kararlı sonucu hesaplar; animasyon kuyruğu ve sunum kilidi ikinci hamleyi engeller. Kayıtlar animasyon ortasını içermez.
 
-Xvfb / Mesa Compatibility renderer ile gerçek ana menü, oyun, harita, ayarlar ve oynanarak kazanılmış sonuç ekranı render edildi; `build/*.png` görselleri kontrol edildi. Logo boyut sorunu ve kapanışta WAV kaynak sızıntısı düzeltildi. Son test logunda script/engine hatası veya kaynak sızıntısı bulunmuyor. Xvfb yazılım render sürücüsünün V-Sync uyarısı fiziksel telefon performansını ölçmez.
+## Gerçek test sonuçları
+`PRIZMA_TOOLS_DIR=/workspace/prizma-tools bash tools/build_android.sh`:
+- **21.969 kontrol, 0 başarısızlık**.
+- **2.000 farklı seed'li başlangıç tahtası**: hazır eşleşme yok, en az bir geçerli eylem var, başlangıç kendiliğinden puan/hamle üretmez.
+- **1.000 oyun / 4.128 başarılı hamle**: tüm 10 bölümde 100 dolum seed'i. Hedef odaklı otomatik oyuncu her bölümde 100/100 kazandı. Bu insan oyuncu deneyimi için kapsamlı dengeleme yerine geçmez.
+- Her işlem sonunda negatif hamle yok, 72 eşsiz hücre kimliği, enerji sınırı, hazır eşleşmesiz kararlı tahta ve geçerli sonraki eylem; aynı seed/eylem için aynı snapshot.
+- İkili, yatay/dikey üçlü, çapraz, düzensiz küme, T/L birleşimi ve hücre tek sayımı.
+- Normal dokunmanın etkisizliği, uzak/çapraz reddi, geçersiz takasın RNG dahil tam geri alımı ve iki parçalı geri dönüş animasyonu.
+- Oyuncu ve otomatik dalgada güç üretim konumu, öncelik, oluşturma dalgasında korunma, özel-normal/özel-özel istisnaları ve renk seçimi.
+- Otomatik zincir ek giriş/hamle gerektirmez; merkezi en çok x5 çarpan; rezonans yalnızca bir kez ve çok renkli takasta deterministik.
+- Dört yönlü düşüş/dolum, karşı kaynak kenarı, sabit segmentler, ücretsiz renk/kimlik koruyan karıştırma ve eşleşmesiz/oynanabilir son tahta.
+- Son hamlede ilk dalgada hedef eksikken ikinci dalganın tamamlanmasıyla kazanma; sonuç/bonus bir kez, terminal giriş kilidi.
+- **Gerçek GUI olayları:** mouse ve native ScreenTouch, dört yönde yavaş sürükleme, hızlı/kısa ve uzun sürükleme, çapraz/tahta dışı/küçük hareket iptali, normal dokunma, hızlı ikinci giriş, animasyon sırasında PAUSED/geri dönüş, yardım/ayar/ölçek.
+- **İki ayrı Godot sürecinde** kaydedilen oyunun aynı yeni takas/zincir/RNG/puanla devamı.
+- Schema 1 eski dosyanın byte olarak `.v1-archive` korunması; ilerleme/ayar/en iyi sonuç/ödül kimliği, eski aktif tahta arşivi, yeni bölümün tam bütçesi ve geçiş bildirimi. Yeniden başlatmada idempotent dönüşüm; gelecek schema üzerine yazılmaz.
 
-## Android çıktısı
-`build/prizma-debug.apk` gerçek Godot export çıktısıdır; debug imzalıdır. APK Signature Scheme **v2 ve v3** doğrulandı. Paket `com.prizma.renklerinuyanisi`, sürüm 0.1.0 / kod 1; minimum SDK 24, hedef SDK 36; ARMv7 + ARM64. Bölüm JSON'u ve iki mimarinin Godot kitaplıkları APK içinde bulunur. İnternet izni yok; titreşim izni var. `build/prizma-debug.apk.sha256` bütünlük özeti build sarmalayıcısı tarafından üretilir.
+Başarısız kalan otomatik test veya sıfır test koşusu yoktur. İlk çalıştırmada JSON integer/float karşılaştırması kaynaklı üç dönüşüm kontrolü başarısızdı; sayısal canonical dönüşüm düzeltilip bütün etkilenen testler yeniden geçirildi. Normal dokunarak patlatma API'si ve eski eşleşme yardım metni aktif koddan kaldırıldı.
 
-Google SDK ve Godot şablonları resmi kaynaklardan checksum kontrolüyle kuruldu. Java SDK yöneticisinin proxy sorunu HTTPS arşiv kurulumu ile çözüldü; Godot Android doku import ayarı etkinleştirildi. Kurulum aracı tekrar çalıştırılarak mevcut SDK paketlerini koruduğu doğrulandı.
+## Görsel ve Android kontrolü
+Xvfb/Mesa Compatibility renderer ile aynı fantastik bahçe/ana menü, yeni kararlı tahta/sürükleyen el, harita/ayar ve oynanarak kazanılan sonuç ekranı render edildi; `build/*.png` incelendi. Xvfb'nin V-Sync uyarısı cihaz FPS ölçümü değildir. Son loglarda script hatası veya kaynak sızıntısı yoktur.
+
+Gerçek çıktı **`build/prizma-match3.apk`**, sürüm 0.2.0/kod 2; `com.prizma.renklerinuyanisi.match3`, Android 7.0+ (SDK 24), hedef SDK 36, ARMv7/ARM64. APK v2/v3 imzası, bölüm verisi, iki mimarinin Godot kitaplığı ve internetsiz manifest doğrulandı. SHA-256 dosyası yanında üretilir. Orijinal Android preset aynı uygulama kimliğiyle korunur.
+
+Önceki yayımlanan APK'nın CI özel imzası mevcut değildir. Verileri silen kaldırma/yeniden kurma önerilmez: yeni test APK'sı ayrı profille yan yana kurulur. Eski cihaz kayıtlarının ayrı test profiline otomatik aktarıldığı iddia edilmez. Aynı anahtarla normal güncellemede kodun schema geçişi desteklenir. Yeni imzalama malzemesi çalışma alanı araç dizininde korunur; Git dışında kalır. Yayın akışı yerelde doğrulanmış APK'yı imzasını değiştirmeden alır, runtime kaynak özeti/SHA-256/imzayı doğrular ve yükler.
 
 ## Cihazda doğrulanmayanlar
-ADB listesi boş; bağlı Android cihaz veya kullanılabilir emülatör yok. APK fiziksel telefona kurulup çalıştırılmadı. Telefon FPS, uzun oturum pil/bellek, titreşim, cihaz geri tuşu, uygulama arka plan/geri dönüş ve kesinti sırasında Android kayıt davranışı **cihazda test edilmedi**. Bunların kod yolları mevcut olsa da cihaz doğrulaması tamamlandı sayılmaz. Masaüstünde yerel ses varlıklarının yüklenmesi test edildi; hoparlör üzerinde dinleme ve müzikal kalite değerlendirmesi yapılmadı.
+ADB listesi boş. Fiziksel Android kurulum/açılış, gerçek parmak davranışı, ekran çentikleri, geri tuşu, titreşim, FPS/pil/bellek, Android arka plan yaşam döngüsü ve telefonda gerçek eski kayıt dönüşümü test edilmedi. Headless GUI olayları bu cihaz kontrolleri yerine geçmez. Yerel ses yüklenmesi doğrulandı; fiziksel hoparlör dinleme yapılmadı.
 
-## Bilinçli kapsam sınırı
-İleri engeller, zincir şimşeği, günlük görevler, sonsuz mod, başarımlar, profil ekonomisi, mağaza/PRO/Billing/reklam, yeni dünyalar ve 1.000 bölüm yok. İlk aşama on bölüm bahçeyle sınırlı. Yayın imzası, Play Store AAB ve yayınlama yapılmadı. Kullanıcı talimatı gelmeden ikinci aşamaya geçilmez.
+## Koruma ve kapsam
+Eski çalışan sürüm Git etiketi `backup/tap-blast-v0.1.0` ve `/workspace/prizma-tools/prizma-before-match3.bundle` ile korunur; eski GitHub v0.1.0 yayını da durur. Yeni kod aynı projedir; uygulama sıfırdan kurulmadı. Mağaza/ödeme/reklam, yeni dünyalar, engel bölümleri veya başka bir aşama eklenmedi. Kullanıcı yeni aşamaya talimat verene kadar burada durulur.
+
+## Değişen dosyalar
+- `scripts/core/board.gd`: komşu takas, durum makinesi, otomatik dalgalar, eylem/hamle ve son sonuç; `match_detector.gd`: çizgi/T/L; yeni `board_generator.gd`: kararlılık/karıştırma.
+- `powerups.gd`, `resonance.gd`, `gravity.gd`, `score.gd`: yeni üretim/aktivasyon, oyuncu hamlesi temelli rezonans, sabit segmentler ve merkezi çarpan; `save_manager.gd`: schema 2 ve eski dosya arşivi; `level_catalog.gd`: yeni bölüm sürümü.
+- `scripts/ui/board_view.gd`: native touch/mouse sürükleme ve aşamalı animasyon kuyruğu; `main.gd`: yardım, eğitim, güç akışı, pause/terminal dalga kilidi; `strings.gd`: yeni Türkçe kurallar.
+- `data/levels.json`: 10 yeni başlangıç/eğitim/hedef; `project.godot`, `export_presets.cfg`: 0.2.0 ve eski uygulamayı koruyan ayrı test profili.
+- `tests/run_tests.gd`, yeni `move_solver.gd`, `persistence_probe.gd`, `capture.gd`: yeni bütünleşme/simülasyon ve kayıt kontrolleri; `tools/build_android.sh`, yeni `runtime_digest.py` ve GitHub workflow: doğrulanmış yeni APK teslimi.
+- README, proje gereksinimleri/yol haritası, bu durum raporu, `MATCH3_REVISION.md` ve yeni sürüm notları güncellendi. Bahçe görseli, ikon, ses dosyaları ve blok sanat yönü korunur.

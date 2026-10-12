@@ -12,15 +12,14 @@ func _initialize() -> void:
 	if mode == "write":
 		save.data = Save.defaults()
 		save.data.unlocked = 10
-		board.tap(0)
-		board.tap(2)
+		board.swap(27,35)
+		if board.outcome != "playing":
+			printerr("ERROR: persistence fixture completed too soon")
+			quit(1)
+			return
 		save.save_active(board)
-		var action := 0
-		for i in 72:
-			if Match.group(board.cells, i, 8, 9).size() >= 2:
-				action = i
-				break
-		board.tap(action)
+		var action: Array = preload("res://tests/move_solver.gd").best_move(board)
+		board.swap(action[0],action[1])
 		var expected := FileAccess.open(PATH + ".expected", FileAccess.WRITE)
 		expected.store_string(JSON.stringify({"action": action, "snapshot": board.snapshot()}))
 		expected.close()
@@ -31,7 +30,7 @@ func _initialize() -> void:
 			printerr("ERROR: cross-process restore failed")
 			quit(1)
 			return
-		board.tap(int(expected.action))
+		board.swap(int(expected.action[0]),int(expected.action[1]))
 		var expected_board = Board.new(Catalog.get_level(10))
 		if not expected_board.restore(expected.snapshot) or board.snapshot() != expected_board.snapshot():
 			printerr("ERROR: cross-process continuation differs")

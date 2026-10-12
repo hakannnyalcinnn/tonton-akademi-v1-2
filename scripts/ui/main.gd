@@ -22,8 +22,6 @@ var overlay: Control
 var board_view
 var screen := "home"
 var paused := false
-var combine_mode := false
-var combine_first := -1
 var score_label: Label
 var moves_label: Label
 var goals_label: Label
@@ -65,7 +63,7 @@ func _notification(what: int) -> void:
 		get_tree().quit()
 	elif what == NOTIFICATION_APPLICATION_PAUSED:
 		persist_board()
-		if screen == "game" and board.outcome == "playing": show_pause()
+		if screen == "game" and (board.outcome == "playing" or (board_view != null and board_view.busy)): show_pause()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -99,8 +97,6 @@ func begin_page(next_screen: String) -> void:
 	stage.add_child(page)
 	screen = next_screen
 	board_view = null
-	combine_mode = false
-	combine_first = -1
 	garden.reduced_motion = save.data.settings.reduced_motion
 
 func label(parent: Node, text: String, rect: Rect2, font_size: int = 20, color: Color = Palette.INK, alignment: int = HORIZONTAL_ALIGNMENT_LEFT) -> Label:
@@ -166,7 +162,7 @@ func show_home() -> void:
 	label(page, "PRİZMA", Rect2(20, 251, 500, 78), 62, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 	label(page, Strings.text("tagline"), Rect2(20, 333, 500, 32), 17, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 	label(page, "Bir dokunuşla renkleri uyandır.", Rect2(20, 402, 500, 34), 21, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, "Patlat. Yönü değiştir. Bahçeyi canlandır.", Rect2(20, 438, 500, 28), 15, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+	label(page, "Kaydır. Eşleştir. Bahçeyi canlandır.", Rect2(20, 438, 500, 28), 15, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	card(page, Rect2(44, 518, 452, 102))
 	label(page, Strings.text("world"), Rect2(65, 532, 350, 32), 24)
 	var stars := 0
@@ -177,6 +173,8 @@ func show_home() -> void:
 	button(page, Strings.text("map"), Rect2(44, 733, 452, 57), show_map)
 	button(page, Strings.text("settings"), Rect2(162, 818, 216, 48), show_settings, false, 17)
 	label(page, Strings.text("saved"), Rect2(25, 898, 490, 28), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+
+	if save.data.get("migration_notice", false): call_deferred("show_migration_notice")
 
 func play_latest() -> void:
 	if not save.data.active.is_empty():
@@ -223,7 +221,9 @@ func start_level(number: int, resume: bool = false) -> void:
 	board_view.colorblind = save.data.settings.colorblind
 	page.add_child(board_view)
 	board_view.set_board(board)
-	board_view.cell_pressed.connect(on_cell)
+	board_view.swap_requested.connect(on_swap)
+	board_view.special_pressed.connect(on_special)
+	board_view.wave_started.connect(on_wave)
 	board_view.animation_finished.connect(on_animation_finished)
 	resonance_label = label(page, "", Rect2(33, 816, 292, 28), 13, Palette.GOLD)
 	energy_label = label(page, "", Rect2(326, 816, 182, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
@@ -233,22 +233,18 @@ func start_level(number: int, resume: bool = false) -> void:
 	for k in 4:
 		var direction: String = directions[k]
 		gravity_buttons[direction] = button(page, arrows[k], Rect2(31 + k * 56, 854, 48, 42), on_gravity.bind(direction), false, 24)
-	button(page, "Güçleri birleştir", Rect2(274, 854, 235, 42), toggle_combine, false, 15)
+	button(page, "Nasıl oynanır?", Rect2(274, 854, 235, 42), show_help, false, 15)
 	hint_label = label(page, "", Rect2(26, 903, 488, 46), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	update_hud()
 	if board.outcome != "playing":
 		show_result()
 		return
-	if number == 1 and "tap" not in save.data.tutorials:
-		set_hint(Strings.text("tap_hint"))
-		board_view.hint_index = 0
-	elif number == 4 and "gravity" not in save.data.tutorials:
-		set_hint(Strings.text("gravity_hint"))
-	elif number == 6 and "resonance" not in save.data.tutorials:
-		set_hint(Strings.text("resonance_hint"))
-	else:
-		set_hint(Strings.text("power_hint"))
+	var tutorial_key := "m3_level_%d" % number
+	set_hint(board.level.get("tutorial", Strings.text("power_hint")))
+	if tutorial_key not in save.data.tutorials and board.level.has("tutorial_swap"):
+		board_view.hint_index = int(board.level.tutorial_swap[0])
+		board_view.hint_target = int(board.level.tutorial_swap[1])
 	save.save_active(board)
 
 func update_hud() -> void:
@@ -276,84 +272,90 @@ func update_hud() -> void:
 func set_hint(text: String) -> void:
 	if hint_label: hint_label.text = text
 
-func on_cell(index: int) -> void:
-	if screen != "game" or paused or board_view.busy or board.outcome != "playing": return
-	var partner := -1
-	if combine_mode:
-		if board.cells[index].p == "":
-			set_hint("Önce bir özel güç seç.")
-			return
-		if combine_first < 0:
-			combine_first = index
-			board_view.selected = index
-			set_hint(Strings.text("combo_hint"))
-			return
-		partner = combine_first
-		if partner == index or index not in Match.neighbors(partner, 8, 9):
-			set_hint(Strings.text("combo_hint"))
-			return
-	if board.cells[index].p == "color" or (partner >= 0 and board.cells[partner].p == "color"):
-		show_color_picker(index, partner)
-	else:
-		perform_tap(index, -1, partner)
+func on_swap(a: int, b: int) -> void:
+	if screen != "game" or paused or board_view.busy or not board.available(): return
+	process_event(board.swap(a, b))
 
-func perform_tap(index: int, selected_color: int = -1, partner: int = -1) -> void:
-	if board_view.busy or board.outcome != "playing": return
-	var event: Dictionary = board.tap(index, selected_color, partner)
-	if not event.accepted: return
-	combine_mode = false
-	combine_first = -1
-	board_view.selected = -1
-	save.mark_tutorial("tap")
-	if event.get("resonated", false): save.mark_tutorial("resonance")
-	if event.get("invalid", false):
+func on_special(index: int) -> void:
+	if screen != "game" or paused or board_view.busy or not board.available() or board.cells[index].p == "": return
+	if board.cells[index].p == "color": show_color_picker(index)
+	else: perform_special(index)
+
+func perform_special(index: int, selected_color: int = -1) -> void:
+	if paused or board_view.busy or not board.available(): return
+	process_event(board.activate(index, selected_color))
+
+func process_event(event: Dictionary) -> void:
+	if not event.get("attempted", false): return
+	if not event.accepted:
 		audio.play("invalid")
 		set_hint(Strings.text("invalid"))
-	elif event.get("resonated", false):
-		audio.play("resonance")
-		audio.vibrate(true)
-		set_hint("REZONANS  ·  +%d puan" % event.points)
-	elif event.get("special", false):
-		audio.play("power")
-		audio.vibrate(true)
-		set_hint("Işık dalgası  ·  +%d puan" % event.points)
-	else:
-		audio.play("large" if event.removed.size() >= 5 else "pop")
-		audio.vibrate()
-		set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created != "" else "Bahçe renkleniyor."])
+		board_view.animate(event)
+		return
+	save.mark_tutorial("m3_level_%d" % int(board.level.id))
+	if event.get("resonated", false): save.mark_tutorial("m3_resonance")
+	if event.get("gravity", false): save.mark_tutorial("m3_gravity")
+	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Bahçe renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
-	if board.energy > 0 and "gravity" not in save.data.tutorials:
-		set_hint("Enerjin hazır! Bir yön düğmesine dokun; hamlen azalmaz.")
 	update_hud()
-	# Persist the final logical state before starting cosmetic animation.
+	score_label.text = str(board.score - int(event.points))
+	# Persist only the completely settled logical result, before cosmetic playback.
 	if board.outcome == "won": save.complete(board)
 	else: save.save_active(board)
 	board_view.animate(event)
 
+func on_wave(data: Dictionary) -> void:
+	score_label.text = str(data.score)
+	if data.resonated:
+		audio.play("resonance")
+		audio.vibrate(true)
+	elif data.get("special", false):
+		audio.play("power")
+		audio.vibrate(true)
+	else:
+		audio.play("large" if data.removed.size() >= 4 else "pop")
+		audio.vibrate()
+	if data.combo > 1:
+		var names := ["Kombo!", "Süper Kombo!", "Muhteşem!", "Efsanevi Zincir!"]
+		set_hint("%s  ·  x%d  ·  +%d puan" % [names[mini(3, int(data.combo) - 2)], data.multiplier, data.points])
+
 func on_animation_finished() -> void:
-	if board != null and board.outcome != "playing" and screen == "game": show_result()
+	if board == null or screen != "game": return
+	update_hud()
+	if board.outcome != "playing": show_result()
+	elif board.energy > 0 and "m3_gravity" not in save.data.tutorials:
+		set_hint("Enerjin hazır! Bir yön seç; hamlen azalmaz.")
 
 func on_gravity(direction: String) -> void:
-	if board_view.busy or paused: return
+	if board_view.busy or paused or not board.available(): return
 	var event: Dictionary = board.change_gravity(direction)
 	if not event.accepted: return
 	audio.play("gravity")
-	save.mark_tutorial("gravity")
-	save.save_active(board)
-	update_hud()
+	process_event(event)
 	set_hint(Strings.text("gravity_hint"))
-	board_view.animate(event)
 
-func toggle_combine() -> void:
-	if paused or board_view.busy or board.outcome != "playing": return
-	combine_mode = not combine_mode
-	combine_first = -1
-	board_view.selected = -1
-	set_hint("Bir özel güç seç, sonra komşusuna dokun." if combine_mode else Strings.text("power_hint"))
+func show_help() -> void:
+	open_overlay("Nasıl oynanır?")
+	var body := label(overlay, Strings.text("help_body"), Rect2(62, 311, 416, 308), 17, Palette.INK)
+	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button(overlay, "DEVAM ET", Rect2(68, 649, 404, 55), close_overlay, true)
+
+func show_migration_notice() -> void:
+	if not save.data.get("migration_notice", false): return
+	open_overlay("Match-3'e hoş geldin")
+	var body := label(overlay, "Artık blokları kaydırarak üçlü eşleştiriyoruz.\n\nAçılan bölümler, yıldızlar ve ayarlar korundu. Eski aktif tahta arşivlendi; aynı bölüm yeni kurallarla, tam hamleyle yeniden başlıyor.", Rect2(62, 313, 416, 268), 18)
+	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button(overlay, "ANLADIM", Rect2(68, 627, 404, 58), func():
+		save.data.migration_notice = false
+		save.flush()
+		close_overlay(), true)
 
 func open_overlay(title: String, subtitle: String = "") -> Control:
 	close_overlay()
 	paused = true
+	if screen == "game" and board != null and (board.outcome == "playing" or (board_view != null and board_view.busy)):
+		board.pause()
+		if board_view != null: board_view.cancel_drag()
 	overlay = Control.new()
 	overlay.size = Vector2(540, 960)
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -374,10 +376,11 @@ func close_overlay() -> void:
 		overlay.queue_free()
 		overlay = null
 	paused = false
+	if board != null: board.resume()
 
 func show_pause() -> void:
 	if screen != "game": return
-	if board.outcome != "playing":
+	if board.outcome != "playing" and (board_view == null or not board_view.busy):
 		show_result()
 		return
 	persist_board()
@@ -392,13 +395,13 @@ func confirm_restart() -> void:
 	button(overlay, Strings.text("replay"), Rect2(68, 421, 404, 59), start_level.bind(int(board.level.id)), true)
 	button(overlay, "VAZGEÇ", Rect2(68, 508, 404, 55), show_pause)
 
-func show_color_picker(index: int, partner: int) -> void:
+func show_color_picker(index: int) -> void:
 	open_overlay("Rengini seç", Strings.text("color_pick"))
 	for color in 5:
 		var selected_color: int = color
 		var btn := button(overlay, Strings.COLORS[color], Rect2(70, 383 + color * 57, 400, 47), func():
 			close_overlay()
-			perform_tap(index, selected_color, partner), false, 17)
+			perform_special(index, selected_color), false, 17)
 		btn.add_theme_color_override("font_color", Palette.COLORS[color])
 	button(overlay, "VAZGEÇ", Rect2(171, 681, 198, 38), close_overlay, false, 13)
 
@@ -444,7 +447,7 @@ func show_settings() -> void:
 		toggle.name = key
 	label(page, "Her blok kendi sembolünü taşır.\nTitreşim yalnızca destekleyen Android cihazlarda çalışır.", Rect2(42, 700, 456, 76), 14, Palette.MUTED).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	button(page, Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"), Rect2(42, 812, 456, 62), play_latest if not save.data.active.is_empty() else show_home, true)
-	label(page, "PRİZMA 0.1 · İLK AŞAMA", Rect2(32, 895, 476, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+	label(page, "PRİZMA 0.2 · MATCH-3", Rect2(32, 895, 476, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 
 func toggle_setting(key: String) -> void:
 	save.data.settings[key] = not save.data.settings[key]

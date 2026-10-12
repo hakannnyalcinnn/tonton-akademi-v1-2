@@ -32,15 +32,9 @@ func capture() -> void:
 	await snapshot("settings")
 	game.start_level(1)
 	while game.board.outcome == "playing":
-		var best := 0
-		var best_size := 0
-		for i in 72:
-			var group: Array = preload("res://scripts/core/match_detector.gd").group(game.board.cells, i, 8, 9)
-			if group.size() > best_size:
-				best = i
-				best_size = group.size()
-		game.perform_tap(best)
-		await create_timer(0.5).timeout
+		var move: Array = preload("res://tests/move_solver.gd").best_move(game.board)
+		game.on_swap(move[0],move[1])
+		while game.board_view.busy: await process_frame
 	await snapshot("victory")
 	var save_path: String = game.save.path
 	game.queue_free()

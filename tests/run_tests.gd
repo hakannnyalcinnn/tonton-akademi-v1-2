@@ -1,424 +1,569 @@
 extends SceneTree
-
 const Board = preload("res://scripts/core/board.gd")
 const Catalog = preload("res://scripts/core/level_catalog.gd")
 const Match = preload("res://scripts/core/match_detector.gd")
+const Generator = preload("res://scripts/core/board_generator.gd")
 const Gravity = preload("res://scripts/core/gravity.gd")
 const Resonance = preload("res://scripts/core/resonance.gd")
 const Powers = preload("res://scripts/core/powerups.gd")
 const Score = preload("res://scripts/core/score.gd")
 const Save = preload("res://scripts/core/save_manager.gd")
+const Rng = preload("res://scripts/core/seed_rng.gd")
 var checks := 0
 var failures := 0
-var simulations := 0
 var simulated_moves := 0
+var simulated_games := 0
+var generated_boards := 0
 
-func check(condition: bool, message: String) -> void:
+func check(value: bool, message: String) -> void:
 	checks += 1
-	if not condition:
+	if not value:
 		failures += 1
 		printerr("FAIL: " + message)
-
-func fixture(number: int = 10):
-	var definition: Dictionary = Catalog.get_level(number)
-	definition.targets = {"total": 10000}
-	definition.moves = 100
-	var b = Board.new(definition)
-	for i in 72: b.cells[i] = b.make_cell((i % 8 + int(i / 8)) % 5)
-	return b
 
 func _initialize() -> void:
 	call_deferred("run")
 
+func fixture(number: int = 7):
+	var definition: Dictionary = Catalog.get_level(number)
+	definition.moves = 100
+	definition.targets = {"total": 10000}
+	return Board.new(definition)
+
+func cells(colors: Array) -> Array:
+	var result: Array = []
+	for i in colors.size(): result.append({"c": colors[i], "p": "", "id": i + 1})
+	return result
+
+func clear_save(path: String) -> void:
+	for suffix in ["", ".bak", ".tmp", ".v1-archive"]:
+		if FileAccess.file_exists(path + suffix): DirAccess.remove_absolute(ProjectSettings.globalize_path(path + suffix))
+
 func run() -> void:
-	test_matches()
-	test_gravity()
-	test_resonance()
+	test_scanner()
+	test_swap_and_cascade()
 	test_powers()
-	test_score_and_outcomes()
-	test_save()
-	test_shuffle()
+	test_resonance()
+	test_gravity_and_shuffle()
+	test_outcomes_and_state()
+	test_save_and_migration()
+	test_generation()
 	test_simulations()
 	await test_ui()
 	await create_timer(0.15).timeout
-	print("PRIZMA TEST RESULT: %d assertions, %d failures; %d simulated games, %d moves" % [checks, failures, simulations, simulated_moves])
+	print("MATCH3 TEST RESULT: %d assertions, %d failures; %d generated boards; %d games, %d moves" % [checks, failures, generated_boards, simulated_games, simulated_moves])
 	quit(1 if failures else 0)
 
-func test_matches() -> void:
-	var b = fixture()
-	b.cells[0].c = 0
-	b.cells[1].c = 0
-	check(Match.group(b.cells, 0, 8, 9) == [0, 1], "orthogonal pair")
-	var old_moves: int = b.moves
-	var event: Dictionary = b.tap(0)
-	check(event.removed == [0, 1] and b.moves == old_moves - 1, "pair clear costs one move")
-	check(b.collected.total == 2 and b.collected["0"] == 2, "target counts exact")
-	b = fixture()
-	b.cells[9].c = b.cells[0].c
-	check(Match.group(b.cells, 0, 8, 9) == [0], "diagonal excluded")
-	var original: Array = b.cells.duplicate(true)
-	event = b.tap(0)
-	check(event.invalid and b.moves == 99 and b.cells == original and b.score == 0, "isolated tap consumes one move without clear")
-	check(not b.tap(-1).accepted and not b.tap(72).accepted and b.moves == 99, "out-of-board taps ignored")
-	b = fixture()
-	for cell in b.cells: cell.c = 2
-	event = b.tap(19)
-	check(event.removed.size() == 72 and b.collected.total == 72, "whole board group")
-	check(b.cells.any(func(cell): return cell.p == "color"), "large group yields color bomb")
-	check(b.moves == 99 and b.cells.size() == 72, "no automatic clear during refill")
-	print("PASS suite: matching and move rules")
+func test_scanner() -> void:
+	check(Match.find(cells([0,0,1,2,3,4,4,1,2]),3,3).is_empty(), "two red never match")
+	check(Match.indices(Match.find(cells([0,0,0,1,2,3,2,3,4]),3,3)) == [0,1,2], "horizontal three red")
+	check(Match.indices(Match.find(cells([1,2,3,1,3,4,1,4,0]),3,3)) == [0,3,6], "vertical three blue")
+	check(Match.find(cells([3,0,1,0,3,2,1,2,3]),3,3).is_empty(), "diagonal yellow excluded")
+	check(Match.find(cells([0,0,1,0,0,2,1,2,3]),3,3).is_empty(), "irregular four cluster excluded")
+	var t: Array = Match.find(cells([0,0,0,1,0,2,3,0,4]),3,3)
+	check(t.size() == 1 and t[0].cells == [0,1,2,4,7] and t[0].lines.size() == 2, "T shape merged exactly once")
+	var l: Array = Match.find(cells([0,1,2,0,2,3,0,0,0]),3,3)
+	check(l.size() == 1 and l[0].cells == [0,3,6,7,8], "L shape merged exactly once")
+	check(Powers.created(t[0]) == "prism" and Powers.created(l[0]) == "prism", "T/L creates prism")
+	var separate: Array = Match.find(cells([0,0,0,0,0,0,1,2,3]),3,3)
+	check(separate.size() == 2, "touching parallel runs stay separate components")
+	var four: Array = Match.find(cells([0,0,0,0,1,2,3,4]),4,2)
+	check(Powers.created(four[0]) == "rocket_h", "four horizontal creates horizontal rocket")
+	var vertical_four: Array = Match.find(cells([0,1,0,2,0,3,0,4]),2,4)
+	check(Powers.created(vertical_four[0]) == "rocket_v", "four vertical creates vertical rocket")
+	var five: Array = Match.find(cells([2,2,2,2,2,0,1,2,3,4]),5,2)
+	check(Powers.created(five[0]) == "color", "five straight creates color bomb")
+	check(Powers.origin(t[0], []) == 1 and Powers.origin(four[0], []) == 0, "cascade origin deterministic intersection then row/column")
+	var priority: Array = Match.find(cells([0,0,0,0,0,1,2,0,3,4,2,3,0,4,1]),5,3)
+	check(Powers.created(priority[0]) == "color", "straight five wins priority over intersection")
+	var special_line := cells([0,0,0,1,2,3,2,3,4])
+	special_line[1].p = "rocket_h"
+	check(Match.find(special_line,3,3).is_empty(), "special not a normal color-match cell")
+	print("PASS: line scanner, T/L, deduplication and power priority")
 
-func test_gravity() -> void:
-	for direction in ["down", "up", "left", "right"]:
-		var cells: Array = []
-		cells.resize(9)
-		cells[0] = {"id": 1}
-		cells[4] = {"id": 2}
-		cells[8] = {"id": 3}
-		Gravity.compact(cells, 3, 3, direction)
-		var destinations: Array = {"down": [6, 7, 8], "up": [0, 1, 2], "left": [0, 3, 6], "right": [2, 5, 8]}[direction]
-		for i in 3: check(cells[destinations[i]] != null and cells[destinations[i]].id == i + 1, "compact " + direction)
-		for line in Gravity.lines(3, 3, direction):
-			var gap := false
-			for index in line:
-				if cells[index] == null: gap = true
-				else: check(not gap, "no gap between destination and survivor " + direction)
-		var b = fixture()
-		b.direction = direction
-		b.cells[20] = null
-		b.cells[21] = null
-		var ids: Array = []
-		for cell in b.cells:
-			if cell != null: ids.append(cell.id)
-		b.settle()
-		for line in Gravity.lines(8, 9, direction):
-			var new_seen := false
-			for index in line:
-				if b.cells[index].id not in ids: new_seen = true
-				else: check(not new_seen, "new blocks on source edge " + direction)
-	var b = fixture()
-	b.energy = 2
-	b.cells[1].c = b.cells[0].c
-	b.resonance.color = 1
-	b.resonance.count = 2
-	var before: Array = b.cells.duplicate(true)
-	check(b.change_gravity("left").accepted and b.energy == 1 and b.moves == 100, "gravity cost separate from moves")
-	check(b.resonance.count == 2 and b.resonance.color == 1, "gravity preserves resonance")
-	check(b.cells == before, "full board does not invent a physical shift")
-	check(not b.change_gravity("left").accepted and not b.change_gravity("bad").accepted and b.energy == 1, "same and invalid direction no cost")
-	b.energy = 0
-	check(not b.change_gravity("right").accepted, "no free energy")
-	b = fixture(1)
-	b.energy = 2
-	check(not b.change_gravity("up").accepted, "gravity tutorial lock")
-	b = fixture()
-	for cell in b.cells: cell.c = 1
-	b.tap(0)
-	check(b.energy == 2 and b.energy_blocks == 0, "energy capped at two")
-	print("PASS suite: four gravity directions and energy")
+func first_clear(event: Dictionary) -> Dictionary:
+	for frame in event.frames:
+		if frame.kind == "clear": return frame
+	return {}
 
-func test_resonance() -> void:
-	var r = Resonance.new()
-	check(not r.advance(0) and r.count == 1, "resonance first")
-	check(not r.advance(0) and r.count == 2, "resonance second")
-	check(r.advance(0) and r.count == 0, "resonance third")
-	r.advance(0)
-	r.advance(1)
-	check(r.color == 1 and r.count == 1, "different color resets chain")
+func invalid_pair(b) -> Array:
+	for a in 72:
+		for neighbor in Match.neighbors(a,8,9):
+			if a < neighbor and b.cells[a].p == "" and b.cells[neighbor].p == "" and not Match.can_swap(b.cells,a,neighbor,8,9): return [a,neighbor]
+	return []
+
+func test_swap_and_cascade() -> void:
 	var b = fixture()
-	var origin := 27
-	for i in [11, 18, 20, 25, 26, 28, 29, 34, 36, 43]: b.cells[i].c = 4
-	b.cells[27].c = 4
-	b.cells[26].p = "prism"
-	var extra: Array = Resonance.extras(b.cells, origin, 4, [27, 28], 8)
-	check(extra == [11, 18, 20, 25], "resonance distance then row/column and cap")
-	check(26 not in extra and 28 not in extra, "resonance excludes special and original group")
-	b = fixture()
-	b.cells[0].c = 0
-	b.cells[1].c = 0
-	b.cells[16].c = 0
-	b.resonance.color = 0
-	b.resonance.count = 2
-	var event: Dictionary = b.tap(0)
-	check(event.resonated and 16 in event.removed and b.score >= 120, "resonance integrated clear")
-	b = fixture(1)
-	b.cells[0].c = 0
-	b.cells[1].c = 0
-	b.tap(0)
-	check(b.resonance.count == 0, "resonance locked before level six")
-	print("PASS suite: deterministic resonance")
+	var before: Dictionary = b.snapshot()
+	check(not b.has_method("tap"), "old tap-blast API completely removed")
+	check(not b.activate(0).accepted and b.snapshot() == before, "normal tap cannot clear or spend a move")
+	check(not b.swap(0,9).accepted and not b.swap(0,2).accepted and not b.swap(-1,0).accepted and b.snapshot() == before, "diagonal, remote and out-of-range rejected")
+	var pair: Array = invalid_pair(b)
+	check(not pair.is_empty(), "invalid-swap fixture exists")
+	var rejected: Dictionary = b.swap(pair[0],pair[1])
+	check(not rejected.accepted and rejected.attempted and b.snapshot() == before, "invalid swap restores all state including RNG")
+	check(rejected.frames.size() == 2 and rejected.frames[0].kind == "swap" and rejected.frames[1].kind == "revert", "invalid swap has outward and return animation")
+	check(Board.State.REVERTING_SWAP in b.state_trace and b.state == Board.State.READY, "revert state returns READY")
+	var event: Dictionary = b.swap(1,9)
+	check(event.accepted and b.moves == 99, "successful swap costs exactly one move")
+	check(event.cascade_count >= 2 and event.frames.filter(func(f): return f.kind == "clear").size() >= 2, "authored automatic cascade needs no second input")
+	check(first_clear(event).removed == [0,1,2], "first clear exactly the matched three")
+	check(b.resonance.count == 1, "multiple cascades advance resonance only once")
+	check(Match.find(b.cells,8,9).is_empty() and Match.has_move(b.cells,8,9), "cascade ends stable with a legal move")
+	var points := 0
+	for f in event.frames:
+		if f.kind == "clear":
+			points += int(f.points)
+			check(f.multiplier == mini(5, int(f.combo)), "central cascade multiplier")
+	check(b.score == points, "score equals sum of waves without double counting")
+	check(not event.cascade_guard, "ordinary cascade never needs safety guard")
+	print("PASS: normal tap ignored, swaps, rollback and automatic chains")
 
 func test_powers() -> void:
-	check(Powers.created([0, 1, 2, 3], 8) == "", "four blocks normal")
-	check(Powers.created([0, 1, 2, 3, 4], 8) == "rocket_h", "five horizontal rocket")
-	check(Powers.created([0, 8, 16, 24, 32, 40], 8) == "rocket_v", "six vertical rocket")
-	check(Powers.created([0, 1, 2, 3, 4, 5, 6], 8) == "prism", "seven prism")
-	check(Powers.created(range(10), 8) == "color", "ten color bomb")
-	var b = fixture()
-	for i in 5: b.cells[i].c = 0
-	b.cells[5].c = 1
-	for i in range(8, 16): b.cells[i].c = 1
-	var event: Dictionary = b.tap(2)
-	var new_power = b.cells.filter(func(cell): return cell.p == "rocket_h")
-	check(event.created == "rocket_h" and new_power.size() == 1, "created power survives current resolution")
-	check(b.collected.total == 5, "only five group colors counted")
-	# Remove gravity displacement to verify tap-origin placement rule.
+	for spec in [[3,"rocket_h",2],[5,"color",2],[10,"prism",27]]:
+		var b = fixture(spec[0])
+		var swap: Array = b.level.tutorial_swap
+		var event: Dictionary = b.swap(swap[0],swap[1])
+		var first: Dictionary = first_clear(event)
+		check(first.after[spec[2]] != null and first.after[spec[2]].p == spec[1], "tutorial creates " + spec[1] + " at swap cell")
+		check(first.after[spec[2]].id > 72, "new power gets fresh unique identity")
+		var unique: Dictionary = {}
+		for i in first.removed: unique[i] = true
+		check(unique.size() == first.removed.size(), "intersection normal block counted once")
+	var b = fixture(9)
+	var moves: int = b.moves
+	var event: Dictionary = b.swap(27,28)
+	check(event.accepted and b.moves == moves - 1 and first_clear(event).removed.size() > 10, "two special swaps combine without normal match")
 	b = fixture()
-	b.direction = "up"
-	for i in 5: b.cells[i].c = 0
-	b.cells[5].c = 1
-	for i in range(8, 16): b.cells[i].c = 1
-	b.tap(2)
-	check(b.cells[2].p == "rocket_h", "power created at tapped cell")
-	b = fixture()
-	b.cells[0].p = "rocket_h"
-	b.cells[4].p = "rocket_v"
-	event = b.tap(0)
-	check(68 in event.removed and event.removed.size() == 16, "rocket chain runs once, union row/column")
-	b = fixture()
-	b.cells[27].p = "prism"
-	event = b.tap(27)
-	check(event.removed.size() == 13, "prism Manhattan area")
+	b.cells[27].p = "rocket_h"
+	b.cells[31].p = "rocket_v"
+	event = b.activate(27)
+	check(event.accepted and 71 in first_clear(event).removed and b.moves == 99, "direct rocket and caught rocket chain activate once")
 	b = fixture()
 	b.cells[0].p = "color"
-	var old_moves: int = b.moves
-	check(b.tap(0).choose_color and b.moves == old_moves, "color picker no premature move")
+	var before: Dictionary = b.snapshot()
+	check(b.activate(0).choose_color and b.snapshot() == before, "color picker before move consumption")
 	var expected := 0
 	for cell in b.cells:
-		if cell.c == 3 and cell.p == "": expected += 1
-	b.tap(0, 3)
-	check(b.collected["3"] == expected and b.collected.total == expected, "color bomb only selected normal color")
-	b = fixture()
-	b.cells[0].p = "rocket_h"
-	b.cells[1].p = "rocket_v"
-	event = b.tap(0, -1, 1)
-	check(event.combined and event.removed.size() == 24 and b.moves == 99, "rocket combo union counts once")
-	b = fixture()
-	b.cells[0].p = "rocket_h"
-	b.cells[10].p = "prism"
-	check(not b.tap(0, -1, 10).accepted and b.moves == 100, "nonadjacent powers cannot combine")
-	b.cells[1].p = "prism"
-	event = b.tap(0, -1, 1)
-	check(event.combined and 65 in event.removed and 15 in event.removed, "rocket/prism wide cross")
-	b = fixture()
-	b.cells[27].p = "prism"
-	b.cells[28].p = "prism"
-	event = b.tap(27, -1, 28)
-	check(event.combined and event.removed.size() > 13, "double prism expanded area")
+		if cell.p == "" and cell.c == 3: expected += 1
+	event = b.activate(0,3)
+	var first: Dictionary = first_clear(event)
+	check(first.removed.size() == expected + 1 and b.moves == 99, "color bomb selection clears that color plus bomb")
 	b = fixture()
 	b.cells[0].p = "color"
-	b.cells[1].p = "rocket_h"
-	event = b.tap(0, 2, 1)
-	check(event.combined and event.removed.size() > 20, "color rocket combination")
-	print("PASS suite: powers and basic combinations")
+	b.cells[1].p = "color"
+	event = b.swap(0,1)
+	check(first_clear(event).removed.size() == 72, "double color bomb clears whole board")
+	b = fixture()
+	b.cells[0].p = "prism"
+	var picked: int = b.cells[1].c
+	event = b.swap(0,1)
+	check(event.accepted and b.moves == 99 and b.resonance.count == 0, "special-normal swap is explicit activation exception")
+	b = fixture()
+	b.cells[0].p = "color"
+	picked = b.cells[1].c
+	event = b.swap(0,1)
+	check(event.accepted, "color-normal swap selects moved normal color")
+	for i in first_clear(event).removed:
+		var old = first_clear(event).before[i]
+		check(old.p != "" or old.c == picked, "color-normal swap never clears an unrelated normal in first wave")
+	b = fixture()
+	for i in 72: b.cells[i].c = (i % 8 + int(i / 8)) % 5
+	for i in [0,2,9]: b.cells[i].c = 0
+	b.cells[1].c = 2
+	b.refill_stream = [3,3,3]
+	event = b.swap(1,9)
+	var clears: Array = event.frames.filter(func(f): return f.kind == "clear")
+	check(clears.size() >= 2 and clears[1].after[0] != null and clears[1].after[0].p == "rocket_h", "automatic four creates rocket at deterministic smallest cell")
+	check(b.resonance.count == 1 and b.moves == 99, "automatic power wave not an extra player move")
+	print("PASS: Match-3 power production, placement, activation and combinations")
 
-func test_score_and_outcomes() -> void:
-	check(Score.move_points(2, 2, false, false, false) == 60, "central score formula")
-	check(Score.stars(400, [0, 500, 1000]) == 1 and Score.stars(500, [0, 500, 1000]) == 2 and Score.stars(1000, [0, 500, 1000]) == 3, "star boundary thresholds")
+func safe_refill(b, a: int, destination: int) -> Array:
+	var temp: Array = b.cells.duplicate(true)
+	var cell = temp[a]
+	temp[a] = temp[destination]
+	temp[destination] = cell
+	for i in Match.indices(Match.find(temp,8,9)): temp[i] = null
+	Gravity.compact(temp,8,9,b.direction)
+	var result: Array = []
+	for line in Gravity.lines(8,9,b.direction):
+		for i in line:
+			if temp[i] != null: continue
+			for color in 5:
+				temp[i] = {"c":color,"p":"","id":1000+i}
+				if not Match.line_at(temp,i,8,9):
+					result.append(color)
+					break
+	return result
+
+func test_resonance() -> void:
 	var b = fixture()
-	b.level.targets = {"total": 2}
+	var baseline: Array = b.cells.duplicate(true)
+	for k in 3:
+		b.cells = baseline.duplicate(true)
+		b.refill_stream = safe_refill(b,1,9)
+		var event: Dictionary = b.swap(1,9)
+		check(event.resonated == (k == 2), "resonance only third successful same-color swap")
+	check(b.resonance.count == 0 and b.moves == 97, "resonance resets after third, one move per transaction")
+	b = fixture()
+	b.resonance.color = 4
+	b.resonance.count = 2
+	b.refill_stream = safe_refill(b,1,9)
+	b.swap(1,9)
+	check(b.resonance.color == 0 and b.resonance.count == 1, "different primary color starts new chain")
+	b = fixture()
+	b.resonance.color = 0
+	b.resonance.count = 2
+	var pair: Array = invalid_pair(b)
+	b.swap(pair[0],pair[1])
+	check(b.resonance.count == 2 and b.resonance.color == 0, "invalid swap cannot change resonance")
+	b.energy = 1
+	b.change_gravity("left")
+	check(b.resonance.count == 2 and b.moves == 100, "gravity not a resonance player move")
+	var temp := cells([0,0,0,0,0,0,0,0,0])
+	temp[3].p = "prism"
+	check(Resonance.extras(temp,4,0,[4,5],3) == [1,7,0,2], "resonance distance/row/column priority and four cap")
+	b = fixture()
+	for i in 72: b.cells[i].c = (i % 8 + int(i / 8)) % 5
+	for key in {25:2,26:0,27:1,28:0,29:3,33:2,34:1,35:0,36:1,37:3}: b.cells[key].c = {25:2,26:0,27:1,28:0,29:3,33:2,34:1,35:0,36:1,37:3}[key]
+	check(Match.find(b.cells,8,9).is_empty(), "two-color swap fixture starts stable")
+	b.refill_stream = safe_refill(b,27,35)
+	var multi: Dictionary = b.swap(27,35)
+	check(first_clear(multi).removed.size() == 6 and b.resonance.color == 1 and b.resonance.count == 1, "simultaneous colors use destination color once")
+	print("PASS: once-per-player-move resonance and deterministic targeting")
+
+func test_gravity_and_shuffle() -> void:
+	for direction in ["down","up","left","right"]:
+		var sparse: Array = [null,null,null,null,null,null,null,null,null]
+		sparse[0] = {"c":0,"p":"","id":1}
+		sparse[4] = {"c":1,"p":"","id":2,"fixed":true}
+		sparse[8] = {"c":2,"p":"","id":3}
+		Gravity.compact(sparse,3,3,direction)
+		check(sparse[4].id == 2, "fixed blocker not moved " + direction)
+		for line in Gravity.lines(3,3,direction):
+			var gap := false
+			for i in line:
+				if sparse[i] != null and sparse[i].get("fixed",false): gap = false
+				elif sparse[i] == null: gap = true
+				else: check(not gap, "gravity compacts within fixed segments " + direction)
+		var b = fixture()
+		b.direction = direction
+		b.refill_stream.clear()
+		var event: Dictionary = b.swap(1,9)
+		check(event.accepted and b.moves == 99 and Match.find(b.cells,8,9).is_empty(), "Match-3 chain settles in direction " + direction)
+		for f in event.frames:
+			if f.kind != "refill": continue
+			var original_ids: Dictionary = {}
+			for cell in f.before:
+				if cell != null: original_ids[cell.id] = true
+			for line in Gravity.lines(8,9,direction):
+				var new_seen := false
+				for i in line:
+					if not original_ids.has(f.after[i].id): new_seen = true
+					else: check(not new_seen, "new blocks enter opposite source edge " + direction)
+	var b = fixture()
+	b.energy = 2
+	var old_moves: int = b.moves
+	check(b.change_gravity("left").accepted and b.energy == 1 and b.moves == old_moves, "gravity energy separate from move budget")
+	check(not b.change_gravity("left").accepted and not b.change_gravity("bad").accepted and b.energy == 1, "invalid direction no energy charge")
+	b.energy = 0
+	check(not b.change_gravity("up").accepted, "zero energy blocks gravity")
+	b = fixture(1)
+	b.energy = 2
+	check(not b.change_gravity("up").accepted, "early gravity tutorial lock preserved")
+	b = fixture()
+	for i in 72: b.cells[i].c = (i % 8 + int(i / 8)) % 5
+	check(not Match.has_move(b.cells,8,9) and Match.find(b.cells,8,9).is_empty(), "dead stable Latin fixture")
+	var colors: Array = []
+	var ids: Array = []
+	for cell in b.cells:
+		colors.append(cell.c)
+		ids.append(cell.id)
+	colors.sort(); ids.sort()
+	check(b.ensure_move(), "dead board shuffled free")
+	check(Match.find(b.cells,8,9).is_empty() and Match.has_move(b.cells,8,9), "shuffle guarantees no ready match and at least one swap")
+	var after_colors: Array = []
+	var after_ids: Array = []
+	for cell in b.cells:
+		after_colors.append(cell.c)
+		after_ids.append(cell.id)
+	after_colors.sort(); after_ids.sort()
+	check(after_colors == colors and after_ids == ids and b.moves == 100 and b.score == 0, "shuffle preserves color/ID multiset without move/score")
+	b.cells[31].fixed = true
+	b.cells[40].p = "prism"
+	var fixed_id: int = b.cells[31].id
+	var power_id: int = b.cells[40].id
+	check(Generator.shuffle(b.cells,b.rng,8,9) and b.cells[31].id == fixed_id and b.cells[40].id == power_id, "shuffle preserves fixed and special positions")
+	# Explicit environmental fixture: changing gravity resolves preexisting lines and cascades, no move.
+	b = fixture()
+	for i in [0,1,2]: b.cells[i].c = 4
+	b.energy = 1
+	var event: Dictionary = b.change_gravity("left")
+	check(event.accepted and event.cascade_count >= 1 and b.moves == 100 and Match.find(b.cells,8,9).is_empty(), "gravity environmental match resolves automatically")
+	print("PASS: all gravity directions, barriers, refill edge and free stable shuffles")
+
+func test_outcomes_and_state() -> void:
+	var b = fixture()
 	b.moves = 1
-	b.cells[0].c = 0
-	b.cells[1].c = 0
-	b.tap(0)
-	check(b.outcome == "won" and b.moves == 0 and b.score == 60, "win on last move beats lose")
-	var score_before: int = b.score
+	b.level.targets = {"total":4}
+	var event: Dictionary = b.swap(1,9)
+	check(first_clear(event).removed.size() == 3 and b.collected.total >= 6 and b.outcome == "won" and b.moves == 0, "last move waits for second cascade before outcome")
+	var old_score: int = b.score
 	b.finish_if_needed()
-	check(b.score == score_before and not b.tap(0).accepted, "completion bonus once and finished board locked")
+	check(b.score == old_score and not b.swap(0,1).accepted and not b.activate(0).accepted, "bonus once, finished board input locked")
+	check(b.state_trace.find(Board.State.CHECKING_OBJECTIVES) > b.state_trace.find(Board.State.CHECKING_CASCADES), "objectives only after cascades")
 	b = fixture()
 	b.moves = 1
-	b.tap(0)
-	check(b.outcome == "lost" and b.moves == 0 and not b.tap(0).accepted, "lose on isolated last tap, no negative moves")
-	print("PASS suite: score and outcomes")
+	event = b.swap(1,9)
+	check(b.outcome == "lost" and b.moves == 0 and Match.find(b.cells,8,9).is_empty(), "last move settles then loses with no negative budget")
+	b = fixture()
+	b.hold_presentation()
+	var before: Dictionary = b.snapshot()
+	check(not b.swap(1,9).accepted and not b.change_gravity("left").accepted and b.snapshot() == before, "presentation lock rejects overlapping transactions")
+	b.pause()
+	check(b.state == Board.State.PAUSED and not b.swap(1,9).accepted, "paused state blocks swaps")
+	b.resume()
+	b.release_presentation()
+	check(b.state == Board.State.READY and b.swap(1,9).accepted, "resume restores controlled ready state")
+	check(Score.move_points(3,3,false,false,false) == 90 and Score.move_points(3,3,false,false,false,9) == 450, "central score and capped combo multiplier")
+	check(Score.stars(400,[0,500,1000]) == 1 and Score.stars(500,[0,500,1000]) == 2 and Score.stars(1000,[0,500,1000]) == 3, "star threshold boundaries")
+	print("PASS: state machine, locks, last-move cascades and centralized score")
 
-func clear_save(path: String) -> void:
-	for suffix in ["", ".bak", ".tmp"]:
-		if FileAccess.file_exists(path + suffix): DirAccess.remove_absolute(ProjectSettings.globalize_path(path + suffix))
-
-func test_save() -> void:
-	var path := "user://automated-test.json"
+func test_save_and_migration() -> void:
+	var path := "user://match3-tests.json"
 	clear_save(path)
-	var s = Save.new(path)
+	var save = Save.new(path)
 	var b = Board.new(Catalog.get_level(1))
-	b.tap(0)
-	check(s.save_active(b), "atomic save write")
-	var restored_save = Save.new(path)
-	var restored_board = Board.new(Catalog.get_level(1))
-	check(restored_board.restore(restored_save.data.active), "active restore validation")
-	check(restored_board.snapshot() == b.snapshot(), "exact board and RNG restore")
-	var index := first_move(b)
-	b.tap(index)
-	restored_board.tap(index)
-	check(b.snapshot() == restored_board.snapshot(), "same continuation after restart")
-	b.level.targets = {"total": 1}
+	b.swap(1,9)
+	check(save.save_active(b), "save canonical settled transaction")
+	var reloaded = Save.new(path)
+	var restored = Board.new(Catalog.get_level(1))
+	check(restored.restore(reloaded.data.active) and restored.snapshot() == b.snapshot(), "exact saved board, refill and RNG")
+	if b.outcome == "playing":
+		var move: Array = best_move(b)
+		b.swap(move[0],move[1]); restored.swap(move[0],move[1])
+		check(restored.snapshot() == b.snapshot(), "continued save gives identical chain")
+	b.level.targets = {"total":1}
 	b.finish_if_needed()
-	check(s.complete(b) and not s.complete(b), "completion reward only once")
-	check(s.data.unlocked == 2 and s.data.results["1"].score == b.score, "unlock and saved score match")
+	check(save.complete(b) and not save.complete(b), "reward transaction once")
 	var best: int = b.score
 	b.score = 1
-	s.complete(b)
-	check(s.data.results["1"].score == best, "replay preserves best score")
-	var final_save = Save.new(path)
-	check(final_save.data.unlocked == 2 and final_save.data.rewarded.size() == 1, "completion persists")
-	var invalid: Dictionary = restored_board.snapshot()
-	invalid.cells[0].c = 99
-	check(not restored_board.restore(invalid), "reject corrupt cell")
-	invalid = restored_board.snapshot()
+	save.complete(b)
+	check(save.data.results["1"].score == best and save.data.unlocked == 2, "replay keeps highest score and unlock")
+	var invalid: Dictionary = restored.snapshot()
 	invalid.cells[0].id = invalid.cells[1].id
-	check(not restored_board.restore(invalid), "reject duplicate cell identities")
-	for key in ["moves", "energy", "serial", "rng", "score", "resonance_count"]:
-		invalid = restored_board.snapshot()
-		invalid[key] = "broken"
-		check(not restored_board.restore(invalid), "reject corrupt numeric type " + key)
-	invalid = restored_board.snapshot()
-	invalid.cells[0].c = 1.5
-	check(not restored_board.restore(invalid), "reject fractional cell color")
-	invalid = restored_board.snapshot()
-	invalid.collected.total += 1
-	check(not restored_board.restore(invalid), "reject inconsistent totals")
-	var file := FileAccess.open(path, FileAccess.WRITE)
-	file.store_string("{broken")
-	file.close()
-	var recovered = Save.new(path)
-	check(recovered.data.unlocked == 2, "corrupted primary falls back to backup")
+	check(not restored.restore(invalid), "reject duplicate identities")
+	for key in ["moves","score","serial","rng","energy","state","rules"]:
+		invalid = restored.snapshot(); invalid[key] = "bad"
+		check(not restored.restore(invalid), "reject invalid save type " + key)
+	var file := FileAccess.open(path,FileAccess.WRITE)
+	file.store_string("{broken"); file.close()
+	check(Save.new(path).data.unlocked == 2, "corrupt primary recovers backup")
 	clear_save(path)
-	print("PASS suite: saves, replay and backup")
+	var legacy := Save.defaults()
+	legacy.version = 1
+	legacy.unlocked = 7
+	legacy.results = {"1":{"score":4321,"stars":3}}
+	legacy.rewarded = ["1"]
+	legacy.settings.music = false
+	legacy.tutorials = ["tap","gravity"]
+	legacy.active = {"level_id":6,"old_board":"kept exactly"}
+	var original := JSON.stringify(legacy)
+	file = FileAccess.open(path,FileAccess.WRITE); file.store_string(original); file.close()
+	var migrated = Save.new(path)
+	check(migrated.data.version == 2 and migrated.data.unlocked == 7 and migrated.data.settings.music == false, "schema migration preserves progress/settings")
+	check(migrated.data.results == legacy.results and migrated.data.rewarded == legacy.rewarded, "schema migration preserves best results and reward identities")
+	check(migrated.data.legacy_active == legacy.active and migrated.data.legacy_results == legacy.results, "legacy game and scoring archived without deletion")
+	check(FileAccess.get_file_as_string(path + ".v1-archive") == original, "byte-for-byte old save archive")
+	var fresh = Board.new(Catalog.get_level(6))
+	check(fresh.restore(migrated.data.active) and fresh.moves == fresh.level.moves and fresh.score == 0, "incompatible active level restarts with full match3 budget")
+	check(migrated.data.migration_notice and migrated.data.tutorials.is_empty(), "migration explicitly disclosed and drag tutorials reset")
+	var loaded_again = Save.new(path)
+	check(loaded_again.data == migrated.data, "migration idempotent after restart")
+	clear_save(path)
+	var future := Save.defaults()
+	future.version = 3
+	var future_bytes := JSON.stringify(future)
+	file = FileAccess.open(path,FileAccess.WRITE); file.store_string(future_bytes); file.close()
+	var future_save = Save.new(path)
+	check(future_save.read_only and not future_save.flush() and FileAccess.get_file_as_string(path) == future_bytes, "future schema never overwritten")
+	clear_save(path)
+	print("PASS: atomic saves, rollback protection, v1 archive and v2 migration")
 
-func test_shuffle() -> void:
-	var b = fixture()
-	check(not Match.has_move(b.cells, 8, 9), "dead board fixture")
-	var colors: Array = []
-	for cell in b.cells: colors.append(cell.c)
-	colors.sort()
-	check(b.ensure_move() and Match.has_move(b.cells, 8, 9), "free shuffle ensures move")
-	var after: Array = []
-	for cell in b.cells: after.append(cell.c)
-	after.sort()
-	check(after == colors and b.moves == 100 and b.score == 0, "shuffle preserves multiset and counters")
-	print("PASS suite: shuffle")
-
-func first_move(b) -> int:
-	for i in 72:
-		if b.cells[i].p != "" or Match.group(b.cells, i, 8, 9).size() >= 2: return i
-	return -1
+func test_generation() -> void:
+	for seed_value in 2000:
+		var definition: Dictionary = Catalog.get_level(10)
+		var rng = Rng.new(seed_value + 911)
+		var layout: Array = []
+		for i in 72: layout.append(rng.next_int(5))
+		definition.layout = layout
+		definition.seed = seed_value + 119
+		var b = Board.new(definition)
+		check(Match.find(b.cells,8,9).is_empty() and Match.has_move(b.cells,8,9), "generated stable playable board seed %d" % seed_value)
+		check(b.score == 0 and b.moves == definition.moves and b.state == Board.State.READY, "generation never auto-clears or charges")
+		generated_boards += 1
+	print("PASS: 2000 independently generated stable playable boards")
 
 func best_move(b) -> Array:
-	var best := -1.0
-	var index := 0
-	var picked := -1
-	for i in 72:
-		var cell: Dictionary = b.cells[i]
-		var targets: Array
-		var color := -1
-		if cell.p == "":
-			targets = Match.group(b.cells, i, 8, 9)
-			if targets.size() < 2: continue
-		elif cell.p == "color":
-			color = 0
-			var color_value := -1.0
-			for c in 5:
-				var area: Array = Powers.area(i, cell.p, b.cells, 8, c)
-				var value: float = heuristic(b, area)
-				if value > color_value:
-					color_value = value
-					color = c
-			targets = Powers.area(i, cell.p, b.cells, 8, color)
-		else:
-			targets = Powers.area(i, cell.p, b.cells, 8)
-		var value: float = heuristic(b, targets)
-		if value > best:
-			best = value
-			index = i
-			picked = color
-	return [index, picked]
-
-func heuristic(b, indices: Array) -> float:
-	var value := 0.0
-	for i in indices:
-		if b.cells[i].p != "": continue
-		var key := str(b.cells[i].c)
-		value += 1.0
-		if b.level.targets.has(key) and b.collected[key] < b.level.targets[key]: value += 5.0
-	return value
+	return preload("res://tests/move_solver.gd").best_move(b)
 
 func test_simulations() -> void:
-	check(Catalog.all().size() == 10, "ten levels present")
-	for number in range(1, 11):
+	check(Catalog.all().size() == 10, "all ten levels retained")
+	for number in range(1,11):
 		var definition: Dictionary = Catalog.get_level(number)
-		check(Catalog.validate(definition), "level validation %d" % number)
+		check(Catalog.validate(definition), "new level data valid %d" % number)
 		var wins := 0
-		for seed_offset in 30:
+		for seed_offset in 100:
 			definition.seed = int(Catalog.get_level(number).seed) + seed_offset
 			var a = Board.new(definition)
 			var b = Board.new(definition)
+			check(Match.find(a.cells,8,9).is_empty() and Match.has_move(a.cells,8,9), "level starts stable and playable")
 			var actions := 0
-			while a.outcome == "playing" and actions < 40:
-				if a.energy > 0 and actions % 4 == 0:
-					var dir: String = ["left", "up", "right", "down"][int(actions / 4) % 4]
-					a.change_gravity(dir)
-					b.change_gravity(dir)
+			while a.outcome == "playing" and actions <= int(definition.moves):
+				if a.energy > 0 and actions % 6 == 0:
+					var direction: String = ["left","up","right","down"][int(actions / 6) % 4]
+					a.change_gravity(direction); b.change_gravity(direction)
 				var move: Array = best_move(a)
-				a.tap(move[0], move[1])
-				b.tap(move[0], move[1])
+				var event: Dictionary = a.swap(move[0],move[1])
+				b.swap(move[0],move[1])
+				check(event.accepted and not event.cascade_guard, "legal simulator move accepted without guard")
+				check(a.snapshot() == b.snapshot(), "identical seed/action cascade outcome")
+				check(a.moves >= 0 and a.cells.size() == 72 and Match.find(a.cells,8,9).is_empty() and Match.has_move(a.cells,8,9), "stable no-negative state after every transaction")
+				var identities: Dictionary = {}
+				for cell in a.cells: identities[cell.id] = true
+				check(identities.size() == 72 and a.energy <= 2 and a.energy_blocks < 12, "identity and energy bounds")
 				actions += 1
 				simulated_moves += 1
-				check(a.snapshot() == b.snapshot(), "seed determinism level %d seed %d action %d" % [number, seed_offset, actions])
-				check(a.moves >= 0 and a.score >= 0 and a.cells.size() == 72, "simulation state bounds")
-				var ids: Dictionary = {}
-				for cell in a.cells: ids[cell.id] = true
-				check(ids.size() == 72 and Match.has_move(a.cells, 8, 9), "simulation cell identities and no deadlock")
 			if a.outcome == "won": wins += 1
-			simulations += 1
-		check(wins == 30, "all tested seeds solvable with heuristic at level %d (%d/30)" % [number, wins])
-		print("Level %02d simulation: %d/30 won" % [number, wins])
+			simulated_games += 1
+		check(wins == 100, "heuristic solvability level %d (%d/100)" % [number,wins])
+		print("Match3 Level %02d: %d/100 won" % [number,wins])
+
+func mouse(game, local: Vector2, pressed: bool) -> void:
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.pressed = pressed
+	event.position = game.board_view.get_global_transform_with_canvas() * local
+	event.global_position = event.position
+	root.push_input(event,true)
+
+func drag(game, source: int, delta: Vector2, touch: bool = false) -> void:
+	var start: Vector2 = game.board_view.cell_position(source) + Vector2(26,26)
+	if touch:
+		var press := InputEventScreenTouch.new()
+		press.index = 0; press.pressed = true
+		press.position = game.board_view.get_global_transform_with_canvas() * start
+		root.push_input(press,true)
+		var motion := InputEventScreenDrag.new()
+		motion.index = 0; motion.position = game.board_view.get_global_transform_with_canvas() * (start + delta)
+		root.push_input(motion,true)
+		press.pressed = false; press.position = motion.position
+		root.push_input(press,true)
+	else:
+		mouse(game,start,true)
+		var motion := InputEventMouseMotion.new()
+		motion.button_mask = MOUSE_BUTTON_MASK_LEFT
+		motion.position = game.board_view.get_global_transform_with_canvas() * (start + delta)
+		root.push_input(motion,true)
+		mouse(game,start+delta,false)
+
+func wait_animation(game) -> void:
+	var deadline := 0
+	while game.board_view != null and game.board_view.busy and deadline < 400:
+		await process_frame
+		deadline += 1
+	check(deadline < 400, "animation queue completes")
 
 func test_ui() -> void:
-	var scene = load("res://scenes/main.tscn").instantiate()
-	root.add_child(scene)
+	var game = load("res://scenes/main.tscn").instantiate()
+	root.add_child(game)
 	await process_frame
-	clear_save("user://ui-test.json")
-	scene.save = Save.new("user://ui-test.json")
-	scene.save.data.settings.music = false
-	scene.audio.apply_settings(scene.save.data.settings)
-	scene.show_home()
-	check(scene.screen == "home", "home scene instantiated")
-	scene.play_latest()
-	check(scene.board.level.id == 1 and scene.board_view != null, "play button opens level one")
+	var path := "user://match3-ui-tests.json"
+	clear_save(path)
+	game.save = Save.new(path)
+	game.save.data.settings.music = false
+	game.save.data.settings.reduced_motion = true
+	game.audio.apply_settings(game.save.data.settings)
+	game.show_home(); game.play_latest()
 	await process_frame
-	var touch := InputEventMouseButton.new()
-	touch.button_index = MOUSE_BUTTON_LEFT
-	touch.pressed = true
-	touch.position = scene.board_view.global_position + Vector2(20, 20) * scene.stage.scale
-	touch.global_position = touch.position
-	root.push_input(touch, true)
+	var before: Dictionary = game.board.snapshot()
+	mouse(game,Vector2(26,26),true); mouse(game,Vector2(26,26),false)
+	check(game.board.snapshot() == before and not game.board_view.busy, "actual normal GUI tap does nothing")
+	drag(game,1,Vector2(0,60))
+	check(game.board.moves == int(game.board.level.moves)-1 and game.board_view.busy, "GUI downward drag makes valid adjacent swap")
+	var moves: int = game.board.moves
+	drag(game,2,Vector2(60,0))
+	game.on_gravity("left")
+	check(game.board.moves == moves, "rapid touch and gravity during animation blocked")
+	game.show_pause()
+	check(game.board.state == Board.State.PAUSED, "pause during animation uses PAUSED state")
+	var paused_age: float = game.board_view.age
+	await create_timer(0.08).timeout
+	check(game.board_view.age == paused_age, "paused cosmetic queue freezes")
+	var canonical: Dictionary = game.save.data.active.duplicate(true)
+	var restarted = Board.new(Catalog.get_level(1))
+	check(restarted.restore(canonical), "background/pause save is a settled canonical board")
+	game.close_overlay()
+	await wait_animation(game)
+	check(game.board.state == game.board.stable_state(), "animation restores terminal or READY state")
+	game.start_level(1)
 	await process_frame
-	check(scene.board.moves == int(scene.board.level.moves) - 1, "actual GUI input reaches board")
-	touch.pressed = false
-	root.push_input(touch, true)
-	var moves: int = scene.board.moves
-	scene.on_cell(1)
-	check(scene.board.moves == moves, "rapid tap blocked during animation")
-	await create_timer(0.5).timeout
-	check(not scene.board_view.busy, "animation input unlocks")
-	scene.show_pause()
-	scene.on_cell(0)
-	check(scene.board.moves == moves and scene.paused, "pause blocks board input")
-	scene.close_overlay()
-	scene.show_settings()
-	check(scene.screen == "settings" and not scene.save.data.active.is_empty(), "settings preserves active game")
-	scene.toggle_setting("reduced_motion")
-	check(scene.save.data.settings.reduced_motion, "setting toggle persists")
-	scene.play_latest()
-	check(scene.board.moves == moves and scene.board_view.reduced_motion, "resume exact active game and settings")
-	scene.show_map()
-	check(scene.screen == "map" and scene.save.data.unlocked == 1, "map and locked progression")
-	scene.start_level(2)
-	check(scene.screen == "map", "locked level cannot start")
-	for dimensions in [Vector2(360, 640), Vector2(360, 800), Vector2(768, 1024), Vector2(1080, 2400)]:
-		scene.size = dimensions
-		scene.layout_stage()
-		check(scene.stage.position.x >= -0.01 and scene.stage.position.y >= -0.01 and scene.stage.size.x * scene.stage.scale.x <= dimensions.x + 0.01 and scene.stage.size.y * scene.stage.scale.y <= dimensions.y + 0.01, "UI fit at " + str(dimensions))
-	scene.queue_free()
+	before = game.board.snapshot()
+	drag(game,1,Vector2(40,40))
+	drag(game,1,Vector2(0,-1000))
+	drag(game,1,Vector2(0,6))
+	check(game.board.snapshot() == before, "diagonal, outside-board and tiny drag cancel free")
+	# A long swipe still selects only the immediately adjacent tile.
+	drag(game,1,Vector2(0,240),true)
+	check(game.board.moves == int(game.board.level.moves)-1, "native screen touch long swipe performs one neighbor swap")
+	await wait_animation(game)
+	game.start_level(1)
 	await process_frame
-	clear_save("user://ui-test.json")
-	print("PASS suite: scene integration, pause, settings, rapid taps and viewport fit")
+	var invalid: Array = invalid_pair(game.board)
+	before = game.board.snapshot()
+	var offset := Vector2(invalid[1] % 8 - invalid[0] % 8, int(invalid[1] / 8)-int(invalid[0] / 8))*60
+	drag(game,invalid[0],offset)
+	check(game.board.snapshot() == before and game.board_view.busy, "invalid drag starts rollback with unchanged logical save")
+	await wait_animation(game)
+	for direction in [Vector2(60,0),Vector2(-60,0),Vector2(0,60),Vector2(0,-60)]:
+		game.start_level(1)
+		await process_frame
+		var requested: Array = []
+		game.board_view.swap_requested.connect(func(a,b): requested.append([a,b]))
+		var source := 27
+		var start: Vector2 = game.board_view.cell_position(source) + Vector2(26,26)
+		mouse(game,start,true)
+		for step in range(1,11):
+			var motion := InputEventMouseMotion.new()
+			motion.button_mask = MOUSE_BUTTON_MASK_LEFT
+			motion.position = game.board_view.get_global_transform_with_canvas() * (start + direction * float(step) / 10)
+			root.push_input(motion,true)
+		mouse(game,start+direction,false)
+		var expected: int = source + (1 if direction.x > 0 else (-1 if direction.x < 0 else (8 if direction.y > 0 else -8)))
+		check(requested == [[source,expected]], "slow GUI drag emits exactly one neighbor " + str(direction))
+		await wait_animation(game)
+	game.start_level(1)
+	await process_frame
+	before = game.board.snapshot()
+	game.show_help()
+	check(game.overlay != null and game.paused, "new Match-3 help is functional")
+	game.close_overlay()
+	game.show_settings(); game.toggle_setting("colorblind"); game.play_latest()
+	check(game.board_view.colorblind and game.board.snapshot() == before, "settings and resume preserve exact stable game")
+	game.start_level(1)
+	await process_frame
+	game.board.level.targets = {"total":3}
+	game.on_swap(1,9)
+	check(game.board.outcome == "won" and game.board_view.busy and game.overlay == null, "logical victory waits for visual cascade before result")
+	game.show_pause()
+	check(game.board.state == Board.State.PAUSED and game.board_view.busy, "terminal animation can be paused without premature result")
+	game.close_overlay()
+	await wait_animation(game)
+	check(game.overlay != null and not game.board_view.busy and game.board.state == Board.State.LEVEL_COMPLETED, "victory shown only after all visual waves finish")
+	for dimensions in [Vector2(360,640),Vector2(360,800),Vector2(768,1024),Vector2(1080,2400)]:
+		game.size = dimensions; game.layout_stage()
+		check(game.stage.position.x >= -0.01 and game.stage.position.y >= -0.01 and game.stage.size.x*game.stage.scale.x <= dimensions.x+0.01 and game.stage.size.y*game.stage.scale.y <= dimensions.y+0.01, "viewport fit " + str(dimensions))
+	game.queue_free()
+	await process_frame
+	clear_save(path)
+	print("PASS: real mouse/touch drags, tap ignored, rollback, pause/resume, help, settings and scaling")

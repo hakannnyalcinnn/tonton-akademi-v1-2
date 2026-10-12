@@ -1,27 +1,36 @@
 extends Control
-
-signal cell_pressed(index: int)
+signal swap_requested(a: int, b: int)
+signal special_pressed(index: int)
 signal animation_finished
+signal wave_started(data: Dictionary)
 const Palette = preload("res://scripts/ui/palette.gd")
 const CELL := 56.0
 const GAP := 4.0
 const WIDTH := 8
 const HEIGHT := 9
 const STRIDE := CELL + GAP
+const DRAG_THRESHOLD := CELL * 0.26
 var board
 var busy := false
 var reduced_motion := false
 var colorblind := false
 var age := 0.0
-var duration := 0.32
+var duration := 0.14
 var origins: Dictionary = {}
-var removed: Array = []
 var previous: Array = []
+var displayed: Array = []
+var target: Array = []
+var queue: Array = []
+var current: Dictionary = {}
 var hint_index := -1
+var hint_target := -1
 var selected := -1
-var wave_origin := -1
-var resonance_wave := false
 var clock := 0.0
+var drag_index := -1
+var pointer_id := -1
+var drag_start := Vector2.ZERO
+var drag_offset := Vector2.ZERO
+var moved := false
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -30,94 +39,199 @@ func _ready() -> void:
 func set_board(value) -> void:
 	board = value
 	busy = false
-	origins.clear()
-	removed.clear()
+	displayed = board.cells.duplicate(true)
+	target = displayed
+	queue.clear()
+	current.clear()
+	cancel_drag()
 	queue_redraw()
 
 func cell_position(index: int) -> Vector2:
 	return Vector2(index % WIDTH, int(index / WIDTH)) * STRIDE
 
+func index_at(point: Vector2) -> int:
+	if point.x < 0 or point.y < 0: return -1
+	var x := int(point.x / STRIDE)
+	var y := int(point.y / STRIDE)
+	if x >= WIDTH or y >= HEIGHT or fmod(point.x, STRIDE) > CELL or fmod(point.y, STRIDE) > CELL: return -1
+	return y * WIDTH + x
+
+func inside(point: Vector2) -> bool:
+	return Rect2(Vector2.ZERO, Vector2(476, 536)).has_point(point)
+
 func animate(event: Dictionary) -> void:
-	if not event.get("accepted", false): return
-	previous = event.get("before", []).duplicate(true)
-	removed = event.get("removed", []).duplicate()
-	origins.clear()
-	var old_positions: Dictionary = {}
-	for i in previous.size():
-		if previous[i] != null: old_positions[previous[i].id] = cell_position(i)
-	for i in board.cells.size():
-		var cell: Dictionary = board.cells[i]
-		if old_positions.has(cell.id):
-			origins[cell.id] = old_positions[cell.id]
-		else:
-			var origin := cell_position(i)
-			match board.direction:
-				"down": origin.y = -STRIDE * (1 + int(i / WIDTH))
-				"up": origin.y = HEIGHT * STRIDE + STRIDE * (HEIGHT - int(i / WIDTH))
-				"left": origin.x = WIDTH * STRIDE + STRIDE * (WIDTH - i % WIDTH)
-				"right": origin.x = -STRIDE * (1 + i % WIDTH)
-			origins[cell.id] = origin
-	age = 0
-	duration = 0.06 if reduced_motion else 0.38
+	cancel_drag()
+	queue = event.get("frames", []).duplicate(true)
+	if queue.is_empty(): return
+	board.hold_presentation()
 	busy = true
-	wave_origin = event.get("origin", -1)
-	resonance_wave = event.get("resonated", false)
 	hint_index = -1
-	queue_redraw()
+	hint_target = -1
+	next_frame()
+
+func next_frame() -> void:
+	if queue.is_empty():
+		busy = false
+		current.clear()
+		displayed = board.cells.duplicate(true)
+		board.release_presentation()
+		animation_finished.emit()
+		return
+	current = queue.pop_front()
+	previous = current.before
+	target = current.after
+	origins.clear()
+	for i in previous.size():
+		if previous[i] != null: origins[previous[i].id] = cell_position(i)
+	duration = 0.02 if reduced_motion else {"swap": 0.13, "revert": 0.13, "clear": 0.16, "fall": 0.12, "refill": 0.12, "shuffle": 0.24}.get(current.kind, 0.12)
+	age = 0
+	board.visual_phase(int(current.state))
+	if current.kind == "clear": wave_started.emit(current)
 
 func _process(delta: float) -> void:
+	if board != null and board.state == board.State.PAUSED:
+		cancel_drag()
+		return
 	if not reduced_motion: clock += delta
 	if busy:
 		age += delta
 		if age >= duration:
-			busy = false
-			removed.clear()
-			animation_finished.emit()
+			displayed = target
+			next_frame()
 	queue_redraw()
 
+func cancel_drag() -> void:
+	drag_index = -1
+	pointer_id = -1
+	drag_offset = Vector2.ZERO
+	selected = -1
+	moved = false
+
 func _gui_input(event: InputEvent) -> void:
-	if busy or board == null: return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var column := int(event.position.x / STRIDE)
-		var row := int(event.position.y / STRIDE)
-		if event.position.x < 0 or event.position.y < 0 or column >= WIDTH or row >= HEIGHT: return
-		if fmod(event.position.x, STRIDE) > CELL or fmod(event.position.y, STRIDE) > CELL: return
+	if busy or board == null or not board.available() or drag_index >= 0: return
+	var press := false
+	var position_local := Vector2.ZERO
+	var pointer := -1
+	if event is InputEventScreenTouch and event.pressed:
+		press = true
+		position_local = event.position
+		pointer = event.index
+	elif event is InputEventMouseButton and event.device != -1 and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		press = true
+		position_local = event.position
+	if press:
+		var index := index_at(position_local)
+		if index < 0 or board.cells[index].get("fixed", false): return
+		drag_index = index
+		selected = index
+		pointer_id = pointer
+		drag_start = position_local
+		drag_offset = Vector2.ZERO
+		moved = false
 		accept_event()
-		cell_pressed.emit(row * WIDTH + column)
+
+func _input(event: InputEvent) -> void:
+	if drag_index < 0: return
+	if busy or not board.available():
+		cancel_drag()
+		return
+	var motion := false
+	var released := false
+	var point := Vector2.ZERO
+	if pointer_id >= 0:
+		if event is InputEventScreenDrag and event.index == pointer_id:
+			motion = true
+			point = event.position
+		elif event is InputEventScreenTouch and event.index == pointer_id and not event.pressed:
+			released = true
+			point = event.position
+	else:
+		if event is InputEventMouseMotion:
+			motion = true
+			point = event.position
+		elif event is InputEventMouseButton and event.device != -1 and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			released = true
+			point = event.position
+	if not motion and not released: return
+	var local := get_global_transform_with_canvas().affine_inverse() * point
+	update_drag(local)
+	if released: finish_drag(local)
+	get_viewport().set_input_as_handled()
+
+func update_drag(point: Vector2) -> void:
+	var delta := point - drag_start
+	if delta.length() >= DRAG_THRESHOLD: moved = true
+	if absf(delta.x) > absf(delta.y) * 1.2:
+		drag_offset = Vector2(clampf(delta.x, -STRIDE * 0.65, STRIDE * 0.65), 0)
+	elif absf(delta.y) > absf(delta.x) * 1.2:
+		drag_offset = Vector2(0, clampf(delta.y, -STRIDE * 0.65, STRIDE * 0.65))
+	else: drag_offset = Vector2.ZERO
+	queue_redraw()
+
+func finish_drag(point: Vector2) -> void:
+	var source := drag_index
+	var delta := point - drag_start
+	var was_moved := moved
+	cancel_drag()
+	if source < 0 or not inside(point): return
+	if delta.length() < DRAG_THRESHOLD:
+		if not was_moved and board.cells[source].p != "": special_pressed.emit(source)
+		return
+	var destination := -1
+	if absf(delta.x) > absf(delta.y) * 1.2:
+		var x := source % WIDTH + (1 if delta.x > 0 else -1)
+		if x >= 0 and x < WIDTH: destination = source + (1 if delta.x > 0 else -1)
+	elif absf(delta.y) > absf(delta.x) * 1.2:
+		var y := int(source / WIDTH) + (1 if delta.y > 0 else -1)
+		if y >= 0 and y < HEIGHT: destination = source + (WIDTH if delta.y > 0 else -WIDTH)
+	if destination >= 0: swap_requested.emit(source, destination)
 
 func _draw() -> void:
 	if board == null: return
 	draw_style_box(Palette.panel(Color(0.02, 0.05, 0.12, 0.92), 22, Color(0.62, 0.85, 0.83, 0.18)), Rect2(Vector2(-9, -9), Vector2(494, 554)))
-	for i in board.cells.size():
-		var cell: Dictionary = board.cells[i]
+	var values: Array = target if busy else displayed
+	var t := clampf(age / duration, 0, 1) if busy else 1.0
+	var ease := 1 - pow(1 - t, 3)
+	for i in values.size():
+		if values[i] == null: continue
+		var cell: Dictionary = values[i]
 		var pos := cell_position(i)
 		if busy:
-			var t := clampf((age / duration - 0.18) / 0.82, 0, 1)
-			var ease := 1 - pow(1 - t, 3)
-			pos = origins.get(cell.id, pos).lerp(pos, ease)
-			if t > 0.85 and t < 1: pos.y += sin((t - 0.85) / 0.15 * PI) * 2
+			var origin: Vector2 = origins.get(cell.id, pos)
+			if not origins.has(cell.id) and current.kind == "refill":
+				match current.direction:
+					"down": origin.y = -STRIDE * (1 + int(i / WIDTH))
+					"up": origin.y = HEIGHT * STRIDE + STRIDE * (HEIGHT - int(i / WIDTH))
+					"left": origin.x = WIDTH * STRIDE + STRIDE * (WIDTH - i % WIDTH)
+					"right": origin.x = -STRIDE * (1 + i % WIDTH)
+			pos = origin.lerp(pos, ease)
+			if current.kind in ["fall", "refill"] and t > 0.85: pos.y += sin((t - 0.85) / 0.15 * PI) * 2
 		if pos.y < -CELL or pos.y > HEIGHT * STRIDE or pos.x < -CELL or pos.x > WIDTH * STRIDE: continue
-		draw_cell(cell, Rect2(pos, Vector2(CELL, CELL)), i == hint_index or i == selected)
-	if busy and not reduced_motion:
-		var progress := clampf(age / duration, 0, 1)
-		for i in removed:
-			if i >= previous.size() or previous[i] == null: continue
+		if i == drag_index: continue
+		draw_cell(cell, Rect2(pos, Vector2(CELL, CELL)), i == hint_index or i == hint_target or i == selected)
+	if drag_index >= 0:
+		draw_cell(displayed[drag_index], Rect2(cell_position(drag_index) + drag_offset, Vector2(CELL, CELL)), true)
+	if busy and current.kind == "clear":
+		for i in current.removed:
+			if previous[i] == null: continue
 			var center := cell_position(i) + Vector2.ONE * CELL * 0.5
 			var color: Color = Palette.COLORS[previous[i].c]
-			if progress < 0.20:
-				var block_size := Vector2.ONE * CELL * (1 + progress * 0.5)
+			if t < 0.5:
+				var block_size := Vector2.ONE * CELL * (1 + t * 0.15) * (1 - t * 1.6)
 				draw_cell(previous[i], Rect2(center - block_size / 2, block_size), true)
-			for k in 5:
-				var ray := Vector2.from_angle(k * TAU / 5 + i)
-				var position := center + ray * progress * 38
-				draw_circle(position, (1 - progress) * 4 + 0.5, Color(color, 1 - progress))
-		if resonance_wave and wave_origin >= 0:
-			draw_arc(cell_position(wave_origin) + Vector2.ONE * CELL * 0.5, progress * 150, 0, TAU, 48, Color(0.7, 1, 0.94, 1 - progress), 3, true)
-	if hint_index >= 0 and not busy:
-		var hint_center := cell_position(hint_index) + Vector2(37, 37)
-		hint_center.y += sin(clock * 3) * 4 if not reduced_motion else 0
+			if not reduced_motion:
+				for k in 5:
+					var ray := Vector2.from_angle(k * TAU / 5 + i)
+					draw_circle(center + ray * t * 38, (1 - t) * 4 + 0.5, Color(color, 1 - t))
+		if current.resonated and not reduced_motion:
+			draw_arc(cell_position(current.origin) + Vector2.ONE * CELL * 0.5, t * 150, 0, TAU, 48, Color(0.7, 1, 0.94, 1 - t), 3, true)
+	if hint_index >= 0 and not busy and drag_index < 0:
+		var center := cell_position(hint_index) + Vector2(37, 37)
+		if hint_target >= 0:
+			var travel := clampf(fmod(clock, 2.2) - 0.45, 0, 1)
+			center = center.lerp(cell_position(hint_target) + Vector2(37, 37), travel)
 		var hand := PackedVector2Array([Vector2(0, 0), Vector2(0, 16), Vector2(-4, 13), Vector2(-8, 14), Vector2(-2, 25), Vector2(13, 27), Vector2(17, 21), Vector2(16, 10), Vector2(5, 8), Vector2(5, 0)])
-		for k in hand.size(): hand[k] += hint_center
+		for k in hand.size(): hand[k] += center
 		draw_colored_polygon(hand, Color("fff4dc"))
 		draw_polyline(hand, Color("c5ab85"), 1.5, true)
 
