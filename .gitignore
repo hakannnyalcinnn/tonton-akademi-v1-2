@@ -5,3 +5,4 @@ build/
 *.log
 *.keystore
 *.jks
+__pycache__/

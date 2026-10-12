@@ -1,0 +1,58 @@
+name: PRIZMA Android test release
+
+on:
+  push:
+    branches: [prizma-release-v0.1.0]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prizma-test-release-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  test-build-release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PRIZMA_TOOLS_DIR: ${{ runner.temp }}/prizma-tools
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install test prerequisite if missing
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v rg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ripgrep
+          fi
+          command -v java
+          command -v keytool
+      - name: Install verified Godot engine
+        run: |
+          python3 tools/ci_install_godot.py --tools-root "$PRIZMA_TOOLS_DIR"
+          echo "$PRIZMA_TOOLS_DIR/bin" >> "$GITHUB_PATH"
+      - name: Install verified Android export tools
+        run: python3 tools/bootstrap_android.py --tools-root "$PRIZMA_TOOLS_DIR" --accept-sdk-license
+      - name: Test, build and verify Android APK
+        run: bash tools/build_android.sh
+      - name: Create source archive
+        run: git archive --format=zip --output=build/prizma-source.zip HEAD
+      - name: Publish first-stage prerelease
+        env:
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create v0.1.0 \
+            build/prizma-debug.apk \
+            build/prizma-debug.apk.sha256 \
+            build/prizma-source.zip \
+            --target "$GITHUB_SHA" \
+            --title "PRİZMA 0.1.0 — İlk aşama test sürümü" \
+            --prerelease \
+            --notes-file docs/RELEASE_v0.1.0.md
