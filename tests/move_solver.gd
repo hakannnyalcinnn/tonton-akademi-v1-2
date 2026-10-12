@@ -42,4 +42,3 @@ static func best_move(b) -> Array:
 			best = value
 			choice = move
 	return choice
-
