@@ -29,9 +29,9 @@ func run() -> void:
  var event: Dictionary=b.swap(legal[0][0],legal[0][1])
  check(event.accepted and b.moves==int(before.moves)-1,"valid swap costs one move")
  check(event.cascade_count>0 and b.find_matches().is_empty(),"automatic clear settles")
- var cells: Array=[null,{"id":1,"c":0,"p":""},null,{"id":2,"c":1,"p":""}]
+ var cells: Array=[{"id":1,"c":0,"p":""},{"id":2,"c":1,"p":""},null,null]
  Gravity.compact(cells,2,2,"down")
- check(cells[3].id==2 and cells[1].id==1,"gravity retains order")
+ check(cells[0]==null and cells[1]==null and cells[2]!=null and cells[3]!=null and cells[2].id==1 and cells[3].id==2,"gravity moves crystals into empty lower cells")
  var path: String="user://workflow-smoke-only.json"
  var save=Save.new(path);save.data=Save.defaults();save.data.unlocked=7;save.save_active(b);save.finish_writes()
  var loaded=Save.new(path);var clone=Board.new(d)
