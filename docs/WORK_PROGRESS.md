@@ -8,5 +8,7 @@ Görev: PRİZMA v0.11.0 — üretici 2.0, 250 bölüm ve 5 dünya.
 - Render: 38 hamle/4.495 kare, sıfır mantık olayı. llvmpipe 2 thread kare bütçesini aştı; aynı sahnede 4 thread eski/yeni shader ~16,67 ms. Son 4-thread action profili: ortalama 16,74 ms / p95 19,87 ms; 38 hamle, 6.074 kare.
 - Final: FULL kapsamı 27 iş / 102.561 kontrol çağrısı; 250 varsayılan bölüm deterministik kayıt/tekrar ile geçti. Eski bir UI testi düzeltildi; aynı girdili başarılı testler kanıtla korundu.
 - APK 0.11.0 / code 11 üretildi; aynı sertifika, ZIP/veri/ARM/paket doğrulandı. SHA256: 6beb6fbbfa1d9725a429383697ba91704751ac6abbcf867b495f5ac491884b85.
-- Kalan: GitHub/Release yayını. Rapor: docs/v011/REPORT.md; küçük ZIP ve iki ekran görüntüsü hazır.
+- Yayın tamamlandı: https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.11.0
+- CI 38485348126 başarılı; APK HEAD 200 ve 79.928.214 byte. Rapor ZIP / iki ekran görüntüsü Assets altında. Kaynak sürüm commit: c552b688ecfe12a3e2b5e5671e56bb8b2920aec1.
+- Bu aşama kapandı; yeni geliştirme yalnızca kullanıcı onayıyla.
 - Gerçek Android cihaz yok; telefon FPS/input/ses/titreşim/kurulum doğrulanmadı.

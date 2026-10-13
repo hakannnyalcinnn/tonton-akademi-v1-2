@@ -1,0 +1,30 @@
+{
+  "run": 38485348126,
+  "status": "success",
+  "source_commit": "c552b688ecfe12a3e2b5e5671e56bb8b2920aec1",
+  "results": [
+    {
+      "kind": "release",
+      "status": 200,
+      "bytes": null
+    },
+    {
+      "kind": "assets",
+      "status": 200,
+      "bytes": "28602",
+      "files": [
+        "/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.11.0/prizma-cloud.png",
+        "/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.11.0/prizma-lava.png",
+        "/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.11.0/prizma-runtime.sha256",
+        "/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.11.0/prizma-v0.11.0.apk",
+        "/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.11.0/prizma-v0.11.0.apk.sha256",
+        "/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.11.0/prizma-v011-report.zip"
+      ]
+    },
+    {
+      "kind": "apk-head",
+      "status": 200,
+      "bytes": "79928214"
+    }
+  ]
+}
