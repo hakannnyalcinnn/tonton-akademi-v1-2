@@ -1,0 +1,463 @@
+{
+  "action_log": [
+    {
+      "attempt": 0,
+      "cascades": 1,
+      "engine_ms": 1.946,
+      "scene": "Portal geçiş sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 1,
+      "cascades": 1,
+      "engine_ms": 1.489,
+      "scene": "Portal geçiş sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 2,
+      "cascades": 1,
+      "engine_ms": 1.46,
+      "scene": "Portal geçiş sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 3,
+      "cascades": 1,
+      "engine_ms": 2.591,
+      "scene": "Portal geçiş sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 4,
+      "cascades": 2,
+      "engine_ms": 2.257,
+      "scene": "Portal geçiş sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 5,
+      "cascades": 1,
+      "engine_ms": 2.174,
+      "scene": "Canlı sarmaşık sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 6,
+      "cascades": 2,
+      "engine_ms": 2.164,
+      "scene": "Canlı sarmaşık sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 7,
+      "cascades": 3,
+      "engine_ms": 2.508,
+      "scene": "Canlı sarmaşık sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 8,
+      "cascades": 3,
+      "engine_ms": 2.633,
+      "scene": "Canlı sarmaşık sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 9,
+      "cascades": 4,
+      "engine_ms": 4.697,
+      "scene": "Canlı sarmaşık sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 10,
+      "cascades": 1,
+      "engine_ms": 2.025,
+      "scene": "Sandık zinciri sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 11,
+      "cascades": 1,
+      "engine_ms": 1.874,
+      "scene": "Sandık zinciri sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 12,
+      "cascades": 2,
+      "engine_ms": 2.473,
+      "scene": "Sandık zinciri sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 13,
+      "cascades": 1,
+      "engine_ms": 1.493,
+      "scene": "Sandık zinciri sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 14,
+      "cascades": 1,
+      "engine_ms": 1.44,
+      "scene": "Sandık zinciri sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 15,
+      "cascades": 1,
+      "engine_ms": 1.949,
+      "scene": "Ayna yansıma sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 16,
+      "cascades": 1,
+      "engine_ms": 1.426,
+      "scene": "Ayna yansıma sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 17,
+      "cascades": 1,
+      "engine_ms": 2.118,
+      "scene": "Ayna yansıma sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 18,
+      "cascades": 1,
+      "engine_ms": 1.807,
+      "scene": "Ayna yansıma sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 19,
+      "cascades": 1,
+      "engine_ms": 1.998,
+      "scene": "Ayna yansıma sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    }
+  ],
+  "action_types": {
+    "specials": 3,
+    "swaps": 17
+  },
+  "cascade_waves": 30,
+  "device_diagnostics": {
+    "audio_output_latency_ms": 0.0,
+    "counters": {
+      "active_quality": "performance",
+      "frames": 1240,
+      "frames_over_33ms": 8,
+      "peak_live_objects": 2101,
+      "peak_static_memory_bytes": 52845046
+    },
+    "device_model": "GenericDevice",
+    "display": {
+      "height": 960,
+      "refresh_rate_hz": null,
+      "safe_area": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "width": 540
+    },
+    "incidents": [],
+    "metrics": {
+      "animation_clear": {
+        "max_ms": 301.100433349609,
+        "mean_ms": 222.416927083333,
+        "p50_ms": 216.66667175293,
+        "p95_ms": 219.645660400391,
+        "samples": 30
+      },
+      "animation_fall": {
+        "max_ms": 166.665664672852,
+        "mean_ms": 155.841050178774,
+        "p50_ms": 150.039672851562,
+        "p95_ms": 166.663330078125,
+        "samples": 31
+      },
+      "animation_portal": {
+        "max_ms": 266.683990478516,
+        "mean_ms": 266.683990478516,
+        "p50_ms": 266.683990478516,
+        "p95_ms": 266.683990478516,
+        "samples": 1
+      },
+      "animation_refill": {
+        "max_ms": 183.33332824707,
+        "mean_ms": 182.884731547038,
+        "p50_ms": 183.332336425781,
+        "p95_ms": 183.33332824707,
+        "samples": 30
+      },
+      "animation_swap": {
+        "max_ms": 192.35400390625,
+        "mean_ms": 184.22784244313,
+        "p50_ms": 183.33332824707,
+        "p95_ms": 186.540328979492,
+        "samples": 17
+      },
+      "beam_logic": {
+        "max_ms": 0.017000000923872,
+        "mean_ms": 0.0117000002879649,
+        "p50_ms": 0.0120000001043081,
+        "p95_ms": 0.0160000007599592,
+        "samples": 10
+      },
+      "board_draw_cpu": {
+        "max_ms": 1.97899997234344,
+        "mean_ms": 0.339497963004513,
+        "p50_ms": 0.319000005722046,
+        "p95_ms": 0.493000000715256,
+        "samples": 1227
+      },
+      "clear_logic": {
+        "max_ms": 0.546000003814697,
+        "mean_ms": 0.21726666589578,
+        "p50_ms": 0.17399999499321,
+        "p95_ms": 0.467999994754791,
+        "samples": 30
+      },
+      "effect_queue_logic": {
+        "max_ms": 0.263999998569489,
+        "mean_ms": 0.198499999940395,
+        "p50_ms": 0.133000001311302,
+        "p95_ms": 0.133000001311302,
+        "samples": 2
+      },
+      "frame_interval": {
+        "max_ms": 116.25,
+        "mean_ms": 16.8786749970528,
+        "p50_ms": 16.6660003662109,
+        "p95_ms": 17.1079998016357,
+        "samples": 1240
+      },
+      "gravity_logic": {
+        "max_ms": 0.32600000500679,
+        "mean_ms": 0.084100000311931,
+        "p50_ms": 0.0590000003576279,
+        "p95_ms": 0.142000004649162,
+        "samples": 30
+      },
+      "legal_move_logic": {
+        "max_ms": 1.13199996948242,
+        "mean_ms": 0.393499997258186,
+        "p50_ms": 0.287000000476837,
+        "p95_ms": 0.941999971866608,
+        "samples": 20
+      },
+      "main_thread_cpu": {
+        "max_ms": 75.911003112793,
+        "mean_ms": 32.3863867928905,
+        "p50_ms": 19.8379993438721,
+        "p95_ms": 66.5410003662109,
+        "samples": 1240
+      },
+      "match_scan": {
+        "max_ms": 0.241999998688698,
+        "mean_ms": 0.147820001244545,
+        "p50_ms": 0.135000005364418,
+        "p95_ms": 0.202999994158745,
+        "samples": 50
+      },
+      "mechanic_wave": {
+        "max_ms": 0.0670000016689301,
+        "mean_ms": 0.0482000004500151,
+        "p50_ms": 0.0439999997615814,
+        "p95_ms": 0.061999998986721,
+        "samples": 10
+      },
+      "portal_logic": {
+        "max_ms": 0.00999999977648258,
+        "mean_ms": 0.00714285731581705,
+        "p50_ms": 0.00800000037997961,
+        "p95_ms": 0.00800000037997961,
+        "samples": 7
+      },
+      "refill_logic": {
+        "max_ms": 0.0659999996423721,
+        "mean_ms": 0.0276666670416792,
+        "p50_ms": 0.025000000372529,
+        "p95_ms": 0.0370000004768372,
+        "samples": 30
+      },
+      "render_cpu": {
+        "max_ms": 24.1529998779297,
+        "mean_ms": 1.15484440853182,
+        "p50_ms": 0.920000016689301,
+        "p95_ms": 2.03699994087219,
+        "samples": 1234
+      },
+      "render_gpu": {
+        "max_ms": 45.5060005187988,
+        "mean_ms": 8.22123906909937,
+        "p50_ms": 7.83500003814697,
+        "p95_ms": 10.8409996032715,
+        "samples": 1234
+      },
+      "save_worker": {
+        "max_ms": 1.69400000572205,
+        "mean_ms": 1.06100000441074,
+        "p50_ms": 0.428000003099442,
+        "p95_ms": 0.428000003099442,
+        "samples": 2
+      },
+      "vine_logic": {
+        "max_ms": 0.0209999997168779,
+        "mean_ms": 0.0209999997168779,
+        "p50_ms": 0.0209999997168779,
+        "p95_ms": 0.0209999997168779,
+        "samples": 1
+      }
+    },
+    "platform": "Linux",
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "settings": {
+      "colorblind": false,
+      "haptics": true,
+      "music": false,
+      "music_volume": 0.65,
+      "quality": "performance",
+      "reduced_effects": false,
+      "reduced_motion": false,
+      "sfx": true,
+      "sfx_volume": 0.8,
+      "shake": true
+    },
+    "slow_frames": [
+      {
+        "busy": false,
+        "frame_ms": 116.25,
+        "level": 10,
+        "phase": "ready",
+        "time_ms": 816
+      },
+      {
+        "busy": true,
+        "frame_ms": 58.6623333333333,
+        "level": 1,
+        "phase": "swap",
+        "time_ms": 1167
+      },
+      {
+        "busy": false,
+        "frame_ms": 65.601,
+        "level": 1,
+        "phase": "ready",
+        "time_ms": 5793
+      },
+      {
+        "busy": true,
+        "frame_ms": 55.518,
+        "level": 1,
+        "phase": "clear",
+        "time_ms": 13541
+      },
+      {
+        "busy": false,
+        "frame_ms": 71.373,
+        "level": 1,
+        "phase": "ready",
+        "time_ms": 14118
+      },
+      {
+        "busy": false,
+        "frame_ms": 62.263,
+        "level": 1,
+        "phase": "ready",
+        "time_ms": 18027
+      }
+    ],
+    "version": "0.7.0"
+  },
+  "frames": 1217,
+  "metrics": {
+    "draw_calls": {
+      "count": 1217,
+      "max": 282.0,
+      "mean": 48.9285127362366,
+      "p50": 41.0,
+      "p95": 81.0
+    },
+    "engine_delta_ms": {
+      "count": 1217,
+      "max": 75.0986666666667,
+      "mean": 16.8080062996439,
+      "p50": 16.6666666666667,
+      "p95": 16.6666666666667
+    },
+    "engine_swap_ms": {
+      "count": 20,
+      "max": 4.697,
+      "mean": 2.1261,
+      "p50": 1.998,
+      "p95": 2.633
+    },
+    "frame_interval_ms": {
+      "count": 1216,
+      "max": 66.65,
+      "mean": 16.7748256578948,
+      "p50": 16.666,
+      "p95": 16.829
+    },
+    "memory_static_bytes": {
+      "count": 1217,
+      "max": 44418454.0,
+      "mean": 42597582.9498767,
+      "p50": 42213018.0,
+      "p95": 44344650.0
+    },
+    "objects": {
+      "count": 1217,
+      "max": 1781.0,
+      "mean": 1770.8866064092,
+      "p50": 1773.0,
+      "p95": 1781.0
+    },
+    "presentation_and_save_ms": {
+      "count": 20,
+      "max": 1.269,
+      "mean": 0.3296,
+      "p50": 0.208,
+      "p95": 0.987
+    },
+    "process_cpu_ms": {
+      "count": 1217,
+      "max": 75.911,
+      "mean": 32.5410994248151,
+      "p50": 19.838,
+      "p95": 66.541
+    }
+  },
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "successful_actions": 20,
+  "successful_swaps": 17
+}

@@ -19,6 +19,7 @@ func _process(delta: float) -> bool:
 		record("engine_delta_ms",delta*1000)
 		record("process_cpu_ms", Performance.get_monitor(Performance.TIME_PROCESS) * 1000)
 		record("draw_calls", Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
+		record("memory_static_bytes", Performance.get_monitor(Performance.MEMORY_STATIC))
 		record("objects", Performance.get_monitor(Performance.OBJECT_COUNT))
 		frame_count += 1
 	return false

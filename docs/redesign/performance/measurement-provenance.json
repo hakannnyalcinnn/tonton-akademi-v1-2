@@ -1,0 +1,21 @@
+{
+  "baseline_source_commit": "1b9248ca904568f921211f1d8775fc819e3b5597",
+  "art_stage_runtime_sha256": "19587b52a47f93ef2db5be1325d49fa611180110f5d62aef4b7c3b8a63717df5",
+  "art_stage_files": [
+    "after-ocean-balanced.json",
+    "after-lab-balanced.json",
+    "after-ocean-low.json",
+    "after-lab-low.json",
+    "art-native-touch-before-star-fix.json"
+  ],
+  "final_runtime_sha256": "b6878e6e68d0e5e6b456e0b5b6c16fbe5275d4121ffd9f27d76a4eb556707b9e",
+  "final_files": [
+    "after-native-touch.json"
+  ],
+  "final_change": "Exact-threshold HUD settling, score-wave synchronization, and atlas icon sizing before animation. Core, data, art and explosion logic unchanged; native 100-swipe benchmark rerun after all final changes.",
+  "star_fixed_runtime_sha256": "de7a2660a3a00ececa226b423bc9770e15b30872fe8a93c4016357ea861728b9",
+  "star_fixed_files": [
+    "star-fixed-native-touch-before-icon-fix.json"
+  ],
+  "final_apk_sha256": "4ee8b522887edba33f214b5aab4aee731615df4ebd462bedf644c0e01e94f2be"
+}

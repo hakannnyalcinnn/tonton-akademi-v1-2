@@ -46,8 +46,9 @@ func run() -> void:
 	for group in [0,4,5,6,7]:
 		game.show_map(group);await process_frame
 		check(game.garden.world==(1 if group<5 else 2),"map selects correct world art")
-		for child in game.page.get_children():
-			if child is Button and child.text.is_valid_int():check(int(child.text)<=75,"no unbuilt 76-100 button")
+		check(game.map_buttons.size()==(50 if group<5 else 25),"all real world levels present on winding map")
+		for n in game.map_buttons:
+			check(n>=1 and n<=75 and int(game.map_buttons[n].text)==n,"no unbuilt 76-100 button")
 	for n in range(51,76):
 		game.start_level(n);await process_frame
 		check(game.garden.world==2 and game.board.find_matches().is_empty(),"all ocean levels start stable in ocean world")

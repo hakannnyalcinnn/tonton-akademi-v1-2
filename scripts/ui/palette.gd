@@ -1,12 +1,15 @@
 extends RefCounted
-const COLORS := [Color("f07791"), Color("58bce8"), Color("62d5ac"), Color("f2c86d"), Color("ae91ec")]
-const INK := Color("edf7f4")
-const MUTED := Color("9aaec7")
-const GOLD := Color("f5d593")
+const COLORS := [Color("f54371"), Color("22b8ef"), Color("19cd8c"), Color("ffc62b"), Color("ac59ec")]
+const INK := Color("35436d")
+const MUTED := Color("62779a")
+const GOLD := Color("bf7021")
 
 static func panel(color: Color, radius: int = 20, border: Color = Color(0, 0, 0, 0)) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = color
+	style.shadow_color=Color(.3,.25,.5,.12)
+	style.shadow_size=5
+	style.shadow_offset=Vector2(0,3)
 	style.corner_radius_top_left = radius
 	style.corner_radius_top_right = radius
 	style.corner_radius_bottom_left = radius

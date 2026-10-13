@@ -13,3 +13,9 @@ Hiçbir başka oyunun karakteri, blok varlığı, müziği veya arayüz dosyası
 0.5.0: `assets/mechanics2/*.svg`, on çift renkli kristal, beş bukalemun, joker köprü, iki metalik çivi durumu ve Büyülü Bahçe madalyası `tools/generate_mechanics2.py` ile özgün tasarlanmıştır. Ana kristal, bahçe ve özgün sentez sesleri korunur; yeni dış kaynak/telifli içerik kullanılmaz.
 
 0.6.0: `art/ocean.png` PRİZMA için image generation aracıyla bu aşamada üretilen özgün Kristal Okyanus illüstrasyonudur. `mechanics4/*.svg` portal, sarmaşık, iki hasarlı sandık ve iki yönlü ayna için özgün katmanlı vektörlerdir; `tools/generate_mechanics4.py` kaynak tasarımları tekrar üretir. Aynı araç dört farklı kısa, deterministik özgün PCM ses efekti (`portal`, `vine`, `crate`, `mirror`) üretir. Telifli ses, hazır ikon veya emoji kullanılmadı. Oyun çalışırken hiçbir varlık indirilmez.
+
+## PRİZMA 0.7.0 bright casual redesign
+
+`casual/gems.png`, `mechanics.png`, `traits.png`, `devices.png`, `ui.png`, `decor.png`, `world-garden.png`, `world-ocean.png`: original artwork generated specifically for this project with the image generation tool. No third-party game assets or copyrighted franchise designs were supplied. These are generated images, not downloaded stock assets; no stock-library or CC0 license is asserted.
+
+`casual/board-frame.svg`, `casual/board-ocean.svg`: original vector artwork written for the exact existing 8×9 grid. Sprite indexing changes metadata only; source PNG pixels remain unchanged. Public asset manifest: `docs/redesign/asset-manifest.json`.

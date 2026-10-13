@@ -4,6 +4,7 @@ signal special_pressed(index: int)
 signal animation_finished
 signal environment_started(data: Dictionary)
 signal wave_started(data: Dictionary)
+const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 const DeviceVFX=preload("res://scripts/ui/mechanic4_animation.gd")
 const TraitVFX=preload("res://scripts/ui/crystal_trait_animation.gd")
 const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
@@ -12,7 +13,7 @@ const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
 const POWER_TEXTURES := {"rocket_h":5,"rocket_v":6,"prism":7,"color":8}
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 const Backdrop = preload("res://scripts/ui/board_backdrop.gd")
-const ATLAS = preload("res://assets/crystals/atlas.svg")
+const ATLAS = CasualSkin.GEMS
 const GLOW = preload("res://assets/crystals/glow.svg")
 const Palette = preload("res://scripts/ui/palette.gd")
 const CELL := 56.0
@@ -28,6 +29,7 @@ var textures: Array[AtlasTexture] = []
 var mechanic_textures: Array[AtlasTexture] = []
 var trait_regions: Array[Rect2] = []
 var trait_idle_animation := false
+var bomb_origin := -1
 var mechanic_font: Font
 var layer_cells: Array = []
 var layer_rects: Array[Rect2] = []
@@ -87,7 +89,7 @@ func _ready() -> void:
 	for i in 9:
 		var texture := AtlasTexture.new()
 		texture.atlas = ATLAS
-		texture.region = Rect2((i%3)*256,int(i/3)*256,256,256)
+		texture.region=CasualSkin.region("gems",i)
 		textures.append(texture)
 	mechanic_textures = MechanicVFX.textures()
 	trait_regions = TraitVFX.regions()
@@ -115,9 +117,13 @@ func make_effect_label(font_size: int) -> Label:
 	var value := Label.new()
 	value.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	value.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var bold:=SystemFont.new();bold.font_names=PackedStringArray(["DejaVu Sans","Noto Sans","sans-serif"]);bold.font_weight=800
+	value.add_theme_font_override("font",bold)
 	value.add_theme_font_size_override("font_size",font_size)
-	value.add_theme_color_override("font_color",Palette.GOLD)
-	value.add_theme_color_override("font_outline_color",Color("10213b"))
+	value.add_theme_color_override("font_color",Color("ffdd48"))
+	value.add_theme_color_override("font_shadow_color",Color("75468c"))
+	value.add_theme_constant_override("shadow_offset_y",3)
+	value.add_theme_color_override("font_outline_color",Color("aa3b86"))
 	value.add_theme_constant_override("outline_size",7)
 	value.hide()
 	add_child(value)
@@ -150,7 +156,7 @@ func start_wave(data: Dictionary) -> void:
 			particle_positions[slot] = center
 			particle_velocities[slot] = Vector2.from_angle(index*2.41+k*TAU/count)*(65+(k%3)*29)
 			particle_colors[slot] = Palette.COLORS[k%5 if Traits.bridge(previous[index]) else int(data.get("colors",{}).get(index,previous[index].c))].lightened(.16)
-			particle_ages[slot] = 0
+			particle_ages[slot] = -.015*(index%6) if bomb_origin>=0 and not reduced_motion else 0
 			particle_styles[slot] = 0
 	for effect in data.get("mechanics",[]):
 		var center := cell_position(effect.index)+Vector2(28,28)
@@ -197,6 +203,8 @@ func start_environment(data: Dictionary) -> void:
 func set_board(value) -> void:
 	lock_labels.clear()
 	board = value
+	if get_child_count()>0:
+		get_child(0).world=int(board.level.get("world",1));get_child(0).queue_redraw()
 	busy = false
 	displayed = board.cells.duplicate(true)
 	trait_idle_animation=has_trait_animation(displayed)
@@ -245,6 +253,11 @@ func next_frame() -> void:
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
 	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19}.get(current.kind, 0.12)
+	bomb_origin=-1
+	if current.kind=="clear":
+		for index in current.get("triggered",[]):
+			if previous[index]!=null and previous[index].p=="color":bomb_origin=index;break
+		if bomb_origin>=0 and not reduced_motion:duration=.30
 	age = 0
 	board.visual_phase(int(current.state))
 	if current.kind in ["portal","vine"]:
@@ -476,8 +489,12 @@ func _draw() -> void:
 			if previous[i] == null: continue
 			var center := cell_position(i) + Vector2(28,28)
 			var color: Color = Palette.COLORS[int(current.get("colors",{}).get(i,previous[i].c))]
-			if t<.48:
-				var block_size := Vector2.ONE*CELL*(1+.12*sin(t/.48*PI))
+			var phase:=t
+			if bomb_origin>=0:
+				phase=clampf((t-float(i%6)*.045)/.775,0,1)
+				if not settings.get("reduced_effects",false):draw_line(cell_position(bomb_origin)+Vector2(28,28),center,Color(color,sin(t*PI)*.55),1.8,true)
+			if phase<.48:
+				var block_size := Vector2.ONE*CELL*(1+.16*sin(phase/.48*PI))
 				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true,int(current.get("colors",{}).get(i,previous[i].c)))
 				draw_texture_rect(GLOW,Rect2(center-Vector2(36,36),Vector2(72,72)),false,Color(1,1,1,sin(t/.48*PI)*.7))
 			else:
@@ -548,12 +565,12 @@ func _draw() -> void:
 			if effect.opened:
 				draw_arc(center,18+t*(80 if effect.kind=="crate" else 26),0,TAU,18,Color(color,1-t),2,true)
 				if effect.kind=="crate":
-					var lid:=DeviceVFX.region(DeviceVFX.index("crate",effect.before));lid.size.y=128
+					var lid:=DeviceVFX.region(DeviceVFX.index("crate",effect.before));lid.size.y*=.5
 					draw_texture_rect_region(DeviceVFX.ATLAS,Rect2(center-Vector2(28,28+t*20),Vector2(56,28)),lid,Color(1,1,1,1-t))
 					draw_texture_rect(GLOW,Rect2(center-Vector2(65,65),Vector2(130,130)),false,Color(color,sin(t*PI)*.22))
 	for i in particle_count:
 		var life := particle_ages[i]/.46
-		if life>=1: continue
+		if life<0 or life>=1: continue
 		var center := particle_positions[i]
 		var radius := (1-life)*3.5+.4
 		shard[0] = center+Vector2(-radius,radius*.6)
@@ -561,14 +578,10 @@ func _draw() -> void:
 		shard[2] = center+Vector2(0,-radius*1.6)
 		var color: Color = particle_colors[i]
 		color.a = 1-life
-		if particle_styles[i]==1:
-			leaf[0]=center+Vector2(-radius*1.5,0)
-			leaf[1]=center+Vector2(0,-radius*.8)
-			leaf[2]=center+Vector2(radius*1.5,0)
-			leaf[3]=center+Vector2(0,radius*.8)
-			draw_colored_polygon(leaf,color)
-		else: draw_colored_polygon(shard,color)
-		draw_line(shard[1],shard[2],Color(1,1,1,(1-life)*.6),.7,true)
+		var sprite:=14 if particle_styles[i]==1 else 15
+		var source:=CasualSkin.region("mechanics",sprite)
+		draw_texture_rect_region(CasualSkin.MECHANICS,CasualSkin.fit(Rect2(center-Vector2(radius*2,radius*2),Vector2(radius*4,radius*4)),source),source,color)
+
 	if hint_index >= 0 and not busy and drag_index < 0:
 		var center := cell_position(hint_index) + Vector2(37, 37)
 		if hint_target >= 0:
@@ -595,7 +608,7 @@ func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool, match_color: in
 		draw_texture_rect(GLOW,jewel.grow(1),false,Color(1,1,1,.24))
 	# Same shared texture atlas for every crystal; no per-frame resources or styleboxes.
 	if cell.has("trait"):
-		draw_texture_rect_region(TraitVFX.ATLAS,jewel,trait_regions[TraitVFX.index(cell)],Palette.COLORS[match_color].lightened(.45) if match_color>=0 and Traits.bridge(cell) else Color.WHITE)
+		draw_texture_rect_region(TraitVFX.ATLAS,CasualSkin.fit(jewel,trait_regions[TraitVFX.index(cell)]),trait_regions[TraitVFX.index(cell)],Palette.COLORS[match_color].lightened(.45) if match_color>=0 and Traits.bridge(cell) else Color.WHITE)
 		if cell.trait.kind=="chameleon":
 			var ready: bool=int(cell.trait.count)==int(cell.trait.period)-1
 			draw_arc(center,24,-PI/2,-PI/2+TAU*float(cell.trait.count+1)/float(cell.trait.period+1),18,Color(Palette.GOLD,.8 if ready else .38),1.2,true)
@@ -605,7 +618,7 @@ func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool, match_color: in
 				var glint:=center+Vector2.from_angle(clock*.4+k*PI)*18
 				draw_texture_rect(GLOW,Rect2(glint-Vector2(7,7),Vector2(14,14)),false,Color(Palette.COLORS[k*2],.5))
 	elif not cell.has("obstacle"):
-		draw_texture_rect_region(ATLAS,Rect2(jewel.position+Vector2(0,2),jewel.size),textures[texture_index].region)
+		draw_texture_rect_region(ATLAS,CasualSkin.fit(jewel,textures[texture_index].region),textures[texture_index].region)
 	var layer := Mechanics.layer(cell)
 	if layer!="":
 		layer_cells[layer_draw_count]=cell
@@ -631,10 +644,10 @@ func draw_mechanic_layers() -> void:
 						var phase:=clampf(age/duration,0,1)
 						var grown_size:=jewel.size*(.25+.75*smoothstep(0,1,phase))
 						extent=Rect2(center-grown_size/2,grown_size);opacity=.15+.85*phase
-			draw_texture_rect_region(DeviceVFX.ATLAS,extent,DeviceVFX.region(DeviceVFX.index(m.kind,m)),Color(1,1,1,opacity))
+			draw_texture_rect_region(DeviceVFX.ATLAS,CasualSkin.fit(extent,DeviceVFX.region(DeviceVFX.index(m.kind,m))),DeviceVFX.region(DeviceVFX.index(m.kind,m)),Color(1,1,1,opacity))
 		elif m.kind=="pin":
-			draw_texture_rect_region(TraitVFX.ATLAS,jewel,trait_regions[16 if m.hp==2 else 17])
-		else: draw_texture_rect_region(MechanicVFX.ATLAS,jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region)
+			draw_texture_rect_region(TraitVFX.ATLAS,CasualSkin.fit(jewel,trait_regions[16 if m.hp==2 else 17]),trait_regions[16 if m.hp==2 else 17])
+		else: draw_texture_rect_region(MechanicVFX.ATLAS,CasualSkin.fit(jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region),mechanic_textures[MechanicVFX.index(m.kind,m)].region)
 		if m.kind=="lock":
 			var progress:=float(m.energy)/float(m.required)
 			if progress>0: draw_arc(center,25,-PI/2,-PI/2+TAU*progress,18,Color(Palette.COLORS[int(m.color)],.9),2.2,true)

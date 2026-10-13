@@ -86,3 +86,10 @@ if ! bash tools/godot.sh --headless --audio-driver Dummy --max-fps 60 --script t
 fi
 cat build/ocean-native-swipes.log
 if rg -q '^SCRIPT ERROR:|^ERROR:' build/ocean-native-swipes.log; then exit 1; fi
+
+if ! bash tools/godot.sh --headless --audio-driver Dummy --script tests/casual_ui.gd > build/casual-ui.log 2>&1; then
+    cat build/casual-ui.log
+    exit 1
+fi
+cat build/casual-ui.log
+if rg -q '^SCRIPT ERROR:|^ERROR:|^FAIL:' build/casual-ui.log; then exit 1; fi

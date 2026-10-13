@@ -1,0 +1,247 @@
+{
+  "baseline": "1b9248ca904568f921211f1d8775fc819e3b5597",
+  "compared_files": 60,
+  "mismatches": 0,
+  "files": [
+    {
+      "file": "scripts/core/board.gd",
+      "sha256": "23f69e4c529882a65809b153f4693c5b645d2a4cf28c33b777cc1647dcb62e4a"
+    },
+    {
+      "file": "scripts/core/board.gd.uid",
+      "sha256": "91c901fe8e07363daed2b689f5d45c83a7de5fda3bba40fb61ba4c33b4bfe923"
+    },
+    {
+      "file": "scripts/core/board_generator.gd",
+      "sha256": "114c7a2610f8926d98f427a418d6e25ead07cf89b90d2c12788405ad0b87d76b"
+    },
+    {
+      "file": "scripts/core/board_generator.gd.uid",
+      "sha256": "2c4c8f2f316b3c6c5387125069e6e5c420623c6670af43d29ae0319075891506"
+    },
+    {
+      "file": "scripts/core/flexible_match_resolver.gd",
+      "sha256": "84c64b3b42f7ea76887da8d6ab168a6575a25d44af541261afedcf9544c91bec"
+    },
+    {
+      "file": "scripts/core/flexible_match_resolver.gd.uid",
+      "sha256": "5ef8f34f57cb8c7e62563c90119ac69d1a721ab0ab18b379cc3d82e8a19c018c"
+    },
+    {
+      "file": "scripts/core/gravity.gd",
+      "sha256": "32ea85d22158eab035f7065e33ea89b06f3ea30704e9fd458165763868c9a04f"
+    },
+    {
+      "file": "scripts/core/gravity.gd.uid",
+      "sha256": "cc5175be488bed6225d543be0960d9803cdfa7e19c62f0ae5b45867cdce20309"
+    },
+    {
+      "file": "scripts/core/level_catalog.gd",
+      "sha256": "d73349a29d1e7b0b7bb48c0340b82c1b05877a4af870c3ed6de459cd3aeec84d"
+    },
+    {
+      "file": "scripts/core/level_catalog.gd.uid",
+      "sha256": "1b1f2f773d58784b22577096d6f3afb84935357d6981c5a7079304930e9452bf"
+    },
+    {
+      "file": "scripts/core/match_detector.gd",
+      "sha256": "b5d52cf72a5dc6539b662fb5e02adfece799931437be7fbafde55af40c6d74e9"
+    },
+    {
+      "file": "scripts/core/match_detector.gd.uid",
+      "sha256": "7ef659196a700879b0c1d81357bbae8987cae18a4dd27d66d466d38a894fd526"
+    },
+    {
+      "file": "scripts/core/powerups.gd",
+      "sha256": "f2bb261b6153f58ddd4069c217f3911a1c752d213f1462efb758e65f21be4623"
+    },
+    {
+      "file": "scripts/core/powerups.gd.uid",
+      "sha256": "46e681d0d86573e016404ccfed2064d888b1c09a1925d7e319ecce82d99bb506"
+    },
+    {
+      "file": "scripts/core/resonance.gd",
+      "sha256": "f69e27700fb2a67646dede4eeb37a06ac5feb7a328f2fb05a34d94882ffad5b7"
+    },
+    {
+      "file": "scripts/core/resonance.gd.uid",
+      "sha256": "85bbbfa8daf5bb2e70bd49f01044aa684beb07134a7dc71be6147d941580a25a"
+    },
+    {
+      "file": "scripts/core/save_manager.gd",
+      "sha256": "75dc25e90f882205f141238925b6f8a0a4918d7cff445b806524f3969fe8d539"
+    },
+    {
+      "file": "scripts/core/save_manager.gd.uid",
+      "sha256": "24efe4df38f7bb4e27a7f8a1176b1ff9b62bcabdeb1a4e7b2af284423d6d7990"
+    },
+    {
+      "file": "scripts/core/score.gd",
+      "sha256": "cb1e7b1cb4a6a7a071f400ff2b2d85cce0e303e5b9b21d65dd68772bbce7e26a"
+    },
+    {
+      "file": "scripts/core/score.gd.uid",
+      "sha256": "8e9547ee9890ae9efcdaec79231cadd9467573dc52837a09e9d85ff1da791612"
+    },
+    {
+      "file": "scripts/core/seed_rng.gd",
+      "sha256": "3d2bcc68be9238cf038c7eaaf6902420b5def28feb6d31f3a784861000b8dcc5"
+    },
+    {
+      "file": "scripts/core/seed_rng.gd.uid",
+      "sha256": "237e095b349b4c2ccb25df168642ea02d53d8bd10d7c18d142e6624017d51568"
+    },
+    {
+      "file": "scripts/mechanics/beam_resolver.gd",
+      "sha256": "786550c5d598098192010c60d942ae7cd5566d44be40d2248ac11b645e39f84f"
+    },
+    {
+      "file": "scripts/mechanics/beam_resolver.gd.uid",
+      "sha256": "a7a277ae5aa8e02070b6dc0b1d0cb73b761c501249a5b704aa48989b9db23737"
+    },
+    {
+      "file": "scripts/mechanics/chain_reaction_resolver.gd",
+      "sha256": "b3c2bd1340a74333e236363ac41f71db08ef2cbb49ec862ea6212d50b05bf679"
+    },
+    {
+      "file": "scripts/mechanics/chain_reaction_resolver.gd.uid",
+      "sha256": "6dfa923ca59e85d7b062f5cf37ac744800f629d3c8c46d31dca338b9a35876bc"
+    },
+    {
+      "file": "scripts/mechanics/color_lock.gd",
+      "sha256": "eaed94b3301a239f049982884a715ada278c88b62686fe247f78f2686fde1c86"
+    },
+    {
+      "file": "scripts/mechanics/color_lock.gd.uid",
+      "sha256": "6da9e1c8e281665a007bb535771c6200aea200e1f5c5592e29fbd9482510aa51"
+    },
+    {
+      "file": "scripts/mechanics/crystal_traits.gd",
+      "sha256": "32b02a5761eff4441bc3fd2b76ecd1955b4070ab54cd08f7d998253380783f32"
+    },
+    {
+      "file": "scripts/mechanics/crystal_traits.gd.uid",
+      "sha256": "c77482fcd91c7b0a2021ccd9c95890506c591cac3bbe5949a3b3485ccf40833b"
+    },
+    {
+      "file": "scripts/mechanics/damage_resolver.gd",
+      "sha256": "b69e986ee0f0268bf37c080c3d6922b1b280f59c6edeeee11082ffeacaca1a6e"
+    },
+    {
+      "file": "scripts/mechanics/damage_resolver.gd.uid",
+      "sha256": "dd4139b774454752e660d8aa6046eca46855a4e96883bd116b00f1565523aeea"
+    },
+    {
+      "file": "scripts/mechanics/developer_scenarios.gd",
+      "sha256": "24d9c285007dda4c1563904d1c14bea25eb5fc37d2e19b74b28f0849c2a341c9"
+    },
+    {
+      "file": "scripts/mechanics/developer_scenarios.gd.uid",
+      "sha256": "4e7f34c246f39c38721a5a6dc4ff2ed5c8509918a535e2e9c3ab5013ab351d8c"
+    },
+    {
+      "file": "scripts/mechanics/explosive_crate_manager.gd",
+      "sha256": "1078a007645f893a3f187cc5a7f2b442fd6859845247c7eba33bd2aed372d720"
+    },
+    {
+      "file": "scripts/mechanics/explosive_crate_manager.gd.uid",
+      "sha256": "0c0e04570c1c7b4e10f6aaa48ea7f3fd5e51117ee33b3df0b67f707e08cc13f0"
+    },
+    {
+      "file": "scripts/mechanics/gravity_pin.gd",
+      "sha256": "ac3d70da0cd1851fa5391c576417e617904c10be1b45c78ea9d8d88bef729734"
+    },
+    {
+      "file": "scripts/mechanics/gravity_pin.gd.uid",
+      "sha256": "f667658b9cada8d060e24fa94901db2e8d958723c2b25f53b0d4ed5811652525"
+    },
+    {
+      "file": "scripts/mechanics/ice_armor.gd",
+      "sha256": "1a434cecd711aa703e8859324384ab21ccc89a6fd39ed975696ea622a02adbd2"
+    },
+    {
+      "file": "scripts/mechanics/ice_armor.gd.uid",
+      "sha256": "c7fc3ce7c7453c36a86798e0444b2c722bf13aa6f6743101bd2189c93895a29f"
+    },
+    {
+      "file": "scripts/mechanics/mechanic_manager.gd",
+      "sha256": "1d5e067301fe6cb9a7212d465d64a689e6e88ae658c91d05aecf14d842e15d19"
+    },
+    {
+      "file": "scripts/mechanics/mechanic_manager.gd.uid",
+      "sha256": "360d91d1c299bc4c883f0ebd3a2b96da758e4ebc7c973f825c055496e783ff3c"
+    },
+    {
+      "file": "scripts/mechanics/mechanic_registry.gd",
+      "sha256": "8d3c70faad928892e45029e1489b69f6400bc78d09f1081e06254e8a48001c5d"
+    },
+    {
+      "file": "scripts/mechanics/mechanic_registry.gd.uid",
+      "sha256": "90420bce3494f71bf275dc1c1f65cfce4fdeb7d1bd0314675dab947c76b93351"
+    },
+    {
+      "file": "scripts/mechanics/mirror_manager.gd",
+      "sha256": "f2d6aff27dfaa6d71e3dc457289d41d43f7539ed3424ee9f1815634ccdd4cf24"
+    },
+    {
+      "file": "scripts/mechanics/mirror_manager.gd.uid",
+      "sha256": "ceb57dee65be1bac20b90bd7379eccec89e50b821821e3e5774842e0e30af350"
+    },
+    {
+      "file": "scripts/mechanics/objective_manager.gd",
+      "sha256": "cd424bdc7830537326a77343787c281487988ae1ed30ba200445a7fa6548142e"
+    },
+    {
+      "file": "scripts/mechanics/objective_manager.gd.uid",
+      "sha256": "748940bd9050be74d6d2fe9d530af877714900af5bc41460bca0e4d8fe68e65c"
+    },
+    {
+      "file": "scripts/mechanics/portal_manager.gd",
+      "sha256": "d31d1b14c0de116fc73fe813cd34d6a52d229302094208c02c08b2d0944c7e6d"
+    },
+    {
+      "file": "scripts/mechanics/portal_manager.gd.uid",
+      "sha256": "e31694f2f38497c06c4c8fa2c6c74bffe33679fff521bf03fce8734d592ff04c"
+    },
+    {
+      "file": "scripts/mechanics/seed_capsule.gd",
+      "sha256": "87fa458700b601509b5fc43d321ccaa8381457f949d6d91f1af88c3c9f311918"
+    },
+    {
+      "file": "scripts/mechanics/seed_capsule.gd.uid",
+      "sha256": "59fead96d7fc6fbb35d55823333abc926b821c7d9517a97609365401994707a4"
+    },
+    {
+      "file": "scripts/mechanics/stone_obstacle.gd",
+      "sha256": "8afc7ae7f930ce2ea78a7fe4bc3e908e8e64720604755c08057e6f9bf7e45e25"
+    },
+    {
+      "file": "scripts/mechanics/stone_obstacle.gd.uid",
+      "sha256": "e4e90d79e98243f20c69f40530904311ca0bf6cca9aa917006cbc76687bd2a28"
+    },
+    {
+      "file": "scripts/mechanics/vine_manager.gd",
+      "sha256": "493f729d3c8d8c186a8cd10487e135fb71c4e2a36a2b275a711c59de19f6902a"
+    },
+    {
+      "file": "scripts/mechanics/vine_manager.gd.uid",
+      "sha256": "2a7b9a397fbc91d1aca628e3f416c057ad6f3feaef4309f1af04861c55f3ee5a"
+    },
+    {
+      "file": "data/levels-11-30.json",
+      "sha256": "b15ffdbb45818c3abe1282ed8677c1665b8a7c38ca9df7f1521d56eea386f8b8"
+    },
+    {
+      "file": "data/levels-31-50.json",
+      "sha256": "ca4bef32b19fb5dee563d56d5b285547c1e94125fea1244636640b0fed79294d"
+    },
+    {
+      "file": "data/levels-51-75.json",
+      "sha256": "44c9370a60b9a9f4de269c5b9546285a174f337bd4592102eec84efd69a743d8"
+    },
+    {
+      "file": "data/levels.json",
+      "sha256": "20756128e877c301c159a964f4da8892df280b0ee604d427db3446ba6dd6809c"
+    }
+  ]
+}

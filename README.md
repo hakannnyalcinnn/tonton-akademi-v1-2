@@ -1,5 +1,7 @@
 # PRİZMA — Renklerin Uyanışı · Match-3
 
+**0.7.0 · Aydınlık görsel yenileme:** özgün kristaller ve 12 mekanik atlası, iki yeni dünya resmi, parmakla kaydırılan kıvrımlı harita, açık HUD ve başarı animasyonları. 75 bölüm/motor/kayıt aynı kalır. [Önce/sonra ve ölçüm raporu](docs/CASUAL_REDESIGN_REPORT.md).
+
 Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mevcut PRİZMA projesi korunarak temel motor **sürükle → bir komşuyla takas → yatay/dikey 3+ eşleşme → otomatik zincir** sistemine dönüştürüldü. Normal dokunarak patlatma yoktur. 0.3.0 görsel kalite revizyonunda beş özgün büyülü kristal, havuzlanmış kırılma efektleri ve ölçümlü performans iyileştirmeleri eklendi. 0.4.0 ikinci aşamada ilk 10 bölüm korunarak tohum kapsülü, buz zırhı, taş engel ve renk kilidi ile 11–30. bölümler eklendi. [İkinci aşama raporu](docs/STAGE2_REPORT.md) ve [sonraki mekaniklerin planı](docs/MECHANICS_ROADMAP.md) ayrıntıları içerir.
 
 0.5.0, 31–50. bölümleri ve mekanik paketi 2’yi ekler: çift renkli ve bukalemun kristaller; geliştiriciye özel joker köprü ve metalik çivi. Dünya finalinde kalıcı Büyülü Bahçe madalyası kazanılır. [Paket 2 raporu](docs/PACKAGE2_REPORT.md) kapsam, testler ve performans sınırlarını içerir.
@@ -56,7 +58,7 @@ bash tools/build_android.sh
 
 Varsayılan çıktı **`build/prizma-match3.apk`**, uygulama adı **PRİZMA Match-3**, test kimliği `com.prizma.renklerinuyanisi.match3`. Android 7.0+, hedef SDK 36, ARMv7/ARM64, internet izni yok. Build sarmalayıcısı önce test eder, sonra v2/v3 imzasını, manifesti, bölüm verisini ve kitaplıkları doğrular.
 
-**0.6.0, yayımlanan 0.2.0/0.3.0/0.4.0/0.5.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
+**0.7.0, yayımlanan 0.2.0/0.3.0/0.4.0/0.5.0/0.6.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
 
 **0.1.0’dan ayrı profile geçiş geçmişi:** v0.1.0 GitHub APK'sı geçici CI debug anahtarıyla imzalandı. O özel anahtar mevcut olmadığından yeni paket onun üzerine güvenli güncelleme olarak kurulamaz. Yeni test kimliği eski uygulamanın yanına kurulur; eski uygulamayı kaldırmanız gerekmez. Yeni test profili ayrı başlar; telefondaki eski profili otomatik okuyup aktardığı iddia edilmez.
 

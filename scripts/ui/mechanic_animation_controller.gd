@@ -1,12 +1,12 @@
 extends RefCounted
 ## Pure presentation metadata: never writes cells, HP, objectives or RNG.
-const ATLAS = preload("res://assets/mechanics/atlas.svg")
+const ATLAS = preload("res://assets/casual/mechanics.png")
 static func textures() -> Array[AtlasTexture]:
 	var result: Array[AtlasTexture] = []
 	for i in 13:
 		var region:=AtlasTexture.new()
 		region.atlas=ATLAS
-		region.region=Rect2(i%4*256,int(i/4)*256,256,256)
+		region.region=preload("res://scripts/ui/casual_skin.gd").region("mechanics",i)
 		result.append(region)
 	return result
 static func index(kind: String, data: Dictionary) -> int:

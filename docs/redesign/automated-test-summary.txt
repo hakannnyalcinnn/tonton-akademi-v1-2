@@ -1,0 +1,31 @@
+PASS: line scanner, T/L, deduplication and power priority
+PASS: normal tap ignored, swaps, rollback and automatic chains
+PASS: Match-3 power production, placement, activation and combinations
+PASS: once-per-player-move resonance and deterministic targeting
+PASS: all gravity directions, barriers, refill edge and free stable shuffles
+PASS: state machine, locks, last-move cascades and centralized score
+PASS: atomic saves, rollback protection, v1 archive and v2 migration
+PASS: 2000 independently generated stable playable boards
+PASS: real mouse/touch drags, tap ignored, rollback, pause/resume, help, settings and scaling
+MATCH3 TEST RESULT: 21969 assertions, 0 failures; 2000 generated boards; 1000 games, 4128 moves
+PASS: saved active game in process A
+PASS: identical continued board/RNG/score in fresh process B
+QUALITY TEST RESULT: 71 assertions, 0 failures; pooling, worker saves, rapid inputs, 10 levels, 4 gravities, 3 aspect ratios, pause/resume
+SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+MECHANICS: 16822 checks, 0 failures; 600 games / 3085 moves
+MECHANIC UI: 209 checks, 0 failures; 20 levels, native swipes, fixed edges, effects, background/resume, isolated developer tools
+MECHANIC SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+PACKAGE2 UNIT: 2081 checks, 0 failures
+PACKAGE2 LEVELS: 10506 checks, 0 failures; 400 games / 1932 moves
+PACKAGE2 UI: 2586 checks, 0 failures; all 72 cells / four gravity directions, 20 campaign levels, four developer mechanics, world finale
+PACKAGE2 SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+PACKAGE4 MECHANICS: 3154 checks, 0 failures
+OCEAN LEVELS: 18455 checks, 0 failures; 500 games / 3479 moves
+PACKAGE4 UI: 617 checks, 0 failures; 25 tutorials, 3 ratios, four dev scenarios, world saves
+OCEAN SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+CASUAL UI: 87 checks, 0 failures
+Standalone corrected APK verifier: PASS; source ZIP-path assertion corrected after initial failed assertion.
+
+Final UI reruns: package2 2586, package4 617, casual 87 checks; 0 failures.
+Final exact-source renderer: 100 valid native swipes, 100 blocked duplicates, 10 invalid swaps, first 10 levels; stable boards.
+Final expanded icon/threshold regression suite: 87 checks; 0 failures. Total full suite 76,557 checks.

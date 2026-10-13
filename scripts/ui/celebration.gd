@@ -1,4 +1,5 @@
 extends Control
+const Art=preload("res://scripts/ui/casual_skin.gd")
 var world_finale := false
 var challenge:=false
 var age := 0.0
@@ -18,7 +19,8 @@ func _draw() -> void:
 		var pos := Vector2(270, 408) + velocity * age + Vector2(0, 100 * age * age)
 		var color: Color = colors[i % 4]
 		color.a = clampf(2.4 - age, 0, 1)
-		draw_circle(pos, 2.5 + i % 3, color)
+		var source:=Art.region("mechanics",13 if i%3==0 else 15)
+		draw_texture_rect_region(Art.MECHANICS,Art.fit(Rect2(pos,Vector2(9+i%3*2,9+i%3*2)),source),source,color)
 	var opacity := clampf(1.0 - age, 0, 1)
 	draw_arc(Vector2(270, 408), age * 240, 0, TAU, 80, Color(0.75, 1, 0.89, opacity), 3, true)
 

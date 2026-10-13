@@ -1,0 +1,449 @@
+{
+  "action_log": [
+    {
+      "attempt": 0,
+      "cascades": 2,
+      "engine_ms": 11.902,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 1,
+      "cascades": 2,
+      "engine_ms": 5.713,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 2,
+      "cascades": 3,
+      "engine_ms": 5.844,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 3,
+      "cascades": 2,
+      "engine_ms": 8.48,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 4,
+      "cascades": 1,
+      "engine_ms": 1.566,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 5,
+      "cascades": 1,
+      "engine_ms": 1.298,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 6,
+      "cascades": 1,
+      "engine_ms": 1.481,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 7,
+      "cascades": 1,
+      "engine_ms": 1.163,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 8,
+      "cascades": 1,
+      "engine_ms": 1.652,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 9,
+      "cascades": 2,
+      "engine_ms": 1.806,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 10,
+      "cascades": 1,
+      "engine_ms": 1.605,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 11,
+      "cascades": 1,
+      "engine_ms": 1.45,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 12,
+      "cascades": 1,
+      "engine_ms": 1.169,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 13,
+      "cascades": 2,
+      "engine_ms": 1.541,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 14,
+      "cascades": 2,
+      "engine_ms": 16.914,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 15,
+      "cascades": 3,
+      "engine_ms": 4.197,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 16,
+      "cascades": 1,
+      "engine_ms": 1.945,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 17,
+      "cascades": 3,
+      "engine_ms": 2.485,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 18,
+      "cascades": 2,
+      "engine_ms": 2.081,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 19,
+      "cascades": 1,
+      "engine_ms": 1.814,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    }
+  ],
+  "action_types": {
+    "specials": 0,
+    "swaps": 20
+  },
+  "cascade_waves": 33,
+  "device_diagnostics": {
+    "audio_output_latency_ms": 0.0,
+    "counters": {
+      "active_quality": "performance",
+      "frames": 1391,
+      "frames_over_33ms": 11,
+      "peak_live_objects": 2017,
+      "peak_static_memory_bytes": 49920346
+    },
+    "device_model": "GenericDevice",
+    "display": {
+      "height": 960,
+      "refresh_rate_hz": null,
+      "safe_area": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "width": 540
+    },
+    "incidents": [],
+    "metrics": {
+      "animation_clear": {
+        "max_ms": 224.806335449219,
+        "mean_ms": 216.968839240797,
+        "p50_ms": 216.658004760742,
+        "p95_ms": 217.973007202148,
+        "samples": 33
+      },
+      "animation_fall": {
+        "max_ms": 166.665664672852,
+        "mean_ms": 160.222353386156,
+        "p50_ms": 166.653335571289,
+        "p95_ms": 166.663665771484,
+        "samples": 33
+      },
+      "animation_refill": {
+        "max_ms": 183.33332824707,
+        "mean_ms": 183.135624278675,
+        "p50_ms": 183.324661254883,
+        "p95_ms": 183.33332824707,
+        "samples": 33
+      },
+      "animation_swap": {
+        "max_ms": 196.609115600586,
+        "mean_ms": 185.24909362793,
+        "p50_ms": 183.330001831055,
+        "p95_ms": 196.461334228516,
+        "samples": 20
+      },
+      "animation_trait": {
+        "max_ms": 166.66667175293,
+        "mean_ms": 166.661056518555,
+        "p50_ms": 166.665664672852,
+        "p95_ms": 166.66667175293,
+        "samples": 6
+      },
+      "board_draw_cpu": {
+        "max_ms": 3.57500004768372,
+        "mean_ms": 0.371309919710353,
+        "p50_ms": 0.34400001168251,
+        "p95_ms": 0.527999997138977,
+        "samples": 1381
+      },
+      "chameleon_logic": {
+        "max_ms": 0.046000000089407,
+        "mean_ms": 0.0445000007748604,
+        "p50_ms": 0.0439999997615814,
+        "p95_ms": 0.046000000089407,
+        "samples": 6
+      },
+      "clear_logic": {
+        "max_ms": 0.467000007629395,
+        "mean_ms": 0.200878787898656,
+        "p50_ms": 0.194000005722046,
+        "p95_ms": 0.305999994277954,
+        "samples": 33
+      },
+      "frame_interval": {
+        "max_ms": 143.462997436523,
+        "mean_ms": 16.9814576231945,
+        "p50_ms": 16.6660003662109,
+        "p95_ms": 16.8560009002686,
+        "samples": 1391
+      },
+      "gravity_logic": {
+        "max_ms": 0.126000002026558,
+        "mean_ms": 0.0622727272636963,
+        "p50_ms": 0.0590000003576279,
+        "p95_ms": 0.0900000035762787,
+        "samples": 33
+      },
+      "legal_move_logic": {
+        "max_ms": 0.488000005483627,
+        "mean_ms": 0.143550001084805,
+        "p50_ms": 0.096000000834465,
+        "p95_ms": 0.41499999165535,
+        "samples": 20
+      },
+      "main_thread_cpu": {
+        "max_ms": 137.858993530273,
+        "mean_ms": 41.4301454460424,
+        "p50_ms": 24.0149993896484,
+        "p95_ms": 137.662994384766,
+        "samples": 1391
+      },
+      "match_scan": {
+        "max_ms": 12.6049995422363,
+        "mean_ms": 0.769661013100107,
+        "p50_ms": 0.152999997138977,
+        "p95_ms": 1.10300004482269,
+        "samples": 59
+      },
+      "mechanic_wave": {
+        "max_ms": 0.282000005245209,
+        "mean_ms": 0.0794285719415971,
+        "p50_ms": 0.0599999986588955,
+        "p95_ms": 0.116999998688698,
+        "samples": 14
+      },
+      "refill_logic": {
+        "max_ms": 0.0540000014007092,
+        "mean_ms": 0.0258484848520973,
+        "p50_ms": 0.025000000372529,
+        "p95_ms": 0.0299999993294477,
+        "samples": 33
+      },
+      "render_cpu": {
+        "max_ms": 18.3610000610352,
+        "mean_ms": 1.16708375422102,
+        "p50_ms": 0.959999978542328,
+        "p95_ms": 1.64999997615814,
+        "samples": 1385
+      },
+      "render_gpu": {
+        "max_ms": 41.367000579834,
+        "mean_ms": 8.22698772375334,
+        "p50_ms": 7.96500015258789,
+        "p95_ms": 10.4779996871948,
+        "samples": 1385
+      },
+      "save_worker": {
+        "max_ms": 10.8450002670288,
+        "mean_ms": 4.9028696210488,
+        "p50_ms": 4.72599983215332,
+        "p95_ms": 7.96500015258789,
+        "samples": 23
+      }
+    },
+    "platform": "Linux",
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "settings": {
+      "colorblind": false,
+      "haptics": true,
+      "music": false,
+      "music_volume": 0.65,
+      "quality": "performance",
+      "reduced_effects": false,
+      "reduced_motion": false,
+      "sfx": true,
+      "sfx_volume": 0.8,
+      "shake": true
+    },
+    "slow_frames": [
+      {
+        "busy": false,
+        "frame_ms": 100.0,
+        "level": 75,
+        "phase": "ready",
+        "time_ms": 782
+      },
+      {
+        "busy": true,
+        "frame_ms": 137.918,
+        "level": 75,
+        "phase": "swap",
+        "time_ms": 1217
+      },
+      {
+        "busy": true,
+        "frame_ms": 67.254,
+        "level": 75,
+        "phase": "swap",
+        "time_ms": 2601
+      },
+      {
+        "busy": true,
+        "frame_ms": 66.274,
+        "level": 75,
+        "phase": "swap",
+        "time_ms": 4062
+      },
+      {
+        "busy": true,
+        "frame_ms": 54.084,
+        "level": 75,
+        "phase": "swap",
+        "time_ms": 5930
+      },
+      {
+        "busy": false,
+        "frame_ms": 57.22,
+        "level": 75,
+        "phase": "ready",
+        "time_ms": 15789
+      },
+      {
+        "busy": true,
+        "frame_ms": 143.463,
+        "level": 65,
+        "phase": "swap",
+        "time_ms": 15933
+      }
+    ],
+    "version": "0.7.0"
+  },
+  "frames": 1372,
+  "metrics": {
+    "draw_calls": {
+      "count": 1372,
+      "max": 84.0,
+      "mean": 48.9679300291545,
+      "p50": 48.0,
+      "p95": 69.0
+    },
+    "engine_delta_ms": {
+      "count": 1372,
+      "max": 141.131,
+      "mean": 16.9318188370588,
+      "p50": 16.6666666666667,
+      "p95": 16.6666666666667
+    },
+    "engine_swap_ms": {
+      "count": 20,
+      "max": 16.914,
+      "mean": 3.8053,
+      "p50": 1.806,
+      "p95": 11.902
+    },
+    "frame_interval_ms": {
+      "count": 1371,
+      "max": 137.961,
+      "mean": 16.8381013858498,
+      "p50": 16.666,
+      "p95": 16.754
+    },
+    "memory_static_bytes": {
+      "count": 1372,
+      "max": 45961558.0,
+      "mean": 44285473.9402332,
+      "p50": 43962546.0,
+      "p95": 45863294.0
+    },
+    "objects": {
+      "count": 1372,
+      "max": 1857.0,
+      "mean": 1788.63483965015,
+      "p50": 1788.0,
+      "p95": 1798.0
+    },
+    "presentation_and_save_ms": {
+      "count": 20,
+      "max": 1.733,
+      "mean": 0.49165,
+      "p50": 0.407,
+      "p95": 0.661
+    },
+    "process_cpu_ms": {
+      "count": 1372,
+      "max": 137.859,
+      "mean": 41.6708316326529,
+      "p50": 24.015,
+      "p95": 137.663
+    }
+  },
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "successful_actions": 20,
+  "successful_swaps": 20
+}

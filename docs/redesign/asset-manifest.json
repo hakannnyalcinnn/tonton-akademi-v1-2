@@ -1,0 +1,82 @@
+[
+  {
+    "file": "assets/casual/decor.png",
+    "size": [
+      1774,
+      887
+    ],
+    "sprites": 8,
+    "sha256": "f67477cab8f0efe039b8181d3371cb356673a971099a217f5f4a4d99d7f3d689",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/devices.png",
+    "size": [
+      1774,
+      887
+    ],
+    "sprites": 8,
+    "sha256": "53fa905e59fc0d4baa967629422c992762ffce22e1b3f7388eac74a8f9944a6a",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/gems.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sprites": 9,
+    "sha256": "8d3505c71c920b35beb7b566f49f16deb3360663e7f6ef3c515dab3f787ab962",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/mechanics.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sprites": 16,
+    "sha256": "4cc45ddabf9c300d1abba8439f2e73b7fc6b9c5dd3d55d9be394b642b1f4144b",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/traits.png",
+    "size": [
+      1402,
+      1122
+    ],
+    "sprites": 20,
+    "sha256": "a311f48b1ee56bee7cae17d93ccd2bf1c7a40d464faa38455f87627b30a384d4",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/ui.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "sprites": 6,
+    "sha256": "f10deddd986d54a9d65230eaaf7c76720606e08e273f44a4eb206f87a12a848d",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/world-garden.png",
+    "size": [
+      941,
+      1672
+    ],
+    "sprites": 1,
+    "sha256": "8546edb253720aa3e85346bc3832cde4832a031cc8d129869b1c81b1b36f7d69",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  },
+  {
+    "file": "assets/casual/world-ocean.png",
+    "size": [
+      941,
+      1672
+    ],
+    "sprites": 1,
+    "sha256": "b499cd8362cb0bd8e37fe17909e4a0c73db32ab120109e3c694fe81bf5f322b0",
+    "origin": "Original image-generation artwork for PRİZMA bright casual redesign; no third-party game assets"
+  }
+]

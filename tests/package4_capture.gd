@@ -1,8 +1,10 @@
 extends SceneTree
 const Save=preload("res://scripts/core/save_manager.gd")
 var game
+var captures:=0
 func _initialize() -> void:call_deferred("run")
 func capture(name: String) -> void:
+	captures+=1
 	await process_frame;await process_frame;await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png("res://build/package4-"+name+".png")
 func run() -> void:
@@ -11,6 +13,10 @@ func run() -> void:
 	game.save.finish_writes();game.save=Save.new("user://package4-capture-only.json");game.save.data=Save.defaults()
 	game.save.data.unlocked=75;game.save.data.settings.music=false;game.save.data.settings.sfx=false
 	game.save.data.settings.quality="balanced";game.audio.apply_settings(game.save.data.settings)
+	game.show_home();await capture("home")
+	game.show_settings();await capture("settings")
+	game.show_map(0);await capture("garden-map")
+	game.start_level(1);await capture("garden-game")
 	game.show_worlds();await capture("worlds")
 	game.show_map(7);await capture("map71")
 	for extent in [Vector2i(540,960),Vector2i(540,1170),Vector2i(540,1200)]:
@@ -18,7 +24,23 @@ func run() -> void:
 		await capture("ocean-"+str(extent.y))
 	root.size=Vector2i(540,960);game.size=Vector2(540,960)
 	game.start_level(75);await capture("level75")
-	game.board.outcome="won";game.board.score=10000;game.show_result();await capture("challenge75")
+	# Capture a genuinely won canonical level, including coherent HUD/goals.
+	var stagnant:=0;var previous_progress:=0
+	while game.board.outcome=="playing":
+		if stagnant>=4 and game.board.energy>0:
+			var directions: Array=["down","up","left","right"]
+			game.on_gravity(directions[(directions.find(game.board.direction)+1)%4])
+			while game.board_view.busy:await process_frame
+			stagnant=0
+			if game.board.outcome!="playing":break
+		var move: Array=preload("res://tests/move_solver.gd").best_move(game.board)
+		game.on_swap(move[0],move[1])
+		while game.board_view.busy:await process_frame
+		var progress:=0
+		for key in game.board.level.targets:progress+=mini(int(game.board.level.targets[key]),int(game.board.collected.get(key,0)))
+		stagnant=stagnant+1 if progress==previous_progress else 0;previous_progress=progress
+	assert(game.board.outcome=="won")
+	await create_timer(.65).timeout;await capture("challenge75")
 	game.start_mechanic_test()
 	game.show_mechanic_test_tools();await capture("laboratory");game.close_overlay()
 	for kind in ["portal","vine","crate","mirror"]:
@@ -40,10 +62,11 @@ func run() -> void:
 			while game.board_view.busy and game.board_view.current.kind!="vine":await process_frame
 		await create_timer(.09).timeout;await capture(kind+"-effect")
 		while game.board_view.busy:await process_frame
+	game.save.data.unlocked=1;game.show_map(0);await capture("garden-map-locked")
 	game.save.finish_writes();var path: String=game.save.path
 	game.audio._notification(Node.NOTIFICATION_APPLICATION_PAUSED);await create_timer(.25).timeout
 	game.queue_free();await process_frame;await process_frame
 	for suffix in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(path+suffix):DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
-	print("PACKAGE4 CAPTURE: 16 rendered evidence frames, 0 script errors")
+	print("CASUAL CAPTURE: %d rendered evidence frames, 0 script errors"%captures)
 	quit()

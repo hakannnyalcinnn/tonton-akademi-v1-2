@@ -1,4 +1,5 @@
 extends Control
+const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 const Palette = preload("res://scripts/ui/palette.gd")
 ## Calm, layered world; monochrome slowly restores with collected color energy.
 var world:=1
@@ -17,8 +18,8 @@ func _ready() -> void:
 	var color_material := ShaderMaterial.new()
 	color_material.shader = load("res://assets/art/restore_color.gdshader")
 
-	if ResourceLoader.exists("res://assets/art/garden.png"):
-		artwork = load("res://assets/art/garden.png")
+	if ResourceLoader.exists("res://assets/casual/world-garden.png"):
+		artwork = load("res://assets/casual/world-garden.png")
 		backdrop = TextureRect.new()
 		backdrop.texture = artwork
 		backdrop.material = color_material
@@ -33,7 +34,7 @@ func _ready() -> void:
 func set_world(number: int) -> void:
 	world=number
 	if backdrop:
-		artwork=load("res://assets/art/ocean.png" if world==2 else "res://assets/art/garden.png")
+		artwork=load("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png")
 		backdrop.texture=artwork
 	queue_redraw()
 
@@ -52,7 +53,7 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	var extent := size
 	if artwork:
-		draw_rect(Rect2(Vector2.ZERO,extent),Color(.018,.035,.085,.38))
+		draw_rect(Rect2(Vector2.ZERO,extent),Color(.98,.98,1,.025))
 	else:
 		# Original vector fallback, usable offline while optional painted art imports.
 		for layer in 3:
@@ -79,15 +80,16 @@ func _draw() -> void:
 		if world==2:draw_arc(pos,3+i%3,0,TAU,10,Color(.65,.9,1,opacity*.5),.7,true)
 		draw_circle(pos, 7, Color(1, 0.82, 0.4, opacity * 0.09))
 		draw_circle(pos, 1.5, Color(1, 0.90, 0.62, opacity))
-	# Color-specific world restoration: flowers, droplets, leaves, suns, crystals.
+	# Original painted butterfly/fish accents: bounded count, no per-frame nodes.
+	for i in 3 if quality!="performance" else 0:
+		var index:=5 if world==2 else 3
+		var source:=CasualSkin.region("decor",index)
+		var x:=fmod(80+i*extent.x*.32+clock*(8 if world==2 else 3),extent.x+80)-40
+		var pos:=Vector2(x,extent.y*(.12+i*.27)+sin(clock*.8+i)*8)
+		draw_texture_rect_region(CasualSkin.DECOR,CasualSkin.fit(Rect2(pos,Vector2(38,30)),source),source,Color(1,1,1,.8))
 	for color in 5:
-		var amount: float = minf(1, float(color_energy[color]) / 18.0)
-		if amount <= 0: continue
-		for i in 4:
-			var x := 18.0 if i % 2 == 0 else extent.x - 18.0
-			var y := extent.y * (0.18 + (color * 4 + i) * 0.032)
-			var glow: Color = Palette.COLORS[color]
-			glow.a = amount * 0.09
-			draw_circle(Vector2(x, y), 19, glow)
-			glow.a = amount * 0.72
-			Palette.symbol(self, Vector2(x, y), color, glow, 5 + amount * 3)
+		var amount:=minf(1,float(color_energy[color])/18.0)
+		if amount<=0:continue
+		var source:=CasualSkin.region("decor",4 if world==2 else 2)
+		var pos:=Vector2(4 if color%2==0 else extent.x-44,extent.y*(.28+color*.1))
+		draw_texture_rect_region(CasualSkin.DECOR,CasualSkin.fit(Rect2(pos,Vector2(40,40)),source),source,Color(1,1,1,.3+.7*amount))

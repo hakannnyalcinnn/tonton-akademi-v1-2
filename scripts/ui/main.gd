@@ -1,5 +1,9 @@
 extends Control
 
+const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
+const MapPath=preload("res://scripts/ui/map_path.gd")
+var map_buttons: Dictionary={}
+
 const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
 const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
 const Generator = preload("res://scripts/core/board_generator.gd")
@@ -35,6 +39,7 @@ var safe_rect_override := Rect2()
 var quality_buttons: Dictionary = {}
 var settings_dirty := false
 var reported_save_error := ""
+var star_progress
 var score_display := 0.0
 var score_target := 0.0
 var board_view
@@ -185,11 +190,11 @@ func label(parent: Node, text: String, rect: Rect2, font_size: int = 20, color: 
 	parent.add_child(result)
 	return result
 
-func card(parent: Node, rect: Rect2, tint: Color = Color(0.045, 0.08, 0.16, 0.93)) -> Panel:
+func card(parent: Node, rect: Rect2, tint: Color = Color("fff7ee")) -> Panel:
 	var panel := Panel.new()
 	panel.position = rect.position
 	panel.size = rect.size
-	panel.add_theme_stylebox_override("panel", Palette.panel(tint, 22, Color(0.66, 0.85, 0.84, 0.18)))
+	panel.add_theme_stylebox_override("panel",Palette.panel(tint,18,Color("edc69a")))
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(panel)
 	return panel
@@ -200,12 +205,11 @@ func button(parent: Node, text: String, rect: Rect2, callback: Callable, primary
 	btn.position = rect.position
 	btn.size = rect.size
 	btn.add_theme_font_size_override("font_size", font_size)
-	var base := Color("8ce1c5") if primary else Color("17283f")
-	btn.add_theme_stylebox_override("normal", Palette.panel(base, 18, Color(0.75, 0.88, 0.9, 0.18)))
-	btn.add_theme_stylebox_override("hover", Palette.panel(base.lightened(0.08), 18, Palette.GOLD))
-	btn.add_theme_stylebox_override("pressed", Palette.panel(base.darkened(0.15), 18))
-	btn.add_theme_stylebox_override("disabled", Palette.panel(Color("17202e"), 18, Color("384457")))
-	btn.add_theme_stylebox_override("focus", Palette.panel(Color(0, 0, 0, 0), 18, Palette.GOLD))
+	btn.add_theme_stylebox_override("normal",CasualSkin.panel_style(0 if primary else 1))
+	btn.add_theme_stylebox_override("hover",CasualSkin.panel_style(0 if primary else 1,Color(1.05,1.05,1.05)))
+	btn.add_theme_stylebox_override("pressed",CasualSkin.panel_style(0 if primary else 1,Color(.92,.92,.92)))
+	btn.add_theme_stylebox_override("disabled",CasualSkin.panel_style(1,Color(.72,.76,.8)))
+	btn.add_theme_stylebox_override("focus",Palette.panel(Color.TRANSPARENT,18,Palette.GOLD))
 	btn.add_theme_color_override("font_color", Color("102d32") if primary else Palette.INK)
 	btn.add_theme_color_override("font_hover_color", Color("102d32") if primary else Palette.INK)
 	btn.add_theme_color_override("font_pressed_color", Color("102d32") if primary else Palette.INK)
@@ -217,6 +221,7 @@ func button(parent: Node, text: String, rect: Rect2, callback: Callable, primary
 	return btn
 
 func title_header(title: String, subtitle: String) -> void:
+	card(page,Rect2(22,18,496,152),Color(1,.98,.94,.9))
 	label(page, "PRİZMA", Rect2(32, 28, 220, 36), 24, Palette.GOLD)
 	button(page, "‹", Rect2(456, 28, 52, 44), go_back, false, 30)
 	label(page, title, Rect2(32, 88, 476, 45), 33)
@@ -233,14 +238,14 @@ func show_home() -> void:
 		garden.color_energy=[18,18,18,18,18]
 	label(page, "ÇEVRİMDIŞI · SANA AİT BİR DÜNYA", Rect2(30, 44, 480, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 	var logo := TextureRect.new()
-	logo.texture = load("res://assets/art/icon.svg")
+	logo.texture=CasualSkin.texture("gems",7,CasualSkin.GEMS)
 	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	logo.position = Vector2(210, 119)
 	logo.size = Vector2(120, 120)
 	page.add_child(logo)
 	label(page, "PRİZMA", Rect2(20, 251, 500, 78), 62, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 	label(page, Strings.text("tagline"), Rect2(20, 333, 500, 32), 17, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, "Bir dokunuşla renkleri uyandır.", Rect2(20, 402, 500, 34), 21, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
+	label(page, "Renkleri eşleştir, dünyayı uyandır.", Rect2(20, 402, 500, 34), 21, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 	label(page, "Kaydır. Eşleştir. Dünyayı canlandır.", Rect2(20, 438, 500, 28), 15, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	card(page, Rect2(44, 518, 452, 102))
 	label(page, world_name(selected_world), Rect2(65, 532, 350, 32), 24)
@@ -282,9 +287,9 @@ func show_worlds() -> void:
 		card(page,Rect2(32,y,476,255))
 		var picture:=TextureRect.new()
 		picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-		var source: Texture2D=load("res://assets/art/ocean.png" if world==2 else "res://assets/art/garden.png")
+		var source: Texture2D=load("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png")
 		var thumbnail:=AtlasTexture.new();thumbnail.atlas=source
-		thumbnail.region=Rect2(0,source.get_height()*(.63 if world==2 else .02),source.get_width(),source.get_height()*.32)
+		thumbnail.region=Rect2(0,source.get_height()*(.63 if world==2 else .48),source.get_width(),source.get_height()*.32)
 		picture.texture=thumbnail
 		picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		picture.position=Vector2(46,y+14);picture.size=Vector2(448,139)
@@ -304,13 +309,39 @@ func show_map(group: int = -1) -> void:
 	title_header(world_name(selected_world),"1–50 · BÜYÜLÜ BAHÇE" if selected_world==1 else ("51–75 OYNANABİLİR · 76–100 HAZIRLANIYOR" if ProjectSettings.get_setting("prizma/show_future_levels",true) else "51–75 · KRİSTAL OKYANUS"))
 	button(page,"DÜNYALAR",Rect2(350,179,158,35),show_worlds,false,13)
 	label(page,"Her bölüm yeni bir renk.",Rect2(32,179,305,30),17,Palette.GOLD)
-	for n in range(1+map_group*10,mini(Catalog.count()+1,11+map_group*10)):
-		var row:=int(((n-1)%10)/2);var x:=64 if n%2==1 else 292;var y:=236+row*118
+	map_buttons.clear()
+	var scroll:=preload("res://scripts/ui/world_scroll.gd").new()
+	scroll.position=Vector2(32,226);scroll.size=Vector2(476,620)
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus=false
+	page.add_child(scroll)
+	var path:=MapPath.new()
+	var first:=1 if selected_world==1 else 51
+	var last:=50 if selected_world==1 else 75
+	path.count=last-first+1;path.ocean=selected_world==2
+	path.custom_minimum_size=Vector2(456,path.count*100+100)
+	scroll.add_child(path)
+	for n in range(first,last+1):
+		var local_index:=n-first
+		var center: Vector2=path.node_position(local_index)
 		var unlocked: bool=n<=save.data.unlocked
 		var result: Dictionary=save.data.results.get(str(n),{})
-		var node:=button(page,str(n) if unlocked else "·",Rect2(x,y,184,69),start_level.bind(n),unlocked and n==save.data.unlocked,28)
-		node.disabled=not unlocked
-		label(page,"★".repeat(int(result.get("stars",0))) if not result.is_empty() else ("Seni bekliyor" if unlocked else "Kilitli"),Rect2(x,y+71,184,25),15,Palette.GOLD if unlocked else Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+		if unlocked and n==save.data.unlocked:
+			var glow:=TextureRect.new();glow.texture=load("res://assets/crystals/glow.svg")
+			glow.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;glow.position=center-Vector2(49,49);glow.size=Vector2(98,98);glow.mouse_filter=Control.MOUSE_FILTER_IGNORE;glow.modulate=Color(1,.9,.4,.8);path.add_child(glow)
+			if not save.data.settings.reduced_motion:
+				var pulse:=glow.create_tween().set_loops();pulse.tween_property(glow,"modulate:a",.35,.65);pulse.tween_property(glow,"modulate:a",.8,.65)
+		var node:=button(path,str(n),Rect2(center-Vector2(36,36),Vector2(72,72)),start_level.bind(n),unlocked and n==save.data.unlocked,25)
+		node.disabled=not unlocked;map_buttons[n]=node
+		if not unlocked:
+			var lock:=TextureRect.new();lock.texture=CasualSkin.texture("ui",4,CasualSkin.UI)
+			lock.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;lock.position=center+Vector2(22,-37);lock.size=Vector2(22,22);lock.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;lock.mouse_filter=Control.MOUSE_FILTER_IGNORE;path.add_child(lock)
+		for star_index in int(result.get("stars",0)):
+			var star:=TextureRect.new();star.texture=CasualSkin.texture("ui",3,CasualSkin.UI)
+			star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;star.position=center+Vector2(-29+star_index*20,35);star.size=Vector2(19,19);star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;star.mouse_filter=Control.MOUSE_FILTER_IGNORE;path.add_child(star)
+
+	scroll.set_deferred("scroll_vertical",maxi(0,(map_group*10+1-first)*100-70))
+
 	var start_group:=0 if selected_world==1 else 5
 	var groups:=5 if selected_world==1 else 3
 	for i in groups:
@@ -325,6 +356,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
+	card(page,Rect2(23,14,494,88),Color(1,.98,.94,.9))
 	label(page, "GELİŞTİRİCİ · KAYIT DIŞI TEST" if test_mode else world_name(selected_world), Rect2(32, 22, 330, 28), 13, Palette.GOLD)
 	label(page, "%02d  /  %s" % [number, board.level.name], Rect2(32, 55, 415, 39), 23)
 	button(page, "Ⅱ", Rect2(456, 38, 52, 50), show_pause, false, 23)
@@ -333,6 +365,10 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	score_label = label(page, "0", Rect2(49, 137, 225, 29), 24)
 	label(page, Strings.text("moves"), Rect2(351, 119, 139, 17), 11, Palette.MUTED, HORIZONTAL_ALIGNMENT_RIGHT)
 	moves_label = label(page, "", Rect2(354, 137, 136, 29), 24, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
+	star_progress=preload("res://scripts/ui/star_progress.gd").new()
+	star_progress.position=Vector2(195,132);star_progress.size=Vector2(142,24)
+	star_progress.thresholds=board.level.stars;star_progress.quiet=save.data.settings.reduced_motion
+	page.add_child(star_progress)
 	card(page, Rect2(30, 190, 480, 54))
 	goals_label = label(page, "", Rect2(47, 193, 446, 46), 14)
 	goals_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
@@ -349,6 +385,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
+	card(page,Rect2(30,816,480,31),Color("fff8e9"))
 	resonance_label = label(page, "", Rect2(33, 816, 292, 28), 13, Palette.GOLD)
 	energy_label = label(page, "", Rect2(326, 816, 182, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
 	gravity_buttons.clear()
@@ -358,6 +395,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 		var direction: String = directions[k]
 		gravity_buttons[direction] = button(page, arrows[k], Rect2(31 + k * 56, 854, 48, 42), on_gravity.bind(direction), false, 24)
 	button(page, "Test araçları" if test_mode else "Nasıl oynanır?", Rect2(274, 854, 235, 42), show_mechanic_test_tools if test_mode else show_help, false, 15)
+	card(page,Rect2(25,903,490,46),Color(1,.98,.94,.92))
 	hint_label = label(page, "", Rect2(26, 903, 488, 46), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for node in page.get_children():
@@ -377,6 +415,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	if not test_mode: save.save_active(board)
 
 func update_hud() -> void:
+	star_progress.target=board.score
 	score_target = board.score
 	score_display = board.score
 	score_label.text = str(board.score)
@@ -435,6 +474,7 @@ func process_event(event: Dictionary) -> void:
 	update_hud()
 	score_display = board.score - int(event.points)
 	score_target = score_display
+	star_progress.target=score_display
 	score_label.text = str(int(score_display))
 	# Persist only the completely settled logical result, before cosmetic playback.
 	if not test_mode:
@@ -449,6 +489,7 @@ func on_wave(data: Dictionary) -> void:
 	if not data.get("beams",[]).is_empty():audio.play("mirror")
 	for effect in data.get("mechanics",[]):
 		if effect.kind in ["vine","crate"]:audio.play(effect.kind);break
+	star_progress.target=data.score
 	score_target = data.score
 	if data.resonated:
 		audio.play("resonance")
@@ -525,7 +566,7 @@ func open_overlay(title: String, subtitle: String = "") -> Control:
 	overlay_root.mouse_filter = Control.MOUSE_FILTER_STOP
 	stage.add_child(overlay_root)
 	var dim := ColorRect.new()
-	dim.color = Color(0.01, 0.02, 0.07, 0.83)
+	dim.color = Color(.27,.31,.58,.38)
 	dim.size = stage.size
 	overlay_root.add_child(dim)
 	overlay = Control.new()
@@ -600,7 +641,17 @@ func show_result() -> void:
 			confetti.challenge=int(board.level.id)==75
 			overlay.add_child(confetti)
 		var stars: int = Score.stars(board.score, board.level.stars)
-		label(overlay, "★".repeat(stars) + "☆".repeat(3 - stars), Rect2(66, 368, 408, 64), 48, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+		for i in 3:
+			var star:=TextureRect.new();star.texture=CasualSkin.texture("ui",3,CasualSkin.UI)
+			star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+			star.position=Vector2(165+i*72,371);star.size=Vector2(66,66)
+			star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			star.modulate=Color.WHITE if i<stars else Color(.6,.65,.7,.45)
+			star.pivot_offset=Vector2(33,33);overlay.add_child(star)
+			if not save.data.settings.reduced_motion:
+				star.scale=Vector2(.1,.1)
+				var tween:=star.create_tween();tween.tween_property(star,"scale",Vector2.ONE,.24).set_delay(i*.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 		label(overlay, "2★: %d   ·   3★: %d" % [board.level.stars[1], board.level.stars[2]], Rect2(66, 475, 408, 28), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 		if int(board.level.id) < Catalog.count():
@@ -638,12 +689,13 @@ func show_settings() -> void:
 	volume_slider("sfx","Efekt sesi",693)
 	button(page,"Performans ölçümü / rapor",Rect2(42,771,456,44),show_diagnostics,false,15)
 	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.6 · KRİSTAL OKYANUS",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.7 · RENKLERİN UYANIŞI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
 
 func volume_slider(key: String, title: String, y: float) -> void:
+	card(page,Rect2(32,y-4,476,69),Color(1,.98,.94,.93))
 	label(page,title,Rect2(44,y,175,29),17)
 	var toggle := button(page,"AÇIK" if save.data.settings[key] else "KAPALI",Rect2(371,y-2,119,33),func(): toggle_setting(key),save.data.settings[key],12)
 	toggle.name = key
@@ -673,12 +725,10 @@ func toggle_setting(key: String) -> void:
 	garden.reduced_motion = save.data.settings.reduced_motion or save.data.settings.get("reduced_effects",false)
 
 func update_option_style(btn: Button, active: bool) -> void:
-	var base := Color("8ce1c5") if active else Color("17283f")
-	(btn.get_theme_stylebox("normal") as StyleBoxFlat).bg_color = base
-	(btn.get_theme_stylebox("hover") as StyleBoxFlat).bg_color = base.lightened(.08)
-	(btn.get_theme_stylebox("pressed") as StyleBoxFlat).bg_color = base.darkened(.15)
+	for state in ["normal","hover","pressed"]:
+		btn.add_theme_stylebox_override(state,CasualSkin.panel_style(0 if active else 1))
 	for key in ["font_color","font_hover_color","font_pressed_color"]:
-		btn.add_theme_color_override(key,Color("102d32") if active else Palette.INK)
+		btn.add_theme_color_override(key,Palette.INK)
 
 func set_quality(mode: String) -> void:
 	save.data.settings.quality = mode
@@ -800,7 +850,8 @@ func show_world_result() -> void:
 	open_overlay("Büyülü Bahçe tamamlandı!","Renkler uyandı. Dünya madalyan kaydedildi.")
 	var medal:=TextureRect.new()
 	medal.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-	medal.texture=load("res://assets/mechanics2/garden-medal.svg")
+	medal.texture=CasualSkin.texture("traits",18,CasualSkin.TRAITS)
+	medal.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	medal.position=Vector2(202,376)
 	medal.size=Vector2(136,136)
 	medal.mouse_filter=Control.MOUSE_FILTER_IGNORE

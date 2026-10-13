@@ -87,7 +87,8 @@ func run() -> void:
 	game.show_result();check(game.save.data.world_rewards==[1],"reopened finale does not duplicate reward")
 	game.save.finish_writes()
 	var path: String=game.save.path
-	game.queue_free();await process_frame;await create_timer(.15).timeout
+	game.audio._notification(Node.NOTIFICATION_APPLICATION_PAUSED);await create_timer(.25).timeout
+	game.queue_free();await process_frame;await process_frame
 	for ending in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(path+ending):DirAccess.remove_absolute(ProjectSettings.globalize_path(path+ending))
 	print("PACKAGE2 UI: %d checks, 0 failures; all 72 cells / four gravity directions, 20 campaign levels, four developer mechanics, world finale"%checks)
