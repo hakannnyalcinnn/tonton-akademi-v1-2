@@ -30,6 +30,7 @@ static func move_value(b, a: int, destination: int) -> float:
 		var color := str(effective.get(i,b.cells[i].c))
 		value += 1
 		var kind: String=b.cells[i].get("trait",{}).get("kind","")
+		if kind=="bridge" and b.collected.bridges<int(b.level.targets.get("bridges",0)):value+=40
 		if kind=="dual" and b.collected.duals<int(b.level.targets.get("duals",0)):value+=40
 		if kind=="chameleon" and b.collected.shifts<int(b.level.targets.get("shifts",0)):value-=150
 		if b.level.targets.has(color) and b.collected[color] < b.level.targets[color]: value += 4

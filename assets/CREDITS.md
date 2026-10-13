@@ -11,3 +11,5 @@ Hiçbir başka oyunun karakteri, blok varlığı, müziği veya arayüz dosyası
 0.4.0: `assets/mechanics/*.svg` tohum/kapsül/çiçek, saydam buz, taş ve beş renkli kilit varlıkları `tools/generate_mechanics.py` ile bu proje için özgün oluşturulmuştur. Dışarıdan ikon, emoji, görsel veya telifli ses indirilmedi. Mekanik açılmalarında projenin mevcut özgün sentezlenmiş sesleri kullanılır.
 
 0.5.0: `assets/mechanics2/*.svg`, on çift renkli kristal, beş bukalemun, joker köprü, iki metalik çivi durumu ve Büyülü Bahçe madalyası `tools/generate_mechanics2.py` ile özgün tasarlanmıştır. Ana kristal, bahçe ve özgün sentez sesleri korunur; yeni dış kaynak/telifli içerik kullanılmaz.
+
+0.6.0: `art/ocean.png` PRİZMA için image generation aracıyla bu aşamada üretilen özgün Kristal Okyanus illüstrasyonudur. `mechanics4/*.svg` portal, sarmaşık, iki hasarlı sandık ve iki yönlü ayna için özgün katmanlı vektörlerdir; `tools/generate_mechanics4.py` kaynak tasarımları tekrar üretir. Aynı araç dört farklı kısa, deterministik özgün PCM ses efekti (`portal`, `vine`, `crate`, `mirror`) üretir. Telifli ses, hazır ikon veya emoji kullanılmadı. Oyun çalışırken hiçbir varlık indirilmez.

@@ -24,7 +24,7 @@ static func incident(message: String, context: Dictionary) -> void:
 	incidents.append(entry)
 	push_warning("PRIZMA_DIAGNOSTIC " + JSON.stringify(entry))
 static func report(settings: Dictionary) -> Dictionary:
-	var result := {"version":"0.3.0","device_model":OS.get_model_name(),"platform":OS.get_name(),"renderer":RenderingServer.get_video_adapter_name(),"settings":settings.duplicate(),"metrics":{},"counters":counters.duplicate(),"incidents":incidents.duplicate(true),"slow_frames":slow_frames.duplicate(true)}
+	var result := {"version":ProjectSettings.get_setting("application/config/version","unknown"),"device_model":OS.get_model_name(),"platform":OS.get_name(),"renderer":RenderingServer.get_video_adapter_name(),"settings":settings.duplicate(),"metrics":{},"counters":counters.duplicate(),"incidents":incidents.duplicate(true),"slow_frames":slow_frames.duplicate(true)}
 	var pixel_size := DisplayServer.window_get_size()
 	var safe_area := DisplayServer.get_display_safe_area()
 	var refresh_rate := DisplayServer.screen_get_refresh_rate()

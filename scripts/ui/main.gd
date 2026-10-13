@@ -17,6 +17,7 @@ const BoardView = preload("res://scripts/ui/board_view.gd")
 const Audio = preload("res://scripts/ui/audio_manager.gd")
 const Celebration = preload("res://scripts/ui/celebration.gd")
 
+var selected_world:=1
 var map_group := 0
 var test_mode := false
 var test_seed := 104169
@@ -222,10 +223,12 @@ func title_header(title: String, subtitle: String) -> void:
 	label(page, subtitle, Rect2(32, 136, 476, 28), 14, Palette.MUTED)
 
 func show_home() -> void:
+	selected_world=Catalog.world_for(int(save.data.unlocked))
+	apply_world_progress(selected_world)
 	test_mode = false
 	begin_page("home")
-	garden.vitality = 1.0 if 1 in save.data.get("world_rewards",[]) else 0.30 + minf(.6,float(save.data.results.size()) * 0.03)
-	if 1 in save.data.get("world_rewards",[]):
+	apply_world_progress(selected_world)
+	if selected_world==1 and 1 in save.data.get("world_rewards",[]):
 		label(page,"BÜYÜLÜ BAHÇE MADALYASI",Rect2(20,373,500,25),14,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 		garden.color_energy=[18,18,18,18,18]
 	label(page, "ÇEVRİMDIŞI · SANA AİT BİR DÜNYA", Rect2(30, 44, 480, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
@@ -238,15 +241,15 @@ func show_home() -> void:
 	label(page, "PRİZMA", Rect2(20, 251, 500, 78), 62, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 	label(page, Strings.text("tagline"), Rect2(20, 333, 500, 32), 17, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 	label(page, "Bir dokunuşla renkleri uyandır.", Rect2(20, 402, 500, 34), 21, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, "Kaydır. Eşleştir. Bahçeyi canlandır.", Rect2(20, 438, 500, 28), 15, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+	label(page, "Kaydır. Eşleştir. Dünyayı canlandır.", Rect2(20, 438, 500, 28), 15, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	card(page, Rect2(44, 518, 452, 102))
-	label(page, Strings.text("world"), Rect2(65, 532, 350, 32), 24)
+	label(page, world_name(selected_world), Rect2(65, 532, 350, 32), 24)
 	var stars := 0
 	for result in save.data.results.values(): stars += int(result.stars)
 	label(page, "%d / %d bölüm  ·  %d / %d yıldız" % [save.data.results.size(), Catalog.count(), stars, Catalog.count()*3], Rect2(65, 572, 395, 28), 16, Palette.GOLD)
 	var active: bool = not save.data.active.is_empty()
 	button(page, Strings.text("resume") if active else Strings.text("play"), Rect2(44, 648, 452, 70), play_latest, true, 25)
-	button(page, Strings.text("map"), Rect2(44, 733, 452, 57), show_map)
+	button(page, Strings.text("map"), Rect2(44, 733, 452, 57), show_worlds)
 	button(page, Strings.text("settings"), Rect2(162, 818, 216, 48), show_settings, false, 17)
 	label(page, Strings.text("saved"), Rect2(25, 898, 490, 28), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 
@@ -258,34 +261,71 @@ func play_latest() -> void:
 	else:
 		start_level(int(save.data.unlocked))
 
+func world_name(number: int) -> String:
+	return "KRİSTAL OKYANUS" if number==2 else "BÜYÜLÜ BAHÇE"
+
+func apply_world_progress(number: int) -> void:
+	selected_world=number
+	garden.set_world(number)
+	var completed:=0
+	for key in save.data.results:
+		if Catalog.world_for(int(key))==number:completed+=1
+	garden.vitality=1.0 if number in save.data.get("world_rewards",[]) else .18+.82*minf(1,completed/50.0)
+	garden.color_energy=[]
+	for color in 5:garden.color_energy.append(mini(18,completed*(1+color%2)))
+
+func show_worlds() -> void:
+	persist_board();test_mode=false;begin_page("worlds")
+	title_header("Dünyaların uyanışı","RENKLERİNİ GERİ GETİR")
+	for world in [1,2]:
+		var y: int=220+(int(world)-1)*285
+		card(page,Rect2(32,y,476,255))
+		var picture:=TextureRect.new()
+		picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+		var source: Texture2D=load("res://assets/art/ocean.png" if world==2 else "res://assets/art/garden.png")
+		var thumbnail:=AtlasTexture.new();thumbnail.atlas=source
+		thumbnail.region=Rect2(0,source.get_height()*(.63 if world==2 else .02),source.get_width(),source.get_height()*.32)
+		picture.texture=thumbnail
+		picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		picture.position=Vector2(46,y+14);picture.size=Vector2(448,139)
+		picture.mouse_filter=Control.MOUSE_FILTER_IGNORE;picture.clip_contents=true;page.add_child(picture)
+		label(page,world_name(world),Rect2(56,y+159,390,30),23,Palette.GOLD)
+		var unlocked: bool=world==1 or int(save.data.unlocked)>=51
+		var node:=button(page,"1–50 · BAHÇEYİ KEŞFET" if world==1 else ("51–75 · OKYANUSA DAL" if unlocked else "50. BÖLÜMÜ TAMAMLA"),Rect2(48,y+201,444,41),show_map.bind(0 if world==1 else 5),unlocked,15)
+		node.disabled=not unlocked
+	if ProjectSettings.get_setting("prizma/show_future_levels",true):label(page,"76–100 hazırlanıyor · henüz oynanabilir değil",Rect2(28,823,484,34),15,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+
 func show_map(group: int = -1) -> void:
-	persist_board()
-	test_mode = false
-	if group>=0: map_group=clampi(group,0,int((Catalog.count()-1)/10))
+	persist_board();test_mode=false
+	if group>=0:map_group=clampi(group,0,int((Catalog.count()-1)/10))
+	else:map_group=0 if selected_world==1 else 5
 	begin_page("map")
-	title_header(Strings.text("world"), Strings.text("chapter"))
-	label(page, "Her bölüm, bahçeye yeni bir renk.", Rect2(32, 179, 476, 30), 18, Palette.GOLD)
-	for n in range(1+map_group*10, 11+map_group*10):
-		var row := int(((n - 1)%10) / 2)
-		var x := 64 if n % 2 == 1 else 292
-		var y := 236 + row * 118
-		var unlocked: bool = n <= save.data.unlocked
-		var result: Dictionary = save.data.results.get(str(n), {})
-		var node := button(page, str(n) if unlocked else "·", Rect2(x, y, 184, 69), start_level.bind(n), unlocked and n == save.data.unlocked, 28)
-		node.disabled = not unlocked
-		label(page, "★".repeat(int(result.get("stars", 0))) if not result.is_empty() else ("Seni bekliyor" if unlocked else "Kilitli"), Rect2(x, y + 71, 184, 25), 15, Palette.GOLD if unlocked else Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-	for group_index in int(ceil(Catalog.count()/10.0)):
-		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+group_index*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
-	label(page, "BÜYÜLÜ BAHÇE · %d BÖLÜM"%Catalog.count(), Rect2(30, 918, 480, 26), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+	apply_world_progress(1 if map_group<5 else 2)
+	title_header(world_name(selected_world),"1–50 · BÜYÜLÜ BAHÇE" if selected_world==1 else ("51–75 OYNANABİLİR · 76–100 HAZIRLANIYOR" if ProjectSettings.get_setting("prizma/show_future_levels",true) else "51–75 · KRİSTAL OKYANUS"))
+	button(page,"DÜNYALAR",Rect2(350,179,158,35),show_worlds,false,13)
+	label(page,"Her bölüm yeni bir renk.",Rect2(32,179,305,30),17,Palette.GOLD)
+	for n in range(1+map_group*10,mini(Catalog.count()+1,11+map_group*10)):
+		var row:=int(((n-1)%10)/2);var x:=64 if n%2==1 else 292;var y:=236+row*118
+		var unlocked: bool=n<=save.data.unlocked
+		var result: Dictionary=save.data.results.get(str(n),{})
+		var node:=button(page,str(n) if unlocked else "·",Rect2(x,y,184,69),start_level.bind(n),unlocked and n==save.data.unlocked,28)
+		node.disabled=not unlocked
+		label(page,"★".repeat(int(result.get("stars",0))) if not result.is_empty() else ("Seni bekliyor" if unlocked else "Kilitli"),Rect2(x,y+71,184,25),15,Palette.GOLD if unlocked else Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+	var start_group:=0 if selected_world==1 else 5
+	var groups:=5 if selected_world==1 else 3
+	for i in groups:
+		var group_index:=start_group+i
+		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+i*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
+	label(page,world_name(selected_world),Rect2(30,918,480,26),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
 
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
-	if test_definition.is_empty() and (number < 1 or number > save.data.unlocked): return
+	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
 	test_mode = not test_definition.is_empty()
 	board = Board.new(Catalog.get_level(number) if not test_mode else test_definition)
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
 	begin_page("game")
-	garden.vitality = 0.2
-	label(page, "GELİŞTİRİCİ · KAYIT DIŞI TEST" if test_mode else "BÜYÜLÜ BAHÇE", Rect2(32, 22, 330, 28), 13, Palette.GOLD)
+	apply_world_progress(Catalog.world_for(number))
+	label(page, "GELİŞTİRİCİ · KAYIT DIŞI TEST" if test_mode else world_name(selected_world), Rect2(32, 22, 330, 28), 13, Palette.GOLD)
 	label(page, "%02d  /  %s" % [number, board.level.name], Rect2(32, 55, 415, 39), 23)
 	button(page, "Ⅱ", Rect2(456, 38, 52, 50), show_pause, false, 23)
 	card(page, Rect2(30, 110, 480, 65))
@@ -307,6 +347,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.swap_requested.connect(on_swap)
 	board_view.special_pressed.connect(on_special)
 	board_view.wave_started.connect(on_wave)
+	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
 	resonance_label = label(page, "", Rect2(33, 816, 292, 28), 13, Palette.GOLD)
 	energy_label = label(page, "", Rect2(326, 816, 182, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
@@ -357,7 +398,7 @@ func update_hud() -> void:
 	for color in 5: garden.color_energy[color] = board.collected[str(color)]
 	for key in board.level.targets:
 		progress += minf(1, float(Objectives.value(board.collected,key)) / float(board.level.targets[key]))
-	garden.vitality = 0.15 + 0.85 * progress / board.level.targets.size()
+	garden.vitality=maxf(garden.vitality,.15+.65*progress/board.level.targets.size())
 
 func set_hint(text: String) -> void:
 	if hint_label: hint_label.text = text
@@ -389,7 +430,7 @@ func process_event(event: Dictionary) -> void:
 	if not test_mode and tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
 	if not test_mode and event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
 	if not test_mode and event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
-	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Bahçe renkleniyor."])
+	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Dünya renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
 	update_hud()
 	score_display = board.score - int(event.points)
@@ -401,7 +442,13 @@ func process_event(event: Dictionary) -> void:
 		else: save.save_active(board)
 	board_view.animate(event)
 
+func on_environment(data: Dictionary) -> void:
+	audio.play("portal" if data.kind=="portal" else "vine")
+
 func on_wave(data: Dictionary) -> void:
+	if not data.get("beams",[]).is_empty():audio.play("mirror")
+	for effect in data.get("mechanics",[]):
+		if effect.kind in ["vine","crate"]:audio.play(effect.kind);break
 	score_target = data.score
 	if data.resonated:
 		audio.play("resonance")
@@ -545,10 +592,12 @@ func show_result() -> void:
 		save.data.active = {}
 		save.flush()
 	audio.play("win" if won else "lose")
-	open_overlay(Strings.text("won") if won else Strings.text("lost"), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya düşüş yönü dene.")
+	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (Strings.text("won") if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya düşüş yönü dene.")
 	if won:
 		if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 			var confetti := Celebration.new()
+			confetti.world_finale=int(board.level.id)==75
+			confetti.challenge=int(board.level.id)==75
 			overlay.add_child(confetti)
 		var stars: int = Score.stars(board.score, board.level.stars)
 		label(overlay, "★".repeat(stars) + "☆".repeat(3 - stars), Rect2(66, 368, 408, 64), 48, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
@@ -557,8 +606,8 @@ func show_result() -> void:
 		if int(board.level.id) < Catalog.count():
 			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), start_level.bind(int(board.level.id) + 1), true)
 		else:
-			label(overlay, "Bahçenin tüm adımları tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-			button(overlay, Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
+			label(overlay, "75 tamamlandı · 76–100 hazırlanıyor", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+			button(overlay, "OKYANUSU KEŞFET" if int(board.level.id)>=51 else Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
 		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), start_level.bind(int(board.level.id)))
 	else:
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 388, 408, 50), 30, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
@@ -589,7 +638,7 @@ func show_settings() -> void:
 	volume_slider("sfx","Efekt sesi",693)
 	button(page,"Performans ölçümü / rapor",Rect2(42,771,456,44),show_diagnostics,false,15)
 	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.5 · İKİ RENGİN UYANIŞI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.6 · KRİSTAL OKYANUS",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
@@ -644,7 +693,7 @@ func show_diagnostics() -> void:
 	var frame_metric: Dictionary = report.metrics.get("frame_interval",{})
 	var fps := 1000.0/maxf(.001,frame_metric.get("mean_ms",0.0)) if not frame_metric.is_empty() else 0.0
 	var lines := "Oynanış ort.: %.1f FPS · %s\n\n" % [fps,OS.get_model_name()]
-	for key in ["frame_interval","touch_to_visual_submit","swap_and_cascades","match_scan","clear_logic","gravity_logic","refill_logic","board_draw_cpu","save_worker"]:
+	for key in ["frame_interval","touch_to_visual_submit","swap_and_cascades","match_scan","portal_logic","vine_logic","effect_queue_logic","beam_logic","board_draw_cpu"]:
 		if report.metrics.has(key): lines += "%s: %.2f ms (p95)\n" % [key,report.metrics[key].p95_ms]
 	var body := label(overlay,lines,Rect2(59,375,425,240),14)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -703,17 +752,21 @@ func show_mechanic_test_tools() -> void:
 	index_input.value=test_index
 	overlay.add_child(index_input)
 	index_input.value_changed.connect(func(value): test_index=int(value))
-	var kinds: Array=["seed","ice","stone","lock","dual","chameleon","bridge","pin"]
-	var names: Array=["Tohum","Buz","Taş","Renk kilidi","Çift renk","Bukalemun","Prizma Köprüsü","Yer Çekimi Çivisi"]
-	for i in 8:
-		button(overlay,names[i],Rect2(68+(i%2)*208,407+int(i/2)*52,196,43),add_test_mechanic.bind(kinds[i]),false,14)
-	button(overlay,"SEED İLE TAHTAYI SIFIRLA",Rect2(68,630,404,45),start_mechanic_test,true,15)
-	button(overlay,"GERİ DÖN",Rect2(68,692,404,44),close_overlay,false,15)
+	var kinds: Array=["seed","ice","stone","lock","dual","chameleon","bridge","pin","portal","vine","crate","mirror"]
+	var names: Array=["Tohum","Buz","Taş","Renk kilidi","Çift renk","Bukalemun","Prizma Köprüsü","Yer Çekimi Çivisi","Portal sahnesi","Sarmaşık sahnesi","Sandık sahnesi","Ayna sahnesi"]
+	for i in 12:
+		button(overlay,names[i],Rect2(68+(i%2)*208,391+int(i/2)*42,196,36),add_test_mechanic.bind(kinds[i]),false,14)
+	button(overlay,"SEED İLE TAHTAYI SIFIRLA",Rect2(68,653,404,42),start_mechanic_test,true,15)
+	button(overlay,"GERİ DÖN",Rect2(68,706,404,38),close_overlay,false,15)
 
 func add_test_mechanic(kind: String) -> void:
 	if not developer_tools_available() or not test_mode or board_view.busy: return
 	close_overlay()
 	if not board.available(): return
+	if kind in ["portal","vine","crate","mirror"]:
+		var definition:=preload("res://scripts/mechanics/developer_scenarios.gd").make(kind,test_seed)
+		start_level(1,false,definition);board.energy=2;update_hud()
+		return
 	if kind in ["dual","bridge"]:
 		var count:=0
 		for i in 72:
@@ -766,6 +819,6 @@ func show_world_result() -> void:
 
 func show_crystal_help() -> void:
 	open_overlay("İki rengin uyanışı")
-	var body:=label(overlay,"Çift renkli kristal yalnızca gösterdiği iki renkle eşleşir. Bir dalgada tek renk olarak sayılır.\n\nBukalemun iki başarılı takasın zincirleri bittikten sonra sıradaki rengine geçer. Parlayan çerçeve dönüşümün yaklaştığını gösterir. Geçersiz takas, zincirler ve yön değişimi sayacı ilerletmez.\n\nPrizma Köprüsü ve Yer Çekimi Çivisi sonraki dünyalarda tanıtılacak. Şimdilik sadece geliştirici laboratuvarında denenebilir.",Rect2(61,315,418,315),17)
+	var body:=label(overlay,"Çift renkli kristal yalnızca gösterdiği iki renkle eşleşir. Bir dalgada tek renk olarak sayılır.\n\nBukalemun iki başarılı takasın zincirleri bittikten sonra sıradaki rengine geçer. Parlayan çerçeve dönüşümün yaklaştığını gösterir. Geçersiz takas, zincirler ve yön değişimi sayacı ilerletmez.\n\nPrizma Köprüsü her renge uyum sağlar; en az bir renkli kristalle üçlü çizgi oluşturmalıdır. 51. bölümde tanıtılır.\n\nYer Çekimi Çivisi kristali sabit tutar; iki ayrı darbeyle açılır. 56. bölümde tanıtılır.",Rect2(61,315,418,315),17)
 	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	button(overlay,"ANLADIM",Rect2(68,658,404,48),close_overlay,true,16)

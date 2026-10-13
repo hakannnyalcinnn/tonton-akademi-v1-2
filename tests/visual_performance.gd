@@ -31,23 +31,39 @@ func run() -> void:
 	if game.save.has_method("finish_writes"):
 		game.save.background_writes = true
 		game.save.data.settings.quality = "performance" if "low" in OS.get_cmdline_user_args() else "balanced"
-	game.save.data.unlocked = 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10
+	game.save.data.unlocked = 75 if "ocean" in OS.get_cmdline_user_args() else 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10
 	game.save.data.settings.music = false
 	game.audio.apply_settings(game.save.data.settings)
-	game.start_level(50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10)
+	game.start_level(75 if "ocean" in OS.get_cmdline_user_args() else 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10)
 	await create_timer(0.5).timeout
 	running = true
+	var lab: bool="lab" in OS.get_cmdline_user_args()
+	var action_log: Array=[]
+	var action_types: Dictionary={"swaps":0,"specials":0}
 	var successful := 0
 	var cascades := 0
 	for attempt in (20 if "low" in OS.get_cmdline_user_args() else 100):
+		if lab and attempt%5==0:
+			game.test_seed=104169+int(attempt/20)
+			game.start_mechanic_test();game.add_test_mechanic(["portal","vine","crate","mirror"][int(attempt/5)%4])
+			await process_frame
 		if game.board.outcome != "playing":
-			game.start_level(31+attempt%20 if "package2" in OS.get_cmdline_user_args() else 11+attempt%20 if "mechanics" in OS.get_cmdline_user_args() else 1+attempt%10)
+			game.start_level(51+attempt%25 if "ocean" in OS.get_cmdline_user_args() else 31+attempt%20 if "package2" in OS.get_cmdline_user_args() else 11+attempt%20 if "mechanics" in OS.get_cmdline_user_args() else 1+attempt%10)
 			await process_frame
 		var move: Array = Solver.best_move(game.board)
 		assert(not move.is_empty())
 		var started := Time.get_ticks_usec()
-		var event: Dictionary = game.board.swap(move[0], move[1])
+		var event: Dictionary={}
+		var kind: String=game.board.level.name
+		if lab and attempt%5==0 and "Ayna" in kind:
+			event=game.board.activate(18);action_types.specials+=1
+		elif lab and attempt%5 in [0,1] and "Sandık" in kind:
+			event=game.board.activate(34 if attempt%5==0 else 42);action_types.specials+=1
+		elif lab and attempt%5==0 and "Portal" in kind:
+			event=game.board.swap(58,66);action_types.swaps+=1
+		else:event=game.board.swap(move[0],move[1]);action_types.swaps+=1
 		record("engine_swap_ms", float(Time.get_ticks_usec() - started) / 1000)
+		action_log.append({"attempt":attempt,"scene":game.board.level.name,"seed":game.board.level.seed,"engine_ms":samples.engine_swap_ms.back(),"shuffled":event.get("shuffled",false),"cascades":event.cascade_count})
 		assert(event.accepted)
 		successful += 1
 		cascades += event.cascade_count
@@ -57,7 +73,7 @@ func run() -> void:
 		while game.board_view.busy: await process_frame
 		assert(preload("res://scripts/core/match_detector.gd").find(game.board.cells,8,9).is_empty())
 	running = false
-	var summary := {"successful_swaps": successful,"cascade_waves": cascades,"frames": frame_count,"renderer": RenderingServer.get_video_adapter_name(),"platform": OS.get_name(),"metrics": {}}
+	var summary := {"successful_swaps": action_types.swaps,"successful_actions":successful,"action_types":action_types,"action_log":action_log,"cascade_waves": cascades,"frames": frame_count,"renderer": RenderingServer.get_video_adapter_name(),"platform": OS.get_name(),"metrics": {}}
 	for key in samples:
 		var values: Array = samples[key]
 		values.sort()
@@ -67,6 +83,8 @@ func run() -> void:
 	var suffix := "baseline" if "baseline" in OS.get_cmdline_user_args() else ("low-quality" if "low" in OS.get_cmdline_user_args() else "revised")
 	if "mechanics" in OS.get_cmdline_user_args(): suffix="mechanics-low" if "low" in OS.get_cmdline_user_args() else "mechanics"
 	if "package2" in OS.get_cmdline_user_args(): suffix="package2-low" if "low" in OS.get_cmdline_user_args() else "package2-balanced"
+	if "ocean" in OS.get_cmdline_user_args():suffix="ocean-low" if "low" in OS.get_cmdline_user_args() else "ocean-balanced"
+	if lab:suffix="lab-low" if "low" in OS.get_cmdline_user_args() else "lab-balanced"
 	var output := FileAccess.open("res://build/performance-"+suffix+".json",FileAccess.WRITE)
 	output.store_string(JSON.stringify(summary,"  "))
 	output.close()

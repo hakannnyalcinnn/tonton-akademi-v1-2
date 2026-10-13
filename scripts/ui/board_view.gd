@@ -2,7 +2,9 @@ extends Control
 signal swap_requested(a: int, b: int)
 signal special_pressed(index: int)
 signal animation_finished
+signal environment_started(data: Dictionary)
 signal wave_started(data: Dictionary)
+const DeviceVFX=preload("res://scripts/ui/mechanic4_animation.gd")
 const TraitVFX=preload("res://scripts/ui/crystal_trait_animation.gd")
 const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const MechanicVFX = preload("res://scripts/ui/mechanic_animation_controller.gd")
@@ -161,7 +163,7 @@ func start_wave(data: Dictionary) -> void:
 			particle_velocities[slot]=Vector2.from_angle(effect.index+k*TAU/8)*(55+k%3*26)
 			particle_colors[slot]=MechanicVFX.color(effect.kind)
 			particle_ages[slot]=0
-			particle_styles[slot]=1 if effect.kind=="seed" else (2 if effect.kind=="stone" else 0)
+			particle_styles[slot]=1 if effect.kind=="seed" else (2 if effect.kind in ["stone","crate"] else 0)
 		if effect.kind=="stone" and effect.opened and settings.get("shake",true) and not reduced_motion: shake_age=0
 	var popup_slot := popup_cursor%4
 	popup_cursor += 1
@@ -175,6 +177,22 @@ func start_wave(data: Dictionary) -> void:
 		combo_label.show()
 		if settings.get("shake",true) and not reduced_motion and not settings.get("reduced_effects",false): shake_age = 0
 
+
+func start_environment(data: Dictionary) -> void:
+	if reduced_motion:return
+	var positions: Array=[]
+	if data.kind=="portal":
+		for transfer in data.get("transfers",[]):positions.append(transfer.from);positions.append(transfer.to)
+	else:
+		for growth in data.get("growth",[]):positions.append(growth.index)
+	for index in positions:
+		for k in (3 if quality=="performance" else 6):
+			var slot:=particle_cursor%particle_budget();particle_cursor+=1
+			particle_count=mini(192,maxi(particle_count,slot+1))
+			particle_positions[slot]=cell_position(index)+Vector2(28,28)
+			particle_velocities[slot]=Vector2.from_angle(k*TAU/6)*(40+k*7)
+			particle_colors[slot]=Color("a6ecff") if data.kind=="portal" else Color("a8e986")
+			particle_ages[slot]=0;particle_styles[slot]=0 if data.kind=="portal" else 1
 
 func set_board(value) -> void:
 	lock_labels.clear()
@@ -226,9 +244,12 @@ func next_frame() -> void:
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19}.get(current.kind, 0.12)
 	age = 0
 	board.visual_phase(int(current.state))
+	if current.kind in ["portal","vine"]:
+		environment_started.emit(current)
+		start_environment(current)
 	if current.kind == "clear":
 		start_wave(current)
 		wave_started.emit(current)
@@ -415,6 +436,16 @@ func _draw() -> void:
 	var values: Array = target if busy else displayed
 	var t := clampf(age / duration, 0, 1) if busy else 1.0
 	var ease := 1 - pow(1 - t, 3)
+	var portal_pairs: Array=board.level.get("portals",[])
+	for pair_index in portal_pairs.size():
+		var pair: Dictionary=portal_pairs[pair_index]
+		var pair_color: Color=Palette.COLORS[(pair_index+1)%5].lightened(.3)
+		for endpoint in ["entry","exit"]:
+			var portal_rect:=Rect2(cell_position(int(pair[endpoint]))-Vector2(2,2),Vector2(60,60))
+			draw_texture_rect_region(DeviceVFX.ATLAS,portal_rect,DeviceVFX.region(0 if endpoint=="entry" else 1),Color(1,1,1,.8))
+			if not reduced_motion and quality!="performance":
+				var center:=portal_rect.get_center()
+				draw_arc(center,24,clock*.7,clock*.7+PI*.8,12,Color(pair_color,.5),1.4,true)
 	for i in values.size():
 		if values[i] == null: continue
 		var cell: Dictionary = values[i]
@@ -427,6 +458,11 @@ func _draw() -> void:
 					"up": origin.y = HEIGHT * STRIDE + STRIDE * (HEIGHT - int(i / WIDTH))
 					"left": origin.x = WIDTH * STRIDE + STRIDE * (WIDTH - i % WIDTH)
 					"right": origin.x = -STRIDE * (1 + i % WIDTH)
+			if current.kind=="portal" and origin!=pos:
+				var extent:=Vector2.ONE*CELL*(absf(2*t-1)*.85+.15)
+				var anchor:=origin if t<.5 else pos
+				draw_cell(cell,Rect2(anchor+Vector2(28,28)-extent/2,extent),true)
+				continue
 			pos = origin.lerp(pos, ease)
 			if current.kind in ["fall", "refill"] and t > 0.85: pos.y += sin((t - 0.85) / 0.15 * PI) * 2
 		if pos.y < -CELL or pos.y > HEIGHT * STRIDE or pos.x < -CELL or pos.x > WIDTH * STRIDE: continue
@@ -486,6 +522,19 @@ func _draw() -> void:
 				draw_texture_rect_region(TraitVFX.ATLAS,Rect2(center-Vector2(28,28),Vector2(CELL,CELL)),trait_regions[TraitVFX.index(old)],Color(1,1,1,1-ease))
 			draw_texture_rect(GLOW,Rect2(center-Vector2(34,34),Vector2(68,68)),false,Color(Palette.COLORS[int(effect.to)],sin(t*PI)*.7))
 	draw_mechanic_layers()
+	if busy and current.kind=="vine":
+		for growth in current.get("growth",[]):
+			var center:=cell_position(growth.index)+Vector2(28,28)
+			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(.5,1,.6,sin(t*PI)*.6))
+	if busy and current.kind=="clear":
+		for beam in current.get("beams",[]):
+			var prior:=cell_position(int(beam.source))+Vector2(28,28)
+			var count:=mini(beam.path.size(),int(ceil(t*beam.path.size()*2)))
+			for k in count:
+				var center:=cell_position(int(beam.path[k]))+Vector2(28,28)
+				draw_line(prior,center,Color(.7,.85,1,1-t),4,true)
+				draw_line(prior,center,Color(1,1,1,1-t),1.3,true)
+				prior=center
 	if busy and current.kind=="clear":
 		for effect in current.get("mechanics",[]):
 			var center := cell_position(effect.index)+Vector2(28,28)
@@ -496,7 +545,12 @@ func _draw() -> void:
 			elif effect.opened and effect.kind=="stone" and t<.45:
 				draw_texture_rect(mechanic_textures[MechanicVFX.index(effect.kind,effect.before)],Rect2(center-Vector2(28,28),Vector2(CELL,CELL)),false,Color(1,1,1,1-t/.45))
 			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(color,sin(t*PI)*.75))
-			if effect.opened: draw_arc(center,18+t*26,0,TAU,18,Color(color,1-t),2,true)
+			if effect.opened:
+				draw_arc(center,18+t*(80 if effect.kind=="crate" else 26),0,TAU,18,Color(color,1-t),2,true)
+				if effect.kind=="crate":
+					var lid:=DeviceVFX.region(DeviceVFX.index("crate",effect.before));lid.size.y=128
+					draw_texture_rect_region(DeviceVFX.ATLAS,Rect2(center-Vector2(28,28+t*20),Vector2(56,28)),lid,Color(1,1,1,1-t))
+					draw_texture_rect(GLOW,Rect2(center-Vector2(65,65),Vector2(130,130)),false,Color(color,sin(t*PI)*.22))
 	for i in particle_count:
 		var life := particle_ages[i]/.46
 		if life>=1: continue
@@ -569,7 +623,16 @@ func draw_mechanic_layers() -> void:
 		var center:=jewel.get_center()
 		var cell: Dictionary=layer_cells[i]
 		var m: Dictionary=cell[Mechanics.layer(cell)]
-		if m.kind=="pin":
+		if m.kind in ["vine","crate","mirror"]:
+			var extent:=jewel;var opacity:=1.0
+			if m.kind=="vine" and busy and current.kind=="vine":
+				for growth in current.get("growth",[]):
+					if int(growth.index)==index_at(center):
+						var phase:=clampf(age/duration,0,1)
+						var grown_size:=jewel.size*(.25+.75*smoothstep(0,1,phase))
+						extent=Rect2(center-grown_size/2,grown_size);opacity=.15+.85*phase
+			draw_texture_rect_region(DeviceVFX.ATLAS,extent,DeviceVFX.region(DeviceVFX.index(m.kind,m)),Color(1,1,1,opacity))
+		elif m.kind=="pin":
 			draw_texture_rect_region(TraitVFX.ATLAS,jewel,trait_regions[16 if m.hp==2 else 17])
 		else: draw_texture_rect_region(MechanicVFX.ATLAS,jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region)
 		if m.kind=="lock":

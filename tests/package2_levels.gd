@@ -47,15 +47,11 @@ func run() -> void:
 	check(Save.new(path).data.unlocked==31,"old completed level thirty unlocks 31")
 	var final_board=Board.new(Catalog.get_level(50));final_board.outcome="won"
 	check(save.complete(final_board),"world final level reward granted once")
-	check(save.data.world_rewards==[1] and save.data.unlocked==50,"world medal granted without inventing playable 51")
+	check(save.data.world_rewards==[1] and save.data.unlocked==51,"world medal grants only the actual next catalog level")
 	save.complete(final_board)
 	check(save.data.world_rewards==[1],"world medal not duplicated on replay")
 	check(Save.new(path).data.world_rewards==[1],"world medal durable after restart")
-	var future:=Catalog.get_level(1)
-	future.id=51;future.world=2
-	Catalog.cache.append(future)
-	check(Save.new(path).data.unlocked==51 and Catalog.world_for(51)==2,"future real catalog addition unlocks 51 from completed 50")
-	Catalog.cache.pop_back()
+	check(Save.new(path).data.unlocked==51 and Catalog.world_for(51)==2,"completed garden enters released ocean")
 	for suffix in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(path+suffix):DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
 	var f:=FileAccess.open("res://build/package2-level-tests.json",FileAccess.WRITE)

@@ -71,3 +71,18 @@ if ! bash tools/godot.sh --headless --audio-driver Dummy --max-fps 60 --script t
 fi
 cat build/package2-native-swipes.log
 if rg -q '^SCRIPT ERROR:|^ERROR:' build/package2-native-swipes.log; then exit 1; fi
+
+for suite in package4_tests ocean_levels package4_ui; do
+    if ! bash tools/godot.sh --headless --audio-driver Dummy --script "tests/$suite.gd" > "build/$suite.log" 2>&1; then
+        cat "build/$suite.log"
+        exit 1
+    fi
+    cat "build/$suite.log"
+    if rg -q '^SCRIPT ERROR:|^ERROR:|^FAIL:' "build/$suite.log"; then exit 1; fi
+done
+if ! bash tools/godot.sh --headless --audio-driver Dummy --max-fps 60 --script tests/swipe_stress.gd -- ocean > build/ocean-native-swipes.log 2>&1; then
+    cat build/ocean-native-swipes.log
+    exit 1
+fi
+cat build/ocean-native-swipes.log
+if rg -q '^SCRIPT ERROR:|^ERROR:' build/ocean-native-swipes.log; then exit 1; fi

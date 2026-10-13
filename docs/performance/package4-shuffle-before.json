@@ -1,0 +1,709 @@
+{
+  "actions": [
+    {
+      "attempt": 0,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.731
+    },
+    {
+      "attempt": 1,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.436
+    },
+    {
+      "attempt": 2,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.252
+    },
+    {
+      "attempt": 3,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.803
+    },
+    {
+      "attempt": 4,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.473
+    },
+    {
+      "attempt": 5,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 2.065
+    },
+    {
+      "attempt": 6,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.866
+    },
+    {
+      "attempt": 7,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.05
+    },
+    {
+      "attempt": 8,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.262
+    },
+    {
+      "attempt": 9,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.358
+    },
+    {
+      "attempt": 10,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.217
+    },
+    {
+      "attempt": 11,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.215
+    },
+    {
+      "attempt": 12,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.626
+    },
+    {
+      "attempt": 13,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.076
+    },
+    {
+      "attempt": 14,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 0.931
+    },
+    {
+      "attempt": 15,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.659
+    },
+    {
+      "attempt": 16,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.048
+    },
+    {
+      "attempt": 17,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 2.052
+    },
+    {
+      "attempt": 18,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.508
+    },
+    {
+      "attempt": 19,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.482
+    },
+    {
+      "attempt": 20,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.254
+    },
+    {
+      "attempt": 21,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.923
+    },
+    {
+      "attempt": 22,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.24
+    },
+    {
+      "attempt": 23,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.951
+    },
+    {
+      "attempt": 24,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.215
+    },
+    {
+      "attempt": 25,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 2.476
+    },
+    {
+      "attempt": 26,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.325
+    },
+    {
+      "attempt": 27,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.146
+    },
+    {
+      "attempt": 28,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.617
+    },
+    {
+      "attempt": 29,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.448
+    },
+    {
+      "attempt": 30,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.238
+    },
+    {
+      "attempt": 31,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.505
+    },
+    {
+      "attempt": 32,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.039
+    },
+    {
+      "attempt": 33,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.348
+    },
+    {
+      "attempt": 34,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.641
+    },
+    {
+      "attempt": 35,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.604
+    },
+    {
+      "attempt": 36,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": true,
+      "time_ms": 3.437
+    },
+    {
+      "attempt": 37,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.691
+    },
+    {
+      "attempt": 38,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.128
+    },
+    {
+      "attempt": 39,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.259
+    },
+    {
+      "attempt": 40,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 2.102
+    },
+    {
+      "attempt": 41,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.509
+    },
+    {
+      "attempt": 42,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.312
+    },
+    {
+      "attempt": 43,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.707
+    },
+    {
+      "attempt": 44,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.33
+    },
+    {
+      "attempt": 45,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.086
+    },
+    {
+      "attempt": 46,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.638
+    },
+    {
+      "attempt": 47,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 3.618
+    },
+    {
+      "attempt": 48,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.494
+    },
+    {
+      "attempt": 49,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.776
+    },
+    {
+      "attempt": 50,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.249
+    },
+    {
+      "attempt": 51,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.294
+    },
+    {
+      "attempt": 52,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 3.586
+    },
+    {
+      "attempt": 53,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.966
+    },
+    {
+      "attempt": 54,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 3.584
+    },
+    {
+      "attempt": 55,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.445
+    },
+    {
+      "attempt": 56,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.569
+    },
+    {
+      "attempt": 57,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.102
+    },
+    {
+      "attempt": 58,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.287
+    },
+    {
+      "attempt": 59,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 0.918
+    },
+    {
+      "attempt": 60,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": true,
+      "time_ms": 317.649
+    },
+    {
+      "attempt": 61,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.858
+    },
+    {
+      "attempt": 62,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.391
+    },
+    {
+      "attempt": 63,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.762
+    },
+    {
+      "attempt": 64,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.022
+    },
+    {
+      "attempt": 65,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 2.371
+    },
+    {
+      "attempt": 66,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.944
+    },
+    {
+      "attempt": 67,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 2.467
+    },
+    {
+      "attempt": 68,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 2.175
+    },
+    {
+      "attempt": 69,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.285
+    },
+    {
+      "attempt": 70,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.261
+    },
+    {
+      "attempt": 71,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.014
+    },
+    {
+      "attempt": 72,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.771
+    },
+    {
+      "attempt": 73,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.606
+    },
+    {
+      "attempt": 74,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.874
+    },
+    {
+      "attempt": 75,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.12
+    },
+    {
+      "attempt": 76,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 0.954
+    },
+    {
+      "attempt": 77,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.371
+    },
+    {
+      "attempt": 78,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.066
+    },
+    {
+      "attempt": 79,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.721
+    },
+    {
+      "attempt": 80,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 2.579
+    },
+    {
+      "attempt": 81,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.129
+    },
+    {
+      "attempt": 82,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.006
+    },
+    {
+      "attempt": 83,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.143
+    },
+    {
+      "attempt": 84,
+      "scene": "Portal geçiş sahnesi",
+      "shuffled": false,
+      "time_ms": 1.918
+    },
+    {
+      "attempt": 85,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": true,
+      "time_ms": 3.502
+    },
+    {
+      "attempt": 86,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.018
+    },
+    {
+      "attempt": 87,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 2.949
+    },
+    {
+      "attempt": 88,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.491
+    },
+    {
+      "attempt": 89,
+      "scene": "Canlı sarmaşık sahnesi",
+      "shuffled": false,
+      "time_ms": 1.506
+    },
+    {
+      "attempt": 90,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.355
+    },
+    {
+      "attempt": 91,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.675
+    },
+    {
+      "attempt": 92,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.077
+    },
+    {
+      "attempt": 93,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 1.601
+    },
+    {
+      "attempt": 94,
+      "scene": "Sandık zinciri sahnesi",
+      "shuffled": false,
+      "time_ms": 2.215
+    },
+    {
+      "attempt": 95,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": true,
+      "time_ms": 277.31
+    },
+    {
+      "attempt": 96,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.64
+    },
+    {
+      "attempt": 97,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 2.06
+    },
+    {
+      "attempt": 98,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 1.276
+    },
+    {
+      "attempt": 99,
+      "scene": "Ayna yansıma sahnesi",
+      "shuffled": false,
+      "time_ms": 2.971
+    }
+  ],
+  "metrics": {
+    "audio_output_latency_ms": 0.0,
+    "counters": {
+
+    },
+    "device_model": "GenericDevice",
+    "display": {
+      "height": 0,
+      "refresh_rate_hz": null,
+      "safe_area": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "width": 0
+    },
+    "incidents": [],
+    "metrics": {
+      "beam_logic": {
+        "max_ms": 0.028999999165535,
+        "mean_ms": 0.0102031251390144,
+        "p50_ms": 0.00999999977648258,
+        "p95_ms": 0.017000000923872,
+        "samples": 64
+      },
+      "clear_logic": {
+        "max_ms": 0.535000026226044,
+        "mean_ms": 0.173207316729354,
+        "p50_ms": 0.142000004649162,
+        "p95_ms": 0.381999999284744,
+        "samples": 164
+      },
+      "effect_queue_logic": {
+        "max_ms": 0.28999999165535,
+        "mean_ms": 0.162833332705001,
+        "p50_ms": 0.119999997317791,
+        "p95_ms": 0.239999994635582,
+        "samples": 12
+      },
+      "gravity_logic": {
+        "max_ms": 0.375,
+        "mean_ms": 0.0795243901041586,
+        "p50_ms": 0.0529999993741512,
+        "p95_ms": 0.159999996423721,
+        "samples": 164
+      },
+      "legal_move_logic": {
+        "max_ms": 2.03900003433228,
+        "mean_ms": 0.329729998582043,
+        "p50_ms": 0.215000003576279,
+        "p95_ms": 1.18400001525879,
+        "samples": 100
+      },
+      "match_scan": {
+        "max_ms": 0.354000002145767,
+        "mean_ms": 0.140435606156561,
+        "p50_ms": 0.129999995231628,
+        "p95_ms": 0.187000006437302,
+        "samples": 264
+      },
+      "mechanic_wave": {
+        "max_ms": 0.118000000715256,
+        "mean_ms": 0.0419268293033649,
+        "p50_ms": 0.0390000008046627,
+        "p95_ms": 0.0560000017285347,
+        "samples": 82
+      },
+      "portal_logic": {
+        "max_ms": 0.00700000021606684,
+        "mean_ms": 0.00427500010700896,
+        "p50_ms": 0.00400000018998981,
+        "p95_ms": 0.00700000021606684,
+        "samples": 40
+      },
+      "refill_logic": {
+        "max_ms": 1.97800004482269,
+        "mean_ms": 0.0339207316567076,
+        "p50_ms": 0.0199999995529652,
+        "p95_ms": 0.0299999993294477,
+        "samples": 164
+      },
+      "shuffle_logic": {
+        "max_ms": 314.486999511719,
+        "mean_ms": 147.578001350164,
+        "p50_ms": 0.846000015735626,
+        "p95_ms": 274.406005859375,
+        "samples": 4
+      },
+      "vine_logic": {
+        "max_ms": 0.0270000007003546,
+        "mean_ms": 0.0240000002086163,
+        "p50_ms": 0.025000000372529,
+        "p95_ms": 0.0260000005364418,
+        "samples": 5
+      }
+    },
+    "platform": "Linux",
+    "renderer": "",
+    "settings": {
+
+    },
+    "slow_frames": [],
+    "version": "0.6.0"
+  }
+}

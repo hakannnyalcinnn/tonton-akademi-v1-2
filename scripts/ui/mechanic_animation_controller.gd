@@ -17,4 +17,4 @@ static func index(kind: String, data: Dictionary) -> int:
 		"lock": return 8+int(data.color)
 	return 2
 static func color(kind: String) -> Color:
-	return {"seed":Color("a3ecae"),"ice":Color("bfeeff"),"stone":Color("a6b4bd"),"lock":Color("ffd995"),"pin":Color("ffe4a4")}.get(kind,Color.WHITE)
+	return {"seed":Color("a3ecae"),"ice":Color("bfeeff"),"stone":Color("a6b4bd"),"lock":Color("ffd995"),"pin":Color("ffe4a4"),"vine":Color("8cd986"),"crate":Color("f5ba7e"),"mirror":Color("a6d4ff")}.get(kind,Color.WHITE)

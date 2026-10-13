@@ -1,10 +1,10 @@
-# PRİZMA mekanik planı — 0.5.0
+# PRİZMA mekanik planı — 0.6.0
 
-1–4: tohum, buz, taş ve renk kilidi korunur.
-5–6: çift renkli kristal ve bukalemun 31–50. bölümlerde kullanılır.
-7–8: Prizma Köprüsü ve Yer Çekimi Çivisi kodlanmış ve test edilmiştir; yalnızca
-geliştirici laboratuvarında kullanılabilir. İlk 50 normal bölümde yer almazlar.
-9–20: aşağıdaki planın sonraki grubudur; bu teslimatta geliştirilmedi. Onay beklenir.
+1–6: önceki motor, dört engel, çift renkli ve bukalemun kristaller korunur.
+7–8: Köprü ve Çivi artık Kristal Okyanus'ta 51–75. bölümlerde kullanılır.
+9–12: Portal, Sarmaşık, Sandık, Ayna uygulanmıştır; normal bölümlerde açılmamıştır. Geliştiriciye dört ayrı test sahnesi sunulur.
+13–20: gelecekteki paketler; kullanıcı onayı olmadan geliştirilmez.
+Dünya 2 aralığı 51–100, oynanabilir kısmı 51–75. 75 dünya finali değildir.
 
 Aşağıdaki 0.4.0 tasarım notları tarihi kayıt olarak korunmuştur. Buradaki 5–8
 "gelecek" satırları 0.5.0'daki yukarıdaki durumla güncellenmiştir.

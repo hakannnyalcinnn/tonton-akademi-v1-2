@@ -1,6 +1,10 @@
 extends RefCounted
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 
+const Beam=preload("res://scripts/mechanics/beam_resolver.gd")
+const Portal=preload("res://scripts/mechanics/portal_manager.gd")
+const Vines=preload("res://scripts/mechanics/vine_manager.gd")
+const Chain=preload("res://scripts/mechanics/chain_reaction_resolver.gd")
 const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
 const Registry = preload("res://scripts/mechanics/mechanic_registry.gd")
@@ -36,6 +40,10 @@ var serial := 0
 var outcome := "playing"
 var refill_stream: Array = []
 var frames: Array = []
+var portal_used: Dictionary={}
+var movement_queue: Array=[]
+var vine_count:=0
+var pending_portal_arrivals: Dictionary={}
 
 func _init(definition: Dictionary = {}) -> void:
 	if definition.is_empty(): return
@@ -46,7 +54,7 @@ func _init(definition: Dictionary = {}) -> void:
 	for color in level.layout: cells.append(make_cell(int(color)))
 	for key in level.get("powers", {}): cells[int(key)].p = level.powers[key]
 	Mechanics.install(cells, level.get("mechanics", []))
-	for key in ["flowers","ice","stones","locks","duals","shifts","pins"]: collected[key] = 0
+	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges"]: collected[key] = 0
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT)
 
 func find_matches(preferred: Array = []) -> Array:
@@ -94,6 +102,8 @@ func swap(a: int, b: int) -> Dictionary:
 		frame("revert", swapped, {"a": a, "b": b})
 		transition(State.READY)
 		return {"accepted": false, "attempted": true, "invalid": true, "frames": frames.duplicate(), "points": 0}
+	portal_used.clear();movement_queue.clear()
+	pending_portal_arrivals={int(cells[a].id):true,int(cells[b].id):true}
 	moves -= 1
 	var combined: bool = cells[a].p != "" and cells[b].p != ""
 	var extra: Array = []
@@ -128,6 +138,22 @@ func swap(a: int, b: int) -> Dictionary:
 		var additional:=resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count))
 		for key in ["cascade_count","normal_count","created_count"]: event[key]+=additional[key]
 		event.cascade_guard=event.cascade_guard or additional.cascade_guard
+	if level.get("vine_enabled",false):
+		vine_count=(vine_count+1)%3
+		if vine_count==0:
+			var before_vine:=cells.duplicate(true)
+			var vine_started:=Time.get_ticks_usec()
+			var growing:=Vines.spread(cells,int(level.get("vine_max",6)),WIDTH,HEIGHT)
+			Metrics.elapsed("vine_logic",vine_started)
+			if not growing.is_empty():
+				frame("vine",before_vine,{"growth":growing})
+				if not Match.has_move(cells,WIDTH,HEIGHT):
+					var grown:=cells.duplicate(true);var prior_rng: int=rng.state
+					if Generator.shuffle(cells,rng,WIDTH,HEIGHT):frame("shuffle",grown)
+					else:
+						cells=before_vine;rng.state=prior_rng
+						Metrics.incident("Vine spread would remove all legal moves; growth reverted",{"level":level.id,"growth":growing})
+						frame("vine",grown,{"growth":[]})
 	event.shuffled=ensure_move()
 	finish_if_needed()
 	event.frames=frames.duplicate()
@@ -139,6 +165,7 @@ func activate(index: int, selected_color: int = -1) -> Dictionary:
 	if cells[index].p == "color" and (selected_color < 0 or selected_color > 4): return {"accepted": false, "attempted": false, "choose_color": true}
 	state_trace.clear()
 	frames.clear()
+	portal_used.clear();movement_queue.clear()
 	moves -= 1
 	resonance.reset()
 	if selected_color < 0: selected_color = Powers.dominant_color(cells)
@@ -195,8 +222,9 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 				did_resonate = true
 		# Existing powers caught by a wave activate once; newly planned powers do not yet exist.
 		var triggered: Array = []
+		var has_crates:=Chain.present(cells)
 		var cursor := 0
-		while cursor < removed.size():
+		while not has_crates and cursor < removed.size():
 			var i: int = removed[cursor]
 			if i >= 0 and i < cells.size() and cells[i] != null and not cells[i].get("fixed", false) and cells[i].p != "" and i not in triggered:
 				triggered.append(i)
@@ -216,13 +244,29 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		for i in unique:
 			if Match.normal(cells[i]): normal_colors[str(effective_colors[i])] = int(normal_colors.get(str(effective_colors[i]),0))+1
 		# Shared transaction before clearing: neighbors and direct power footprints.
-		var mechanic_events := Mechanics.wave(cells, unique, removed, triggered, normal_colors, collected, WIDTH, HEIGHT)
+		var mechanic_events: Array=[]
+		var effect_events: Array=[]
+		if has_crates:
+			var chain:=Chain.resolve(cells,removed,selected_color,effective_colors,collected,WIDTH,HEIGHT)
+			triggered=chain.triggered;mechanic_events=chain.mechanics;effect_events=chain.events
+			for i in chain.removed:
+				if cells[i]!=null and not cells[i].get("fixed",false) and i not in unique:
+					unique.append(i)
+					effective_colors[i]=selected_color if Traits.flexible(cells[i]) and Traits.supports(cells[i],selected_color) else int(cells[i].c)
+		else:mechanic_events=Mechanics.wave(cells,unique,removed,triggered,normal_colors,collected,WIDTH,HEIGHT)
+		var beams: Array=[]
+		if Beam.has_mirror(before):
+			for source in triggered:
+				if before[source]==null or not str(before[source].p).begins_with("rocket"):continue
+				for axis in ([Vector2i(-1,0),Vector2i(1,0)] if before[source].p=="rocket_h" else [Vector2i(0,-1),Vector2i(0,1)]):
+					var ray:=Beam.trace(source,axis,before,WIDTH);ray.source=source;beams.append(ray)
 		var normal_count := 0
 		for i in unique:
 			if Match.normal(cells[i]):
 				normal_count += 1
 				collected[str(effective_colors[i])] += 1
 				if cells[i].get("trait",{}).get("kind","")=="dual": collected.duals+=1
+				if Traits.bridge(cells[i]):collected.bridges+=1
 			cells[i] = null
 		collected.total += normal_count
 		for creation in creations: cells[creation.i] = make_cell(creation.color, creation.kind)
@@ -236,7 +280,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "colors":effective_colors, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events, "beams":beams, "colors":effective_colors, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
 		Metrics.elapsed("clear_logic", clear_started)
 		settle(true)
 		transition(State.CHECKING_CASCADES)
@@ -252,9 +296,32 @@ func settle(record: bool = false) -> void:
 	var before := cells.duplicate(true) if record else []
 	transition(State.APPLYING_GRAVITY)
 	var gravity_started := Time.get_ticks_usec()
-	Gravity.compact(cells, WIDTH, HEIGHT, direction)
+	var portals: Array=level.get("portals",[])
+	if portals.is_empty():Gravity.compact(cells,WIDTH,HEIGHT,direction)
+	else:
+		# Compact, transfer only arriving normal IDs, compact exits on the next pass.
+		# The per-action ID set bounds the process even with portal paths crossing.
+		for pass_index in 73:
+			var positions: Dictionary={}
+			for i in cells.size():
+				if cells[i]!=null:positions[int(cells[i].id)]=i
+			Gravity.compact(cells,WIDTH,HEIGHT,direction)
+			var arrived: Dictionary={}
+			for pair in portals:
+				var cell=cells[int(pair.entry)]
+				if cell!=null and (positions.get(int(cell.id),int(pair.entry))!=int(pair.entry) or pending_portal_arrivals.has(int(cell.id))):arrived[int(cell.id)]=true
+			if record:frame("fall",before)
+			var old_portal:=cells.duplicate(true)
+			var portal_started:=Time.get_ticks_usec()
+			var events:=Portal.transfer(cells,portals,arrived,portal_used,movement_queue)
+			Metrics.elapsed("portal_logic",portal_started)
+			if events.is_empty():break
+			if record:frame("portal",old_portal,{"transfers":events})
+			before=cells.duplicate(true)
+			assert(pass_index<72,"Portal transfer exceeded unique crystal count")
+	pending_portal_arrivals.clear()
 	Metrics.elapsed("gravity_logic", gravity_started)
-	if record: frame("fall", before)
+	if record and portals.is_empty():frame("fall",before)
 	before = cells.duplicate(true) if record else []
 	transition(State.REFILLING)
 	var refill_started := Time.get_ticks_usec()
@@ -269,6 +336,7 @@ func change_gravity(next_direction: String) -> Dictionary:
 	if not available() or not level.gravity or energy < 1 or next_direction == direction or next_direction not in ["down", "up", "left", "right"]: return {"accepted": false, "attempted": false}
 	state_trace.clear()
 	frames.clear()
+	portal_used.clear();movement_queue.clear()
 	energy -= 1
 	direction = next_direction
 	settle(true)
@@ -278,10 +346,15 @@ func change_gravity(next_direction: String) -> Dictionary:
 	return event
 
 func ensure_move() -> bool:
-	if Match.has_move(cells, WIDTH, HEIGHT): return false
+	var checking_started:=Time.get_ticks_usec()
+	var playable:=Match.has_move(cells,WIDTH,HEIGHT)
+	Metrics.elapsed("legal_move_logic",checking_started)
+	if playable:return false
 	transition(State.SHUFFLING)
 	var before := cells.duplicate(true)
+	var shuffle_started:=Time.get_ticks_usec()
 	var recovered := Generator.shuffle(cells,rng,WIDTH,HEIGHT)
+	Metrics.elapsed("shuffle_logic",shuffle_started)
 	if not recovered:
 		Metrics.incident("No legal shuffle arrangement", {"level":level.id})
 		outcome = "lost"
@@ -324,7 +397,7 @@ func resume() -> void:
 	if state == State.PAUSED: state = paused_state
 
 func snapshot() -> Dictionary:
-	return {"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
+	return {"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
 
 static func whole(value: Variant, minimum: int, maximum: int) -> bool:
 	if not (value is int or value is float): return false
@@ -332,6 +405,7 @@ static func whole(value: Variant, minimum: int, maximum: int) -> bool:
 
 func restore(data: Dictionary) -> bool:
 	if not data.has_all(["rules", "state", "level_id", "cells", "moves", "score", "collected", "direction", "energy", "energy_blocks", "serial", "rng", "resonance_color", "resonance_count", "outcome", "refill_stream"]): return false
+	if not whole(data.get("vine_count",0),0,2):return false
 	if not whole(data.rules, RULES, RULES) or not data.cells is Array or data.cells.size() != 72: return false
 	if not whole(data.level_id, int(level.id), int(level.id)) or data.direction not in ["up", "down", "left", "right"]: return false
 	if not whole(data.moves, 0, int(level.moves)) or not whole(data.score, 0, 2147483647) or not whole(data.energy, 0, 2) or not whole(data.energy_blocks, 0, 11): return false
@@ -369,12 +443,13 @@ func restore(data: Dictionary) -> bool:
 	var restored_state := State.LEVEL_COMPLETED if data.outcome == "won" else (State.LEVEL_FAILED if data.outcome == "lost" else State.READY)
 	if not whole(data.state, restored_state, restored_state): return false
 	if data.outcome == "playing" and data.moves == 0: return false
+	vine_count=int(data.get("vine_count",0))
 	cells = normalized
 	moves = int(data.moves)
 	score = int(data.score)
 	collected = data.collected.duplicate()
 	for key in collected: collected[key] = int(collected[key])
-	for key in ["flowers","ice","stones","locks","duals","shifts","pins"]:
+	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges"]:
 		if not collected.has(key): collected[key] = 0
 	direction = str(data.direction)
 	energy = int(data.energy)

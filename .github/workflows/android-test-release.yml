@@ -1,15 +1,15 @@
-name: PRIZMA advanced crystal mechanics test release
+name: PRIZMA Crystal Ocean and developer environment mechanics test release
 
 on:
   push:
-    branches: [prizma-release-v0.5.0]
+    branches: [prizma-release-v0.6.0]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: prizma-test-release-v0.5.0
+  group: prizma-test-release-v0.6.0
   cancel-in-progress: false
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 25
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: 7aae1923849f6df7bdf8637a4bb92204f6490dae
+      PRIZMA_ARTIFACT_COMMIT: b58dd507c840dbfbbab709429303765cc1b29f11
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
@@ -45,35 +45,37 @@ jobs:
         run: bash tools/test.sh
       - name: Retrieve exact tested APK without exposing signing key
         run: |
-          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.5.0
+          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.6.0
           test "$(git rev-parse FETCH_HEAD)" = "$PRIZMA_ARTIFACT_COMMIT"
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-match3.apk" > build/prizma-match3.apk
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-match3.apk.sha256" > build/prizma-match3.apk.sha256
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-runtime.sha256" > build/prizma-runtime.sha256
-          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-package2-report.zip" > build/prizma-package2-report.zip
-          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-package2.png" > build/prizma-package2.png
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-package4-report.zip" > build/prizma-package4-report.zip
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-package4.png" > build/prizma-package4.png
       - name: Verify exact runtime source, APK bytes and signature
         run: |
           python3 tools/runtime_digest.py > build/current-runtime.sha256
           cmp build/current-runtime.sha256 build/prizma-runtime.sha256
           sha256sum --check build/prizma-match3.apk.sha256
           "$PRIZMA_TOOLS_DIR/android-sdk/build-tools/36.0.0/apksigner" verify --verbose build/prizma-match3.apk
+          "$PRIZMA_TOOLS_DIR/android-sdk/build-tools/36.0.0/apksigner" verify --print-certs build/prizma-match3.apk > build/signing-certificate.txt
+          python3 -c 'from pathlib import Path; assert "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a" in Path("build/signing-certificate.txt").read_text()'
       - name: Create source archive
         run: git archive --format=zip --output=build/prizma-source.zip HEAD
       - name: Publish Match-3 prerelease
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          cp build/prizma-match3.apk build/prizma-v0.5.0.apk
-          sha256sum build/prizma-v0.5.0.apk > build/prizma-v0.5.0.apk.sha256
-          gh release create v0.5.0 \
-            build/prizma-v0.5.0.apk \
-            build/prizma-v0.5.0.apk.sha256 \
+          cp build/prizma-match3.apk build/prizma-v0.6.0.apk
+          sha256sum build/prizma-v0.6.0.apk > build/prizma-v0.6.0.apk.sha256
+          gh release create v0.6.0 \
+            build/prizma-v0.6.0.apk \
+            build/prizma-v0.6.0.apk.sha256 \
             build/prizma-runtime.sha256 \
             build/prizma-source.zip \
-            build/prizma-package2-report.zip \
-            build/prizma-package2.png \
+            build/prizma-package4-report.zip \
+            build/prizma-package4.png \
             --target "$GITHUB_SHA" \
-            --title "PRİZMA 0.5.0 — İki Rengin Uyanışı test sürümü" \
+            --title "PRİZMA 0.6.0 — Kristal Okyanus test sürümü" \
             --prerelease \
-            --notes-file docs/RELEASE_v0.5.0.md
+            --notes-file docs/RELEASE_v0.6.0.md

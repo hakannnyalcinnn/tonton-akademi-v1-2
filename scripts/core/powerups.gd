@@ -1,4 +1,5 @@
 extends RefCounted
+const Beam=preload("res://scripts/mechanics/beam_resolver.gd")
 const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 
 static func created(component: Dictionary) -> String:
@@ -34,6 +35,7 @@ static func dominant_color(cells: Array) -> int:
 	return result
 
 static func area(index: int, kind: String, cells: Array, width: int, selected_color: int = -1) -> Array:
+	if kind.begins_with("rocket") and Beam.has_mirror(cells):return Beam.area(index,kind,cells,width)
 	var result: Array = [index]
 	for i in cells.size():
 		if cells[i] == null: continue

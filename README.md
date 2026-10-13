@@ -4,6 +4,8 @@ Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mev
 
 0.5.0, 31–50. bölümleri ve mekanik paketi 2’yi ekler: çift renkli ve bukalemun kristaller; geliştiriciye özel joker köprü ve metalik çivi. Dünya finalinde kalıcı Büyülü Bahçe madalyası kazanılır. [Paket 2 raporu](docs/PACKAGE2_REPORT.md) kapsam, testler ve performans sınırlarını içerir.
 
+**0.6.0 · Kristal Okyanus:** toplam 75 oynanabilir bölüm, iki dünya ve korunmuş ilk 50 bölüm. Köprü 51–55, Çivi 56–60'ta öğretilir. Portal, canlı sarmaşık, patlayıcı sandık ve yönlü ayna sadece geliştirici laboratuvarında dört ayrı test tahtasında açılır. 75 ara meydan okumadır; 76–100 hazır değildir. [Dördüncü paket raporu](docs/PACKAGE4_REPORT.md).
+
 ## Oyna
 Godot Project Manager'da `project.godot` açın ve F5 ile çalıştırın. **OYNA** açık bölüme, **DEVAM ET** kayıtlı aynı tahtaya döner. Harita tamamlanan bölümleri tekrar açar.
 
@@ -54,7 +56,7 @@ bash tools/build_android.sh
 
 Varsayılan çıktı **`build/prizma-match3.apk`**, uygulama adı **PRİZMA Match-3**, test kimliği `com.prizma.renklerinuyanisi.match3`. Android 7.0+, hedef SDK 36, ARMv7/ARM64, internet izni yok. Build sarmalayıcısı önce test eder, sonra v2/v3 imzasını, manifesti, bölüm verisini ve kitaplıkları doğrular.
 
-**0.5.0, yayımlanan 0.2.0/0.3.0/0.4.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
+**0.6.0, yayımlanan 0.2.0/0.3.0/0.4.0/0.5.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
 
 **0.1.0’dan ayrı profile geçiş geçmişi:** v0.1.0 GitHub APK'sı geçici CI debug anahtarıyla imzalandı. O özel anahtar mevcut olmadığından yeni paket onun üzerine güvenli güncelleme olarak kurulamaz. Yeni test kimliği eski uygulamanın yanına kurulur; eski uygulamayı kaldırmanız gerekmez. Yeni test profili ayrı başlar; telefondaki eski profili otomatik okuyup aktardığı iddia edilmez.
 
@@ -137,3 +139,11 @@ Bu araç çalıştırıldıktan sonra bölüm dengesi/testleri tekrar çalışt�
 Render görüntüleri: `bash tools/godot.sh --audio-driver Dummy --script tests/package2_capture.gd`.
 100 hamlelik ölçüm: `bash tools/godot.sh --max-fps 60 --profiling --script tests/visual_performance.gd -- package2`.
 20 hamlelik düşük kalite ölçümü: aynı komuta `-- package2 low` verin.
+
+## Kristal Okyanus ve geliştirici sahneleri (0.6.0)
+
+Ana menü → dünya haritası: Bahçe ve Okyanus kartları farklı görseller kullanır. Bahçe 50 tamamlanınca 51 açılır; kayıt silinmez. Okyanus renklenmesi tamamlanan bölüm sonuçlarından hesaplanır ve yeniden açılışta korunur. `prizma/show_future_levels` proje ayarı false olursa 76–100 hazırlık etiketi gizlenir; bu bölümler hiçbir ayarda oynanabilir olmaz.
+
+Godot editörü veya `Android Match3 Test` APK'sında Ayarlar → Geliştirici: mekanik laboratuvarı → Test araçları → Portal / Sarmaşık / Sandık / Ayna sahnesi. Her sahnenin hamle talimatı tahta altında görünür. Normal `Android` dışa aktarımı geliştirici özelliğini taşımaz. Test sahneleri gerçek ilerlemeyi değiştirmez.
+
+Yeni otomatik testler `tests/package4_tests.gd`, `tests/ocean_levels.gd`, `tests/package4_ui.gd`; hepsi `tools/test.sh` içinde çalışır. `tests/visual_performance.gd -- ocean` veya `-- lab` gerçek renderer ile masaüstü ölçümüdür; `-- low` performans ayarını seçer. `tests/package4_capture.gd` gerçek oyun ekranlarını kaydeder.

@@ -1,6 +1,7 @@
 extends Control
 const Palette = preload("res://scripts/ui/palette.gd")
 ## Calm, layered world; monochrome slowly restores with collected color energy.
+var world:=1
 var quality := "balanced"
 var refresh_age := 0.0
 var backdrop: TextureRect
@@ -28,6 +29,13 @@ func _ready() -> void:
 		add_child(backdrop)
 		backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		resized.connect(queue_redraw)
+
+func set_world(number: int) -> void:
+	world=number
+	if backdrop:
+		artwork=load("res://assets/art/ocean.png" if world==2 else "res://assets/art/garden.png")
+		backdrop.texture=artwork
+	queue_redraw()
 
 func _process(delta: float) -> void:
 	if not reduced_motion: clock += delta
@@ -63,8 +71,12 @@ func _draw() -> void:
 				draw_circle(tip, 27, Color("244d51"))
 	for i in (24 if quality == "high" else 12) if quality != "performance" else 0:
 		var pos := Vector2(fmod(i * 93.3 + 18, extent.x), fmod(i * 137.7 + 34, extent.y))
-		pos += Vector2(sin(clock * 0.45 + i) * 4, cos(clock * 0.35 + i) * 6)
+		if world==2:
+			pos.y=fmod(pos.y-clock*(6+i%4),extent.y)
+			if pos.y<0:pos.y+=extent.y
+		else:pos += Vector2(sin(clock * 0.45 + i) * 4, cos(clock * 0.35 + i) * 6)
 		var opacity := (0.2 + 0.18 * sin(clock + i)) * (0.3 + vitality)
+		if world==2:draw_arc(pos,3+i%3,0,TAU,10,Color(.65,.9,1,opacity*.5),.7,true)
 		draw_circle(pos, 7, Color(1, 0.82, 0.4, opacity * 0.09))
 		draw_circle(pos, 1.5, Color(1, 0.90, 0.62, opacity))
 	# Color-specific world restoration: flowers, droplets, leaves, suns, crystals.

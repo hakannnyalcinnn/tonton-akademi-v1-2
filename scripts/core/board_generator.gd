@@ -60,11 +60,34 @@ static func shuffle(cells: Array, rng, width: int, height: int) -> bool:
 	for pool in pools: rng.shuffle(pool)
 	var order: Array = [0, 1, 2, 3, 4]
 	rng.shuffle(order)
+	# Weighted seeded construction avoids enumerating thousands of match-free
+	# arrangements with no possible swap. Preserve every crystal, power and fixed cell.
+	if not Traits.has_flexible(cells) and construct_shuffle(cells,positions,pools,order,rng,width,height):return true
+	for i in cells.size():cells[i]=before[i]
 	var budget := {"remaining": 200000,"flexible":Traits.has_flexible(cells)}
 	var success := place(cells, positions, pools, order, 0, width, height, budget)
 	if not success:
 		for i in cells.size(): cells[i] = before[i]
 	return success
+
+static func construct_shuffle(cells: Array, positions: Array, pools: Array, order: Array, rng, width: int, height: int) -> bool:
+	for attempt in 24:
+		var remaining: Array=[]
+		for pool in pools:remaining.append(pool.duplicate())
+		var complete:=true
+		for index in positions:
+			var choices: Array=[];var total:=0
+			for color in order:
+				if not remaining[color].is_empty() and not forbidden_prefix(cells,index,color,width):
+					choices.append(color);total+=remaining[color].size()
+			if total==0:complete=false;break
+			var selected: int=rng.next_int(total)
+			for color in choices:
+				selected-=remaining[color].size()
+				if selected<0:
+					cells[index]=remaining[color].pop_back();break
+		if complete and Match.find(cells,width,height).is_empty() and Match.has_move(cells,width,height):return true
+	return false
 
 static func place(cells: Array, positions: Array, pools: Array, order: Array, cursor: int, width: int, height: int, budget: Dictionary) -> bool:
 	budget.remaining -= 1

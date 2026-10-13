@@ -2,6 +2,9 @@ extends RefCounted
 ## Only implemented mechanics are registered. Layers describe ownership, not art.
 const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const DEFINITIONS := {
+	"vine": {"rule":preload("res://scripts/mechanics/vine_manager.gd"),"layer":"armor","hp":1,"objective":"vines","name":"Sarmaşık"},
+	"crate": {"rule":preload("res://scripts/mechanics/explosive_crate_manager.gd"),"layer":"obstacle","hp":2,"objective":"crates","name":"Sandık"},
+	"mirror": {"rule":preload("res://scripts/mechanics/mirror_manager.gd"),"layer":"obstacle","hp":0,"objective":"mirrors","name":"Ayna"},
 	"pin": {"rule":preload("res://scripts/mechanics/gravity_pin.gd"),"layer":"armor","hp":2,"objective":"pins","name":"Çivi"},
 	"dual": {"layer":"trait","hp":0,"name":"Çift renk"},
 	"chameleon": {"layer":"trait","hp":0,"name":"Bukalemun"},
@@ -17,6 +20,7 @@ static func integer(value: Variant, minimum: int, maximum: int) -> bool:
 static func valid_spec(spec: Variant) -> bool:
 	if not spec is Dictionary or not spec.has_all(["kind","index"]): return false
 	if spec.kind not in DEFINITIONS or not integer(spec.index,0,71): return false
+	if spec.kind=="mirror":return spec.get("orientation","") in ["/","\\"]
 	if spec.kind in ["dual","chameleon"]:
 		var colors=spec.get("colors",[]) if spec.kind=="dual" else spec.get("sequence",[])
 		if not colors is Array or colors.size()<2 or colors.size()>5: return false
@@ -29,6 +33,7 @@ static func valid_spec(spec: Variant) -> bool:
 	return true
 static func payload(spec: Dictionary) -> Dictionary:
 	var result := {"kind":spec.kind, "hp":DEFINITIONS[spec.kind].hp}
+	if spec.kind=="mirror":result.orientation=spec.orientation
 	if spec.kind == "lock":
 		result.merge({"color":int(spec.color),"required":int(spec.required),"energy":0})
 	if spec.kind=="dual": result.colors=spec.colors.map(func(c):return int(c))
@@ -52,7 +57,9 @@ static func valid_cell(cell: Dictionary) -> bool:
 				if not m.has_all(["phase","count","period"]) or not integer(m.count,0,int(m.period)-1) or cell.c!=m.sequence[int(m.phase)]: return false
 			continue
 		if not cell.get("fixed",false): return false
-		if m.kind == "lock":
+		if m.kind=="mirror":
+			if m.hp!=0 or m.get("orientation","") not in ["/","\\"]:return false
+		elif m.kind == "lock":
 			if not m.has_all(["color","required","energy"]) or m.hp != 0: return false
 			if not integer(m.color,0,4) or not integer(m.required,1,1000): return false
 			if not integer(m.energy,0,int(m.required)-1): return false

@@ -12,7 +12,9 @@ static func all() -> Array:
 	assert(extended is Dictionary and extended.version == 2)
 	var package2=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-31-50.json"))
 	assert(package2 is Dictionary and package2.version==2)
-	cache = parsed.levels + extended.levels + package2.levels
+	var ocean=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-51-75.json"))
+	assert(ocean is Dictionary and ocean.version==2)
+	cache = parsed.levels + extended.levels + package2.levels + ocean.levels
 	return cache
 
 static func count() -> int:
@@ -34,10 +36,13 @@ static func validate(level: Dictionary) -> bool:
 		if not (color is float or color is int) or color < 0 or color > 4 or float(color) != floor(float(color)): return false
 	for key in level.targets:
 		if key not in Objectives.KEYS or level.targets[key] < 1: return false
+	if not preload("res://scripts/mechanics/portal_manager.gd").validate(level.get("portals",[])):return false
+	if not level.get("development_only",false) and not level.get("portals",[]).is_empty():return false
 	var occupied: Dictionary = {}
 	var flexible_count:=0
 	for spec in level.get("mechanics",[]):
 		if not Registry.valid_spec(spec) or occupied.has(spec.index): return false
+		if spec.kind in ["vine","crate","mirror"] and not level.get("development_only",false):return false
 		occupied[spec.index] = true
 		if spec.kind in ["bridge","pin"] and level.id<=50: return false
 		if spec.kind=="dual" or spec.kind=="bridge": flexible_count+=1

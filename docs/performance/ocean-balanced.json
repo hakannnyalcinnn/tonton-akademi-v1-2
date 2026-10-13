@@ -1,0 +1,1117 @@
+{
+  "action_log": [
+    {
+      "attempt": 0,
+      "cascades": 2,
+      "engine_ms": 11.382,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 1,
+      "cascades": 2,
+      "engine_ms": 4.757,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 2,
+      "cascades": 3,
+      "engine_ms": 5.608,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 3,
+      "cascades": 2,
+      "engine_ms": 8.484,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 4,
+      "cascades": 1,
+      "engine_ms": 1.434,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 5,
+      "cascades": 1,
+      "engine_ms": 1.121,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 6,
+      "cascades": 1,
+      "engine_ms": 1.587,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 7,
+      "cascades": 1,
+      "engine_ms": 1.209,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 8,
+      "cascades": 1,
+      "engine_ms": 1.269,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 9,
+      "cascades": 2,
+      "engine_ms": 1.707,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 10,
+      "cascades": 1,
+      "engine_ms": 1.639,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 11,
+      "cascades": 1,
+      "engine_ms": 1.196,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 12,
+      "cascades": 1,
+      "engine_ms": 1.455,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 13,
+      "cascades": 2,
+      "engine_ms": 1.536,
+      "scene": "Okyanus Meydan Okuması",
+      "seed": 617575.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 14,
+      "cascades": 2,
+      "engine_ms": 16.623,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 15,
+      "cascades": 3,
+      "engine_ms": 4.274,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 16,
+      "cascades": 1,
+      "engine_ms": 2.053,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 17,
+      "cascades": 3,
+      "engine_ms": 2.518,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 18,
+      "cascades": 2,
+      "engine_ms": 2.264,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 19,
+      "cascades": 1,
+      "engine_ms": 1.637,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 20,
+      "cascades": 1,
+      "engine_ms": 1.4,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 21,
+      "cascades": 1,
+      "engine_ms": 1.33,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 22,
+      "cascades": 1,
+      "engine_ms": 1.801,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 23,
+      "cascades": 1,
+      "engine_ms": 1.669,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 24,
+      "cascades": 3,
+      "engine_ms": 3.816,
+      "scene": "Parlayan Mağara",
+      "seed": 616565.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 25,
+      "cascades": 4,
+      "engine_ms": 8.543,
+      "scene": "Mercan Kapısı",
+      "seed": 615151.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 26,
+      "cascades": 1,
+      "engine_ms": 2.977,
+      "scene": "Mercan Kapısı",
+      "seed": 615151.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 27,
+      "cascades": 1,
+      "engine_ms": 1.641,
+      "scene": "Mercan Kapısı",
+      "seed": 615151.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 28,
+      "cascades": 1,
+      "engine_ms": 12.799,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 29,
+      "cascades": 1,
+      "engine_ms": 2.673,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 30,
+      "cascades": 1,
+      "engine_ms": 2.822,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 31,
+      "cascades": 4,
+      "engine_ms": 6.496,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 32,
+      "cascades": 1,
+      "engine_ms": 1.812,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 33,
+      "cascades": 4,
+      "engine_ms": 2.796,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 34,
+      "cascades": 2,
+      "engine_ms": 2.388,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 35,
+      "cascades": 5,
+      "engine_ms": 3.253,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 36,
+      "cascades": 1,
+      "engine_ms": 4.857,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 37,
+      "cascades": 2,
+      "engine_ms": 6.228,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 38,
+      "cascades": 3,
+      "engine_ms": 5.737,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 39,
+      "cascades": 1,
+      "engine_ms": 2.971,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 40,
+      "cascades": 3,
+      "engine_ms": 5.246,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 41,
+      "cascades": 5,
+      "engine_ms": 10.086,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 42,
+      "cascades": 1,
+      "engine_ms": 2.344,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 43,
+      "cascades": 3,
+      "engine_ms": 2.369,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 44,
+      "cascades": 1,
+      "engine_ms": 1.823,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 45,
+      "cascades": 2,
+      "engine_ms": 1.82,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 46,
+      "cascades": 1,
+      "engine_ms": 1.583,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 47,
+      "cascades": 2,
+      "engine_ms": 1.855,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 48,
+      "cascades": 2,
+      "engine_ms": 2.537,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 49,
+      "cascades": 1,
+      "engine_ms": 1.861,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 50,
+      "cascades": 4,
+      "engine_ms": 2.873,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 51,
+      "cascades": 1,
+      "engine_ms": 8.335,
+      "scene": "Işıldayan Geçit",
+      "seed": 615252.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 52,
+      "cascades": 3,
+      "engine_ms": 2.524,
+      "scene": "Işıldayan Geçit",
+      "seed": 615252.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 53,
+      "cascades": 3,
+      "engine_ms": 3.159,
+      "scene": "Işıldayan Geçit",
+      "seed": 615252.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 54,
+      "cascades": 1,
+      "engine_ms": 8.096,
+      "scene": "Kristal Kıyı",
+      "seed": 615555.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 55,
+      "cascades": 1,
+      "engine_ms": 2.947,
+      "scene": "Kristal Kıyı",
+      "seed": 615555.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 56,
+      "cascades": 2,
+      "engine_ms": 7.656,
+      "scene": "Kristal Kıyı",
+      "seed": 615555.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 57,
+      "cascades": 3,
+      "engine_ms": 2.903,
+      "scene": "Kristal Kıyı",
+      "seed": 615555.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 58,
+      "cascades": 1,
+      "engine_ms": 1.859,
+      "scene": "Donmuş Mercan",
+      "seed": 615959.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 59,
+      "cascades": 2,
+      "engine_ms": 2.03,
+      "scene": "Donmuş Mercan",
+      "seed": 615959.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 60,
+      "cascades": 3,
+      "engine_ms": 2.713,
+      "scene": "Donmuş Mercan",
+      "seed": 615959.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 61,
+      "cascades": 5,
+      "engine_ms": 3.471,
+      "scene": "Donmuş Mercan",
+      "seed": 615959.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 62,
+      "cascades": 1,
+      "engine_ms": 15.879,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 63,
+      "cascades": 1,
+      "engine_ms": 4.986,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 64,
+      "cascades": 1,
+      "engine_ms": 1.648,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 65,
+      "cascades": 1,
+      "engine_ms": 1.771,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 66,
+      "cascades": 2,
+      "engine_ms": 1.79,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 67,
+      "cascades": 2,
+      "engine_ms": 1.989,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 68,
+      "cascades": 3,
+      "engine_ms": 2.468,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 69,
+      "cascades": 1,
+      "engine_ms": 2.078,
+      "scene": "Derinlik Yankısı",
+      "seed": 616363.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 70,
+      "cascades": 2,
+      "engine_ms": 8.817,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 71,
+      "cascades": 2,
+      "engine_ms": 3.32,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 72,
+      "cascades": 2,
+      "engine_ms": 2.267,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 73,
+      "cascades": 1,
+      "engine_ms": 1.793,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 74,
+      "cascades": 1,
+      "engine_ms": 1.401,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 75,
+      "cascades": 1,
+      "engine_ms": 1.649,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 76,
+      "cascades": 1,
+      "engine_ms": 1.618,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 77,
+      "cascades": 3,
+      "engine_ms": 2.426,
+      "scene": "Derinlik Stratejisi",
+      "seed": 617171.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 78,
+      "cascades": 1,
+      "engine_ms": 13.863,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 79,
+      "cascades": 1,
+      "engine_ms": 2.768,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 80,
+      "cascades": 1,
+      "engine_ms": 2.701,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 81,
+      "cascades": 4,
+      "engine_ms": 6.445,
+      "scene": "İki Rengin Dalgası",
+      "seed": 615454.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 82,
+      "cascades": 1,
+      "engine_ms": 1.898,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 83,
+      "cascades": 4,
+      "engine_ms": 2.873,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 84,
+      "cascades": 2,
+      "engine_ms": 2.333,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 85,
+      "cascades": 5,
+      "engine_ms": 3.328,
+      "scene": "Çift Akıntı",
+      "seed": 615858.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 86,
+      "cascades": 1,
+      "engine_ms": 4.916,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 87,
+      "cascades": 2,
+      "engine_ms": 6.953,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 88,
+      "cascades": 3,
+      "engine_ms": 5.678,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 89,
+      "cascades": 1,
+      "engine_ms": 3.198,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 90,
+      "cascades": 3,
+      "engine_ms": 5.109,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 91,
+      "cascades": 5,
+      "engine_ms": 10.296,
+      "scene": "İki Renk Bir Işık",
+      "seed": 616262.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 92,
+      "cascades": 1,
+      "engine_ms": 3.046,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 93,
+      "cascades": 3,
+      "engine_ms": 2.73,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 94,
+      "cascades": 1,
+      "engine_ms": 1.853,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 95,
+      "cascades": 2,
+      "engine_ms": 1.817,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 96,
+      "cascades": 1,
+      "engine_ms": 1.567,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 97,
+      "cascades": 2,
+      "engine_ms": 3.418,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 98,
+      "cascades": 2,
+      "engine_ms": 2.53,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    },
+    {
+      "attempt": 99,
+      "cascades": 1,
+      "engine_ms": 3.847,
+      "scene": "Tapınağın Kilidi",
+      "seed": 616868.0,
+      "shuffled": false
+    }
+  ],
+  "action_types": {
+    "specials": 0,
+    "swaps": 100
+  },
+  "cascade_waves": 194,
+  "device_diagnostics": {
+    "audio_output_latency_ms": 0.0,
+    "counters": {
+      "active_quality": "balanced",
+      "frames": 7645,
+      "frames_over_33ms": 53,
+      "peak_live_objects": 1885,
+      "peak_static_memory_bytes": 42823854
+    },
+    "device_model": "GenericDevice",
+    "display": {
+      "height": 960,
+      "refresh_rate_hz": null,
+      "safe_area": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "width": 540
+    },
+    "incidents": [],
+    "metrics": {
+      "animation_clear": {
+        "max_ms": 226.388885498047,
+        "mean_ms": 216.993799111278,
+        "p50_ms": 216.659332275391,
+        "p95_ms": 220.672882080078,
+        "samples": 194
+      },
+      "animation_fall": {
+        "max_ms": 166.66633605957,
+        "mean_ms": 160.544289421789,
+        "p50_ms": 166.65266418457,
+        "p95_ms": 166.665328979492,
+        "samples": 194
+      },
+      "animation_refill": {
+        "max_ms": 197.39599609375,
+        "mean_ms": 182.864551976784,
+        "p50_ms": 183.327331542969,
+        "p95_ms": 183.33332824707,
+        "samples": 194
+      },
+      "animation_swap": {
+        "max_ms": 194.731338500977,
+        "mean_ms": 184.830061645508,
+        "p50_ms": 183.328994750977,
+        "p95_ms": 193.928665161133,
+        "samples": 100
+      },
+      "animation_trait": {
+        "max_ms": 166.66667175293,
+        "mean_ms": 166.655560811361,
+        "p50_ms": 166.66667175293,
+        "p95_ms": 166.66667175293,
+        "samples": 6
+      },
+      "board_draw_cpu": {
+        "max_ms": 4.31599998474121,
+        "mean_ms": 0.440645996233798,
+        "p50_ms": 0.402999997138977,
+        "p95_ms": 0.688000023365021,
+        "samples": 2048
+      },
+      "chameleon_logic": {
+        "max_ms": 0.114000000059605,
+        "mean_ms": 0.0555000007152557,
+        "p50_ms": 0.0439999997615814,
+        "p95_ms": 0.0450000017881393,
+        "samples": 6
+      },
+      "clear_logic": {
+        "max_ms": 1.27799999713898,
+        "mean_ms": 0.196216495304378,
+        "p50_ms": 0.180000007152557,
+        "p95_ms": 0.319000005722046,
+        "samples": 194
+      },
+      "frame_interval": {
+        "max_ms": 124.93399810791,
+        "mean_ms": 16.8741755625233,
+        "p50_ms": 16.6639995574951,
+        "p95_ms": 18.8110008239746,
+        "samples": 2048
+      },
+      "gravity_logic": {
+        "max_ms": 0.474000006914139,
+        "mean_ms": 0.0629896906578971,
+        "p50_ms": 0.0570000000298023,
+        "p95_ms": 0.0829999968409538,
+        "samples": 194
+      },
+      "legal_move_logic": {
+        "max_ms": 1.48300004005432,
+        "mean_ms": 0.161380000766367,
+        "p50_ms": 0.103000000119209,
+        "p95_ms": 0.514999985694885,
+        "samples": 100
+      },
+      "main_thread_cpu": {
+        "max_ms": 131.054992675781,
+        "mean_ms": 32.237025719136,
+        "p50_ms": 25.5300006866455,
+        "p95_ms": 62.4889984130859,
+        "samples": 2048
+      },
+      "match_scan": {
+        "max_ms": 13.2650003433228,
+        "mean_ms": 0.666616669421395,
+        "p50_ms": 0.144999995827675,
+        "p95_ms": 3.10599994659424,
+        "samples": 300
+      },
+      "mechanic_wave": {
+        "max_ms": 0.123999997973442,
+        "mean_ms": 0.0535411766785033,
+        "p50_ms": 0.0509999990463257,
+        "p95_ms": 0.0860000029206276,
+        "samples": 85
+      },
+      "refill_logic": {
+        "max_ms": 0.112000003457069,
+        "mean_ms": 0.0255567010722517,
+        "p50_ms": 0.0240000002086163,
+        "p95_ms": 0.0350000001490116,
+        "samples": 194
+      },
+      "render_cpu": {
+        "max_ms": 43.1259994506836,
+        "mean_ms": 2.51720019671484,
+        "p50_ms": 2.09699988365173,
+        "p95_ms": 5.3769998550415,
+        "samples": 2048
+      },
+      "render_gpu": {
+        "max_ms": 57.8940010070801,
+        "mean_ms": 9.14608497009613,
+        "p50_ms": 8.75100040435791,
+        "p95_ms": 12.9540004730225,
+        "samples": 2048
+      },
+      "save_worker": {
+        "max_ms": 16.4519996643066,
+        "mean_ms": 3.98212975218096,
+        "p50_ms": 4.16400003433228,
+        "p95_ms": 8.85299968719482,
+        "samples": 131
+      }
+    },
+    "platform": "Linux",
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "settings": {
+      "colorblind": false,
+      "haptics": true,
+      "music": false,
+      "music_volume": 0.65,
+      "quality": "balanced",
+      "reduced_effects": false,
+      "reduced_motion": false,
+      "sfx": true,
+      "sfx_volume": 0.8,
+      "shake": true
+    },
+    "slow_frames": [
+      {
+        "busy": true,
+        "frame_ms": 53.004,
+        "level": 55,
+        "phase": "swap",
+        "time_ms": 71102
+      },
+      {
+        "busy": true,
+        "frame_ms": 86.96,
+        "level": 55,
+        "phase": "swap",
+        "time_ms": 71883
+      },
+      {
+        "busy": true,
+        "frame_ms": 179.175,
+        "level": 63,
+        "phase": "swap",
+        "time_ms": 82205
+      },
+      {
+        "busy": true,
+        "frame_ms": 54.496,
+        "level": 63,
+        "phase": "swap",
+        "time_ms": 82855
+      },
+      {
+        "busy": true,
+        "frame_ms": 96.629,
+        "level": 71,
+        "phase": "swap",
+        "time_ms": 90353
+      },
+      {
+        "busy": true,
+        "frame_ms": 62.625,
+        "level": 71,
+        "phase": "refill",
+        "time_ms": 97057
+      },
+      {
+        "busy": false,
+        "frame_ms": 56.508,
+        "level": 71,
+        "phase": "ready",
+        "time_ms": 98945
+      },
+      {
+        "busy": true,
+        "frame_ms": 124.934,
+        "level": 54,
+        "phase": "swap",
+        "time_ms": 99070
+      },
+      {
+        "busy": true,
+        "frame_ms": 64.079,
+        "level": 62,
+        "phase": "swap",
+        "time_ms": 117660
+      },
+      {
+        "busy": false,
+        "frame_ms": 51.451,
+        "level": 62,
+        "phase": "ready",
+        "time_ms": 120666
+      },
+      {
+        "busy": true,
+        "frame_ms": 55.044,
+        "level": 68,
+        "phase": "clear",
+        "time_ms": 124902
+      },
+      {
+        "busy": true,
+        "frame_ms": 83.242,
+        "level": 68,
+        "phase": "clear",
+        "time_ms": 128223
+      }
+    ],
+    "version": "0.6.0"
+  },
+  "frames": 7611,
+  "metrics": {
+    "draw_calls": {
+      "count": 7611,
+      "max": 463.0,
+      "mean": 201.221784259624,
+      "p50": 194.0,
+      "p95": 335.0
+    },
+    "engine_delta_ms": {
+      "count": 7611,
+      "max": 150.0,
+      "mean": 16.8818160119144,
+      "p50": 16.6666666666667,
+      "p95": 16.6666666666667
+    },
+    "engine_swap_ms": {
+      "count": 100,
+      "max": 16.623,
+      "mean": 3.80919,
+      "p50": 2.537,
+      "p95": 10.296
+    },
+    "frame_interval_ms": {
+      "count": 7610,
+      "max": 180.294,
+      "mean": 16.871237844941,
+      "p50": 16.665,
+      "p95": 18.325
+    },
+    "objects": {
+      "count": 7611,
+      "max": 1767.0,
+      "mean": 1724.66154250427,
+      "p50": 1726.0,
+      "p95": 1730.0
+    },
+    "presentation_and_save_ms": {
+      "count": 100,
+      "max": 1.061,
+      "mean": 0.44284,
+      "p50": 0.401,
+      "p95": 0.659
+    },
+    "process_cpu_ms": {
+      "count": 7611,
+      "max": 180.095,
+      "mean": 33.6310413874663,
+      "p50": 23.903,
+      "p95": 101.926
+    }
+  },
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "successful_actions": 100,
+  "successful_swaps": 100
+}

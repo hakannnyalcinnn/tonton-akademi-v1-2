@@ -1,6 +1,6 @@
 extends RefCounted
-const KEYS := ["total","0","1","2","3","4","flowers","ice","stones","locks","duals","shifts","pins"]
-const NAMES := {"total":"Blok","flowers":"Çiçek","ice":"Buz katmanı","stones":"Taş","locks":"Kilit","duals":"Çift renk","shifts":"Dönüşüm","pins":"Çivi"}
+const KEYS := ["total","0","1","2","3","4","flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges"]
+const NAMES := {"total":"Blok","flowers":"Çiçek","ice":"Buz katmanı","stones":"Taş","locks":"Kilit","duals":"Çift renk","shifts":"Dönüşüm","pins":"Çivi","vines":"Sarmaşık","crates":"Sandık","mirrors":"Ayna","bridges":"Köprü"}
 static func value(collected: Dictionary, key: String) -> int:
 	return int(collected.get(key,0))
 static func complete(targets: Dictionary, collected: Dictionary) -> bool:

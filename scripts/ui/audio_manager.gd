@@ -6,7 +6,7 @@ var cursor := 0
 var music: AudioStreamPlayer
 
 func _ready() -> void:
-	for key in ["click","pop","large","resonance","power","gravity","win","lose","invalid","rocket","color","cascade"]:
+	for key in ["click","pop","large","resonance","power","gravity","win","lose","invalid","rocket","color","cascade","portal","vine","crate","mirror"]:
 		streams[key] = load("res://assets/audio/"+key+".wav")
 	for i in 5:
 		var voice := AudioStreamPlayer.new()

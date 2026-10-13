@@ -1,3 +1,7 @@
+# Güncel durum — 0.6.0
+
+Kristal Okyanus ve dördüncü paket için [PACKET4 test ve teslimat raporu](PACKAGE4_REPORT.md) güncel kaynaktır. Aşağıdaki önceki sürüm notları tarihî kayıt olarak korunur.
+
 # Güncel sürüm: PRİZMA 0.5.0 — İki Rengin Uyanışı
 
 İlk 50 bölüm, çift renkli kristal, bukalemun ve dünya finali tamamlandı. Köprü ve çivi test edilmiş geliştirici mekanikleridir; normal ilk 50 bölümde kilitli kalır. Güncel ayrıntılar: [PACKAGE2_REPORT.md](PACKAGE2_REPORT.md). Sonraki mekanik grubuna geçilmedi. Aşağıdaki sürüm raporları geçmiş kaydıdır.
