@@ -16,6 +16,6 @@ func _draw() -> void:
  draw_string(font,Vector2(46,17),"PRİZMA FIRTINASI",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("826baf"))
  draw_rect(Rect2(46,25,304,9),Color("e5dcef"))
  draw_rect(Rect2(46,25,304*float(charge)/12,9),Color("a86de2"))
- var text:="%d/12"%value
+ var text:="%d/12"%charge
  draw_string(font,Vector2(361,31),text,HORIZONTAL_ALIGNMENT_CENTER,98,15,Color("6b548e"))
  if pulse>0:draw_rect(Rect2(44,23,308,13),Color(1,1,1,pulse),false,2)

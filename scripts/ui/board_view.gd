@@ -591,7 +591,7 @@ func _draw() -> void:
 			var phase:=t
 			if bomb_origin>=0:
 				phase=clampf((t-float(i%6)*.045)/.775,0,1)
-				if not settings.get("reduced_effects",false):draw_line(cell_position(bomb_origin)+Vector2(28,28),center,Color(color,sin(t*PI)*.55),1.8,true)
+				if not settings.get("reduced_effects",false):draw_energy_thread(cell_position(bomb_origin)+Vector2(28,28),center,color,t,i)
 			if phase<.32:
 				var block_size:=Vector2.ONE*CELL*(1+.22*sin(phase/.32*PI*.5))
 				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true,int(current.get("colors",{}).get(i,previous[i].c)))
@@ -662,8 +662,8 @@ func _draw() -> void:
 			var count:=mini(beam.path.size(),int(ceil(t*beam.path.size()*2)))
 			for k in count:
 				var center:=cell_position(int(beam.path[k]))+Vector2(28,28)
-				draw_line(prior,center,Color(.7,.85,1,1-t),4,true)
-				draw_line(prior,center,Color(1,1,1,1-t),1.3,true)
+				draw_line(prior,center,Color(.35,.8,1,sin(t*PI)),7,true)
+				draw_line(prior,center,Color(1,1,1,sin(t*PI)),2.2,true)
 				prior=center
 	if busy and current.kind=="clear":
 		for effect in current.get("mechanics",[]):
@@ -876,3 +876,17 @@ func draw_canyon(data: Dictionary) -> void:
 					if amount>0:
 						draw_circle(point,13,Palette.COLORS[color_index]);draw_string(mechanic_font,point+Vector2(-6,5),str(amount),HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color.WHITE)
 				if data.cores[key].shields.all(func(n):return n==0):draw_arc(center,54,clock,clock+TAU,32,Color("fff0ae"),3,true)
+
+func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, progress: float, index: int) -> void:
+	var points:=PackedVector2Array()
+	var delta:=destination-source
+	var bend:=Vector2(-delta.y,delta.x).normalized()*minf(34,delta.length()*.16)*(-1 if index%2 else 1)
+	for k in 9:
+		var u:=float(k)/8
+		points.append(source+delta*u+bend*sin(u*PI))
+	var alpha:=sin(progress*PI)*.8
+	draw_polyline(points,Color(tint,alpha*.35),5,true)
+	draw_polyline(points,Color(tint.lightened(.65),alpha),1.5,true)
+	var flow:=clampf(progress*1.8-float(index%6)*.04,0,1)
+	var head:=source+delta*flow+bend*sin(flow*PI)
+	draw_circle(head,2.5,Color(1,1,1,alpha))

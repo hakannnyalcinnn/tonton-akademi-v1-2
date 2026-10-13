@@ -37,7 +37,7 @@ static func report(settings: Dictionary) -> Dictionary:
 		if values.is_empty(): continue
 		var total := 0.0
 		for value in values: total += value
-		result.metrics[key] = {"samples":values.size(),"mean_ms":total/values.size(),"p50_ms":values[int((values.size()-1)*.5)],"p95_ms":values[int((values.size()-1)*.95)],"max_ms":values[values.size()-1]}
+		result.metrics[key] = {"samples":values.size(),"mean_ms":total/values.size(),"p50_ms":values[int((values.size()-1)*.5)],"p95_ms":values[int((values.size()-1)*.95)],"p99_ms":values[int((values.size()-1)*.99)],"max_ms":values[values.size()-1]}
 	return result
 static func reset() -> void:
 	samples.clear()

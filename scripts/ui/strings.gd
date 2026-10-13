@@ -21,12 +21,12 @@ const COPY := {
 	"gravity_hint": "Fırtına üç farklı yönden birini rastgele seçer; hamle harcamaz.",
 	"swap_hint": "Bir bloğu kaydır; üç aynı sembolü yatay veya dikey eşleştir.",
 	"resonance_hint": "Üç başarılı hamlede aynı rengi eşleştir; rezonansı uyandır.",
-	"power_hint": "4 düz: roket · 5 düz: renk bombası · T/L: prizma.",
+	"power_hint": "4 düz: roket · 5 düz: renk bombası · T/L: Gökkuşağı Yıldızı.",
 	"color_pick": "Renk bombası için bir renk seç",
 	"combo_hint": "Komşu özel güçleri kaydırarak birleştir.",
 	"shuffle": "Yeni olasılıklar · ücretsiz karıştırıldı",
 	"invalid": "Üçlü oluşmadı · Takas geri alındı, hamlen korunuyor.",
-	"help_body": "Komşu kristale kaydır → 3 aynı renk.\n4 düz: roket · 5 düz: renk bombası.\nT/L kesişimi: prizma bombası.\n\nGeçersiz takas hamle harcamaz.\nZincirler kendiliğinden patlar.\nİki komşu özel gücü birleştirebilirsin.\n\n12 normal kristal: Prizma Fırtınası.\nYön otomatik ve rastgele değişir.\n3 eşleşme aşaması: Kristal Dalgası.\nBir hamlede her biri yalnızca bir kez.\nHedef ikonuna dokun: açıklama ve vurgu.",
+	"help_body": "Komşu kristale kaydır → 3 aynı renk.\n4 düz: roket · 5 düz: renk bombası.\nT/L kesişimi: Gökkuşağı Yıldızı (prizma bombası).\nYıldız, merkezden iki hücre uzaklıktaki alanı temizler.\n\nGeçersiz takas hamle harcamaz.\nZincirler kendiliğinden patlar.\nİki komşu özel gücü birleştirebilirsin.\n\n12 normal kristal: Prizma Fırtınası.\nYön otomatik ve rastgele değişir.\n3 eşleşme aşaması: Kristal Dalgası.\nBir hamlede her biri yalnızca bir kez.\nHedef ikonuna dokun: açıklama ve vurgu.",
 
 	"saved": "İlerlemen bu cihazda saklanır. İnternet gerekmez."
 }
