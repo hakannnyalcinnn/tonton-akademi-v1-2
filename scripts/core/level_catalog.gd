@@ -1,9 +1,23 @@
 extends RefCounted
+const Registry = preload("res://scripts/mechanics/mechanic_registry.gd")
+const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
+
+static var cache: Array = []
 
 static func all() -> Array:
+	if not cache.is_empty(): return cache
 	var parsed = JSON.parse_string(FileAccess.get_file_as_string("res://data/levels.json"))
 	assert(parsed is Dictionary and parsed.version == 2)
-	return parsed.levels
+	var extended = JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-11-30.json"))
+	assert(extended is Dictionary and extended.version == 2)
+	cache = parsed.levels + extended.levels
+	return cache
+
+static func count() -> int:
+	return all().size()
+
+static func world_for(number: int) -> int:
+	return int((number-1)/50)+1
 
 static func get_level(number: int) -> Dictionary:
 	var levels := all()
@@ -17,5 +31,9 @@ static func validate(level: Dictionary) -> bool:
 	for color in level.layout:
 		if not (color is float or color is int) or color < 0 or color > 4 or float(color) != floor(float(color)): return false
 	for key in level.targets:
-		if key not in ["total", "0", "1", "2", "3", "4"] or level.targets[key] < 1: return false
+		if key not in Objectives.KEYS or level.targets[key] < 1: return false
+	var occupied: Dictionary = {}
+	for spec in level.get("mechanics",[]):
+		if not Registry.valid_spec(spec) or occupied.has(spec.index): return false
+		occupied[spec.index] = true
 	return not level.targets.is_empty()

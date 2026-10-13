@@ -1,0 +1,182 @@
+{
+  "audio_output_latency_ms": 0.0,
+  "counters": {
+    "active_quality": "performance",
+    "frames": 1430,
+    "frames_over_33ms": 18,
+    "peak_live_objects": 1925,
+    "peak_static_memory_bytes": 54485048
+  },
+  "device_model": "GenericDevice",
+  "display": {
+    "height": 0,
+    "refresh_rate_hz": null,
+    "safe_area": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 0
+  },
+  "incidents": [],
+  "metrics": {
+    "animation_clear": {
+      "max_ms": 131.33366394043,
+      "mean_ms": 33.8114292681517,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 199
+    },
+    "animation_fall": {
+      "max_ms": 33.3333320617676,
+      "mean_ms": 33.2743153787737,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 199
+    },
+    "animation_refill": {
+      "max_ms": 33.3333320617676,
+      "mean_ms": 33.3189401770357,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 199
+    },
+    "animation_swap": {
+      "max_ms": 60.8849983215332,
+      "mean_ms": 33.6084493255615,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 100
+    },
+    "board_draw_cpu": {
+      "max_ms": 3.57599997520447,
+      "mean_ms": 0.263182660361381,
+      "p50_ms": 0.237000003457069,
+      "p95_ms": 0.423000007867813,
+      "samples": 1511
+    },
+    "clear_logic": {
+      "max_ms": 2.1710000038147,
+      "mean_ms": 0.167226131275371,
+      "p50_ms": 0.144999995827675,
+      "p95_ms": 0.270999997854233,
+      "samples": 199
+    },
+    "drag_motion_to_visual_submit": {
+      "max_ms": 9.26700019836426,
+      "mean_ms": 2.52042999148369,
+      "p50_ms": 2.17199993133545,
+      "p95_ms": 4.36399984359741,
+      "samples": 100
+    },
+    "frame_interval": {
+      "max_ms": 60.8849983215332,
+      "mean_ms": 16.6752545413854,
+      "p50_ms": 16.6666660308838,
+      "p95_ms": 22.5849990844727,
+      "samples": 1430
+    },
+    "gesture_threshold_elapsed": {
+      "max_ms": 0.126000002026558,
+      "mean_ms": 0.0326700000092387,
+      "p50_ms": 0.0280000008642673,
+      "p95_ms": 0.0649999976158142,
+      "samples": 100
+    },
+    "gravity_logic": {
+      "max_ms": 0.264999985694885,
+      "mean_ms": 0.0603216078937353,
+      "p50_ms": 0.0560000017285347,
+      "p95_ms": 0.0780000016093254,
+      "samples": 199
+    },
+    "main_thread_cpu": {
+      "max_ms": 57.2869987487793,
+      "mean_ms": 17.0089573716784,
+      "p50_ms": 17.9640007019043,
+      "p95_ms": 21.6730003356934,
+      "samples": 1430
+    },
+    "match_scan": {
+      "max_ms": 0.565999984741211,
+      "mean_ms": 0.105615384926565,
+      "p50_ms": 0.0949999988079071,
+      "p95_ms": 0.150000005960464,
+      "samples": 299
+    },
+    "mechanic_wave": {
+      "max_ms": 0.660000026226044,
+      "mean_ms": 0.0581428574708601,
+      "p50_ms": 0.0500000007450581,
+      "p95_ms": 0.090999998152256,
+      "samples": 168
+    },
+    "refill_logic": {
+      "max_ms": 0.27700001001358,
+      "mean_ms": 0.0266633165916007,
+      "p50_ms": 0.0230000000447035,
+      "p95_ms": 0.0350000001490116,
+      "samples": 199
+    },
+    "save_worker": {
+      "max_ms": 9.55500030517578,
+      "mean_ms": 1.59056115536381,
+      "p50_ms": 1.66199994087219,
+      "p95_ms": 2.34100008010864,
+      "samples": 139
+    },
+    "swap_and_cascades": {
+      "max_ms": 4.08300018310547,
+      "mean_ms": 1.80446000933647,
+      "p50_ms": 1.5,
+      "p95_ms": 3.42600011825562,
+      "samples": 100
+    },
+    "touch_callback": {
+      "max_ms": 0.0649999976158142,
+      "mean_ms": 0.0029400000476744,
+      "p50_ms": 0.0020000000949949,
+      "p95_ms": 0.00400000018998981,
+      "samples": 100
+    },
+    "touch_to_swap_request": {
+      "max_ms": 0.135000005364418,
+      "mean_ms": 0.0428100001439452,
+      "p50_ms": 0.0379999987781048,
+      "p95_ms": 0.0860000029206276,
+      "samples": 100
+    },
+    "touch_to_visual_submit": {
+      "max_ms": 9.28600025177002,
+      "mean_ms": 2.54126000881195,
+      "p50_ms": 2.19799995422363,
+      "p95_ms": 4.38299989700317,
+      "samples": 100
+    }
+  },
+  "platform": "Linux",
+  "renderer": "",
+  "settings": {
+    "colorblind": false,
+    "haptics": true,
+    "music": false,
+    "music_volume": 0.65,
+    "quality": "performance",
+    "reduced_effects": false,
+    "reduced_motion": true,
+    "sfx": true,
+    "sfx_volume": 0.8,
+    "shake": true
+  },
+  "slow_frames": [
+    {
+      "busy": true,
+      "frame_ms": 60.885,
+      "level": 30,
+      "phase": "swap",
+      "time_ms": 364
+    }
+  ],
+  "version": "0.3.0"
+}

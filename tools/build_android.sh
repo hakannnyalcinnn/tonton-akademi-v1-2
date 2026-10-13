@@ -23,13 +23,16 @@ from pathlib import Path
 from zipfile import ZipFile
 manifest = Path('build/android-package.txt').read_text()
 assert "name='" + sys.argv[2] + "'" in manifest
-assert "versionName='0.3.0'" in manifest
+assert "versionName='0.4.0'" in manifest
 assert "sdkVersion:'24'" in manifest and "targetSdkVersion:'36'" in manifest
 assert 'android.permission.INTERNET' not in manifest
 assert 'android.permission.VIBRATE' in manifest
 with ZipFile(sys.argv[1]) as apk:
     names = apk.namelist()
     assert 'assets/data/levels.json' in names
+    assert 'assets/data/levels-11-30.json' in names
+    import json
+    assert [level['id'] for level in json.loads(apk.read('assets/data/levels-11-30.json'))['levels']] == list(range(11, 31))
     assert 'lib/arm64-v8a/libgodot_android.so' in names
     assert 'lib/armeabi-v7a/libgodot_android.so' in names
     assert not any(name.startswith(('assets/tests/', 'assets/tools/')) for name in names)

@@ -31,17 +31,17 @@ func run() -> void:
 	if game.save.has_method("finish_writes"):
 		game.save.background_writes = true
 		game.save.data.settings.quality = "performance" if "low" in OS.get_cmdline_user_args() else "balanced"
-	game.save.data.unlocked = 10
+	game.save.data.unlocked = 30 if "mechanics" in OS.get_cmdline_user_args() else 10
 	game.save.data.settings.music = false
 	game.audio.apply_settings(game.save.data.settings)
-	game.start_level(10)
+	game.start_level(30 if "mechanics" in OS.get_cmdline_user_args() else 10)
 	await create_timer(0.5).timeout
 	running = true
 	var successful := 0
 	var cascades := 0
 	for attempt in (20 if "low" in OS.get_cmdline_user_args() else 100):
 		if game.board.outcome != "playing":
-			game.start_level(1 + attempt % 10)
+			game.start_level(11+attempt%20 if "mechanics" in OS.get_cmdline_user_args() else 1+attempt%10)
 			await process_frame
 		var move: Array = Solver.best_move(game.board)
 		assert(not move.is_empty())
@@ -65,6 +65,7 @@ func run() -> void:
 		for value in values: total += value
 		summary.metrics[key] = {"count": values.size(),"mean":total/values.size(),"p50":values[int((values.size()-1)*0.5)],"p95":values[int((values.size()-1)*0.95)],"max":values.back()}
 	var suffix := "baseline" if "baseline" in OS.get_cmdline_user_args() else ("low-quality" if "low" in OS.get_cmdline_user_args() else "revised")
+	if "mechanics" in OS.get_cmdline_user_args(): suffix="mechanics-low" if "low" in OS.get_cmdline_user_args() else "mechanics"
 	var output := FileAccess.open("res://build/performance-"+suffix+".json",FileAccess.WRITE)
 	output.store_string(JSON.stringify(summary,"  "))
 	output.close()

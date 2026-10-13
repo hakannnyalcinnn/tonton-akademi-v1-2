@@ -3,6 +3,9 @@ signal swap_requested(a: int, b: int)
 signal special_pressed(index: int)
 signal animation_finished
 signal wave_started(data: Dictionary)
+const MechanicVFX = preload("res://scripts/ui/mechanic_animation_controller.gd")
+const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
+const POWER_TEXTURES := {"rocket_h":5,"rocket_v":6,"prism":7,"color":8}
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 const Backdrop = preload("res://scripts/ui/board_backdrop.gd")
 const ATLAS = preload("res://assets/crystals/atlas.svg")
@@ -18,6 +21,14 @@ var board
 var settings: Dictionary = {}
 var quality := "balanced"
 var textures: Array[AtlasTexture] = []
+var mechanic_textures: Array[AtlasTexture] = []
+var mechanic_font: Font
+var layer_cells: Array = []
+var layer_rects: Array[Rect2] = []
+var layer_draw_count := 0
+var lock_labels: Dictionary = {}
+var particle_styles := PackedByteArray()
+var leaf := PackedVector2Array([Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO])
 var particle_positions := PackedVector2Array()
 var particle_velocities := PackedVector2Array()
 var particle_colors := PackedColorArray()
@@ -72,6 +83,11 @@ func _ready() -> void:
 		texture.atlas = ATLAS
 		texture.region = Rect2((i%3)*256,int(i/3)*256,256,256)
 		textures.append(texture)
+	mechanic_textures = MechanicVFX.textures()
+	mechanic_font = ThemeDB.fallback_font
+	layer_cells.resize(80)
+	layer_rects.resize(80)
+	particle_styles.resize(192)
 	particle_positions.resize(192)
 	particle_velocities.resize(192)
 	particle_colors.resize(192)
@@ -128,6 +144,20 @@ func start_wave(data: Dictionary) -> void:
 			particle_velocities[slot] = Vector2.from_angle(index*2.41+k*TAU/count)*(65+(k%3)*29)
 			particle_colors[slot] = Palette.COLORS[previous[index].c].lightened(.16)
 			particle_ages[slot] = 0
+			particle_styles[slot] = 0
+	for effect in data.get("mechanics",[]):
+		var center := cell_position(effect.index)+Vector2(28,28)
+		for k in (mini(count+3,10) if effect.opened else 3):
+			if reduced_motion: break
+			var slot := particle_cursor%budget
+			particle_cursor += 1
+			particle_count = mini(192,maxi(particle_count,slot+1))
+			particle_positions[slot]=center
+			particle_velocities[slot]=Vector2.from_angle(effect.index+k*TAU/8)*(55+k%3*26)
+			particle_colors[slot]=MechanicVFX.color(effect.kind)
+			particle_ages[slot]=0
+			particle_styles[slot]=1 if effect.kind=="seed" else (2 if effect.kind=="stone" else 0)
+		if effect.kind=="stone" and effect.opened and settings.get("shake",true) and not reduced_motion: shake_age=0
 	var popup_slot := popup_cursor%4
 	popup_cursor += 1
 	score_ages[popup_slot] = 0
@@ -142,6 +172,7 @@ func start_wave(data: Dictionary) -> void:
 
 
 func set_board(value) -> void:
+	lock_labels.clear()
 	board = value
 	busy = false
 	displayed = board.cells.duplicate(true)
@@ -363,6 +394,7 @@ func finish_drag(point: Vector2) -> void:
 
 func _draw() -> void:
 	if board == null: return
+	layer_draw_count=0
 	var draw_started := Time.get_ticks_usec()
 	if touch_pending:
 		Metrics.elapsed("touch_to_visual_submit",touch_started)
@@ -439,6 +471,18 @@ func _draw() -> void:
 				draw_arc(center,t*120,0,TAU,28,Color(.8,.65,1,1-t),4,true)
 		if current.resonated and not reduced_motion:
 			draw_arc(cell_position(current.origin)+Vector2(28,28),t*150,0,TAU,40,Color(.7,1,.94,1-t),3,true)
+	draw_mechanic_layers()
+	if busy and current.kind=="clear":
+		for effect in current.get("mechanics",[]):
+			var center := cell_position(effect.index)+Vector2(28,28)
+			var color := MechanicVFX.color(effect.kind)
+			if effect.opened and effect.kind=="seed":
+				var extent := Vector2.ONE*CELL*(.65+.45*ease)
+				draw_texture_rect(mechanic_textures[2],Rect2(center-extent/2,extent),false,Color(1,1,1,1-t*.65))
+			elif effect.opened and effect.kind=="stone" and t<.45:
+				draw_texture_rect(mechanic_textures[MechanicVFX.index(effect.kind,effect.before)],Rect2(center-Vector2(28,28),Vector2(CELL,CELL)),false,Color(1,1,1,1-t/.45))
+			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(color,sin(t*PI)*.75))
+			if effect.opened: draw_arc(center,18+t*26,0,TAU,18,Color(color,1-t),2,true)
 	for i in particle_count:
 		var life := particle_ages[i]/.46
 		if life>=1: continue
@@ -449,7 +493,13 @@ func _draw() -> void:
 		shard[2] = center+Vector2(0,-radius*1.6)
 		var color: Color = particle_colors[i]
 		color.a = 1-life
-		draw_colored_polygon(shard,color)
+		if particle_styles[i]==1:
+			leaf[0]=center+Vector2(-radius*1.5,0)
+			leaf[1]=center+Vector2(0,-radius*.8)
+			leaf[2]=center+Vector2(radius*1.5,0)
+			leaf[3]=center+Vector2(0,radius*.8)
+			draw_colored_polygon(leaf,color)
+		else: draw_colored_polygon(shard,color)
 		draw_line(shard[1],shard[2],Color(1,1,1,(1-life)*.6),.7,true)
 	if hint_index >= 0 and not busy and drag_index < 0:
 		var center := cell_position(hint_index) + Vector2(37, 37)
@@ -472,11 +522,37 @@ func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool) -> void:
 	if highlighted:
 		draw_texture_rect(GLOW,jewel.grow(7),false,Color(color.lightened(.4),.75))
 	var texture_index: int = int(cell.c)
-	if cell.p != "": texture_index = {"rocket_h":5,"rocket_v":6,"prism":7,"color":8}.get(cell.p,8)
+	if cell.p != "": texture_index = POWER_TEXTURES.get(cell.p,8)
 	if colorblind and not highlighted:
 		draw_texture_rect(GLOW,jewel.grow(1),false,Color(1,1,1,.24))
 	# Same shared texture atlas for every crystal; no per-frame resources or styleboxes.
-	draw_texture_rect(textures[texture_index],Rect2(jewel.position+Vector2(0,2),jewel.size),false)
-	if cell.get("fixed",false):
+	if not cell.has("obstacle"):
+		draw_texture_rect_region(ATLAS,Rect2(jewel.position+Vector2(0,2),jewel.size),textures[texture_index].region)
+	var layer := Mechanics.layer(cell)
+	if layer!="":
+		layer_cells[layer_draw_count]=cell
+		layer_rects[layer_draw_count]=jewel
+		layer_draw_count+=1
+	elif cell.get("fixed",false):
 		draw_rect(jewel.grow(-3),Color(.08,.13,.2,.5))
 		draw_line(jewel.position+Vector2(8,12),jewel.end-Vector2(8,12),Palette.MUTED,3,true)
+
+func draw_mechanic_layers() -> void:
+	# Keep crystal atlas submissions together, then armor/obstacles and text.
+	# Fixed arrays avoid per-frame draw-command dictionaries or scene nodes.
+	for i in layer_draw_count:
+		var jewel: Rect2=layer_rects[i]
+		var center:=jewel.get_center()
+		var cell: Dictionary=layer_cells[i]
+		var m: Dictionary=cell[Mechanics.layer(cell)]
+		draw_texture_rect_region(MechanicVFX.ATLAS,jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region)
+		if m.kind=="lock":
+			var progress:=float(m.energy)/float(m.required)
+			if progress>0: draw_arc(center,25,-PI/2,-PI/2+TAU*progress,18,Color(Palette.COLORS[int(m.color)],.9),2.2,true)
+			if not lock_labels.has(cell.id) or lock_labels[cell.id].energy!=m.energy or lock_labels[cell.id].required!=m.required:
+				var content: String="%d/%d"%[m.energy,m.required]
+				lock_labels[cell.id]={"energy":m.energy,"required":m.required,"text":content,"width":mechanic_font.get_string_size(content,HORIZONTAL_ALIGNMENT_LEFT,-1,10).x}
+			var text: String=lock_labels[cell.id].text
+			var anchor:=center+Vector2(-float(lock_labels[cell.id].width)/2,25)
+			draw_string_outline(mechanic_font,anchor,text,HORIZONTAL_ALIGNMENT_LEFT,-1,10,3,Color("091524"))
+			draw_string(mechanic_font,anchor,text,HORIZONTAL_ALIGNMENT_LEFT,-1,10,Color("fff1c9"))

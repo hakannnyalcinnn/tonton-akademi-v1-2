@@ -7,3 +7,5 @@
 - Godot varsayılan yazı tipi Godot'un beraberindeki lisans kapsamındadır; ek ücretli font eklenmedi.
 
 Hiçbir başka oyunun karakteri, blok varlığı, müziği veya arayüz dosyası kopyalanmadı.
+
+0.4.0: `assets/mechanics/*.svg` tohum/kapsül/çiçek, saydam buz, taş ve beş renkli kilit varlıkları `tools/generate_mechanics.py` ile bu proje için özgün oluşturulmuştur. Dışarıdan ikon, emoji, görsel veya telifli ses indirilmedi. Mekanik açılmalarında projenin mevcut özgün sentezlenmiş sesleri kullanılır.

@@ -28,6 +28,18 @@ static func move_value(b, a: int, destination: int) -> float:
 		var color := str(b.cells[i].c)
 		value += 1
 		if b.level.targets.has(color) and b.collected[color] < b.level.targets[color]: value += 4
+	# Prefer damage to unfinished mechanics; predict a wave without mutating it.
+	if not b.level.get("mechanics",[]).is_empty():
+		var hits: Dictionary = preload("res://scripts/mechanics/damage_resolver.gd").plan(b.cells,removed,removed,[],8,9)
+		for index in hits:
+			var cell: Dictionary = b.cells[index]
+			var m: Dictionary = cell.get("armor",cell.get("obstacle",{}))
+			if m.get("kind","") != "lock": value += 12*hits[index]
+		for cell in b.cells:
+			if cell != null and cell.get("obstacle",{}).get("kind","")=="lock":
+				var color: int = cell.obstacle.color
+				for index in removed:
+					if Match.normal(b.cells[index]) and b.cells[index].c==color: value += 5
 	b.cells[destination] = b.cells[a]
 	b.cells[a] = first
 	return value

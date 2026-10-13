@@ -408,7 +408,7 @@ func best_move(b) -> Array:
 	return preload("res://tests/move_solver.gd").best_move(b)
 
 func test_simulations() -> void:
-	check(Catalog.all().size() == 10, "all ten levels retained")
+	check(Catalog.all().size() >= 10, "all ten levels retained")
 	for number in range(1,11):
 		var definition: Dictionary = Catalog.get_level(number)
 		check(Catalog.validate(definition), "new level data valid %d" % number)

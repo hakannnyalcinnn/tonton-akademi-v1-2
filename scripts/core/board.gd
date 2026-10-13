@@ -1,6 +1,9 @@
 extends RefCounted
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 
+const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
+const Registry = preload("res://scripts/mechanics/mechanic_registry.gd")
+const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
 const Match = preload("res://scripts/core/match_detector.gd")
 const Generator = preload("res://scripts/core/board_generator.gd")
 const Gravity = preload("res://scripts/core/gravity.gd")
@@ -38,9 +41,11 @@ func _init(definition: Dictionary = {}) -> void:
 	level = definition.duplicate(true)
 	moves = int(level.moves)
 	rng = SeedRng.new(int(level.seed))
-	refill_stream = level.get("opening_refill", []).duplicate()
+	refill_stream = level.get("opening_refill", []).map(func(color): return int(color))
 	for color in level.layout: cells.append(make_cell(int(color)))
 	for key in level.get("powers", {}): cells[int(key)].p = level.powers[key]
+	Mechanics.install(cells, level.get("mechanics", []))
+	for key in ["flowers","ice","stones","locks"]: collected[key] = 0
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT)
 
 func find_matches() -> Array:
@@ -182,6 +187,11 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		for i in removed:
 			if i >= 0 and i < cells.size() and cells[i] != null and not cells[i].get("fixed", false) and i not in unique: unique.append(i)
 		unique.sort()
+		var normal_colors: Dictionary = {}
+		for i in unique:
+			if Match.normal(cells[i]): normal_colors[str(cells[i].c)] = int(normal_colors.get(str(cells[i].c),0))+1
+		# Shared transaction before clearing: neighbors and direct power footprints.
+		var mechanic_events := Mechanics.wave(cells, unique, removed, triggered, normal_colors, collected, WIDTH, HEIGHT)
 		var normal_count := 0
 		for i in unique:
 			if Match.normal(cells[i]):
@@ -200,7 +210,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
 		Metrics.elapsed("clear_logic", clear_started)
 		settle(true)
 		transition(State.CHECKING_CASCADES)
@@ -254,9 +264,7 @@ func ensure_move() -> bool:
 	return true
 
 func targets_complete() -> bool:
-	for key in level.targets:
-		if collected[key] < level.targets[key]: return false
-	return true
+	return Objectives.complete(level.targets,collected)
 
 func finish_if_needed() -> void:
 	transition(State.CHECKING_OBJECTIVES)
@@ -315,12 +323,17 @@ func restore(data: Dictionary) -> bool:
 		if cell.has("fixed") and not cell.fixed is bool: return false
 		seen[int(cell.id)] = true
 		var normalized_cell := {"c": int(cell.c), "p": str(cell.p), "id": int(cell.id)}
-		if cell.get("fixed", false): normalized_cell.fixed = true
+		if cell.get("fixed", false): normalized_cell["fixed"] = true
+		for layer in ["armor","obstacle"]:
+			if cell.has(layer):
+				if not cell[layer] is Dictionary: return false
+				normalized_cell[layer] = cell[layer].duplicate(true)
+		if not Registry.valid_cell(normalized_cell): return false
 		normalized.append(normalized_cell)
 	var total := 0
 	for key in data.collected:
-		if key not in ["total", "0", "1", "2", "3", "4"] or not whole(data.collected[key], 0, 2147483647): return false
-		if key != "total": total += int(data.collected[key])
+		if key not in Objectives.KEYS or not whole(data.collected[key], 0, 2147483647): return false
+		if key in ["0","1","2","3","4"]: total += int(data.collected[key])
 	if total != int(data.collected.total): return false
 	if not Match.find(normalized, WIDTH, HEIGHT).is_empty() or not Match.has_move(normalized, WIDTH, HEIGHT): return false
 	var restored_state := State.LEVEL_COMPLETED if data.outcome == "won" else (State.LEVEL_FAILED if data.outcome == "lost" else State.READY)
@@ -331,6 +344,8 @@ func restore(data: Dictionary) -> bool:
 	score = int(data.score)
 	collected = data.collected.duplicate()
 	for key in collected: collected[key] = int(collected[key])
+	for key in ["flowers","ice","stones","locks"]:
+		if not collected.has(key): collected[key] = 0
 	direction = str(data.direction)
 	energy = int(data.energy)
 	energy_blocks = int(data.energy_blocks)
@@ -338,7 +353,7 @@ func restore(data: Dictionary) -> bool:
 	rng.state = int(data.rng)
 	resonance.color = int(data.resonance_color)
 	resonance.count = int(data.resonance_count)
-	refill_stream = data.refill_stream.duplicate()
+	refill_stream = data.refill_stream.map(func(color): return int(color))
 	outcome = str(data.outcome)
 	state = restored_state
 	presentation_locked = false

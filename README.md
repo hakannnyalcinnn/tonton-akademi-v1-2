@@ -1,6 +1,6 @@
 # PRİZMA — Renklerin Uyanışı · Match-3
 
-Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mevcut PRİZMA projesi korunarak temel motor **sürükle → bir komşuyla takas → yatay/dikey 3+ eşleşme → otomatik zincir** sistemine dönüştürüldü. Normal dokunarak patlatma yoktur. 0.3.0 görsel kalite revizyonunda beş özgün büyülü kristal, havuzlanmış kırılma efektleri ve ölçümlü performans iyileştirmeleri eklendi. Bölümler ve oyun kuralları korunur.
+Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mevcut PRİZMA projesi korunarak temel motor **sürükle → bir komşuyla takas → yatay/dikey 3+ eşleşme → otomatik zincir** sistemine dönüştürüldü. Normal dokunarak patlatma yoktur. 0.3.0 görsel kalite revizyonunda beş özgün büyülü kristal, havuzlanmış kırılma efektleri ve ölçümlü performans iyileştirmeleri eklendi. 0.4.0 ikinci aşamada ilk 10 bölüm korunarak tohum kapsülü, buz zırhı, taş engel ve renk kilidi ile 11–30. bölümler eklendi. [İkinci aşama raporu](docs/STAGE2_REPORT.md) ve [sonraki mekaniklerin planı](docs/MECHANICS_ROADMAP.md) ayrıntıları içerir.
 
 ## Oyna
 Godot Project Manager'da `project.godot` açın ve F5 ile çalıştırın. **OYNA** açık bölüme, **DEVAM ET** kayıtlı aynı tahtaya döner. Harita tamamlanan bölümleri tekrar açar.
@@ -10,6 +10,7 @@ Godot Project Manager'da `project.godot` açın ve F5 ile çalıştırın. **OYN
 - **4 düz: roket**, **5 düz: renk bombası**, **T/L: prizma**. Roket/prizmaya dokunmak bir hamleyle etkinleştirir. Renk bombası hedef renk ister. İki komşu gücü takas ederek birleştirin.
 - 4. bölümden itibaren 12 normal blok bir yön enerjisi verir, kapasite iki. Yön seçimi normal hamle harcamaz. Dolu tahtada yön seçimi sonraki düşüşü değiştirir; boşluk/eşleşme varsa otomatik çözülür.
 - 6. bölümden itibaren aynı renkte üç başarılı normal oyuncu takası rezonans oluşturur. Otomatik zincirler ayrı hamle sayılmaz. Çok renkli takasta hedef hücrenin eşleşme rengi esas alınır.
+- 11–15: tohum; 16–20: buz; 21–25: taş; 26–30: renk kilitleri ve birleşik hedefler. Tohum/buz 2, taş 3 dayanıklılıktır. Yan patlama yalnızca yatay/dikey hasar verir; tek dalgada tekrar hasar yoktur. Kilitler normal renk kristallerini, zincirler dahil sayar.
 - **Nasıl oynanır?** yeni eşleşme kurallarını gösterir. El eğitimi gerçekten kaydırma yönünü gösterir.
 - Ayarlar: otomatik/yüksek/dengeli/performans kalitesi, sarsıntı, azaltılmış efekt/hareket, titreşim, müzik/efekt seviyeleri ve şekil kontrastı. Her kristalin silüeti farklıdır.
 
@@ -31,7 +32,7 @@ bash tools/test.sh
 
 Sarmalayıcı yerelde `.tools/` dizinini varsayar. Ham Godot ve XDG sarmalayıcısı farklı `user://` kayıt dizinleri kullanabilir; aynı başlatma yolunu tutarlı kullanın.
 
-Testler üçlü çizgi/T/L/çapraz/ikili, takas geri alımı ve normal dokunma, otomatik zincir/çarpan, güç üretim konumu/aktivasyon/istisnalar, dört yön/dolum kenarı/sabit hücre, kararlı başlangıç ve ücretsiz karıştırma, rezonans/hamle/sonuç, schema dönüşümü ve iki süreçte kayıt devamını kapsar. 2.000 farklı başlangıç üretimi ve tüm 10 bölümde 1.000 seed'li oyun simülasyonu yürütülür. Gerçek GUI mouse ve ScreenTouch olayları, kısa/uzun/yavaş sürükleme, dört yön, tahta dışı iptal, animasyon/PAUSED kilidi, yardım ve ayarlar test edilir. Testler ayrı kayıt dosyaları kullanır.
+Testler üçlü çizgi/T/L/çapraz/ikili, takas geri alımı ve normal dokunma, otomatik zincir/çarpan, güç üretim konumu/aktivasyon/istisnalar, dört yön/dolum kenarı/sabit hücre, kararlı başlangıç ve ücretsiz karıştırma, rezonans/hamle/sonuç, schema dönüşümü ve iki süreçte kayıt devamını kapsar. 2.000 farklı başlangıç üretimi ve tüm 10 bölümde 1.000 seed'li oyun simülasyonu yürütülür. Gerçek GUI mouse ve ScreenTouch olayları, kısa/uzun/yavaş sürükleme, dört yön, tahta dışı iptal, animasyon/PAUSED kilidi, yardım ve ayarlar test edilir. Buna ek olarak yeni 20 bölümde 600 oyun / 3.085 hamle, ortak hasar, enerji tek sayımı, mekanik hedefleri, kayıt ve geliştirici laboratuvarı testleri çalışır. İlk on ve yeni mekanik bölümlerinde ayrı ayrı 100 native ScreenTouch kaydırması ile 100 engellenen ikinci giriş doğrulanır. Testler ayrı kayıt dosyaları kullanır.
 
 ## Android APK
 Java 17+ (`java`/`keytool`; bu makinede OpenJDK 21), Godot 4.6.3 ve resmi şablonlar gerekir. SDK lisansını kabul ettikten sonra:
@@ -51,7 +52,7 @@ bash tools/build_android.sh
 
 Varsayılan çıktı **`build/prizma-match3.apk`**, uygulama adı **PRİZMA Match-3**, test kimliği `com.prizma.renklerinuyanisi.match3`. Android 7.0+, hedef SDK 36, ARMv7/ARM64, internet izni yok. Build sarmalayıcısı önce test eder, sonra v2/v3 imzasını, manifesti, bölüm verisini ve kitaplıkları doğrular.
 
-**0.3.0, yayımlanan 0.2.0 Match-3 APK’sı ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
+**0.4.0, yayımlanan 0.2.0/0.3.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
 
 **0.1.0’dan ayrı profile geçiş geçmişi:** v0.1.0 GitHub APK'sı geçici CI debug anahtarıyla imzalandı. O özel anahtar mevcut olmadığından yeni paket onun üzerine güvenli güncelleme olarak kurulamaz. Yeni test kimliği eski uygulamanın yanına kurulur; eski uygulamayı kaldırmanız gerekmez. Yeni test profili ayrı başlar; telefondaki eski profili otomatik okuyup aktardığı iddia edilmez.
 
@@ -90,3 +91,18 @@ bash tools/godot.sh --audio-driver Dummy --max-fps 60 --profiling --script tests
 ```
 
 Bu ölçüm fiziksel Android testinin yerini tutmaz. Yeni dünyalar, bölümler, mağaza veya yeni mekanikler eklenmedi.
+
+## Geliştirici mekanik laboratuvarı
+
+Godot editöründe ve `Android Match3 Test` dışa aktarmasında Ayarlar > Geliştirici:
+mekanik laboratuvarı açılır. Seed, hücre (0–71), dört mekanik ekleme ve tahta sıfırlama
+araçları normal ilerlemeyi, ödülleri ve aktif kayıtlı bölümü değiştirmez. Normal
+`Android` hedefinde `prizma_dev_tools` özelliği olmadığı için görünmez. Fiziksel
+Android FPS ve yaşam döngüsü kabul testi kullanıcı cihazında yapılmalıdır.
+
+Özgün mekanik SVG'lerini yeniden üretmek için `python3 tools/generate_mechanics.py`.
+Render kontrolleri ve görüntüler için Xvfb veya gerçek grafik ekranı altında
+`bash tools/godot.sh --audio-driver Dummy --script tests/mechanic_capture.gd`.
+100 hamlelik yeni mekanik render ölçümü:
+`bash tools/godot.sh --max-fps 60 --profiling --script tests/visual_performance.gd -- mechanics`.
+`-- mechanics low` 20 hamlelik sınırlı performans profili ölçümüdür.

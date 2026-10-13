@@ -4,6 +4,7 @@ const Solver = preload("res://tests/move_solver.gd")
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 var game
 var waves := 0
+var extended := false
 func _initialize() -> void:
 	call_deferred("run")
 func touch(source: int, destination: int) -> void:
@@ -24,23 +25,24 @@ func touch(source: int, destination: int) -> void:
 	press.position=end
 	root.push_input(press,true)
 func run() -> void:
+	extended="mechanics" in OS.get_cmdline_user_args()
 	game=load("res://scenes/main.tscn").instantiate()
 	root.add_child(game)
 	await process_frame
 	game.save.finish_writes()
 	game.save=Save.new("user://swipe-stress-only.json")
 	game.save.data=Save.defaults()
-	game.save.data.unlocked=10
+	game.save.data.unlocked=30 if extended else 10
 	game.save.background_writes=true
 	game.save.data.settings.music=false
 	game.save.data.settings.reduced_motion=true
 	game.save.data.settings.quality="performance"
 	game.audio.apply_settings(game.save.data.settings)
 	Metrics.reset()
-	game.start_level(1)
+	game.start_level(30 if extended else 1)
 	for i in 100:
 		if game.board.outcome!="playing":
-			game.start_level(1+i%10)
+			game.start_level(11+i%20 if extended else 1+i%10)
 			await process_frame
 		var move: Array = Solver.best_move(game.board)
 		var old_moves: int = game.board.moves
@@ -58,7 +60,7 @@ func run() -> void:
 		assert(game.board_view.get_child_count()==6)
 	game.save.finish_writes()
 	var report: Dictionary = Metrics.report(game.save.data.settings)
-	var file := FileAccess.open("res://build/swipe-stress.json",FileAccess.WRITE)
+	var file := FileAccess.open("res://build/mechanic-swipe-stress.json" if extended else "res://build/swipe-stress.json",FileAccess.WRITE)
 	file.store_string(JSON.stringify(report,"  "))
 	file.close()
 	var path: String = game.save.path
@@ -67,5 +69,5 @@ func run() -> void:
 	await create_timer(.15).timeout
 	for ending in ["", ".bak", ".tmp"]:
 		if FileAccess.file_exists(path+ending): DirAccess.remove_absolute(ProjectSettings.globalize_path(path+ending))
-	print("SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures")
+	print(("MECHANIC " if extended else "")+"SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures")
 	quit()

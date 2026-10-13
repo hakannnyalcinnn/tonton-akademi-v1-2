@@ -35,7 +35,7 @@ static func canonical(value: Variant) -> Variant:
 
 func valid_meta(parsed: Variant, version: int) -> bool:
 	if not parsed is Dictionary or not parsed.has_all(["version", "unlocked", "results", "rewarded", "active", "tutorials", "settings"]): return false
-	if not Board.whole(parsed.version, version, version) or not Board.whole(parsed.unlocked, 1, 10): return false
+	if not Board.whole(parsed.version, version, version) or not Board.whole(parsed.unlocked, 1, Catalog.count()): return false
 	if not parsed.results is Dictionary or not parsed.active is Dictionary or not parsed.settings is Dictionary or not parsed.rewarded is Array or not parsed.tutorials is Array: return false
 	for key in ["music", "sfx", "haptics", "reduced_motion", "colorblind"]:
 		if not parsed.settings.has(key) or not parsed.settings[key] is bool: return false
@@ -45,7 +45,7 @@ func valid_meta(parsed: Variant, version: int) -> bool:
 	for key in ["music_volume","sfx_volume"]:
 		if parsed.settings.has(key) and (not (parsed.settings[key] is float or parsed.settings[key] is int) or parsed.settings[key] < 0 or parsed.settings[key] > 1): return false
 	for key in parsed.results:
-		if not str(key).is_valid_int() or int(key) < 1 or int(key) > 10: return false
+		if not str(key).is_valid_int() or int(key) < 1 or int(key) > Catalog.count(): return false
 		var result = parsed.results[key]
 		if not result is Dictionary or not result.has_all(["score", "stars"]): return false
 		if not Board.whole(result.score, 0, 2147483647) or not Board.whole(result.stars, 1, 3): return false
@@ -71,6 +71,8 @@ func load_save() -> bool:
 			merged.merge(data.settings, true)
 			data.settings = merged
 			data.unlocked = int(data.unlocked)
+			# Previously ten was the catalog cap, even when level ten was complete.
+			if data.unlocked == 10 and data.results.has("10"): data.unlocked = mini(11,Catalog.count())
 			return true
 		if valid_meta(parsed, 1):
 			var archive := path + ".v1-archive"
@@ -172,7 +174,7 @@ func complete(board) -> bool:
 	data.results[key] = {"score": maxi(int(old.score), board.score), "stars": maxi(int(old.stars), stars)}
 	var first: bool = key not in data.rewarded
 	if first: data.rewarded.append(key)
-	data.unlocked = mini(10, maxi(int(data.unlocked), int(board.level.id) + 1))
+	data.unlocked = mini(Catalog.count(), maxi(int(data.unlocked), int(board.level.id) + 1))
 	data.active = {}
 	flush()
 	return first

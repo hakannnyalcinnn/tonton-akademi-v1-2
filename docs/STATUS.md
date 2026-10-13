@@ -1,3 +1,11 @@
+# Güncel sürüm: PRİZMA 0.4.0 — Bahçenin Sırları
+
+İkinci aşamanın ilk dört mekaniği ve 11–30. bölümler tamamlandı. İlk 10 bölüm ve mevcut Match-3 kuralları korundu. Yeni teslimatın testleri, ölçümleri, dosya listesi ve Android kabul testi sınırları: [STAGE2_REPORT.md](STAGE2_REPORT.md). Sonraki 16 mekanik yalnızca [planda](MECHANICS_ROADMAP.md); kullanıcı onayı bekleniyor.
+
+Aşağıdaki raporlar önceki sürümlerin geçmiş kaydıdır.
+
+---
+
 # Güncel sürüm: PRİZMA 0.3.0 — Büyülü Kristaller
 
 Görsel kalite revizyonu tamamlandı; ilk 10 bölüm ve Match-3 kuralları korundu. Yeni durum, gerçek ölçümler, test sonuçları ve cihazda henüz doğrulanmayanlar: [QUALITY_REVISION.md](QUALITY_REVISION.md). 21.969 motor + 71 kalite kontrolü ve 100 geçerli/100 engellenen ScreenTouch kaydırması doğrulandı. Fiziksel Android kabul testi bekleniyor.

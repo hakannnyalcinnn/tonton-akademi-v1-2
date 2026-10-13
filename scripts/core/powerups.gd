@@ -35,12 +35,12 @@ static func dominant_color(cells: Array) -> int:
 static func area(index: int, kind: String, cells: Array, width: int, selected_color: int = -1) -> Array:
 	var result: Array = [index]
 	for i in cells.size():
-		if cells[i] == null or cells[i].get("fixed", false): continue
+		if cells[i] == null: continue
 		var dx: int = absi(i % width - index % width)
 		var dy: int = absi(int(i / width) - int(index / width))
 		if (kind == "rocket_h" and dy == 0) or (kind == "rocket_v" and dx == 0): result.append(i)
 		elif kind == "prism" and dx + dy <= 2: result.append(i)
-		elif kind == "color" and cells[i].p == "" and cells[i].c == selected_color: result.append(i)
+		elif kind == "color" and cells[i].p == "" and not cells[i].has("obstacle") and cells[i].c == selected_color: result.append(i)
 	return result
 
 static func combo_area(a: int, b: int, cells: Array, width: int, selected_color: int) -> Array:
@@ -49,11 +49,11 @@ static func combo_area(a: int, b: int, cells: Array, width: int, selected_color:
 	var second: String = cells[b].p
 	if first == "color" and second == "color":
 		for i in cells.size():
-			if cells[i] != null and not cells[i].get("fixed", false): result.append(i)
+			if cells[i] != null: result.append(i)
 	elif "color" in [first, second]:
 		var other: String = second if first == "color" else first
 		for i in cells.size():
-			if cells[i] != null and cells[i].p == "" and cells[i].c == selected_color:
+			if cells[i] != null and cells[i].p == "" and not cells[i].has("obstacle") and cells[i].c == selected_color:
 				result.append(i)
 				if other != "color": result.append_array(area(i, other, cells, width, selected_color))
 	elif first.begins_with("rocket") and second.begins_with("rocket"):

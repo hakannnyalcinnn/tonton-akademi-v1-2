@@ -1,5 +1,8 @@
 extends Control
 
+const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
+const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
+const Generator = preload("res://scripts/core/board_generator.gd")
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 const Board = preload("res://scripts/core/board.gd")
 const Catalog = preload("res://scripts/core/level_catalog.gd")
@@ -13,6 +16,10 @@ const BoardView = preload("res://scripts/ui/board_view.gd")
 const Audio = preload("res://scripts/ui/audio_manager.gd")
 const Celebration = preload("res://scripts/ui/celebration.gd")
 
+var map_group := 0
+var test_mode := false
+var test_seed := 104169
+var test_index := 27
 var save
 var board
 var audio
@@ -140,6 +147,7 @@ func go_back() -> void:
 		get_tree().quit()
 
 func persist_board() -> void:
+	if test_mode: return
 	if board != null and screen == "game":
 		if board.outcome == "won": save.complete(board)
 		elif board.outcome == "playing": save.save_active(board)
@@ -213,8 +221,9 @@ func title_header(title: String, subtitle: String) -> void:
 	label(page, subtitle, Rect2(32, 136, 476, 28), 14, Palette.MUTED)
 
 func show_home() -> void:
+	test_mode = false
 	begin_page("home")
-	garden.vitality = 0.30 + float(save.data.results.size()) * 0.06
+	garden.vitality = 0.30 + minf(.6,float(save.data.results.size()) * 0.03)
 	label(page, "ÇEVRİMDIŞI · SANA AİT BİR DÜNYA", Rect2(30, 44, 480, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 	var logo := TextureRect.new()
 	logo.texture = load("res://assets/art/icon.svg")
@@ -230,7 +239,7 @@ func show_home() -> void:
 	label(page, Strings.text("world"), Rect2(65, 532, 350, 32), 24)
 	var stars := 0
 	for result in save.data.results.values(): stars += int(result.stars)
-	label(page, "%d / 10 bölüm  ·  %d / 30 yıldız" % [save.data.results.size(), stars], Rect2(65, 572, 395, 28), 16, Palette.GOLD)
+	label(page, "%d / %d bölüm  ·  %d / %d yıldız" % [save.data.results.size(), Catalog.count(), stars, Catalog.count()*3], Rect2(65, 572, 395, 28), 16, Palette.GOLD)
 	var active: bool = not save.data.active.is_empty()
 	button(page, Strings.text("resume") if active else Strings.text("play"), Rect2(44, 648, 452, 70), play_latest, true, 25)
 	button(page, Strings.text("map"), Rect2(44, 733, 452, 57), show_map)
@@ -245,13 +254,15 @@ func play_latest() -> void:
 	else:
 		start_level(int(save.data.unlocked))
 
-func show_map() -> void:
+func show_map(group: int = -1) -> void:
 	persist_board()
+	test_mode = false
+	if group>=0: map_group=clampi(group,0,2)
 	begin_page("map")
 	title_header(Strings.text("world"), Strings.text("chapter"))
 	label(page, "Her bölüm, bahçeye yeni bir renk.", Rect2(32, 179, 476, 30), 18, Palette.GOLD)
-	for n in range(1, 11):
-		var row := int((n - 1) / 2)
+	for n in range(1+map_group*10, 11+map_group*10):
+		var row := int(((n - 1)%10) / 2)
 		var x := 64 if n % 2 == 1 else 292
 		var y := 236 + row * 118
 		var unlocked: bool = n <= save.data.unlocked
@@ -259,15 +270,18 @@ func show_map() -> void:
 		var node := button(page, str(n) if unlocked else "·", Rect2(x, y, 184, 69), start_level.bind(n), unlocked and n == save.data.unlocked, 28)
 		node.disabled = not unlocked
 		label(page, "★".repeat(int(result.get("stars", 0))) if not result.is_empty() else ("Seni bekliyor" if unlocked else "Kilitli"), Rect2(x, y + 71, 184, 25), 15, Palette.GOLD if unlocked else Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, "İLK AŞAMA · BAHÇENİN İLK ON ADIMI", Rect2(30, 881, 480, 32), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+	for group_index in 3:
+		button(page,"%d–%d"%[group_index*10+1,group_index*10+10],Rect2(43+group_index*158,864,138,45),show_map.bind(group_index),group_index==map_group,17)
+	label(page, "BÜYÜLÜ BAHÇE · %d BÖLÜM"%Catalog.count(), Rect2(30, 918, 480, 26), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 
-func start_level(number: int, resume: bool = false) -> void:
-	if number < 1 or number > save.data.unlocked: return
-	board = Board.new(Catalog.get_level(number))
+func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
+	if test_definition.is_empty() and (number < 1 or number > save.data.unlocked): return
+	test_mode = not test_definition.is_empty()
+	board = Board.new(Catalog.get_level(number) if not test_mode else test_definition)
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
 	begin_page("game")
 	garden.vitality = 0.2
-	label(page, "BÜYÜLÜ BAHÇE", Rect2(32, 22, 330, 28), 13, Palette.GOLD)
+	label(page, "GELİŞTİRİCİ · KAYIT DIŞI TEST" if test_mode else "BÜYÜLÜ BAHÇE", Rect2(32, 22, 330, 28), 13, Palette.GOLD)
 	label(page, "%02d  /  %s" % [number, board.level.name], Rect2(32, 55, 415, 39), 23)
 	button(page, "Ⅱ", Rect2(456, 38, 52, 50), show_pause, false, 23)
 	card(page, Rect2(30, 110, 480, 65))
@@ -276,7 +290,8 @@ func start_level(number: int, resume: bool = false) -> void:
 	label(page, Strings.text("moves"), Rect2(351, 119, 139, 17), 11, Palette.MUTED, HORIZONTAL_ALIGNMENT_RIGHT)
 	moves_label = label(page, "", Rect2(354, 137, 136, 29), 24, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
 	card(page, Rect2(30, 190, 480, 54))
-	goals_label = label(page, "", Rect2(47, 196, 446, 40), 17)
+	goals_label = label(page, "", Rect2(47, 193, 446, 46), 14)
+	goals_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	board_view = BoardView.new()
 	board_view.position = Vector2(32, 270)
 	board_view.size = Vector2(476, 536)
@@ -297,7 +312,7 @@ func start_level(number: int, resume: bool = false) -> void:
 	for k in 4:
 		var direction: String = directions[k]
 		gravity_buttons[direction] = button(page, arrows[k], Rect2(31 + k * 56, 854, 48, 42), on_gravity.bind(direction), false, 24)
-	button(page, "Nasıl oynanır?", Rect2(274, 854, 235, 42), show_help, false, 15)
+	button(page, "Test araçları" if test_mode else "Nasıl oynanır?", Rect2(274, 854, 235, 42), show_mechanic_test_tools if test_mode else show_help, false, 15)
 	hint_label = label(page, "", Rect2(26, 903, 488, 46), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for node in page.get_children():
@@ -314,7 +329,7 @@ func start_level(number: int, resume: bool = false) -> void:
 	if tutorial_key not in save.data.tutorials and board.level.has("tutorial_swap"):
 		board_view.hint_index = int(board.level.tutorial_swap[0])
 		board_view.hint_target = int(board.level.tutorial_swap[1])
-	save.save_active(board)
+	if not test_mode: save.save_active(board)
 
 func update_hud() -> void:
 	score_target = board.score
@@ -324,8 +339,8 @@ func update_hud() -> void:
 	var descriptions: Array = []
 	for key in board.level.targets:
 		var target: int = int(board.level.targets[key])
-		var amount: int = mini(target, int(board.collected[key]))
-		var name: String = "Blok" if key == "total" else Strings.COLORS[int(key)]
+		var amount: int = mini(target, Objectives.value(board.collected,key))
+		var name: String = Objectives.NAMES[key] if Objectives.NAMES.has(key) else Strings.COLORS[int(key)]
 		descriptions.append("%s  %d/%d" % [name, amount, target])
 	goals_label.text = "   ·   ".join(descriptions)
 	resonance_label.text = "YANKI  ·  %s %d/3" % [Strings.COLORS[board.resonance.color] if board.resonance.color >= 0 else "", board.resonance.count] if board.level.resonance else "YANKI  ·  6. bölümde açılır"
@@ -337,7 +352,7 @@ func update_hud() -> void:
 	var progress := 0.0
 	for color in 5: garden.color_energy[color] = board.collected[str(color)]
 	for key in board.level.targets:
-		progress += minf(1, float(board.collected[key]) / float(board.level.targets[key]))
+		progress += minf(1, float(Objectives.value(board.collected,key)) / float(board.level.targets[key]))
 	garden.vitality = 0.15 + 0.85 * progress / board.level.targets.size()
 
 func set_hint(text: String) -> void:
@@ -367,9 +382,9 @@ func process_event(event: Dictionary) -> void:
 		board_view.animate(event)
 		return
 	var tutorial := "m3_level_%d" % int(board.level.id)
-	if tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
-	if event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
-	if event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
+	if not test_mode and tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
+	if not test_mode and event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
+	if not test_mode and event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
 	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Bahçe renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
 	update_hud()
@@ -377,8 +392,9 @@ func process_event(event: Dictionary) -> void:
 	score_target = score_display
 	score_label.text = str(int(score_display))
 	# Persist only the completely settled logical result, before cosmetic playback.
-	if board.outcome == "won": save.complete(board)
-	else: save.save_active(board)
+	if not test_mode:
+		if board.outcome == "won": save.complete(board)
+		else: save.save_active(board)
 	board_view.animate(event)
 
 func on_wave(data: Dictionary) -> void:
@@ -403,6 +419,13 @@ func on_wave(data: Dictionary) -> void:
 	else:
 		audio.play("large" if data.removed.size() >= 4 else "pop")
 		audio.vibrate()
+	var mechanic_sound := ""
+	for effect in data.get("mechanics",[]):
+		if not effect.opened: continue
+		if effect.kind=="lock": mechanic_sound="color"; break
+		elif effect.kind=="stone" or effect.kind=="ice": mechanic_sound="large"
+		elif mechanic_sound=="": mechanic_sound="resonance"
+	if mechanic_sound!="": audio.play(mechanic_sound)
 	if data.combo > 1:
 		audio.play("cascade",mini(4,int(data.combo)-1))
 		var names := ["Kombo!", "Süper Kombo!", "Muhteşem!", "Efsanevi Zincir!"]
@@ -427,7 +450,8 @@ func show_help() -> void:
 	open_overlay("Nasıl oynanır?")
 	var body := label(overlay, Strings.text("help_body"), Rect2(62, 311, 416, 308), 17, Palette.INK)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	button(overlay, "DEVAM ET", Rect2(68, 649, 404, 55), close_overlay, true)
+	button(overlay, "ENGELLER VE HEDEFLER", Rect2(68, 637, 404, 36), show_mechanic_help, false, 13)
+	button(overlay, "DEVAM ET", Rect2(68, 685, 404, 36), close_overlay, true, 15)
 
 func show_migration_notice() -> void:
 	if not save.data.get("migration_notice", false): return
@@ -501,6 +525,11 @@ func show_color_picker(index: int) -> void:
 	button(overlay, "VAZGEÇ", Rect2(171, 681, 198, 38), close_overlay, false, 13)
 
 func show_result() -> void:
+	if test_mode:
+		open_overlay("Test tamamlandı","Laboratuvar sonuçları ilerlemene kaydedilmez.")
+		button(overlay,"TAHTAYI SIFIRLA",Rect2(68,421,404,59),start_mechanic_test,true)
+		button(overlay,"ANA MENÜ",Rect2(68,508,404,55),show_home)
+		return
 	if board.outcome == "playing": return
 	var won: bool = board.outcome == "won"
 	if won: save.complete(board)
@@ -517,10 +546,10 @@ func show_result() -> void:
 		label(overlay, "★".repeat(stars) + "☆".repeat(3 - stars), Rect2(66, 368, 408, 64), 48, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 		label(overlay, "2★: %d   ·   3★: %d" % [board.level.stars[1], board.level.stars[2]], Rect2(66, 475, 408, 28), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-		if int(board.level.id) < 10:
+		if int(board.level.id) < Catalog.count():
 			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), start_level.bind(int(board.level.id) + 1), true)
 		else:
-			label(overlay, "İlk on adım tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+			label(overlay, "Bahçenin 30 adımı tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 			button(overlay, Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
 		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), start_level.bind(int(board.level.id)))
 	else:
@@ -552,7 +581,10 @@ func show_settings() -> void:
 	volume_slider("sfx","Efekt sesi",693)
 	button(page,"Performans ölçümü / rapor",Rect2(42,771,456,44),show_diagnostics,false,15)
 	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.3 · BÜYÜLÜ KRİSTALLER",Rect2(32,905,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.4 · BÜYÜLÜ BAHÇENİN SIRLARI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+
+	if developer_tools_available():
+		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
 
 func volume_slider(key: String, title: String, y: float) -> void:
 	label(page,title,Rect2(44,y,175,29),17)
@@ -616,3 +648,73 @@ func show_diagnostics() -> void:
 		print("PRIZMA_PERF "+content)
 		body.text = "Rapor panoya ve cihazdaki oyun verisine kaydedildi.\n\nBu raporu cihaz testinden sonra paylaşabilirsin.",true,15)
 	button(overlay,"KAPAT",Rect2(68,677,404,38),close_overlay,false,14)
+
+func developer_tools_available() -> bool:
+	return OS.has_feature("editor") or OS.has_feature("prizma_dev_tools")
+
+func start_mechanic_test() -> void:
+	if not developer_tools_available(): return
+	persist_board()
+	var definition:=Catalog.get_level(1)
+	definition.seed=test_seed
+	definition.name="Mekanik laboratuvarı"
+	definition.moves=100
+	definition.targets={"total":10000}
+	definition.layout=[]
+	definition.layout.resize(72)
+	definition.layout.fill(-1)
+	definition.gravity=true
+	definition.resonance=true
+	definition.opening_refill=[]
+	definition.erase("tutorial_swap")
+	definition.tutorial="Test araçlarıyla engel ekle. Gerçek ilerlemen değişmez."
+	start_level(1,false,definition)
+	board.energy=2
+	update_hud()
+
+func show_mechanic_test_tools() -> void:
+	if not developer_tools_available() or not test_mode: return
+	open_overlay("Mekanik laboratuvarı","Bu tahta ilerlemene ve ödüllerine kaydedilmez.")
+	label(overlay,"Seed",Rect2(67,377,90,34),16)
+	var seed_input:=SpinBox.new()
+	seed_input.position=Vector2(167,377)
+	seed_input.size=Vector2(300,36)
+	seed_input.min_value=1
+	seed_input.max_value=2147483647
+	seed_input.value=test_seed
+	overlay.add_child(seed_input)
+	seed_input.value_changed.connect(func(value): test_seed=int(value))
+	label(overlay,"Hücre (0–71)",Rect2(67,421,200,34),16)
+	var index_input:=SpinBox.new()
+	index_input.position=Vector2(280,421)
+	index_input.size=Vector2(187,36)
+	index_input.max_value=71
+	index_input.value=test_index
+	overlay.add_child(index_input)
+	index_input.value_changed.connect(func(value): test_index=int(value))
+	var kinds: Array=["seed","ice","stone","lock"]
+	var names: Array=["Tohum ekle","Buz ekle","Taş ekle","Kızıl kilit ekle"]
+	for i in 4:
+		button(overlay,names[i],Rect2(68+(i%2)*208,478+int(i/2)*51,196,43),add_test_mechanic.bind(kinds[i]),false,15)
+	button(overlay,"SEED İLE TAHTAYI SIFIRLA",Rect2(68,591,404,45),start_mechanic_test,true,15)
+	button(overlay,"GERİ DÖN",Rect2(68,653,404,44),close_overlay,false,15)
+
+func add_test_mechanic(kind: String) -> void:
+	if not developer_tools_available() or not test_mode or board_view.busy: return
+	close_overlay()
+	if not board.available(): return
+	# Replace a sandbox cell only; installed layers use the production manager.
+	board.cells[test_index]=board.make_cell()
+	var spec: Dictionary={"kind":kind,"index":test_index}
+	if kind=="lock": spec.merge({"color":0,"required":15})
+	Mechanics.install(board.cells,[spec])
+	Generator.repair_start(board.cells,board.rng,8,9)
+	board_view.set_board(board)
+	set_hint("%s eklendi · hücre %d · seed %d"%[kind,test_index,test_seed])
+	update_hud()
+
+func show_mechanic_help() -> void:
+	open_overlay("Bahçenin sırları")
+	var body:=label(overlay,"Tohum: yanında eşleştir, 2 darbeyle çiçek açar.\n\nBuz: kristali sabit tutar; yanında patlama veya doğrudan güçle 2 katmanı kır.\n\nTaş: 3 dayanıklılık. Doğrudan prizma 2 hasar verir; roket 1.\n\nRenk kilidi: istenen renkte normal kristalleri topla. Zincirler de sayılır.\n\nÇapraz komşuluk hasar vermez. Aynı dalga aynı engeli tekrar vurmaz.",Rect2(61,315,418,315),16)
+	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	button(overlay,"ANLADIM",Rect2(68,658,404,48),close_overlay,true,16)
