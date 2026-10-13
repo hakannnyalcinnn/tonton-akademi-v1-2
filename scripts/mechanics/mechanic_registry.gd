@@ -2,6 +2,9 @@ extends RefCounted
 ## Only implemented mechanics are registered. Layers describe ownership, not art.
 const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const DEFINITIONS := {
+	"seal":{"rule":preload("res://scripts/mechanics/sequence_seal.gd"),"layer":"obstacle","hp":0,"objective":"seals","name":"Şifreli Mühür"},
+	"bubble":{"layer":"motion","hp":1,"objective":"bubbles","name":"Yüzen Baloncuk"},
+	"fountain":{"rule":preload("res://scripts/mechanics/painting_fountain.gd"),"layer":"obstacle","hp":0,"objective":"fountains","name":"Boyama Çeşmesi"},
 	"vine": {"rule":preload("res://scripts/mechanics/vine_manager.gd"),"layer":"armor","hp":1,"objective":"vines","name":"Sarmaşık"},
 	"crate": {"rule":preload("res://scripts/mechanics/explosive_crate_manager.gd"),"layer":"obstacle","hp":2,"objective":"crates","name":"Sandık"},
 	"mirror": {"rule":preload("res://scripts/mechanics/mirror_manager.gd"),"layer":"obstacle","hp":0,"objective":"mirrors","name":"Ayna"},
@@ -20,6 +23,12 @@ static func integer(value: Variant, minimum: int, maximum: int) -> bool:
 static func valid_spec(spec: Variant) -> bool:
 	if not spec is Dictionary or not spec.has_all(["kind","index"]): return false
 	if spec.kind not in DEFINITIONS or not integer(spec.index,0,71): return false
+	if spec.kind=="seal":
+		if not spec.get("sequence",null) is Array or spec.sequence.size()<2 or spec.sequence.size()>5:return false
+		for color in spec.sequence:
+			if not integer(color,0,4):return false
+		return true
+	if spec.kind=="fountain":return integer(spec.get("color",-1),0,4)
 	if spec.kind=="mirror":return spec.get("orientation","") in ["/","\\"]
 	if spec.kind in ["dual","chameleon"]:
 		var colors=spec.get("colors",[]) if spec.kind=="dual" else spec.get("sequence",[])
@@ -33,6 +42,8 @@ static func valid_spec(spec: Variant) -> bool:
 	return true
 static func payload(spec: Dictionary) -> Dictionary:
 	var result := {"kind":spec.kind, "hp":DEFINITIONS[spec.kind].hp}
+	if spec.kind=="seal":result.merge({"sequence":spec.sequence.map(func(c):return int(c)),"step":0})
+	if spec.kind=="fountain":result.color=int(spec.color)
 	if spec.kind=="mirror":result.orientation=spec.orientation
 	if spec.kind == "lock":
 		result.merge({"color":int(spec.color),"required":int(spec.required),"energy":0})
@@ -41,12 +52,15 @@ static func payload(spec: Dictionary) -> Dictionary:
 	return result
 static func valid_cell(cell: Dictionary) -> bool:
 	var count := 0
-	for layer in ["armor","obstacle","trait"]:
+	for layer in ["armor","obstacle","trait","motion"]:
 		if not cell.has(layer): continue
 		count += 1
 		var m = cell[layer]
 		if not m is Dictionary or not m.has_all(["kind","hp"]) or m.kind not in DEFINITIONS: return false
 		if DEFINITIONS[m.kind].layer != layer or cell.p != "": return false
+		if layer=="motion":
+			if m.kind!="bubble" or m.hp!=1 or cell.get("fixed",false):return false
+			continue
 		if layer=="trait":
 			if cell.get("fixed",false) or m.hp!=0: return false
 			var spec: Dictionary=m.duplicate(true)
@@ -57,7 +71,12 @@ static func valid_cell(cell: Dictionary) -> bool:
 				if not m.has_all(["phase","count","period"]) or not integer(m.count,0,int(m.period)-1) or cell.c!=m.sequence[int(m.phase)]: return false
 			continue
 		if not cell.get("fixed",false): return false
-		if m.kind=="mirror":
+		if m.kind=="seal":
+			var spec: Dictionary=m.duplicate(true);spec.index=0
+			if m.hp!=0 or not valid_spec(spec) or not integer(m.get("step",-1),0,m.sequence.size()-1):return false
+		elif m.kind=="fountain":
+			if m.hp!=0 or not integer(m.get("color",-1),0,4):return false
+		elif m.kind=="mirror":
 			if m.hp!=0 or m.get("orientation","") not in ["/","\\"]:return false
 		elif m.kind == "lock":
 			if not m.has_all(["color","required","energy"]) or m.hp != 0: return false

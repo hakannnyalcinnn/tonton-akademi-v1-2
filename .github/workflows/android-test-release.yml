@@ -1,15 +1,15 @@
-name: PRIZMA bright casual visual redesign test release
+name: PRIZMA package 5 goals and 100-level test release
 
 on:
   push:
-    branches: [prizma-release-v0.7.0]
+    branches: [prizma-release-v0.8.0]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: prizma-test-release-v0.7.0
+  group: prizma-test-release-v0.8.0
   cancel-in-progress: true
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 25
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: 7227b330599f8df6151e57ea1dd9286a52498c2a
+      PRIZMA_ARTIFACT_COMMIT: 8f6b10ea28a4ad1898ca6645eb7fd24edeebac52
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
@@ -45,13 +45,13 @@ jobs:
         run: bash tools/test.sh
       - name: Retrieve exact tested APK without exposing signing key
         run: |
-          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.7.0
+          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.8.0
           test "$(git rev-parse FETCH_HEAD)" = "$PRIZMA_ARTIFACT_COMMIT"
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-match3.apk" > build/prizma-match3.apk
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-match3.apk.sha256" > build/prizma-match3.apk.sha256
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-runtime.sha256" > build/prizma-runtime.sha256
-          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-redesign-report.zip" > build/prizma-redesign-report.zip
-          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-redesign.png" > build/prizma-redesign.png
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-package5-report.zip" > build/prizma-package5-report.zip
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-package5.png" > build/prizma-package5.png
       - name: Verify exact runtime source, APK bytes and signature
         run: |
           python3 tools/runtime_digest.py > build/current-runtime.sha256
@@ -66,24 +66,24 @@ jobs:
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          cp build/prizma-match3.apk build/prizma-v0.7.0.apk
-          sha256sum build/prizma-v0.7.0.apk > build/prizma-v0.7.0.apk.sha256
-          if gh release view v0.7.0 >/dev/null 2>&1; then
+          cp build/prizma-match3.apk build/prizma-v0.8.0.apk
+          sha256sum build/prizma-v0.8.0.apk > build/prizma-v0.8.0.apk.sha256
+          if gh release view v0.8.0 >/dev/null 2>&1; then
             mkdir -p build/published
-            gh release download v0.7.0 --pattern prizma-runtime.sha256 --pattern prizma-v0.7.0.apk --dir build/published
+            gh release download v0.8.0 --pattern prizma-runtime.sha256 --pattern prizma-v0.8.0.apk --dir build/published
             cmp build/prizma-runtime.sha256 build/published/prizma-runtime.sha256
-            python3 -c 'from pathlib import Path; import hashlib; assert hashlib.sha256(Path("build/published/prizma-v0.7.0.apk").read_bytes()).digest() == hashlib.sha256(Path("build/prizma-match3.apk").read_bytes()).digest()'
+            python3 -c 'from pathlib import Path; import hashlib; assert hashlib.sha256(Path("build/published/prizma-v0.8.0.apk").read_bytes()).digest() == hashlib.sha256(Path("build/prizma-match3.apk").read_bytes()).digest()'
             echo "Existing prerelease matches the verified runtime and APK bytes."
             exit 0
           fi
-          gh release create v0.7.0 \
-            build/prizma-v0.7.0.apk \
-            build/prizma-v0.7.0.apk.sha256 \
+          gh release create v0.8.0 \
+            build/prizma-v0.8.0.apk \
+            build/prizma-v0.8.0.apk.sha256 \
             build/prizma-runtime.sha256 \
             build/prizma-source.zip \
-            build/prizma-redesign-report.zip \
-            build/prizma-redesign.png \
+            build/prizma-package5-report.zip \
+            build/prizma-package5.png \
             --target "$GITHUB_SHA" \
-            --title "PRİZMA 0.7.0 — Aydınlık görsel yenileme" \
+            --title "PRİZMA 0.8.0 — Görsel hedefler ve 100 bölüm" \
             --prerelease \
-            --notes-file docs/RELEASE_v0.7.0.md
+            --notes-file docs/RELEASE_v0.8.0.md

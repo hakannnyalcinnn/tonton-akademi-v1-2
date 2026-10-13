@@ -32,10 +32,10 @@ func run() -> void:
 	if game.save.has_method("finish_writes"):
 		game.save.background_writes = true
 		game.save.data.settings.quality = "performance" if "low" in OS.get_cmdline_user_args() else "balanced"
-	game.save.data.unlocked = 75 if "ocean" in OS.get_cmdline_user_args() else 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10
+	game.save.data.unlocked = 100 if "finale" in OS.get_cmdline_user_args() else 75 if "ocean" in OS.get_cmdline_user_args() else 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10
 	game.save.data.settings.music = false
 	game.audio.apply_settings(game.save.data.settings)
-	game.start_level(75 if "ocean" in OS.get_cmdline_user_args() else 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10)
+	game.start_level(100 if "finale" in OS.get_cmdline_user_args() else 75 if "ocean" in OS.get_cmdline_user_args() else 50 if "package2" in OS.get_cmdline_user_args() else 30 if "mechanics" in OS.get_cmdline_user_args() else 10)
 	await create_timer(0.5).timeout
 	running = true
 	var lab: bool="lab" in OS.get_cmdline_user_args()
@@ -46,10 +46,10 @@ func run() -> void:
 	for attempt in (20 if "low" in OS.get_cmdline_user_args() else 100):
 		if lab and attempt%5==0:
 			game.test_seed=104169+int(attempt/20)
-			game.start_mechanic_test();game.add_test_mechanic(["portal","vine","crate","mirror"][int(attempt/5)%4])
+			game.start_mechanic_test();game.add_test_mechanic((["fountain","bubble","conveyor","seal"] if "advanced" in OS.get_cmdline_user_args() else ["portal","vine","crate","mirror"])[int(attempt/5)%4])
 			await process_frame
 		if game.board.outcome != "playing":
-			game.start_level(51+attempt%25 if "ocean" in OS.get_cmdline_user_args() else 31+attempt%20 if "package2" in OS.get_cmdline_user_args() else 11+attempt%20 if "mechanics" in OS.get_cmdline_user_args() else 1+attempt%10)
+			game.start_level(76+attempt%25 if "finale" in OS.get_cmdline_user_args() else 51+attempt%25 if "ocean" in OS.get_cmdline_user_args() else 31+attempt%20 if "package2" in OS.get_cmdline_user_args() else 11+attempt%20 if "mechanics" in OS.get_cmdline_user_args() else 1+attempt%10)
 			await process_frame
 		var move: Array = Solver.best_move(game.board)
 		assert(not move.is_empty())
@@ -85,7 +85,9 @@ func run() -> void:
 	if "mechanics" in OS.get_cmdline_user_args(): suffix="mechanics-low" if "low" in OS.get_cmdline_user_args() else "mechanics"
 	if "package2" in OS.get_cmdline_user_args(): suffix="package2-low" if "low" in OS.get_cmdline_user_args() else "package2-balanced"
 	if "ocean" in OS.get_cmdline_user_args():suffix="ocean-low" if "low" in OS.get_cmdline_user_args() else "ocean-balanced"
-	if lab:suffix="lab-low" if "low" in OS.get_cmdline_user_args() else "lab-balanced"
+	if "finale" in OS.get_cmdline_user_args():suffix="finale-low" if "low" in OS.get_cmdline_user_args() else "finale-balanced"
+	if "advanced" in OS.get_cmdline_user_args():suffix="advanced-low" if "low" in OS.get_cmdline_user_args() else "advanced-balanced"
+	elif lab:suffix="lab-low" if "low" in OS.get_cmdline_user_args() else "lab-balanced"
 	var output := FileAccess.open("res://build/performance-"+suffix+".json",FileAccess.WRITE)
 	output.store_string(JSON.stringify(summary,"  "))
 	output.close()

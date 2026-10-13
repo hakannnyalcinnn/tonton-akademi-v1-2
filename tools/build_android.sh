@@ -23,7 +23,7 @@ from pathlib import Path
 from zipfile import ZipFile
 manifest = Path('build/android-package.txt').read_text()
 assert "name='" + sys.argv[2] + "'" in manifest
-assert "versionName='0.7.0'" in manifest
+assert "versionName='0.8.0'" in manifest
 assert "sdkVersion:'24'" in manifest and "targetSdkVersion:'36'" in manifest
 assert 'android.permission.INTERNET' not in manifest
 assert 'android.permission.VIBRATE' in manifest
@@ -44,6 +44,12 @@ with ZipFile(sys.argv[1]) as apk:
     assert [level['id'] for level in ocean] == list(range(51,76))
     assert not any(m['kind'] in ['vine','crate','mirror'] for level in ocean for m in level['mechanics'])
     assert not any(level.get('portals') for level in ocean)
+    finale = json.loads(apk.read('assets/data/levels-76-100.json'))['levels']
+    assert [level['id'] for level in finale] == list(range(76,101))
+    assert not any(m['kind'] in ['fountain','bubble','seal'] for level in finale for m in level['mechanics'])
+    assert not any(level.get('conveyors') for level in finale)
+    assert len(finale[-1]['objective_stages']) == 3
+    assert len(json.loads(apk.read('assets/assets/casual/regions.json'))['advanced']['regions']) == 8
     assert 'lib/arm64-v8a/libgodot_android.so' in names
     assert 'lib/armeabi-v7a/libgodot_android.so' in names
     assert not any(name.startswith(('assets/tests/', 'assets/tools/')) for name in names)

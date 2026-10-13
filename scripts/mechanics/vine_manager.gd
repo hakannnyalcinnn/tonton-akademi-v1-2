@@ -13,7 +13,7 @@ static func spread(cells: Array, maximum: int, width: int, height: int) -> Array
 		var neighbors:=Match.neighbors(source,width,height);neighbors.sort()
 		for target in neighbors:
 			var c=cells[target]
-			if c==null or c.p!="" or c.get("fixed",false) or c.has("trait") or c.has("armor") or c.has("obstacle"):continue
+			if c==null or c.p!="" or c.get("fixed",false) or c.has("trait") or c.has("armor") or c.has("obstacle") or c.has("motion"):continue
 			c.armor={"kind":"vine","hp":1};c.fixed=true
 			return [{"index":target,"source":source,"kind":"vine","opened":false}]
 	return []

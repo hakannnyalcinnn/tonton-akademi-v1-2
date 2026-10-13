@@ -27,7 +27,7 @@ func run() -> void:
 	game.save.finish_writes();game.save=Save.new("user://package4-ui-only.json");game.save.data=Save.defaults()
 	game.save.data.settings.music=false;game.save.data.settings.sfx=false;game.save.data.settings.reduced_motion=true
 	game.audio.apply_settings(game.save.data.settings)
-	check(Catalog.count()==75,"exactly 75 real levels")
+	check(Catalog.count()==100,"75 legacy plus 25 new real levels")
 	game.show_worlds();await process_frame
 	var locked:=false
 	for child in game.page.get_children():
@@ -46,9 +46,9 @@ func run() -> void:
 	for group in [0,4,5,6,7]:
 		game.show_map(group);await process_frame
 		check(game.garden.world==(1 if group<5 else 2),"map selects correct world art")
-		check(game.map_buttons.size()==(50 if group<5 else 25),"all real world levels present on winding map")
+		check(game.map_buttons.size()==50,"all real world levels present on winding map")
 		for n in game.map_buttons:
-			check(n>=1 and n<=75 and int(game.map_buttons[n].text)==n,"no unbuilt 76-100 button")
+			check(n>=1 and n<=100 and int(game.map_buttons[n].text)==n,"map uses only real 1-100 levels")
 	for n in range(51,76):
 		game.start_level(n);await process_frame
 		check(game.garden.world==2 and game.board.find_matches().is_empty(),"all ocean levels start stable in ocean world")
@@ -96,7 +96,7 @@ func run() -> void:
 		check(game.board.find_matches().is_empty() and game.board_view.get_child_count()==6,"new device chain finishes stable / pooled")
 		game.persist_board();check(game.save.data==original,"developer scenarios cannot change real saves")
 	game.start_level(75);game.board.outcome="won";game.board.score=10000;game.show_result()
-	check(game.save.data.unlocked==75 and game.save.data.world_rewards==[1],"75 challenge never grants ocean world-final reward or nonexistent 76")
+	check(game.save.data.unlocked==76 and game.save.data.world_rewards==[1],"75 challenge never grants ocean world-final reward and unlocks built 76")
 	var challenge_title:=false;var next_found:=false
 	for child in game.overlay.get_children():
 		if child is Label and "Okyanus meydan" in child.text:challenge_title=true

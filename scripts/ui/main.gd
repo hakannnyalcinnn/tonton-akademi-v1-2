@@ -47,7 +47,10 @@ var screen := "home"
 var paused := false
 var score_label: Label
 var moves_label: Label
-var goals_label: Label
+var level_label: Label
+var goals_panel
+var goal_tip: Control
+var pending_goal_tutorials: Array=[]
 var hint_label: Label
 var resonance_label: Label
 var energy_label: Label
@@ -94,6 +97,8 @@ func layout_stage() -> void:
 		page.position.y = 0 if screen == "game" else extra*.5
 	if screen == "game" and board_view:
 		board_view.position.y = 270+extra*.5
+		for node in page.get_children():
+			if node is Control and node.has_meta("hud_y"):node.position.y=float(node.get_meta("hud_y"))+extra*.5
 		for node in footer_nodes:
 			if is_instance_valid(node): node.position.y = float(node.get_meta("base_y"))+extra
 	if overlay_root:
@@ -163,6 +168,8 @@ func persist_board() -> void:
 
 func begin_page(next_screen: String) -> void:
 	close_overlay()
+	goal_tip=null
+	pending_goal_tutorials.clear()
 	if page != null:
 		page.hide()
 		page.queue_free()
@@ -296,9 +303,9 @@ func show_worlds() -> void:
 		picture.mouse_filter=Control.MOUSE_FILTER_IGNORE;picture.clip_contents=true;page.add_child(picture)
 		label(page,world_name(world),Rect2(56,y+159,390,30),23,Palette.GOLD)
 		var unlocked: bool=world==1 or int(save.data.unlocked)>=51
-		var node:=button(page,"1–50 · BAHÇEYİ KEŞFET" if world==1 else ("51–75 · OKYANUSA DAL" if unlocked else "50. BÖLÜMÜ TAMAMLA"),Rect2(48,y+201,444,41),show_map.bind(0 if world==1 else 5),unlocked,15)
+		var node:=button(page,"1–50 · BAHÇEYİ KEŞFET" if world==1 else ("51–100 · OKYANUSA DAL" if unlocked else "50. BÖLÜMÜ TAMAMLA"),Rect2(48,y+201,444,41),show_map.bind(0 if world==1 else 5),unlocked,15)
 		node.disabled=not unlocked
-	if ProjectSettings.get_setting("prizma/show_future_levels",true):label(page,"76–100 hazırlanıyor · henüz oynanabilir değil",Rect2(28,823,484,34),15,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+
 
 func show_map(group: int = -1) -> void:
 	persist_board();test_mode=false
@@ -306,7 +313,7 @@ func show_map(group: int = -1) -> void:
 	else:map_group=0 if selected_world==1 else 5
 	begin_page("map")
 	apply_world_progress(1 if map_group<5 else 2)
-	title_header(world_name(selected_world),"1–50 · BÜYÜLÜ BAHÇE" if selected_world==1 else ("51–75 OYNANABİLİR · 76–100 HAZIRLANIYOR" if ProjectSettings.get_setting("prizma/show_future_levels",true) else "51–75 · KRİSTAL OKYANUS"))
+	title_header(world_name(selected_world),"1–50 · BÜYÜLÜ BAHÇE" if selected_world==1 else "51–100 · KRİSTAL OKYANUS")
 	button(page,"DÜNYALAR",Rect2(350,179,158,35),show_worlds,false,13)
 	label(page,"Her bölüm yeni bir renk.",Rect2(32,179,305,30),17,Palette.GOLD)
 	map_buttons.clear()
@@ -317,7 +324,7 @@ func show_map(group: int = -1) -> void:
 	page.add_child(scroll)
 	var path:=MapPath.new()
 	var first:=1 if selected_world==1 else 51
-	var last:=50 if selected_world==1 else 75
+	var last:=50 if selected_world==1 else 100
 	path.count=last-first+1;path.ocean=selected_world==2
 	path.custom_minimum_size=Vector2(456,path.count*100+100)
 	scroll.add_child(path)
@@ -343,7 +350,7 @@ func show_map(group: int = -1) -> void:
 	scroll.set_deferred("scroll_vertical",maxi(0,(map_group*10+1-first)*100-70))
 
 	var start_group:=0 if selected_world==1 else 5
-	var groups:=5 if selected_world==1 else 3
+	var groups:=5
 	for i in groups:
 		var group_index:=start_group+i
 		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+i*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
@@ -356,22 +363,26 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
-	card(page,Rect2(23,14,494,88),Color(1,.98,.94,.9))
-	label(page, "GELİŞTİRİCİ · KAYIT DIŞI TEST" if test_mode else world_name(selected_world), Rect2(32, 22, 330, 28), 13, Palette.GOLD)
-	label(page, "%02d  /  %s" % [number, board.level.name], Rect2(32, 55, 415, 39), 23)
-	button(page, "Ⅱ", Rect2(456, 38, 52, 50), show_pause, false, 23)
-	card(page, Rect2(30, 110, 480, 65))
-	label(page, Strings.text("score"), Rect2(49, 119, 150, 17), 11, Palette.MUTED)
-	score_label = label(page, "0", Rect2(49, 137, 225, 29), 24)
-	label(page, Strings.text("moves"), Rect2(351, 119, 139, 17), 11, Palette.MUTED, HORIZONTAL_ALIGNMENT_RIGHT)
-	moves_label = label(page, "", Rect2(354, 137, 136, 29), 24, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
+	card(page,Rect2(23,12,494,59),Color(1,.98,.94,.9))
+	label(page,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),Rect2(32,15,350,19),11,Palette.GOLD)
+	level_label=label(page,"%02d  /  %s"%[number,board.level.name],Rect2(32,35,415,31),20)
+	button(page,"Ⅱ",Rect2(456,23,52,40),show_pause,false,23)
+	card(page,Rect2(30,79,480,57))
+	label(page,Strings.text("score"),Rect2(49,85,150,17),11,Palette.MUTED)
+	score_label=label(page,"0",Rect2(49,104,140,27),23)
+	label(page,Strings.text("moves"),Rect2(351,85,139,17),11,Palette.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+	moves_label=label(page,"",Rect2(354,104,136,27),23,Palette.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
 	star_progress=preload("res://scripts/ui/star_progress.gd").new()
-	star_progress.position=Vector2(195,132);star_progress.size=Vector2(142,24)
+	star_progress.position=Vector2(195,102);star_progress.size=Vector2(142,24)
 	star_progress.thresholds=board.level.stars;star_progress.quiet=save.data.settings.reduced_motion
 	page.add_child(star_progress)
-	card(page, Rect2(30, 190, 480, 54))
-	goals_label = label(page, "", Rect2(47, 193, 446, 46), 14)
-	goals_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	goals_panel=preload("res://scripts/ui/goals_panel.gd").new()
+	goals_panel.position=Vector2(30,145);goals_panel.size=Vector2(480,112)
+	goals_panel.quiet=save.data.settings.reduced_motion
+	page.add_child(goals_panel)
+	goals_panel.configure(board.active_targets(),board.collected)
+	goals_panel.goal_pressed.connect(show_goal_description)
+	goals_panel.goal_completed.connect(func(_key):audio.play("resonance"))
 	board_view = BoardView.new()
 	board_view.position = Vector2(32, 270)
 	board_view.size = Vector2(476, 536)
@@ -382,6 +393,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.set_board(board)
 	board_view.swap_requested.connect(on_swap)
 	board_view.special_pressed.connect(on_special)
+	board_view.device_pressed.connect(show_seal_description)
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
@@ -399,6 +411,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	hint_label = label(page, "", Rect2(26, 903, 488, 46), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for node in page.get_children():
+		if node is Control and node.position.y<270:node.set_meta("hud_y",node.position.y)
 		if node is Control and node.position.y>=816:
 			node.set_meta("base_y",node.position.y)
 			footer_nodes.append(node)
@@ -413,20 +426,18 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 		board_view.hint_index = int(board.level.tutorial_swap[0])
 		board_view.hint_target = int(board.level.tutorial_swap[1])
 	if not test_mode: save.save_active(board)
+	queue_goal_tutorials()
 
-func update_hud() -> void:
+func update_hud(update_goals: bool=true) -> void:
+	if update_goals and board.level.has("objective_stages"):level_label.text="%d / %s · %d/%d"%[int(board.level.id),board.level.name,board.objective_stage+1,board.level.objective_stages.size()]
 	star_progress.target=board.score
 	score_target = board.score
 	score_display = board.score
 	score_label.text = str(board.score)
 	moves_label.text = str(board.moves)
-	var descriptions: Array = []
-	for key in board.level.targets:
-		var target: int = int(board.level.targets[key])
-		var amount: int = mini(target, Objectives.value(board.collected,key))
-		var name: String = Objectives.NAMES[key] if Objectives.NAMES.has(key) else Strings.COLORS[int(key)]
-		descriptions.append("%s  %d/%d" % [name, amount, target])
-	goals_label.text = "   ·   ".join(descriptions)
+	if update_goals:
+		if goals_panel.targets!=board.active_targets():goals_panel.configure(board.active_targets(),board.collected)
+		goals_panel.update_progress(board.collected,false)
 	resonance_label.text = "YANKI  ·  %s %d/3" % [Strings.COLORS[board.resonance.color] if board.resonance.color >= 0 else "", board.resonance.count] if board.level.resonance else "YANKI  ·  6. bölümde açılır"
 	energy_label.text = "YÖN  ·  %d/2  (%d/12)" % [board.energy, board.energy_blocks] if board.level.gravity else "YÖN  ·  4. bölümde"
 	for direction in gravity_buttons:
@@ -471,7 +482,7 @@ func process_event(event: Dictionary) -> void:
 	if not test_mode and event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
 	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Dünya renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
-	update_hud()
+	update_hud(false)
 	score_display = board.score - int(event.points)
 	score_target = score_display
 	star_progress.target=score_display
@@ -483,9 +494,11 @@ func process_event(event: Dictionary) -> void:
 	board_view.animate(event)
 
 func on_environment(data: Dictionary) -> void:
-	audio.play("portal" if data.kind=="portal" else "vine")
+	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance"}.get(data.kind,"pop"))
+	if data.has("collected"):goals_panel.update_progress(data.collected)
 
 func on_wave(data: Dictionary) -> void:
+	goals_panel.update_progress(data.get("collected",board.collected))
 	if not data.get("beams",[]).is_empty():audio.play("mirror")
 	for effect in data.get("mechanics",[]):
 		if effect.kind in ["vine","crate"]:audio.play(effect.kind);break
@@ -538,10 +551,58 @@ func on_gravity(direction: String) -> void:
 	process_event(event)
 	set_hint(Strings.text("gravity_hint"))
 
+func show_seal_description(index: int) -> void:
+	if screen!="game" or board_view.busy:return
+	var m: Dictionary=board.cells[index].get("obstacle",{})
+	if m.get("kind","")!="seal":return
+	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,12+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,125);page.add_child(goal_tip)
+	card(goal_tip,Rect2(0,0,480,125),Color("fffaf0"))
+	label(goal_tip,"ŞİFRELİ MÜHÜR · RENK SIRASI",Rect2(18,8,400,25),16,Palette.GOLD)
+	for k in m.sequence.size():
+		var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=preload("res://scripts/ui/goal_registry.gd").icon(str(m.sequence[k]));icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(25+k*70,42);icon.size=Vector2(42,42);goal_tip.add_child(icon)
+		label(goal_tip,"✓" if k<int(m.step) else ("SIRADAKİ" if k==int(m.step) else ""),Rect2(15+k*70,91,62,18),10,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(goal_tip,"×",Rect2(429,9,42,38),close_goal_tip,false,20)
+func show_goal_description(key: String,tutorial: bool=false) -> void:
+	if screen!="game" or not board.level.targets.has(key):return
+	close_goal_tip()
+	board_view.highlight_goal(key)
+	goal_tip=Control.new();goal_tip.position=Vector2(30,12+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,125)
+	page.add_child(goal_tip)
+	card(goal_tip,Rect2(0,0,480,125),Color("fffaf0"))
+	var registry=preload("res://scripts/ui/goal_registry.gd")
+	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(12,24);icon.size=Vector2(65,65);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
+	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(88,10,325,23),16,Palette.GOLD)
+	var text:=label(goal_tip,registry.description(key,int(board.level.targets[key])),Rect2(88,35,330,70),15)
+	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	button(goal_tip,"×",Rect2(429,9,42,38),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
+	if tutorial:button(goal_tip,"GEÇ",Rect2(374,92,95,26),advance_goal_tutorial,false,11)
+func close_goal_tip() -> void:
+	if is_instance_valid(goal_tip):goal_tip.hide();goal_tip.queue_free()
+	goal_tip=null
+func queue_goal_tutorials() -> void:
+	if test_mode:return
+	for key in board.level.targets:
+		var marker: String="goal_"+key
+		if marker not in save.data.tutorials:pending_goal_tutorials.append(key)
+	if not pending_goal_tutorials.is_empty():
+		var key: String=pending_goal_tutorials.pop_front()
+		if "goal_"+key not in save.data.tutorials:save.data.tutorials.append("goal_"+key)
+		save.flush();show_goal_description(key,true)
+func advance_goal_tutorial() -> void:
+	close_goal_tip()
+	if not pending_goal_tutorials.is_empty():
+		var key: String=pending_goal_tutorials.pop_front()
+		if "goal_"+key not in save.data.tutorials:save.data.tutorials.append("goal_"+key)
+		save.flush();show_goal_description(key,true)
+func replay_goal_tutorials() -> void:
+	close_overlay()
+	pending_goal_tutorials=board.level.targets.keys().duplicate()
+	advance_goal_tutorial()
 func show_help() -> void:
 	open_overlay("Nasıl oynanır?")
 	var body := label(overlay, Strings.text("help_body"), Rect2(62, 311, 416, 308), 17, Palette.INK)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button(overlay,"HEDEF İKONLARINI GÖSTER",Rect2(68,595,404,32),replay_goal_tutorials,false,13)
 	button(overlay, "ENGELLER VE HEDEFLER", Rect2(68, 637, 404, 36), show_mechanic_help, false, 13)
 	button(overlay, "DEVAM ET", Rect2(68, 685, 404, 36), close_overlay, true, 15)
 
@@ -657,7 +718,7 @@ func show_result() -> void:
 		if int(board.level.id) < Catalog.count():
 			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), start_level.bind(int(board.level.id) + 1), true)
 		else:
-			label(overlay, "75 tamamlandı · 76–100 hazırlanıyor", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+			label(overlay, "100 bölüm tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 			button(overlay, "OKYANUSU KEŞFET" if int(board.level.id)>=51 else Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
 		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), start_level.bind(int(board.level.id)))
 	else:
@@ -802,10 +863,10 @@ func show_mechanic_test_tools() -> void:
 	index_input.value=test_index
 	overlay.add_child(index_input)
 	index_input.value_changed.connect(func(value): test_index=int(value))
-	var kinds: Array=["seed","ice","stone","lock","dual","chameleon","bridge","pin","portal","vine","crate","mirror"]
-	var names: Array=["Tohum","Buz","Taş","Renk kilidi","Çift renk","Bukalemun","Prizma Köprüsü","Yer Çekimi Çivisi","Portal sahnesi","Sarmaşık sahnesi","Sandık sahnesi","Ayna sahnesi"]
-	for i in 12:
-		button(overlay,names[i],Rect2(68+(i%2)*208,391+int(i/2)*42,196,36),add_test_mechanic.bind(kinds[i]),false,14)
+	var kinds: Array=["seed","ice","stone","lock","dual","chameleon","bridge","pin","portal","vine","crate","mirror","fountain","bubble","conveyor","seal"]
+	var names: Array=["Tohum","Buz","Taş","Renk kilidi","Çift renk","Bukalemun","Prizma Köprüsü","Yer Çekimi Çivisi","Portal sahnesi","Sarmaşık sahnesi","Sandık sahnesi","Ayna sahnesi","Boyama Çeşmesi","Yüzen Baloncuk","Konveyör","Şifreli Mühür"]
+	for i in 16:
+		button(overlay,names[i],Rect2(68+(i%2)*208,386+int(i/2)*33,196,29),add_test_mechanic.bind(kinds[i]),false,14)
 	button(overlay,"SEED İLE TAHTAYI SIFIRLA",Rect2(68,653,404,42),start_mechanic_test,true,15)
 	button(overlay,"GERİ DÖN",Rect2(68,706,404,38),close_overlay,false,15)
 
@@ -813,7 +874,7 @@ func add_test_mechanic(kind: String) -> void:
 	if not developer_tools_available() or not test_mode or board_view.busy: return
 	close_overlay()
 	if not board.available(): return
-	if kind in ["portal","vine","crate","mirror"]:
+	if kind in ["portal","vine","crate","mirror","fountain","bubble","conveyor","seal"]:
 		var definition:=preload("res://scripts/mechanics/developer_scenarios.gd").make(kind,test_seed)
 		start_level(1,false,definition);board.energy=2;update_hud()
 		return
@@ -847,26 +908,27 @@ func show_world_result() -> void:
 	audio.play("win")
 	garden.vitality=1.0
 	garden.color_energy=[18,18,18,18,18]
-	open_overlay("Büyülü Bahçe tamamlandı!","Renkler uyandı. Dünya madalyan kaydedildi.")
+	open_overlay("Kristal Okyanus uyandı!" if selected_world==2 else "Büyülü Bahçe tamamlandı!","Mercanlar canlandı. Okyanus madalyan kaydedildi." if selected_world==2 else "Renkler uyandı. Dünya madalyan kaydedildi.")
 	var medal:=TextureRect.new()
 	medal.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-	medal.texture=CasualSkin.texture("traits",18,CasualSkin.TRAITS)
+	medal.texture=CasualSkin.texture("decor",7,CasualSkin.DECOR) if selected_world==2 else CasualSkin.texture("traits",18,CasualSkin.TRAITS)
 	medal.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	medal.position=Vector2(202,376)
 	medal.size=Vector2(136,136)
 	medal.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(medal)
-	label(overlay,"BÜYÜLÜ BAHÇE MADALYASI",Rect2(55,514,430,31),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(overlay,"KRİSTAL OKYANUS MADALYASI" if selected_world==2 else "BÜYÜLÜ BAHÇE MADALYASI",Rect2(55,514,430,31),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	label(overlay,"★".repeat(Score.stars(board.score,board.level.stars))+"  ·  %d PUAN"%board.score,Rect2(55,553,430,30),19,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
 	if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 		var celebration:=Celebration.new()
 		celebration.world_finale=true
+		celebration.ocean=selected_world==2
 		overlay.add_child(celebration)
 	if int(board.level.id)<Catalog.count():
 		button(overlay,"SONRAKİ DÜNYA",Rect2(68,604,404,45),start_level.bind(int(board.level.id)+1),true,17)
 	else:
-		label(overlay,"Yeni dünya hazırlanıyor",Rect2(55,599,430,32),19,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-	button(overlay,"BAHÇEYİ KEŞFET",Rect2(68,653,404,45),show_map.bind(4),true,17)
+		label(overlay,"İki dünya · 100 bölüm tamamlandı!",Rect2(55,599,430,32),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"OKYANUSU KEŞFET" if selected_world==2 else "BAHÇEYİ KEŞFET",Rect2(68,653,404,45),show_map.bind(9 if selected_world==2 else 4),true,17)
 
 func show_crystal_help() -> void:
 	open_overlay("İki rengin uyanışı")

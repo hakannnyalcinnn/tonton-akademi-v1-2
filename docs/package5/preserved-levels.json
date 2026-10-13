@@ -1,0 +1,26 @@
+[
+  {
+    "file": "data/levels.json",
+    "bytes": 12831,
+    "sha256": "20756128e877c301c159a964f4da8892df280b0ee604d427db3446ba6dd6809c",
+    "identical_to_v0_7": true
+  },
+  {
+    "file": "data/levels-11-30.json",
+    "bytes": 33515,
+    "sha256": "b15ffdbb45818c3abe1282ed8677c1665b8a7c38ca9df7f1521d56eea386f8b8",
+    "identical_to_v0_7": true
+  },
+  {
+    "file": "data/levels-31-50.json",
+    "bytes": 38658,
+    "sha256": "ca4bef32b19fb5dee563d56d5b285547c1e94125fea1244636640b0fed79294d",
+    "identical_to_v0_7": true
+  },
+  {
+    "file": "data/levels-51-75.json",
+    "bytes": 43421,
+    "sha256": "44c9370a60b9a9f4de269c5b9546285a174f337bd4592102eec84efd69a743d8",
+    "identical_to_v0_7": true
+  }
+]

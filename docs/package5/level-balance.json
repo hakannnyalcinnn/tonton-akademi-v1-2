@@ -1,0 +1,208 @@
+{
+  "checks": 18111,
+  "failures": 0,
+  "games": 500,
+  "levels": [
+    {
+      "base_score": 3840,
+      "games": 20,
+      "level": 76,
+      "max_moves_used": 7,
+      "mean_score": 4073.0,
+      "wins": 20
+    },
+    {
+      "base_score": 5650,
+      "games": 20,
+      "level": 77,
+      "max_moves_used": 18,
+      "mean_score": 6296.5,
+      "wins": 20
+    },
+    {
+      "base_score": 5130,
+      "games": 20,
+      "level": 78,
+      "max_moves_used": 7,
+      "mean_score": 5989.5,
+      "wins": 20
+    },
+    {
+      "base_score": 8250,
+      "games": 20,
+      "level": 79,
+      "max_moves_used": 8,
+      "mean_score": 5760.0,
+      "wins": 20
+    },
+    {
+      "base_score": 7820,
+      "games": 20,
+      "level": 80,
+      "max_moves_used": 13,
+      "mean_score": 7947.5,
+      "wins": 20
+    },
+    {
+      "base_score": 4740,
+      "games": 20,
+      "level": 81,
+      "max_moves_used": 5,
+      "mean_score": 5718.0,
+      "wins": 20
+    },
+    {
+      "base_score": 5920,
+      "games": 20,
+      "level": 82,
+      "max_moves_used": 3,
+      "mean_score": 5813.0,
+      "wins": 20
+    },
+    {
+      "base_score": 5050,
+      "games": 20,
+      "level": 83,
+      "max_moves_used": 7,
+      "mean_score": 5683.5,
+      "wins": 20
+    },
+    {
+      "base_score": 5490,
+      "games": 20,
+      "level": 84,
+      "max_moves_used": 7,
+      "mean_score": 7212.0,
+      "wins": 20
+    },
+    {
+      "base_score": 7210,
+      "games": 20,
+      "level": 85,
+      "max_moves_used": 10,
+      "mean_score": 7302.5,
+      "wins": 20
+    },
+    {
+      "base_score": 4840,
+      "games": 20,
+      "level": 86,
+      "max_moves_used": 7,
+      "mean_score": 4643.0,
+      "wins": 20
+    },
+    {
+      "base_score": 4060,
+      "games": 20,
+      "level": 87,
+      "max_moves_used": 9,
+      "mean_score": 5259.0,
+      "wins": 20
+    },
+    {
+      "base_score": 4930,
+      "games": 20,
+      "level": 88,
+      "max_moves_used": 7,
+      "mean_score": 6084.5,
+      "wins": 20
+    },
+    {
+      "base_score": 5340,
+      "games": 20,
+      "level": 89,
+      "max_moves_used": 11,
+      "mean_score": 7175.5,
+      "wins": 20
+    },
+    {
+      "base_score": 6760,
+      "games": 20,
+      "level": 90,
+      "max_moves_used": 10,
+      "mean_score": 7475.5,
+      "wins": 20
+    },
+    {
+      "base_score": 5330,
+      "games": 20,
+      "level": 91,
+      "max_moves_used": 6,
+      "mean_score": 4988.0,
+      "wins": 20
+    },
+    {
+      "base_score": 4500,
+      "games": 20,
+      "level": 92,
+      "max_moves_used": 13,
+      "mean_score": 5587.0,
+      "wins": 20
+    },
+    {
+      "base_score": 5270,
+      "games": 20,
+      "level": 93,
+      "max_moves_used": 9,
+      "mean_score": 5784.0,
+      "wins": 20
+    },
+    {
+      "base_score": 7890,
+      "games": 20,
+      "level": 94,
+      "max_moves_used": 10,
+      "mean_score": 6675.0,
+      "wins": 20
+    },
+    {
+      "base_score": 6870,
+      "games": 20,
+      "level": 95,
+      "max_moves_used": 12,
+      "mean_score": 6931.5,
+      "wins": 20
+    },
+    {
+      "base_score": 7860,
+      "games": 20,
+      "level": 96,
+      "max_moves_used": 10,
+      "mean_score": 6960.5,
+      "wins": 20
+    },
+    {
+      "base_score": 9690,
+      "games": 20,
+      "level": 97,
+      "max_moves_used": 9,
+      "mean_score": 9041.5,
+      "wins": 20
+    },
+    {
+      "base_score": 9100,
+      "games": 20,
+      "level": 98,
+      "max_moves_used": 10,
+      "mean_score": 8842.5,
+      "wins": 20
+    },
+    {
+      "base_score": 7630,
+      "games": 20,
+      "level": 99,
+      "max_moves_used": 11,
+      "mean_score": 9212.5,
+      "wins": 20
+    },
+    {
+      "base_score": 10100,
+      "games": 20,
+      "level": 100,
+      "max_moves_used": 9,
+      "mean_score": 10502.0,
+      "wins": 20
+    }
+  ],
+  "moves": 2760
+}

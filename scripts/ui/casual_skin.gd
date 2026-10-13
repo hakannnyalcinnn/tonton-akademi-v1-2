@@ -1,5 +1,6 @@
 extends RefCounted
 ## Original generated art; source rectangles are indexed, never loaded during drag.
+const ADVANCED=preload("res://assets/casual/advanced.png")
 const GEMS=preload("res://assets/casual/gems.png")
 const MECHANICS=preload("res://assets/casual/mechanics.png")
 const TRAITS=preload("res://assets/casual/traits.png")

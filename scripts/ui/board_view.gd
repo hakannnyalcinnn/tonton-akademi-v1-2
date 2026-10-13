@@ -1,6 +1,7 @@
 extends Control
 signal swap_requested(a: int, b: int)
 signal special_pressed(index: int)
+signal device_pressed(index: int)
 signal animation_finished
 signal environment_started(data: Dictionary)
 signal wave_started(data: Dictionary)
@@ -23,6 +24,8 @@ const HEIGHT := 9
 const STRIDE := CELL + GAP
 const DRAG_THRESHOLD := CELL * 0.26
 var board
+var goal_highlights: Array=[]
+var goal_highlight_time:=0.0
 var settings: Dictionary = {}
 var quality := "balanced"
 var textures: Array[AtlasTexture] = []
@@ -191,6 +194,10 @@ func start_environment(data: Dictionary) -> void:
 		for transfer in data.get("transfers",[]):positions.append(transfer.from);positions.append(transfer.to)
 	else:
 		for growth in data.get("growth",[]):positions.append(growth.index)
+		for i in data.get("broken",[]):positions.append(i)
+		for e in data.get("seals",[]):positions.append(e.index)
+		for e in data.get("fountains",[]):
+			for c in e.painted:positions.append(c.index)
 	for index in positions:
 		for k in (3 if quality=="performance" else 6):
 			var slot:=particle_cursor%particle_budget();particle_cursor+=1
@@ -210,9 +217,19 @@ func set_board(value) -> void:
 	trait_idle_animation=has_trait_animation(displayed)
 	target = displayed
 	queue.clear()
-	current.clear()
+	current={}
 	cancel_drag()
 	queue_redraw()
+
+func highlight_goal(key: String) -> void:
+	goal_highlights.clear()
+	for i in displayed.size():
+		if preload("res://scripts/ui/goal_registry.gd").relevant(key,displayed[i]):goal_highlights.append(i)
+	if key=="conveyors":
+		for rail in board.level.get("conveyors",[]):goal_highlights.append_array(rail.cells)
+	if key=="portals":
+		for pair in board.level.get("portals",[]):goal_highlights.append(pair.entry);goal_highlights.append(pair.exit)
+	goal_highlight_time=1.0;queue_redraw()
 
 func cell_position(index: int) -> Vector2:
 	return Vector2(index % WIDTH, int(index / WIDTH)) * STRIDE
@@ -240,7 +257,7 @@ func animate(event: Dictionary) -> void:
 func next_frame() -> void:
 	if queue.is_empty():
 		busy = false
-		current.clear()
+		current={}
 		displayed = board.cells.duplicate(true)
 		board.release_presentation()
 		animation_finished.emit()
@@ -252,7 +269,7 @@ func next_frame() -> void:
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20}.get(current.kind, 0.12)
 	bomb_origin=-1
 	if current.kind=="clear":
 		for index in current.get("triggered",[]):
@@ -260,7 +277,7 @@ func next_frame() -> void:
 		if bomb_origin>=0 and not reduced_motion:duration=.30
 	age = 0
 	board.visual_phase(int(current.state))
-	if current.kind in ["portal","vine"]:
+	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait"]:
 		environment_started.emit(current)
 		start_environment(current)
 	if current.kind == "clear":
@@ -300,6 +317,8 @@ func _process(delta: float) -> void:
 		adaptive_time = 0
 	if not reduced_motion: clock += delta
 	var active := busy or drag_index >= 0
+	if goal_highlight_time>0:
+		goal_highlight_time=maxf(0,goal_highlight_time-delta);active=true
 	if busy:
 		age += delta
 		if age >= duration:
@@ -355,7 +374,9 @@ func _gui_input(event: InputEvent) -> void:
 		position_local = event.position
 	if press:
 		var index := index_at(position_local)
-		if index < 0 or board.cells[index].get("fixed", false): return
+		if index<0:return
+		if board.cells[index].get("obstacle",{}).get("kind","")=="seal":device_pressed.emit(index);return
+		if board.cells[index].get("fixed",false):return
 		drag_index = index
 		selected = index
 		pointer_id = pointer
@@ -459,6 +480,15 @@ func _draw() -> void:
 			if not reduced_motion and quality!="performance":
 				var center:=portal_rect.get_center()
 				draw_arc(center,24,clock*.7,clock*.7+PI*.8,12,Color(pair_color,.5),1.4,true)
+	for rail in board.level.get("conveyors",[]):
+		for k in rail.cells.size():
+			var i: int=rail.cells[k]
+			var j: int=rail.cells[(k+1)%rail.cells.size()] if rail.loop or k<rail.cells.size()-1 else rail.cells[k-1]
+			var axis:=cell_position(j)-cell_position(i)
+			var center:=cell_position(i)+Vector2(28,28)
+			draw_set_transform(center,axis.angle())
+			draw_texture_rect_region(CasualSkin.ADVANCED,Rect2(-28,-28,56,56),CasualSkin.region("advanced",3))
+			draw_set_transform(shake)
 	for i in values.size():
 		if values[i] == null: continue
 		var cell: Dictionary = values[i]
@@ -481,9 +511,25 @@ func _draw() -> void:
 		if pos.y < -CELL or pos.y > HEIGHT * STRIDE or pos.x < -CELL or pos.x > WIDTH * STRIDE: continue
 		if i == drag_index: continue
 		draw_cell(cell, Rect2(pos, Vector2(CELL, CELL)), i == hint_index or i == hint_target or i == selected)
+	if goal_highlight_time>0:
+		for i in goal_highlights:
+			draw_style_box(goal_highlight_style(),Rect2(cell_position(i)-Vector2(1,1),Vector2(58,58)))
 	if drag_index >= 0:
 		draw_texture_rect(GLOW,Rect2(cell_position(drag_index)+drag_offset+Vector2(0,6),Vector2(CELL,CELL)),false,Color(0,0,0,.5))
 		draw_cell(displayed[drag_index], Rect2(cell_position(drag_index) + drag_offset, Vector2(CELL, CELL)), true)
+	if busy and current.kind=="paint":
+		for e in current.get("fountains",[]):
+			for gem in e.painted:
+				var source:=cell_position(e.source)+Vector2(28,28);var destination:=cell_position(gem.index)+Vector2(28,28)
+				var drop:=source.lerp(destination,ease)+Vector2(0,-35*sin(t*PI))
+				draw_circle(drop,4,Palette.COLORS[e.color].lightened(.35));draw_texture_rect(GLOW,Rect2(destination-Vector2(30,30),Vector2(60,60)),false,Color(Palette.COLORS[e.color],sin(t*PI)*.65))
+	if busy and current.kind=="bubble":
+		for i in current.get("broken",[]):draw_arc(cell_position(i)+Vector2(28,28),23+t*12,0,TAU,20,Color(.7,.92,1,1-t),2,true)
+	if busy and current.kind=="seal":
+		for e in current.get("seals",[]):
+			var center:=cell_position(e.index)+Vector2(28,28)
+			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(Color("ffe693") if e.opened or e.correct else Color("ee91b3"),sin(t*PI)*.65))
+			if e.opened:draw_texture_rect_region(CasualSkin.ADVANCED,Rect2(center-Vector2(28,28),Vector2(56,56)),CasualSkin.region("advanced",6),Color(1,1,1,1-t))
 	if busy and current.kind == "clear":
 		for i in current.removed:
 			if previous[i] == null: continue
@@ -539,6 +585,15 @@ func _draw() -> void:
 				draw_texture_rect_region(TraitVFX.ATLAS,Rect2(center-Vector2(28,28),Vector2(CELL,CELL)),trait_regions[TraitVFX.index(old)],Color(1,1,1,1-ease))
 			draw_texture_rect(GLOW,Rect2(center-Vector2(34,34),Vector2(68,68)),false,Color(Palette.COLORS[int(effect.to)],sin(t*PI)*.7))
 	draw_mechanic_layers()
+	for rail in board.level.get("conveyors",[]):
+		for k in rail.cells.size():
+			if not rail.loop and k==rail.cells.size()-1:continue
+			var i: int=rail.cells[k];var j: int=rail.cells[(k+1)%rail.cells.size()]
+			var axis: Vector2=(cell_position(j)-cell_position(i)).normalized();var side:=Vector2(-axis.y,axis.x)
+			var point:=cell_position(i)+Vector2(28,28)+axis*23
+			draw_polyline(PackedVector2Array([point-axis*5-side*4,point,point-axis*5+side*4]),Color("187b82"),4,true)
+			draw_polyline(PackedVector2Array([point-axis*5-side*4,point,point-axis*5+side*4]),Color("affffe"),1.6,true)
+
 	if busy and current.kind=="vine":
 		for growth in current.get("growth",[]):
 			var center:=cell_position(growth.index)+Vector2(28,28)
@@ -619,6 +674,8 @@ func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool, match_color: in
 				draw_texture_rect(GLOW,Rect2(glint-Vector2(7,7),Vector2(14,14)),false,Color(Palette.COLORS[k*2],.5))
 	elif not cell.has("obstacle"):
 		draw_texture_rect_region(ATLAS,CasualSkin.fit(jewel,textures[texture_index].region),textures[texture_index].region)
+	if cell.has("motion"):
+		draw_texture_rect_region(CasualSkin.ADVANCED,jewel.grow(1),CasualSkin.region("advanced",2))
 	var layer := Mechanics.layer(cell)
 	if layer!="":
 		layer_cells[layer_draw_count]=cell
@@ -645,6 +702,14 @@ func draw_mechanic_layers() -> void:
 						var grown_size:=jewel.size*(.25+.75*smoothstep(0,1,phase))
 						extent=Rect2(center-grown_size/2,grown_size);opacity=.15+.85*phase
 			draw_texture_rect_region(DeviceVFX.ATLAS,CasualSkin.fit(extent,DeviceVFX.region(DeviceVFX.index(m.kind,m))),DeviceVFX.region(DeviceVFX.index(m.kind,m)),Color(1,1,1,opacity))
+		elif m.kind in ["fountain","seal"]:
+			draw_texture_rect_region(CasualSkin.ADVANCED,CasualSkin.fit(jewel,CasualSkin.region("advanced",5 if m.kind=="seal" else (0 if m.color==0 else 1))),CasualSkin.region("advanced",5 if m.kind=="seal" else (0 if m.color==0 else 1)))
+			if m.kind=="fountain":draw_texture_rect_region(ATLAS,Rect2(center+Vector2(-9,6),Vector2(18,18)),textures[int(m.color)].region)
+			else:
+				for k in m.sequence.size():
+					var pos:=center+Vector2((k-(m.sequence.size()-1)*.5)*12,17)
+					if k<int(m.step):draw_circle(pos,7,Color("87e9a0"))
+					draw_texture_rect_region(ATLAS,Rect2(pos-Vector2(5,5),Vector2(10,10)),textures[int(m.sequence[k])].region)
 		elif m.kind=="pin":
 			draw_texture_rect_region(TraitVFX.ATLAS,CasualSkin.fit(jewel,trait_regions[16 if m.hp==2 else 17]),trait_regions[16 if m.hp==2 else 17])
 		else: draw_texture_rect_region(MechanicVFX.ATLAS,CasualSkin.fit(jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region),mechanic_textures[MechanicVFX.index(m.kind,m)].region)
@@ -664,3 +729,9 @@ func has_trait_animation(values: Array) -> bool:
 		if cell!=null and cell.has("trait"):
 			if cell.trait.kind=="bridge" or (cell.trait.kind=="chameleon" and int(cell.trait.count)==int(cell.trait.period)-1):return true
 	return false
+
+var highlight_style: StyleBoxFlat
+func goal_highlight_style() -> StyleBoxFlat:
+	if highlight_style==null:
+		highlight_style=StyleBoxFlat.new();highlight_style.bg_color=Color(1,.92,.3,.08);highlight_style.border_color=Color("fff09a");highlight_style.set_border_width_all(2);highlight_style.set_corner_radius_all(10)
+	return highlight_style

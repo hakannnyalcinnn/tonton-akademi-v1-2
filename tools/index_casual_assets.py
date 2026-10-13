@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 ROOT=Path(__file__).resolve().parents[1]/'assets/casual'
-GRIDS={'gems':(3,3),'mechanics':(4,4),'traits':(5,4),'devices':(4,2),'ui':(3,2),'decor':(4,2)}
+GRIDS={'gems':(3,3),'mechanics':(4,4),'traits':(5,4),'devices':(4,2),'ui':(3,2),'decor':(4,2),'advanced':(4,2)}
 result={}
 for name,(cols,rows) in GRIDS.items():
  path=ROOT/(name+'.png')

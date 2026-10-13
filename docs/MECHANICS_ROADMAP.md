@@ -1,10 +1,14 @@
-# PRİZMA mekanik planı — 0.6.0
+# PRİZMA mekanik planı — 0.8.0
 
-1–6: önceki motor, dört engel, çift renkli ve bukalemun kristaller korunur.
-7–8: Köprü ve Çivi artık Kristal Okyanus'ta 51–75. bölümlerde kullanılır.
-9–12: Portal, Sarmaşık, Sandık, Ayna uygulanmıştır; normal bölümlerde açılmamıştır. Geliştiriciye dört ayrı test sahnesi sunulur.
-13–20: gelecekteki paketler; kullanıcı onayı olmadan geliştirilmez.
-Dünya 2 aralığı 51–100, oynanabilir kısmı 51–75. 75 dünya finali değildir.
+1–8: önceki kristal ve engel kuralları, ilk 75 bölümde korunur.
+9–12: Portal, Canlı Sarmaşık, Patlayıcı Sandık ve Yönlü Ayna, 76–100 bölümünde kademeli olarak açılır.
+13–16: Boyama Çeşmesi, Yüzen Baloncuk, Konveyör Rayları ve Şifreli Mühür uygulanmıştır. Yalnızca dört ayrı geliştirici test sahnesinde kullanılabilir; kampanyaya konulmamıştır.
+17–20: gelecekteki paketler; yeni kullanıcı onayı olmadan geliştirilmez.
+İki dünya ve 100 gerçek bölüm vardır. 100, üç hedef aşamalı Kristal Okyanus finalidir. İlk 75 bölümün JSON verisi 0.7.0 ile byte düzeyinde aynıdır.
+
+Görsel hedef kayıt sistemi `goal_registry.gd` altında; merkezi gerçek sayaçlar `ObjectiveManager` ve `Board.collected` altında bulunur. Hücre cihazları sabit `obstacle`, baloncuk kristalin hareketli `motion` katmanı, konveyör rayları ise bölümün koordinat yollarıdır.
+
+Aşağıdaki notlar önceki sürümlerin tarihi tasarım kaydıdır; güncel durum yukarıdadır.
 
 Aşağıdaki 0.4.0 tasarım notları tarihi kayıt olarak korunmuştur. Buradaki 5–8
 "gelecek" satırları 0.5.0'daki yukarıdaki durumla güncellenmiştir.

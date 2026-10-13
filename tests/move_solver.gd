@@ -34,6 +34,18 @@ static func move_value(b, a: int, destination: int) -> float:
 		if kind=="dual" and b.collected.duals<int(b.level.targets.get("duals",0)):value+=40
 		if kind=="chameleon" and b.collected.shifts<int(b.level.targets.get("shifts",0)):value-=150
 		if b.level.targets.has(color) and b.collected[color] < b.level.targets[color]: value += 4
+	if b.collected.get("mirrors",0)<int(b.level.targets.get("mirrors",0)):
+		var reflected: Dictionary={}
+		for source in removed:
+			if b.cells[source]==null or not str(b.cells[source].p).begins_with("rocket"):continue
+			for axis in ([Vector2i(-1,0),Vector2i(1,0)] if b.cells[source].p=="rocket_h" else [Vector2i(0,-1),Vector2i(0,1)]):
+				for target in preload("res://scripts/mechanics/beam_resolver.gd").trace(source,axis,b.cells,8).path:
+					if b.cells[target]!=null and b.cells[target].get("obstacle",{}).get("kind","")=="mirror":reflected[target]=true
+		value+=reflected.size()*80
+	if b.collected.get("portals",0)<int(b.level.targets.get("portals",0)):
+		for portal in b.level.get("portals",[]):
+			if removed.any(func(i):return i%8==int(portal.entry)%8 and i/8>=int(portal.entry)/8):
+				value+=18 if b.cells[int(portal.entry)].p=="" else (50 if int(portal.entry) in removed else 0)
 	# Prefer damage to unfinished mechanics; predict a wave without mutating it.
 	if not b.level.get("mechanics",[]).is_empty():
 		var hits: Dictionary = preload("res://scripts/mechanics/damage_resolver.gd").plan(b.cells,removed,removed,[],8,9)

@@ -1,0 +1,15 @@
+{
+  "platform": "Linux Xvfb Mesa llvmpipe LLVM19.1.7; no real Android device",
+  "viewport": [
+    540,
+    960
+  ],
+  "cap_fps": 60,
+  "godot": "4.6.3",
+  "native_actions": 100,
+  "blocked_duplicates": 100,
+  "invalid": 10,
+  "lab_actions": 100,
+  "low_lab_actions": 20,
+  "notes": "Measured after gameplay and art settled, before final tall-screen HUD anchoring adjustment. That adjustment has zero displacement at this 540x960 viewport. Final Android source is tested again by full build and release CI. TIME_PROCESS is a coarse stale monitor, not per-frame CPU. Memory static is not Android RSS/VRAM."
+}

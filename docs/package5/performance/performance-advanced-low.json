@@ -1,0 +1,519 @@
+{
+  "action_log": [
+    {
+      "attempt": 0,
+      "cascades": 5,
+      "engine_ms": 7.962,
+      "scene": "Boyama çeşmesi sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 1,
+      "cascades": 5,
+      "engine_ms": 9.752,
+      "scene": "Boyama çeşmesi sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 2,
+      "cascades": 2,
+      "engine_ms": 5.174,
+      "scene": "Boyama çeşmesi sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 3,
+      "cascades": 2,
+      "engine_ms": 4.294,
+      "scene": "Boyama çeşmesi sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 4,
+      "cascades": 1,
+      "engine_ms": 8.697,
+      "scene": "Boyama çeşmesi sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 5,
+      "cascades": 1,
+      "engine_ms": 2.78,
+      "scene": "Yüzen baloncuk sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 6,
+      "cascades": 1,
+      "engine_ms": 2.794,
+      "scene": "Yüzen baloncuk sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 7,
+      "cascades": 1,
+      "engine_ms": 1.448,
+      "scene": "Yüzen baloncuk sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 8,
+      "cascades": 1,
+      "engine_ms": 1.504,
+      "scene": "Yüzen baloncuk sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 9,
+      "cascades": 2,
+      "engine_ms": 2.146,
+      "scene": "Yüzen baloncuk sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 10,
+      "cascades": 6,
+      "engine_ms": 7.602,
+      "scene": "Konveyör rayları sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 11,
+      "cascades": 2,
+      "engine_ms": 4.561,
+      "scene": "Konveyör rayları sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 12,
+      "cascades": 2,
+      "engine_ms": 3.067,
+      "scene": "Konveyör rayları sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 13,
+      "cascades": 3,
+      "engine_ms": 3.565,
+      "scene": "Konveyör rayları sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 14,
+      "cascades": 5,
+      "engine_ms": 5.677,
+      "scene": "Konveyör rayları sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 15,
+      "cascades": 3,
+      "engine_ms": 4.793,
+      "scene": "Şifreli mühür sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 16,
+      "cascades": 2,
+      "engine_ms": 2.988,
+      "scene": "Şifreli mühür sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 17,
+      "cascades": 4,
+      "engine_ms": 3.949,
+      "scene": "Şifreli mühür sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 18,
+      "cascades": 1,
+      "engine_ms": 3.002,
+      "scene": "Şifreli mühür sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    },
+    {
+      "attempt": 19,
+      "cascades": 2,
+      "engine_ms": 5.651,
+      "scene": "Şifreli mühür sahnesi",
+      "seed": 104169,
+      "shuffled": false
+    }
+  ],
+  "action_types": {
+    "specials": 0,
+    "swaps": 20
+  },
+  "cascade_waves": 51,
+  "device_diagnostics": {
+    "audio_output_latency_ms": 0.0,
+    "counters": {
+      "active_quality": "performance",
+      "frames": 2206,
+      "frames_over_33ms": 18,
+      "peak_live_objects": 2178,
+      "peak_static_memory_bytes": 54498815
+    },
+    "device_model": "GenericDevice",
+    "display": {
+      "height": 960,
+      "refresh_rate_hz": null,
+      "safe_area": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "width": 540
+    },
+    "incidents": [],
+    "metrics": {
+      "animation_bubble": {
+        "max_ms": 150.0,
+        "mean_ms": 150.0,
+        "p50_ms": 150.0,
+        "p95_ms": 150.0,
+        "samples": 1
+      },
+      "animation_clear": {
+        "max_ms": 316.657012939453,
+        "mean_ms": 218.563913083544,
+        "p50_ms": 216.65966796875,
+        "p95_ms": 219.537445068359,
+        "samples": 51
+      },
+      "animation_conveyor": {
+        "max_ms": 218.31755065918,
+        "mean_ms": 216.990246582031,
+        "p50_ms": 216.657669067383,
+        "p95_ms": 216.66667175293,
+        "samples": 5
+      },
+      "animation_fall": {
+        "max_ms": 166.665328979492,
+        "mean_ms": 159.674947738647,
+        "p50_ms": 165.350784301758,
+        "p95_ms": 166.664001464844,
+        "samples": 56
+      },
+      "animation_paint": {
+        "max_ms": 233.33332824707,
+        "mean_ms": 233.32899983724,
+        "p50_ms": 233.327331542969,
+        "p95_ms": 233.327331542969,
+        "samples": 3
+      },
+      "animation_refill": {
+        "max_ms": 185.95832824707,
+        "mean_ms": 182.794784000942,
+        "p50_ms": 183.328338623047,
+        "p95_ms": 183.33332824707,
+        "samples": 56
+      },
+      "animation_seal": {
+        "max_ms": 216.65966796875,
+        "mean_ms": 213.790576171875,
+        "p50_ms": 216.641998291016,
+        "p95_ms": 216.651992797852,
+        "samples": 5
+      },
+      "animation_swap": {
+        "max_ms": 194.235336303711,
+        "mean_ms": 186.301011657715,
+        "p50_ms": 184.618667602539,
+        "p95_ms": 193.660003662109,
+        "samples": 20
+      },
+      "board_draw_cpu": {
+        "max_ms": 10.9130001068115,
+        "mean_ms": 0.445683594072761,
+        "p50_ms": 0.404000014066696,
+        "p95_ms": 0.705999970436096,
+        "samples": 2048
+      },
+      "clear_logic": {
+        "max_ms": 1.44900000095367,
+        "mean_ms": 0.226470588761217,
+        "p50_ms": 0.194000005722046,
+        "p95_ms": 0.345999985933304,
+        "samples": 51
+      },
+      "conveyor_logic": {
+        "max_ms": 0.028999999165535,
+        "mean_ms": 0.0260000001639128,
+        "p50_ms": 0.025000000372529,
+        "p95_ms": 0.0260000005364418,
+        "samples": 5
+      },
+      "fountain_logic": {
+        "max_ms": 0.423000007867813,
+        "mean_ms": 0.0252745099977462,
+        "p50_ms": 0.00100000004749745,
+        "p95_ms": 0.0370000004768372,
+        "samples": 51
+      },
+      "frame_interval": {
+        "max_ms": 166.102005004883,
+        "mean_ms": 16.9888624753803,
+        "p50_ms": 16.6639995574951,
+        "p95_ms": 19.2150001525879,
+        "samples": 2048
+      },
+      "gravity_logic": {
+        "max_ms": 0.620000004768372,
+        "mean_ms": 0.138785714150539,
+        "p50_ms": 0.136999994516373,
+        "p95_ms": 0.236000001430511,
+        "samples": 56
+      },
+      "legal_move_logic": {
+        "max_ms": 0.407999992370605,
+        "mean_ms": 0.150200001057237,
+        "p50_ms": 0.0970000028610229,
+        "p95_ms": 0.400000005960464,
+        "samples": 20
+      },
+      "main_thread_cpu": {
+        "max_ms": 165.873001098633,
+        "mean_ms": 37.6117359655909,
+        "p50_ms": 23.5909996032715,
+        "p95_ms": 80.6999969482422,
+        "samples": 2048
+      },
+      "match_scan": {
+        "max_ms": 5.96099996566772,
+        "mean_ms": 0.420486842527201,
+        "p50_ms": 0.150999993085861,
+        "p95_ms": 0.873000025749207,
+        "samples": 76
+      },
+      "mechanic_wave": {
+        "max_ms": 0.101999998092651,
+        "mean_ms": 0.0411666667621051,
+        "p50_ms": 0.0390000008046627,
+        "p95_ms": 0.0560000017285347,
+        "samples": 42
+      },
+      "portal_logic": {
+        "max_ms": 0.00800000037997961,
+        "mean_ms": 0.00500000012910058,
+        "p50_ms": 0.00400000018998981,
+        "p95_ms": 0.00800000037997961,
+        "samples": 29
+      },
+      "refill_logic": {
+        "max_ms": 0.096000000834465,
+        "mean_ms": 0.0241428570090128,
+        "p50_ms": 0.0219999998807907,
+        "p95_ms": 0.0320000015199184,
+        "samples": 56
+      },
+      "render_cpu": {
+        "max_ms": 20.4500007629395,
+        "mean_ms": 1.33247363331611,
+        "p50_ms": 1.07200002670288,
+        "p95_ms": 3.24399995803833,
+        "samples": 2048
+      },
+      "render_gpu": {
+        "max_ms": 161.47900390625,
+        "mean_ms": 9.28607372846454,
+        "p50_ms": 8.81900024414062,
+        "p95_ms": 12.6459999084473,
+        "samples": 2048
+      },
+      "save_worker": {
+        "max_ms": 2.05900001525879,
+        "mean_ms": 1.36333334445953,
+        "p50_ms": 1.71700000762939,
+        "p95_ms": 1.71700000762939,
+        "samples": 3
+      },
+      "seal_logic": {
+        "max_ms": 0.0509999990463257,
+        "mean_ms": 0.0345999997109175,
+        "p50_ms": 0.0299999993294477,
+        "p95_ms": 0.0350000001490116,
+        "samples": 5
+      }
+    },
+    "platform": "Linux",
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "settings": {
+      "colorblind": false,
+      "haptics": true,
+      "music": false,
+      "music_volume": 0.65,
+      "quality": "performance",
+      "reduced_effects": false,
+      "reduced_motion": false,
+      "sfx": true,
+      "sfx_volume": 0.8,
+      "shake": true
+    },
+    "slow_frames": [
+      {
+        "busy": false,
+        "frame_ms": 108.955,
+        "level": 10,
+        "phase": "ready",
+        "time_ms": 772
+      },
+      {
+        "busy": true,
+        "frame_ms": 60.0916666666667,
+        "level": 1,
+        "phase": "swap",
+        "time_ms": 1180
+      },
+      {
+        "busy": true,
+        "frame_ms": 74.802,
+        "level": 1,
+        "phase": "swap",
+        "time_ms": 4315
+      },
+      {
+        "busy": true,
+        "frame_ms": 67.161,
+        "level": 1,
+        "phase": "swap",
+        "time_ms": 7494
+      },
+      {
+        "busy": true,
+        "frame_ms": 59.465,
+        "level": 1,
+        "phase": "swap",
+        "time_ms": 8803
+      },
+      {
+        "busy": true,
+        "frame_ms": 85.946,
+        "level": 1,
+        "phase": "swap",
+        "time_ms": 10162
+      },
+      {
+        "busy": false,
+        "frame_ms": 76.369,
+        "level": 1,
+        "phase": "ready",
+        "time_ms": 11125
+      },
+      {
+        "busy": false,
+        "frame_ms": 71.593,
+        "level": 1,
+        "phase": "ready",
+        "time_ms": 15597
+      },
+      {
+        "busy": true,
+        "frame_ms": 63.631,
+        "level": 1,
+        "phase": "refill",
+        "time_ms": 16808
+      },
+      {
+        "busy": true,
+        "frame_ms": 166.102,
+        "level": 1,
+        "phase": "fall",
+        "time_ms": 25216
+      },
+      {
+        "busy": false,
+        "frame_ms": 78.474,
+        "level": 1,
+        "phase": "ready",
+        "time_ms": 29516
+      }
+    ],
+    "version": "0.8.0"
+  },
+  "frames": 2185,
+  "metrics": {
+    "draw_calls": {
+      "count": 2185,
+      "max": 175.0,
+      "mean": 70.666819221968,
+      "p50": 60.0,
+      "p95": 112.0
+    },
+    "engine_delta_ms": {
+      "count": 2185,
+      "max": 138.177,
+      "mean": 16.9893095347067,
+      "p50": 16.6666666666667,
+      "p95": 16.8510000000004
+    },
+    "engine_swap_ms": {
+      "count": 20,
+      "max": 9.752,
+      "mean": 4.5703,
+      "p50": 3.949,
+      "p95": 8.697
+    },
+    "frame_interval_ms": {
+      "count": 2184,
+      "max": 166.066,
+      "mean": 16.9771996336996,
+      "p50": 16.666,
+      "p95": 18.978
+    },
+    "memory_static_bytes": {
+      "count": 2185,
+      "max": 46255555.0,
+      "mean": 44828384.2128146,
+      "p50": 45126563.0,
+      "p95": 46077883.0
+    },
+    "objects": {
+      "count": 2185,
+      "max": 1860.0,
+      "mean": 1846.04210526316,
+      "p50": 1857.0,
+      "p95": 1859.0
+    },
+    "presentation_and_save_ms": {
+      "count": 20,
+      "max": 0.42,
+      "mean": 0.2052,
+      "p50": 0.193,
+      "p95": 0.306
+    },
+    "process_cpu_ms": {
+      "count": 2185,
+      "max": 165.873,
+      "mean": 39.1916352402753,
+      "p50": 24.192,
+      "p95": 79.604
+    }
+  },
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "successful_actions": 20,
+  "successful_swaps": 20
+}

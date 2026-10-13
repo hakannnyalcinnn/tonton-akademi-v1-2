@@ -25,8 +25,8 @@ func run() -> void:
 	check(scroll.scroll_vertical>start+100,"native finger swipe scrolls curved map")
 	check(game.screen=="map","scroll does not accidentally select a level")
 	game.show_map(7);await process_frame;await process_frame
-	check(game.map_buttons.size()==25,"ocean has exactly 25 nodes")
-	for n in game.map_buttons:check(n>=51 and n<=75,"ocean nodes use existing levels")
+	check(game.map_buttons.size()==50,"ocean has exactly 50 nodes")
+	for n in game.map_buttons:check(n>=51 and n<=100,"ocean nodes use existing levels")
 	game.save.data.unlocked=1;game.show_map(0);await process_frame;await process_frame
 	for node in game.map_buttons[1].get_parent().get_children():
 		if node is TextureRect:check(node.size.x<=100 and node.size.y<=100,"map atlas icons honor bounds, not source texture minimum size")

@@ -78,7 +78,7 @@ func load_save() -> bool:
 			data.settings = merged
 			data.unlocked = int(data.unlocked)
 			# Previously ten was the catalog cap, even when level ten was complete.
-			var caps: Array=[10,30]
+			var caps: Array=[10,30,75]
 			for world in range(1,Catalog.world_for(Catalog.count())+1):caps.append(world*50)
 			for cap in caps:
 				if data.unlocked==cap and data.results.has(str(cap)): data.unlocked=mini(cap+1,Catalog.count())

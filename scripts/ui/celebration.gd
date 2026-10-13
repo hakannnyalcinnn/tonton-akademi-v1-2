@@ -1,6 +1,7 @@
 extends Control
 const Art=preload("res://scripts/ui/casual_skin.gd")
 var world_finale := false
+var ocean:=false
 var challenge:=false
 var age := 0.0
 
@@ -31,3 +32,9 @@ func _draw() -> void:
 		for k in 12:
 			var direction:=Vector2.from_angle(k*TAU/12+age*.1)
 			draw_line(center+direction*(50+age*24),center+direction*(61+age*36),Color(.83,1,.85,fade),2,true)
+
+	if ocean:
+		for i in 6:
+			var center:=Vector2(270,444)+Vector2.from_angle(i*TAU/6+age*.1)*(100+age*30)
+			var sprite:=Art.region("decor",4 if i%2==0 else 5)
+			draw_texture_rect_region(Art.DECOR,Art.fit(Rect2(center-Vector2(24,24),Vector2(48,48)),sprite),sprite,Color(1,1,1,clampf((2.4-age)*2,0,1)))

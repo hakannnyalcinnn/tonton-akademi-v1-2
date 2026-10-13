@@ -93,3 +93,12 @@ if ! bash tools/godot.sh --headless --audio-driver Dummy --script tests/casual_u
 fi
 cat build/casual-ui.log
 if rg -q '^SCRIPT ERROR:|^ERROR:|^FAIL:' build/casual-ui.log; then exit 1; fi
+
+for suite in goals_panel_tests package5_mechanics package5_ui ocean_finale_levels finale_ui; do
+    if ! bash tools/godot.sh --headless --audio-driver Dummy --script "tests/$suite.gd" > "build/$suite.log" 2>&1; then
+        cat "build/$suite.log"
+        exit 1
+    fi
+    cat "build/$suite.log"
+    if rg -q '^SCRIPT ERROR:|^ERROR:|^FAIL:' "build/$suite.log"; then exit 1; fi
+done

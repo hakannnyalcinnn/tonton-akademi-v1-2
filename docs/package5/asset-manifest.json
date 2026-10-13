@@ -1,0 +1,32 @@
+[
+  {
+    "path": "assets/casual/gems.png",
+    "bytes": 1506998,
+    "sha256": "8d3505c71c920b35beb7b566f49f16deb3360663e7f6ef3c515dab3f787ab962"
+  },
+  {
+    "path": "assets/casual/mechanics.png",
+    "bytes": 2061634,
+    "sha256": "4cc45ddabf9c300d1abba8439f2e73b7fc6b9c5dd3d55d9be394b642b1f4144b"
+  },
+  {
+    "path": "assets/casual/traits.png",
+    "bytes": 2007514,
+    "sha256": "a311f48b1ee56bee7cae17d93ccd2bf1c7a40d464faa38455f87627b30a384d4"
+  },
+  {
+    "path": "assets/casual/devices.png",
+    "bytes": 1816728,
+    "sha256": "53fa905e59fc0d4baa967629422c992762ffce22e1b3f7388eac74a8f9944a6a"
+  },
+  {
+    "path": "assets/casual/advanced.png",
+    "bytes": 1825009,
+    "sha256": "ea2050a600390ec934188d2695093e5d4003b79d224f59ab7a8598f77ee64b91"
+  },
+  {
+    "path": "assets/casual/regions.json",
+    "bytes": 5928,
+    "sha256": "1adb7a5032410a0b8a9d2b52944f8cf2664b5f7f50fdd547fa932fe3c8bd2dcf"
+  }
+]
