@@ -55,7 +55,7 @@ Dördü yalnızca geliştirici laboratuvarında bulunur; kampanya katalogu 13–
 
 ## Çalıştırılan testler
 
-`bash tools/test.sh`: **118.120 kontrol/assertion, sıfır başarısız**. Ayrıca dört ayrı 100 geçerli +100 yinelenen native kaydırma regresyon koşusu ve iki süreçli kayıt devamı başarılı. [Tam çıktı](package5/logs/full-regression.log), [özet](package5/test-summary.txt).
+`bash tools/test.sh`: **118.120 kontrol/assertion, sıfır başarısız**. Ayrıca dört ayrı 100 geçerli +100 yinelenen native kaydırma regresyon koşusu ve iki süreçli kayıt devamı başarılı. [Tam test çıktıları rapor ZIP’i içinde](https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.8.0/prizma-package5-report.zip), [özet](package5/test-summary.txt).
 
 - Hedef paneli: önce 75 bölümde 1.842, son 100 bölümde 2.460 kontrol. Tek/iki/altı/yedi hedef, gerçek ikon, sayaç/tik olayları, açıklama, doğru vurgu, nonblocking dokunma, kayıt dönüşü, üç ekran oranı ve değişmeyen 72 hücre koordinatı.
 - Yeni mekanikler: 20.841 kontrol, 800 seed'li tahta, 6.400 başarılı eylem. Aynı seed/eylem aynı snapshot; 72 benzersiz kimlik, boşluk/kopya yok, kararlı eşleşmesiz ve oynanabilir tahta, yeni katmanların kayıt dönüşü. Yukarıdaki etkileşim senaryoları çalıştırıldı.
