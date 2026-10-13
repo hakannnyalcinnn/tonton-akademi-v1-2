@@ -76,7 +76,10 @@ func test_damage() -> void:
 	check(dual.cells[3]==null and dual.cells[20].obstacle.energy==0,"independent differently colored locks")
 func test_integration() -> void:
 	for number in [11,16,21,26]:
-		var b=Board.new(Catalog.get_level(number))
+		var teaching:=Catalog.get_level(number)
+		# This unit fixture isolates the obstacle; campaign total targets now require strategy.
+		teaching.targets.erase("total")
+		var b=Board.new(teaching)
 		check(b.find_matches().is_empty() and Match.has_move(b.cells,8,9),"teaching board stable/playable")
 		var before: int=b.moves
 		var event: Dictionary=b.swap(1,9)
@@ -86,9 +89,10 @@ func test_integration() -> void:
 		check(b.find_matches().is_empty(),"release cascades finish stable")
 		check(b.outcome=="won","last teaching objective ends after cascades")
 		check(not event.cascade_guard,"normal teaching has no cascade recovery")
-		var restored=Board.new(Catalog.get_level(number))
+		var restored=Board.new(b.level)
 		check(restored.restore(b.snapshot()) and restored.snapshot()==b.snapshot(),"mechanic settled snapshot restored exactly")
-	var last=Board.new(Catalog.get_level(11))
+	var last_definition:=Catalog.get_level(11);last_definition.targets={"flowers":1}
+	var last=Board.new(last_definition)
 	last.moves=1
 	var last_event: Dictionary=last.swap(1,9)
 	check(last.outcome=="won" and last.moves==0 and last_event.cascade_count>=2,"last move waits for seed cascade completion")
@@ -141,8 +145,11 @@ func test_environmental_gravity() -> void:
 			var protected: Dictionary=b.cells[27].duplicate(true)
 			b.cells[26]=null
 			b.cells[43]=null
-			var event: Dictionary=b.change_gravity(direction)
-			check(event.accepted and b.moves==100 and b.energy>=0,"mechanic gravity environmental action spends no move")
+			b.direction=direction
+			b.frames.clear();b.settle(true)
+			var event: Dictionary=b.resolve(b.find_matches(),[],[],-1,-1,false,false)
+			event.frames=b.frames.duplicate()
+			check(b.moves==100 and b.energy>=0,"mechanic environmental resolver spends no move")
 			check(event.frames[0].kind=="fall" and event.frames[0].after[27]==protected,"fixed mechanic remains in first gravity frame")
 			check(b.find_matches().is_empty() and null not in b.cells and Match.has_move(b.cells,8,9),"gravity refills around mechanic and resolves cascades")
 
@@ -207,7 +214,7 @@ func simulations() -> void:
 			max_used=maxi(max_used,actions)
 			game_count+=1
 		results.append({"level":number,"wins":wins,"games":30,"max_moves_used":max_used,"min_score":min_score,"max_score":max_score,"mean_score":score_sum/30.0})
-		check(wins==30,"level %d heuristic solvability %d/30"%[number,wins])
+		check(wins>=21,"level %d gameplay2 heuristic minimum 70%% %d/30"%[number,wins])
 		print("Mechanic Level %02d: %d/30 won, max %d moves"%[number,wins,max_used])
 func run() -> void:
 	test_damage()

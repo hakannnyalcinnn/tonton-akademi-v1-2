@@ -1,7 +1,7 @@
 extends RefCounted
 const Match = preload("res://scripts/core/match_detector.gd")
 ## A wave is a single damage transaction. Overlaps select max, never sum.
-static func plan(cells: Array, exploded: Array, direct: Array, triggered: Array, width: int, height: int) -> Dictionary:
+static func plan(cells: Array, exploded: Array, direct: Array, triggered: Array, width: int, height: int, virtual: Array = []) -> Dictionary:
 	var hits: Dictionary = {}
 	for index in exploded:
 		for neighbor in Match.neighbors(index,width,height):
@@ -16,6 +16,12 @@ static func plan(cells: Array, exploded: Array, direct: Array, triggered: Array,
 			if cells[index].get("obstacle",{}).get("kind","") == "stone":
 				var distance: int = absi(index%width-source%width)+absi(int(index/width)-int(source/width))
 				if distance <= 2: hits[index] = 2
+	for power in virtual:
+		if power.kind!="prism":continue
+		for index in hits:
+			if cells[index]!=null and cells[index].get("obstacle",{}).get("kind","")=="stone":
+				var distance: int=absi(index%width-int(power.index)%width)+absi(index/width-int(power.index)/width)
+				if distance<=2:hits[index]=maxi(2,int(hits[index]))
 	return hits
 
 static func durability(data: Dictionary, damage: int, maximum_per_wave: int, count_layers: bool) -> Dictionary:

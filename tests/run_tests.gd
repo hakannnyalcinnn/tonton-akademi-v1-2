@@ -28,6 +28,8 @@ func fixture(number: int = 7):
 	var definition: Dictionary = Catalog.get_level(number)
 	definition.moves = 100
 	definition.targets = {"total": 10000}
+	# Isolate original match/resonance unit fixtures; campaign tests exercise automatic effects.
+	definition.automatic_storm=false;definition.crystal_wave=false
 	return Board.new(definition)
 
 func cells(colors: Array) -> Array:
@@ -264,8 +266,8 @@ func test_gravity_and_shuffle() -> void:
 	var b = fixture()
 	b.energy = 2
 	var old_moves: int = b.moves
-	check(b.change_gravity("left").accepted and b.energy == 1 and b.moves == old_moves, "gravity energy separate from move budget")
-	check(not b.change_gravity("left").accepted and not b.change_gravity("bad").accepted and b.energy == 1, "invalid direction no energy charge")
+	check(not b.change_gravity("left").accepted and b.energy == 2 and b.moves == old_moves, "manual gravity rejected without energy or move mutation")
+	check(not b.change_gravity("left").accepted and not b.change_gravity("bad").accepted and b.energy == 2, "invalid direction no energy charge")
 	b.energy = 0
 	check(not b.change_gravity("up").accepted, "zero energy blocks gravity")
 	b = fixture(1)
@@ -298,8 +300,10 @@ func test_gravity_and_shuffle() -> void:
 	b = fixture()
 	for i in [0,1,2]: b.cells[i].c = 4
 	b.energy = 1
-	var event: Dictionary = b.change_gravity("left")
-	check(event.accepted and event.cascade_count >= 1 and b.moves == 100 and Match.find(b.cells,8,9).is_empty(), "gravity environmental match resolves automatically")
+	b.direction="left"
+	b.settle(true)
+	var event: Dictionary=b.resolve(b.find_matches(),[],[],-1,-1,false,false)
+	check(event.cascade_count >= 1 and b.moves == 100 and Match.find(b.cells,8,9).is_empty(), "environmental resolver settles matches without manual player gravity")
 	print("PASS: all gravity directions, barriers, refill edge and free stable shuffles")
 
 func test_outcomes_and_state() -> void:
@@ -371,7 +375,7 @@ func test_save_and_migration() -> void:
 	var original := JSON.stringify(legacy)
 	file = FileAccess.open(path,FileAccess.WRITE); file.store_string(original); file.close()
 	var migrated = Save.new(path)
-	check(migrated.data.version == 2 and migrated.data.unlocked == 7 and migrated.data.settings.music == false, "schema migration preserves progress/settings")
+	check(migrated.data.version == Save.SCHEMA and migrated.data.unlocked == 7 and migrated.data.settings.music == false, "schema migration preserves progress/settings")
 	check(migrated.data.results == legacy.results and migrated.data.rewarded == legacy.rewarded, "schema migration preserves best results and reward identities")
 	check(migrated.data.legacy_active == legacy.active and migrated.data.legacy_results == legacy.results, "legacy game and scoring archived without deletion")
 	check(FileAccess.get_file_as_string(path + ".v1-archive") == original, "byte-for-byte old save archive")
@@ -382,7 +386,7 @@ func test_save_and_migration() -> void:
 	check(loaded_again.data == migrated.data, "migration idempotent after restart")
 	clear_save(path)
 	var future := Save.defaults()
-	future.version = 3
+	future.version = Save.SCHEMA+1
 	var future_bytes := JSON.stringify(future)
 	file = FileAccess.open(path,FileAccess.WRITE); file.store_string(future_bytes); file.close()
 	var future_save = Save.new(path)
@@ -420,9 +424,6 @@ func test_simulations() -> void:
 			check(Match.find(a.cells,8,9).is_empty() and Match.has_move(a.cells,8,9), "level starts stable and playable")
 			var actions := 0
 			while a.outcome == "playing" and actions <= int(definition.moves):
-				if a.energy > 0 and actions % 6 == 0:
-					var direction: String = ["left","up","right","down"][int(actions / 6) % 4]
-					a.change_gravity(direction); b.change_gravity(direction)
 				var move: Array = best_move(a)
 				var event: Dictionary = a.swap(move[0],move[1])
 				b.swap(move[0],move[1])
@@ -431,7 +432,7 @@ func test_simulations() -> void:
 				check(a.moves >= 0 and a.cells.size() == 72 and Match.find(a.cells,8,9).is_empty() and Match.has_move(a.cells,8,9), "stable no-negative state after every transaction")
 				var identities: Dictionary = {}
 				for cell in a.cells: identities[cell.id] = true
-				check(identities.size() == 72 and a.energy <= 2 and a.energy_blocks < 12, "identity and energy bounds")
+				check(identities.size() == 72 and a.energy >= 0 and a.energy_blocks < 12, "identity and energy bounds")
 				actions += 1
 				simulated_moves += 1
 			if a.outcome == "won": wins += 1

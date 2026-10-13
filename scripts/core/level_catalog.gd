@@ -32,12 +32,25 @@ static func get_level(number: int) -> Dictionary:
 
 static func validate(level: Dictionary) -> bool:
 	if not level.has_all(["id", "seed", "moves", "targets", "stars", "layout", "gravity", "resonance"]): return false
-	if level.moves < 1 or level.layout.size() != 72 or level.stars.size() != 3: return false
+	# Snapshots now contain definitions: reject malformed saved types before indexing/casting.
+	if not level.layout is Array or not level.stars is Array or not level.targets is Dictionary:return false
+	if not level.gravity is bool or not level.resonance is bool:return false
+	if not Registry.integer(level.id,1,100) or not Registry.integer(level.moves,1,10000) or not Registry.integer(level.seed,-2147483648,2147483647):return false
+	if not level.get("mechanics",[]) is Array or not level.get("portals",[]) is Array or not level.get("conveyors",[]) is Array or not level.get("powers",{}) is Dictionary:return false
+	if level.layout.size() != 72 or level.stars.size() != 3: return false
+	for threshold in level.stars:
+		if not Registry.integer(threshold,0,2147483647):return false
+	for flag in ["automatic_storm","crystal_wave","development_only"]:
+		if level.has(flag) and not level[flag] is bool:return false
+	if level.has("wave_color") and not Registry.integer(level.wave_color,0,4):return false
+	if level.has("legacy_moves") and not Registry.integer(level.legacy_moves,1,10000):return false
+	for index in level.get("powers",{}):
+		if not str(index).is_valid_int() or not Registry.integer(int(str(index)),0,71) or level.powers[index] not in ["rocket_h","rocket_v","prism","color"]:return false
 	if level.stars[0] > level.stars[1] or level.stars[1] > level.stars[2]: return false
 	for color in level.layout:
 		if not (color is float or color is int) or color < 0 or color > 4 or float(color) != floor(float(color)): return false
 	for key in level.targets:
-		if key not in Objectives.KEYS or level.targets[key] < 1: return false
+		if key not in Objectives.KEYS or not Registry.integer(level.targets[key],1,2147483647): return false
 	if not preload("res://scripts/mechanics/portal_manager.gd").validate(level.get("portals",[])):return false
 	if not level.get("development_only",false) and level.id<76 and not level.get("portals",[]).is_empty():return false
 	if not preload("res://scripts/mechanics/conveyor_rails.gd").validate(level.get("conveyors",[])):return false

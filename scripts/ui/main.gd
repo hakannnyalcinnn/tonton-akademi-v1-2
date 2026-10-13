@@ -54,6 +54,8 @@ var pending_goal_tutorials: Array=[]
 var hint_label: Label
 var resonance_label: Label
 var energy_label: Label
+var storm_gauge
+var hint_age:=0.0
 var gravity_buttons: Dictionary = {}
 var toast_label: Label
 
@@ -114,6 +116,8 @@ func _process(delta: float) -> void:
 			Metrics.incident("Save operation failed",{"error":save.last_error})
 			if screen=="game": set_hint(save.last_error)
 		elif save.last_error=="": reported_save_error=""
+	if screen=="game" and is_instance_valid(hint_label):
+		hint_age+=delta;hint_label.modulate.a=clampf((5.0-hint_age)/.6,0,1)
 	if score_label and is_instance_valid(score_label) and screen == "game":
 		if absf(score_display-score_target)>1:
 			score_display = lerpf(score_display,score_target,minf(1,delta*14))
@@ -359,7 +363,9 @@ func show_map(group: int = -1) -> void:
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
 	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
 	test_mode = not test_definition.is_empty()
-	board = Board.new(Catalog.get_level(number) if not test_mode else test_definition)
+	var definition: Dictionary=Catalog.get_level(number) if not test_mode else test_definition
+	if resume and not save.data.active.is_empty():definition=save.data.active.get("level_definition",definition)
+	board = Board.new(definition)
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
@@ -397,19 +403,12 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
-	card(page,Rect2(30,816,480,31),Color("fff8e9"))
-	resonance_label = label(page, "", Rect2(33, 816, 292, 28), 13, Palette.GOLD)
-	energy_label = label(page, "", Rect2(326, 816, 182, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
+	card(page,Rect2(30,816,480,47),Color("fff8e9"))
+	storm_gauge=preload("res://scripts/ui/storm_gauge.gd").new();storm_gauge.position=Vector2(36,817);storm_gauge.size=Vector2(468,44);page.add_child(storm_gauge)
+	resonance_label=label(page,"",Rect2(38,869,464,22),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	gravity_buttons.clear()
-	var directions := ["left", "up", "down", "right"]
-	var arrows := ["←", "↑", "↓", "→"]
-	for k in 4:
-		var direction: String = directions[k]
-		gravity_buttons[direction] = button(page, arrows[k], Rect2(31 + k * 56, 854, 48, 42), on_gravity.bind(direction), false, 24)
-	button(page, "Test araçları" if test_mode else "Nasıl oynanır?", Rect2(274, 854, 235, 42), show_mechanic_test_tools if test_mode else show_help, false, 15)
-	card(page,Rect2(25,903,490,46),Color(1,.98,.94,.92))
-	hint_label = label(page, "", Rect2(26, 903, 488, 46), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hint_label=label(page,"",Rect2(28,898,484,38),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER);hint_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	if test_mode:button(page,"Test araçları",Rect2(330,937,172,23),show_mechanic_test_tools,false,11)
 	for node in page.get_children():
 		if node is Control and node.position.y<270:node.set_meta("hud_y",node.position.y)
 		if node is Control and node.position.y>=816:
@@ -438,12 +437,8 @@ func update_hud(update_goals: bool=true) -> void:
 	if update_goals:
 		if goals_panel.targets!=board.active_targets():goals_panel.configure(board.active_targets(),board.collected)
 		goals_panel.update_progress(board.collected,false)
-	resonance_label.text = "YANKI  ·  %s %d/3" % [Strings.COLORS[board.resonance.color] if board.resonance.color >= 0 else "", board.resonance.count] if board.level.resonance else "YANKI  ·  6. bölümde açılır"
-	energy_label.text = "YÖN  ·  %d/2  (%d/12)" % [board.energy, board.energy_blocks] if board.level.gravity else "YÖN  ·  4. bölümde"
-	for direction in gravity_buttons:
-		var btn: Button = gravity_buttons[direction]
-		btn.disabled = not board.level.gravity or board.energy < 1 or direction == board.direction or board.outcome != "playing"
-		btn.modulate = Palette.GOLD if direction == board.direction else Color.WHITE
+	resonance_label.text = "YANKI  ·  %s %d/3" % [Strings.COLORS[board.resonance.color] if board.resonance.color >= 0 else "", board.resonance.count] if board.level.resonance else ""
+	if update_goals:storm_gauge.set_value(board.storm_charge())
 	var progress := 0.0
 	for color in 5: garden.color_energy[color] = board.collected[str(color)]
 	for key in board.level.targets:
@@ -451,6 +446,7 @@ func update_hud(update_goals: bool=true) -> void:
 	garden.vitality=maxf(garden.vitality,.15+.65*progress/board.level.targets.size())
 
 func set_hint(text: String) -> void:
+	hint_age=0.0
 	if hint_label: hint_label.text = text
 
 func on_swap(a: int, b: int) -> void:
@@ -494,21 +490,30 @@ func process_event(event: Dictionary) -> void:
 	board_view.animate(event)
 
 func on_environment(data: Dictionary) -> void:
-	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance"}.get(data.kind,"pop"))
+	if data.kind in ["storm","crystal_wave"] and not test_mode:
+		var marker: String="gameplay2_"+str(data.kind)
+		if marker not in save.data.tutorials:
+			save.data.tutorials.append(marker);save.flush()
+			set_hint("12 kristal enerjisi: Fırtına yönü kendisi seçer." if data.kind=="storm" else "Üç eşleşme zinciri: Dalga en fazla iki normal kristali boyar.")
+	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
+	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance","storm":"storm","crystal_wave":"crystal_wave"}.get(data.kind,"pop"))
 	if data.has("collected"):goals_panel.update_progress(data.collected)
 
 func on_wave(data: Dictionary) -> void:
+	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
 	goals_panel.update_progress(data.get("collected",board.collected))
 	if not data.get("beams",[]).is_empty():audio.play("mirror")
 	for effect in data.get("mechanics",[]):
 		if effect.kind in ["vine","crate"]:audio.play(effect.kind);break
 	star_progress.target=data.score
 	score_target = data.score
-	if data.resonated:
+	if data.get("combo_kind","")!="":
+		audio.play("combo_power");audio.vibrate(true)
+	elif data.resonated:
 		audio.play("resonance")
 		audio.vibrate(true)
 	elif data.get("special", false):
-		var power_key := "power"
+		var power_key := "prism"
 		for index in data.get("triggered",[]):
 			if data.before[index].p == "color": power_key = "color"; break
 			if data.before[index].p.begins_with("rocket"): power_key = "rocket"
@@ -518,11 +523,12 @@ func on_wave(data: Dictionary) -> void:
 		var key := "rocket"
 		for creation in data.creations:
 			if creation.kind=="color": key="color"; break
-			if creation.kind=="prism": key="power"
+			if creation.kind=="prism": key="prism"
+		audio.play("match4" if key=="rocket" else "match5")
 		audio.play(key)
 		audio.vibrate(true)
 	else:
-		audio.play("large" if data.removed.size() >= 4 else "pop")
+		audio.play("match5" if data.removed.size()>=5 else "match4" if data.removed.size()==4 else "match3")
 		audio.vibrate()
 	var mechanic_sound := ""
 	for effect in data.get("mechanics",[]):
@@ -532,24 +538,19 @@ func on_wave(data: Dictionary) -> void:
 		elif mechanic_sound=="": mechanic_sound="resonance"
 	if mechanic_sound!="": audio.play(mechanic_sound)
 	if data.combo > 1:
-		audio.play("cascade",mini(4,int(data.combo)-1))
-		var names := ["Kombo!", "Süper Kombo!", "Muhteşem!", "Efsanevi Zincir!"]
+		audio.play("combo_big" if int(data.combo)>=4 else "cascade",mini(4,int(data.combo)-1))
+		var names := ["KOMBO!", "SÜPER!", "MUHTEŞEM!", "EFSANEVİ!"]
 		set_hint("%s  ·  x%d  ·  +%d puan" % [names[mini(3, int(data.combo) - 2)], data.multiplier, data.points])
 
 func on_animation_finished() -> void:
 	if board == null or screen != "game": return
 	update_hud()
 	if board.outcome != "playing": show_result()
-	elif board.energy > 0 and "m3_gravity" not in save.data.tutorials:
-		set_hint("Enerjin hazır! Bir yön seç; hamlen azalmaz.")
 
-func on_gravity(direction: String) -> void:
-	if board_view.busy or paused or not board.available(): return
-	var event: Dictionary = board.change_gravity(direction)
-	if not event.accepted: return
-	audio.play("gravity")
-	process_event(event)
-	set_hint(Strings.text("gravity_hint"))
+
+func on_gravity(_direction: String) -> void:
+	# Old callbacks are inert; no player/manual direction selection exists.
+	return
 
 func show_seal_description(index: int) -> void:
 	if screen!="game" or board_view.busy:return
@@ -602,9 +603,29 @@ func show_help() -> void:
 	open_overlay("Nasıl oynanır?")
 	var body := label(overlay, Strings.text("help_body"), Rect2(62, 311, 416, 308), 17, Palette.INK)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	button(overlay,"HEDEF İKONLARINI GÖSTER",Rect2(68,595,404,32),replay_goal_tutorials,false,13)
+	button(overlay,"HEDEFLER / ÖĞRETİCİLER",Rect2(68,595,404,32),show_goal_gallery,false,13)
 	button(overlay, "ENGELLER VE HEDEFLER", Rect2(68, 637, 404, 36), show_mechanic_help, false, 13)
 	button(overlay, "DEVAM ET", Rect2(68, 685, 404, 36), close_overlay, true, 15)
+
+func show_goal_gallery(group: int=0) -> void:
+	var registry=preload("res://scripts/ui/goal_registry.gd")
+	var keys: Array=["0","1","2","3","4"]+registry.ENTRIES.keys()
+	open_overlay("Hedefleri tanı","İkona dokun; kısa öğreticiyi gör.")
+	for k in 6:
+		var index:=group*6+k
+		if index>=keys.size():break
+		var key: String=keys[index];var x: int=65+(k%2)*210;var y: int=384+(k/2)*84
+		button(overlay,registry.entry(key)[2],Rect2(x,y,200,74),show_goal_reference.bind(key,group),false,12)
+		var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.position=Vector2(x+7,y+13);icon.size=Vector2(35,35);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;overlay.add_child(icon)
+	if (group+1)*6<keys.size():button(overlay,"SONRAKİ",Rect2(280,654,193,32),show_goal_gallery.bind(group+1),false,13)
+	if group>0:button(overlay,"ÖNCEKİ",Rect2(67,654,193,32),show_goal_gallery.bind(group-1),false,13)
+	button(overlay,"GERİ",Rect2(67,695,406,29),show_help,false,13)
+func show_goal_reference(key: String,group: int) -> void:
+	var registry=preload("res://scripts/ui/goal_registry.gd")
+	open_overlay(registry.entry(key)[2])
+	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.position=Vector2(220,376);icon.size=Vector2(100,100);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;overlay.add_child(icon)
+	var explanation:=label(overlay,registry.description(key,1),Rect2(70,500,400,112),18);explanation.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	button(overlay,"DİĞER HEDEFLER",Rect2(68,653,404,43),show_goal_gallery.bind(group),true,15)
 
 func show_migration_notice() -> void:
 	if not save.data.get("migration_notice", false): return
@@ -693,8 +714,8 @@ func show_result() -> void:
 	else:
 		save.data.active = {}
 		save.flush()
-	audio.play("win" if won else "lose")
-	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (Strings.text("won") if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya düşüş yönü dene.")
+	audio.play("success2" if won else "lose")
+	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (Strings.text("won") if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya özel güç birleşimi dene.")
 	if won:
 		if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 			var confetti := Celebration.new()
@@ -748,9 +769,10 @@ func show_settings() -> void:
 		toggle.name = key
 	volume_slider("music","Müzik",620)
 	volume_slider("sfx","Efekt sesi",693)
-	button(page,"Performans ölçümü / rapor",Rect2(42,771,456,44),show_diagnostics,false,15)
+	button(page,"YARDIM / ÖĞRETİCİLER",Rect2(42,768,222,44),show_help,false,13)
+	button(page,"Performans raporu",Rect2(274,768,224,44),show_diagnostics,false,13)
 	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.7 · RENKLERİN UYANIŞI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.9 · OYNANIŞ 2.0",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
@@ -905,7 +927,7 @@ func show_mechanic_help() -> void:
 	button(overlay,"ANLADIM",Rect2(68,699,404,35),close_overlay,true,15)
 
 func show_world_result() -> void:
-	audio.play("win")
+	audio.play("success2")
 	garden.vitality=1.0
 	garden.color_energy=[18,18,18,18,18]
 	open_overlay("Kristal Okyanus uyandı!" if selected_world==2 else "Büyülü Bahçe tamamlandı!","Mercanlar canlandı. Okyanus madalyan kaydedildi." if selected_world==2 else "Renkler uyandı. Dünya madalyan kaydedildi.")

@@ -102,3 +102,12 @@ for suite in goals_panel_tests package5_mechanics package5_ui ocean_finale_level
     cat "build/$suite.log"
     if rg -q '^SCRIPT ERROR:|^ERROR:|^FAIL:' "build/$suite.log"; then exit 1; fi
 done
+
+for suite in gameplay2_tests gameplay2_ui; do
+    if ! bash tools/godot.sh --headless --audio-driver Dummy --max-fps 60 --script "tests/$suite.gd" > "build/$suite.log" 2>&1; then
+        cat "build/$suite.log"
+        exit 1
+    fi
+    cat "build/$suite.log"
+    if rg -q '^SCRIPT ERROR:|^ERROR:|^FAIL:' "build/$suite.log"; then exit 1; fi
+done

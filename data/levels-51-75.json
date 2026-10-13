@@ -1,7 +1,7 @@
 {
   "levels": [
     {
-      "difficulty": 1.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 51.0,
       "layout": [
@@ -84,29 +84,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 18.0,
+      "moves": 16,
       "name": "Mercan Kapısı",
       "opening_refill": [],
       "resonance": true,
       "seed": 615151.0,
       "stars": [
-        2100,
-        2850,
-        3450
+        0,
+        5038,
+        7750
       ],
       "targets": {
         "bridges": 1.0,
-        "total": 22.0
+        "total": 114
       },
       "tutorial": "Prizma Köprüsü her renge uyum sağlar; aynı dalgada tek renkle eşleşir. Köprüyü kaydır ve üçlü oluştur.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 18
     },
     {
-      "difficulty": 1.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 52.0,
       "layout": [
@@ -189,29 +190,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 18.0,
+      "moves": 16,
       "name": "Işıldayan Geçit",
       "opening_refill": [],
       "resonance": true,
       "seed": 615252.0,
       "stars": [
-        1750,
-        2400,
-        2900
+        0,
+        5590,
+        8600
       ],
       "targets": {
         "bridges": 1.0,
-        "total": 25.0
+        "total": 144
       },
       "tutorial": "Prizma Köprüsü her renge uyum sağlar; aynı dalgada tek renkle eşleşir. Köprüyü kaydır ve üçlü oluştur.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 18
     },
     {
-      "difficulty": 1.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 53.0,
       "layout": [
@@ -298,29 +300,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 19.0,
+      "moves": 11,
       "name": "Mavi Joker",
       "opening_refill": [],
       "resonance": true,
       "seed": 615353.0,
       "stars": [
-        1800,
-        2500,
-        3000
+        0,
+        6584,
+        10130
       ],
       "targets": {
         "bridges": 1.0,
-        "total": 28.0
+        "total": 147
       },
       "tutorial": "Prizma Köprüsü her renge uyum sağlar; aynı dalgada tek renkle eşleşir. Köprüyü kaydır ve üçlü oluştur.",
       "tutorial_swap": [
         26,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 19
     },
     {
-      "difficulty": 1.0,
+      "difficulty": "zor",
       "gravity": true,
       "id": 54.0,
       "layout": [
@@ -415,29 +418,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 19.0,
+      "moves": 19,
       "name": "İki Rengin Dalgası",
       "opening_refill": [],
       "resonance": true,
       "seed": 615454.0,
       "stars": [
-        2600,
-        3550,
-        4300
+        0,
+        5284,
+        8130
       ],
       "targets": {
         "bridges": 1.0,
-        "total": 31.0
+        "total": 150
       },
       "tutorial": "Prizma Köprüsü her renge uyum sağlar; aynı dalgada tek renkle eşleşir. Köprüyü kaydır ve üçlü oluştur.",
       "tutorial_swap": [
         33,
         41
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 19
     },
     {
-      "difficulty": 1.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 55.0,
       "layout": [
@@ -528,29 +532,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 20.0,
+      "moves": 16,
       "name": "Kristal Kıyı",
       "opening_refill": [],
       "resonance": true,
       "seed": 615555.0,
       "stars": [
-        2100,
-        2850,
-        3450
+        0,
+        4420,
+        6800
       ],
       "targets": {
         "bridges": 1.0,
-        "total": 34.0
+        "total": 121
       },
       "tutorial": "Prizma Köprüsü her renge uyum sağlar; aynı dalgada tek renkle eşleşir. Köprüyü kaydır ve üçlü oluştur.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 20
     },
     {
-      "difficulty": 2.0,
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 56.0,
       "layout": [
@@ -633,29 +638,30 @@
           "kind": "pin"
         }
       ],
-      "moves": 20.0,
+      "moves": 17,
       "name": "Sabit Mücevher",
       "opening_refill": [],
       "resonance": true,
       "seed": 615656.0,
       "stars": [
-        3950,
-        5400,
-        6450
+        0,
+        6090,
+        9370
       ],
       "targets": {
         "pins": 1.0,
-        "total": 37.0
+        "total": 176
       },
       "tutorial": "Çivili kristal sabittir. Yanında iki ayrı patlama oluştur; serbest kalınca akıntıyla hareket eder.",
       "tutorial_swap": [
         5,
         13
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 20
     },
     {
-      "difficulty": 2.0,
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 57.0,
       "layout": [
@@ -738,29 +744,30 @@
           "kind": "pin"
         }
       ],
-      "moves": 21.0,
+      "moves": 18,
       "name": "Çivinin Sırrı",
       "opening_refill": [],
       "resonance": true,
       "seed": 615757.0,
       "stars": [
-        2550,
-        3500,
-        4200
+        0,
+        5804,
+        8930
       ],
       "targets": {
         "pins": 1.0,
-        "total": 40.0
+        "total": 171
       },
       "tutorial": "Çivili kristal sabittir. Yanında iki ayrı patlama oluştur; serbest kalınca akıntıyla hareket eder.",
       "tutorial_swap": [
         2,
         3
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 21
     },
     {
-      "difficulty": 2.0,
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 58.0,
       "layout": [
@@ -847,29 +854,30 @@
           "kind": "pin"
         }
       ],
-      "moves": 21.0,
+      "moves": 19,
       "name": "Çift Akıntı",
       "opening_refill": [],
       "resonance": true,
       "seed": 615858.0,
       "stars": [
-        3300,
-        4500,
-        5400
+        0,
+        8574,
+        13190
       ],
       "targets": {
         "pins": 2.0,
-        "total": 43.0
+        "total": 213
       },
       "tutorial": "Çivili kristal sabittir. Yanında iki ayrı patlama oluştur; serbest kalınca akıntıyla hareket eder.",
       "tutorial_swap": [
         7,
         15
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 21
     },
     {
-      "difficulty": 2.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 59.0,
       "layout": [
@@ -960,29 +968,30 @@
           "kind": "pin"
         }
       ],
-      "moves": 22.0,
+      "moves": 13,
       "name": "Donmuş Mercan",
       "opening_refill": [],
       "resonance": true,
       "seed": 615959.0,
       "stars": [
-        3300,
-        4500,
-        5400
+        0,
+        5648,
+        8690
       ],
       "targets": {
         "pins": 2.0,
-        "total": 46.0
+        "total": 128
       },
       "tutorial": "Çivili kristal sabittir. Yanında iki ayrı patlama oluştur; serbest kalınca akıntıyla hareket eder.",
       "tutorial_swap": [
         4,
         5
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 22
     },
     {
-      "difficulty": 2.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 60.0,
       "layout": [
@@ -1073,29 +1082,30 @@
           "kind": "pin"
         }
       ],
-      "moves": 22.0,
+      "moves": 16,
       "name": "Akıntı Dersleri",
       "opening_refill": [],
       "resonance": true,
       "seed": 616060.0,
       "stars": [
-        1950,
-        2700,
-        3200
+        0,
+        6974,
+        10730
       ],
       "targets": {
         "pins": 2.0,
-        "total": 49.0
+        "total": 162
       },
       "tutorial": "Çivili kristal sabittir. Yanında iki ayrı patlama oluştur; serbest kalınca akıntıyla hareket eder.",
       "tutorial_swap": [
         11,
         19
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 22
     },
     {
-      "difficulty": 3.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 61.0,
       "layout": [
@@ -1186,29 +1196,30 @@
           "kind": "ice"
         }
       ],
-      "moves": 23.0,
+      "moves": 15,
       "name": "Buzdan Köprü",
       "opening_refill": [],
       "resonance": true,
       "seed": 616161.0,
       "stars": [
-        1750,
-        2450,
-        2900
+        0,
+        6643,
+        10220
       ],
       "targets": {
         "ice": 4.0,
-        "total": 52.0
+        "total": 164
       },
       "tutorial": "Köprü ve çift renkli kristalleri buzun yanında eşleştir; zincirler kendiliğinden devam eder.",
       "tutorial_swap": [
         26,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 23
     },
     {
-      "difficulty": 3.0,
+      "difficulty": "zor",
       "gravity": true,
       "id": 62.0,
       "layout": [
@@ -1307,29 +1318,30 @@
           "kind": "dual"
         }
       ],
-      "moves": 23.0,
+      "moves": 23,
       "name": "İki Renk Bir Işık",
       "opening_refill": [],
       "resonance": true,
       "seed": 616262.0,
       "stars": [
-        3250,
-        4400,
-        5300
+        0,
+        6910,
+        10630
       ],
       "targets": {
         "ice": 4.0,
-        "total": 55.0
+        "total": 195
       },
       "tutorial": "Köprü ve çift renkli kristalleri buzun yanında eşleştir; zincirler kendiliğinden devam eder.",
       "tutorial_swap": [
         1,
         2
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 23
     },
     {
-      "difficulty": 3.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 63.0,
       "layout": [
@@ -1432,29 +1444,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 24.0,
+      "moves": 20,
       "name": "Derinlik Yankısı",
       "opening_refill": [],
       "resonance": true,
       "seed": 616363.0,
       "stars": [
-        2200,
-        3050,
-        3650
+        0,
+        5850,
+        9000
       ],
       "targets": {
         "ice": 4.0,
-        "total": 58.0
+        "total": 135
       },
       "tutorial": "Köprü ve çift renkli kristalleri buzun yanında eşleştir; zincirler kendiliğinden devam eder.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 24
     },
     {
-      "difficulty": 3.0,
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 64.0,
       "layout": [
@@ -1557,29 +1570,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 24.0,
+      "moves": 17,
       "name": "Turkuaz Zincir",
       "opening_refill": [],
       "resonance": true,
       "seed": 616464.0,
       "stars": [
-        2100,
-        2850,
-        3450
+        0,
+        8092,
+        12450
       ],
       "targets": {
         "ice": 4.0,
-        "total": 61.0
+        "total": 196
       },
       "tutorial": "Köprü ve çift renkli kristalleri buzun yanında eşleştir; zincirler kendiliğinden devam eder.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 24
     },
     {
-      "difficulty": 3.0,
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 65.0,
       "layout": [
@@ -1694,29 +1708,30 @@
           "kind": "bridge"
         }
       ],
-      "moves": 25.0,
+      "moves": 20,
       "name": "Parlayan Mağara",
       "opening_refill": [],
       "resonance": true,
       "seed": 616565.0,
       "stars": [
-        2600,
-        3600,
-        4300
+        0,
+        7059,
+        10860
       ],
       "targets": {
         "ice": 4.0,
-        "total": 64.0
+        "total": 190
       },
       "tutorial": "Köprü ve çift renkli kristalleri buzun yanında eşleştir; zincirler kendiliğinden devam eder.",
       "tutorial_swap": [
         27,
         35
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 25
     },
     {
-      "difficulty": 4.0,
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 66.0,
       "layout": [
@@ -1803,29 +1818,30 @@
           "kind": "stone"
         }
       ],
-      "moves": 25.0,
+      "moves": 18,
       "name": "Taşlı Akıntı",
       "opening_refill": [],
       "resonance": true,
       "seed": 616666.0,
       "stars": [
-        3200,
-        4400,
-        5250
+        0,
+        9314,
+        14330
       ],
       "targets": {
         "stones": 1.0,
-        "total": 67.0
+        "total": 237
       },
-      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Yön değiştirmek enerji harcar, hamle harcamaz.",
+      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Prizma Fırtınası 12 enerjiyle otomatik çalışır; yönü sen seçmezsin.",
       "tutorial_swap": [
         1,
         9
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 25
     },
     {
-      "difficulty": 4.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 67.0,
       "layout": [
@@ -1916,29 +1932,30 @@
           "kind": "ice"
         }
       ],
-      "moves": 26.0,
+      "moves": 17,
       "name": "Buz ve Kaya",
       "opening_refill": [],
       "resonance": true,
       "seed": 616767.0,
       "stars": [
-        2550,
-        3500,
-        4200
+        0,
+        6240,
+        9600
       ],
       "targets": {
         "stones": 1.0,
-        "total": 70.0
+        "total": 142
       },
-      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Yön değiştirmek enerji harcar, hamle harcamaz.",
+      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Prizma Fırtınası 12 enerjiyle otomatik çalışır; yönü sen seçmezsin.",
       "tutorial_swap": [
         12,
         13
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 26
     },
     {
-      "difficulty": 4.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 68.0,
       "layout": [
@@ -2020,7 +2037,7 @@
           "color": 1,
           "index": 19,
           "kind": "lock",
-          "required": 12
+          "required": 22
         },
         {
           "index": 27,
@@ -2035,30 +2052,31 @@
           "kind": "ice"
         }
       ],
-      "moves": 26.0,
+      "moves": 21,
       "name": "Tapınağın Kilidi",
       "opening_refill": [],
       "resonance": true,
       "seed": 616868.0,
       "stars": [
-        3850,
-        5250,
-        6300
+        0,
+        7371,
+        11340
       ],
       "targets": {
         "locks": 1.0,
         "stones": 1.0,
-        "total": 73.0
+        "total": 180
       },
-      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Yön değiştirmek enerji harcar, hamle harcamaz.",
+      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Prizma Fırtınası 12 enerjiyle otomatik çalışır; yönü sen seçmezsin.",
       "tutorial_swap": [
         2,
         3
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 26
     },
     {
-      "difficulty": 4.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 69.0,
       "layout": [
@@ -2140,7 +2158,7 @@
           "color": 1,
           "index": 19,
           "kind": "lock",
-          "required": 14
+          "required": 22
         },
         {
           "index": 27,
@@ -2159,30 +2177,31 @@
           "kind": "pin"
         }
       ],
-      "moves": 27.0,
+      "moves": 18,
       "name": "Çifte Akıntı",
       "opening_refill": [],
       "resonance": true,
       "seed": 616969.0,
       "stars": [
-        3700,
-        5050,
-        6050
+        0,
+        6610,
+        10170
       ],
       "targets": {
         "locks": 1.0,
         "stones": 1.0,
-        "total": 76.0
+        "total": 182
       },
-      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Yön değiştirmek enerji harcar, hamle harcamaz.",
+      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Prizma Fırtınası 12 enerjiyle otomatik çalışır; yönü sen seçmezsin.",
       "tutorial_swap": [
         2,
         3
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 27
     },
     {
-      "difficulty": 4.0,
+      "difficulty": "zor",
       "gravity": true,
       "id": 70.0,
       "layout": [
@@ -2264,7 +2283,7 @@
           "color": 1,
           "index": 19,
           "kind": "lock",
-          "required": 16
+          "required": 28
         },
         {
           "index": 27,
@@ -2283,30 +2302,31 @@
           "kind": "pin"
         }
       ],
-      "moves": 27.0,
+      "moves": 20,
       "name": "Mercan Muhafızı",
       "opening_refill": [],
       "resonance": true,
       "seed": 617070.0,
       "stars": [
-        3850,
-        5250,
-        6300
+        0,
+        8600,
+        13230
       ],
       "targets": {
         "locks": 1.0,
         "stones": 1.0,
-        "total": 79.0
+        "total": 230
       },
-      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Yön değiştirmek enerji harcar, hamle harcamaz.",
+      "tutorial": "Taş ve kilit hedeflerini birlikte planla. Prizma Fırtınası 12 enerjiyle otomatik çalışır; yönü sen seçmezsin.",
       "tutorial_swap": [
         2,
         3
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 27
     },
     {
-      "difficulty": 5.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 71.0,
       "layout": [
@@ -2408,32 +2428,33 @@
           "color": 1,
           "index": 51,
           "kind": "lock",
-          "required": 16
+          "required": 18
         }
       ],
-      "moves": 28.0,
+      "moves": 16,
       "name": "Derinlik Stratejisi",
       "opening_refill": [],
       "resonance": true,
       "seed": 617171.0,
       "stars": [
-        2950,
-        4000,
-        4800
+        0,
+        7267,
+        11180
       ],
       "targets": {
         "locks": 1.0,
-        "total": 82.0
+        "total": 149
       },
       "tutorial": "Güçlerini ve akıntıyı birlikte kullan. 75 özel meydan okumadır; dünya finali 100. bölümde olacak.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 28
     },
     {
-      "difficulty": 5.0,
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 72.0,
       "layout": [
@@ -2539,32 +2560,33 @@
           "color": 1,
           "index": 51,
           "kind": "lock",
-          "required": 16
+          "required": 26
         }
       ],
-      "moves": 28.0,
+      "moves": 25,
       "name": "Safir Kalıntıları",
       "opening_refill": [],
       "resonance": true,
       "seed": 617272.0,
       "stars": [
-        2750,
-        3800,
-        4550
+        0,
+        6688,
+        10290
       ],
       "targets": {
         "locks": 1.0,
-        "total": 85.0
+        "total": 217
       },
       "tutorial": "Güçlerini ve akıntıyı birlikte kullan. 75 özel meydan okumadır; dünya finali 100. bölümde olacak.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 28
     },
     {
-      "difficulty": 5.0,
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 73.0,
       "layout": [
@@ -2662,7 +2684,7 @@
           "color": 1,
           "index": 51,
           "kind": "lock",
-          "required": 16
+          "required": 25
         },
         {
           "colors": [
@@ -2677,30 +2699,31 @@
           "kind": "seed"
         }
       ],
-      "moves": 29.0,
+      "moves": 22,
       "name": "Uyanan Deniz Bahçesi",
       "opening_refill": [],
       "resonance": true,
       "seed": 617373.0,
       "stars": [
-        3850,
-        5250,
-        6300
+        0,
+        8898,
+        13690
       ],
       "targets": {
         "flowers": 1.0,
         "locks": 1.0,
-        "total": 88.0
+        "total": 210
       },
       "tutorial": "Güçlerini ve akıntıyı birlikte kullan. 75 özel meydan okumadır; dünya finali 100. bölümde olacak.",
       "tutorial_swap": [
         2,
         3
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 29
     },
     {
-      "difficulty": 5.0,
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 74.0,
       "layout": [
@@ -2814,7 +2837,7 @@
           "color": 1,
           "index": 51,
           "kind": "lock",
-          "required": 16
+          "required": 31
         },
         {
           "index": 58,
@@ -2825,30 +2848,31 @@
           "kind": "bridge"
         }
       ],
-      "moves": 29.0,
+      "moves": 19,
       "name": "Kristal Katedral",
       "opening_refill": [],
       "resonance": true,
       "seed": 617474.0,
       "stars": [
-        4150,
-        5650,
-        6800
+        0,
+        10186,
+        15670
       ],
       "targets": {
         "flowers": 1.0,
         "locks": 1.0,
-        "total": 91.0
+        "total": 260
       },
       "tutorial": "Güçlerini ve akıntıyı birlikte kullan. 75 özel meydan okumadır; dünya finali 100. bölümde olacak.",
       "tutorial_swap": [
         61,
         62
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 29
     },
     {
-      "difficulty": 5.0,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 75.0,
       "layout": [
@@ -2966,7 +2990,7 @@
           "color": 1,
           "index": 51,
           "kind": "lock",
-          "required": 16
+          "required": 19
         },
         {
           "index": 58,
@@ -2981,29 +3005,30 @@
           "kind": "pin"
         }
       ],
-      "moves": 30.0,
+      "moves": 16,
       "name": "Okyanus Meydan Okuması",
       "opening_refill": [],
       "resonance": true,
       "seed": 617575.0,
       "stars": [
-        3100,
-        4200,
-        5050
+        0,
+        6676,
+        10270
       ],
       "targets": {
         "flowers": 1.0,
         "locks": 1.0,
         "pins": 2.0,
         "stones": 1.0,
-        "total": 94.0
+        "total": 156
       },
       "tutorial": "Güçlerini ve akıntıyı birlikte kullan. 75 özel meydan okumadır; dünya finali 100. bölümde olacak.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2.0
+      "world": 2.0,
+      "legacy_moves": 30
     }
   ],
   "version": 2.0

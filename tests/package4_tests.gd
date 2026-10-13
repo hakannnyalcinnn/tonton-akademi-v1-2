@@ -49,7 +49,7 @@ func run() -> void:
 	b=fresh();used={};queue=[];crystal=b.cells[0].id;b.cells[1]=null
 	Portal.transfer(b.cells,[{"entry":0,"exit":1}],{crystal:true},used,queue)
 	check(Portal.transfer(b.cells,[{"entry":1,"exit":0}],{crystal:true},used,queue).is_empty(),"same crystal cannot cycle twice in an action")
-	b=fresh();b.level.targets={"total":10000};b.level.moves=100;b.moves=100;b.level.vine_enabled=true;b.level.vine_max=2;Mechanics.install(b.cells,[{"kind":"vine","index":35}])
+	b=fresh();b.level.targets={"total":10000};b.level.moves=100;b.moves=100;b.initial_moves=100;b.level.vine_enabled=true;b.level.vine_max=2;Mechanics.install(b.cells,[{"kind":"vine","index":35}])
 	check(b.cells[35].fixed and not Powers.Traits.supports(b.cells[35],b.cells[35].c),"vine locks match and movement")
 	for action in 3:
 		var move:=Solver.best_move(b);e=b.swap(move[0],move[1])
@@ -62,7 +62,7 @@ func run() -> void:
 	check(Vines.spread(cells,2,8,9).is_empty(),"vine cap stops further growth")
 	var counts: Dictionary=b.collected.duplicate();var hits:=Mechanics.wave(cells,[28,35],[27,27],[],{},counts,8,9)
 	check(hits.filter(func(v):return v.index==27).size()==1 and not cells[27].has("armor"),"one wave removes vine exactly once")
-	b=fresh();b.level.targets={"total":10000};b.level.moves=100;b.moves=100;b.level.vine_enabled=true;Mechanics.install(b.cells,[{"kind":"vine","index":35}]);b.energy=2;b.level.gravity=true
+	b=fresh();b.level.targets={"total":10000};b.level.moves=100;b.moves=100;b.initial_moves=100;b.level.vine_enabled=true;Mechanics.install(b.cells,[{"kind":"vine","index":35}]);b.energy=2;b.level.gravity=true
 	old=b.vine_count;b.change_gravity("up");check(b.vine_count==old,"gravity special action does not grow vines")
 	var invalid_found:=false
 	for i in 72:
@@ -119,7 +119,7 @@ func run() -> void:
 		for spec in specs:b.cells[spec.index].obstacle.hp=1
 		chain=Chain.resolve(b.cells,[1,10,19,28,37,46,55,64],0,{},b.collected,8,9)
 		check(chain.events.size()<=9 and b.collected.crates==8,"200 dense crate chains bounded")
-	b=fresh();b.level.moves=100;b.moves=100;b.level.targets={"total":10000};b.level.vine_enabled=true;b.level.vine_max=6;b.vine_count=2
+	b=fresh();b.level.moves=100;b.moves=100;b.initial_moves=100;b.level.targets={"total":10000};b.level.vine_enabled=true;b.level.vine_max=6;b.vine_count=2
 	var barrier_specs: Array=[]
 	for i in 72:
 		if i not in [20,21,22,29]:barrier_specs.append({"kind":"vine","index":i} if i==37 else {"kind":"mirror","index":i,"orientation":"/"})

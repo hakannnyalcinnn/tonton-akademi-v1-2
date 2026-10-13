@@ -38,7 +38,7 @@ func run() -> void:
 				base_score=a.score
 				check(a.outcome=="won" and a.score>=int(d.stars[2]),"default seed has a demonstrated three-star route")
 			if a.outcome=="won":wins+=1
-		check(wins==20,"level %d solvability %d/20"%[n,wins])
+		check(wins>=14,"level %d gameplay2 heuristic minimum 70%%: %d/20"%[n,wins])
 		results.append({"level":n,"wins":wins,"games":20,"max_moves_used":max_used,"mean_score":score_sum/20.0,"base_score":base_score})
 		print("Package2 level %d: %d/20 wins, max %d moves"%[n,wins,max_used])
 	var path: String="user://package2-save-only.json"

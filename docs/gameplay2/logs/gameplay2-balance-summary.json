@@ -1,0 +1,35 @@
+{
+  "before": {
+    "games": 2000,
+    "wins": 2000,
+    "win_rate": 1.0,
+    "mean_used": 5.4775,
+    "mean_remaining": 21.0625,
+    "minimum_level_win_rate": 1.0,
+    "storms": 0,
+    "waves": 0,
+    "cascade_guards": 0
+  },
+  "after": {
+    "games": 2000,
+    "wins": 1901,
+    "win_rate": 0.9505,
+    "mean_used": 10.603499999999999,
+    "mean_remaining": 6.1865,
+    "minimum_level_win_rate": 0.8,
+    "storms": 17201,
+    "waves": 6200,
+    "cascade_guards": 0
+  },
+  "holdout": {
+    "games": 2000,
+    "wins": 1876,
+    "win_rate": 0.938,
+    "mean_used": 10.458499999999999,
+    "mean_remaining": 6.3315,
+    "minimum_level_win_rate": 0.65,
+    "storms": 16866,
+    "waves": 6209,
+    "cascade_guards": 0
+  }
+}

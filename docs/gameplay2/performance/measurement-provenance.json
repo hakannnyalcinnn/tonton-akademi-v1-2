@@ -1,0 +1,23 @@
+{
+  "engine": "4.6.3",
+  "flags": [
+    "--profiling",
+    "--audio-driver Dummy",
+    "--max-fps 60"
+  ],
+  "display": ":99",
+  "viewport": [
+    540,
+    960
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "platform": "Linux",
+  "android_devices": [],
+  "native_valid_swipes": 100,
+  "duplicate_blocked": 100,
+  "invalid_swaps": 10,
+  "combination_scenarios": 24,
+  "native_saves": "synchronous test profile; application uses worker",
+  "all_frames_under_16_7ms": false,
+  "phone_fps_verified": false
+}

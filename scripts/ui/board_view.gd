@@ -47,6 +47,7 @@ var particle_ages := PackedFloat32Array()
 var particle_cursor := 0
 var particle_count := 0
 var shard := PackedVector2Array([Vector2.ZERO,Vector2.ZERO,Vector2.ZERO])
+var shard_face := PackedVector2Array([Vector2.ZERO,Vector2.ZERO,Vector2.ZERO])
 var combo_label: Label
 var combo_age := 2.0
 var score_popups: Array[Label] = []
@@ -146,7 +147,7 @@ func particle_budget() -> int:
 
 func start_wave(data: Dictionary) -> void:
 	var budget := particle_budget()
-	var count := (9 if not data.get("creations",[]).is_empty() else 6)+mini(3,int(data.combo)-1)
+	var count := (14 if data.removed.size()>=5 or not data.get("creations",[]).is_empty() else 10)+mini(4,int(data.combo)-1)
 	if quality == "performance": count = 3
 	if reduced_motion: count = 0
 	for index in data.removed:
@@ -157,9 +158,9 @@ func start_wave(data: Dictionary) -> void:
 			particle_cursor += 1
 			particle_count = mini(192, maxi(particle_count,slot+1))
 			particle_positions[slot] = center
-			particle_velocities[slot] = Vector2.from_angle(index*2.41+k*TAU/count)*(65+(k%3)*29)
+			particle_velocities[slot] = Vector2.from_angle(index*2.41+k*TAU/count)*(90+(k%4)*28)
 			particle_colors[slot] = Palette.COLORS[k%5 if Traits.bridge(previous[index]) else int(data.get("colors",{}).get(index,previous[index].c))].lightened(.16)
-			particle_ages[slot] = -.015*(index%6) if bomb_origin>=0 and not reduced_motion else 0
+			particle_ages[slot] = -.075-.008*(index%4) if not reduced_motion else 0
 			particle_styles[slot] = 0
 	for effect in data.get("mechanics",[]):
 		var center := cell_position(effect.index)+Vector2(28,28)
@@ -181,10 +182,13 @@ func start_wave(data: Dictionary) -> void:
 	score_popups[popup_slot].text = "+%d" % int(data.points)
 	score_popups[popup_slot].show()
 	if int(data.combo)>1:
-		combo_label.text = ["KOMBO!","SÜPER KOMBO!","MUHTEŞEM!","EFSANEVİ!"][mini(3,int(data.combo)-2)]
+		combo_label.text = ["KOMBO!","SÜPER!","MUHTEŞEM!","EFSANEVİ!"][mini(3,int(data.combo)-2)]
+		combo_label.add_theme_font_size_override("font_size",39)
+		combo_label.add_theme_color_override("font_color",Palette.COLORS[mini(4,int(data.combo)-1)].lightened(.5))
 		combo_age = 0
 		combo_label.show()
-		if settings.get("shake",true) and not reduced_motion and not settings.get("reduced_effects",false): shake_age = 0
+		spawn_stars(Vector2(238,252),mini(10,4+int(data.combo)))
+	if (data.special or data.get("combo_kind","")!="") and settings.get("shake",true) and not reduced_motion:shake_age=0
 
 
 func start_environment(data: Dictionary) -> void:
@@ -254,6 +258,8 @@ func animate(event: Dictionary) -> void:
 	hint_target = -1
 	next_frame()
 
+var creation_indices: Dictionary={}
+
 func next_frame() -> void:
 	if queue.is_empty():
 		busy = false
@@ -263,23 +269,29 @@ func next_frame() -> void:
 		animation_finished.emit()
 		return
 	current = queue.pop_front()
+	creation_indices.clear()
+	for c in current.get("creations",[]):creation_indices[int(c.i)]=true
 	previous = current.before
 	target = current.after
 	trait_idle_animation=has_trait_animation(target)
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.24,"crystal_wave":.22}.get(current.kind, 0.12)
 	bomb_origin=-1
 	if current.kind=="clear":
 		for index in current.get("triggered",[]):
 			if previous[index]!=null and previous[index].p=="color":bomb_origin=index;break
 		if bomb_origin>=0 and not reduced_motion:duration=.30
+	if current.get("combo_kind","")!="" and not reduced_motion:duration=.30
 	age = 0
 	board.visual_phase(int(current.state))
-	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait"]:
+	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave"]:
 		environment_started.emit(current)
 		start_environment(current)
+		if current.kind in ["storm","crystal_wave"]:
+			combo_label.text="PRİZMA FIRTINASI" if current.kind=="storm" else "KRİSTAL DALGASI"
+			combo_label.add_theme_font_size_override("font_size",29 if current.kind=="storm" else 32);combo_label.add_theme_color_override("font_color",Color("b2f9ff") if current.kind=="storm" else Color("ffdc85"));combo_age=0;combo_label.show();spawn_stars(Vector2(238,252),8)
 	if current.kind == "clear":
 		start_wave(current)
 		wave_started.emit(current)
@@ -328,8 +340,9 @@ func _process(delta: float) -> void:
 	for i in particle_count:
 		if particle_ages[i] < .46:
 			particle_ages[i] += delta
-			particle_positions[i] += particle_velocities[i]*delta
-			particle_velocities[i].y += 65*delta
+			if particle_ages[i]>=0:
+				particle_positions[i] += particle_velocities[i]*delta
+				particle_velocities[i].y += 85*delta
 			active = true
 	for i in 4:
 		if score_ages[i]<.68:
@@ -340,9 +353,10 @@ func _process(delta: float) -> void:
 	if combo_age < .78:
 		combo_age += delta
 		var intro := clampf(combo_age/.16,0,1)
-		combo_label.scale = Vector2.ONE * (1.0 if reduced_motion else lerpf(.72,1.0,1-pow(1-intro,3)))
+		combo_label.scale = Vector2.ONE * (1.0 if reduced_motion else (.55+ .55*sin(intro*PI*.5)+.08*sin(intro*PI)))
 		combo_label.modulate.a = clampf((.78-combo_age)/.22,0,1)
 		if combo_age >= .78: combo_label.hide()
+		active=true
 	if shake_age < .2:
 		shake_age += delta
 		active = true
@@ -493,6 +507,8 @@ func _draw() -> void:
 		if values[i] == null: continue
 		var cell: Dictionary = values[i]
 		var pos := cell_position(i)
+		if busy and current.kind=="clear" and creation_indices.has(i):
+			if t<.48:continue
 		if busy:
 			var origin: Vector2 = origins.get(cell.id, pos)
 			if not origins.has(cell.id) and current.kind == "refill":
@@ -501,7 +517,7 @@ func _draw() -> void:
 					"up": origin.y = HEIGHT * STRIDE + STRIDE * (HEIGHT - int(i / WIDTH))
 					"left": origin.x = WIDTH * STRIDE + STRIDE * (WIDTH - i % WIDTH)
 					"right": origin.x = -STRIDE * (1 + i % WIDTH)
-			if current.kind=="portal" and origin!=pos:
+			if (current.kind=="portal" or (current.kind=="storm" and origin.distance_to(pos)>STRIDE*1.5)) and origin!=pos:
 				var extent:=Vector2.ONE*CELL*(absf(2*t-1)*.85+.15)
 				var anchor:=origin if t<.5 else pos
 				draw_cell(cell,Rect2(anchor+Vector2(28,28)-extent/2,extent),true)
@@ -517,6 +533,18 @@ func _draw() -> void:
 	if drag_index >= 0:
 		draw_texture_rect(GLOW,Rect2(cell_position(drag_index)+drag_offset+Vector2(0,6),Vector2(CELL,CELL)),false,Color(0,0,0,.5))
 		draw_cell(displayed[drag_index], Rect2(cell_position(drag_index) + drag_offset, Vector2(CELL, CELL)), true)
+	if busy and current.kind in ["storm","crystal_wave"]:
+		var center:=Vector2(238,268) if current.kind=="storm" else cell_position(int(current.origin))+Vector2(28,28)
+		var color: Color=Color("b5f4ff") if current.kind=="storm" else Palette.COLORS[int(current.color)].lightened(.4)
+		draw_arc(center,20+t*270,0,TAU,40,Color(color,(1-t)*.7),3.5,true)
+		draw_texture_rect(GLOW,Rect2(center-Vector2(140,140),Vector2(280,280)),false,Color(color,sin(t*PI)*.2))
+		if current.kind=="storm":
+			var axis: Vector2={"down":Vector2.DOWN,"up":Vector2.UP,"left":Vector2.LEFT,"right":Vector2.RIGHT}[current.direction]
+			var tip:=center+axis*(55+25*t);var side:=Vector2(-axis.y,axis.x)
+			draw_line(center-axis*35,tip,Color(1,1,1,1-t),4,true)
+			draw_polyline(PackedVector2Array([tip-axis*17+side*14,tip,tip-axis*17-side*14]),Color(1,1,1,1-t),4,true)
+		else:
+			for c in current.get("painted",[]):draw_texture_rect(GLOW,Rect2(cell_position(c.index)-Vector2(7,7),Vector2(70,70)),false,Color(color,sin(t*PI)*.75))
 	if busy and current.kind=="paint":
 		for e in current.get("fountains",[]):
 			for gem in e.painted:
@@ -539,14 +567,19 @@ func _draw() -> void:
 			if bomb_origin>=0:
 				phase=clampf((t-float(i%6)*.045)/.775,0,1)
 				if not settings.get("reduced_effects",false):draw_line(cell_position(bomb_origin)+Vector2(28,28),center,Color(color,sin(t*PI)*.55),1.8,true)
-			if phase<.48:
-				var block_size := Vector2.ONE*CELL*(1+.16*sin(phase/.48*PI))
+			if phase<.32:
+				var block_size:=Vector2.ONE*CELL*(1+.22*sin(phase/.32*PI*.5))
 				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true,int(current.get("colors",{}).get(i,previous[i].c)))
-				draw_texture_rect(GLOW,Rect2(center-Vector2(36,36),Vector2(72,72)),false,Color(1,1,1,sin(t/.48*PI)*.7))
-			else:
-				draw_arc(center,(t-.35)*45,0,TAU,16,Color(color,(1-t)*.8),1.7,true)
+				draw_texture_rect(GLOW,Rect2(center-Vector2(38,38),Vector2(76,76)),false,Color(1,1,1,sin(phase/.32*PI)*.92))
+			elif phase<.72 and current.removed.size()<=12 and quality!="performance" and not reduced_motion and not previous[i].has("trait") and previous[i].p=="":
+				draw_shattered_crystal(previous[i],center,(phase-.32)/.4,shake)
+			if phase>.22:
+				draw_arc(center,12+(phase-.22)*39,0,TAU,16,Color(color,(1-phase)*.85),2.1,true)
+				if current.removed.size()>=4 and not settings.get("reduced_effects",false):
+					draw_line(center-Vector2(36,0)*phase,center+Vector2(36,0)*phase,Color(color.lightened(.5),(1-phase)*.7),1.3,true)
 		if int(current.combo)>1 and not settings.get("reduced_effects",false):
 			draw_texture_rect(GLOW,Rect2(-50,-50,576,636),false,Color(.65,.8,1,sin(t*PI)*.11))
+		draw_combo_effect(current,t)
 		for creation in current.get("creations",[]):
 			var center := cell_position(creation.i)+Vector2(28,28)
 			draw_arc(center,25+sin(t*PI)*13,0,TAU,24,Color(Palette.GOLD,1-t*.6),2,true)
@@ -633,9 +666,14 @@ func _draw() -> void:
 		shard[2] = center+Vector2(0,-radius*1.6)
 		var color: Color = particle_colors[i]
 		color.a = 1-life
-		var sprite:=14 if particle_styles[i]==1 else 15
-		var source:=CasualSkin.region("mechanics",sprite)
-		draw_texture_rect_region(CasualSkin.MECHANICS,CasualSkin.fit(Rect2(center-Vector2(radius*2,radius*2),Vector2(radius*4,radius*4)),source),source,color)
+		if particle_styles[i] in [1,3]:
+			var source:=CasualSkin.region("mechanics",13 if particle_styles[i]==3 else 14)
+			draw_texture_rect_region(CasualSkin.MECHANICS,CasualSkin.fit(Rect2(center-Vector2(radius*2,radius*2),Vector2(radius*4,radius*4)),source),source,color)
+		else:
+			# One faceted crystal fragment, rather than repeating a multi-shard sprite bundle.
+			draw_colored_polygon(shard,color)
+			shard_face[0]=shard[1];shard_face[1]=shard[2];shard_face[2]=center+Vector2(0,radius*.35)
+			draw_colored_polygon(shard_face,Color(color.lightened(.4),color.a))
 
 	if hint_index >= 0 and not busy and drag_index < 0:
 		var center := cell_position(hint_index) + Vector2(37, 37)
@@ -735,3 +773,41 @@ func goal_highlight_style() -> StyleBoxFlat:
 	if highlight_style==null:
 		highlight_style=StyleBoxFlat.new();highlight_style.bg_color=Color(1,.92,.3,.08);highlight_style.border_color=Color("fff09a");highlight_style.set_border_width_all(2);highlight_style.set_corner_radius_all(10)
 	return highlight_style
+
+func spawn_stars(center: Vector2,count: int) -> void:
+	if reduced_motion or settings.get("reduced_effects",false):return
+	for k in mini(count,4 if quality=="performance" else 10):
+		var slot:=particle_cursor%particle_budget();particle_cursor+=1;particle_count=maxi(particle_count,slot+1)
+		particle_positions[slot]=center+Vector2((k-count/2)*15,0);particle_velocities[slot]=Vector2((k-count/2)*20,-70-k%3*20);particle_colors[slot]=Palette.COLORS[k%5].lightened(.4);particle_styles[slot]=3;particle_ages[slot]=0
+func draw_shattered_crystal(cell: Dictionary,center: Vector2,t: float,shake: Vector2) -> void:
+	var region: Rect2=textures[int(cell.c)].region
+	var fitted:=CasualSkin.fit(Rect2(-28,-28,56,56),region)
+	for k in 4:
+		var x:=k%2;var y:=int(k/2)
+		var axis:=Vector2(-1 if x==0 else 1,-1 if y==0 else 1)
+		var source:=Rect2(region.position+Vector2(x,y)*region.size/2,region.size/2)
+		var piece:=Rect2(fitted.position+Vector2(x,y)*fitted.size/2,fitted.size/2)
+		draw_set_transform(center+axis*t*29,t*.2*axis.x)
+		draw_texture_rect_region(ATLAS,piece,source,Color(1,1,1,1-t))
+	draw_set_transform(shake)
+func draw_combo_effect(data: Dictionary,t: float) -> void:
+	var kind: String=data.get("combo_kind","")
+	if kind=="":return
+	var center:=cell_position(data.origin)+Vector2(28,28)
+	var alpha:=sin(t*PI)*.65
+	if kind in ["rocket_rocket","rocket_prism"]:
+		for offset in ([-1,0,1] if kind=="rocket_prism" else [0]):
+			draw_line(Vector2(0,center.y+offset*STRIDE),Vector2(476,center.y+offset*STRIDE),Color(.6,.94,1,alpha),5,true)
+			draw_line(Vector2(center.x+offset*STRIDE,0),Vector2(center.x+offset*STRIDE,536),Color(1,.86,.6,alpha),5,true)
+	elif kind in ["prism_prism","color_color"]:
+		for k in (3 if kind=="color_color" else 2):draw_arc(center,20+t*(130+k*55),0,TAU,32,Color(Palette.COLORS[k],(1-t)*.8),4,true)
+		draw_texture_rect(GLOW,Rect2(-30,-30,536,596),false,Color(1,1,1,alpha*.16))
+	else:
+		var sources: Array=data.get("virtual_powers",[])
+		for power in sources.slice(0,6 if quality=="performance" else 12):
+			var position:=cell_position(int(power.index))+Vector2(28,28)
+			if t<.6:draw_texture_rect_region(ATLAS,Rect2(position-Vector2(23,23),Vector2(46,46)),textures[POWER_TEXTURES[power.kind]].region,Color(1,1,1,sin(t/.6*PI)))
+			if power.kind=="prism":draw_arc(position,12+t*70,0,TAU,16,Color(.92,.7,1,(1-t)*.55),2,true)
+			else:
+				var axis:=Vector2.RIGHT if power.kind=="rocket_h" else Vector2.DOWN
+				draw_line(position-axis*100*t,position+axis*100*t,Color(.7,1,1,(1-t)*.6),2,true)

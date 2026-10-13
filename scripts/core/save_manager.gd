@@ -1,6 +1,6 @@
 extends RefCounted
 
-const SCHEMA := 2
+const SCHEMA := 3
 const Catalog = preload("res://scripts/core/level_catalog.gd")
 const Board = preload("res://scripts/core/board.gd")
 const Score = preload("res://scripts/core/score.gd")
@@ -61,7 +61,9 @@ func valid(parsed: Variant) -> bool:
 	if not valid_meta(parsed, SCHEMA): return false
 	if not parsed.active.is_empty():
 		if not parsed.active.has("level_id") or not Board.whole(parsed.active.level_id, 1, int(parsed.unlocked)): return false
-		var board = Board.new(Catalog.get_level(int(parsed.active.level_id)))
+		var definition=parsed.active.get("level_definition",Catalog.get_level(int(parsed.active.level_id)))
+		if not definition is Dictionary or not Catalog.validate(definition) or int(definition.id)!=int(parsed.active.level_id) or definition.get("development_only",false):return false
+		var board = Board.new(definition)
 		if not board.restore(parsed.active): return false
 	return true
 
@@ -71,6 +73,17 @@ func load_save() -> bool:
 		var parser := JSON.new()
 		var parse_error := parser.parse(FileAccess.get_file_as_string(candidate))
 		var parsed = canonical(parser.data) if parse_error == OK else null
+		if valid_meta(parsed,2):
+			var upgraded: Dictionary=parsed.duplicate(true);upgraded.version=SCHEMA
+			if not upgraded.active.is_empty() and not upgraded.active.has("level_definition"):
+				var legacy=JSON.parse_string(FileAccess.get_file_as_string("res://data/legacy-gameplay-0.8.json"))
+				var n: int=int(upgraded.active.get("level_id",0))
+				if n>=1 and n<=legacy.levels.size():upgraded.active.level_definition=canonical(legacy.levels[n-1])
+			if valid(upgraded):
+				var archive:=path+".v2-before-gameplay2"
+				if not FileAccess.file_exists(archive) and DirAccess.copy_absolute(ProjectSettings.globalize_path(candidate),ProjectSettings.globalize_path(archive))!=OK:
+					last_error="Önceki kayıt arşivlenemedi; üzerine yazma durduruldu.";read_only=true;return false
+				parsed=upgraded
 		if valid(parsed):
 			data = parsed
 			var merged: Dictionary = defaults().settings
@@ -167,7 +180,7 @@ func write_snapshot(payload: Dictionary) -> String:
 		var old_parser := JSON.new()
 		var parse_error := old_parser.parse(FileAccess.get_file_as_string(path))
 		var old_data = old_parser.data if parse_error == OK else null
-		if valid(old_data) or valid_meta(old_data, 1):
+		if valid(old_data) or valid_meta(old_data,1) or valid_meta(old_data,2):
 			if DirAccess.copy_absolute(absolute, absolute + ".bak") != OK: return "Kayıt yedeği yazılamadı."
 	var error := DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), absolute)
 	return "" if error == OK else "Kayıt değiştirilemedi: " + str(error)

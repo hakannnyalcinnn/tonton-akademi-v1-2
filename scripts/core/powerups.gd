@@ -71,3 +71,22 @@ static func combo_area(a: int, b: int, cells: Array, width: int, selected_color:
 			if (first == "prism" and second == "prism" and dx + dy <= 4) or ((first != second) and (dx <= 1 or dy <= 1)):
 				result.append(i)
 	return result
+
+static func combo_plan(a: int,b: int,cells: Array,width: int,selected_color: int) -> Dictionary:
+	var first: String=cells[a].p;var second: String=cells[b].p
+	var kind:=""
+	if first=="color" and second=="color":kind="color_color"
+	elif "color" in [first,second]:kind="color_prism" if "prism" in [first,second] else "color_rocket"
+	elif first=="prism" and second=="prism":kind="prism_prism"
+	elif "prism" in [first,second]:kind="rocket_prism"
+	else:kind="rocket_rocket"
+	var virtual: Array=[]
+	if kind in ["color_prism","color_rocket"]:
+		var other: String=second if first=="color" else first
+		for i in cells.size():
+			var cell=cells[i]
+			if cell!=null and cell.p=="" and not cell.get("fixed",false) and not cell.has("trait") and not cell.has("motion") and cell.c==selected_color:virtual.append({"index":i,"kind":other})
+	var footprint: Dictionary={}
+	for i in combo_area(a,b,cells,width,selected_color):footprint[int(i)]=true
+	var area: Array=footprint.keys();area.sort()
+	return {"kind":kind,"virtual":virtual,"area":area}

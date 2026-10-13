@@ -6,11 +6,11 @@ var cursor := 0
 var music: AudioStreamPlayer
 
 func _ready() -> void:
-	for key in ["click","pop","large","resonance","power","gravity","win","lose","invalid","rocket","color","cascade","portal","vine","crate","mirror"]:
+	for key in ["click","pop","large","resonance","power","gravity","win","lose","invalid","rocket","color","cascade","portal","vine","crate","mirror","match3","match4","match5","prism","combo_power","storm","crystal_wave","combo_big","success2"]:
 		streams[key] = load("res://assets/audio/"+key+".wav")
 	for i in 5:
 		var voice := AudioStreamPlayer.new()
-		voice.volume_db = -12
+		voice.volume_db = -18
 		add_child(voice)
 		voices.append(voice)
 	music = AudioStreamPlayer.new()
@@ -37,7 +37,7 @@ func play(key: String, intensity: int = 0) -> void:
 	cursor += 1
 	voice.stop()
 	voice.stream = streams[key]
-	voice.volume_db = linear_to_db(maxf(.001,settings.get("sfx_volume",.8)))-14+minf(2,intensity*.45)
+	voice.volume_db = linear_to_db(maxf(.001,settings.get("sfx_volume",.8)))-18+minf(2,intensity*.45)
 	voice.pitch_scale = 1+minf(.16,intensity*.04)
 	voice.play()
 

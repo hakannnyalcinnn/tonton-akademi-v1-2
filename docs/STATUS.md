@@ -1,3 +1,9 @@
+# Güncel çalışma — PRİZMA 0.9.0 / Oynanış 2.0
+
+Otomatik Prizma Fırtınası, Kristal Dalgası, 100 bölüm dengelemesi ve görsel/ses revizyonu için güncel kaynak [GAMEPLAY2_REPORT.md](GAMEPLAY2_REPORT.md) dosyasıdır. Aşağıdaki sürüm notları geçmiş kaydıdır. Gerçek Android cihaz kabul testleri ayrıca gereklidir.
+
+---
+
 # Güncel durum — 0.6.0
 
 Kristal Okyanus ve dördüncü paket için [PACKET4 test ve teslimat raporu](PACKAGE4_REPORT.md) güncel kaynaktır. Aşağıdaki önceki sürüm notları tarihî kayıt olarak korunur.

@@ -90,7 +90,9 @@ func run() -> void:
 	game.board_view.reduced_motion=true
 	for direction in ["left","up","right","down"]:
 		game.board.energy=2
-		game.on_gravity(direction)
+		game.board.direction=direction
+		game.board.frames.clear();game.board.settle(true)
+		game.process_event(game.board.resolve(game.board.find_matches(),[],[],-1,-1,false,false))
 		await wait_view(game)
 		check(game.board.direction==direction,"visual gravity: "+direction)
 		check(Match.find(game.board.cells,8,9).is_empty(),"gravity leaves no ready match")

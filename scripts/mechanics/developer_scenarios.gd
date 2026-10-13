@@ -1,7 +1,8 @@
 extends RefCounted
 ## Dedicated isolated laboratory boards; never inserted into the campaign catalog.
+## Scripted teaching steps freeze automatic storm/wave; gameplay2 integration tests explicitly enable both.
 static func make(kind: String, seed: int) -> Dictionary:
-	var d: Dictionary={"id":1,"world":1,"name":"Mekanik laboratuvarı","seed":seed,"moves":100,"targets":{"total":10000},"stars":[1000,2000,3000],"layout":[],"gravity":true,"resonance":true,"mechanics":[],"powers":{},"development_only":true,"opening_refill":[]}
+	var d: Dictionary={"id":1,"world":1,"name":"Mekanik laboratuvarı","seed":seed,"moves":100,"targets":{"total":10000},"stars":[1000,2000,3000],"layout":[],"gravity":true,"resonance":true,"mechanics":[],"powers":{},"development_only":true,"automatic_storm":false,"crystal_wave":false,"opening_refill":[]}
 	for y in 9:
 		for x in 8:d.layout.append((x+y*2)%5)
 	if kind=="portal":

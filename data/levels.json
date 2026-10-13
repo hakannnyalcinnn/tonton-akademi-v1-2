@@ -6,14 +6,14 @@
       "id": 1,
       "name": "İlk Işık",
       "seed": 91554,
-      "moves": 14,
+      "moves": 12,
       "targets": {
         "total": 12
       },
       "stars": [
         0,
-        1950,
-        3040
+        962,
+        1480
       ],
       "gravity": false,
       "resonance": false,
@@ -97,20 +97,22 @@
         9
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 14,
+      "difficulty": "öğretici"
     },
     {
       "id": 2,
       "name": "İki Yönün Dansı",
       "seed": 91871,
-      "moves": 16,
+      "moves": 13,
       "targets": {
         "total": 18
       },
       "stars": [
         0,
-        2100,
-        3280
+        1079,
+        1660
       ],
       "gravity": false,
       "resonance": false,
@@ -194,20 +196,22 @@
         25
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 16,
+      "difficulty": "öğretici"
     },
     {
       "id": 3,
       "name": "Roketin Uyanışı",
       "seed": 92188,
-      "moves": 18,
+      "moves": 15,
       "targets": {
         "total": 24
       },
       "stars": [
         0,
-        2250,
-        3520
+        1280,
+        1970
       ],
       "gravity": false,
       "resonance": false,
@@ -291,20 +295,22 @@
         10
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 18,
+      "difficulty": "öğretici"
     },
     {
       "id": 4,
       "name": "Rüzgârın Yönü",
       "seed": 92505,
-      "moves": 20,
+      "moves": 17,
       "targets": {
         "total": 30
       },
       "stars": [
         0,
-        2400,
-        3760
+        3276,
+        5040
       ],
       "gravity": true,
       "resonance": false,
@@ -382,26 +388,28 @@
         3,
         0
       ],
-      "tutorial": "12 blokla enerji kazan; düşüş yönünü değiştir.",
+      "tutorial": "12 kristal enerjisi topla; Prizma Fırtınası yönü kendiliğinden değiştirir.",
       "tutorial_swap": [
         1,
         9
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 20,
+      "difficulty": "öğretici"
     },
     {
       "id": 5,
       "name": "Beş Rengin Işığı",
       "seed": 92822,
-      "moves": 22,
+      "moves": 18,
       "targets": {
         "total": 36
       },
       "stars": [
         0,
-        2550,
-        4000
+        2314,
+        3560
       ],
       "gravity": true,
       "resonance": false,
@@ -485,21 +493,23 @@
         10
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 22,
+      "difficulty": "öğretici"
     },
     {
       "id": 6,
       "name": "Altın Yankı",
       "seed": 93139,
-      "moves": 23,
+      "moves": 19,
       "targets": {
         "0": 10,
         "total": 40
       },
       "stars": [
         0,
-        2700,
-        4240
+        2684,
+        4130
       ],
       "gravity": true,
       "resonance": true,
@@ -583,20 +593,22 @@
         9
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 23,
+      "difficulty": "öğretici"
     },
     {
       "id": 7,
       "name": "Zincirin Işığı",
       "seed": 93456,
-      "moves": 24,
+      "moves": 20,
       "targets": {
         "total": 45
       },
       "stars": [
         0,
-        2850,
-        4480
+        3048,
+        4690
       ],
       "gravity": true,
       "resonance": true,
@@ -684,13 +696,15 @@
         1,
         1,
         1
-      ]
+      ],
+      "legacy_moves": 24,
+      "difficulty": "öğretici"
     },
     {
       "id": 8,
       "name": "İki Rengin Dansı",
       "seed": 93773,
-      "moves": 25,
+      "moves": 21,
       "targets": {
         "0": 10,
         "1": 10,
@@ -698,8 +712,8 @@
       },
       "stars": [
         0,
-        3000,
-        4720
+        3822,
+        5880
       ],
       "gravity": true,
       "resonance": true,
@@ -783,20 +797,22 @@
         9
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 25,
+      "difficulty": "öğretici"
     },
     {
       "id": 9,
       "name": "Güçlerin Buluşması",
       "seed": 94090,
-      "moves": 26,
+      "moves": 22,
       "targets": {
         "total": 60
       },
       "stars": [
         0,
-        3150,
-        4960
+        3276,
+        5040
       ],
       "gravity": true,
       "resonance": true,
@@ -883,21 +899,23 @@
         "27": "rocket_h",
         "28": "prism"
       },
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 26,
+      "difficulty": "öğretici"
     },
     {
       "id": 10,
       "name": "Bahçenin Uyanışı",
       "seed": 94407,
-      "moves": 28,
+      "moves": 23,
       "targets": {
         "total": 80,
         "4": 10
       },
       "stars": [
         0,
-        3300,
-        5200
+        4160,
+        6400
       ],
       "gravity": true,
       "resonance": true,
@@ -981,7 +999,9 @@
         35
       ],
       "powers": {},
-      "opening_refill": []
+      "opening_refill": [],
+      "legacy_moves": 28,
+      "difficulty": "öğretici"
     }
   ]
 }

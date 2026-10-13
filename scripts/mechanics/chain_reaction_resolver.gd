@@ -8,7 +8,7 @@ static func present(cells: Array) -> bool:
 	for cell in cells:
 		if cell!=null and cell.get("obstacle",{}).get("kind","")=="crate":return true
 	return false
-static func resolve(cells: Array, removed: Array, selected: int, colors: Dictionary, collected: Dictionary, width: int, height: int) -> Dictionary:
+static func resolve(cells: Array, removed: Array, selected: int, colors: Dictionary, collected: Dictionary, width: int, height: int, virtual: Array = []) -> Dictionary:
 	var started:=Time.get_ticks_usec()
 	var queue: Array=[{"source":-1,"area":removed.duplicate()}]
 	var triggered: Array=[];var exploded: Dictionary={};var all_removed: Array=[];var events: Array=[];var event_log: Array=[]
@@ -40,7 +40,7 @@ static func resolve(cells: Array, removed: Array, selected: int, colors: Diction
 					normals.append(i)
 					var color:=str(colors.get(i,selected if Traits.flexible(cells[i]) and Traits.supports(cells[i],selected) else cells[i].c))
 					normal_colors[color]=int(normal_colors.get(color,0))+1
-		var hits:=Mechanics.wave(cells,normals,area,wave_powers,normal_colors,collected,width,height)
+		var hits:=Mechanics.wave(cells,normals,area,wave_powers,normal_colors,collected,width,height,virtual if cursor==1 else [])
 		for event in hits:
 			event.event_id=cursor;events.append(event)
 			if event.kind=="crate" and event.opened and not exploded.has(event.index):

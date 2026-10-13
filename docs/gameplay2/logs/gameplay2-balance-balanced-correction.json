@@ -1,0 +1,108 @@
+{
+  "levels": [
+    {
+      "blockers": [
+        {
+          "colors": [
+            1.0,
+            4.0
+          ],
+          "index": 30.0,
+          "kind": "dual"
+        },
+        {
+          "index": 35.0,
+          "kind": "bridge"
+        },
+        {
+          "index": 41.0,
+          "kind": "bridge"
+        }
+      ],
+      "cascade_guards": 0,
+      "crystal_waves": 46,
+      "level": 54,
+      "max_cascade": 9,
+      "mean_remaining": 3.25,
+      "mean_used": 15.75,
+      "moves": 19,
+      "power_creations": 120,
+      "remaining": [
+        12,
+        0,
+        0,
+        4,
+        0,
+        2,
+        6,
+        2,
+        3,
+        2,
+        5,
+        0,
+        3,
+        3,
+        6,
+        0,
+        3,
+        4,
+        2,
+        8
+      ],
+      "scores": [
+        10150,
+        8560,
+        6230,
+        8850,
+        7270,
+        7400,
+        8680,
+        8210,
+        7080,
+        7680,
+        9960,
+        6820,
+        8890,
+        8130,
+        8060,
+        6360,
+        8800,
+        9140,
+        8110,
+        9350
+      ],
+      "seeds": 20,
+      "storms": 204,
+      "targets": {
+        "bridges": 1.0,
+        "total": 150.0
+      },
+      "used": [
+        7,
+        19,
+        19,
+        15,
+        19,
+        17,
+        13,
+        17,
+        16,
+        17,
+        14,
+        19,
+        16,
+        16,
+        13,
+        19,
+        16,
+        15,
+        17,
+        11
+      ],
+      "win_rate": 0.8,
+      "wins": 16
+    }
+  ],
+  "mode": "balanced-correction",
+  "seeds": 20
+}

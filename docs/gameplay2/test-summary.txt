@@ -1,0 +1,74 @@
+All required source suites completed: 191467 assertions/checks, 0 failures.
+Local run completed in suites: passed unaffected suites retained; ocean suite rerun after level-62 target/star correction; all remaining suites executed. CI repeats the standard full test.sh from clean source.
+
+test-results.log:
+MATCH3 TEST RESULT: 20889 assertions, 0 failures; 2000 generated boards; 1000 games, 3858 moves
+
+persistence-write.log:
+
+
+persistence-read.log:
+
+
+quality-results.log:
+QUALITY TEST RESULT: 71 assertions, 0 failures; pooling, worker saves, rapid inputs, 10 levels, 4 gravities, 3 aspect ratios, pause/resume
+
+swipe-stress.log:
+SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+
+mechanic_tests.log:
+MECHANICS: 19767 checks, 0 failures; 600 games / 3674 moves
+
+mechanic_ui_tests.log:
+MECHANIC UI: 213 checks, 0 failures; 20 levels, native swipes, fixed edges, effects, background/resume, isolated developer tools
+
+mechanic-swipe-stress.log:
+MECHANIC SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+
+package2_tests.log:
+PACKAGE2 UNIT: 2081 checks, 0 failures
+
+package2_levels.log:
+PACKAGE2 LEVELS: 20116 checks, 0 failures; 400 games / 3854 moves
+
+package2_ui.log:
+PACKAGE2 UI: 2586 checks, 0 failures; all 72 cells / four gravity directions, 20 campaign levels, four developer mechanics, world finale
+
+package2-native-swipes.log:
+PACKAGE2 SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+
+package4_tests.log:
+PACKAGE4 MECHANICS: 3154 checks, 0 failures
+
+ocean_levels.log:
+OCEAN LEVELS: 31885 checks, 0 failures; 500 games / 6167 moves
+
+package4_ui.log:
+PACKAGE4 UI: 692 checks, 0 failures; 25 tutorials, 3 ratios, four dev scenarios, world saves
+
+ocean-native-swipes.log:
+OCEAN SWIPE STRESS: 100 valid native ScreenTouch swipes, 100 blocked duplicate swipes; fixed-size pools; 0 failures
+
+casual-ui.log:
+CASUAL UI: 112 checks, 0 failures
+
+goals_panel_tests.log:
+GOALS PANEL: 2572 checks, 0 failures; all 100 levels, six goals, 3 ratios, descriptions, counters, highlights, save
+
+package5_mechanics.log:
+PACKAGE5 MECHANICS: 20841 checks, 0 failures; 800 seeded boards, 6400 actions, four-direction / cross-mechanic cases
+
+package5_ui.log:
+PACKAGE5 UI: 33 checks, 0 failures; four scenarios, actual native seal input, tutorials, pools, save isolation
+
+ocean_finale_levels.log:
+OCEAN FINALE LEVELS: 49466 checks, 0 failures; 500 games / 7986 moves
+
+finale_ui.log:
+FINALE UI: 18 checks, 0 failures; real level100 win, 3 stages, durable reward once, legacy75 migration
+
+gameplay2_tests.log:
+GAMEPLAY2: 16943 checks, 0 failures; 1582 storms, 619 crystal waves
+
+gameplay2_ui.log:
+GAMEPLAY2 UI: 28 checks, 0 failures; no manual controls, three aspects, rapid inputs, event integrity, help

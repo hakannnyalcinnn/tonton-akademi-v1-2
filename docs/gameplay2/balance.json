@@ -1,0 +1,6555 @@
+{
+  "method": "Eski ve yeni sürümde aynı deterministik açgözlü çözücü kullanıldı. Bölüm başına 20 seed (temel seed+0..19); ayrı kontrol temel seed+1000..1019. Eski motor stratejik manuel yer çekimi kullanır, yeni motor yönü otomatik seçer. RNG ve üretilen tahta kazanma/kaybetme sonucuna göre ayarlanmaz. Bölüm 54 hedefi 186 → 150, bölüm 62 hedefi 208 → 195 düzeltilip iki grup yeniden çalıştırıldı; ilk deney logları korundu. Bu örneklem insan kazanma oranı veya tüm seedlerin çözülebilirlik kanıtı değildir.",
+  "before": {
+    "games": 2000,
+    "wins": 2000,
+    "win_rate": 1.0,
+    "mean_used": 5.4775,
+    "mean_remaining": 21.0625,
+    "minimum_level_win_rate": 1.0,
+    "storms": 0,
+    "waves": 0,
+    "cascade_guards": 0
+  },
+  "after": {
+    "games": 2000,
+    "wins": 1901,
+    "win_rate": 0.9505,
+    "mean_used": 10.603499999999999,
+    "mean_remaining": 6.1865,
+    "minimum_level_win_rate": 0.8,
+    "storms": 17201,
+    "waves": 6200,
+    "cascade_guards": 0
+  },
+  "holdout": {
+    "games": 2000,
+    "wins": 1876,
+    "win_rate": 0.938,
+    "mean_used": 10.458499999999999,
+    "mean_remaining": 6.3315,
+    "minimum_level_win_rate": 0.65,
+    "storms": 16866,
+    "waves": 6209,
+    "cascade_guards": 0
+  },
+  "levels": [
+    {
+      "level": 1,
+      "difficulty": "öğretici",
+      "old_moves": 14,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.25,
+      "new_mean_used": 2.25,
+      "old_mean_remaining": 11.75,
+      "new_mean_remaining": 9.75,
+      "holdout_mean_remaining": 9.8,
+      "old_targets": {
+        "total": 12
+      },
+      "new_targets": {
+        "total": 12
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 20,
+      "max_cascade": 6,
+      "storms": 0,
+      "waves": 4,
+      "cascade_guards": 0
+    },
+    {
+      "level": 2,
+      "difficulty": "öğretici",
+      "old_moves": 16,
+      "new_moves": 13,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 3.6,
+      "new_mean_used": 3.6,
+      "old_mean_remaining": 12.4,
+      "new_mean_remaining": 9.4,
+      "holdout_mean_remaining": 9.4,
+      "old_targets": {
+        "total": 18
+      },
+      "new_targets": {
+        "total": 18
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 29,
+      "max_cascade": 5,
+      "storms": 0,
+      "waves": 5,
+      "cascade_guards": 0
+    },
+    {
+      "level": 3,
+      "difficulty": "öğretici",
+      "old_moves": 18,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.65,
+      "new_mean_used": 4.65,
+      "old_mean_remaining": 13.35,
+      "new_mean_remaining": 10.35,
+      "holdout_mean_remaining": 10.45,
+      "old_targets": {
+        "total": 24
+      },
+      "new_targets": {
+        "total": 24
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 38,
+      "max_cascade": 5,
+      "storms": 0,
+      "waves": 1,
+      "cascade_guards": 0
+    },
+    {
+      "level": 4,
+      "difficulty": "öğretici",
+      "old_moves": 20,
+      "new_moves": 17,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.3,
+      "new_mean_used": 2.2,
+      "old_mean_remaining": 17.7,
+      "new_mean_remaining": 14.8,
+      "holdout_mean_remaining": 14.9,
+      "old_targets": {
+        "total": 30
+      },
+      "new_targets": {
+        "total": 30
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 66,
+      "max_cascade": 10,
+      "storms": 32,
+      "waves": 20,
+      "cascade_guards": 0
+    },
+    {
+      "level": 5,
+      "difficulty": "öğretici",
+      "old_moves": 22,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.6,
+      "new_mean_used": 2.5,
+      "old_mean_remaining": 19.4,
+      "new_mean_remaining": 15.5,
+      "holdout_mean_remaining": 15.9,
+      "old_targets": {
+        "total": 36
+      },
+      "new_targets": {
+        "total": 36
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 55,
+      "max_cascade": 11,
+      "storms": 30,
+      "waves": 15,
+      "cascade_guards": 0
+    },
+    {
+      "level": 6,
+      "difficulty": "öğretici",
+      "old_moves": 23,
+      "new_moves": 19,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.65,
+      "new_mean_used": 5.5,
+      "old_mean_remaining": 17.35,
+      "new_mean_remaining": 13.5,
+      "holdout_mean_remaining": 13.0,
+      "old_targets": {
+        "0": 10,
+        "total": 40
+      },
+      "new_targets": {
+        "0": 10,
+        "total": 40
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 36,
+      "max_cascade": 7,
+      "storms": 59,
+      "waves": 28,
+      "cascade_guards": 0
+    },
+    {
+      "level": 7,
+      "difficulty": "öğretici",
+      "old_moves": 24,
+      "new_moves": 20,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.45,
+      "new_mean_used": 3.5,
+      "old_mean_remaining": 19.55,
+      "new_mean_remaining": 16.5,
+      "holdout_mean_remaining": 16.3,
+      "old_targets": {
+        "total": 45
+      },
+      "new_targets": {
+        "total": 45
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 40,
+      "max_cascade": 7,
+      "storms": 55,
+      "waves": 26,
+      "cascade_guards": 0
+    },
+    {
+      "level": 8,
+      "difficulty": "öğretici",
+      "old_moves": 25,
+      "new_moves": 21,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 6.5,
+      "new_mean_used": 5.2,
+      "old_mean_remaining": 18.5,
+      "new_mean_remaining": 15.8,
+      "holdout_mean_remaining": 14.4,
+      "old_targets": {
+        "0": 10,
+        "1": 10,
+        "total": 45
+      },
+      "new_targets": {
+        "0": 10,
+        "1": 10,
+        "total": 45
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 72,
+      "max_cascade": 8,
+      "storms": 88,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 9,
+      "difficulty": "öğretici",
+      "old_moves": 26,
+      "new_moves": 22,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.05,
+      "new_mean_used": 1.75,
+      "old_mean_remaining": 23.95,
+      "new_mean_remaining": 20.25,
+      "holdout_mean_remaining": 20.45,
+      "old_targets": {
+        "total": 60
+      },
+      "new_targets": {
+        "total": 60
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {
+        "27": "rocket_h",
+        "28": "prism"
+      },
+      "new_powers": {
+        "27": "rocket_h",
+        "28": "prism"
+      },
+      "power_creations": 36,
+      "max_cascade": 10,
+      "storms": 35,
+      "waves": 13,
+      "cascade_guards": 0
+    },
+    {
+      "level": 10,
+      "difficulty": "öğretici",
+      "old_moves": 28,
+      "new_moves": 23,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 6.1,
+      "new_mean_used": 5.5,
+      "old_mean_remaining": 21.9,
+      "new_mean_remaining": 17.5,
+      "holdout_mean_remaining": 17.25,
+      "old_targets": {
+        "total": 80,
+        "4": 10
+      },
+      "new_targets": {
+        "total": 80,
+        "4": 10
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 84,
+      "max_cascade": 9,
+      "storms": 83,
+      "waves": 32,
+      "cascade_guards": 0
+    },
+    {
+      "level": 11,
+      "difficulty": "rahat",
+      "old_moves": 12,
+      "new_moves": 10,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 1.0,
+      "new_mean_used": 4.1,
+      "old_mean_remaining": 11.0,
+      "new_mean_remaining": 5.9,
+      "holdout_mean_remaining": 5.85,
+      "old_targets": {
+        "flowers": 1
+      },
+      "new_targets": {
+        "flowers": 1,
+        "total": 43
+      },
+      "old_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 59,
+      "max_cascade": 6,
+      "storms": 57,
+      "waves": 23,
+      "cascade_guards": 0
+    },
+    {
+      "level": 12,
+      "difficulty": "orta",
+      "old_moves": 14,
+      "new_moves": 8,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.75,
+      "new_mean_used": 4.45,
+      "old_mean_remaining": 11.25,
+      "new_mean_remaining": 3.55,
+      "holdout_mean_remaining": 3.55,
+      "old_targets": {
+        "flowers": 2
+      },
+      "new_targets": {
+        "flowers": 2,
+        "total": 56
+      },
+      "old_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 47,
+      "max_cascade": 10,
+      "storms": 78,
+      "waves": 31,
+      "cascade_guards": 0
+    },
+    {
+      "level": 13,
+      "difficulty": "orta",
+      "old_moves": 16,
+      "new_moves": 8,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.6,
+      "new_mean_used": 5.1,
+      "old_mean_remaining": 13.4,
+      "new_mean_remaining": 2.9,
+      "holdout_mean_remaining": 3.5,
+      "old_targets": {
+        "flowers": 2
+      },
+      "new_targets": {
+        "flowers": 2,
+        "total": 59
+      },
+      "old_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 58,
+      "max_cascade": 7,
+      "storms": 71,
+      "waves": 40,
+      "cascade_guards": 0
+    },
+    {
+      "level": 14,
+      "difficulty": "zor",
+      "old_moves": 18,
+      "new_moves": 8,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 3.65,
+      "new_mean_used": 4.8,
+      "old_mean_remaining": 14.35,
+      "new_mean_remaining": 3.2,
+      "holdout_mean_remaining": 3.05,
+      "old_targets": {
+        "flowers": 3,
+        "total": 45
+      },
+      "new_targets": {
+        "flowers": 3,
+        "total": 76
+      },
+      "old_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 52
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 52
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 93,
+      "max_cascade": 8,
+      "storms": 88,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 15,
+      "difficulty": "rahat",
+      "old_moves": 22,
+      "new_moves": 10,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 7.6,
+      "new_mean_used": 5.25,
+      "old_mean_remaining": 14.4,
+      "new_mean_remaining": 4.75,
+      "holdout_mean_remaining": 3.7,
+      "old_targets": {
+        "flowers": 4,
+        "total": 50
+      },
+      "new_targets": {
+        "flowers": 4,
+        "total": 50
+      },
+      "old_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 52
+        },
+        {
+          "kind": "seed",
+          "index": 21
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "seed",
+          "index": 3
+        },
+        {
+          "kind": "seed",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 52
+        },
+        {
+          "kind": "seed",
+          "index": 21
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 46,
+      "max_cascade": 9,
+      "storms": 70,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 16,
+      "difficulty": "stratejik",
+      "old_moves": 12,
+      "new_moves": 8,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 1.0,
+      "new_mean_used": 3.4,
+      "old_mean_remaining": 11.0,
+      "new_mean_remaining": 4.6,
+      "holdout_mean_remaining": 4.0,
+      "old_targets": {
+        "ice": 2
+      },
+      "new_targets": {
+        "ice": 2,
+        "total": 75
+      },
+      "old_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 97,
+      "max_cascade": 9,
+      "storms": 50,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 17,
+      "difficulty": "kombinasyon",
+      "old_moves": 18,
+      "new_moves": 8,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 3.95,
+      "new_mean_used": 5.15,
+      "old_mean_remaining": 14.05,
+      "new_mean_remaining": 2.85,
+      "holdout_mean_remaining": 3.4,
+      "old_targets": {
+        "ice": 4
+      },
+      "new_targets": {
+        "ice": 4,
+        "total": 74
+      },
+      "old_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 60,
+      "max_cascade": 15,
+      "storms": 85,
+      "waves": 39,
+      "cascade_guards": 0
+    },
+    {
+      "level": 18,
+      "difficulty": "meydan okuma",
+      "old_moves": 20,
+      "new_moves": 10,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 5.4,
+      "new_mean_used": 7.55,
+      "old_mean_remaining": 14.6,
+      "new_mean_remaining": 2.45,
+      "holdout_mean_remaining": 2.5,
+      "old_targets": {
+        "ice": 4,
+        "flowers": 1
+      },
+      "new_targets": {
+        "ice": 4,
+        "flowers": 1,
+        "total": 94
+      },
+      "old_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 94,
+      "max_cascade": 9,
+      "storms": 112,
+      "waves": 51,
+      "cascade_guards": 0
+    },
+    {
+      "level": 19,
+      "difficulty": "rahat",
+      "old_moves": 24,
+      "new_moves": 9,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.0,
+      "new_mean_used": 4.15,
+      "old_mean_remaining": 19.0,
+      "new_mean_remaining": 4.85,
+      "holdout_mean_remaining": 4.75,
+      "old_targets": {
+        "ice": 6,
+        "flowers": 1,
+        "total": 45
+      },
+      "new_targets": {
+        "ice": 6,
+        "flowers": 1,
+        "total": 57
+      },
+      "old_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        },
+        {
+          "kind": "ice",
+          "index": 52
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        },
+        {
+          "kind": "ice",
+          "index": 52
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 83,
+      "max_cascade": 13,
+      "storms": 70,
+      "waves": 29,
+      "cascade_guards": 0
+    },
+    {
+      "level": 20,
+      "difficulty": "orta",
+      "old_moves": 26,
+      "new_moves": 10,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 7.05,
+      "new_mean_used": 6.95,
+      "old_mean_remaining": 18.95,
+      "new_mean_remaining": 3.05,
+      "holdout_mean_remaining": 2.7,
+      "old_targets": {
+        "ice": 8,
+        "flowers": 1,
+        "total": 50
+      },
+      "new_targets": {
+        "ice": 8,
+        "flowers": 1,
+        "total": 74
+      },
+      "old_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        },
+        {
+          "kind": "ice",
+          "index": 52
+        },
+        {
+          "kind": "ice",
+          "index": 21
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "ice",
+          "index": 3
+        },
+        {
+          "kind": "ice",
+          "index": 35
+        },
+        {
+          "kind": "ice",
+          "index": 52
+        },
+        {
+          "kind": "ice",
+          "index": 21
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 77,
+      "max_cascade": 9,
+      "storms": 99,
+      "waves": 43,
+      "cascade_guards": 0
+    },
+    {
+      "level": 21,
+      "difficulty": "orta",
+      "old_moves": 14,
+      "new_moves": 9,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 1.0,
+      "new_mean_used": 4.5,
+      "old_mean_remaining": 13.0,
+      "new_mean_remaining": 4.5,
+      "holdout_mean_remaining": 4.85,
+      "old_targets": {
+        "stones": 1
+      },
+      "new_targets": {
+        "stones": 1,
+        "total": 76
+      },
+      "old_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 76,
+      "max_cascade": 11,
+      "storms": 76,
+      "waves": 44,
+      "cascade_guards": 0
+    },
+    {
+      "level": 22,
+      "difficulty": "zor",
+      "old_moves": 24,
+      "new_moves": 11,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.3,
+      "new_mean_used": 7.0,
+      "old_mean_remaining": 19.7,
+      "new_mean_remaining": 4.0,
+      "holdout_mean_remaining": 4.1,
+      "old_targets": {
+        "stones": 2,
+        "ice": 2
+      },
+      "new_targets": {
+        "stones": 2,
+        "ice": 2,
+        "total": 98
+      },
+      "old_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 91,
+      "max_cascade": 12,
+      "storms": 123,
+      "waves": 53,
+      "cascade_guards": 0
+    },
+    {
+      "level": 23,
+      "difficulty": "rahat",
+      "old_moves": 32,
+      "new_moves": 11,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.85,
+      "new_mean_used": 4.95,
+      "old_mean_remaining": 26.15,
+      "new_mean_remaining": 6.05,
+      "holdout_mean_remaining": 5.1,
+      "old_targets": {
+        "stones": 2,
+        "flowers": 1,
+        "ice": 2
+      },
+      "new_targets": {
+        "stones": 2,
+        "flowers": 1,
+        "ice": 2,
+        "total": 64
+      },
+      "old_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 73,
+      "max_cascade": 9,
+      "storms": 85,
+      "waves": 39,
+      "cascade_guards": 0
+    },
+    {
+      "level": 24,
+      "difficulty": "stratejik",
+      "old_moves": 24,
+      "new_moves": 11,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 6.25,
+      "new_mean_used": 7.25,
+      "old_mean_remaining": 17.75,
+      "new_mean_remaining": 3.75,
+      "holdout_mean_remaining": 4.4,
+      "old_targets": {
+        "stones": 3,
+        "flowers": 1,
+        "ice": 2
+      },
+      "new_targets": {
+        "stones": 3,
+        "flowers": 1,
+        "ice": 2,
+        "total": 95
+      },
+      "old_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "stone",
+          "index": 52
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "stone",
+          "index": 52
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 104,
+      "max_cascade": 12,
+      "storms": 117,
+      "waves": 38,
+      "cascade_guards": 0
+    },
+    {
+      "level": 25,
+      "difficulty": "kombinasyon",
+      "old_moves": 34,
+      "new_moves": 11,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 11.3,
+      "new_mean_used": 7.95,
+      "old_mean_remaining": 22.7,
+      "new_mean_remaining": 3.05,
+      "holdout_mean_remaining": 3.3,
+      "old_targets": {
+        "stones": 4,
+        "flowers": 1,
+        "ice": 2
+      },
+      "new_targets": {
+        "stones": 4,
+        "flowers": 1,
+        "ice": 2,
+        "total": 94
+      },
+      "old_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "stone",
+          "index": 52
+        },
+        {
+          "kind": "stone",
+          "index": 21
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "stone",
+          "index": 3
+        },
+        {
+          "kind": "stone",
+          "index": 35
+        },
+        {
+          "kind": "stone",
+          "index": 52
+        },
+        {
+          "kind": "stone",
+          "index": 21
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 81,
+      "max_cascade": 10,
+      "storms": 117,
+      "waves": 59,
+      "cascade_guards": 0
+    },
+    {
+      "level": 26,
+      "difficulty": "meydan okuma",
+      "old_moves": 14,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 2.0,
+      "new_mean_used": 11.4,
+      "old_mean_remaining": 12.0,
+      "new_mean_remaining": 2.6,
+      "holdout_mean_remaining": 3.45,
+      "old_targets": {
+        "locks": 1
+      },
+      "new_targets": {
+        "locks": 1,
+        "total": 118
+      },
+      "old_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 6
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 6
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 146,
+      "max_cascade": 9,
+      "storms": 156,
+      "waves": 35,
+      "cascade_guards": 0
+    },
+    {
+      "level": 27,
+      "difficulty": "rahat",
+      "old_moves": 18,
+      "new_moves": 9,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.35,
+      "new_mean_used": 3.7,
+      "old_mean_remaining": 15.65,
+      "new_mean_remaining": 5.3,
+      "holdout_mean_remaining": 5.2,
+      "old_targets": {
+        "locks": 2,
+        "ice": 2
+      },
+      "new_targets": {
+        "locks": 2,
+        "ice": 2,
+        "total": 72
+      },
+      "old_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 8
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 8
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 8
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 8
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 71,
+      "max_cascade": 9,
+      "storms": 71,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 28,
+      "difficulty": "orta",
+      "old_moves": 38,
+      "new_moves": 11,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 7.5,
+      "new_mean_used": 8.05,
+      "old_mean_remaining": 30.5,
+      "new_mean_remaining": 2.95,
+      "holdout_mean_remaining": 2.4,
+      "old_targets": {
+        "locks": 2,
+        "flowers": 1,
+        "ice": 2
+      },
+      "new_targets": {
+        "locks": 2,
+        "flowers": 1,
+        "ice": 2,
+        "total": 92
+      },
+      "old_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 10
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 10
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 10
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 10
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 104,
+      "max_cascade": 10,
+      "storms": 116,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 29,
+      "difficulty": "orta",
+      "old_moves": 34,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 8.9,
+      "new_mean_used": 8.55,
+      "old_mean_remaining": 25.1,
+      "new_mean_remaining": 3.45,
+      "holdout_mean_remaining": 3.5,
+      "old_targets": {
+        "locks": 3,
+        "flowers": 1,
+        "ice": 2,
+        "stones": 1
+      },
+      "new_targets": {
+        "locks": 3,
+        "flowers": 1,
+        "ice": 2,
+        "stones": 1,
+        "total": 94
+      },
+      "old_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 12
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 12
+        },
+        {
+          "kind": "lock",
+          "index": 52,
+          "color": 0,
+          "required": 12
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        },
+        {
+          "kind": "stone",
+          "index": 29
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 12
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 12
+        },
+        {
+          "kind": "lock",
+          "index": 52,
+          "color": 0,
+          "required": 12
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        },
+        {
+          "kind": "stone",
+          "index": 29
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 90,
+      "max_cascade": 13,
+      "storms": 110,
+      "waves": 42,
+      "cascade_guards": 0
+    },
+    {
+      "level": 30,
+      "difficulty": "zor",
+      "old_moves": 32,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 9.85,
+      "new_mean_used": 9.1,
+      "old_mean_remaining": 22.15,
+      "new_mean_remaining": 2.9,
+      "holdout_mean_remaining": 2.0,
+      "old_targets": {
+        "locks": 4,
+        "flowers": 1,
+        "ice": 2,
+        "stones": 1
+      },
+      "new_targets": {
+        "locks": 4,
+        "flowers": 1,
+        "ice": 2,
+        "stones": 1,
+        "total": 120
+      },
+      "old_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 14
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 14
+        },
+        {
+          "kind": "lock",
+          "index": 52,
+          "color": 0,
+          "required": 14
+        },
+        {
+          "kind": "lock",
+          "index": 21,
+          "color": 1,
+          "required": 14
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        },
+        {
+          "kind": "stone",
+          "index": 29
+        }
+      ],
+      "new_mechanics": [
+        {
+          "kind": "lock",
+          "index": 3,
+          "color": 0,
+          "required": 14
+        },
+        {
+          "kind": "lock",
+          "index": 35,
+          "color": 1,
+          "required": 14
+        },
+        {
+          "kind": "lock",
+          "index": 52,
+          "color": 0,
+          "required": 14
+        },
+        {
+          "kind": "lock",
+          "index": 21,
+          "color": 1,
+          "required": 14
+        },
+        {
+          "kind": "seed",
+          "index": 60
+        },
+        {
+          "kind": "ice",
+          "index": 46
+        },
+        {
+          "kind": "stone",
+          "index": 29
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 115,
+      "max_cascade": 10,
+      "storms": 144,
+      "waves": 61,
+      "cascade_guards": 0
+    },
+    {
+      "level": 31,
+      "difficulty": "rahat",
+      "old_moves": 14,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.55,
+      "new_mean_used": 7.65,
+      "old_mean_remaining": 11.45,
+      "new_mean_remaining": 6.35,
+      "holdout_mean_remaining": 6.5,
+      "old_targets": {
+        "duals": 1.0,
+        "total": 12.0
+      },
+      "new_targets": {
+        "duals": 1.0,
+        "total": 79
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 82,
+      "max_cascade": 8,
+      "storms": 101,
+      "waves": 32,
+      "cascade_guards": 0
+    },
+    {
+      "level": 32,
+      "difficulty": "stratejik",
+      "old_moves": 16,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.55,
+      "new_mean_used": 8.1,
+      "old_mean_remaining": 13.45,
+      "new_mean_remaining": 6.9,
+      "holdout_mean_remaining": 7.6,
+      "old_targets": {
+        "duals": 1.0,
+        "total": 17.0
+      },
+      "new_targets": {
+        "duals": 1.0,
+        "total": 115
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 121,
+      "max_cascade": 10,
+      "storms": 134,
+      "waves": 44,
+      "cascade_guards": 0
+    },
+    {
+      "level": 33,
+      "difficulty": "kombinasyon",
+      "old_moves": 22,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.8,
+      "new_mean_used": 8.95,
+      "old_mean_remaining": 16.2,
+      "new_mean_remaining": 3.05,
+      "holdout_mean_remaining": 3.7,
+      "old_targets": {
+        "duals": 2.0,
+        "total": 22.0
+      },
+      "new_targets": {
+        "duals": 2.0,
+        "total": 113
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 114,
+      "max_cascade": 11,
+      "storms": 125,
+      "waves": 37,
+      "cascade_guards": 0
+    },
+    {
+      "level": 34,
+      "difficulty": "meydan okuma",
+      "old_moves": 20,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.25,
+      "new_mean_used": 10.4,
+      "old_mean_remaining": 15.75,
+      "new_mean_remaining": 3.6,
+      "holdout_mean_remaining": 4.3,
+      "old_targets": {
+        "duals": 2.0,
+        "total": 27.0
+      },
+      "new_targets": {
+        "duals": 2.0,
+        "total": 141
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 152,
+      "max_cascade": 9,
+      "storms": 158,
+      "waves": 53,
+      "cascade_guards": 0
+    },
+    {
+      "level": 35,
+      "difficulty": "rahat",
+      "old_moves": 24,
+      "new_moves": 13,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.85,
+      "new_mean_used": 6.75,
+      "old_mean_remaining": 19.15,
+      "new_mean_remaining": 6.25,
+      "holdout_mean_remaining": 6.65,
+      "old_targets": {
+        "duals": 3.0,
+        "total": 32.0
+      },
+      "new_targets": {
+        "duals": 3.0,
+        "total": 86
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            2,
+            3
+          ],
+          "index": 58,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            2,
+            3
+          ],
+          "index": 58,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 82,
+      "max_cascade": 11,
+      "storms": 100,
+      "waves": 41,
+      "cascade_guards": 0
+    },
+    {
+      "level": 36,
+      "difficulty": "orta",
+      "old_moves": 20,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 1.95,
+      "new_mean_used": 7.9,
+      "old_mean_remaining": 18.05,
+      "new_mean_remaining": 4.1,
+      "holdout_mean_remaining": 6.2,
+      "old_targets": {
+        "duals": 1.0,
+        "flowers": 1.0,
+        "total": 22.0
+      },
+      "new_targets": {
+        "duals": 1.0,
+        "flowers": 1.0,
+        "total": 109
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 112,
+      "max_cascade": 10,
+      "storms": 138,
+      "waves": 46,
+      "cascade_guards": 0
+    },
+    {
+      "level": 37,
+      "difficulty": "orta",
+      "old_moves": 24,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 4.2,
+      "new_mean_used": 10.45,
+      "old_mean_remaining": 19.8,
+      "new_mean_remaining": 3.55,
+      "holdout_mean_remaining": 4.5,
+      "old_targets": {
+        "duals": 1.0,
+        "total": 27.0
+      },
+      "new_targets": {
+        "duals": 1.0,
+        "total": 111
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 104,
+      "max_cascade": 9,
+      "storms": 145,
+      "waves": 42,
+      "cascade_guards": 0
+    },
+    {
+      "level": 38,
+      "difficulty": "zor",
+      "old_moves": 24,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 4.65,
+      "new_mean_used": 10.55,
+      "old_mean_remaining": 19.35,
+      "new_mean_remaining": 3.45,
+      "holdout_mean_remaining": 3.9,
+      "old_targets": {
+        "duals": 2.0,
+        "stones": 1.0,
+        "total": 32.0
+      },
+      "new_targets": {
+        "duals": 2.0,
+        "stones": 1.0,
+        "total": 142
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 146,
+      "max_cascade": 8,
+      "storms": 171,
+      "waves": 45,
+      "cascade_guards": 0
+    },
+    {
+      "level": 39,
+      "difficulty": "rahat",
+      "old_moves": 28,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.7,
+      "new_mean_used": 8.2,
+      "old_mean_remaining": 22.3,
+      "new_mean_remaining": 5.8,
+      "holdout_mean_remaining": 5.6,
+      "old_targets": {
+        "duals": 2.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "total": 37.0
+      },
+      "new_targets": {
+        "duals": 2.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "total": 93
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 14
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 14
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 84,
+      "max_cascade": 8,
+      "storms": 114,
+      "waves": 47,
+      "cascade_guards": 0
+    },
+    {
+      "level": 40,
+      "difficulty": "stratejik",
+      "old_moves": 30,
+      "new_moves": 14,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 7.5,
+      "new_mean_used": 9.8,
+      "old_mean_remaining": 22.5,
+      "new_mean_remaining": 4.2,
+      "holdout_mean_remaining": 4.35,
+      "old_targets": {
+        "duals": 3.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 42.0
+      },
+      "new_targets": {
+        "duals": 3.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 136
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "colors": [
+            2,
+            3
+          ],
+          "index": 58,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "colors": [
+            2,
+            3
+          ],
+          "index": 58,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 140,
+      "max_cascade": 9,
+      "storms": 162,
+      "waves": 58,
+      "cascade_guards": 0
+    },
+    {
+      "level": 41,
+      "difficulty": "kombinasyon",
+      "old_moves": 20,
+      "new_moves": 13,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 3.8,
+      "new_mean_used": 7.65,
+      "old_mean_remaining": 16.2,
+      "new_mean_remaining": 5.35,
+      "holdout_mean_remaining": 6.5,
+      "old_targets": {
+        "1": 8.0,
+        "total": 24.0
+      },
+      "new_targets": {
+        "1": 24,
+        "total": 132
+      },
+      "old_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 128,
+      "max_cascade": 10,
+      "storms": 153,
+      "waves": 67,
+      "cascade_guards": 0
+    },
+    {
+      "level": 42,
+      "difficulty": "meydan okuma",
+      "old_moves": 22,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.8,
+      "old_mean_used": 3.15,
+      "new_mean_used": 10.7,
+      "old_mean_remaining": 18.85,
+      "new_mean_remaining": 4.3,
+      "holdout_mean_remaining": 2.65,
+      "old_targets": {
+        "1": 10.0,
+        "total": 30.0
+      },
+      "new_targets": {
+        "1": 30,
+        "total": 165
+      },
+      "old_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 146,
+      "max_cascade": 9,
+      "storms": 186,
+      "waves": 78,
+      "cascade_guards": 0
+    },
+    {
+      "level": 43,
+      "difficulty": "rahat",
+      "old_moves": 26,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.45,
+      "new_mean_used": 7.6,
+      "old_mean_remaining": 20.55,
+      "new_mean_remaining": 7.4,
+      "holdout_mean_remaining": 7.45,
+      "old_targets": {
+        "1": 12.0,
+        "total": 36.0
+      },
+      "new_targets": {
+        "1": 18,
+        "total": 100
+      },
+      "old_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 100,
+      "max_cascade": 9,
+      "storms": 120,
+      "waves": 52,
+      "cascade_guards": 0
+    },
+    {
+      "level": 44,
+      "difficulty": "orta",
+      "old_moves": 26,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 4.5,
+      "new_mean_used": 8.5,
+      "old_mean_remaining": 21.5,
+      "new_mean_remaining": 3.5,
+      "holdout_mean_remaining": 3.35,
+      "old_targets": {
+        "1": 14.0,
+        "total": 42.0
+      },
+      "new_targets": {
+        "1": 23,
+        "total": 127
+      },
+      "old_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 125,
+      "max_cascade": 9,
+      "storms": 124,
+      "waves": 54,
+      "cascade_guards": 0
+    },
+    {
+      "level": 45,
+      "difficulty": "orta",
+      "old_moves": 30,
+      "new_moves": 12,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 4.85,
+      "new_mean_used": 9.0,
+      "old_mean_remaining": 25.15,
+      "new_mean_remaining": 3.0,
+      "holdout_mean_remaining": 2.4,
+      "old_targets": {
+        "1": 16.0,
+        "total": 48.0
+      },
+      "new_targets": {
+        "1": 23,
+        "total": 129
+      },
+      "old_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 137,
+      "max_cascade": 10,
+      "storms": 145,
+      "waves": 46,
+      "cascade_guards": 0
+    },
+    {
+      "level": 46,
+      "difficulty": "zor",
+      "old_moves": 26,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 3.25,
+      "new_mean_used": 11.9,
+      "old_mean_remaining": 22.75,
+      "new_mean_remaining": 3.1,
+      "holdout_mean_remaining": 3.35,
+      "old_targets": {
+        "1": 8.0,
+        "duals": 2.0,
+        "flowers": 1.0,
+        "total": 24.0
+      },
+      "new_targets": {
+        "1": 30,
+        "duals": 2.0,
+        "flowers": 1.0,
+        "total": 164
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 148,
+      "max_cascade": 9,
+      "storms": 196,
+      "waves": 69,
+      "cascade_guards": 0
+    },
+    {
+      "level": 47,
+      "difficulty": "rahat",
+      "old_moves": 30,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.15,
+      "new_mean_used": 8.6,
+      "old_mean_remaining": 24.85,
+      "new_mean_remaining": 6.4,
+      "holdout_mean_remaining": 6.0,
+      "old_targets": {
+        "1": 10.0,
+        "duals": 2.0,
+        "total": 30.0
+      },
+      "new_targets": {
+        "1": 19,
+        "duals": 2.0,
+        "total": 107
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 102,
+      "max_cascade": 10,
+      "storms": 130,
+      "waves": 52,
+      "cascade_guards": 0
+    },
+    {
+      "level": 48,
+      "difficulty": "stratejik",
+      "old_moves": 30,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 7.45,
+      "new_mean_used": 13.25,
+      "old_mean_remaining": 22.55,
+      "new_mean_remaining": 4.75,
+      "holdout_mean_remaining": 4.9,
+      "old_targets": {
+        "1": 12.0,
+        "duals": 2.0,
+        "stones": 1.0,
+        "total": 36.0
+      },
+      "new_targets": {
+        "1": 28,
+        "duals": 2.0,
+        "stones": 1.0,
+        "total": 156
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 125,
+      "max_cascade": 9,
+      "storms": 188,
+      "waves": 60,
+      "cascade_guards": 0
+    },
+    {
+      "level": 49,
+      "difficulty": "kombinasyon",
+      "old_moves": 30,
+      "new_moves": 17,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 7.5,
+      "new_mean_used": 13.35,
+      "old_mean_remaining": 22.5,
+      "new_mean_remaining": 3.65,
+      "holdout_mean_remaining": 4.1,
+      "old_targets": {
+        "1": 14.0,
+        "duals": 2.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 42.0
+      },
+      "new_targets": {
+        "1": 27,
+        "duals": 2.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 152
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 14
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 18
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 122,
+      "max_cascade": 9,
+      "storms": 194,
+      "waves": 60,
+      "cascade_guards": 0
+    },
+    {
+      "level": 50,
+      "difficulty": "meydan okuma",
+      "old_moves": 26,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 7.25,
+      "new_mean_used": 13.4,
+      "old_mean_remaining": 18.75,
+      "new_mean_remaining": 4.6,
+      "holdout_mean_remaining": 4.8,
+      "old_targets": {
+        "1": 16.0,
+        "duals": 2.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 65.0
+      },
+      "new_targets": {
+        "1": 34,
+        "duals": 2.0,
+        "flowers": 1.0,
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 189
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 9,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "ice"
+        },
+        {
+          "index": 35,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            2
+          ],
+          "index": 38,
+          "kind": "dual"
+        },
+        {
+          "index": 43,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "color": 0,
+          "index": 52,
+          "kind": "lock",
+          "required": 23
+        },
+        {
+          "index": 61,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 1,
+          "sequence": [
+            2,
+            1,
+            0,
+            4
+          ]
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 166,
+      "max_cascade": 12,
+      "storms": 220,
+      "waves": 73,
+      "cascade_guards": 0
+    },
+    {
+      "level": 51,
+      "difficulty": "rahat",
+      "old_moves": 18,
+      "new_moves": 16,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 2.7,
+      "new_mean_used": 6.75,
+      "old_mean_remaining": 15.3,
+      "new_mean_remaining": 9.25,
+      "holdout_mean_remaining": 9.9,
+      "old_targets": {
+        "bridges": 1.0,
+        "total": 22.0
+      },
+      "new_targets": {
+        "bridges": 1.0,
+        "total": 114
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 116,
+      "max_cascade": 8,
+      "storms": 119,
+      "waves": 43,
+      "cascade_guards": 0
+    },
+    {
+      "level": 52,
+      "difficulty": "orta",
+      "old_moves": 18,
+      "new_moves": 16,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 3.75,
+      "new_mean_used": 11.0,
+      "old_mean_remaining": 14.25,
+      "new_mean_remaining": 5.0,
+      "holdout_mean_remaining": 5.8,
+      "old_targets": {
+        "bridges": 1.0,
+        "total": 25.0
+      },
+      "new_targets": {
+        "bridges": 1.0,
+        "total": 144
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 134,
+      "max_cascade": 10,
+      "storms": 172,
+      "waves": 51,
+      "cascade_guards": 0
+    },
+    {
+      "level": 53,
+      "difficulty": "orta",
+      "old_moves": 19,
+      "new_moves": 11,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 1.9,
+      "new_mean_used": 7.9,
+      "old_mean_remaining": 17.1,
+      "new_mean_remaining": 3.1,
+      "holdout_mean_remaining": 4.85,
+      "old_targets": {
+        "bridges": 1.0,
+        "total": 28.0
+      },
+      "new_targets": {
+        "bridges": 1.0,
+        "total": 147
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 44,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 44,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 138,
+      "max_cascade": 11,
+      "storms": 155,
+      "waves": 60,
+      "cascade_guards": 0
+    },
+    {
+      "level": 54,
+      "difficulty": "zor",
+      "old_moves": 19,
+      "new_moves": 19,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.8,
+      "holdout_win_rate": 0.8,
+      "old_mean_used": 5.7,
+      "new_mean_used": 15.75,
+      "old_mean_remaining": 13.3,
+      "new_mean_remaining": 3.25,
+      "holdout_mean_remaining": 4.1,
+      "old_targets": {
+        "bridges": 1.0,
+        "total": 31.0
+      },
+      "new_targets": {
+        "bridges": 1.0,
+        "total": 150
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 30,
+          "kind": "dual"
+        },
+        {
+          "index": 35,
+          "kind": "bridge"
+        },
+        {
+          "index": 41,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 30,
+          "kind": "dual"
+        },
+        {
+          "index": 35,
+          "kind": "bridge"
+        },
+        {
+          "index": 41,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 120,
+      "max_cascade": 9,
+      "storms": 204,
+      "waves": 46,
+      "cascade_guards": 0
+    },
+    {
+      "level": 55,
+      "difficulty": "rahat",
+      "old_moves": 20,
+      "new_moves": 16,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 3.45,
+      "new_mean_used": 8.05,
+      "old_mean_remaining": 16.55,
+      "new_mean_remaining": 7.95,
+      "holdout_mean_remaining": 8.1,
+      "old_targets": {
+        "bridges": 1.0,
+        "total": 34.0
+      },
+      "new_targets": {
+        "bridges": 1.0,
+        "total": 121
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 135,
+      "max_cascade": 9,
+      "storms": 136,
+      "waves": 48,
+      "cascade_guards": 0
+    },
+    {
+      "level": 56,
+      "difficulty": "stratejik",
+      "old_moves": 20,
+      "new_moves": 17,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 4.05,
+      "new_mean_used": 10.25,
+      "old_mean_remaining": 15.95,
+      "new_mean_remaining": 6.75,
+      "holdout_mean_remaining": 5.1,
+      "old_targets": {
+        "pins": 1.0,
+        "total": 37.0
+      },
+      "new_targets": {
+        "pins": 1.0,
+        "total": 176
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 176,
+      "max_cascade": 12,
+      "storms": 176,
+      "waves": 70,
+      "cascade_guards": 0
+    },
+    {
+      "level": 57,
+      "difficulty": "kombinasyon",
+      "old_moves": 21,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.95,
+      "new_mean_used": 12.95,
+      "old_mean_remaining": 15.05,
+      "new_mean_remaining": 5.05,
+      "holdout_mean_remaining": 5.95,
+      "old_targets": {
+        "pins": 1.0,
+        "total": 40.0
+      },
+      "new_targets": {
+        "pins": 1.0,
+        "total": 171
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 157,
+      "max_cascade": 10,
+      "storms": 209,
+      "waves": 71,
+      "cascade_guards": 0
+    },
+    {
+      "level": 58,
+      "difficulty": "meydan okuma",
+      "old_moves": 21,
+      "new_moves": 19,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 4.4,
+      "new_mean_used": 13.25,
+      "old_mean_remaining": 16.6,
+      "new_mean_remaining": 5.75,
+      "holdout_mean_remaining": 6.2,
+      "old_targets": {
+        "pins": 2.0,
+        "total": 43.0
+      },
+      "new_targets": {
+        "pins": 2.0,
+        "total": 213
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 182,
+      "max_cascade": 10,
+      "storms": 233,
+      "waves": 76,
+      "cascade_guards": 0
+    },
+    {
+      "level": 59,
+      "difficulty": "rahat",
+      "old_moves": 22,
+      "new_moves": 13,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.4,
+      "new_mean_used": 7.65,
+      "old_mean_remaining": 17.6,
+      "new_mean_remaining": 5.35,
+      "holdout_mean_remaining": 5.3,
+      "old_targets": {
+        "pins": 2.0,
+        "total": 46.0
+      },
+      "new_targets": {
+        "pins": 2.0,
+        "total": 128
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 121,
+      "max_cascade": 15,
+      "storms": 120,
+      "waves": 55,
+      "cascade_guards": 0
+    },
+    {
+      "level": 60,
+      "difficulty": "orta",
+      "old_moves": 22,
+      "new_moves": 16,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 6.4,
+      "new_mean_used": 11.25,
+      "old_mean_remaining": 15.6,
+      "new_mean_remaining": 4.75,
+      "holdout_mean_remaining": 3.5,
+      "old_targets": {
+        "pins": 2.0,
+        "total": 49.0
+      },
+      "new_targets": {
+        "pins": 2.0,
+        "total": 162
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 147,
+      "max_cascade": 8,
+      "storms": 173,
+      "waves": 71,
+      "cascade_guards": 0
+    },
+    {
+      "level": 61,
+      "difficulty": "orta",
+      "old_moves": 23,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.55,
+      "new_mean_used": 10.45,
+      "old_mean_remaining": 17.45,
+      "new_mean_remaining": 4.55,
+      "holdout_mean_remaining": 4.6,
+      "old_targets": {
+        "ice": 4.0,
+        "total": 52.0
+      },
+      "new_targets": {
+        "ice": 4.0,
+        "total": 164
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 143,
+      "max_cascade": 12,
+      "storms": 181,
+      "waves": 68,
+      "cascade_guards": 0
+    },
+    {
+      "level": 62,
+      "difficulty": "zor",
+      "old_moves": 23,
+      "new_moves": 23,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 10.1,
+      "new_mean_used": 18.65,
+      "old_mean_remaining": 12.9,
+      "new_mean_remaining": 4.35,
+      "holdout_mean_remaining": 7.8,
+      "old_targets": {
+        "ice": 4.0,
+        "total": 55.0
+      },
+      "new_targets": {
+        "ice": 4.0,
+        "total": 195
+      },
+      "old_mechanics": [
+        {
+          "index": 7,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 50,
+          "kind": "dual"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 7,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 50,
+          "kind": "dual"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 156,
+      "max_cascade": 13,
+      "storms": 260,
+      "waves": 72,
+      "cascade_guards": 0
+    },
+    {
+      "level": 63,
+      "difficulty": "rahat",
+      "old_moves": 24,
+      "new_moves": 20,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 6.8,
+      "new_mean_used": 10.95,
+      "old_mean_remaining": 17.2,
+      "new_mean_remaining": 9.05,
+      "holdout_mean_remaining": 10.05,
+      "old_targets": {
+        "ice": 4.0,
+        "total": 58.0
+      },
+      "new_targets": {
+        "ice": 4.0,
+        "total": 135
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 139,
+      "max_cascade": 10,
+      "storms": 168,
+      "waves": 60,
+      "cascade_guards": 0
+    },
+    {
+      "level": 64,
+      "difficulty": "stratejik",
+      "old_moves": 24,
+      "new_moves": 17,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 8.1,
+      "new_mean_used": 12.5,
+      "old_mean_remaining": 15.9,
+      "new_mean_remaining": 4.5,
+      "holdout_mean_remaining": 5.3,
+      "old_targets": {
+        "ice": 4.0,
+        "total": 61.0
+      },
+      "new_targets": {
+        "ice": 4.0,
+        "total": 196
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 184,
+      "max_cascade": 9,
+      "storms": 189,
+      "waves": 74,
+      "cascade_guards": 0
+    },
+    {
+      "level": 65,
+      "difficulty": "kombinasyon",
+      "old_moves": 25,
+      "new_moves": 20,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 8.25,
+      "new_mean_used": 15.95,
+      "old_mean_remaining": 16.75,
+      "new_mean_remaining": 4.05,
+      "holdout_mean_remaining": 7.4,
+      "old_targets": {
+        "ice": 4.0,
+        "total": 64.0
+      },
+      "new_targets": {
+        "ice": 4.0,
+        "total": 190
+      },
+      "old_mechanics": [
+        {
+          "index": 12,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            1,
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 12,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            1,
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "colors": [
+            0,
+            1
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 163,
+      "max_cascade": 9,
+      "storms": 247,
+      "waves": 71,
+      "cascade_guards": 0
+    },
+    {
+      "level": 66,
+      "difficulty": "meydan okuma",
+      "old_moves": 25,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.65,
+      "old_mean_used": 6.2,
+      "new_mean_used": 13.1,
+      "old_mean_remaining": 18.8,
+      "new_mean_remaining": 4.9,
+      "holdout_mean_remaining": 3.4,
+      "old_targets": {
+        "stones": 1.0,
+        "total": 67.0
+      },
+      "new_targets": {
+        "stones": 1.0,
+        "total": 237
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 224,
+      "max_cascade": 9,
+      "storms": 233,
+      "waves": 86,
+      "cascade_guards": 0
+    },
+    {
+      "level": 67,
+      "difficulty": "rahat",
+      "old_moves": 26,
+      "new_moves": 17,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 8.0,
+      "new_mean_used": 10.9,
+      "old_mean_remaining": 18.0,
+      "new_mean_remaining": 6.1,
+      "holdout_mean_remaining": 5.4,
+      "old_targets": {
+        "stones": 1.0,
+        "total": 70.0
+      },
+      "new_targets": {
+        "stones": 1.0,
+        "total": 142
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 122,
+      "max_cascade": 9,
+      "storms": 163,
+      "waves": 61,
+      "cascade_guards": 0
+    },
+    {
+      "level": 68,
+      "difficulty": "orta",
+      "old_moves": 26,
+      "new_moves": 21,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 6.95,
+      "new_mean_used": 13.05,
+      "old_mean_remaining": 19.05,
+      "new_mean_remaining": 7.95,
+      "holdout_mean_remaining": 8.95,
+      "old_targets": {
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 73.0
+      },
+      "new_targets": {
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 180
+      },
+      "old_mechanics": [
+        {
+          "color": 1,
+          "index": 19,
+          "kind": "lock",
+          "required": 12
+        },
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "color": 1,
+          "index": 19,
+          "kind": "lock",
+          "required": 22
+        },
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 160,
+      "max_cascade": 10,
+      "storms": 218,
+      "waves": 70,
+      "cascade_guards": 0
+    },
+    {
+      "level": 69,
+      "difficulty": "orta",
+      "old_moves": 27,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 9.7,
+      "new_mean_used": 14.45,
+      "old_mean_remaining": 17.3,
+      "new_mean_remaining": 3.55,
+      "holdout_mean_remaining": 4.0,
+      "old_targets": {
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 76.0
+      },
+      "new_targets": {
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 182
+      },
+      "old_mechanics": [
+        {
+          "color": 1,
+          "index": 19,
+          "kind": "lock",
+          "required": 14
+        },
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "color": 1,
+          "index": 19,
+          "kind": "lock",
+          "required": 22
+        },
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 152,
+      "max_cascade": 9,
+      "storms": 229,
+      "waves": 79,
+      "cascade_guards": 0
+    },
+    {
+      "level": 70,
+      "difficulty": "zor",
+      "old_moves": 27,
+      "new_moves": 20,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.8,
+      "holdout_win_rate": 0.65,
+      "old_mean_used": 10.6,
+      "new_mean_used": 16.35,
+      "old_mean_remaining": 16.4,
+      "new_mean_remaining": 3.65,
+      "holdout_mean_remaining": 2.8,
+      "old_targets": {
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 79.0
+      },
+      "new_targets": {
+        "locks": 1.0,
+        "stones": 1.0,
+        "total": 230
+      },
+      "old_mechanics": [
+        {
+          "color": 1,
+          "index": 19,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "color": 1,
+          "index": 19,
+          "kind": "lock",
+          "required": 28
+        },
+        {
+          "index": 27,
+          "kind": "pin"
+        },
+        {
+          "index": 36,
+          "kind": "stone"
+        },
+        {
+          "index": 44,
+          "kind": "ice"
+        },
+        {
+          "index": 51,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 187,
+      "max_cascade": 12,
+      "storms": 251,
+      "waves": 83,
+      "cascade_guards": 0
+    },
+    {
+      "level": 71,
+      "difficulty": "rahat",
+      "old_moves": 28,
+      "new_moves": 16,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 9.6,
+      "new_mean_used": 9.65,
+      "old_mean_remaining": 18.4,
+      "new_mean_remaining": 6.35,
+      "holdout_mean_remaining": 4.75,
+      "old_targets": {
+        "locks": 1.0,
+        "total": 82.0
+      },
+      "new_targets": {
+        "locks": 1.0,
+        "total": 149
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 16
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 18
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 153,
+      "max_cascade": 9,
+      "storms": 156,
+      "waves": 67,
+      "cascade_guards": 0
+    },
+    {
+      "level": 72,
+      "difficulty": "stratejik",
+      "old_moves": 28,
+      "new_moves": 25,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 10.45,
+      "new_mean_used": 16.7,
+      "old_mean_remaining": 17.55,
+      "new_mean_remaining": 8.3,
+      "holdout_mean_remaining": 8.0,
+      "old_targets": {
+        "locks": 1.0,
+        "total": 85.0
+      },
+      "new_targets": {
+        "locks": 1.0,
+        "total": 217
+      },
+      "old_mechanics": [
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 16
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 26
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 195,
+      "max_cascade": 10,
+      "storms": 260,
+      "waves": 84,
+      "cascade_guards": 0
+    },
+    {
+      "level": 73,
+      "difficulty": "kombinasyon",
+      "old_moves": 29,
+      "new_moves": 22,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 14.25,
+      "new_mean_used": 16.3,
+      "old_mean_remaining": 14.75,
+      "new_mean_remaining": 5.7,
+      "holdout_mean_remaining": 5.8,
+      "old_targets": {
+        "flowers": 1.0,
+        "locks": 1.0,
+        "total": 88.0
+      },
+      "new_targets": {
+        "flowers": 1.0,
+        "locks": 1.0,
+        "total": 210
+      },
+      "old_mechanics": [
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "index": 29,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 57,
+          "kind": "dual"
+        },
+        {
+          "index": 58,
+          "kind": "seed"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "index": 29,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 25
+        },
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 57,
+          "kind": "dual"
+        },
+        {
+          "index": 58,
+          "kind": "seed"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 195,
+      "max_cascade": 8,
+      "storms": 259,
+      "waves": 75,
+      "cascade_guards": 0
+    },
+    {
+      "level": 74,
+      "difficulty": "meydan okuma",
+      "old_moves": 29,
+      "new_moves": 19,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.8,
+      "new_mean_used": 14.6,
+      "old_mean_remaining": 23.2,
+      "new_mean_remaining": 4.4,
+      "holdout_mean_remaining": 5.05,
+      "old_targets": {
+        "flowers": 1.0,
+        "locks": 1.0,
+        "total": 91.0
+      },
+      "new_targets": {
+        "flowers": 1.0,
+        "locks": 1.0,
+        "total": 260
+      },
+      "old_mechanics": [
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 0,
+          "kind": "dual"
+        },
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "index": 24,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            4,
+            0
+          ]
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "index": 58,
+          "kind": "seed"
+        },
+        {
+          "index": 62,
+          "kind": "bridge"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 0,
+          "kind": "dual"
+        },
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "index": 24,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            4,
+            0
+          ]
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 31
+        },
+        {
+          "index": 58,
+          "kind": "seed"
+        },
+        {
+          "index": 62,
+          "kind": "bridge"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 224,
+      "max_cascade": 9,
+      "storms": 270,
+      "waves": 94,
+      "cascade_guards": 0
+    },
+    {
+      "level": 75,
+      "difficulty": "rahat",
+      "old_moves": 30,
+      "new_moves": 16,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.8,
+      "old_mean_used": 10.9,
+      "new_mean_used": 9.95,
+      "old_mean_remaining": 19.1,
+      "new_mean_remaining": 6.05,
+      "holdout_mean_remaining": 4.65,
+      "old_targets": {
+        "flowers": 1.0,
+        "locks": 1.0,
+        "pins": 2.0,
+        "stones": 1.0,
+        "total": 94.0
+      },
+      "new_targets": {
+        "flowers": 1.0,
+        "locks": 1.0,
+        "pins": 2.0,
+        "stones": 1.0,
+        "total": 156
+      },
+      "old_mechanics": [
+        {
+          "index": 3,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            4,
+            0
+          ]
+        },
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 16
+        },
+        {
+          "index": 58,
+          "kind": "seed"
+        },
+        {
+          "index": 62,
+          "kind": "bridge"
+        },
+        {
+          "index": 68,
+          "kind": "pin"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 3,
+          "kind": "chameleon",
+          "period": 2,
+          "phase": 0,
+          "sequence": [
+            2,
+            1,
+            4,
+            0
+          ]
+        },
+        {
+          "index": 12,
+          "kind": "stone"
+        },
+        {
+          "colors": [
+            1,
+            4
+          ],
+          "index": 19,
+          "kind": "dual"
+        },
+        {
+          "index": 27,
+          "kind": "bridge"
+        },
+        {
+          "index": 36,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "pin"
+        },
+        {
+          "color": 1,
+          "index": 51,
+          "kind": "lock",
+          "required": 19
+        },
+        {
+          "index": 58,
+          "kind": "seed"
+        },
+        {
+          "index": 62,
+          "kind": "bridge"
+        },
+        {
+          "index": 68,
+          "kind": "pin"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 132,
+      "max_cascade": 9,
+      "storms": 170,
+      "waves": 80,
+      "cascade_guards": 0
+    },
+    {
+      "level": 76,
+      "difficulty": "orta",
+      "old_moves": 28,
+      "new_moves": 22,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.9,
+      "new_mean_used": 15.5,
+      "old_mean_remaining": 23.1,
+      "new_mean_remaining": 6.5,
+      "holdout_mean_remaining": 5.85,
+      "old_targets": {
+        "1": 8,
+        "portals": 1,
+        "total": 30
+      },
+      "new_targets": {
+        "1": 35,
+        "portals": 1,
+        "total": 197
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 156,
+      "max_cascade": 15,
+      "storms": 237,
+      "waves": 78,
+      "cascade_guards": 0
+    },
+    {
+      "level": 77,
+      "difficulty": "orta",
+      "old_moves": 30,
+      "new_moves": 19,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 5.25,
+      "new_mean_used": 14.4,
+      "old_mean_remaining": 24.75,
+      "new_mean_remaining": 4.6,
+      "holdout_mean_remaining": 4.35,
+      "old_targets": {
+        "1": 10,
+        "portals": 1,
+        "total": 37
+      },
+      "new_targets": {
+        "1": 36,
+        "portals": 1,
+        "total": 199
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 197,
+      "max_cascade": 9,
+      "storms": 257,
+      "waves": 101,
+      "cascade_guards": 0
+    },
+    {
+      "level": 78,
+      "difficulty": "zor",
+      "old_moves": 32,
+      "new_moves": 22,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 5.45,
+      "new_mean_used": 17.05,
+      "old_mean_remaining": 26.55,
+      "new_mean_remaining": 4.95,
+      "holdout_mean_remaining": 4.95,
+      "old_targets": {
+        "1": 12,
+        "portals": 2,
+        "total": 44
+      },
+      "new_targets": {
+        "1": 45,
+        "portals": 2,
+        "total": 252
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 196,
+      "max_cascade": 11,
+      "storms": 299,
+      "waves": 101,
+      "cascade_guards": 0
+    },
+    {
+      "level": 79,
+      "difficulty": "rahat",
+      "old_moves": 34,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 6.2,
+      "new_mean_used": 12.0,
+      "old_mean_remaining": 27.8,
+      "new_mean_remaining": 6.0,
+      "holdout_mean_remaining": 4.45,
+      "old_targets": {
+        "1": 14,
+        "portals": 2,
+        "total": 51
+      },
+      "new_targets": {
+        "1": 29,
+        "portals": 2,
+        "total": 163
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 182,
+      "max_cascade": 9,
+      "storms": 197,
+      "waves": 69,
+      "cascade_guards": 0
+    },
+    {
+      "level": 80,
+      "difficulty": "stratejik",
+      "old_moves": 36,
+      "new_moves": 21,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.75,
+      "old_mean_used": 7.7,
+      "new_mean_used": 16.1,
+      "old_mean_remaining": 28.3,
+      "new_mean_remaining": 4.9,
+      "holdout_mean_remaining": 2.65,
+      "old_targets": {
+        "1": 16,
+        "portals": 3,
+        "total": 58
+      },
+      "new_targets": {
+        "1": 43,
+        "portals": 3,
+        "total": 237
+      },
+      "old_mechanics": [],
+      "new_mechanics": [],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 196,
+      "max_cascade": 10,
+      "storms": 272,
+      "waves": 104,
+      "cascade_guards": 0
+    },
+    {
+      "level": 81,
+      "difficulty": "kombinasyon",
+      "old_moves": 30,
+      "new_moves": 24,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 3.3,
+      "new_mean_used": 14.75,
+      "old_mean_remaining": 26.7,
+      "new_mean_remaining": 9.25,
+      "holdout_mean_remaining": 9.4,
+      "old_targets": {
+        "total": 35,
+        "vines": 2
+      },
+      "new_targets": {
+        "total": 229,
+        "vines": 2
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 200,
+      "max_cascade": 10,
+      "storms": 258,
+      "waves": 88,
+      "cascade_guards": 0
+    },
+    {
+      "level": 82,
+      "difficulty": "meydan okuma",
+      "old_moves": 32,
+      "new_moves": 18,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.75,
+      "old_mean_used": 2.8,
+      "new_mean_used": 15.15,
+      "old_mean_remaining": 29.2,
+      "new_mean_remaining": 2.85,
+      "holdout_mean_remaining": 3.85,
+      "old_targets": {
+        "total": 43,
+        "vines": 2
+      },
+      "new_targets": {
+        "total": 284,
+        "vines": 2
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 249,
+      "max_cascade": 10,
+      "storms": 301,
+      "waves": 100,
+      "cascade_guards": 0
+    },
+    {
+      "level": 83,
+      "difficulty": "rahat",
+      "old_moves": 34,
+      "new_moves": 17,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.75,
+      "old_mean_used": 5.35,
+      "new_mean_used": 10.85,
+      "old_mean_remaining": 28.65,
+      "new_mean_remaining": 6.15,
+      "holdout_mean_remaining": 4.3,
+      "old_targets": {
+        "total": 51,
+        "vines": 3
+      },
+      "new_targets": {
+        "total": 170,
+        "vines": 3
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        },
+        {
+          "index": 20,
+          "kind": "vine"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        },
+        {
+          "index": 20,
+          "kind": "vine"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 154,
+      "max_cascade": 9,
+      "storms": 172,
+      "waves": 62,
+      "cascade_guards": 0
+    },
+    {
+      "level": 84,
+      "difficulty": "orta",
+      "old_moves": 36,
+      "new_moves": 15,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 4.7,
+      "new_mean_used": 11.45,
+      "old_mean_remaining": 31.3,
+      "new_mean_remaining": 3.55,
+      "holdout_mean_remaining": 4.15,
+      "old_targets": {
+        "total": 59,
+        "vines": 3
+      },
+      "new_targets": {
+        "total": 215,
+        "vines": 3
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        },
+        {
+          "index": 20,
+          "kind": "vine"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        },
+        {
+          "index": 20,
+          "kind": "vine"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 183,
+      "max_cascade": 10,
+      "storms": 189,
+      "waves": 81,
+      "cascade_guards": 0
+    },
+    {
+      "level": 85,
+      "difficulty": "orta",
+      "old_moves": 38,
+      "new_moves": 19,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 5.9,
+      "new_mean_used": 13.85,
+      "old_mean_remaining": 32.1,
+      "new_mean_remaining": 5.15,
+      "holdout_mean_remaining": 5.85,
+      "old_targets": {
+        "total": 67,
+        "vines": 3
+      },
+      "new_targets": {
+        "total": 217,
+        "vines": 3
+      },
+      "old_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        },
+        {
+          "index": 20,
+          "kind": "vine"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 27,
+          "kind": "vine"
+        },
+        {
+          "index": 44,
+          "kind": "vine"
+        },
+        {
+          "index": 20,
+          "kind": "vine"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 194,
+      "max_cascade": 10,
+      "storms": 252,
+      "waves": 86,
+      "cascade_guards": 0
+    },
+    {
+      "level": 86,
+      "difficulty": "zor",
+      "old_moves": 32,
+      "new_moves": 27,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 3.95,
+      "new_mean_used": 17.25,
+      "old_mean_remaining": 28.05,
+      "new_mean_remaining": 9.75,
+      "holdout_mean_remaining": 7.7,
+      "old_targets": {
+        "crates": 2,
+        "total": 36
+      },
+      "new_targets": {
+        "crates": 2,
+        "total": 274
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 231,
+      "max_cascade": 11,
+      "storms": 304,
+      "waves": 98,
+      "cascade_guards": 0
+    },
+    {
+      "level": 87,
+      "difficulty": "rahat",
+      "old_moves": 34,
+      "new_moves": 22,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.6,
+      "new_mean_used": 13.5,
+      "old_mean_remaining": 28.4,
+      "new_mean_remaining": 8.5,
+      "holdout_mean_remaining": 9.9,
+      "old_targets": {
+        "crates": 2,
+        "total": 44
+      },
+      "new_targets": {
+        "crates": 2,
+        "total": 177
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 166,
+      "max_cascade": 10,
+      "storms": 211,
+      "waves": 64,
+      "cascade_guards": 0
+    },
+    {
+      "level": 88,
+      "difficulty": "stratejik",
+      "old_moves": 36,
+      "new_moves": 24,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 4.35,
+      "new_mean_used": 17.05,
+      "old_mean_remaining": 31.65,
+      "new_mean_remaining": 6.95,
+      "holdout_mean_remaining": 8.05,
+      "old_targets": {
+        "crates": 2,
+        "total": 52
+      },
+      "new_targets": {
+        "crates": 2,
+        "total": 257
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 28,
+          "kind": "ice"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 28,
+          "kind": "ice"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 219,
+      "max_cascade": 10,
+      "storms": 308,
+      "waves": 93,
+      "cascade_guards": 0
+    },
+    {
+      "level": 89,
+      "difficulty": "kombinasyon",
+      "old_moves": 38,
+      "new_moves": 20,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 0.8,
+      "old_mean_used": 5.4,
+      "new_mean_used": 14.5,
+      "old_mean_remaining": 32.6,
+      "new_mean_remaining": 5.5,
+      "holdout_mean_remaining": 4.15,
+      "old_targets": {
+        "crates": 3,
+        "total": 60
+      },
+      "new_targets": {
+        "crates": 3,
+        "total": 248
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 28,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 28,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 216,
+      "max_cascade": 9,
+      "storms": 261,
+      "waves": 91,
+      "cascade_guards": 0
+    },
+    {
+      "level": 90,
+      "difficulty": "meydan okuma",
+      "old_moves": 40,
+      "new_moves": 30,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.6,
+      "new_mean_used": 19.45,
+      "old_mean_remaining": 34.4,
+      "new_mean_remaining": 10.55,
+      "holdout_mean_remaining": 10.45,
+      "old_targets": {
+        "crates": 3,
+        "total": 68
+      },
+      "new_targets": {
+        "crates": 3,
+        "total": 308
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 28,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "crate"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 28,
+          "kind": "ice"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 268,
+      "max_cascade": 11,
+      "storms": 347,
+      "waves": 105,
+      "cascade_guards": 0
+    },
+    {
+      "level": 91,
+      "difficulty": "rahat",
+      "old_moves": 30,
+      "new_moves": 22,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 4.25,
+      "new_mean_used": 13.5,
+      "old_mean_remaining": 25.75,
+      "new_mean_remaining": 8.5,
+      "holdout_mean_remaining": 10.0,
+      "old_targets": {
+        "3": 8,
+        "mirrors": 1,
+        "total": 40
+      },
+      "new_targets": {
+        "3": 33,
+        "mirrors": 1,
+        "total": 184
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "power_creations": 133,
+      "max_cascade": 11,
+      "storms": 230,
+      "waves": 85,
+      "cascade_guards": 0
+    },
+    {
+      "level": 92,
+      "difficulty": "orta",
+      "old_moves": 32,
+      "new_moves": 25,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.9,
+      "new_mean_used": 16.05,
+      "old_mean_remaining": 26.1,
+      "new_mean_remaining": 8.95,
+      "holdout_mean_remaining": 8.95,
+      "old_targets": {
+        "3": 9,
+        "mirrors": 1,
+        "total": 47
+      },
+      "new_targets": {
+        "3": 42,
+        "mirrors": 1,
+        "total": 232
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "power_creations": 166,
+      "max_cascade": 12,
+      "storms": 281,
+      "waves": 105,
+      "cascade_guards": 0
+    },
+    {
+      "level": 93,
+      "difficulty": "orta",
+      "old_moves": 34,
+      "new_moves": 27,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.95,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 5.45,
+      "new_mean_used": 20.35,
+      "old_mean_remaining": 28.55,
+      "new_mean_remaining": 6.65,
+      "holdout_mean_remaining": 6.9,
+      "old_targets": {
+        "3": 10,
+        "mirrors": 2,
+        "total": 54
+      },
+      "new_targets": {
+        "3": 42,
+        "mirrors": 2,
+        "total": 235
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 51,
+          "kind": "mirror",
+          "orientation": "/"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 51,
+          "kind": "mirror",
+          "orientation": "/"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v"
+      },
+      "power_creations": 181,
+      "max_cascade": 10,
+      "storms": 328,
+      "waves": 121,
+      "cascade_guards": 0
+    },
+    {
+      "level": 94,
+      "difficulty": "zor",
+      "old_moves": 36,
+      "new_moves": 26,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.8,
+      "holdout_win_rate": 0.65,
+      "old_mean_used": 6.5,
+      "new_mean_used": 21.75,
+      "old_mean_remaining": 29.5,
+      "new_mean_remaining": 4.25,
+      "holdout_mean_remaining": 4.8,
+      "old_targets": {
+        "3": 11,
+        "mirrors": 2,
+        "total": 61
+      },
+      "new_targets": {
+        "3": 53,
+        "mirrors": 2,
+        "total": 296
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 51,
+          "kind": "mirror",
+          "orientation": "/"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 51,
+          "kind": "mirror",
+          "orientation": "/"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v"
+      },
+      "power_creations": 223,
+      "max_cascade": 12,
+      "storms": 392,
+      "waves": 144,
+      "cascade_guards": 0
+    },
+    {
+      "level": 95,
+      "difficulty": "rahat",
+      "old_moves": 38,
+      "new_moves": 28,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 8.8,
+      "new_mean_used": 16.55,
+      "old_mean_remaining": 29.2,
+      "new_mean_remaining": 11.45,
+      "holdout_mean_remaining": 12.1,
+      "old_targets": {
+        "3": 12,
+        "mirrors": 2,
+        "total": 68
+      },
+      "new_targets": {
+        "3": 34,
+        "mirrors": 2,
+        "total": 191
+      },
+      "old_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 51,
+          "kind": "mirror",
+          "orientation": "/"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 51,
+          "kind": "mirror",
+          "orientation": "/"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v"
+      },
+      "power_creations": 164,
+      "max_cascade": 13,
+      "storms": 267,
+      "waves": 97,
+      "cascade_guards": 0
+    },
+    {
+      "level": 96,
+      "difficulty": "stratejik",
+      "old_moves": 40,
+      "new_moves": 26,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.9,
+      "old_mean_used": 7.2,
+      "new_mean_used": 20.4,
+      "old_mean_remaining": 32.8,
+      "new_mean_remaining": 5.6,
+      "holdout_mean_remaining": 6.2,
+      "old_targets": {
+        "1": 10,
+        "portals": 1,
+        "total": 60,
+        "vines": 2
+      },
+      "new_targets": {
+        "1": 50,
+        "portals": 1,
+        "total": 277,
+        "vines": 2
+      },
+      "old_mechanics": [
+        {
+          "index": 20,
+          "kind": "vine"
+        },
+        {
+          "index": 45,
+          "kind": "vine"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 20,
+          "kind": "vine"
+        },
+        {
+          "index": 45,
+          "kind": "vine"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 241,
+      "max_cascade": 11,
+      "storms": 344,
+      "waves": 100,
+      "cascade_guards": 0
+    },
+    {
+      "level": 97,
+      "difficulty": "kombinasyon",
+      "old_moves": 43,
+      "new_moves": 20,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.9,
+      "holdout_win_rate": 0.95,
+      "old_mean_used": 4.15,
+      "new_mean_used": 15.1,
+      "old_mean_remaining": 38.85,
+      "new_mean_remaining": 4.9,
+      "holdout_mean_remaining": 6.7,
+      "old_targets": {
+        "1": 10,
+        "crates": 2,
+        "portals": 1,
+        "total": 68
+      },
+      "new_targets": {
+        "1": 48,
+        "crates": 2,
+        "portals": 1,
+        "total": 268
+      },
+      "old_mechanics": [
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        }
+      ],
+      "old_powers": {},
+      "new_powers": {},
+      "power_creations": 205,
+      "max_cascade": 12,
+      "storms": 293,
+      "waves": 103,
+      "cascade_guards": 0
+    },
+    {
+      "level": 98,
+      "difficulty": "meydan okuma",
+      "old_moves": 46,
+      "new_moves": 29,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 5.95,
+      "new_mean_used": 23.6,
+      "old_mean_remaining": 40.05,
+      "new_mean_remaining": 5.4,
+      "holdout_mean_remaining": 9.1,
+      "old_targets": {
+        "1": 10,
+        "crates": 2,
+        "mirrors": 1,
+        "total": 76
+      },
+      "new_targets": {
+        "1": 60,
+        "crates": 2,
+        "mirrors": 1,
+        "total": 332
+      },
+      "old_mechanics": [
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        },
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        },
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v"
+      },
+      "power_creations": 237,
+      "max_cascade": 10,
+      "storms": 447,
+      "waves": 153,
+      "cascade_guards": 0
+    },
+    {
+      "level": 99,
+      "difficulty": "rahat",
+      "old_moves": 49,
+      "new_moves": 23,
+      "old_win_rate": 1.0,
+      "new_win_rate": 1.0,
+      "holdout_win_rate": 1.0,
+      "old_mean_used": 7.75,
+      "new_mean_used": 14.0,
+      "old_mean_remaining": 41.25,
+      "new_mean_remaining": 9.0,
+      "holdout_mean_remaining": 9.5,
+      "old_targets": {
+        "1": 10,
+        "crates": 2,
+        "mirrors": 1,
+        "portals": 1,
+        "total": 84,
+        "vines": 2
+      },
+      "new_targets": {
+        "1": 36,
+        "crates": 2,
+        "mirrors": 1,
+        "portals": 1,
+        "total": 198,
+        "vines": 2
+      },
+      "old_mechanics": [
+        {
+          "index": 20,
+          "kind": "vine"
+        },
+        {
+          "index": 45,
+          "kind": "vine"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        },
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 20,
+          "kind": "vine"
+        },
+        {
+          "index": 45,
+          "kind": "vine"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        },
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v"
+      },
+      "power_creations": 156,
+      "max_cascade": 13,
+      "storms": 251,
+      "waves": 99,
+      "cascade_guards": 0
+    },
+    {
+      "level": 100,
+      "difficulty": "orta",
+      "old_moves": 52,
+      "new_moves": 21,
+      "old_win_rate": 1.0,
+      "new_win_rate": 0.85,
+      "holdout_win_rate": 0.85,
+      "old_mean_used": 5.6,
+      "new_mean_used": 15.15,
+      "old_mean_remaining": 46.4,
+      "new_mean_remaining": 5.85,
+      "holdout_mean_remaining": 6.15,
+      "old_targets": {
+        "1": 12,
+        "crates": 2,
+        "mirrors": 1,
+        "portals": 2,
+        "total": 84,
+        "vines": 2
+      },
+      "new_targets": {
+        "1": 45,
+        "crates": 2,
+        "mirrors": 1,
+        "portals": 2,
+        "total": 250,
+        "vines": 2
+      },
+      "old_mechanics": [
+        {
+          "index": 20,
+          "kind": "vine"
+        },
+        {
+          "index": 45,
+          "kind": "vine"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        },
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "new_mechanics": [
+        {
+          "index": 20,
+          "kind": "vine"
+        },
+        {
+          "index": 45,
+          "kind": "vine"
+        },
+        {
+          "index": 36,
+          "kind": "crate"
+        },
+        {
+          "index": 44,
+          "kind": "crate"
+        },
+        {
+          "index": 35,
+          "kind": "mirror",
+          "orientation": "\\"
+        }
+      ],
+      "old_powers": {
+        "27": "rocket_v",
+        "34": "rocket_h"
+      },
+      "new_powers": {
+        "27": "rocket_v"
+      },
+      "power_creations": 185,
+      "max_cascade": 11,
+      "storms": 271,
+      "waves": 108,
+      "cascade_guards": 0
+    }
+  ],
+  "level_file_sha256": {
+    "levels-11-30.json": "26d9b1b6e08f27893a0894efeb3efbf9d9a632d9a45fa10d753707c0b2e4b5d2",
+    "levels-31-50.json": "46bb93291198f876d111aa0250ade56347864eaff3a280e508db1a2b535d181f",
+    "levels-51-75.json": "82af8167d3642e53a7c4a4d56e3d0ef0e927b23d58db78900f88a812a438cd27",
+    "levels-76-100.json": "c361ce8a889d2d7dfa5969ec0a4bb28505d379ba4ba34c5550dc07b6818cc90d",
+    "levels.json": "7b6fae14a77fcddf1d82a370ed48330ff225042319e97682abeae7ecbde506ba"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "levels": [
     {
-      "difficulty": "öğretici",
+      "difficulty": "rahat",
       "gravity": true,
       "id": 31.0,
       "layout": [
@@ -88,22 +88,20 @@
           "kind": "dual"
         }
       ],
-      "moves": 14.0,
+      "moves": 14,
       "name": "İki Rengin Kalbi",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 223361.0,
       "stars": [
-        0.0,
-        1000.0,
-        1400.0
+        0,
+        3328,
+        5120
       ],
       "targets": {
         "duals": 1.0,
-        "total": 12.0
+        "total": 79
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -111,10 +109,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 14
     },
     {
-      "difficulty": "kolay",
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 32.0,
       "layout": [
@@ -201,22 +200,20 @@
           "kind": "dual"
         }
       ],
-      "moves": 16.0,
+      "moves": 15,
       "name": "Yakut ve Safir",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 223792.0,
       "stars": [
-        0.0,
-        1800.0,
-        2500.0
+        0,
+        3114,
+        4790
       ],
       "targets": {
         "duals": 1.0,
-        "total": 17.0
+        "total": 115
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -224,10 +221,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 16
     },
     {
-      "difficulty": "orta",
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 33.0,
       "layout": [
@@ -322,22 +320,20 @@
           "kind": "dual"
         }
       ],
-      "moves": 22.0,
+      "moves": 12,
       "name": "Çift Işığın Yolu",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 224223.0,
       "stars": [
-        0.0,
-        1700.0,
-        2350.0
+        0,
+        4712,
+        7250
       ],
       "targets": {
         "duals": 2.0,
-        "total": 22.0
+        "total": 113
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -345,10 +341,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 22
     },
     {
-      "difficulty": "orta",
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 34.0,
       "layout": [
@@ -443,22 +440,20 @@
           "kind": "dual"
         }
       ],
-      "moves": 20.0,
+      "moves": 14,
       "name": "Renkli Pusula",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 224654.0,
       "stars": [
-        0.0,
-        2700.0,
-        3800.0
+        0,
+        4686,
+        7210
       ],
       "targets": {
         "duals": 2.0,
-        "total": 27.0
+        "total": 141
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -466,10 +461,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 20
     },
     {
-      "difficulty": "meydan okuma",
+      "difficulty": "rahat",
       "gravity": true,
       "id": 35.0,
       "layout": [
@@ -572,22 +568,20 @@
           "kind": "dual"
         }
       ],
-      "moves": 24.0,
+      "moves": 13,
       "name": "İkili Kristal Korusu",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 225085.0,
       "stars": [
-        0.0,
-        2050.0,
-        2850.0
+        0,
+        4433,
+        6820
       ],
       "targets": {
         "duals": 3.0,
-        "total": 32.0
+        "total": 86
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -595,10 +589,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 24
     },
     {
-      "difficulty": "öğretici",
+      "difficulty": "orta",
       "gravity": true,
       "id": 36.0,
       "layout": [
@@ -689,23 +684,21 @@
           "kind": "dual"
         }
       ],
-      "moves": 20.0,
+      "moves": 12,
       "name": "Tohumun İki Rengi",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 225516.0,
       "stars": [
-        0.0,
-        2000.0,
-        2750.0
+        0,
+        3952,
+        6080
       ],
       "targets": {
         "duals": 1.0,
         "flowers": 1.0,
-        "total": 22.0
+        "total": 109
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -713,10 +706,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 20
     },
     {
-      "difficulty": "kolay",
+      "difficulty": "orta",
       "gravity": true,
       "id": 37.0,
       "layout": [
@@ -807,22 +801,20 @@
           "kind": "ice"
         }
       ],
-      "moves": 24.0,
+      "moves": 14,
       "name": "Buzda Saklı Renk",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 225947.0,
       "stars": [
-        0.0,
-        1950.0,
-        2700.0
+        0,
+        3854,
+        5930
       ],
       "targets": {
         "duals": 1.0,
-        "total": 27.0
+        "total": 111
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -830,10 +822,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 24
     },
     {
-      "difficulty": "orta",
+      "difficulty": "zor",
       "gravity": true,
       "id": 38.0,
       "layout": [
@@ -932,23 +925,21 @@
           "kind": "dual"
         }
       ],
-      "moves": 24.0,
+      "moves": 14,
       "name": "İkili Kaya Yolu",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 226378.0,
       "stars": [
-        0.0,
-        1900.0,
-        2650.0
+        0,
+        4173,
+        6420
       ],
       "targets": {
         "duals": 2.0,
         "stones": 1.0,
-        "total": 32.0
+        "total": 142
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -956,10 +947,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 24
     },
     {
-      "difficulty": "orta",
+      "difficulty": "rahat",
       "gravity": true,
       "id": 39.0,
       "layout": [
@@ -1064,24 +1056,22 @@
           "required": 14
         }
       ],
-      "moves": 28.0,
+      "moves": 14,
       "name": "Renklerin Anahtarı",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 226809.0,
       "stars": [
-        0.0,
-        4600.0,
-        6350.0
+        0,
+        4778,
+        7350
       ],
       "targets": {
         "duals": 2.0,
         "flowers": 1.0,
         "locks": 1.0,
-        "total": 37.0
+        "total": 93
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -1089,10 +1079,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 28
     },
     {
-      "difficulty": "meydan okuma",
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 40.0,
       "layout": [
@@ -1213,25 +1204,23 @@
           "kind": "dual"
         }
       ],
-      "moves": 30.0,
+      "moves": 14,
       "name": "Bahçenin İkili Yankısı",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 227240.0,
       "stars": [
-        0.0,
-        4000.0,
-        5500.0
+        0,
+        5700,
+        8770
       ],
       "targets": {
         "duals": 3.0,
         "flowers": 1.0,
         "locks": 1.0,
         "stones": 1.0,
-        "total": 42.0
+        "total": 136
       },
       "tutorial": "İki renkli kristali kaydır; yalnızca iki rengiyle eşleşir.",
       "tutorial_swap": [
@@ -1239,10 +1228,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 30
     },
     {
-      "difficulty": "öğretici",
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 41.0,
       "layout": [
@@ -1345,22 +1335,20 @@
           ]
         }
       ],
-      "moves": 20.0,
+      "moves": 13,
       "name": "Bukalemunun Uyanışı",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 227671.0,
       "stars": [
-        0.0,
-        4550.0,
-        6300.0
+        0,
+        6357,
+        9780
       ],
       "targets": {
-        "1": 8.0,
-        "total": 24.0
+        "1": 24,
+        "total": 132
       },
       "tutorial": "Bukalemun iki başarılı takas sonrası renk değiştirir. Zincirler sayacı artırmaz.",
       "tutorial_swap": [
@@ -1368,10 +1356,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 20
     },
     {
-      "difficulty": "kolay",
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 42.0,
       "layout": [
@@ -1474,22 +1463,20 @@
           ]
         }
       ],
-      "moves": 22.0,
+      "moves": 15,
       "name": "İki Hamlenin Ritmi",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 228102.0,
       "stars": [
-        0.0,
-        3150.0,
-        4350.0
+        0,
+        7104,
+        10930
       ],
       "targets": {
-        "1": 10.0,
-        "total": 30.0
+        "1": 30,
+        "total": 165
       },
       "tutorial": "Bukalemun iki başarılı takas sonrası renk değiştirir. Zincirler sayacı artırmaz.",
       "tutorial_swap": [
@@ -1497,10 +1484,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 22
     },
     {
-      "difficulty": "orta",
+      "difficulty": "rahat",
       "gravity": true,
       "id": 43.0,
       "layout": [
@@ -1603,22 +1591,20 @@
           ]
         }
       ],
-      "moves": 26.0,
+      "moves": 15,
       "name": "Değişen Işık",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 228533.0,
       "stars": [
-        0.0,
-        2850.0,
-        4000.0
+        0,
+        5258,
+        8090
       ],
       "targets": {
-        "1": 12.0,
-        "total": 36.0
+        "1": 18,
+        "total": 100
       },
       "tutorial": "Bukalemun iki başarılı takas sonrası renk değiştirir. Zincirler sayacı artırmaz.",
       "tutorial_swap": [
@@ -1626,7 +1612,8 @@
         8
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 26
     },
     {
       "difficulty": "orta",
@@ -1732,22 +1719,20 @@
           ]
         }
       ],
-      "moves": 26.0,
+      "moves": 12,
       "name": "Yankılı Dönüşüm",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 228964.0,
       "stars": [
-        0.0,
-        4400.0,
-        6100.0
+        0,
+        6104,
+        9390
       ],
       "targets": {
-        "1": 14.0,
-        "total": 42.0
+        "1": 23,
+        "total": 127
       },
       "tutorial": "Bukalemun iki başarılı takas sonrası renk değiştirir. Zincirler sayacı artırmaz.",
       "tutorial_swap": [
@@ -1755,10 +1740,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 26
     },
     {
-      "difficulty": "meydan okuma",
+      "difficulty": "orta",
       "gravity": true,
       "id": 45.0,
       "layout": [
@@ -1861,22 +1847,20 @@
           ]
         }
       ],
-      "moves": 30.0,
+      "moves": 12,
       "name": "Renk Döngüsü",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 229395.0,
       "stars": [
-        0.0,
-        2450.0,
-        3400.0
+        0,
+        6045,
+        9300
       ],
       "targets": {
-        "1": 16.0,
-        "total": 48.0
+        "1": 23,
+        "total": 129
       },
       "tutorial": "Bukalemun iki başarılı takas sonrası renk değiştirir. Zincirler sayacı artırmaz.",
       "tutorial_swap": [
@@ -1884,10 +1868,11 @@
         2
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 30
     },
     {
-      "difficulty": "öğretici",
+      "difficulty": "zor",
       "gravity": true,
       "id": 46.0,
       "layout": [
@@ -2010,24 +1995,22 @@
           ]
         }
       ],
-      "moves": 26.0,
+      "moves": 15,
       "name": "Filizlerin Stratejisi",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 229826.0,
       "stars": [
-        0.0,
-        2300.0,
-        3150.0
+        0,
+        6864,
+        10560
       ],
       "targets": {
-        "1": 8.0,
+        "1": 30,
         "duals": 2.0,
         "flowers": 1.0,
-        "total": 24.0
+        "total": 164
       },
       "tutorial": "Renkleri ve engelleri birlikte planla; her hedefi tamamla.",
       "tutorial_swap": [
@@ -2035,10 +2018,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 26
     },
     {
-      "difficulty": "kolay",
+      "difficulty": "rahat",
       "gravity": true,
       "id": 47.0,
       "layout": [
@@ -2161,23 +2145,21 @@
           ]
         }
       ],
-      "moves": 30.0,
+      "moves": 15,
       "name": "Buz ve Dönüşüm",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 230257.0,
       "stars": [
-        0.0,
-        2600.0,
-        3650.0
+        0,
+        4966,
+        7640
       ],
       "targets": {
-        "1": 10.0,
+        "1": 19,
         "duals": 2.0,
-        "total": 30.0
+        "total": 107
       },
       "tutorial": "Renkleri ve engelleri birlikte planla; her hedefi tamamla.",
       "tutorial_swap": [
@@ -2185,10 +2167,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 30
     },
     {
-      "difficulty": "orta",
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 48.0,
       "layout": [
@@ -2311,24 +2294,22 @@
           ]
         }
       ],
-      "moves": 30.0,
+      "moves": 18,
       "name": "İkili Kaya Çemberi",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 230688.0,
       "stars": [
-        0.0,
-        2500.0,
-        3500.0
+        0,
+        6884,
+        10590
       ],
       "targets": {
-        "1": 12.0,
+        "1": 28,
         "duals": 2.0,
         "stones": 1.0,
-        "total": 36.0
+        "total": 156
       },
       "tutorial": "Renkleri ve engelleri birlikte planla; her hedefi tamamla.",
       "tutorial_swap": [
@@ -2336,10 +2317,11 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 30
     },
     {
-      "difficulty": "orta",
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 49.0,
       "layout": [
@@ -2461,7 +2443,7 @@
           "color": 0,
           "index": 52,
           "kind": "lock",
-          "required": 14
+          "required": 18
         },
         {
           "index": 61,
@@ -2476,26 +2458,24 @@
           ]
         }
       ],
-      "moves": 30.0,
+      "moves": 17,
       "name": "Bahçenin Son Mührü",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 231119.0,
       "stars": [
-        0.0,
-        3050.0,
-        4250.0
+        0,
+        6071,
+        9340
       ],
       "targets": {
-        "1": 14.0,
+        "1": 27,
         "duals": 2.0,
         "flowers": 1.0,
         "locks": 1.0,
         "stones": 1.0,
-        "total": 42.0
+        "total": 152
       },
       "tutorial": "Renkleri ve engelleri birlikte planla; her hedefi tamamla.",
       "tutorial_swap": [
@@ -2503,7 +2483,8 @@
         9
       ],
       "world": 1.0,
-      "world_finale": false
+      "world_finale": false,
+      "legacy_moves": 30
     },
     {
       "difficulty": "meydan okuma",
@@ -2628,7 +2609,7 @@
           "color": 0,
           "index": 52,
           "kind": "lock",
-          "required": 16
+          "required": 23
         },
         {
           "index": 61,
@@ -2643,26 +2624,24 @@
           ]
         }
       ],
-      "moves": 26.0,
+      "moves": 18,
       "name": "Büyülü Bahçenin Kalbi",
       "opening_refill": [],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 231550.0,
       "stars": [
-        0.0,
-        5200.0,
-        7200.0
+        0,
+        8196,
+        12610
       ],
       "targets": {
-        "1": 16.0,
+        "1": 34,
         "duals": 2.0,
         "flowers": 1.0,
         "locks": 1.0,
         "stones": 1.0,
-        "total": 65.0
+        "total": 189
       },
       "tutorial": "Renkleri ve engelleri birlikte planla; her hedefi tamamla.",
       "tutorial_swap": [
@@ -2670,7 +2649,8 @@
         9
       ],
       "world": 1.0,
-      "world_finale": true
+      "world_finale": true,
+      "legacy_moves": 26
     }
   ],
   "rules": "match3",

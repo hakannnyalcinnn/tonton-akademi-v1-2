@@ -14,7 +14,7 @@ static func install(cells: Array, specs: Array) -> void:
 static func layer(cell: Dictionary) -> String:
 	return "armor" if cell.has("armor") else ("obstacle" if cell.has("obstacle") else "")
 
-static func wave(cells: Array, exploded: Array, direct: Array, triggered: Array, normal_colors: Dictionary, collected: Dictionary, width: int, height: int) -> Array:
+static func wave(cells: Array, exploded: Array, direct: Array, triggered: Array, normal_colors: Dictionary, collected: Dictionary, width: int, height: int, virtual: Array = []) -> Array:
 	var present := false
 	for cell in cells:
 		if cell!=null and (cell.has("armor") or cell.has("obstacle")):
@@ -22,7 +22,7 @@ static func wave(cells: Array, exploded: Array, direct: Array, triggered: Array,
 			break
 	if not present: return []
 	var started := Time.get_ticks_usec()
-	var hits := Damage.plan(cells,exploded,direct,triggered,width,height)
+	var hits := Damage.plan(cells,exploded,direct,triggered,width,height,virtual)
 	var events: Array = []
 	for index in cells.size():
 		if cells[index] == null: continue

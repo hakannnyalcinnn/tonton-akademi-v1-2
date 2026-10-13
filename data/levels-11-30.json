@@ -6,14 +6,15 @@
       "id": 11,
       "name": "Uyuyan Tohum",
       "seed": 108169,
-      "moves": 12,
+      "moves": 10,
       "targets": {
-        "flowers": 1
+        "flowers": 1,
+        "total": 43
       },
       "stars": [
         0,
-        1050,
-        1450
+        1956,
+        3010
       ],
       "gravity": true,
       "resonance": true,
@@ -108,21 +109,23 @@
           "index": 3
         }
       ],
-      "difficulty": "öğretici",
-      "world": 1
+      "difficulty": "rahat",
+      "world": 1,
+      "legacy_moves": 12
     },
     {
       "id": 12,
       "name": "İkiz Filizler",
       "seed": 108548,
-      "moves": 14,
+      "moves": 8,
       "targets": {
-        "flowers": 2
+        "flowers": 2,
+        "total": 56
       },
       "stars": [
         0,
-        2300,
-        3150
+        3094,
+        4760
       ],
       "gravity": true,
       "resonance": true,
@@ -221,21 +224,23 @@
           "index": 35
         }
       ],
-      "difficulty": "kolay",
-      "world": 1
+      "difficulty": "orta",
+      "world": 1,
+      "legacy_moves": 14
     },
     {
       "id": 13,
       "name": "Çiçek Yolu",
       "seed": 108927,
-      "moves": 16,
+      "moves": 8,
       "targets": {
-        "flowers": 2
+        "flowers": 2,
+        "total": 59
       },
       "stars": [
         0,
-        1900,
-        2650
+        2886,
+        4440
       ],
       "gravity": true,
       "resonance": true,
@@ -335,21 +340,22 @@
         }
       ],
       "difficulty": "orta",
-      "world": 1
+      "world": 1,
+      "legacy_moves": 16
     },
     {
       "id": 14,
       "name": "Yankılı Yapraklar",
       "seed": 109306,
-      "moves": 18,
+      "moves": 8,
       "targets": {
         "flowers": 3,
-        "total": 45
+        "total": 76
       },
       "stars": [
         0,
-        2550,
-        3550
+        3133,
+        4820
       ],
       "gravity": true,
       "resonance": true,
@@ -452,22 +458,23 @@
           "index": 52
         }
       ],
-      "difficulty": "orta",
-      "world": 1
+      "difficulty": "zor",
+      "world": 1,
+      "legacy_moves": 18
     },
     {
       "id": 15,
       "name": "Tohum Korusu",
       "seed": 109685,
-      "moves": 22,
+      "moves": 10,
       "targets": {
         "flowers": 4,
         "total": 50
       },
       "stars": [
         0,
-        3700,
-        5150
+        2892,
+        4450
       ],
       "gravity": true,
       "resonance": true,
@@ -574,21 +581,23 @@
           "index": 21
         }
       ],
-      "difficulty": "meydan okuma",
-      "world": 1
+      "difficulty": "rahat",
+      "world": 1,
+      "legacy_moves": 22
     },
     {
       "id": 16,
       "name": "İlk Buz Çatlağı",
       "seed": 110064,
-      "moves": 12,
+      "moves": 8,
       "targets": {
-        "ice": 2
+        "ice": 2,
+        "total": 75
       },
       "stars": [
         0,
-        1900,
-        2600
+        3861,
+        5940
       ],
       "gravity": true,
       "resonance": true,
@@ -683,21 +692,23 @@
           "index": 3
         }
       ],
-      "difficulty": "öğretici",
-      "world": 1
+      "difficulty": "stratejik",
+      "world": 1,
+      "legacy_moves": 12
     },
     {
       "id": 17,
       "name": "Safir Kabuğu",
       "seed": 110443,
-      "moves": 18,
+      "moves": 8,
       "targets": {
-        "ice": 4
+        "ice": 4,
+        "total": 74
       },
       "stars": [
         0,
-        1750,
-        2450
+        4108,
+        6320
       ],
       "gravity": true,
       "resonance": true,
@@ -796,22 +807,24 @@
           "index": 35
         }
       ],
-      "difficulty": "kolay",
-      "world": 1
+      "difficulty": "kombinasyon",
+      "world": 1,
+      "legacy_moves": 18
     },
     {
       "id": 18,
       "name": "Buz ve Filiz",
       "seed": 110822,
-      "moves": 20,
+      "moves": 10,
       "targets": {
         "ice": 4,
-        "flowers": 1
+        "flowers": 1,
+        "total": 94
       },
       "stars": [
         0,
-        1850,
-        2600
+        2672,
+        4110
       ],
       "gravity": true,
       "resonance": true,
@@ -914,23 +927,24 @@
           "index": 60
         }
       ],
-      "difficulty": "orta",
-      "world": 1
+      "difficulty": "meydan okuma",
+      "world": 1,
+      "legacy_moves": 20
     },
     {
       "id": 19,
       "name": "Donmuş Patika",
       "seed": 111201,
-      "moves": 24,
+      "moves": 9,
       "targets": {
         "ice": 6,
         "flowers": 1,
-        "total": 45
+        "total": 57
       },
       "stars": [
         0,
-        3300,
-        4600
+        2424,
+        3730
       ],
       "gravity": true,
       "resonance": true,
@@ -1037,23 +1051,24 @@
           "index": 60
         }
       ],
-      "difficulty": "orta",
-      "world": 1
+      "difficulty": "rahat",
+      "world": 1,
+      "legacy_moves": 24
     },
     {
       "id": 20,
       "name": "Kristal Çözülme",
       "seed": 111580,
-      "moves": 26,
+      "moves": 10,
       "targets": {
         "ice": 8,
         "flowers": 1,
-        "total": 50
+        "total": 74
       },
       "stars": [
         0,
-        3800,
-        5250
+        3445,
+        5300
       ],
       "gravity": true,
       "resonance": true,
@@ -1164,21 +1179,23 @@
           "index": 60
         }
       ],
-      "difficulty": "meydan okuma",
-      "world": 1
+      "difficulty": "orta",
+      "world": 1,
+      "legacy_moves": 26
     },
     {
       "id": 21,
       "name": "Taşın İçindeki Işık",
       "seed": 111959,
-      "moves": 14,
+      "moves": 9,
       "targets": {
-        "stones": 1
+        "stones": 1,
+        "total": 76
       },
       "stars": [
         0,
-        1150,
-        1650
+        3126,
+        4810
       ],
       "gravity": true,
       "resonance": true,
@@ -1276,22 +1293,24 @@
           "index": 3
         }
       ],
-      "difficulty": "öğretici",
-      "world": 1
+      "difficulty": "orta",
+      "world": 1,
+      "legacy_moves": 14
     },
     {
       "id": 22,
       "name": "Buzlu Kaya",
       "seed": 112338,
-      "moves": 24,
+      "moves": 11,
       "targets": {
         "stones": 2,
-        "ice": 2
+        "ice": 2,
+        "total": 98
       },
       "stars": [
         0,
-        3150,
-        4350
+        4440,
+        6830
       ],
       "gravity": true,
       "resonance": true,
@@ -1397,23 +1416,25 @@
           "index": 46
         }
       ],
-      "difficulty": "kolay",
-      "world": 1
+      "difficulty": "zor",
+      "world": 1,
+      "legacy_moves": 24
     },
     {
       "id": 23,
       "name": "Üç Darbenin Dansı",
       "seed": 112717,
-      "moves": 32,
+      "moves": 11,
       "targets": {
         "stones": 2,
         "flowers": 1,
-        "ice": 2
+        "ice": 2,
+        "total": 64
       },
       "stars": [
         0,
-        3900,
-        5400
+        3419,
+        5260
       ],
       "gravity": true,
       "resonance": true,
@@ -1523,23 +1544,25 @@
           "index": 46
         }
       ],
-      "difficulty": "orta",
-      "world": 1
+      "difficulty": "rahat",
+      "world": 1,
+      "legacy_moves": 32
     },
     {
       "id": 24,
       "name": "Saklı Çiçekler",
       "seed": 113096,
-      "moves": 24,
+      "moves": 11,
       "targets": {
         "stones": 3,
         "flowers": 1,
-        "ice": 2
+        "ice": 2,
+        "total": 95
       },
       "stars": [
         0,
-        3950,
-        5450
+        3432,
+        5280
       ],
       "gravity": true,
       "resonance": true,
@@ -1653,23 +1676,25 @@
           "index": 46
         }
       ],
-      "difficulty": "orta",
-      "world": 1
+      "difficulty": "stratejik",
+      "world": 1,
+      "legacy_moves": 24
     },
     {
       "id": 25,
       "name": "Kaya Bahçesi",
       "seed": 113475,
-      "moves": 34,
+      "moves": 11,
       "targets": {
         "stones": 4,
         "flowers": 1,
-        "ice": 2
+        "ice": 2,
+        "total": 94
       },
       "stars": [
         0,
-        7250,
-        10050
+        4238,
+        6520
       ],
       "gravity": true,
       "resonance": true,
@@ -1787,8 +1812,9 @@
           "index": 46
         }
       ],
-      "difficulty": "meydan okuma",
-      "world": 1
+      "difficulty": "kombinasyon",
+      "world": 1,
+      "legacy_moves": 34
     },
     {
       "id": 26,
@@ -1796,12 +1822,13 @@
       "seed": 113854,
       "moves": 14,
       "targets": {
-        "locks": 1
+        "locks": 1,
+        "total": 118
       },
       "stars": [
         0,
-        1000,
-        1350
+        4258,
+        6550
       ],
       "gravity": true,
       "resonance": true,
@@ -1898,22 +1925,24 @@
           "required": 6
         }
       ],
-      "difficulty": "öğretici",
-      "world": 1
+      "difficulty": "meydan okuma",
+      "world": 1,
+      "legacy_moves": 14
     },
     {
       "id": 27,
       "name": "İki Rengin Anahtarı",
       "seed": 114233,
-      "moves": 18,
+      "moves": 9,
       "targets": {
         "locks": 2,
-        "ice": 2
+        "ice": 2,
+        "total": 72
       },
       "stars": [
         0,
-        2950,
-        4100
+        4147,
+        6380
       ],
       "gravity": true,
       "resonance": true,
@@ -2020,23 +2049,25 @@
           "index": 46
         }
       ],
-      "difficulty": "kolay",
-      "world": 1
+      "difficulty": "rahat",
+      "world": 1,
+      "legacy_moves": 18
     },
     {
       "id": 28,
       "name": "Kilitli Filizler",
       "seed": 114612,
-      "moves": 38,
+      "moves": 11,
       "targets": {
         "locks": 2,
         "flowers": 1,
-        "ice": 2
+        "ice": 2,
+        "total": 92
       },
       "stars": [
         0,
-        3400,
-        4750
+        2860,
+        4400
       ],
       "gravity": true,
       "resonance": true,
@@ -2148,23 +2179,25 @@
         }
       ],
       "difficulty": "orta",
-      "world": 1
+      "world": 1,
+      "legacy_moves": 38
     },
     {
       "id": 29,
       "name": "Donmuş Anahtar",
       "seed": 114991,
-      "moves": 34,
+      "moves": 12,
       "targets": {
         "locks": 3,
         "flowers": 1,
         "ice": 2,
-        "stones": 1
+        "stones": 1,
+        "total": 94
       },
       "stars": [
         0,
-        4350,
-        6050
+        4355,
+        6700
       ],
       "gravity": true,
       "resonance": true,
@@ -2286,23 +2319,25 @@
         }
       ],
       "difficulty": "orta",
-      "world": 1
+      "world": 1,
+      "legacy_moves": 34
     },
     {
       "id": 30,
       "name": "Bahçenin Dört Mührü",
       "seed": 115370,
-      "moves": 32,
+      "moves": 12,
       "targets": {
         "locks": 4,
         "flowers": 1,
         "ice": 2,
-        "stones": 1
+        "stones": 1,
+        "total": 120
       },
       "stars": [
         0,
-        3350,
-        4650
+        5642,
+        8680
       ],
       "gravity": true,
       "resonance": true,
@@ -2429,8 +2464,9 @@
           "index": 29
         }
       ],
-      "difficulty": "meydan okuma",
-      "world": 1
+      "difficulty": "zor",
+      "world": 1,
+      "legacy_moves": 32
     }
   ]
 }

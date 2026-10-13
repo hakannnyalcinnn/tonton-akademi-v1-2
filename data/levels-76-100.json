@@ -1,7 +1,7 @@
 {
   "levels": [
     {
-      "difficulty": 1.0,
+      "difficulty": "orta",
       "gravity": true,
       "id": 76,
       "layout": [
@@ -79,7 +79,7 @@
         2
       ],
       "mechanics": [],
-      "moves": 28,
+      "moves": 22,
       "name": "Mercan Geçidi",
       "portals": [
         {
@@ -87,30 +87,29 @@
           "exit": 5
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 80412,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        8482,
+        13050
       ],
       "targets": {
-        "1": 8,
+        "1": 35,
         "portals": 1,
-        "total": 30
+        "total": 197
       },
       "tutorial": "Portal halkaları sabittir. Girişe akıntıyla gelen kristal, çıkış boşsa ışınlanır. Aynı kristal bir hamlede bir kez geçer.",
       "tutorial_swap": [
         53,
         54
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 28
     },
     {
-      "difficulty": 1.08,
+      "difficulty": "orta",
       "gravity": true,
       "id": 77,
       "layout": [
@@ -188,7 +187,7 @@
         2
       ],
       "mechanics": [],
-      "moves": 30,
+      "moves": 19,
       "name": "İki Uç Bir Akıntı",
       "portals": [
         {
@@ -196,30 +195,29 @@
           "exit": 5
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 80549,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        7969,
+        12260
       ],
       "targets": {
-        "1": 10,
+        "1": 36,
         "portals": 1,
-        "total": 37
+        "total": 199
       },
       "tutorial": "Portal halkaları sabittir. Girişe akıntıyla gelen kristal, çıkış boşsa ışınlanır. Aynı kristal bir hamlede bir kez geçer.",
       "tutorial_swap": [
         52,
         53
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 30
     },
     {
-      "difficulty": 1.16,
+      "difficulty": "zor",
       "gravity": true,
       "id": 78,
       "layout": [
@@ -297,7 +295,7 @@
         4
       ],
       "mechanics": [],
-      "moves": 32,
+      "moves": 22,
       "name": "Işık Tünelleri",
       "portals": [
         {
@@ -305,30 +303,29 @@
           "exit": 5
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 80686,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        10640,
+        16370
       ],
       "targets": {
-        "1": 12,
+        "1": 45,
         "portals": 2,
-        "total": 44
+        "total": 252
       },
       "tutorial": "Portal halkaları sabittir. Girişe akıntıyla gelen kristal, çıkış boşsa ışınlanır. Aynı kristal bir hamlede bir kez geçer.",
       "tutorial_swap": [
         63,
         71
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 32
     },
     {
-      "difficulty": 1.24,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 79,
       "layout": [
@@ -406,7 +403,7 @@
         1
       ],
       "mechanics": [],
-      "moves": 34,
+      "moves": 18,
       "name": "Kristal Yolculuğu",
       "portals": [
         {
@@ -414,30 +411,29 @@
           "exit": 1
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 80823,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        6988,
+        10750
       ],
       "targets": {
-        "1": 14,
+        "1": 29,
         "portals": 2,
-        "total": 51
+        "total": 163
       },
       "tutorial": "Portal halkaları sabittir. Girişe akıntıyla gelen kristal, çıkış boşsa ışınlanır. Aynı kristal bir hamlede bir kez geçer.",
       "tutorial_swap": [
         49,
         50
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 34
     },
     {
-      "difficulty": 1.32,
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 80,
       "layout": [
@@ -515,7 +511,7 @@
         2
       ],
       "mechanics": [],
-      "moves": 36,
+      "moves": 21,
       "name": "Portal Ustası",
       "portals": [
         {
@@ -523,30 +519,29 @@
           "exit": 6
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 80960,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        9600,
+        14770
       ],
       "targets": {
-        "1": 16,
+        "1": 43,
         "portals": 3,
-        "total": 58
+        "total": 237
       },
       "tutorial": "Portal halkaları sabittir. Girişe akıntıyla gelen kristal, çıkış boşsa ışınlanır. Aynı kristal bir hamlede bir kez geçer.",
       "tutorial_swap": [
         70,
         71
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 36
     },
     {
-      "difficulty": 1.4,
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 81,
       "layout": [
@@ -633,20 +628,18 @@
           "kind": "vine"
         }
       ],
-      "moves": 30,
+      "moves": 24,
       "name": "Canlı Deniz Bahçesi",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81097,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        9048,
+        13920
       ],
       "targets": {
-        "total": 35,
+        "total": 229,
         "vines": 2
       },
       "tutorial": "Sarmaşığın yanında eşleştir. Üç başarılı takasta bir hücre büyür; geçersiz takas sayılmaz.",
@@ -656,10 +649,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 4,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 30
     },
     {
-      "difficulty": 1.48,
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 82,
       "layout": [
@@ -746,20 +740,18 @@
           "kind": "vine"
         }
       ],
-      "moves": 32,
+      "moves": 18,
       "name": "Sarmaşık Dalgası",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81234,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        10420,
+        16030
       ],
       "targets": {
-        "total": 43,
+        "total": 284,
         "vines": 2
       },
       "tutorial": "Sarmaşığın yanında eşleştir. Üç başarılı takasta bir hücre büyür; geçersiz takas sayılmaz.",
@@ -769,10 +761,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 5,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 32
     },
     {
-      "difficulty": 1.56,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 83,
       "layout": [
@@ -863,20 +856,18 @@
           "kind": "vine"
         }
       ],
-      "moves": 34,
+      "moves": 17,
       "name": "Yeşil Akıntı",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81371,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        5324,
+        8190
       ],
       "targets": {
-        "total": 51,
+        "total": 170,
         "vines": 3
       },
       "tutorial": "Sarmaşığın yanında eşleştir. Üç başarılı takasta bir hücre büyür; geçersiz takas sayılmaz.",
@@ -886,10 +877,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 6,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 34
     },
     {
-      "difficulty": 1.64,
+      "difficulty": "orta",
       "gravity": true,
       "id": 84,
       "layout": [
@@ -980,20 +972,18 @@
           "kind": "vine"
         }
       ],
-      "moves": 36,
+      "moves": 15,
       "name": "Mercanları Kurtar",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81508,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        8898,
+        13690
       ],
       "targets": {
-        "total": 59,
+        "total": 215,
         "vines": 3
       },
       "tutorial": "Sarmaşığın yanında eşleştir. Üç başarılı takasta bir hücre büyür; geçersiz takas sayılmaz.",
@@ -1003,10 +993,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 7,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 36
     },
     {
-      "difficulty": 1.72,
+      "difficulty": "orta",
       "gravity": true,
       "id": 85,
       "layout": [
@@ -1097,20 +1088,18 @@
           "kind": "vine"
         }
       ],
-      "moves": 38,
+      "moves": 19,
       "name": "Bahçe Dengesi",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81645,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        8092,
+        12450
       ],
       "targets": {
-        "total": 67,
+        "total": 217,
         "vines": 3
       },
       "tutorial": "Sarmaşığın yanında eşleştir. Üç başarılı takasta bir hücre büyür; geçersiz takas sayılmaz.",
@@ -1120,10 +1109,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 8,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 38
     },
     {
-      "difficulty": 1.8,
+      "difficulty": "zor",
       "gravity": true,
       "id": 86,
       "layout": [
@@ -1210,31 +1200,30 @@
           "kind": "crate"
         }
       ],
-      "moves": 32,
+      "moves": 27,
       "name": "Batık Sandık",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81782,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        8378,
+        12890
       ],
       "targets": {
         "crates": 2,
-        "total": 36
+        "total": 274
       },
       "tutorial": "Sandık iki ayrı darbe ister. Açılınca 3×3 alanı patlatır ve komşu sandıkları zincire katar.",
       "tutorial_swap": [
         43,
         51
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 32
     },
     {
-      "difficulty": 1.88,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 87,
       "layout": [
@@ -1321,31 +1310,30 @@
           "kind": "crate"
         }
       ],
-      "moves": 34,
+      "moves": 22,
       "name": "Altın Kıvılcım",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 81919,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        6884,
+        10590
       ],
       "targets": {
         "crates": 2,
-        "total": 44
+        "total": 177
       },
       "tutorial": "Sandık iki ayrı darbe ister. Açılınca 3×3 alanı patlatır ve komşu sandıkları zincire katar.",
       "tutorial_swap": [
         29,
         37
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 34
     },
     {
-      "difficulty": 1.96,
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 88,
       "layout": [
@@ -1436,31 +1424,30 @@
           "kind": "ice"
         }
       ],
-      "moves": 36,
+      "moves": 24,
       "name": "Yakın Patlama",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 82056,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        8872,
+        13650
       ],
       "targets": {
         "crates": 2,
-        "total": 52
+        "total": 257
       },
       "tutorial": "Sandık iki ayrı darbe ister. Açılınca 3×3 alanı patlatır ve komşu sandıkları zincire katar.",
       "tutorial_swap": [
         25,
         33
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 36
     },
     {
-      "difficulty": 2.04,
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 89,
       "layout": [
@@ -1555,31 +1542,30 @@
           "kind": "crate"
         }
       ],
-      "moves": 38,
+      "moves": 20,
       "name": "Sandık Zinciri",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 82193,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        9880,
+        15200
       ],
       "targets": {
         "crates": 3,
-        "total": 60
+        "total": 248
       },
       "tutorial": "Sandık iki ayrı darbe ister. Açılınca 3×3 alanı patlatır ve komşu sandıkları zincire katar.",
       "tutorial_swap": [
         12,
         20
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 38
     },
     {
-      "difficulty": 2.12,
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 90,
       "layout": [
@@ -1674,31 +1660,30 @@
           "kind": "crate"
         }
       ],
-      "moves": 40,
+      "moves": 30,
       "name": "Hazine Akıntısı",
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 82330,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        11226,
+        17270
       ],
       "targets": {
         "crates": 3,
-        "total": 68
+        "total": 308
       },
       "tutorial": "Sandık iki ayrı darbe ister. Açılınca 3×3 alanı patlatır ve komşu sandıkları zincire katar.",
       "tutorial_swap": [
         33,
         41
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 40
     },
     {
-      "difficulty": 2.2,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 91,
       "layout": [
@@ -1782,7 +1767,7 @@
           "orientation": "\\"
         }
       ],
-      "moves": 30,
+      "moves": 22,
       "name": "Işık Aynası",
       "powers": {
         "27": "rocket_v",
@@ -1791,24 +1776,25 @@
       "resonance": true,
       "seed": 82467,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        7858,
+        12090
       ],
       "targets": {
-        "3": 8,
+        "3": 33,
         "mirrors": 1,
-        "total": 40
+        "total": 184
       },
       "tutorial": "Aynalar roket ışınını döndürür. Üzerindeki çizgi yönü gösterir; her dalgada bir aynanın yansıması bir kez sayılır.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 30
     },
     {
-      "difficulty": 2.28,
+      "difficulty": "orta",
       "gravity": true,
       "id": 92,
       "layout": [
@@ -1892,7 +1878,7 @@
           "orientation": "\\"
         }
       ],
-      "moves": 32,
+      "moves": 25,
       "name": "Kırılan Işın",
       "powers": {
         "27": "rocket_v",
@@ -1901,24 +1887,25 @@
       "resonance": true,
       "seed": 82604,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        10361,
+        15940
       ],
       "targets": {
-        "3": 9,
+        "3": 42,
         "mirrors": 1,
-        "total": 47
+        "total": 232
       },
       "tutorial": "Aynalar roket ışınını döndürür. Üzerindeki çizgi yönü gösterir; her dalgada bir aynanın yansıması bir kez sayılır.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 32
     },
     {
-      "difficulty": 2.36,
+      "difficulty": "orta",
       "gravity": true,
       "id": 93,
       "layout": [
@@ -2007,33 +1994,33 @@
           "orientation": "/"
         }
       ],
-      "moves": 34,
+      "moves": 27,
       "name": "Mercan Yansıması",
       "powers": {
-        "27": "rocket_v",
-        "34": "rocket_h"
+        "27": "rocket_v"
       },
       "resonance": true,
       "seed": 82741,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        10114,
+        15560
       ],
       "targets": {
-        "3": 10,
+        "3": 42,
         "mirrors": 2,
-        "total": 54
+        "total": 235
       },
       "tutorial": "Aynalar roket ışınını döndürür. Üzerindeki çizgi yönü gösterir; her dalgada bir aynanın yansıması bir kez sayılır.",
       "tutorial_swap": [
         26,
         27
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 34
     },
     {
-      "difficulty": 2.44,
+      "difficulty": "zor",
       "gravity": true,
       "id": 94,
       "layout": [
@@ -2122,33 +2109,33 @@
           "orientation": "/"
         }
       ],
-      "moves": 36,
+      "moves": 26,
       "name": "Ayna Rotası",
       "powers": {
-        "27": "rocket_v",
-        "34": "rocket_h"
+        "27": "rocket_v"
       },
       "resonance": true,
       "seed": 82878,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        12207,
+        18780
       ],
       "targets": {
-        "3": 11,
+        "3": 53,
         "mirrors": 2,
-        "total": 61
+        "total": 296
       },
       "tutorial": "Aynalar roket ışınını döndürür. Üzerindeki çizgi yönü gösterir; her dalgada bir aynanın yansıması bir kez sayılır.",
       "tutorial_swap": [
         33,
         34
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 36
     },
     {
-      "difficulty": 2.52,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 95,
       "layout": [
@@ -2237,33 +2224,33 @@
           "orientation": "/"
         }
       ],
-      "moves": 38,
+      "moves": 28,
       "name": "Işık Ustası",
       "powers": {
-        "27": "rocket_v",
-        "34": "rocket_h"
+        "27": "rocket_v"
       },
       "resonance": true,
       "seed": 83015,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        8678,
+        13350
       ],
       "targets": {
-        "3": 12,
+        "3": 34,
         "mirrors": 2,
-        "total": 68
+        "total": 191
       },
       "tutorial": "Aynalar roket ışınını döndürür. Üzerindeki çizgi yönü gösterir; her dalgada bir aynanın yansıması bir kez sayılır.",
       "tutorial_swap": [
         26,
         27
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 38
     },
     {
-      "difficulty": 2.6,
+      "difficulty": "stratejik",
       "gravity": true,
       "id": 96,
       "layout": [
@@ -2350,7 +2337,7 @@
           "kind": "vine"
         }
       ],
-      "moves": 40,
+      "moves": 26,
       "name": "Geçit ve Yeşillik",
       "portals": [
         {
@@ -2362,20 +2349,18 @@
           "exit": 6
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 83152,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        10874,
+        16730
       ],
       "targets": {
-        "1": 10,
+        "1": 50,
         "portals": 1,
-        "total": 60,
+        "total": 277,
         "vines": 2
       },
       "tutorial": "Akıntı, renk enerjisi ve özel güçleri birleştir. Hedef ikonuna dokunarak ilgili nesneleri gör.",
@@ -2385,10 +2370,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 5,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 40
     },
     {
-      "difficulty": 2.68,
+      "difficulty": "kombinasyon",
       "gravity": true,
       "id": 97,
       "layout": [
@@ -2475,7 +2461,7 @@
           "kind": "crate"
         }
       ],
-      "moves": 43,
+      "moves": 20,
       "name": "Akıntı Hazinesi",
       "portals": [
         {
@@ -2487,31 +2473,30 @@
           "exit": 6
         }
       ],
-      "powers": {
-
-      },
+      "powers": {},
       "resonance": true,
       "seed": 83289,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        11999,
+        18460
       ],
       "targets": {
-        "1": 10,
+        "1": 48,
         "crates": 2,
         "portals": 1,
-        "total": 68
+        "total": 268
       },
       "tutorial": "Akıntı, renk enerjisi ve özel güçleri birleştir. Hedef ikonuna dokunarak ilgili nesneleri gör.",
       "tutorial_swap": [
         28,
         29
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 43
     },
     {
-      "difficulty": 2.76,
+      "difficulty": "meydan okuma",
       "gravity": true,
       "id": 98,
       "layout": [
@@ -2603,34 +2588,34 @@
           "orientation": "\\"
         }
       ],
-      "moves": 46,
+      "moves": 29,
       "name": "Yansıyan Hazine",
       "powers": {
-        "27": "rocket_v",
-        "34": "rocket_h"
+        "27": "rocket_v"
       },
       "resonance": true,
       "seed": 83426,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        13455,
+        20700
       ],
       "targets": {
-        "1": 10,
+        "1": 60,
         "crates": 2,
         "mirrors": 1,
-        "total": 76
+        "total": 332
       },
       "tutorial": "Akıntı, renk enerjisi ve özel güçleri birleştir. Hedef ikonuna dokunarak ilgili nesneleri gör.",
       "tutorial_swap": [
         19,
         27
       ],
-      "world": 2
+      "world": 2,
+      "legacy_moves": 46
     },
     {
-      "difficulty": 2.84,
+      "difficulty": "rahat",
       "gravity": true,
       "id": 99,
       "layout": [
@@ -2730,7 +2715,7 @@
           "orientation": "\\"
         }
       ],
-      "moves": 49,
+      "moves": 23,
       "name": "Okyanus Dengesi",
       "portals": [
         {
@@ -2743,22 +2728,21 @@
         }
       ],
       "powers": {
-        "27": "rocket_v",
-        "34": "rocket_h"
+        "27": "rocket_v"
       },
       "resonance": true,
       "seed": 83563,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        9750,
+        15000
       ],
       "targets": {
-        "1": 10,
+        "1": 36,
         "crates": 2,
         "mirrors": 1,
         "portals": 1,
-        "total": 84,
+        "total": 198,
         "vines": 2
       },
       "tutorial": "Akıntı, renk enerjisi ve özel güçleri birleştir. Hedef ikonuna dokunarak ilgili nesneleri gör.",
@@ -2768,10 +2752,11 @@
       ],
       "vine_enabled": true,
       "vine_max": 5,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 49
     },
     {
-      "difficulty": 2.92,
+      "difficulty": "orta",
       "gravity": true,
       "id": 100,
       "layout": [
@@ -2871,24 +2856,24 @@
           "orientation": "\\"
         }
       ],
-      "moves": 52,
+      "moves": 21,
       "name": "Okyanusun Kalbi",
       "objective_stages": [
         {
           "portals": 1,
-          "total": 12
+          "total": 62
         },
         {
           "portals": 2,
-          "total": 35,
+          "total": 138,
           "vines": 2
         },
         {
-          "1": 12,
+          "1": 45,
           "crates": 2,
           "mirrors": 1,
           "portals": 2,
-          "total": 84,
+          "total": 250,
           "vines": 2
         }
       ],
@@ -2903,22 +2888,21 @@
         }
       ],
       "powers": {
-        "27": "rocket_v",
-        "34": "rocket_h"
+        "27": "rocket_v"
       },
       "resonance": true,
       "seed": 83700,
       "stars": [
-        700,
-        1700,
-        2600
+        0,
+        10309,
+        15860
       ],
       "targets": {
-        "1": 12,
+        "1": 45,
         "crates": 2,
         "mirrors": 1,
         "portals": 2,
-        "total": 84,
+        "total": 250,
         "vines": 2
       },
       "tutorial": "Okyanusun Kalbi: üç hedef aşaması. Önce geçitleri uyandır, sonra mercanları temizle, en son ışığı geri getir.",
@@ -2928,7 +2912,8 @@
       ],
       "vine_enabled": true,
       "vine_max": 5,
-      "world": 2
+      "world": 2,
+      "legacy_moves": 52
     }
   ],
   "version": 2

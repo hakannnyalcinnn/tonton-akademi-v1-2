@@ -13,10 +13,10 @@ func _initialize() -> void:call_deferred("run")
 func run() -> void:
  var d:=Catalog.get_level(100);var b=Board.new(d)
  check(b.active_targets()==d.objective_stages[0],"stage one targets from data")
- b.collected.portals=1;b.collected.total=12;b.collected["0"]=12;b.finish_if_needed()
+ b.collected.portals=1;b.collected.total=int(d.objective_stages[0].total);b.collected["0"]=b.collected.total;b.finish_if_needed()
  check(b.objective_stage==1 and b.outcome=="playing" and b.active_targets()==d.objective_stages[1],"first stage advances without completion")
  var clone=Board.new(d);check(clone.restore(b.snapshot()) and clone.objective_stage==1,"mid-stage save restored")
- b.collected.portals=2;b.collected.vines=2;b.collected.total=35;b.collected["0"]=35;b.finish_if_needed()
+ b.collected.portals=2;b.collected.vines=2;b.collected.total=int(d.objective_stages[1].total);b.collected["0"]=b.collected.total;b.finish_if_needed()
  check(b.objective_stage==2 and b.outcome=="playing" and b.active_targets()==d.targets,"second stage displays final six goals")
  b=Board.new(d)
  while b.available():
