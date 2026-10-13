@@ -1,4 +1,6 @@
 extends RefCounted
+const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
+const Flexible=preload("res://scripts/core/flexible_match_resolver.gd")
 ## Straight-line Match-3 scanner. Specials and fixed cells never form color runs.
 
 static func normal(cell: Variant) -> bool:
@@ -14,7 +16,8 @@ static func neighbors(index: int, width: int, height: int) -> Array:
 	if y < height - 1: result.append(index + width)
 	return result
 
-static func find(cells: Array, width: int, height: int) -> Array:
+static func find(cells: Array, width: int, height: int, preferred: Array = []) -> Array:
+	if Traits.has_flexible(cells): return merge_runs(Flexible.find_runs(cells,width,height,preferred))
 	var runs: Array = []
 	for axis in ["h", "v"]:
 		var line_count := height if axis == "h" else width
@@ -30,6 +33,9 @@ static func find(cells: Array, width: int, height: int) -> Array:
 					current.clear()
 					color = next_color
 				if next_color >= 0: current.append(index)
+	return merge_runs(runs)
+
+static func merge_runs(runs: Array) -> Array:
 	# Merge only intersecting lines, never merely touching same-color clusters.
 	var components: Array = []
 	for run in runs:
@@ -66,28 +72,30 @@ static func indices(matches: Array) -> Array:
 
 static func line_at(cells: Array, index: int, width: int, height: int) -> bool:
 	if not normal(cells[index]): return false
-	var color: int = cells[index].c
-	var x := index % width
-	var y := int(index / width)
-	for axis in [0, 1]:
-		var count := 1
-		for sign_value in [-1, 1]:
-			var nx: int = x + (sign_value if axis == 0 else 0)
-			var ny: int = y + (sign_value if axis == 1 else 0)
-			while nx >= 0 and nx < width and ny >= 0 and ny < height:
-				var cell = cells[ny * width + nx]
-				if not normal(cell) or cell.c != color: break
-				count += 1
-				nx += sign_value if axis == 0 else 0
-				ny += sign_value if axis == 1 else 0
-		if count >= 3: return true
+	var x:=index%width
+	var y:=int(index/width)
+	for color in Traits.domains(cells[index]):
+		for axis in [0,1]:
+			var count:=1
+			var anchored:=not Traits.bridge(cells[index])
+			for sign_value in [-1,1]:
+				var nx: int=x+(sign_value if axis==0 else 0)
+				var ny: int=y+(sign_value if axis==1 else 0)
+				while nx>=0 and nx<width and ny>=0 and ny<height:
+					var cell=cells[ny*width+nx]
+					if not Traits.supports(cell,color): break
+					anchored=anchored or not Traits.bridge(cell)
+					count+=1
+					nx+=sign_value if axis==0 else 0
+					ny+=sign_value if axis==1 else 0
+			if count>=3 and anchored: return true
 	return false
 
 static func can_swap(cells: Array, a: int, b: int, width: int, height: int) -> bool:
 	if a < 0 or b < 0 or a >= cells.size() or b >= cells.size() or b not in neighbors(a, width, height): return false
 	if cells[a] == null or cells[b] == null or cells[a].get("fixed", false) or cells[b].get("fixed", false): return false
 	if cells[a].p != "" or cells[b].p != "": return true # Explicit special activation/combination exception.
-	if cells[a].c == cells[b].c: return false
+	if cells[a].c == cells[b].c and not Traits.flexible(cells[a]) and not Traits.flexible(cells[b]): return false
 	var first = cells[a]
 	cells[a] = cells[b]
 	cells[b] = first

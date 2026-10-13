@@ -2,6 +2,8 @@
 
 Godot **4.6.3 stable**, GDScript, Android öncelikli çevrimdışı bulmaca. Mevcut PRİZMA projesi korunarak temel motor **sürükle → bir komşuyla takas → yatay/dikey 3+ eşleşme → otomatik zincir** sistemine dönüştürüldü. Normal dokunarak patlatma yoktur. 0.3.0 görsel kalite revizyonunda beş özgün büyülü kristal, havuzlanmış kırılma efektleri ve ölçümlü performans iyileştirmeleri eklendi. 0.4.0 ikinci aşamada ilk 10 bölüm korunarak tohum kapsülü, buz zırhı, taş engel ve renk kilidi ile 11–30. bölümler eklendi. [İkinci aşama raporu](docs/STAGE2_REPORT.md) ve [sonraki mekaniklerin planı](docs/MECHANICS_ROADMAP.md) ayrıntıları içerir.
 
+0.5.0, 31–50. bölümleri ve mekanik paketi 2’yi ekler: çift renkli ve bukalemun kristaller; geliştiriciye özel joker köprü ve metalik çivi. Dünya finalinde kalıcı Büyülü Bahçe madalyası kazanılır. [Paket 2 raporu](docs/PACKAGE2_REPORT.md) kapsam, testler ve performans sınırlarını içerir.
+
 ## Oyna
 Godot Project Manager'da `project.godot` açın ve F5 ile çalıştırın. **OYNA** açık bölüme, **DEVAM ET** kayıtlı aynı tahtaya döner. Harita tamamlanan bölümleri tekrar açar.
 
@@ -52,7 +54,7 @@ bash tools/build_android.sh
 
 Varsayılan çıktı **`build/prizma-match3.apk`**, uygulama adı **PRİZMA Match-3**, test kimliği `com.prizma.renklerinuyanisi.match3`. Android 7.0+, hedef SDK 36, ARMv7/ARM64, internet izni yok. Build sarmalayıcısı önce test eder, sonra v2/v3 imzasını, manifesti, bölüm verisini ve kitaplıkları doğrular.
 
-**0.4.0, yayımlanan 0.2.0/0.3.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
+**0.5.0, yayımlanan 0.2.0/0.3.0/0.4.0 Match-3 APK’ları ile aynı paket ve kalıcı test imzasını kullanır; mevcut Match-3 uygulaması güncellenir ve kayıt korunur. Uygulamayı kaldırmayın.**
 
 **0.1.0’dan ayrı profile geçiş geçmişi:** v0.1.0 GitHub APK'sı geçici CI debug anahtarıyla imzalandı. O özel anahtar mevcut olmadığından yeni paket onun üzerine güvenli güncelleme olarak kurulamaz. Yeni test kimliği eski uygulamanın yanına kurulur; eski uygulamayı kaldırmanız gerekmez. Yeni test profili ayrı başlar; telefondaki eski profili otomatik okuyup aktardığı iddia edilmez.
 
@@ -95,7 +97,7 @@ Bu ölçüm fiziksel Android testinin yerini tutmaz. Yeni dünyalar, bölümler,
 ## Geliştirici mekanik laboratuvarı
 
 Godot editöründe ve `Android Match3 Test` dışa aktarmasında Ayarlar > Geliştirici:
-mekanik laboratuvarı açılır. Seed, hücre (0–71), dört mekanik ekleme ve tahta sıfırlama
+mekanik laboratuvarı açılır. Seed, hücre (0–71), sekiz mekanik ekleme ve tahta sıfırlama
 araçları normal ilerlemeyi, ödülleri ve aktif kayıtlı bölümü değiştirmez. Normal
 `Android` hedefinde `prizma_dev_tools` özelliği olmadığı için görünmez. Fiziksel
 Android FPS ve yaşam döngüsü kabul testi kullanıcı cihazında yapılmalıdır.
@@ -106,3 +108,32 @@ Render kontrolleri ve görüntüler için Xvfb veya gerçek grafik ekranı altı
 100 hamlelik yeni mekanik render ölçümü:
 `bash tools/godot.sh --max-fps 60 --profiling --script tests/visual_performance.gd -- mechanics`.
 `-- mechanics low` 20 hamlelik sınırlı performans profili ölçümüdür.
+
+## Paket 2 kuralları
+
+Çift renkli kristal yalnızca iki tanımlı renkle eşleşir. Joker köprü beş ana renkle
+uyumludur; sadece köprülerden oluşan çizgi eşleşmez. Çözümleyici önce takasın
+hücrelerini içeren çözümleri, sonra benzersiz hücre sayısını, en uzun çizgiyi ve
+sabit renk sırasını (kızıl, mavi, yeşil, sarı, mor) kullanır. Her hücre dalgada tek
+renk alır. Kesin arama için tahta başına en çok 8 çift renk/joker desteklenir;
+normal 31–50. bölümlerde 1–3 çift renk ve sıfır joker kullanılır.
+
+Bukalemun sayacı yalnızca başarılı takasın bütün ilk zincirleri bittikten sonra
+ilerler. Normal veya özel başarılı takas sayılır; özel güce dokunma, geçersiz
+hareket ve yer çekimi sayılmaz. Dönüşümün yeni eşleşmeleri aynı hamle ve kombo
+akışında çözülür; sonuç kontrolü dönüşüm zinciri bitene kadar ertelenir.
+
+Çivi, buzdan farklı metalik görünümlü iki dayanıklılıklı sabitlemedir. Dört yönde
+sabit kalır; kırılınca alttaki kimlik ve renk korunur. Prizma dahil her dalgada
+bir hasar alır. Bir kristalde trait ile koruyucu katmanın aynı anda kullanılması
+bu sürümde tanımlanmadığı için veri doğrulaması tarafından reddedilir. Farklı
+hücrelerde önceki dört engel ve yeni kristaller birlikte çalışır.
+
+`python3 tools/generate_mechanics2.py` özgün SVG varlıklarını yeniden üretir.
+`bash tools/godot.sh --script tools/normalize_package2.gd` yalnızca yeni bölüm
+verisinin başlangıç tahtalarını ve öğretici takaslarını doğrulayıp normalleştirir.
+Bu araç çalıştırıldıktan sonra bölüm dengesi/testleri tekrar çalıştırılmalıdır.
+
+Render görüntüleri: `bash tools/godot.sh --audio-driver Dummy --script tests/package2_capture.gd`.
+100 hamlelik ölçüm: `bash tools/godot.sh --max-fps 60 --profiling --script tests/visual_performance.gd -- package2`.
+20 hamlelik düşük kalite ölçümü: aynı komuta `-- package2 low` verin.

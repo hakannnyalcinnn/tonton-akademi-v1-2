@@ -3,6 +3,8 @@ signal swap_requested(a: int, b: int)
 signal special_pressed(index: int)
 signal animation_finished
 signal wave_started(data: Dictionary)
+const TraitVFX=preload("res://scripts/ui/crystal_trait_animation.gd")
+const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const MechanicVFX = preload("res://scripts/ui/mechanic_animation_controller.gd")
 const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
 const POWER_TEXTURES := {"rocket_h":5,"rocket_v":6,"prism":7,"color":8}
@@ -22,6 +24,8 @@ var settings: Dictionary = {}
 var quality := "balanced"
 var textures: Array[AtlasTexture] = []
 var mechanic_textures: Array[AtlasTexture] = []
+var trait_regions: Array[Rect2] = []
+var trait_idle_animation := false
 var mechanic_font: Font
 var layer_cells: Array = []
 var layer_rects: Array[Rect2] = []
@@ -84,6 +88,7 @@ func _ready() -> void:
 		texture.region = Rect2((i%3)*256,int(i/3)*256,256,256)
 		textures.append(texture)
 	mechanic_textures = MechanicVFX.textures()
+	trait_regions = TraitVFX.regions()
 	mechanic_font = ThemeDB.fallback_font
 	layer_cells.resize(80)
 	layer_rects.resize(80)
@@ -142,7 +147,7 @@ func start_wave(data: Dictionary) -> void:
 			particle_count = mini(192, maxi(particle_count,slot+1))
 			particle_positions[slot] = center
 			particle_velocities[slot] = Vector2.from_angle(index*2.41+k*TAU/count)*(65+(k%3)*29)
-			particle_colors[slot] = Palette.COLORS[previous[index].c].lightened(.16)
+			particle_colors[slot] = Palette.COLORS[k%5 if Traits.bridge(previous[index]) else int(data.get("colors",{}).get(index,previous[index].c))].lightened(.16)
 			particle_ages[slot] = 0
 			particle_styles[slot] = 0
 	for effect in data.get("mechanics",[]):
@@ -176,6 +181,7 @@ func set_board(value) -> void:
 	board = value
 	busy = false
 	displayed = board.cells.duplicate(true)
+	trait_idle_animation=has_trait_animation(displayed)
 	target = displayed
 	queue.clear()
 	current.clear()
@@ -216,10 +222,11 @@ func next_frame() -> void:
 	current = queue.pop_front()
 	previous = current.before
 	target = current.after
+	trait_idle_animation=has_trait_animation(target)
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16}.get(current.kind, 0.12)
 	age = 0
 	board.visual_phase(int(current.state))
 	if current.kind == "clear":
@@ -287,7 +294,7 @@ func _process(delta: float) -> void:
 		shake_age += delta
 		active = true
 	idle_time += delta
-	if active or (hint_index>=0 and idle_time>.033 and not reduced_motion):
+	if active or (hint_index>=0 and idle_time>.033 and not reduced_motion) or (trait_idle_animation and quality!="performance" and idle_time>.05 and not reduced_motion):
 		idle_time = 0
 		queue_redraw()
 
@@ -432,10 +439,10 @@ func _draw() -> void:
 		for i in current.removed:
 			if previous[i] == null: continue
 			var center := cell_position(i) + Vector2(28,28)
-			var color: Color = Palette.COLORS[previous[i].c]
+			var color: Color = Palette.COLORS[int(current.get("colors",{}).get(i,previous[i].c))]
 			if t<.48:
 				var block_size := Vector2.ONE*CELL*(1+.12*sin(t/.48*PI))
-				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true)
+				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true,int(current.get("colors",{}).get(i,previous[i].c)))
 				draw_texture_rect(GLOW,Rect2(center-Vector2(36,36),Vector2(72,72)),false,Color(1,1,1,sin(t/.48*PI)*.7))
 			else:
 				draw_arc(center,(t-.35)*45,0,TAU,16,Color(color,(1-t)*.8),1.7,true)
@@ -471,6 +478,13 @@ func _draw() -> void:
 				draw_arc(center,t*120,0,TAU,28,Color(.8,.65,1,1-t),4,true)
 		if current.resonated and not reduced_motion:
 			draw_arc(cell_position(current.origin)+Vector2(28,28),t*150,0,TAU,40,Color(.7,1,.94,1-t),3,true)
+	if busy and current.kind=="trait":
+		for effect in current.get("traits",[]):
+			var center:=cell_position(effect.index)+Vector2(28,28)
+			if effect.changed:
+				var old: Dictionary=previous[effect.index]
+				draw_texture_rect_region(TraitVFX.ATLAS,Rect2(center-Vector2(28,28),Vector2(CELL,CELL)),trait_regions[TraitVFX.index(old)],Color(1,1,1,1-ease))
+			draw_texture_rect(GLOW,Rect2(center-Vector2(34,34),Vector2(68,68)),false,Color(Palette.COLORS[int(effect.to)],sin(t*PI)*.7))
 	draw_mechanic_layers()
 	if busy and current.kind=="clear":
 		for effect in current.get("mechanics",[]):
@@ -513,12 +527,12 @@ func _draw() -> void:
 
 	Metrics.elapsed("board_draw_cpu",draw_started)
 
-func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool) -> void:
+func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool, match_color: int = -1) -> void:
 	var center := rect.get_center()
 	var pulse := 1.035 if highlighted else 1.0
 	if highlighted and not reduced_motion: pulse += sin(clock*3)*.012
 	var jewel := Rect2(center-rect.size*pulse/2,rect.size*pulse)
-	var color: Color = Palette.COLORS[cell.c]
+	var color: Color = Palette.COLORS[match_color if match_color>=0 else int(cell.c)]
 	if highlighted:
 		draw_texture_rect(GLOW,jewel.grow(7),false,Color(color.lightened(.4),.75))
 	var texture_index: int = int(cell.c)
@@ -526,7 +540,17 @@ func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool) -> void:
 	if colorblind and not highlighted:
 		draw_texture_rect(GLOW,jewel.grow(1),false,Color(1,1,1,.24))
 	# Same shared texture atlas for every crystal; no per-frame resources or styleboxes.
-	if not cell.has("obstacle"):
+	if cell.has("trait"):
+		draw_texture_rect_region(TraitVFX.ATLAS,jewel,trait_regions[TraitVFX.index(cell)],Palette.COLORS[match_color].lightened(.45) if match_color>=0 and Traits.bridge(cell) else Color.WHITE)
+		if cell.trait.kind=="chameleon":
+			var ready: bool=int(cell.trait.count)==int(cell.trait.period)-1
+			draw_arc(center,24,-PI/2,-PI/2+TAU*float(cell.trait.count+1)/float(cell.trait.period+1),18,Color(Palette.GOLD,.8 if ready else .38),1.2,true)
+			if ready: draw_texture_rect(GLOW,jewel.grow(3),false,Color(Palette.GOLD,.14 if reduced_motion else .12+.09*sin(clock*4)))
+		elif cell.trait.kind=="bridge" and quality!="performance" and not settings.get("reduced_effects",false):
+			for k in 2:
+				var glint:=center+Vector2.from_angle(clock*.4+k*PI)*18
+				draw_texture_rect(GLOW,Rect2(glint-Vector2(7,7),Vector2(14,14)),false,Color(Palette.COLORS[k*2],.5))
+	elif not cell.has("obstacle"):
 		draw_texture_rect_region(ATLAS,Rect2(jewel.position+Vector2(0,2),jewel.size),textures[texture_index].region)
 	var layer := Mechanics.layer(cell)
 	if layer!="":
@@ -545,7 +569,9 @@ func draw_mechanic_layers() -> void:
 		var center:=jewel.get_center()
 		var cell: Dictionary=layer_cells[i]
 		var m: Dictionary=cell[Mechanics.layer(cell)]
-		draw_texture_rect_region(MechanicVFX.ATLAS,jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region)
+		if m.kind=="pin":
+			draw_texture_rect_region(TraitVFX.ATLAS,jewel,trait_regions[16 if m.hp==2 else 17])
+		else: draw_texture_rect_region(MechanicVFX.ATLAS,jewel,mechanic_textures[MechanicVFX.index(m.kind,m)].region)
 		if m.kind=="lock":
 			var progress:=float(m.energy)/float(m.required)
 			if progress>0: draw_arc(center,25,-PI/2,-PI/2+TAU*progress,18,Color(Palette.COLORS[int(m.color)],.9),2.2,true)
@@ -556,3 +582,9 @@ func draw_mechanic_layers() -> void:
 			var anchor:=center+Vector2(-float(lock_labels[cell.id].width)/2,25)
 			draw_string_outline(mechanic_font,anchor,text,HORIZONTAL_ALIGNMENT_LEFT,-1,10,3,Color("091524"))
 			draw_string(mechanic_font,anchor,text,HORIZONTAL_ALIGNMENT_LEFT,-1,10,Color("fff1c9"))
+
+func has_trait_animation(values: Array) -> bool:
+	for cell in values:
+		if cell!=null and cell.has("trait"):
+			if cell.trait.kind=="bridge" or (cell.trait.kind=="chameleon" and int(cell.trait.count)==int(cell.trait.period)-1):return true
+	return false

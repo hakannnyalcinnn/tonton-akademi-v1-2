@@ -7,6 +7,7 @@ static func move_value(b, a: int, destination: int) -> float:
 	b.cells[a] = b.cells[destination]
 	b.cells[destination] = first
 	var removed: Array = []
+	var effective: Dictionary={}
 	var power_bonus := 0.0
 	if b.cells[a].p != "" and b.cells[destination].p != "":
 		removed = Powers.combo_area(a,destination,b.cells,8,Powers.dominant_color(b.cells))
@@ -18,6 +19,7 @@ static func move_value(b, a: int, destination: int) -> float:
 		var matches: Array = Match.find(b.cells,8,9)
 		removed = Match.indices(matches)
 		for component in matches:
+			for i in component.cells: effective[i]=int(component.color)
 			var kind: String = Powers.created(component)
 			power_bonus += {"":0.0,"rocket_h":2.0,"rocket_v":2.0,"prism":4.0,"color":8.0}[kind]
 	var value := power_bonus
@@ -25,8 +27,11 @@ static func move_value(b, a: int, destination: int) -> float:
 	for i in removed:
 		if unique.has(i) or not Match.normal(b.cells[i]): continue
 		unique[i] = true
-		var color := str(b.cells[i].c)
+		var color := str(effective.get(i,b.cells[i].c))
 		value += 1
+		var kind: String=b.cells[i].get("trait",{}).get("kind","")
+		if kind=="dual" and b.collected.duals<int(b.level.targets.get("duals",0)):value+=40
+		if kind=="chameleon" and b.collected.shifts<int(b.level.targets.get("shifts",0)):value-=150
 		if b.level.targets.has(color) and b.collected[color] < b.level.targets[color]: value += 4
 	# Prefer damage to unfinished mechanics; predict a wave without mutating it.
 	if not b.level.get("mechanics",[]).is_empty():

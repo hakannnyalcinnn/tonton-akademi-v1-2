@@ -3,6 +3,7 @@ extends Control
 const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
 const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
 const Generator = preload("res://scripts/core/board_generator.gd")
+const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 const Board = preload("res://scripts/core/board.gd")
 const Catalog = preload("res://scripts/core/level_catalog.gd")
@@ -223,7 +224,10 @@ func title_header(title: String, subtitle: String) -> void:
 func show_home() -> void:
 	test_mode = false
 	begin_page("home")
-	garden.vitality = 0.30 + minf(.6,float(save.data.results.size()) * 0.03)
+	garden.vitality = 1.0 if 1 in save.data.get("world_rewards",[]) else 0.30 + minf(.6,float(save.data.results.size()) * 0.03)
+	if 1 in save.data.get("world_rewards",[]):
+		label(page,"BÜYÜLÜ BAHÇE MADALYASI",Rect2(20,373,500,25),14,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+		garden.color_energy=[18,18,18,18,18]
 	label(page, "ÇEVRİMDIŞI · SANA AİT BİR DÜNYA", Rect2(30, 44, 480, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 	var logo := TextureRect.new()
 	logo.texture = load("res://assets/art/icon.svg")
@@ -257,7 +261,7 @@ func play_latest() -> void:
 func show_map(group: int = -1) -> void:
 	persist_board()
 	test_mode = false
-	if group>=0: map_group=clampi(group,0,2)
+	if group>=0: map_group=clampi(group,0,int((Catalog.count()-1)/10))
 	begin_page("map")
 	title_header(Strings.text("world"), Strings.text("chapter"))
 	label(page, "Her bölüm, bahçeye yeni bir renk.", Rect2(32, 179, 476, 30), 18, Palette.GOLD)
@@ -270,8 +274,8 @@ func show_map(group: int = -1) -> void:
 		var node := button(page, str(n) if unlocked else "·", Rect2(x, y, 184, 69), start_level.bind(n), unlocked and n == save.data.unlocked, 28)
 		node.disabled = not unlocked
 		label(page, "★".repeat(int(result.get("stars", 0))) if not result.is_empty() else ("Seni bekliyor" if unlocked else "Kilitli"), Rect2(x, y + 71, 184, 25), 15, Palette.GOLD if unlocked else Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-	for group_index in 3:
-		button(page,"%d–%d"%[group_index*10+1,group_index*10+10],Rect2(43+group_index*158,864,138,45),show_map.bind(group_index),group_index==map_group,17)
+	for group_index in int(ceil(Catalog.count()/10.0)):
+		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+group_index*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
 	label(page, "BÜYÜLÜ BAHÇE · %d BÖLÜM"%Catalog.count(), Rect2(30, 918, 480, 26), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
@@ -532,6 +536,10 @@ func show_result() -> void:
 		return
 	if board.outcome == "playing": return
 	var won: bool = board.outcome == "won"
+	if won and int(board.level.id)%50==0:
+		save.complete(board)
+		show_world_result()
+		return
 	if won: save.complete(board)
 	else:
 		save.data.active = {}
@@ -549,7 +557,7 @@ func show_result() -> void:
 		if int(board.level.id) < Catalog.count():
 			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), start_level.bind(int(board.level.id) + 1), true)
 		else:
-			label(overlay, "Bahçenin 30 adımı tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+			label(overlay, "Bahçenin tüm adımları tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 			button(overlay, Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
 		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), start_level.bind(int(board.level.id)))
 	else:
@@ -581,7 +589,7 @@ func show_settings() -> void:
 	volume_slider("sfx","Efekt sesi",693)
 	button(page,"Performans ölçümü / rapor",Rect2(42,771,456,44),show_diagnostics,false,15)
 	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.4 · BÜYÜLÜ BAHÇENİN SIRLARI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.5 · İKİ RENGİN UYANIŞI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
@@ -675,38 +683,50 @@ func start_mechanic_test() -> void:
 func show_mechanic_test_tools() -> void:
 	if not developer_tools_available() or not test_mode: return
 	open_overlay("Mekanik laboratuvarı","Bu tahta ilerlemene ve ödüllerine kaydedilmez.")
-	label(overlay,"Seed",Rect2(67,377,90,34),16)
+	for child in overlay.get_children():
+		if child is Panel:child.position.y=145;child.size.y=620
+		elif child is Label:child.position.y-=82
+	label(overlay,"Seed",Rect2(67,307,90,34),16)
 	var seed_input:=SpinBox.new()
-	seed_input.position=Vector2(167,377)
+	seed_input.position=Vector2(167,307)
 	seed_input.size=Vector2(300,36)
 	seed_input.min_value=1
 	seed_input.max_value=2147483647
 	seed_input.value=test_seed
 	overlay.add_child(seed_input)
 	seed_input.value_changed.connect(func(value): test_seed=int(value))
-	label(overlay,"Hücre (0–71)",Rect2(67,421,200,34),16)
+	label(overlay,"Hücre (0–71)",Rect2(67,350,200,34),16)
 	var index_input:=SpinBox.new()
-	index_input.position=Vector2(280,421)
+	index_input.position=Vector2(280,350)
 	index_input.size=Vector2(187,36)
 	index_input.max_value=71
 	index_input.value=test_index
 	overlay.add_child(index_input)
 	index_input.value_changed.connect(func(value): test_index=int(value))
-	var kinds: Array=["seed","ice","stone","lock"]
-	var names: Array=["Tohum ekle","Buz ekle","Taş ekle","Kızıl kilit ekle"]
-	for i in 4:
-		button(overlay,names[i],Rect2(68+(i%2)*208,478+int(i/2)*51,196,43),add_test_mechanic.bind(kinds[i]),false,15)
-	button(overlay,"SEED İLE TAHTAYI SIFIRLA",Rect2(68,591,404,45),start_mechanic_test,true,15)
-	button(overlay,"GERİ DÖN",Rect2(68,653,404,44),close_overlay,false,15)
+	var kinds: Array=["seed","ice","stone","lock","dual","chameleon","bridge","pin"]
+	var names: Array=["Tohum","Buz","Taş","Renk kilidi","Çift renk","Bukalemun","Prizma Köprüsü","Yer Çekimi Çivisi"]
+	for i in 8:
+		button(overlay,names[i],Rect2(68+(i%2)*208,407+int(i/2)*52,196,43),add_test_mechanic.bind(kinds[i]),false,14)
+	button(overlay,"SEED İLE TAHTAYI SIFIRLA",Rect2(68,630,404,45),start_mechanic_test,true,15)
+	button(overlay,"GERİ DÖN",Rect2(68,692,404,44),close_overlay,false,15)
 
 func add_test_mechanic(kind: String) -> void:
 	if not developer_tools_available() or not test_mode or board_view.busy: return
 	close_overlay()
 	if not board.available(): return
+	if kind in ["dual","bridge"]:
+		var count:=0
+		for i in 72:
+			if i!=test_index and Traits.flexible(board.cells[i]):count+=1
+		if count>=Traits.MAX_FLEXIBLE:
+			set_hint("Bu test tahtasında en fazla 8 çift renk/joker bulunabilir.")
+			return
 	# Replace a sandbox cell only; installed layers use the production manager.
 	board.cells[test_index]=board.make_cell()
 	var spec: Dictionary={"kind":kind,"index":test_index}
 	if kind=="lock": spec.merge({"color":0,"required":15})
+	if kind=="dual":spec.colors=[0,1]
+	if kind=="chameleon":spec.merge({"sequence":[2,1,0,4],"period":2,"phase":0})
 	Mechanics.install(board.cells,[spec])
 	Generator.repair_start(board.cells,board.rng,8,9)
 	board_view.set_board(board)
@@ -716,5 +736,36 @@ func add_test_mechanic(kind: String) -> void:
 func show_mechanic_help() -> void:
 	open_overlay("Bahçenin sırları")
 	var body:=label(overlay,"Tohum: yanında eşleştir, 2 darbeyle çiçek açar.\n\nBuz: kristali sabit tutar; yanında patlama veya doğrudan güçle 2 katmanı kır.\n\nTaş: 3 dayanıklılık. Doğrudan prizma 2 hasar verir; roket 1.\n\nRenk kilidi: istenen renkte normal kristalleri topla. Zincirler de sayılır.\n\nÇapraz komşuluk hasar vermez. Aynı dalga aynı engeli tekrar vurmaz.",Rect2(61,315,418,315),16)
+	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	button(overlay,"YENİ KRİSTALLER",Rect2(68,650,404,35),show_crystal_help,false,14)
+	button(overlay,"ANLADIM",Rect2(68,699,404,35),close_overlay,true,15)
+
+func show_world_result() -> void:
+	audio.play("win")
+	garden.vitality=1.0
+	garden.color_energy=[18,18,18,18,18]
+	open_overlay("Büyülü Bahçe tamamlandı!","Renkler uyandı. Dünya madalyan kaydedildi.")
+	var medal:=TextureRect.new()
+	medal.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	medal.texture=load("res://assets/mechanics2/garden-medal.svg")
+	medal.position=Vector2(202,376)
+	medal.size=Vector2(136,136)
+	medal.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(medal)
+	label(overlay,"BÜYÜLÜ BAHÇE MADALYASI",Rect2(55,514,430,31),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(overlay,"★".repeat(Score.stars(board.score,board.level.stars))+"  ·  %d PUAN"%board.score,Rect2(55,553,430,30),19,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
+		var celebration:=Celebration.new()
+		celebration.world_finale=true
+		overlay.add_child(celebration)
+	if int(board.level.id)<Catalog.count():
+		button(overlay,"SONRAKİ DÜNYA",Rect2(68,604,404,45),start_level.bind(int(board.level.id)+1),true,17)
+	else:
+		label(overlay,"Yeni dünya hazırlanıyor",Rect2(55,599,430,32),19,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"BAHÇEYİ KEŞFET",Rect2(68,653,404,45),show_map.bind(4),true,17)
+
+func show_crystal_help() -> void:
+	open_overlay("İki rengin uyanışı")
+	var body:=label(overlay,"Çift renkli kristal yalnızca gösterdiği iki renkle eşleşir. Bir dalgada tek renk olarak sayılır.\n\nBukalemun iki başarılı takasın zincirleri bittikten sonra sıradaki rengine geçer. Parlayan çerçeve dönüşümün yaklaştığını gösterir. Geçersiz takas, zincirler ve yön değişimi sayacı ilerletmez.\n\nPrizma Köprüsü ve Yer Çekimi Çivisi sonraki dünyalarda tanıtılacak. Şimdilik sadece geliştirici laboratuvarında denenebilir.",Rect2(61,315,418,315),17)
 	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	button(overlay,"ANLADIM",Rect2(68,658,404,48),close_overlay,true,16)

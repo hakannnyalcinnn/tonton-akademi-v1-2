@@ -10,7 +10,9 @@ static func all() -> Array:
 	assert(parsed is Dictionary and parsed.version == 2)
 	var extended = JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-11-30.json"))
 	assert(extended is Dictionary and extended.version == 2)
-	cache = parsed.levels + extended.levels
+	var package2=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-31-50.json"))
+	assert(package2 is Dictionary and package2.version==2)
+	cache = parsed.levels + extended.levels + package2.levels
 	return cache
 
 static func count() -> int:
@@ -33,7 +35,10 @@ static func validate(level: Dictionary) -> bool:
 	for key in level.targets:
 		if key not in Objectives.KEYS or level.targets[key] < 1: return false
 	var occupied: Dictionary = {}
+	var flexible_count:=0
 	for spec in level.get("mechanics",[]):
 		if not Registry.valid_spec(spec) or occupied.has(spec.index): return false
 		occupied[spec.index] = true
-	return not level.targets.is_empty()
+		if spec.kind in ["bridge","pin"] and level.id<=50: return false
+		if spec.kind=="dual" or spec.kind=="bridge": flexible_count+=1
+	return not level.targets.is_empty() and flexible_count<=Registry.Traits.MAX_FLEXIBLE

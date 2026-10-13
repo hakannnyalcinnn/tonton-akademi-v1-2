@@ -7,7 +7,9 @@ static func install(cells: Array, specs: Array) -> void:
 		assert(Registry.valid_spec(spec))
 		var cell: Dictionary = cells[int(spec.index)]
 		cell[Registry.DEFINITIONS[spec.kind].layer] = Registry.payload(spec)
-		cell["fixed"] = true
+		if Registry.DEFINITIONS[spec.kind].layer!="trait": cell["fixed"] = true
+		elif spec.kind=="dual": cell.c=int(cell.trait.colors[0])
+		elif spec.kind=="chameleon": cell.c=int(cell.trait.sequence[int(cell.trait.phase)])
 
 static func layer(cell: Dictionary) -> String:
 	return "armor" if cell.has("armor") else ("obstacle" if cell.has("obstacle") else "")

@@ -4,7 +4,7 @@ const COLORS := ["Kızıl", "Mavi", "Yeşil", "Altın", "Mor"]
 const COPY := {
 	"tagline": "RENKLERİN UYANIŞI",
 	"world": "Büyülü Bahçe",
-	"chapter": "BİRİNCİ DÜNYA · 30 BÖLÜM",
+	"chapter": "BİRİNCİ DÜNYA · 50 BÖLÜM",
 	"play": "OYNA",
 	"resume": "DEVAM ET",
 	"map": "Bahçeyi keşfet",

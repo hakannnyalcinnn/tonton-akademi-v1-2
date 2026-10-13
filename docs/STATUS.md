@@ -1,3 +1,9 @@
+# Güncel sürüm: PRİZMA 0.5.0 — İki Rengin Uyanışı
+
+İlk 50 bölüm, çift renkli kristal, bukalemun ve dünya finali tamamlandı. Köprü ve çivi test edilmiş geliştirici mekanikleridir; normal ilk 50 bölümde kilitli kalır. Güncel ayrıntılar: [PACKAGE2_REPORT.md](PACKAGE2_REPORT.md). Sonraki mekanik grubuna geçilmedi. Aşağıdaki sürüm raporları geçmiş kaydıdır.
+
+---
+
 # Güncel sürüm: PRİZMA 0.4.0 — Bahçenin Sırları
 
 İkinci aşamanın ilk dört mekaniği ve 11–30. bölümler tamamlandı. İlk 10 bölüm ve mevcut Match-3 kuralları korundu. Yeni teslimatın testleri, ölçümleri, dosya listesi ve Android kabul testi sınırları: [STAGE2_REPORT.md](STAGE2_REPORT.md). Sonraki 16 mekanik yalnızca [planda](MECHANICS_ROADMAP.md); kullanıcı onayı bekleniyor.

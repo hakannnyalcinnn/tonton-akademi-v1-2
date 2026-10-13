@@ -1,3 +1,16 @@
+# PRİZMA mekanik planı — 0.5.0
+
+1–4: tohum, buz, taş ve renk kilidi korunur.
+5–6: çift renkli kristal ve bukalemun 31–50. bölümlerde kullanılır.
+7–8: Prizma Köprüsü ve Yer Çekimi Çivisi kodlanmış ve test edilmiştir; yalnızca
+geliştirici laboratuvarında kullanılabilir. İlk 50 normal bölümde yer almazlar.
+9–20: aşağıdaki planın sonraki grubudur; bu teslimatta geliştirilmedi. Onay beklenir.
+
+Aşağıdaki 0.4.0 tasarım notları tarihi kayıt olarak korunmuştur. Buradaki 5–8
+"gelecek" satırları 0.5.0'daki yukarıdaki durumla güncellenmiştir.
+
+---
+
 # PRİZMA: sonraki mekaniklerin planı
 
 0.4.0 yalnızca tohum kapsülü, buz zırhı, taş engel ve renk kilidini uygular.

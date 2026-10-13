@@ -1,0 +1,273 @@
+{
+  "audio_output_latency_ms": 0.0,
+  "counters": {
+    "active_quality": "performance",
+    "frames": 1465,
+    "frames_over_33ms": 50,
+    "peak_live_objects": 1917,
+    "peak_static_memory_bytes": 60593354
+  },
+  "device_model": "GenericDevice",
+  "display": {
+    "height": 0,
+    "refresh_rate_hz": null,
+    "safe_area": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "width": 0
+  },
+  "incidents": [],
+  "metrics": {
+    "animation_clear": {
+      "max_ms": 136.224670410156,
+      "mean_ms": 33.6648773906207,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.6052207946777,
+      "samples": 198
+    },
+    "animation_fall": {
+      "max_ms": 36.5233345031738,
+      "mean_ms": 33.2512924213602,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 198
+    },
+    "animation_refill": {
+      "max_ms": 36.1111106872559,
+      "mean_ms": 33.3124836334074,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 33.3333320617676,
+      "samples": 198
+    },
+    "animation_swap": {
+      "max_ms": 75.4690017700195,
+      "mean_ms": 36.389393901825,
+      "p50_ms": 33.3333320617676,
+      "p95_ms": 49.9973335266113,
+      "samples": 100
+    },
+    "animation_trait": {
+      "max_ms": 33.3333320617676,
+      "mean_ms": 33.2846357411352,
+      "p50_ms": 33.3320007324219,
+      "p95_ms": 33.3333320617676,
+      "samples": 29
+    },
+    "board_draw_cpu": {
+      "max_ms": 3.7960000038147,
+      "mean_ms": 0.279131917448348,
+      "p50_ms": 0.248999997973442,
+      "p95_ms": 0.41100001335144,
+      "samples": 1554
+    },
+    "chameleon_logic": {
+      "max_ms": 0.0759999975562096,
+      "mean_ms": 0.0466206902316932,
+      "p50_ms": 0.0450000017881393,
+      "p95_ms": 0.0520000010728836,
+      "samples": 29
+    },
+    "clear_logic": {
+      "max_ms": 0.528999984264374,
+      "mean_ms": 0.158348484623312,
+      "p50_ms": 0.133000001311302,
+      "p95_ms": 0.310000002384186,
+      "samples": 198
+    },
+    "drag_motion_to_visual_submit": {
+      "max_ms": 15.335000038147,
+      "mean_ms": 4.41560000538826,
+      "p50_ms": 3.1159999370575,
+      "p95_ms": 7.85699987411499,
+      "samples": 100
+    },
+    "frame_interval": {
+      "max_ms": 75.4690017700195,
+      "mean_ms": 16.8446582718921,
+      "p50_ms": 16.6660003662109,
+      "p95_ms": 26.4090003967285,
+      "samples": 1465
+    },
+    "gesture_threshold_elapsed": {
+      "max_ms": 0.282000005245209,
+      "mean_ms": 0.0357700003683567,
+      "p50_ms": 0.0320000015199184,
+      "p95_ms": 0.0450000017881393,
+      "samples": 100
+    },
+    "gravity_logic": {
+      "max_ms": 0.24099999666214,
+      "mean_ms": 0.0601666667733831,
+      "p50_ms": 0.0549999997019768,
+      "p95_ms": 0.100000001490116,
+      "samples": 198
+    },
+    "main_thread_cpu": {
+      "max_ms": 95.9459991455078,
+      "mean_ms": 32.2254612893375,
+      "p50_ms": 30.3530006408691,
+      "p95_ms": 61.1650009155273,
+      "samples": 1465
+    },
+    "match_scan": {
+      "max_ms": 5.1230001449585,
+      "mean_ms": 0.551996942074109,
+      "p50_ms": 0.146999999880791,
+      "p95_ms": 3.03600001335144,
+      "samples": 327
+    },
+    "mechanic_wave": {
+      "max_ms": 0.340000003576279,
+      "mean_ms": 0.0565371899750114,
+      "p50_ms": 0.0489999987185001,
+      "p95_ms": 0.0930000022053719,
+      "samples": 121
+    },
+    "refill_logic": {
+      "max_ms": 0.145999997854233,
+      "mean_ms": 0.0258030302897848,
+      "p50_ms": 0.0230000000447035,
+      "p95_ms": 0.034000001847744,
+      "samples": 198
+    },
+    "save_worker": {
+      "max_ms": 14.8979997634888,
+      "mean_ms": 3.54051219035939,
+      "p50_ms": 3.87299990653992,
+      "p95_ms": 5.40700006484985,
+      "samples": 123
+    },
+    "swap_and_cascades": {
+      "max_ms": 8.94200038909912,
+      "mean_ms": 3.62590999007225,
+      "p50_ms": 2.50300002098083,
+      "p95_ms": 6.98699998855591,
+      "samples": 100
+    },
+    "touch_callback": {
+      "max_ms": 0.00300000002607703,
+      "mean_ms": 0.00220000006607734,
+      "p50_ms": 0.0020000000949949,
+      "p95_ms": 0.00300000002607703,
+      "samples": 100
+    },
+    "touch_to_swap_request": {
+      "max_ms": 0.294999986886978,
+      "mean_ms": 0.0487400001659989,
+      "p50_ms": 0.0419999994337559,
+      "p95_ms": 0.0820000022649765,
+      "samples": 100
+    },
+    "touch_to_visual_submit": {
+      "max_ms": 15.3409996032715,
+      "mean_ms": 4.4397200012207,
+      "p50_ms": 3.13199996948242,
+      "p95_ms": 7.88500022888184,
+      "samples": 100
+    }
+  },
+  "platform": "Linux",
+  "renderer": "",
+  "settings": {
+    "colorblind": false,
+    "haptics": true,
+    "music": false,
+    "music_volume": 0.65,
+    "quality": "performance",
+    "reduced_effects": false,
+    "reduced_motion": true,
+    "sfx": true,
+    "sfx_volume": 0.8,
+    "shake": true
+  },
+  "slow_frames": [
+    {
+      "busy": true,
+      "frame_ms": 58.872,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 7796
+    },
+    {
+      "busy": true,
+      "frame_ms": 58.501,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 12294
+    },
+    {
+      "busy": true,
+      "frame_ms": 55.532,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 12534
+    },
+    {
+      "busy": true,
+      "frame_ms": 70.836,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 12888
+    },
+    {
+      "busy": true,
+      "frame_ms": 50.995,
+      "level": 50,
+      "phase": "swap",
+      "time_ms": 15010
+    },
+    {
+      "busy": true,
+      "frame_ms": 61.458,
+      "level": 50,
+      "phase": "swap",
+      "time_ms": 15489
+    },
+    {
+      "busy": true,
+      "frame_ms": 54.712,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 17397
+    },
+    {
+      "busy": true,
+      "frame_ms": 57.884,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 17939
+    },
+    {
+      "busy": true,
+      "frame_ms": 50.746,
+      "level": 50,
+      "phase": "swap",
+      "time_ms": 20078
+    },
+    {
+      "busy": true,
+      "frame_ms": 56.56,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 22454
+    },
+    {
+      "busy": true,
+      "frame_ms": 50.774,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 22689
+    },
+    {
+      "busy": true,
+      "frame_ms": 66.281,
+      "level": 40,
+      "phase": "swap",
+      "time_ms": 23039
+    }
+  ],
+  "version": "0.3.0"
+}

@@ -1,4 +1,5 @@
 extends RefCounted
+const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 
 static func created(component: Dictionary) -> String:
 	for line in component.lines:
@@ -26,7 +27,7 @@ static func origin(component: Dictionary, preferred: Array) -> int:
 static func dominant_color(cells: Array) -> int:
 	var counts: Array = [0, 0, 0, 0, 0]
 	for cell in cells:
-		if cell != null and cell.p == "" and not cell.get("fixed", false): counts[cell.c] += 1
+		if cell != null and cell.p == "" and not cell.get("fixed", false) and not Traits.flexible(cell): counts[cell.c] += 1
 	var result := 0
 	for c in 5:
 		if counts[c] > counts[result]: result = c
@@ -40,7 +41,7 @@ static func area(index: int, kind: String, cells: Array, width: int, selected_co
 		var dy: int = absi(int(i / width) - int(index / width))
 		if (kind == "rocket_h" and dy == 0) or (kind == "rocket_v" and dx == 0): result.append(i)
 		elif kind == "prism" and dx + dy <= 2: result.append(i)
-		elif kind == "color" and cells[i].p == "" and not cells[i].has("obstacle") and cells[i].c == selected_color: result.append(i)
+		elif kind == "color" and cells[i].p == "" and not cells[i].has("obstacle") and (Traits.supports(cells[i],selected_color) or (cells[i].has("armor") and cells[i].c==selected_color)): result.append(i)
 	return result
 
 static func combo_area(a: int, b: int, cells: Array, width: int, selected_color: int) -> Array:
@@ -53,7 +54,7 @@ static func combo_area(a: int, b: int, cells: Array, width: int, selected_color:
 	elif "color" in [first, second]:
 		var other: String = second if first == "color" else first
 		for i in cells.size():
-			if cells[i] != null and cells[i].p == "" and not cells[i].has("obstacle") and cells[i].c == selected_color:
+			if cells[i] != null and cells[i].p == "" and not cells[i].has("obstacle") and (Traits.supports(cells[i],selected_color) or (cells[i].has("armor") and cells[i].c==selected_color)):
 				result.append(i)
 				if other != "color": result.append_array(area(i, other, cells, width, selected_color))
 	elif first.begins_with("rocket") and second.begins_with("rocket"):

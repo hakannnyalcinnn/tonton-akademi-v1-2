@@ -1,4 +1,6 @@
 extends RefCounted
+const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
+const Flexible=preload("res://scripts/core/flexible_match_resolver.gd")
 const Match = preload("res://scripts/core/match_detector.gd")
 
 static func forbidden_prefix(cells: Array, i: int, color: int, width: int) -> bool:
@@ -7,7 +9,32 @@ static func forbidden_prefix(cells: Array, i: int, color: int, width: int) -> bo
 	return false
 
 static func repair_start(cells: Array, rng, width: int, height: int) -> void:
-	if not Match.find(cells, width, height).is_empty():
+	if has_traits(cells):
+		# Repair ordinary neighbors, never detach a trait from its defined colors/phase.
+		for attempt in 32:
+			var matches:=Match.find(cells,width,height)
+			if matches.is_empty():break
+			var changed:=false
+			var indices:=Match.indices(matches)
+			indices.reverse()
+			for index in indices:
+				if cells[index].has("trait"):continue
+				var old_color: int=cells[index].c
+				var best_color:=old_color
+				var best_count:=indices.size()
+				var colors: Array=[0,1,2,3,4]
+				rng.shuffle(colors)
+				for color in colors:
+					cells[index].c=color
+					var count:=Match.indices(Match.find(cells,width,height)).size()
+					if count<best_count:best_count=count;best_color=color
+				cells[index].c=best_color
+				if best_color!=old_color:changed=true;break
+			if not changed:break
+		if not Match.find(cells,width,height).is_empty():
+			var repaired:=shuffle(cells,rng,width,height)
+			assert(repaired,"Trait starting arrangement cannot be stabilized")
+	elif not Match.find(cells, width, height).is_empty():
 		for i in cells.size():
 			if not Match.normal(cells[i]): continue
 			var colors: Array = [0, 1, 2, 3, 4]
@@ -33,7 +60,7 @@ static func shuffle(cells: Array, rng, width: int, height: int) -> bool:
 	for pool in pools: rng.shuffle(pool)
 	var order: Array = [0, 1, 2, 3, 4]
 	rng.shuffle(order)
-	var budget := {"remaining": 200000}
+	var budget := {"remaining": 200000,"flexible":Traits.has_flexible(cells)}
 	var success := place(cells, positions, pools, order, 0, width, height, budget)
 	if not success:
 		for i in cells.size(): cells[i] = before[i]
@@ -48,10 +75,11 @@ static func place(cells: Array, positions: Array, pools: Array, order: Array, cu
 	var choices := order.duplicate()
 	choices.sort_custom(func(a, b): return pools[a].size() > pools[b].size())
 	for color in choices:
-		if pools[color].is_empty() or forbidden_prefix(cells, i, color, width): continue
+		if pools[color].is_empty(): continue
+		if not budget.flexible and forbidden_prefix(cells,i,color,width): continue
 		var cell = pools[color].pop_back()
 		cells[i] = cell
-		if place(cells, positions, pools, order, cursor + 1, width, height, budget): return true
+		if (not budget.flexible or not Flexible.prefix(cells,i,width)) and place(cells, positions, pools, order, cursor + 1, width, height, budget): return true
 		pools[color].append(cell)
 	return false
 
@@ -60,7 +88,7 @@ static func emergency_stabilize(cells: Array, rng, width: int, height: int) -> b
 	# still preserve their color multiset, specials, cell identities and blockers.
 	for attempt in 32:
 		for i in cells.size():
-			if not Match.normal(cells[i]): continue
+			if not Match.normal(cells[i]) or cells[i].has("trait"): continue
 			var start: int = rng.next_int(5)
 			for offset in 5:
 				var color := (start+offset)%5
@@ -68,4 +96,9 @@ static func emergency_stabilize(cells: Array, rng, width: int, height: int) -> b
 					cells[i].c=color
 					break
 		if Match.find(cells,width,height).is_empty() and Match.has_move(cells,width,height): return true
+	return false
+
+static func has_traits(cells: Array) -> bool:
+	for cell in cells:
+		if cell!=null and cell.has("trait"):return true
 	return false

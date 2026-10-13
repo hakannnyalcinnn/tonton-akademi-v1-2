@@ -1,6 +1,7 @@
 extends RefCounted
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
 
+const Traits=preload("res://scripts/mechanics/crystal_traits.gd")
 const Mechanics = preload("res://scripts/mechanics/mechanic_manager.gd")
 const Registry = preload("res://scripts/mechanics/mechanic_registry.gd")
 const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
@@ -45,12 +46,12 @@ func _init(definition: Dictionary = {}) -> void:
 	for color in level.layout: cells.append(make_cell(int(color)))
 	for key in level.get("powers", {}): cells[int(key)].p = level.powers[key]
 	Mechanics.install(cells, level.get("mechanics", []))
-	for key in ["flowers","ice","stones","locks"]: collected[key] = 0
+	for key in ["flowers","ice","stones","locks","duals","shifts","pins"]: collected[key] = 0
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT)
 
-func find_matches() -> Array:
+func find_matches(preferred: Array = []) -> Array:
 	var started := Time.get_ticks_usec()
-	var result: Array = Match.find(cells, WIDTH, HEIGHT)
+	var result: Array = Match.find(cells, WIDTH, HEIGHT, preferred)
 	Metrics.elapsed("match_scan", started)
 	return result
 
@@ -82,10 +83,10 @@ func swap(a: int, b: int) -> Dictionary:
 	cells[b] = first
 	frame("swap", before, {"a": a, "b": b})
 	transition(State.CHECKING_MATCHES)
-	var matches: Array = find_matches()
+	var matches: Array = find_matches([b,a])
 	var matched: Array = Match.indices(matches)
 	var special: bool = cells[a].p != "" or cells[b].p != ""
-	if not special and (cells[a].c == cells[b].c or (a not in matched and b not in matched)):
+	if not special and (a not in matched and b not in matched):
 		transition(State.REVERTING_SWAP)
 		var swapped := cells.duplicate(true)
 		cells[b] = cells[a]
@@ -105,14 +106,33 @@ func swap(a: int, b: int) -> Dictionary:
 		else:
 			var power_index: int = a if cells[a].p != "" else b
 			var normal_index: int = b if power_index == a else a
-			selected_color = cells[normal_index].c
+			selected_color = Powers.dominant_color(cells) if Traits.bridge(cells[normal_index]) else int(cells[normal_index].c)
 			extra = Powers.area(power_index, cells[power_index].p, cells, WIDTH, selected_color)
 	else:
 		for preferred in [b, a]:
 			for component in matches:
 				if preferred in component.cells and primary_color < 0: primary_color = component.color
 		if primary_color < 0: primary_color = matches[0].color
-	return resolve(matches, extra, [b, a], primary_color, selected_color, special, combined)
+	var original_score:=score
+	var event:=resolve(matches, extra, [b, a], primary_color, selected_color, special, combined, false)
+	var before_shift: Array=[]
+	var changes: Array=[]
+	if Traits.has_chameleon(cells):
+		before_shift=cells.duplicate(true)
+		var change_started:=Time.get_ticks_usec()
+		changes=Traits.advance(cells,collected)
+		Metrics.elapsed("chameleon_logic",change_started)
+	if not changes.is_empty():
+		transition(State.PLAYING_EFFECTS)
+		frame("trait",before_shift,{"traits":changes})
+		var additional:=resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count))
+		for key in ["cascade_count","normal_count","created_count"]: event[key]+=additional[key]
+		event.cascade_guard=event.cascade_guard or additional.cascade_guard
+	event.shuffled=ensure_move()
+	finish_if_needed()
+	event.frames=frames.duplicate()
+	event.points=score-original_score
+	return event
 
 func activate(index: int, selected_color: int = -1) -> Dictionary:
 	if not available() or index < 0 or index >= cells.size() or cells[index] == null or cells[index].p == "" or cells[index].get("fixed", false): return {"accepted": false, "attempted": false}
@@ -124,9 +144,9 @@ func activate(index: int, selected_color: int = -1) -> Dictionary:
 	if selected_color < 0: selected_color = Powers.dominant_color(cells)
 	return resolve(find_matches(), Powers.area(index, cells[index].p, cells, WIDTH, selected_color), [], -1, selected_color, true, false)
 
-func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int, selected_color: int, special: bool, combined: bool) -> Dictionary:
+func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int, selected_color: int, special: bool, combined: bool, finalize: bool = true, depth_offset: int = 0) -> Dictionary:
 	var original_score := score
-	var depth := 0
+	var depth := depth_offset
 	var total_removed := 0
 	var power_count := 0
 	var did_resonate := false
@@ -167,7 +187,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 			if resonated:
 				var origin := -1
 				for i in preferred:
-					if i in matched and cells[i].c == primary_color:
+					if i in matched and Traits.supports(cells[i],primary_color):
 						origin = i
 						break
 				if origin < 0: origin = matched[0]
@@ -187,16 +207,22 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		for i in removed:
 			if i >= 0 and i < cells.size() and cells[i] != null and not cells[i].get("fixed", false) and i not in unique: unique.append(i)
 		unique.sort()
+		var effective_colors: Dictionary={}
+		for component in matches:
+			for i in component.cells: effective_colors[i]=int(component.color)
+		for i in unique:
+			if not effective_colors.has(i): effective_colors[i]=selected_color if Traits.flexible(cells[i]) and Traits.supports(cells[i],selected_color) else int(cells[i].c)
 		var normal_colors: Dictionary = {}
 		for i in unique:
-			if Match.normal(cells[i]): normal_colors[str(cells[i].c)] = int(normal_colors.get(str(cells[i].c),0))+1
+			if Match.normal(cells[i]): normal_colors[str(effective_colors[i])] = int(normal_colors.get(str(effective_colors[i]),0))+1
 		# Shared transaction before clearing: neighbors and direct power footprints.
 		var mechanic_events := Mechanics.wave(cells, unique, removed, triggered, normal_colors, collected, WIDTH, HEIGHT)
 		var normal_count := 0
 		for i in unique:
 			if Match.normal(cells[i]):
 				normal_count += 1
-				collected[str(cells[i].c)] += 1
+				collected[str(effective_colors[i])] += 1
+				if cells[i].get("trait",{}).get("kind","")=="dual": collected.duals+=1
 			cells[i] = null
 		collected.total += normal_count
 		for creation in creations: cells[creation.i] = make_cell(creation.color, creation.kind)
@@ -210,7 +236,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "colors":effective_colors, "origin": preferred[0] if not preferred.is_empty() else (unique[0] if not unique.is_empty() else 0)})
 		Metrics.elapsed("clear_logic", clear_started)
 		settle(true)
 		transition(State.CHECKING_CASCADES)
@@ -218,9 +244,9 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		extra = []
 		special = false
 		combined = false
-	var shuffled := ensure_move()
-	finish_if_needed()
-	return {"accepted": true, "attempted": true, "invalid": false, "frames": frames.duplicate(), "points": score - original_score, "resonated": did_resonate, "created_count": power_count, "cascade_count": depth, "normal_count": total_removed, "shuffled": shuffled, "cascade_guard": guarded}
+	var shuffled := ensure_move() if finalize else false
+	if finalize: finish_if_needed()
+	return {"accepted": true, "attempted": true, "invalid": false, "frames": frames.duplicate(), "points": score - original_score, "resonated": did_resonate, "created_count": power_count, "cascade_count": depth-depth_offset, "normal_count": total_removed, "shuffled": shuffled, "cascade_guard": guarded}
 
 func settle(record: bool = false) -> void:
 	var before := cells.duplicate(true) if record else []
@@ -324,12 +350,16 @@ func restore(data: Dictionary) -> bool:
 		seen[int(cell.id)] = true
 		var normalized_cell := {"c": int(cell.c), "p": str(cell.p), "id": int(cell.id)}
 		if cell.get("fixed", false): normalized_cell["fixed"] = true
-		for layer in ["armor","obstacle"]:
+		for layer in ["armor","obstacle","trait"]:
 			if cell.has(layer):
 				if not cell[layer] is Dictionary: return false
 				normalized_cell[layer] = cell[layer].duplicate(true)
 		if not Registry.valid_cell(normalized_cell): return false
 		normalized.append(normalized_cell)
+	var flexible_count:=0
+	for cell in normalized:
+		if Traits.flexible(cell): flexible_count+=1
+	if flexible_count>Traits.MAX_FLEXIBLE: return false
 	var total := 0
 	for key in data.collected:
 		if key not in Objectives.KEYS or not whole(data.collected[key], 0, 2147483647): return false
@@ -344,7 +374,7 @@ func restore(data: Dictionary) -> bool:
 	score = int(data.score)
 	collected = data.collected.duplicate()
 	for key in collected: collected[key] = int(collected[key])
-	for key in ["flowers","ice","stones","locks"]:
+	for key in ["flowers","ice","stones","locks","duals","shifts","pins"]:
 		if not collected.has(key): collected[key] = 0
 	direction = str(data.direction)
 	energy = int(data.energy)
