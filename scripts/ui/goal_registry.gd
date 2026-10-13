@@ -3,6 +3,14 @@ extends RefCounted
 const Art=preload("res://scripts/ui/casual_skin.gd")
 const COLORS=["Kırmızı","Mavi","Yeşil","Sarı","Mor"]
 const ENTRIES={
+ "floors":["canyon",0,"Kırılgan zemin","Üzerindeki kristalleri iki ayrı kez temizleyerek %d zemini kır. Kırılan hücre kapanır."],
+ "giants":["canyon",1,"Dev kristal","Yanında üç ayrı patlama yaparak %d dev kristali kır."],
+ "magnets":["canyon",2,"Manyetik düğüm","Her üç başarılı hamlede etkinleşen %d manyetik değişimi gerçekleştir."],
+ "cores":["canyon",3,"Prizma çekirdeği","Dört kalkanı kaldır, ardından özel güçle %d çekirdeğe son darbeyi vur."],
+ "shield0":["canyon",4,"Kırmızı kalkan","Kalkan için %d kırmızı kristal enerjisi topla."],
+ "shield1":["canyon",4,"Mavi kalkan","Kalkan için %d mavi kristal enerjisi topla."],
+ "shield2":["canyon",4,"Yeşil kalkan","Kalkan için %d yeşil kristal enerjisi topla."],
+ "shield3":["canyon",4,"Sarı kalkan","Kalkan için %d sarı kristal enerjisi topla."],
  "portals":["devices",0,"Portal","Kristalleri akıntıyla %d kez portaldan geçir."],
  "fountains":["advanced",0,"Boyama çeşmesi","Komşusunda eşleştirerek %d çeşme etkinleştir."],
  "bubbles":["advanced",2,"Baloncuk","Eşleşmeyle %d baloncuk katmanı kır."],
@@ -28,12 +36,19 @@ static func entry(key: String) -> Array:
 static func icon(key: String) -> Texture2D:
  if not icons.has(key):
   var e:=entry(key)
+  if e[0]=="canyon":
+   var atlas:=AtlasTexture.new();atlas.atlas=load("res://assets/casual/canyon-devices.png")
+   var r: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/casual/canyon-regions.json"))[int(e[1])]
+   atlas.region=Rect2(r[0],r[1],r[2],r[3]);icons[key]=atlas;return icons[key]
   var source: Texture2D={"gems":Art.GEMS,"mechanics":Art.MECHANICS,"traits":Art.TRAITS,"devices":Art.DEVICES,"ui":Art.UI,"advanced":Art.ADVANCED}[e[0]]
   icons[key]=Art.texture(e[0],int(e[1]),source)
  return icons[key]
 static func description(key: String,amount: int) -> String:return entry(key)[3]%amount
-static func relevant(key: String,cell: Variant) -> bool:
+static func relevant(key: String,cell: Variant,index: int=-1,terrain: Dictionary={}) -> bool:
+ if key=="floors":return terrain.get("floors",{}).has(str(index))
  if cell==null:return false
+ if key in ["giants","magnets","cores"]:return cell.get("canyon",{}).get("kind","")=={"giants":"giant","magnets":"magnet","cores":"core"}[key]
+ if key.begins_with("shield"):return cell.get("canyon",{}).get("kind","")=="core"
  if key=="total":return not cell.get("fixed",false)
  if key in ["0","1","2","3","4"]:return preload("res://scripts/mechanics/crystal_traits.gd").supports(cell,int(key))
  var kind: String={"flowers":"seed","ice":"ice","stones":"stone","locks":"lock","duals":"dual","shifts":"chameleon","pins":"pin","vines":"vine","crates":"crate","mirrors":"mirror","bridges":"bridge","fountains":"fountain","bubbles":"bubble","seals":"seal"}.get(key,"")

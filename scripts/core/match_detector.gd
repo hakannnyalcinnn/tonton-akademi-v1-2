@@ -96,13 +96,17 @@ static func can_swap(cells: Array, a: int, b: int, width: int, height: int) -> b
 	if cells[a] == null or cells[b] == null or cells[a].get("fixed", false) or cells[b].get("fixed", false): return false
 	if cells[a].p != "" or cells[b].p != "": return true # Explicit special activation/combination exception.
 	if cells[a].c == cells[b].c and not Traits.flexible(cells[a]) and not Traits.flexible(cells[b]): return false
-	var first = cells[a]
-	cells[a] = cells[b]
-	cells[b] = first
-	var valid := line_at(cells, a, width, height) or line_at(cells, b, width, height)
-	cells[b] = cells[a]
-	cells[a] = first
-	return valid
+	# Probe an independent slot array: queries never write even transiently to the board.
+	var probe := cells.duplicate()
+	probe[a] = cells[b]
+	probe[b] = cells[a]
+	# Necessary local line test rejects impossible swaps before the exact flexible solver.
+	var local_match:=line_at(probe,a,width,height) or line_at(probe,b,width,height)
+	if not local_match:return false
+	if Traits.has_flexible(probe):
+		var matched := indices(find(probe,width,height,[b,a]))
+		return a in matched or b in matched
+	return true
 
 static func legal_swaps(cells: Array, width: int, height: int) -> Array:
 	var result: Array = []
@@ -112,6 +116,9 @@ static func legal_swaps(cells: Array, width: int, height: int) -> Array:
 	return result
 
 static func has_move(cells: Array, width: int, height: int) -> bool:
+	# An isolated movable power still has a legal tap activation (color choice included).
+	for cell in cells:
+		if cell != null and not cell.get("fixed",false) and cell.p != "": return true
 	for a in cells.size():
 		for b in neighbors(a, width, height):
 			if b > a and can_swap(cells, a, b, width, height): return true

@@ -1,0 +1,27 @@
+[
+  {
+    "file": "floor_crack.wav",
+    "seconds": 0.18,
+    "sha256": "ae1e403d8871ce5e00435dd82c0c5e6bf7099b20e15260fa4703b19920868681"
+  },
+  {
+    "file": "giant_break.wav",
+    "seconds": 0.38,
+    "sha256": "d1bd33d898c4148d47b3147b98e2d1f9119949003fa09a7c01a2048e7bbc2cfb"
+  },
+  {
+    "file": "core_break.wav",
+    "seconds": 0.62,
+    "sha256": "ef660f38980b58463bf7b4f59e9b883e018f55887af23ea183d9aae57632b42f"
+  },
+  {
+    "file": "magnet.wav",
+    "seconds": 0.25,
+    "sha256": "77838af62ce1d4a0ff0d827ed4b8fc1719d88469d4881a6aa205fd426f4a35e9"
+  },
+  {
+    "file": "shuffle.wav",
+    "seconds": 0.28,
+    "sha256": "45f8498c030d3a9c4a3735a09810b9b621b837cba1f1104e6c552cafa047ee74"
+  }
+]

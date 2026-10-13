@@ -1,0 +1,111 @@
+[
+  {
+    "games": 20,
+    "level": 62,
+    "mean_used": 18.65,
+    "moves": 23.0,
+    "samples": [
+      {
+        "score": 10640,
+        "used": 22,
+        "win": true
+      },
+      {
+        "score": 15940,
+        "used": 12,
+        "win": true
+      },
+      {
+        "score": 9940,
+        "used": 20,
+        "win": true
+      },
+      {
+        "score": 9220,
+        "used": 19,
+        "win": true
+      },
+      {
+        "score": 12180,
+        "used": 23,
+        "win": true
+      },
+      {
+        "score": 11090,
+        "used": 14,
+        "win": true
+      },
+      {
+        "score": 14970,
+        "used": 15,
+        "win": true
+      },
+      {
+        "score": 10260,
+        "used": 23,
+        "win": true
+      },
+      {
+        "score": 11610,
+        "used": 21,
+        "win": true
+      },
+      {
+        "score": 8470,
+        "used": 23,
+        "win": true
+      },
+      {
+        "score": 11090,
+        "used": 21,
+        "win": true
+      },
+      {
+        "score": 11410,
+        "used": 15,
+        "win": true
+      },
+      {
+        "score": 11270,
+        "used": 20,
+        "win": true
+      },
+      {
+        "score": 6640,
+        "used": 23,
+        "win": false
+      },
+      {
+        "score": 15210,
+        "used": 13,
+        "win": true
+      },
+      {
+        "score": 11290,
+        "used": 15,
+        "win": true
+      },
+      {
+        "score": 11340,
+        "used": 18,
+        "win": true
+      },
+      {
+        "score": 10170,
+        "used": 20,
+        "win": true
+      },
+      {
+        "score": 8850,
+        "used": 23,
+        "win": false
+      },
+      {
+        "score": 12920,
+        "used": 13,
+        "win": true
+      }
+    ],
+    "wins": 18
+  }
+]

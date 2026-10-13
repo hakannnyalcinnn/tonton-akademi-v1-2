@@ -27,7 +27,7 @@ func run() -> void:
 	game.save.finish_writes();game.save=Save.new("user://package4-ui-only.json");game.save.data=Save.defaults()
 	game.save.data.settings.music=false;game.save.data.settings.sfx=false;game.save.data.settings.reduced_motion=true
 	game.audio.apply_settings(game.save.data.settings)
-	check(Catalog.count()==100,"75 legacy plus 25 new real levels")
+	check(Catalog.count()==150,"100 preserved plus 50 canyon levels")
 	game.show_worlds();await process_frame
 	var locked:=false
 	for child in game.page.get_children():

@@ -16,7 +16,9 @@ static func all() -> Array:
 	assert(ocean is Dictionary and ocean.version==2)
 	var finale=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-76-100.json"))
 	assert(finale is Dictionary and finale.version==2)
-	cache = parsed.levels + extended.levels + package2.levels + ocean.levels + finale.levels
+	var canyon=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-101-150.json"))
+	assert(canyon is Dictionary and canyon.version==2)
+	cache = parsed.levels + extended.levels + package2.levels + ocean.levels + finale.levels + canyon.levels
 	return cache
 
 static func count() -> int:
@@ -35,7 +37,7 @@ static func validate(level: Dictionary) -> bool:
 	# Snapshots now contain definitions: reject malformed saved types before indexing/casting.
 	if not level.layout is Array or not level.stars is Array or not level.targets is Dictionary:return false
 	if not level.gravity is bool or not level.resonance is bool:return false
-	if not Registry.integer(level.id,1,100) or not Registry.integer(level.moves,1,10000) or not Registry.integer(level.seed,-2147483648,2147483647):return false
+	if not Registry.integer(level.id,1,150) or not Registry.integer(level.moves,1,10000) or not Registry.integer(level.seed,-2147483648,2147483647):return false
 	if not level.get("mechanics",[]) is Array or not level.get("portals",[]) is Array or not level.get("conveyors",[]) is Array or not level.get("powers",{}) is Dictionary:return false
 	if level.layout.size() != 72 or level.stars.size() != 3: return false
 	for threshold in level.stars:
@@ -54,7 +56,7 @@ static func validate(level: Dictionary) -> bool:
 	if not preload("res://scripts/mechanics/portal_manager.gd").validate(level.get("portals",[])):return false
 	if not level.get("development_only",false) and level.id<76 and not level.get("portals",[]).is_empty():return false
 	if not preload("res://scripts/mechanics/conveyor_rails.gd").validate(level.get("conveyors",[])):return false
-	if not level.get("conveyors",[]).is_empty() and not level.get("development_only",false):return false
+	if not level.get("conveyors",[]).is_empty() and level.id<101 and not level.get("development_only",false):return false
 	var stages=level.get("objective_stages",[])
 	if not stages is Array or stages.size()>6:return false
 	var previous_stage: Dictionary={}
@@ -75,4 +77,5 @@ static func validate(level: Dictionary) -> bool:
 		occupied[spec.index] = true
 		if spec.kind in ["bridge","pin"] and level.id<=50 and not level.get("development_only",false): return false
 		if spec.kind=="dual" or spec.kind=="bridge": flexible_count+=1
+	if not preload("res://scripts/mechanics/canyon_mechanics.gd").validate(level):return false
 	return not level.targets.is_empty() and flexible_count<=Registry.Traits.MAX_FLEXIBLE

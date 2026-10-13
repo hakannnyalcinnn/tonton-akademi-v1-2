@@ -34,7 +34,7 @@ func _ready() -> void:
 func set_world(number: int) -> void:
 	world=number
 	if backdrop:
-		artwork=load("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png")
+		artwork=load("res://assets/casual/world-canyon.png" if world==3 else ("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png"))
 		backdrop.texture=artwork
 	queue_redraw()
 
@@ -70,6 +70,10 @@ func _draw() -> void:
 				var tip := base + Vector2(70 if side == 0 else -70, -66)
 				draw_line(base, tip, Color("25474b"), 9)
 				draw_circle(tip, 27, Color("244d51"))
+	if world==3 and not reduced_motion and quality!="performance":
+		for k in 3:
+			var x:=fmod(clock*7+k*211,extent.x+100)-50
+			draw_ellipse_cloud(Vector2(x,80+k*110))
 	for i in (24 if quality == "high" else 12) if quality != "performance" else 0:
 		var pos := Vector2(fmod(i * 93.3 + 18, extent.x), fmod(i * 137.7 + 34, extent.y))
 		if world==2:
@@ -93,3 +97,6 @@ func _draw() -> void:
 		var source:=CasualSkin.region("decor",4 if world==2 else 2)
 		var pos:=Vector2(4 if color%2==0 else extent.x-44,extent.y*(.28+color*.1))
 		draw_texture_rect_region(CasualSkin.DECOR,CasualSkin.fit(Rect2(pos,Vector2(40,40)),source),source,Color(1,1,1,.3+.7*amount))
+
+func draw_ellipse_cloud(center: Vector2) -> void:
+	for k in 4:draw_circle(center+Vector2(k*17,4 if k%2==0 else -2),14+k%2*5,Color(1,.98,1,.065))

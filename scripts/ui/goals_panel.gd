@@ -83,6 +83,9 @@ func _draw() -> void:
   if key=="total":
    for i in 3:draw_texture_rect(Registry.icon(str(i)),Rect2(icon_rect.position+Vector2(i*icon_size*.22,0),Vector2(icon_size*.62,icon_size*.85)),false)
   else:draw_texture_rect(Registry.icon(key),preload("res://scripts/ui/casual_skin.gd").fit(icon_rect,Rect2(Vector2.ZERO,Registry.icon(key).get_size())),false)
+  if key.begins_with("shield"):
+   var color:=int(key.trim_prefix("shield"))
+   draw_texture_rect(Registry.icon(str(color)),Rect2(icon_rect.get_center()-Vector2(9,9),Vector2(18,18)),false)
   var text:="%d/%d"%[roundi(float(displayed[key])),int(targets[key])]
   draw_string(font,Vector2(r.get_center().x-font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x/2,r.end.y-5),text,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("425877"))
   if done:

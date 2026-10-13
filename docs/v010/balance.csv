@@ -1,0 +1,51 @@
+level,initial_moves,final_moves,difficulty,shape,targets,initial_training_wins_10,balanced_candidate_holdout_wins_10,holdout_mean_used
+101,24,24,öğretici,rectangle,"{""total"": 65, ""floors"": 1}",9,10,8.6
+102,26,14,zor,rectangle,"{""total"": 67, ""floors"": 1}",10,10,3.1
+103,28,14,rahat,rectangle,"{""total"": 69, ""floors"": 1}",10,9,3.6
+104,30,14,meydan okuma,rectangle,"{""total"": 71, ""floors"": 1}",10,10,5.7
+105,22,17,orta,rectangle,"{""total"": 73, ""floors"": 1}",10,10,10.5
+106,24,14,stratejik,T,"{""total"": 75, ""floors"": 1}",10,9,8.4
+107,26,26,zor,L,"{""total"": 77, ""floors"": 1}",9,10,12.7
+108,28,26,rahat,ring,"{""total"": 79, ""floors"": 1}",10,9,14.0
+109,30,26,meydan okuma,wings,"{""total"": 81, ""floors"": 1}",10,8,17.1
+110,22,22,orta,passage,"{""total"": 83, ""floors"": 1}",9,10,11.7
+111,24,24,öğretici,rectangle,"{""total"": 85, ""giants"": 1}",10,10,5.4
+112,26,14,zor,rectangle,"{""total"": 87, ""giants"": 1}",10,10,4.1
+113,28,16,rahat,rectangle,"{""total"": 89, ""giants"": 1}",10,10,7.6
+114,30,14,meydan okuma,rectangle,"{""total"": 91, ""giants"": 1}",10,10,8.5
+115,22,14,orta,rectangle,"{""total"": 93, ""giants"": 1}",10,10,7.0
+116,24,14,stratejik,rectangle,"{""total"": 95, ""giants"": 1, ""ice"": 2}",10,10,8.1
+117,26,14,zor,rectangle,"{""total"": 97, ""giants"": 1, ""ice"": 2}",10,10,8.6
+118,28,14,rahat,rectangle,"{""total"": 99, ""giants"": 1, ""ice"": 2}",10,10,4.8
+119,30,17,meydan okuma,rectangle,"{""total"": 101, ""giants"": 1, ""ice"": 2}",10,10,9.4
+120,22,15,orta,rectangle,"{""total"": 103, ""giants"": 1, ""ice"": 2}",10,10,7.3
+121,24,24,öğretici,rectangle,"{""total"": 105, ""magnets"": 3}",10,10,9.9
+122,26,14,zor,rectangle,"{""total"": 107, ""magnets"": 4}",10,10,12.0
+123,28,14,rahat,rectangle,"{""total"": 109, ""magnets"": 2}",10,10,6.9
+124,30,14,meydan okuma,rectangle,"{""total"": 111, ""magnets"": 3}",10,10,10.3
+125,22,16,orta,rectangle,"{""total"": 113, ""magnets"": 4}",10,10,12.2
+126,24,14,stratejik,rectangle,"{""total"": 115, ""magnets"": 2}",10,10,7.3
+127,26,14,zor,rectangle,"{""total"": 117, ""magnets"": 3}",10,10,9.3
+128,28,18,rahat,rectangle,"{""total"": 119, ""magnets"": 4}",10,10,12.4
+129,30,14,meydan okuma,rectangle,"{""total"": 121, ""magnets"": 2}",10,9,9.5
+130,22,15,orta,rectangle,"{""total"": 123, ""magnets"": 3}",10,10,9.4
+131,24,17,stratejik,rectangle,"{""total"": 125, ""giants"": 1, ""ice"": 2}",10,10,10.4
+132,26,14,zor,rectangle,"{""total"": 127, ""magnets"": 2}",10,10,9.1
+133,28,17,rahat,rectangle,"{""total"": 129, ""magnets"": 2, ""stones"": 1}",10,10,7.6
+134,30,17,meydan okuma,rectangle,"{""total"": 131, ""floors"": 1}",10,10,9.4
+135,22,15,orta,rectangle,"{""total"": 133, ""giants"": 1, ""ice"": 2}",10,10,7.8
+136,24,14,stratejik,rectangle,"{""total"": 135, ""magnets"": 2}",10,10,7.5
+137,26,14,zor,rectangle,"{""total"": 137, ""magnets"": 2, ""stones"": 1}",10,10,6.8
+138,28,28,rahat,rectangle,"{""total"": 139, ""floors"": 1}",9,10,9.0
+139,30,17,meydan okuma,rectangle,"{""total"": 141, ""giants"": 1, ""ice"": 2}",10,10,9.2
+140,22,15,orta,rectangle,"{""total"": 143, ""magnets"": 2}",10,10,8.3
+141,24,18,stratejik,rectangle,"{""total"": 145, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,9,10.1
+142,26,14,zor,rectangle,"{""total"": 147, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,8,10.9
+143,28,14,rahat,rectangle,"{""total"": 149, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,10,7.1
+144,30,14,meydan okuma,rectangle,"{""total"": 151, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,9,9.1
+145,22,18,orta,rectangle,"{""total"": 153, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,8,11.4
+146,24,24,stratejik,rectangle,"{""total"": 155, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",9,10,10.8
+147,26,17,zor,rectangle,"{""total"": 157, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,10,11.7
+148,28,21,rahat,rectangle,"{""total"": 159, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,10,12.3
+149,30,16,meydan okuma,rectangle,"{""total"": 161, ""giants"": 1, ""magnets"": 2, ""floors"": 1}",10,10,12.3
+150,32,32,orta,rectangle,"{""shield0"": 12, ""shield1"": 12, ""shield2"": 10, ""shield3"": 10, ""cores"": 1}",9,9,17.9

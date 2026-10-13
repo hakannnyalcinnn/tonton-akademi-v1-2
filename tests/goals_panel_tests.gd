@@ -11,9 +11,9 @@ func check(ok: bool,message: String) -> void:
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
  game=load("res://scenes/main.tscn").instantiate();root.add_child(game);await process_frame
- game.save.finish_writes();game.save=Save.new("user://goals-test-only.json");game.save.data=Save.defaults();game.save.data.unlocked=100
+ game.save.finish_writes();game.save=Save.new("user://goals-test-only.json");game.save.data=Save.defaults();game.save.data.unlocked=Catalog.count()
  game.save.data.settings.music=false;game.save.data.settings.sfx=false;game.audio.apply_settings(game.save.data.settings)
- for n in range(1,101):
+ for n in range(1,Catalog.count()+1):
   game.start_level(n);await process_frame;game.close_goal_tip()
   var panel=game.goals_panel
   check(panel.targets==game.board.active_targets(),"targets read exact level data %d"%n)
@@ -28,7 +28,7 @@ func run() -> void:
    check(game.goal_tip!=null and not game.paused,"nonblocking description")
    var expected: Array=[]
    for i in 72:
-    if Registry.relevant(key,game.board_view.displayed[i]):expected.append(i)
+    if Registry.relevant(key,game.board_view.displayed[i],i,game.board.canyon):expected.append(i)
    if key=="portals":
     for pair in game.board.level.get("portals",[]):expected.append(pair.entry);expected.append(pair.exit)
    check(game.board_view.goal_highlights==expected,"precise target highlights")
@@ -62,4 +62,4 @@ func run() -> void:
  game.queue_free();await process_frame;await process_frame
  for suffix in ["",".bak",".tmp"]:
   if FileAccess.file_exists(path+suffix):DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
- print("GOALS PANEL: %d checks, %d failures; all 100 levels, six goals, 3 ratios, descriptions, counters, highlights, save"%[checks,failures]);quit(1 if failures else 0)
+ print("GOALS PANEL: %d checks, %d failures; all 150 levels, six goals, 3 ratios, descriptions, counters, highlights, save"%[checks,failures]);quit(1 if failures else 0)

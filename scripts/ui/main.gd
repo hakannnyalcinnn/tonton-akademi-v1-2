@@ -60,7 +60,7 @@ var gravity_buttons: Dictionary = {}
 var toast_label: Label
 
 func _ready() -> void:
-	save = Save.new()
+	if save==null:save = Save.new()
 	save.background_writes = true
 	Engine.max_fps = 60
 	audio = Audio.new()
@@ -278,7 +278,7 @@ func play_latest() -> void:
 		start_level(int(save.data.unlocked))
 
 func world_name(number: int) -> String:
-	return "KRİSTAL OKYANUS" if number==2 else "BÜYÜLÜ BAHÇE"
+	return {1:"BÜYÜLÜ BAHÇE",2:"KRİSTAL OKYANUS",3:"GÖKKUŞAĞI KANYONU"}.get(number,"PRİZMA")
 
 func apply_world_progress(number: int) -> void:
 	selected_world=number
@@ -293,31 +293,31 @@ func apply_world_progress(number: int) -> void:
 func show_worlds() -> void:
 	persist_board();test_mode=false;begin_page("worlds")
 	title_header("Dünyaların uyanışı","RENKLERİNİ GERİ GETİR")
-	for world in [1,2]:
-		var y: int=220+(int(world)-1)*285
-		card(page,Rect2(32,y,476,255))
+	for world in [1,2,3]:
+		var y: int=205+(int(world)-1)*235
+		card(page,Rect2(32,y,476,225))
 		var picture:=TextureRect.new()
 		picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-		var source: Texture2D=load("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png")
+		var source: Texture2D=load("res://assets/casual/world-canyon.png" if world==3 else ("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png"))
 		var thumbnail:=AtlasTexture.new();thumbnail.atlas=source
 		thumbnail.region=Rect2(0,source.get_height()*(.63 if world==2 else .48),source.get_width(),source.get_height()*.32)
 		picture.texture=thumbnail
 		picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
-		picture.position=Vector2(46,y+14);picture.size=Vector2(448,139)
+		picture.position=Vector2(46,y+14);picture.size=Vector2(448,110)
 		picture.mouse_filter=Control.MOUSE_FILTER_IGNORE;picture.clip_contents=true;page.add_child(picture)
-		label(page,world_name(world),Rect2(56,y+159,390,30),23,Palette.GOLD)
-		var unlocked: bool=world==1 or int(save.data.unlocked)>=51
-		var node:=button(page,"1–50 · BAHÇEYİ KEŞFET" if world==1 else ("51–100 · OKYANUSA DAL" if unlocked else "50. BÖLÜMÜ TAMAMLA"),Rect2(48,y+201,444,41),show_map.bind(0 if world==1 else 5),unlocked,15)
+		label(page,world_name(world),Rect2(56,y+125,390,30),23,Palette.GOLD)
+		var unlocked: bool=int(save.data.unlocked)>=(world-1)*50+1
+		var node:=button(page,("%d–%d · KEŞFET"%[(world-1)*50+1,world*50]) if unlocked else ("%d. BÖLÜMÜ TAMAMLA"%[(world-1)*50]),Rect2(48,y+174,444,37),show_map.bind((world-1)*5),unlocked,15)
 		node.disabled=not unlocked
 
 
 func show_map(group: int = -1) -> void:
 	persist_board();test_mode=false
 	if group>=0:map_group=clampi(group,0,int((Catalog.count()-1)/10))
-	else:map_group=0 if selected_world==1 else 5
+	else:map_group=(selected_world-1)*5
 	begin_page("map")
-	apply_world_progress(1 if map_group<5 else 2)
-	title_header(world_name(selected_world),"1–50 · BÜYÜLÜ BAHÇE" if selected_world==1 else "51–100 · KRİSTAL OKYANUS")
+	apply_world_progress(int(map_group/5)+1)
+	title_header(world_name(selected_world),"%d–%d · %d / 50 TAMAMLANDI"%[(selected_world-1)*50+1,selected_world*50,save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()])
 	button(page,"DÜNYALAR",Rect2(350,179,158,35),show_worlds,false,13)
 	label(page,"Her bölüm yeni bir renk.",Rect2(32,179,305,30),17,Palette.GOLD)
 	map_buttons.clear()
@@ -327,9 +327,9 @@ func show_map(group: int = -1) -> void:
 	scroll.follow_focus=false
 	page.add_child(scroll)
 	var path:=MapPath.new()
-	var first:=1 if selected_world==1 else 51
-	var last:=50 if selected_world==1 else 100
-	path.count=last-first+1;path.ocean=selected_world==2
+	var first:=(selected_world-1)*50+1
+	var last:=selected_world*50
+	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3
 	path.custom_minimum_size=Vector2(456,path.count*100+100)
 	scroll.add_child(path)
 	for n in range(first,last+1):
@@ -353,7 +353,7 @@ func show_map(group: int = -1) -> void:
 
 	scroll.set_deferred("scroll_vertical",maxi(0,(map_group*10+1-first)*100-70))
 
-	var start_group:=0 if selected_world==1 else 5
+	var start_group:=(selected_world-1)*5
 	var groups:=5
 	for i in groups:
 		var group_index:=start_group+i
@@ -495,8 +495,9 @@ func on_environment(data: Dictionary) -> void:
 		if marker not in save.data.tutorials:
 			save.data.tutorials.append(marker);save.flush()
 			set_hint("12 kristal enerjisi: Fırtına yönü kendisi seçer." if data.kind=="storm" else "Üç eşleşme zinciri: Dalga en fazla iki normal kristali boyar.")
+	if data.kind=="shuffle":set_hint("Kristaller karıştırılıyor!")
 	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
-	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance","storm":"storm","crystal_wave":"crystal_wave"}.get(data.kind,"pop"))
+	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance","storm":"storm","crystal_wave":"crystal_wave","shuffle":"shuffle","magnet":"magnet"}.get(data.kind,"pop"))
 	if data.has("collected"):goals_panel.update_progress(data.collected)
 
 func on_wave(data: Dictionary) -> void:
@@ -505,6 +506,8 @@ func on_wave(data: Dictionary) -> void:
 	if not data.get("beams",[]).is_empty():audio.play("mirror")
 	for effect in data.get("mechanics",[]):
 		if effect.kind in ["vine","crate"]:audio.play(effect.kind);break
+	for e in data.get("canyon_events",[]):
+		audio.play("core_break" if e.kind=="core" and e.get("opened",false) else "giant_break" if e.kind=="giant" and e.get("hp",1)==0 else "floor_crack")
 	star_progress.target=data.score
 	score_target = data.score
 	if data.get("combo_kind","")!="":
@@ -545,6 +548,11 @@ func on_wave(data: Dictionary) -> void:
 func on_animation_finished() -> void:
 	if board == null or screen != "game": return
 	update_hud()
+	if board.recovery_failed:
+		open_overlay("Tahta kurtarılamadı","Durum tanılama kaydına alındı. Hamle, puan ve hedefler korunuyor.")
+		button(overlay,"BÖLÜMÜ YENİDEN DENE",Rect2(68,605,404,45),start_level.bind(int(board.level.id)),true,16)
+		button(overlay,"ANA MENÜ",Rect2(68,661,404,45),show_home,false,16)
+		return
 	if board.outcome != "playing": show_result()
 
 
@@ -739,7 +747,7 @@ func show_result() -> void:
 		if int(board.level.id) < Catalog.count():
 			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), start_level.bind(int(board.level.id) + 1), true)
 		else:
-			label(overlay, "100 bölüm tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+			label(overlay, "150 bölüm tamamlandı!", Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 			button(overlay, "OKYANUSU KEŞFET" if int(board.level.id)>=51 else Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
 		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), start_level.bind(int(board.level.id)))
 	else:
@@ -930,7 +938,7 @@ func show_world_result() -> void:
 	audio.play("success2")
 	garden.vitality=1.0
 	garden.color_energy=[18,18,18,18,18]
-	open_overlay("Kristal Okyanus uyandı!" if selected_world==2 else "Büyülü Bahçe tamamlandı!","Mercanlar canlandı. Okyanus madalyan kaydedildi." if selected_world==2 else "Renkler uyandı. Dünya madalyan kaydedildi.")
+	open_overlay("Gökkuşağı Kanyonu uyandı!" if selected_world==3 else "Kristal Okyanus uyandı!" if selected_world==2 else "Büyülü Bahçe tamamlandı!","Kristal dağları parladı. Kanyon madalyan kaydedildi." if selected_world==3 else "Mercanlar canlandı. Okyanus madalyan kaydedildi." if selected_world==2 else "Renkler uyandı. Dünya madalyan kaydedildi.")
 	var medal:=TextureRect.new()
 	medal.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
 	medal.texture=CasualSkin.texture("decor",7,CasualSkin.DECOR) if selected_world==2 else CasualSkin.texture("traits",18,CasualSkin.TRAITS)
@@ -939,18 +947,19 @@ func show_world_result() -> void:
 	medal.size=Vector2(136,136)
 	medal.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(medal)
-	label(overlay,"KRİSTAL OKYANUS MADALYASI" if selected_world==2 else "BÜYÜLÜ BAHÇE MADALYASI",Rect2(55,514,430,31),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(overlay,"GÖKKUŞAĞI KANYONU MADALYASI" if selected_world==3 else "KRİSTAL OKYANUS MADALYASI" if selected_world==2 else "BÜYÜLÜ BAHÇE MADALYASI",Rect2(55,514,430,31),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	label(overlay,"★".repeat(Score.stars(board.score,board.level.stars))+"  ·  %d PUAN"%board.score,Rect2(55,553,430,30),19,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
 	if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 		var celebration:=Celebration.new()
 		celebration.world_finale=true
 		celebration.ocean=selected_world==2
+		celebration.canyon=selected_world==3
 		overlay.add_child(celebration)
 	if int(board.level.id)<Catalog.count():
 		button(overlay,"SONRAKİ DÜNYA",Rect2(68,604,404,45),start_level.bind(int(board.level.id)+1),true,17)
 	else:
-		label(overlay,"İki dünya · 100 bölüm tamamlandı!",Rect2(55,599,430,32),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-	button(overlay,"OKYANUSU KEŞFET" if selected_world==2 else "BAHÇEYİ KEŞFET",Rect2(68,653,404,45),show_map.bind(9 if selected_world==2 else 4),true,17)
+		label(overlay,"Üç dünya · 150 bölüm tamamlandı!",Rect2(55,599,430,32),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"OKYANUSU KEŞFET" if selected_world==2 else "BAHÇEYİ KEŞFET",Rect2(68,653,404,45),show_map.bind(selected_world*5-1),true,17)
 
 func show_crystal_help() -> void:
 	open_overlay("İki rengin uyanışı")

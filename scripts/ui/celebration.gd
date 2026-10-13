@@ -2,6 +2,7 @@ extends Control
 const Art=preload("res://scripts/ui/casual_skin.gd")
 var world_finale := false
 var ocean:=false
+var canyon:=false
 var challenge:=false
 var age := 0.0
 
@@ -38,3 +39,6 @@ func _draw() -> void:
 			var center:=Vector2(270,444)+Vector2.from_angle(i*TAU/6+age*.1)*(100+age*30)
 			var sprite:=Art.region("decor",4 if i%2==0 else 5)
 			draw_texture_rect_region(Art.DECOR,Art.fit(Rect2(center-Vector2(24,24),Vector2(48,48)),sprite),sprite,Color(1,1,1,clampf((2.4-age)*2,0,1)))
+
+	if canyon:
+		for k in 5:draw_arc(Vector2(270,444),age*(95+k*15),0,TAU,48,Color(colors[k%4],clampf(1-age/2.4,0,1)*.6),3,true)

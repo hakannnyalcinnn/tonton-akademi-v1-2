@@ -1,0 +1,93 @@
+{
+  "accepted_checks": 94014,
+  "failures": 0,
+  "suites": [
+    {
+      "suite": "deadlock_tests",
+      "checks": 204,
+      "failures": 0,
+      "log": "v010-final-deadlock.log"
+    },
+    {
+      "suite": "canyon_mechanics",
+      "checks": 23,
+      "failures": 0,
+      "log": "v010-final-mechanics.log"
+    },
+    {
+      "suite": "match3",
+      "checks": 20889,
+      "failures": 0,
+      "log": "v010-run_tests.log"
+    },
+    {
+      "suite": "mechanics",
+      "checks": 19767,
+      "failures": 0,
+      "log": "v010-mechanic_tests.log"
+    },
+    {
+      "suite": "package2",
+      "checks": 2081,
+      "failures": 0,
+      "log": "v010-package2_tests.log"
+    },
+    {
+      "suite": "package4",
+      "checks": 3154,
+      "failures": 0,
+      "log": "v010-package4_tests.log"
+    },
+    {
+      "suite": "package5",
+      "checks": 20841,
+      "failures": 0,
+      "log": "v010-package5_mechanics.log"
+    },
+    {
+      "suite": "gameplay2",
+      "checks": 16943,
+      "failures": 0,
+      "log": "v010-gameplay2_tests.log"
+    },
+    {
+      "suite": "campaign150",
+      "checks": 4791,
+      "failures": 0,
+      "log": "v010-campaign-fixed.log"
+    },
+    {
+      "suite": "canyon_ui",
+      "checks": 153,
+      "failures": 0,
+      "log": "v010-canyon_ui.log"
+    },
+    {
+      "suite": "goals150",
+      "checks": 3739,
+      "failures": 0,
+      "log": "v010-goals_panel_tests.log"
+    },
+    {
+      "suite": "gameplay2_ui",
+      "checks": 28,
+      "failures": 0,
+      "log": "v010-gameplay2_ui.log"
+    },
+    {
+      "suite": "ocean_finale",
+      "checks": 18,
+      "failures": 0,
+      "log": "v010-finale_ui.log"
+    },
+    {
+      "suite": "final_new_campaign",
+      "checks": 1383,
+      "failures": 0,
+      "log": "v010-final-new-campaign.log"
+    }
+  ],
+  "balance_games": 1000,
+  "level62_games": 20,
+  "android_device_tested": false
+}

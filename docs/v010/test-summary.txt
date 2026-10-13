@@ -1,0 +1,88 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+DEADLOCK: 204 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CANYON MECHANICS: 23 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: line scanner, T/L, deduplication and power priority
+PASS: normal tap ignored, swaps, rollback and automatic chains
+PASS: Match-3 power production, placement, activation and combinations
+PASS: once-per-player-move resonance and deterministic targeting
+PASS: all gravity directions, barriers, refill edge and free stable shuffles
+PASS: state machine, locks, last-move cascades and centralized score
+PASS: atomic saves, rollback protection, v1 archive and v2 migration
+PASS: 2000 independently generated stable playable boards
+Match3 Level 01: 100/100 won
+Match3 Level 02: 100/100 won
+Match3 Level 03: 100/100 won
+Match3 Level 04: 100/100 won
+Match3 Level 05: 100/100 won
+Match3 Level 06: 100/100 won
+Match3 Level 07: 100/100 won
+Match3 Level 08: 100/100 won
+Match3 Level 09: 100/100 won
+Match3 Level 10: 100/100 won
+PASS: real mouse/touch drags, tap ignored, rollback, pause/resume, help, settings and scaling
+MATCH3 TEST RESULT: 20889 assertions, 0 failures; 2000 generated boards; 1000 games, 3858 moves
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+Mechanic Level 11: 30/30 won, max 6 moves
+Mechanic Level 12: 29/30 won, max 8 moves
+Mechanic Level 13: 29/30 won, max 8 moves
+Mechanic Level 14: 30/30 won, max 8 moves
+Mechanic Level 15: 30/30 won, max 7 moves
+Mechanic Level 16: 30/30 won, max 6 moves
+Mechanic Level 17: 29/30 won, max 8 moves
+Mechanic Level 18: 29/30 won, max 10 moves
+Mechanic Level 19: 30/30 won, max 6 moves
+Mechanic Level 20: 27/30 won, max 10 moves
+Mechanic Level 21: 30/30 won, max 7 moves
+Mechanic Level 22: 30/30 won, max 11 moves
+Mechanic Level 23: 30/30 won, max 8 moves
+Mechanic Level 24: 29/30 won, max 11 moves
+Mechanic Level 25: 28/30 won, max 11 moves
+Mechanic Level 26: 28/30 won, max 14 moves
+Mechanic Level 27: 30/30 won, max 8 moves
+Mechanic Level 28: 30/30 won, max 11 moves
+Mechanic Level 29: 27/30 won, max 12 moves
+Mechanic Level 30: 26/30 won, max 12 moves
+MECHANICS: 19767 checks, 0 failures; 600 games / 3674 moves
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PACKAGE2 UNIT: 2081 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+WARNING: PRIZMA_DIAGNOSTIC {"context":{"growth":[{"index":29,"kind":"vine","opened":false,"source":37}],"level":1.0},"message":"Vine spread would remove all legal moves; growth reverted","time_ms":591}
+     at: push_warning (core/variant/variant_utility.cpp:1034)
+     GDScript backtrace (most recent call first):
+         [0] incident (res://scripts/ui/performance_metrics.gd:25)
+         [1] swap (res://scripts/core/board.gd:183)
+         [2] run (res://tests/package4_tests.gd:129)
+PACKAGE4 SCENARIOS: 100 boards / 600 actions
+PACKAGE4 MECHANICS: 3154 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PACKAGE5 MECHANICS: 20841 checks, 0 failures; 800 seeded boards, 6400 actions, four-direction / cross-mechanic cases
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GAMEPLAY2: 16943 checks, 0 failures; 1582 storms, 619 crystal waves
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CAMPAIGN: 4791 checks, 0 failures, 150 default seeds replayed
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CANYON UI: 153 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GOALS PANEL: 3739 checks, 0 failures; all 150 levels, six goals, 3 ratios, descriptions, counters, highlights, save
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GAMEPLAY2 UI: 28 checks, 0 failures; no manual controls, three aspects, rapid inputs, event integrity, help
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+FINALE UI: 18 checks, 0 failures; real level100 win, 3 stages, durable reward once, legacy75 migration
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CAMPAIGN: 1383 checks, 0 failures, 50 default seeds replayed

@@ -1,4 +1,5 @@
 extends RefCounted
+const Canyon=preload("res://scripts/mechanics/canyon_mechanics.gd")
 const Storm=preload("res://scripts/core/prizma_storm.gd")
 const Wave=preload("res://scripts/core/crystal_wave.gd")
 const Metrics = preload("res://scripts/ui/performance_metrics.gd")
@@ -28,6 +29,8 @@ const RULES := 2
 const MAX_CASCADES := 128
 
 enum State { READY, SWAPPING, CHECKING_MATCHES, REVERTING_SWAP, RESOLVING_MATCHES, PLAYING_EFFECTS, APPLYING_GRAVITY, REFILLING, CHECKING_CASCADES, CHECKING_OBJECTIVES, SHUFFLING, LEVEL_COMPLETED, LEVEL_FAILED, PAUSED }
+var canyon: Dictionary={}
+var recovery_failed:=false
 var state: State = State.READY
 var state_trace: Array = []
 var presentation_locked := false
@@ -39,6 +42,7 @@ var resonance = Resonance.new()
 var moves: int
 var initial_moves:=0
 var action_match_stages:=0
+var action_magnet_used:=false
 var action_wave_used:=false
 var action_storm_used:=false
 var action_color:=0
@@ -72,6 +76,8 @@ func _init(definition: Dictionary = {}) -> void:
 	for key in level.get("powers", {}): cells[int(key)].p = level.powers[key]
 	Mechanics.install(cells, level.get("mechanics", []))
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]: collected[key] = 0
+	canyon=Canyon.install(cells,level)
+	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:collected[key]=0
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT)
 
 func find_matches(preferred: Array = []) -> Array:
@@ -89,7 +95,7 @@ func transition(next_state: State) -> void:
 	state_trace.append(next_state)
 
 func frame(kind: String, before: Array, extra: Dictionary = {}) -> void:
-	var item := {"kind": kind, "before": before, "after": cells.duplicate(true), "state": state, "direction": direction,"storm_energy":storm_charge()}
+	var item := {"kind": kind, "before": before, "after": cells.duplicate(true), "state": state, "direction": direction,"storm_energy":storm_charge(),"canyon":canyon.duplicate(true)}
 	item.merge(extra)
 	frames.append(item)
 
@@ -177,7 +183,7 @@ func swap(a: int, b: int) -> Dictionary:
 						Metrics.incident("Vine spread would remove all legal moves; growth reverted",{"level":level.id,"growth":growing})
 						frame("vine",grown,{"growth":[]})
 	complete_action(event,selected_color)
-	event.shuffled=ensure_move()
+	event.shuffled=ensure_move() or frames.any(func(f):return f.kind=="shuffle")
 	finish_if_needed()
 	event.frames=frames.duplicate()
 	event.points=score-original_score
@@ -198,19 +204,31 @@ func activate(index: int, selected_color: int = -1) -> Dictionary:
 	apply_seals(event,selected_color,selected_color)
 	apply_conveyors(event,selected_color)
 	complete_action(event,selected_color)
-	event.shuffled=ensure_move();finish_if_needed();event.frames=frames.duplicate();event.points=score-original_score;event.primary_color=selected_color
+	event.shuffled=ensure_move() or frames.any(func(f):return f.kind=="shuffle");finish_if_needed();event.frames=frames.duplicate();event.points=score-original_score;event.primary_color=selected_color
 	return event
 
 func storm_charge() -> int:return energy*Storm.COST+energy_blocks
 func begin_action(origin: int=0) -> void:
 	last_match_origin=origin
 	portal_used.clear();fountain_used.clear();movement_queue.clear()
-	action_match_stages=0;action_wave_used=false;action_storm_used=false;action_combo="";action_virtual=[]
+	action_match_stages=0;action_magnet_used=false;action_wave_used=false;action_storm_used=false;action_combo="";action_virtual=[]
 func credit_storm(normal_count: int) -> void:
 	if not level.gravity:return
 	var amount:=energy_blocks+normal_count
 	energy+=amount/Storm.COST;energy_blocks=amount%Storm.COST
 func complete_action(event: Dictionary,selected_color: int) -> void:
+	var magnetic_before:=cells.duplicate(true)
+	var magnetic_events: Array=[]
+	if not action_magnet_used:
+		action_magnet_used=true
+		magnetic_events=Canyon.magnetic(cells,canyon,collected)
+	if not magnetic_events.is_empty():
+		for motion in magnetic_events:
+			pending_portal_arrivals[int(cells[motion.a].id)]=true
+			pending_portal_arrivals[int(cells[motion.b].id)]=true
+		frame("magnet",magnetic_before,{"magnetic":magnetic_events,"collected":collected.duplicate()})
+		if cells.any(func(c):return c==null):settle(true)
+		merge_event(event,resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count)))
 	apply_crystal_wave(event,selected_color)
 	if level.gravity and level.get("automatic_storm",true) and energy>0 and not action_storm_used and not event.cascade_guard:
 		action_storm_used=true
@@ -377,15 +395,40 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 				for i in unique:
 					if i in matched:creation.i=i;break
 		creations=creations.filter(func(c):return c.i not in preserved)
-		var normal_count := 0
+		var canyon_colors: Dictionary={}
+		var normal_indices: Array=[]
 		for i in unique:
 			if Match.normal(cells[i]):
+				normal_indices.append(i)
+				canyon_colors[str(effective_colors[i])]=int(canyon_colors.get(str(effective_colors[i]),0))+1
+		var canyon_direct:=removed.duplicate()
+		for effect in effect_events:
+			for index in effect.area:
+				if index not in canyon_direct:canyon_direct.append(index)
+		var special_area:=extra.duplicate() if special or combined else []
+		if not canyon.cores.is_empty():
+			for source in triggered:
+				for index in Powers.area(source,before[source].p,before,WIDTH,selected_color):
+					if index not in special_area:special_area.append(index)
+		var canyon_events:=Canyon.wave(cells,canyon,unique,canyon_direct,canyon_colors,special or not triggered.is_empty() or combined,collected,special_area)
+		var normal_count := 0
+		for i in unique:
+			if i in normal_indices:
 				normal_count += 1
 				collected[str(effective_colors[i])] += 1
 				if cells[i].get("trait",{}).get("kind","")=="dual": collected.duals+=1
 				if Traits.bridge(cells[i]):collected.bridges+=1
-			cells[i] = null
+			if i not in canyon.holes:cells[i] = null
 		collected.total += normal_count
+		for creation in creations:
+			if creation.i not in canyon.holes:continue
+			for component in matches:
+				if creation.i not in component.cells:continue
+				for index in component.cells:
+					if index not in canyon.holes and index in unique and not creations.any(func(other):return other!=creation and other.i==index):
+						creation.i=index;break
+				break
+		creations=creations.filter(func(c):return c.i not in canyon.holes)
 		for creation in creations: cells[creation.i] = make_cell(creation.color, creation.kind)
 		power_count += creations.size()
 		total_removed += normal_count
@@ -393,7 +436,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "collected":collected.duplicate(), "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events, "beams":beams, "colors":effective_colors, "origin":last_match_origin,"combo_kind":action_combo if combined else "","virtual_powers":action_virtual if combined else []})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "collected":collected.duplicate(), "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events,"canyon_events":canyon_events,"canyon":canyon.duplicate(true), "beams":beams, "colors":effective_colors, "origin":last_match_origin,"combo_kind":action_combo if combined else "","virtual_powers":action_virtual if combined else []})
 		Metrics.elapsed("clear_logic", clear_started)
 		var pre_paint:=cells.duplicate(true) if cells.any(func(c):return c!=null and c.get("obstacle",{}).get("kind","")=="fountain") else []
 		var paint_started:=Time.get_ticks_usec()
@@ -458,6 +501,7 @@ func change_gravity(_next_direction: String) -> Dictionary:
 	return {"accepted":false,"attempted":false}
 
 func ensure_move() -> bool:
+	if moves<=0 or targets_complete():return false
 	var checking_started:=Time.get_ticks_usec()
 	var playable:=Match.has_move(cells,WIDTH,HEIGHT)
 	Metrics.elapsed("legal_move_logic",checking_started)
@@ -469,8 +513,11 @@ func ensure_move() -> bool:
 	Metrics.elapsed("shuffle_logic",shuffle_started)
 	if not recovered:
 		Metrics.incident("No legal shuffle arrangement", {"level":level.id})
-		outcome = "lost"
-	assert(recovered, "No legal Match-3 arrangement")
+		# Preserve the original transaction and resources; do not fabricate a defeat.
+		recovery_failed=true
+		transition(State.PAUSED)
+		return false
+	recovery_failed=false
 	frame("shuffle", before)
 	return true
 
@@ -481,6 +528,7 @@ func targets_complete() -> bool:
 	return Objectives.complete(level.targets,collected)
 
 func finish_if_needed() -> void:
+	if recovery_failed:transition(State.PAUSED);return
 	transition(State.CHECKING_OBJECTIVES)
 	var stages: Array=level.get("objective_stages",[])
 	while objective_stage<stages.size()-1 and Objectives.complete(stages[objective_stage],collected):objective_stage+=1
@@ -492,7 +540,7 @@ func finish_if_needed() -> void:
 	transition(stable_state())
 
 func stable_state() -> State:
-	return State.LEVEL_COMPLETED if outcome == "won" else (State.LEVEL_FAILED if outcome == "lost" else State.READY)
+	return State.PAUSED if recovery_failed else State.LEVEL_COMPLETED if outcome == "won" else (State.LEVEL_FAILED if outcome == "lost" else State.READY)
 
 func hold_presentation() -> void:
 	presentation_locked = true
@@ -511,16 +559,18 @@ func pause() -> void:
 		state = State.PAUSED
 
 func resume() -> void:
+	if recovery_failed:return
 	if state == State.PAUSED: state = paused_state
 
 func snapshot() -> Dictionary:
-	return {"level_definition":canonical_definition(level),"gameplay_version":3,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
+	return {"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":3,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
 
 static func whole(value: Variant, minimum: int, maximum: int) -> bool:
 	if not (value is int or value is float): return false
 	return value >= minimum and value <= maximum and float(value) == floor(float(value))
 
 func restore(data: Dictionary) -> bool:
+	if data.has("recovery_failed") and not data.recovery_failed is bool:return false
 	if not data.has_all(["rules", "state", "level_id", "cells", "moves", "score", "collected", "direction", "energy", "energy_blocks", "serial", "rng", "resonance_color", "resonance_count", "outcome", "refill_stream"]): return false
 	if not whole(data.get("vine_count",0),0,2):return false
 	if not whole(data.get("objective_stage",0),0,maxi(0,level.get("objective_stages",[]).size()-1)):return false
@@ -548,8 +598,12 @@ func restore(data: Dictionary) -> bool:
 			if cell.has(layer):
 				if not cell[layer] is Dictionary: return false
 				normalized_cell[layer] = cell[layer].duplicate(true)
+		if cell.has("canyon"):
+			if not cell.canyon is Dictionary or cell.canyon.get("kind","") not in ["void","giant","magnet","core"] or not whole(cell.canyon.get("anchor",-1),0,71) or not cell.get("fixed",false):return false
+			normalized_cell.canyon=cell.canyon.duplicate(true)
 		if not Registry.valid_cell(normalized_cell): return false
 		normalized.append(normalized_cell)
+	if not Canyon.valid_state(canonical_definition(data.get("canyon",canyon)),level,normalized):return false
 	var flexible_count:=0
 	for cell in normalized:
 		if Traits.flexible(cell): flexible_count+=1
@@ -561,12 +615,13 @@ func restore(data: Dictionary) -> bool:
 	if total != int(data.collected.total): return false
 	for stage in range(int(data.get("objective_stage",0))):
 		if not Objectives.complete(level.objective_stages[stage],data.collected):return false
-	if not Match.find(normalized, WIDTH, HEIGHT).is_empty() or not Match.has_move(normalized, WIDTH, HEIGHT): return false
-	var restored_state := State.LEVEL_COMPLETED if data.outcome == "won" else (State.LEVEL_FAILED if data.outcome == "lost" else State.READY)
+	if not Match.find(normalized, WIDTH, HEIGHT).is_empty(): return false
+	var restored_state := State.PAUSED if data.get("recovery_failed",false) else State.LEVEL_COMPLETED if data.outcome == "won" else (State.LEVEL_FAILED if data.outcome == "lost" else State.READY)
 	if not whole(data.state, restored_state, restored_state): return false
 	if data.outcome == "playing" and data.moves == 0: return false
 	objective_stage=int(data.get("objective_stage",0))
 	vine_count=int(data.get("vine_count",0))
+	canyon=canonical_definition(data.get("canyon",canyon))
 	cells = normalized
 	initial_moves=int(data.get("move_budget",maxi(int(level.moves),int(level.get("legacy_moves",level.moves)))))
 	moves = int(data.moves)
@@ -575,6 +630,8 @@ func restore(data: Dictionary) -> bool:
 	for key in collected: collected[key] = int(collected[key])
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]:
 		if not collected.has(key): collected[key] = 0
+	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:
+		if not collected.has(key):collected[key]=0
 	direction = str(data.direction)
 	energy = int(data.energy)
 	energy_blocks = int(data.energy_blocks)
@@ -584,8 +641,11 @@ func restore(data: Dictionary) -> bool:
 	resonance.count = int(data.resonance_count)
 	refill_stream = data.refill_stream.map(func(color): return int(color))
 	outcome = str(data.outcome)
+	recovery_failed=bool(data.get("recovery_failed",false))
 	state = restored_state
 	presentation_locked = false
+	if outcome=="playing" and not Match.has_move(cells,WIDTH,HEIGHT):
+		ensure_move();finish_if_needed()
 	return true
 
 static func canonical_definition(value: Variant) -> Variant:

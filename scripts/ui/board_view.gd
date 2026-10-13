@@ -24,6 +24,9 @@ const HEIGHT := 9
 const STRIDE := CELL + GAP
 const DRAG_THRESHOLD := CELL * 0.26
 var board
+var canyon_atlas: Texture2D
+var canyon_regions: Array[Rect2]=[]
+var canyon_style: StyleBoxFlat
 var goal_highlights: Array=[]
 var goal_highlight_time:=0.0
 var settings: Dictionary = {}
@@ -85,6 +88,11 @@ var drag_offset := Vector2.ZERO
 var moved := false
 
 func _ready() -> void:
+	canyon_style=StyleBoxFlat.new();canyon_style.bg_color=Color("496cc9");canyon_style.border_color=Color("adf5ff");canyon_style.set_border_width_all(2);canyon_style.set_corner_radius_all(8)
+	if ResourceLoader.exists("res://assets/casual/canyon-devices.png"):
+		canyon_atlas=load("res://assets/casual/canyon-devices.png")
+		var regions=JSON.parse_string(FileAccess.get_file_as_string("res://assets/casual/canyon-regions.json"))
+		for r in regions:canyon_regions.append(Rect2(r[0],r[1],r[2],r[3]))
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	custom_minimum_size = Vector2(476, 536)
 	var backdrop := Backdrop.new()
@@ -162,6 +170,10 @@ func start_wave(data: Dictionary) -> void:
 			particle_colors[slot] = Palette.COLORS[k%5 if Traits.bridge(previous[index]) else int(data.get("colors",{}).get(index,previous[index].c))].lightened(.16)
 			particle_ages[slot] = -.075-.008*(index%4) if not reduced_motion else 0
 			particle_styles[slot] = 0
+	for effect in data.get("canyon_events",[]):
+		if effect.get("hp",1)==0 or effect.get("opened",false):
+			spawn_stars(cell_position(int(effect.index))+Vector2(58,58),8 if quality=="performance" else 16)
+			if effect.kind in ["giant","core"] and settings.get("shake",true) and not reduced_motion:shake_age=0
 	for effect in data.get("mechanics",[]):
 		var center := cell_position(effect.index)+Vector2(28,28)
 		for k in (mini(count+3,10) if effect.opened else 3):
@@ -218,7 +230,7 @@ func set_board(value) -> void:
 		get_child(0).world=int(board.level.get("world",1));get_child(0).queue_redraw()
 	busy = false
 	displayed = board.cells.duplicate(true)
-	trait_idle_animation=has_trait_animation(displayed)
+	trait_idle_animation=has_trait_animation(displayed) or not board.canyon.giants.is_empty() or not board.canyon.cores.is_empty()
 	target = displayed
 	queue.clear()
 	current={}
@@ -228,7 +240,7 @@ func set_board(value) -> void:
 func highlight_goal(key: String) -> void:
 	goal_highlights.clear()
 	for i in displayed.size():
-		if preload("res://scripts/ui/goal_registry.gd").relevant(key,displayed[i]):goal_highlights.append(i)
+		if preload("res://scripts/ui/goal_registry.gd").relevant(key,displayed[i],i,board.canyon):goal_highlights.append(i)
 	if key=="conveyors":
 		for rail in board.level.get("conveyors",[]):goal_highlights.append_array(rail.cells)
 	if key=="portals":
@@ -273,11 +285,11 @@ func next_frame() -> void:
 	for c in current.get("creations",[]):creation_indices[int(c.i)]=true
 	previous = current.before
 	target = current.after
-	trait_idle_animation=has_trait_animation(target)
+	trait_idle_animation=has_trait_animation(target) or not board.canyon.giants.is_empty() or not board.canyon.cores.is_empty()
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.24,"crystal_wave":.22}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.24,"crystal_wave":.22}.get(current.kind, 0.12)
 	bomb_origin=-1
 	if current.kind=="clear":
 		for index in current.get("triggered",[]):
@@ -286,12 +298,14 @@ func next_frame() -> void:
 	if current.get("combo_kind","")!="" and not reduced_motion:duration=.30
 	age = 0
 	board.visual_phase(int(current.state))
-	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave"]:
+	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave","shuffle","magnet"]:
 		environment_started.emit(current)
 		start_environment(current)
 		if current.kind in ["storm","crystal_wave"]:
 			combo_label.text="PRİZMA FIRTINASI" if current.kind=="storm" else "KRİSTAL DALGASI"
 			combo_label.add_theme_font_size_override("font_size",29 if current.kind=="storm" else 32);combo_label.add_theme_color_override("font_color",Color("b2f9ff") if current.kind=="storm" else Color("ffdc85"));combo_age=0;combo_label.show();spawn_stars(Vector2(238,252),8)
+	if current.kind=="shuffle":
+		combo_label.text="KRİSTALLER KARIŞTIRILIYOR!";combo_label.add_theme_font_size_override("font_size",24);combo_age=0;combo_label.show()
 	if current.kind == "clear":
 		start_wave(current)
 		wave_started.emit(current)
@@ -503,6 +517,7 @@ func _draw() -> void:
 			draw_set_transform(center,axis.angle())
 			draw_texture_rect_region(CasualSkin.ADVANCED,Rect2(-28,-28,56,56),CasualSkin.region("advanced",3))
 			draw_set_transform(shake)
+	draw_canyon(current.get("canyon",board.canyon) if busy else board.canyon)
 	for i in values.size():
 		if values[i] == null: continue
 		var cell: Dictionary = values[i]
@@ -523,6 +538,7 @@ func _draw() -> void:
 				draw_cell(cell,Rect2(anchor+Vector2(28,28)-extent/2,extent),true)
 				continue
 			pos = origin.lerp(pos, ease)
+			if current.kind=="shuffle":pos.y-=sin(t*PI)*12
 			if current.kind in ["fall", "refill"] and t > 0.85: pos.y += sin((t - 0.85) / 0.15 * PI) * 2
 		if pos.y < -CELL or pos.y > HEIGHT * STRIDE or pos.x < -CELL or pos.x > WIDTH * STRIDE: continue
 		if i == drag_index: continue
@@ -545,6 +561,15 @@ func _draw() -> void:
 			draw_polyline(PackedVector2Array([tip-axis*17+side*14,tip,tip-axis*17-side*14]),Color(1,1,1,1-t),4,true)
 		else:
 			for c in current.get("painted",[]):draw_texture_rect(GLOW,Rect2(cell_position(c.index)-Vector2(7,7),Vector2(70,70)),false,Color(color,sin(t*PI)*.75))
+	if busy and current.kind=="magnet":
+		for e in current.get("magnetic",[]):
+			var source:=cell_position(e.a)+Vector2(28,28);var destination:=cell_position(e.b)+Vector2(28,28)
+			draw_line(source,destination,Color(.68,.55,1,sin(t*PI)),3,true)
+	if busy and current.kind=="clear":
+		for e in current.get("canyon_events",[]):
+			if e.get("hp",1)==0 or e.get("opened",false):
+				var center:=cell_position(e.index)+Vector2(58,58)
+				for k in (4 if e.kind=="core" else 1):draw_arc(center,15+t*(70+k*25),0,TAU,32,Color(Palette.COLORS[k],(1-t)*.7),3,true)
 	if busy and current.kind=="paint":
 		for e in current.get("fountains",[]):
 			for gem in e.painted:
@@ -689,6 +714,8 @@ func _draw() -> void:
 
 func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool, match_color: int = -1) -> void:
 	var center := rect.get_center()
+	if cell.has("canyon"):
+		return
 	var pulse := 1.035 if highlighted else 1.0
 	if highlighted and not reduced_motion: pulse += sin(clock*3)*.012
 	var jewel := Rect2(center-rect.size*pulse/2,rect.size*pulse)
@@ -811,3 +838,41 @@ func draw_combo_effect(data: Dictionary,t: float) -> void:
 			else:
 				var axis:=Vector2.RIGHT if power.kind=="rocket_h" else Vector2.DOWN
 				draw_line(position-axis*100*t,position+axis*100*t,Color(.7,1,1,(1-t)*.6),2,true)
+
+func draw_canyon(data: Dictionary) -> void:
+	for key in data.get("floors",{}):
+		var rect:=Rect2(cell_position(int(key)),Vector2(CELL,CELL))
+		draw_style_box(canyon_style,rect)
+		if canyon_atlas:draw_texture_rect_region(canyon_atlas,CasualSkin.fit(rect,canyon_regions[0]),canyon_regions[0],Color(1,1,1,.7))
+		if int(data.floors[key])==1:
+			draw_polyline(PackedVector2Array([rect.position+Vector2(8,8),rect.position+Vector2(28,22),rect.position+Vector2(19,37),rect.position+Vector2(42,49)]),Color("c5faff"),2,true)
+	for i in data.get("holes",[]):
+		var center:=cell_position(int(i))+Vector2(28,28)
+		draw_circle(center,26,Color("252253"));draw_arc(center,25,0,TAU,24,Color("7565a9"),2,true)
+	for kind in ["giants","cores","magnets"]:
+		for key in data.get(kind,{}):
+			if kind=="cores" and data[kind][key].opened:continue
+			var i:=int(key);var extent:=Vector2(CELL,CELL) if kind=="magnets" else Vector2(116,116)
+			var rect:=Rect2(cell_position(i),extent)
+			var color:=Color("eda0ff") if kind=="giants" else Color("baf6ff")
+			var center:=rect.get_center()
+			if canyon_atlas:
+				draw_texture_rect_region(canyon_atlas,CasualSkin.fit(rect,canyon_regions[1 if kind=="giants" else 2 if kind=="magnets" else 3]),canyon_regions[1 if kind=="giants" else 2 if kind=="magnets" else 3])
+			else:
+				draw_colored_polygon(PackedVector2Array([center+Vector2(0,-extent.y*.48),center+Vector2(extent.x*.46,0),center+Vector2(0,extent.y*.48),center-Vector2(extent.x*.46,0)]),color)
+			if kind in ["giants","cores"] and not reduced_motion and quality!="performance":
+				draw_arc(center,extent.x*.36,clock*.5,clock*.5+PI*.9,18,Color(color,.35),1.5,true)
+			if kind=="giants":
+				var hp: int=data.giants[key]
+				if hp<3:draw_line(center+Vector2(-35,-36),center+Vector2(26,31),Color("fff5ff"),2,true)
+				if hp<2:draw_line(center+Vector2(29,-38),center+Vector2(-30,32),Color("ffddfa"),2,true)
+				draw_string(mechanic_font,center+Vector2(-6,40),str(hp),HORIZONTAL_ALIGNMENT_LEFT,-1,17,Color.WHITE)
+			elif kind=="magnets":
+				draw_arc(center,25,-PI/2,-PI/2+TAU*float(data.magnets[key])/3,16,Color("a6dbff"),2,true)
+			else:
+				for color_index in 4:
+					var point:=center+Vector2.from_angle(-PI/2+color_index*PI/2)*43
+					var amount: int=data.cores[key].shields[color_index]
+					if amount>0:
+						draw_circle(point,13,Palette.COLORS[color_index]);draw_string(mechanic_font,point+Vector2(-6,5),str(amount),HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color.WHITE)
+				if data.cores[key].shields.all(func(n):return n==0):draw_arc(center,54,clock,clock+TAU,32,Color("fff0ae"),3,true)

@@ -1,5 +1,5 @@
 extends RefCounted
-const KEYS := ["total","0","1","2","3","4","flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]
+const KEYS := ["total","0","1","2","3","4","flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals","floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]
 const NAMES := {"total":"Blok","flowers":"Çiçek","ice":"Buz katmanı","stones":"Taş","locks":"Kilit","duals":"Çift renk","shifts":"Dönüşüm","pins":"Çivi","vines":"Sarmaşık","crates":"Sandık","mirrors":"Ayna","bridges":"Köprü","fountains":"Çeşme","bubbles":"Baloncuk","conveyors":"Konveyör","seals":"Mühür","portals":"Portal"}
 static func value(collected: Dictionary, key: String) -> int:
 	return int(collected.get(key,0))

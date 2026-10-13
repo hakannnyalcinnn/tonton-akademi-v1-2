@@ -1,3 +1,7 @@
+## Güncel: PRİZMA v0.10.0
+
+[Gökkuşağı Kanyonu sürümü](https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.10.0) · [Rapor](v010/REPORT.md). İlk 100 bölüm korunuyor; 150 bölüm, 20 mekanik. Gerçek Android kabul testi bekliyor.
+
 # Güncel çalışma — PRİZMA 0.9.0 / Oynanış 2.0
 
 Otomatik Prizma Fırtınası, Kristal Dalgası, 100 bölüm dengelemesi ve görsel/ses revizyonu için güncel kaynak [GAMEPLAY2_REPORT.md](GAMEPLAY2_REPORT.md) dosyasıdır. Aşağıdaki sürüm notları geçmiş kaydıdır. Gerçek Android cihaz kabul testleri ayrıca gereklidir.
