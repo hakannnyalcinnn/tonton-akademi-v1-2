@@ -9,5 +9,4 @@ case "$PRIZMA_PRESET" in
   "Android") PRIZMA_APK_FILE=build/prizma-debug.apk; PRIZMA_PACKAGE=com.prizma.renklerinuyanisi ;;
   *) echo 'Unsupported Android preset' >&2; exit 1 ;;
 esac
-bash tools/test_v010.sh
-bash tools/export_android.sh
+python3 tools/test_profiles.py FULL --reuse --android-build
