@@ -27,10 +27,10 @@ func run() -> void:
 	game.save.finish_writes();game.save=Save.new("user://package4-ui-only.json");game.save.data=Save.defaults()
 	game.save.data.settings.music=false;game.save.data.settings.sfx=false;game.save.data.settings.reduced_motion=true
 	game.audio.apply_settings(game.save.data.settings)
-	check(Catalog.count()==150,"100 preserved plus 50 canyon levels")
+	check(Catalog.count()==250,"150 preserved plus 100 new prepared levels")
 	game.show_worlds();await process_frame
 	var locked:=false
-	for child in game.page.get_children():
+	for child in game.page.get_node("WorldsScroll").get_child(0).get_children():
 		if child is Button and "50. BÖLÜMÜ" in child.text:locked=child.disabled
 	check(locked,"ocean locked before garden completion")
 	ProjectSettings.set_setting("prizma/show_future_levels",false);game.show_worlds()

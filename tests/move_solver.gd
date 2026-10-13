@@ -63,6 +63,7 @@ static func move_value(b, a: int, destination: int) -> float:
 	return value
 
 static func best_move(b) -> Array:
+	if b.level.get("definition_version",2)==3:return preload("res://scripts/generation/auto_player.gd").select(b,b.level.get("generation",{}).get("simulation_strategy","objective"))
 	var options: Array = Match.legal_swaps(b.cells,8,9)
 	var best := -1.0
 	var choice: Array = options[0]

@@ -1,5 +1,7 @@
 extends Control
 const Art=preload("res://scripts/ui/casual_skin.gd")
+var world_theme:="garden"
+var accent:=Color("f5d593")
 var world_finale := false
 var ocean:=false
 var canyon:=false
@@ -42,3 +44,6 @@ func _draw() -> void:
 
 	if canyon:
 		for k in 5:draw_arc(Vector2(270,444),age*(95+k*15),0,TAU,48,Color(colors[k%4],clampf(1-age/2.4,0,1)*.6),3,true)
+
+	if world_theme in ["cloud","lava"]:
+		for k in 5:draw_arc(Vector2(270,444),age*(90+k*22),0,TAU,48,Color(accent,clampf(1-age/2.4,0,1)*.6),3,true)

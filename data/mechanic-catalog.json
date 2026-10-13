@@ -1,0 +1,476 @@
+{
+  "version": 1,
+  "mechanics": [
+    {
+      "id": 1,
+      "kind": "seed",
+      "first_level": 11,
+      "difficulty": 1,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "dual",
+        "ice"
+      ],
+      "visual": "res://assets/casual/mechanics.png",
+      "sound": "pop",
+      "title": "Tohum Kapsülü",
+      "hint": "Yanında eşleştir; iki darbeyle çiçek açar."
+    },
+    {
+      "id": 2,
+      "kind": "ice",
+      "first_level": 16,
+      "difficulty": 1,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "dual",
+        "giant",
+        "seed"
+      ],
+      "visual": "res://assets/casual/mechanics.png",
+      "sound": "pop",
+      "title": "Buz",
+      "hint": "Buzu komşu eşleşme veya özel güçle kır."
+    },
+    {
+      "id": 3,
+      "kind": "stone",
+      "first_level": 21,
+      "difficulty": 1,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "conveyor",
+        "core",
+        "floor",
+        "giant",
+        "mirror"
+      ],
+      "visual": "res://assets/casual/mechanics.png",
+      "sound": "pop",
+      "title": "Taş",
+      "hint": "Taşın yanında eşleştir veya özel güç kullan."
+    },
+    {
+      "id": 4,
+      "kind": "lock",
+      "first_level": 26,
+      "difficulty": 1,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "chameleon"
+      ],
+      "visual": "res://assets/casual/mechanics.png",
+      "sound": "pop",
+      "title": "Renk Kilidi",
+      "hint": "Kilidin istediği renkten enerji topla."
+    },
+    {
+      "id": 5,
+      "kind": "dual",
+      "first_level": 31,
+      "difficulty": 1,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "fountain",
+        "ice",
+        "seal",
+        "seed"
+      ],
+      "visual": "res://assets/casual/traits.png",
+      "sound": "pop",
+      "title": "Çift Renkli Kristal",
+      "hint": "Kristal gösterdiği iki renkle eşleşir."
+    },
+    {
+      "id": 6,
+      "kind": "chameleon",
+      "first_level": 41,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "lock"
+      ],
+      "visual": "res://assets/casual/traits.png",
+      "sound": "pop",
+      "title": "Bukalemun",
+      "hint": "Bukalemunu koru; başarılı hamlelerde rengi değişir."
+    },
+    {
+      "id": 7,
+      "kind": "bridge",
+      "first_level": 51,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "floor",
+        "pin"
+      ],
+      "visual": "res://assets/casual/traits.png",
+      "sound": "pop",
+      "title": "Prizma Köprüsü",
+      "hint": "Köprü her renge uyum sağlar."
+    },
+    {
+      "id": 8,
+      "kind": "pin",
+      "first_level": 56,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "bridge"
+      ],
+      "visual": "res://assets/casual/traits.png",
+      "sound": "pop",
+      "title": "Yer Çekimi Çivisi",
+      "hint": "Çivili kristali iki darbeyle serbest bırak."
+    },
+    {
+      "id": 9,
+      "kind": "portal",
+      "first_level": 76,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "bubble",
+        "conveyor",
+        "magnet"
+      ],
+      "visual": "res://assets/casual/devices.png",
+      "sound": "pop",
+      "title": "Portal",
+      "hint": "Portal giriş ve çıkışlarını birlikte planla."
+    },
+    {
+      "id": 10,
+      "kind": "vine",
+      "first_level": 81,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "crate"
+      ],
+      "visual": "res://assets/casual/devices.png",
+      "sound": "pop",
+      "title": "Canlı Sarmaşık",
+      "hint": "Sarmaşığı komşu eşleşmelerle temizle."
+    },
+    {
+      "id": 11,
+      "kind": "crate",
+      "first_level": 86,
+      "difficulty": 3,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "vine"
+      ],
+      "visual": "res://assets/casual/devices.png",
+      "sound": "pop",
+      "title": "Patlayıcı Sandık",
+      "hint": "Sandığı komşu patlamalarla ateşle."
+    },
+    {
+      "id": 12,
+      "kind": "mirror",
+      "first_level": 91,
+      "difficulty": 3,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "stone"
+      ],
+      "visual": "res://assets/casual/devices.png",
+      "sound": "pop",
+      "title": "Yönlü Ayna",
+      "hint": "Roketi aynaya yönlendir."
+    },
+    {
+      "id": 13,
+      "kind": "fountain",
+      "first_level": 155,
+      "difficulty": 3,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "dual",
+        "seal"
+      ],
+      "visual": "res://assets/casual/advanced.png",
+      "sound": "pop",
+      "title": "Boyama Çeşmesi",
+      "hint": "Çeşmenin yanında eşleştir; normal kristaller boyanır."
+    },
+    {
+      "id": 14,
+      "kind": "bubble",
+      "first_level": 161,
+      "difficulty": 3,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "portal"
+      ],
+      "visual": "res://assets/casual/advanced.png",
+      "sound": "pop",
+      "title": "Yüzen Baloncuk",
+      "hint": "Baloncuklar yer çekiminin tersine hareket eder."
+    },
+    {
+      "id": 15,
+      "kind": "conveyor",
+      "first_level": 133,
+      "difficulty": 3,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "magnet",
+        "portal",
+        "stone"
+      ],
+      "visual": "res://assets/casual/advanced.png",
+      "sound": "pop",
+      "title": "Konveyör",
+      "hint": "Raylar başarılı hamle sonunda bir hücre ilerler."
+    },
+    {
+      "id": 16,
+      "kind": "seal",
+      "first_level": 186,
+      "difficulty": 4,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "dual",
+        "fountain"
+      ],
+      "visual": "res://assets/casual/advanced.png",
+      "sound": "pop",
+      "title": "Şifreli Mühür",
+      "hint": "Mühürdeki renk sırasını başarılı hamlelerle tamamla."
+    },
+    {
+      "id": 17,
+      "kind": "floor",
+      "first_level": 101,
+      "difficulty": 4,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "bridge",
+        "core",
+        "giant",
+        "stone"
+      ],
+      "visual": "res://assets/casual/canyon-devices.png",
+      "sound": "pop",
+      "title": "Kırılgan Zemin",
+      "hint": "Zemini kır; kalıcı boşlukları hesaba kat."
+    },
+    {
+      "id": 18,
+      "kind": "giant",
+      "first_level": 111,
+      "difficulty": 4,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "core",
+        "floor",
+        "ice",
+        "stone"
+      ],
+      "visual": "res://assets/casual/canyon-devices.png",
+      "sound": "pop",
+      "title": "Dev Kristal",
+      "hint": "Dev kristale komşu eşleşmelerle darbe ver."
+    },
+    {
+      "id": 19,
+      "kind": "magnet",
+      "first_level": 121,
+      "difficulty": 4,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "conveyor",
+        "portal"
+      ],
+      "visual": "res://assets/casual/canyon-devices.png",
+      "sound": "magnet",
+      "title": "Manyetik Düğüm",
+      "hint": "Çekim düğümünün hareketini hesaba kat."
+    },
+    {
+      "id": 20,
+      "kind": "core",
+      "first_level": 150,
+      "difficulty": 4,
+      "conditions": [
+        "distinct_cells",
+        "no_void_overlap",
+        "bounded_action"
+      ],
+      "compatible": [
+        "floor",
+        "giant",
+        "stone"
+      ],
+      "visual": "res://assets/casual/canyon-devices.png",
+      "sound": "core_break",
+      "title": "Prizma Çekirdeği",
+      "hint": "Dört renk kalkanını doldur; çekirdeği özel güçle aç."
+    }
+  ],
+  "reviewed_combinations": [
+    [
+      "seed",
+      "ice"
+    ],
+    [
+      "dual",
+      "ice"
+    ],
+    [
+      "fountain",
+      "dual"
+    ],
+    [
+      "bubble",
+      "portal"
+    ],
+    [
+      "conveyor",
+      "portal"
+    ],
+    [
+      "conveyor",
+      "stone"
+    ],
+    [
+      "chameleon",
+      "lock"
+    ],
+    [
+      "seal",
+      "dual"
+    ],
+    [
+      "bridge",
+      "floor"
+    ],
+    [
+      "floor",
+      "stone"
+    ],
+    [
+      "giant",
+      "ice"
+    ],
+    [
+      "magnet",
+      "portal"
+    ],
+    [
+      "magnet",
+      "conveyor",
+      "portal"
+    ],
+    [
+      "core",
+      "stone"
+    ],
+    [
+      "core",
+      "giant",
+      "floor",
+      "stone"
+    ],
+    [
+      "vine",
+      "crate"
+    ],
+    [
+      "mirror",
+      "stone"
+    ],
+    [
+      "pin",
+      "bridge"
+    ],
+    [
+      "seed",
+      "dual"
+    ],
+    [
+      "fountain",
+      "seal"
+    ]
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "version": 2,
+  "difficulty_wave": [
+    "easy",
+    "medium",
+    "medium",
+    "hard",
+    "easy",
+    "medium",
+    "hard",
+    "easy",
+    "medium",
+    "very_hard"
+  ],
+  "templates": [
+    "open",
+    "corner-cut",
+    "islands",
+    "window",
+    "hourglass",
+    "staircase",
+    "cross",
+    "wings",
+    "corridor",
+    "terraces"
+  ],
+  "similarity_weights": {
+    "shape": 0.25,
+    "placements": 0.25,
+    "mechanics": 0.2,
+    "targets": 0.15,
+    "colors": 0.05,
+    "opportunities": 0.1
+  },
+  "maximum_neighbor_similarity": 0.84,
+  "default_seed_samples": 3,
+  "maximum_revisions": 8,
+  "world_plans": {
+    "cloud": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "seed"
+          ],
+          [
+            "ice"
+          ],
+          [
+            "dual"
+          ],
+          [
+            "seed",
+            "ice"
+          ],
+          [
+            "fountain"
+          ],
+          [
+            "fountain",
+            "dual"
+          ],
+          [
+            "stone"
+          ],
+          [
+            "lock"
+          ],
+          [
+            "bridge"
+          ],
+          [
+            "pin",
+            "bridge"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 20,
+        "recipes": [
+          [
+            "bubble"
+          ],
+          [
+            "bubble",
+            "portal"
+          ],
+          [
+            "bubble"
+          ]
+        ]
+      },
+      {
+        "start": 21,
+        "end": 30,
+        "recipes": [
+          [
+            "conveyor",
+            "portal"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 35,
+        "recipes": [
+          [
+            "chameleon",
+            "lock"
+          ]
+        ]
+      },
+      {
+        "start": 36,
+        "end": 40,
+        "recipes": [
+          [
+            "seal",
+            "dual"
+          ]
+        ]
+      },
+      {
+        "start": 41,
+        "end": 49,
+        "recipes": [
+          [
+            "vine",
+            "crate"
+          ],
+          [
+            "mirror",
+            "stone"
+          ],
+          [
+            "fountain",
+            "seal"
+          ],
+          [
+            "seed",
+            "dual"
+          ],
+          [
+            "conveyor",
+            "portal"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "fountain",
+            "seal"
+          ]
+        ]
+      }
+    ],
+    "lava": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "stone"
+          ],
+          [
+            "ice"
+          ],
+          [
+            "dual"
+          ],
+          [
+            "vine",
+            "crate"
+          ],
+          [
+            "mirror",
+            "stone"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 20,
+        "recipes": [
+          [
+            "floor",
+            "stone"
+          ]
+        ]
+      },
+      {
+        "start": 21,
+        "end": 30,
+        "recipes": [
+          [
+            "giant",
+            "ice"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 40,
+        "recipes": [
+          [
+            "magnet",
+            "conveyor",
+            "portal"
+          ]
+        ]
+      },
+      {
+        "start": 41,
+        "end": 49,
+        "recipes": [
+          [
+            "floor",
+            "stone"
+          ],
+          [
+            "giant",
+            "ice"
+          ],
+          [
+            "magnet",
+            "portal"
+          ],
+          [
+            "vine",
+            "crate"
+          ],
+          [
+            "chameleon",
+            "lock"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "core",
+            "giant",
+            "floor",
+            "stone"
+          ]
+        ]
+      }
+    ]
+  },
+  "default_plan": "cloud"
+}

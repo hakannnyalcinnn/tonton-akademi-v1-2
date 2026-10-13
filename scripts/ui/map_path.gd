@@ -1,6 +1,8 @@
 extends Control
 const CanyonArt=preload("res://scripts/ui/goal_registry.gd")
 const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
+var world_theme:="garden"
+var accent:=Color("f7d697")
 var count:=50
 var ocean:=false
 var canyon:=false
@@ -14,7 +16,7 @@ func _ready() -> void:
 		road.append(Vector2(228+sin(index*.83)*145,70+index*100))
 func _draw() -> void:
 	draw_polyline(road,Color(.38,.57,.65,.2),31,true)
-	draw_polyline(road,Color("f7d697"),26,true)
+	draw_polyline(road,accent,26,true)
 	draw_polyline(road,Color("fff5d9"),18,true)
 	for i in range(0,count,8):
 		if not ocean:

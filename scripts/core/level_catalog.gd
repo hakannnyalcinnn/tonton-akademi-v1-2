@@ -4,40 +4,43 @@ const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
 
 static var cache: Array = []
 
+const Worlds=preload("res://scripts/core/world_catalog.gd")
+static var loaded: Dictionary={}
+static var access_order: Array=[]
+static func packet(path: String) -> Array:
+	if not loaded.has(path):
+		var parsed=JSON.parse_string(FileAccess.get_file_as_string(path))
+		assert(parsed is Dictionary and Registry.integer(parsed.get("version",0),2,3))
+		loaded[path]=parsed.levels
+	if path in access_order:access_order.erase(path)
+	access_order.append(path)
+	if access_order.size()>3:loaded.erase(access_order.pop_front())
+	return loaded[path]
 static func all() -> Array:
-	if not cache.is_empty(): return cache
-	var parsed = JSON.parse_string(FileAccess.get_file_as_string("res://data/levels.json"))
-	assert(parsed is Dictionary and parsed.version == 2)
-	var extended = JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-11-30.json"))
-	assert(extended is Dictionary and extended.version == 2)
-	var package2=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-31-50.json"))
-	assert(package2 is Dictionary and package2.version==2)
-	var ocean=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-51-75.json"))
-	assert(ocean is Dictionary and ocean.version==2)
-	var finale=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-76-100.json"))
-	assert(finale is Dictionary and finale.version==2)
-	var canyon=JSON.parse_string(FileAccess.get_file_as_string("res://data/levels-101-150.json"))
-	assert(canyon is Dictionary and canyon.version==2)
-	cache = parsed.levels + extended.levels + package2.levels + ocean.levels + finale.levels + canyon.levels
+	if not cache.is_empty():return cache
+	for entry in Worlds.manifest().packages:cache.append_array(packet(entry.path))
+	cache.sort_custom(func(a,b):return int(a.id)<int(b.id))
+	assert(cache.size()==count())
+	for index in cache.size():assert(int(cache[index].id)==index+1)
 	return cache
-
-static func count() -> int:
-	return all().size()
-
-static func world_for(number: int) -> int:
-	return int((number-1)/50)+1
-
+static func count() -> int:return Worlds.count()
+static func world_for(number: int) -> int:return Worlds.for_level(number)
 static func get_level(number: int) -> Dictionary:
-	var levels := all()
-	assert(number >= 1 and number <= levels.size())
-	return levels[number - 1].duplicate(true)
+	assert(number>=1 and number<=count())
+	if not cache.is_empty():return cache[number-1].duplicate(true)
+	for entry in Worlds.manifest().packages:
+		if number>=int(entry.start) and number<=int(entry.end):
+			for definition in packet(entry.path):
+				if int(definition.id)==number:return definition.duplicate(true)
+	assert(false,"Campaign packet missing requested authored level")
+	return {}
 
 static func validate(level: Dictionary) -> bool:
 	if not level.has_all(["id", "seed", "moves", "targets", "stars", "layout", "gravity", "resonance"]): return false
 	# Snapshots now contain definitions: reject malformed saved types before indexing/casting.
 	if not level.layout is Array or not level.stars is Array or not level.targets is Dictionary:return false
 	if not level.gravity is bool or not level.resonance is bool:return false
-	if not Registry.integer(level.id,1,150) or not Registry.integer(level.moves,1,10000) or not Registry.integer(level.seed,-2147483648,2147483647):return false
+	if not Registry.integer(level.id,1,2147483647) or not Registry.integer(level.moves,1,10000) or not Registry.integer(level.seed,-2147483648,2147483647):return false
 	if not level.get("mechanics",[]) is Array or not level.get("portals",[]) is Array or not level.get("conveyors",[]) is Array or not level.get("powers",{}) is Dictionary:return false
 	if level.layout.size() != 72 or level.stars.size() != 3: return false
 	for threshold in level.stars:
@@ -49,10 +52,19 @@ static func validate(level: Dictionary) -> bool:
 	for index in level.get("powers",{}):
 		if not str(index).is_valid_int() or not Registry.integer(int(str(index)),0,71) or level.powers[index] not in ["rocket_h","rocket_v","prism","color"]:return false
 	if level.stars[0] > level.stars[1] or level.stars[1] > level.stars[2]: return false
+	if not level.get("active_colors",[0,1,2,3,4]) is Array:return false
+	var palette: Array=level.get("active_colors",[0,1,2,3,4])
+	if palette.size()<3 or palette.size()>5:return false
+	var seen_colors: Dictionary={}
+	for color in palette:
+		if not Registry.integer(color,0,4) or seen_colors.has(int(color)):return false
+		seen_colors[int(color)]=true
+	if level.get("initial_gravity","down") not in ["up","down","left","right"]:return false
 	for color in level.layout:
-		if not (color is float or color is int) or color < 0 or color > 4 or float(color) != floor(float(color)): return false
+		if not (color is float or color is int) or color < 0 or color > 4 or float(color) != floor(float(color)) or not seen_colors.has(int(color)): return false
 	for key in level.targets:
 		if key not in Objectives.KEYS or not Registry.integer(level.targets[key],1,2147483647): return false
+		if str(key).is_valid_int() and not seen_colors.has(int(str(key))):return false
 	if not preload("res://scripts/mechanics/portal_manager.gd").validate(level.get("portals",[])):return false
 	if not level.get("development_only",false) and level.id<76 and not level.get("portals",[]).is_empty():return false
 	if not preload("res://scripts/mechanics/conveyor_rails.gd").validate(level.get("conveyors",[])):return false
@@ -72,7 +84,10 @@ static func validate(level: Dictionary) -> bool:
 	var flexible_count:=0
 	for spec in level.get("mechanics",[]):
 		if not Registry.valid_spec(spec) or occupied.has(spec.index): return false
-		if spec.kind in ["fountain","bubble","seal"] and not level.get("development_only",false):return false
+		for color in spec.get("colors",spec.get("sequence",[])):
+			if not seen_colors.has(int(color)):return false
+		if spec.has("color") and not seen_colors.has(int(spec.color)):return false
+		if spec.kind in ["fountain","bubble","seal"] and level.id<151 and not level.get("development_only",false):return false
 		if spec.kind in ["vine","crate","mirror"] and level.id<76 and not level.get("development_only",false):return false
 		occupied[spec.index] = true
 		if spec.kind in ["bridge","pin"] and level.id<=50 and not level.get("development_only",false): return false

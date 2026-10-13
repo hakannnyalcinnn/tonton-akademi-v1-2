@@ -32,7 +32,7 @@ h.update(json.dumps([version,platform.platform(),os.environ.get('PRIZMA_TOOLS_DI
 fingerprint=h.hexdigest()
 def gd(suite,*args):return ['bash','tools/godot.sh','--headless','--audio-driver','Dummy','--max-fps','60','--script',f'tests/{suite}.gd']+(['--',*map(str,args)] if args else [])
 jobs=[('import',['bash','tools/godot.sh','--headless','--editor','--import','--quit'])]
-full=['workflow_smoke','run_tests','mechanic_tests','package2_tests','package4_tests','package5_mechanics','gameplay2_tests','deadlock_tests','canyon_mechanics_tests','quality_tests','mechanic_ui_tests','package2_ui','package4_ui','package5_ui','casual_ui','canyon_ui','goals_panel_tests','gameplay2_ui','finale_ui']
+full=['workflow_smoke','generator_tests','world_expansion_tests','generator_data_tests','run_tests','mechanic_tests','package2_tests','package4_tests','package5_mechanics','gameplay2_tests','deadlock_tests','canyon_mechanics_tests','quality_tests','mechanic_ui_tests','package2_ui','package4_ui','package5_ui','casual_ui','canyon_ui','goals_panel_tests','gameplay2_ui','finale_ui']
 suites=['workflow_smoke'] if a.profile=='SMOKE' else full if a.profile=='FULL' else a.suite
 for suite in dict.fromkeys(suites):
  if not re.fullmatch(r'[a-zA-Z0-9_]+',suite) or not (ROOT/f'tests/{suite}.gd').is_file():p.error('unknown suite: '+suite)
@@ -47,7 +47,7 @@ if a.levels:
  for segment in a.levels.split(','):
   if not re.fullmatch(r'\d+(?:-\d+)?',segment):p.error('invalid level selector')
   bounds=list(map(int,segment.split('-')));lo=bounds[0];hi=bounds[-1]
-  if lo<1 or hi<lo or hi>150:p.error('level range must be within current 1-150 campaign')
+  if lo<1 or hi<lo or hi>max(p['end'] for p in json.loads((ROOT/'data/campaign.json').read_text())['packages']):p.error('level range exceeds authored campaign')
   ids.update(range(lo,hi+1))
  for n in sorted(ids):
   jobs.append((f'level_{n}',gd('campaign_smoke',n,n)))

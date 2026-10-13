@@ -1,0 +1,101 @@
+level,world,category,moves,difficulty_score,mechanics,targets,comparison_strategy,wins,trials
+151.0,4.0,easy,9.0,42.71,seed,"{""flowers"": 1.0, ""total"": 82.0}",objective,6,6
+152.0,4.0,medium,10.0,35.9,ice,"{""ice"": 2.0, ""total"": 115.0}",objective,6,6
+153.0,4.0,medium,10.0,37.0,dual,"{""duals"": 1.0, ""total"": 118.0}",objective,6,6
+154.0,4.0,hard,12.0,53.82,"seed,ice","{""flowers"": 1.0, ""ice"": 2.0, ""total"": 125.0}",objective,6,6
+155.0,4.0,easy,8.0,40.73,fountain,"{""fountains"": 2.0, ""total"": 73.0}",objective,6,6
+156.0,4.0,medium,10.0,50.4,"fountain,dual","{""duals"": 1.0, ""fountains"": 2.0, ""total"": 106.0}",objective,6,6
+157.0,4.0,hard,21.0,41.98,stone,"{""stones"": 1.0, ""total"": 134.0}",lookahead,5,6
+158.0,4.0,easy,10.0,36.6,lock,"{""locks"": 1.0, ""total"": 82.0}",objective,6,6
+159.0,4.0,medium,12.0,41.18,bridge,"{""bridges"": 1.0, ""total"": 115.0}",objective,6,6
+160.0,4.0,very_hard,14.0,41.36,"pin,bridge","{""bridges"": 1.0, ""pins"": 1.0, ""total"": 173.0}",objective,6,6
+161.0,4.0,easy,9.0,39.38,bubble,"{""bubbles"": 1.0, ""total"": 70.0}",objective,6,6
+162.0,4.0,medium,10.0,43.7,"bubble,portal","{""bubbles"": 1.0, ""total"": 103.0}",lookahead,5,6
+163.0,4.0,medium,15.0,32.27,bubble,"{""bubbles"": 1.0, ""total"": 106.0}",objective,6,6
+164.0,4.0,hard,12.0,33.57,bubble,"{""bubbles"": 1.0, ""total"": 134.0}",objective,6,6
+165.0,4.0,easy,8.0,46.85,"bubble,portal","{""bubbles"": 1.0, ""total"": 82.0}",objective,6,6
+166.0,4.0,medium,15.0,42.47,bubble,"{""bubbles"": 1.0, ""total"": 115.0}",objective,6,6
+167.0,4.0,hard,16.0,40.54,bubble,"{""bubbles"": 1.0, ""total"": 143.0}",lookahead,5,6
+168.0,4.0,easy,8.0,36.15,"bubble,portal","{""bubbles"": 1.0, ""total"": 70.0}",objective,6,6
+169.0,4.0,medium,10.0,41.9,bubble,"{""bubbles"": 1.0, ""total"": 103.0}",objective,6,6
+170.0,4.0,very_hard,14.0,33.5,bubble,"{""bubbles"": 1.0, ""total"": 161.0}",objective,6,6
+171.0,4.0,easy,10.0,42.5,"conveyor,portal","{""conveyors"": 7.0, ""total"": 79.0}",objective,6,6
+172.0,4.0,medium,10.0,36.6,"conveyor,portal","{""conveyors"": 8.0, ""total"": 112.0}",objective,6,6
+173.0,4.0,medium,10.0,39.7,"conveyor,portal","{""conveyors"": 9.0, ""total"": 115.0}",objective,6,6
+174.0,4.0,hard,12.0,43.32,"conveyor,portal","{""conveyors"": 10.0, ""total"": 143.0}",objective,6,6
+175.0,4.0,easy,10.0,41.6,"conveyor,portal","{""conveyors"": 6.0, ""total"": 70.0}",objective,6,6
+176.0,4.0,medium,10.0,38.9,"conveyor,portal","{""conveyors"": 7.0, ""total"": 103.0}",objective,6,6
+177.0,4.0,hard,12.0,45.52,"conveyor,portal","{""conveyors"": 8.0, ""total"": 131.0}",lookahead,5,6
+178.0,4.0,easy,13.0,37.48,"conveyor,portal","{""conveyors"": 9.0, ""total"": 79.0}",objective,6,6
+179.0,4.0,medium,10.0,45.8,"conveyor,portal","{""conveyors"": 10.0, ""total"": 112.0}",objective,6,6
+180.0,4.0,very_hard,14.0,31.14,"conveyor,portal","{""conveyors"": 6.0, ""total"": 170.0}",objective,6,6
+181.0,4.0,easy,9.0,51.18,"chameleon,lock","{""locks"": 1.0, ""shifts"": 2.0, ""total"": 88.0}",objective,6,6
+182.0,4.0,medium,10.0,54.6,"chameleon,lock","{""locks"": 1.0, ""shifts"": 2.0, ""total"": 100.0}",lookahead,3,6
+183.0,4.0,medium,11.0,57.16,"chameleon,lock","{""locks"": 1.0, ""shifts"": 2.0, ""total"": 103.0}",objective,6,6
+184.0,4.0,hard,12.0,49.52,"chameleon,lock","{""locks"": 1.0, ""shifts"": 2.0, ""total"": 131.0}",objective,6,6
+185.0,4.0,easy,17.0,46.05,"chameleon,lock","{""locks"": 1.0, ""shifts"": 2.0, ""total"": 79.0}",objective,6,6
+186.0,4.0,easy,12.0,52.63,"seal,dual","{""duals"": 1.0, ""seals"": 1.0, ""total"": 82.0}",objective,6,6
+187.0,4.0,hard,17.0,50.84,"seal,dual","{""duals"": 1.0, ""seals"": 1.0, ""total"": 140.0}",lookahead,5,6
+188.0,4.0,easy,10.0,42.2,"seal,dual","{""duals"": 1.0, ""seals"": 1.0, ""total"": 88.0}",objective,6,6
+189.0,4.0,medium,10.0,52.6,"seal,dual","{""duals"": 1.0, ""seals"": 1.0, ""total"": 100.0}",objective,6,6
+190.0,4.0,very_hard,14.0,50.29,"seal,dual","{""duals"": 1.0, ""seals"": 1.0, ""total"": 158.0}",objective,6,6
+191.0,4.0,easy,14.0,50.03,"vine,crate","{""crates"": 1.0, ""total"": 76.0, ""vines"": 1.0}",objective,6,6
+192.0,4.0,medium,13.0,45.78,"mirror,stone","{""mirrors"": 1.0, ""stones"": 1.0, ""total"": 109.0}",objective,6,6
+193.0,4.0,medium,10.0,47.4,"fountain,seal","{""fountains"": 2.0, ""seals"": 1.0, ""total"": 112.0}",objective,6,6
+194.0,4.0,hard,15.0,50.73,"seed,dual","{""duals"": 1.0, ""flowers"": 1.0, ""total"": 140.0}",objective,6,6
+195.0,4.0,easy,10.0,43.4,"conveyor,portal","{""conveyors"": 6.0, ""total"": 88.0}",objective,6,6
+196.0,4.0,medium,10.0,51.8,"vine,crate","{""crates"": 1.0, ""total"": 100.0, ""vines"": 1.0}",objective,6,6
+197.0,4.0,hard,19.0,43.74,"mirror,stone","{""mirrors"": 1.0, ""stones"": 1.0, ""total"": 128.0}",objective,6,6
+198.0,4.0,easy,14.0,44.83,"fountain,seal","{""fountains"": 2.0, ""seals"": 1.0, ""total"": 76.0}",objective,6,6
+199.0,4.0,medium,10.0,55.5,"seed,dual","{""duals"": 1.0, ""flowers"": 1.0, ""total"": 109.0}",objective,6,6
+200.0,4.0,very_hard,18.0,42.28,"fountain,seal","{""fountains"": 2.0, ""seals"": 1.0, ""total"": 167.0}",objective,6,6
+201.0,5.0,easy,12.0,42.68,stone,"{""stones"": 1.0, ""total"": 85.0}",objective,6,6
+202.0,5.0,medium,11.0,41.13,ice,"{""ice"": 2.0, ""total"": 118.0}",objective,6,6
+203.0,5.0,medium,16.0,31.45,dual,"{""duals"": 1.0, ""total"": 100.0}",objective,6,6
+204.0,5.0,hard,12.0,46.07,"vine,crate","{""crates"": 1.0, ""total"": 128.0, ""vines"": 1.0}",objective,6,6
+205.0,5.0,easy,23.0,49.9,"mirror,stone","{""mirrors"": 1.0, ""stones"": 1.0, ""total"": 76.0}",objective,6,6
+206.0,5.0,medium,10.0,49.7,stone,"{""stones"": 1.0, ""total"": 109.0}",objective,6,6
+207.0,5.0,hard,16.0,42.16,ice,"{""ice"": 2.0, ""total"": 137.0}",objective,5,6
+208.0,5.0,easy,8.0,33.02,dual,"{""duals"": 1.0, ""total"": 85.0}",objective,6,6
+209.0,5.0,medium,10.0,56.4,"vine,crate","{""crates"": 1.0, ""total"": 118.0, ""vines"": 1.0}",objective,6,6
+210.0,5.0,very_hard,14.0,48.07,"mirror,stone","{""mirrors"": 1.0, ""stones"": 1.0, ""total"": 155.0}",objective,6,6
+211.0,5.0,easy,12.0,54.68,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 73.0}",objective,6,6
+212.0,5.0,medium,10.0,50.0,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 106.0}",objective,6,6
+213.0,5.0,medium,16.0,49.01,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 109.0}",objective,6,6
+214.0,5.0,hard,12.0,56.82,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 137.0}",objective,6,6
+215.0,5.0,easy,11.0,56.33,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 85.0}",objective,6,6
+216.0,5.0,medium,11.0,56.53,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 118.0}",objective,6,6
+217.0,5.0,hard,19.0,55.18,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 125.0}",lookahead,5,6
+218.0,5.0,easy,11.0,52.04,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 73.0}",objective,6,6
+219.0,5.0,medium,12.0,57.43,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 106.0}",lookahead,5,6
+220.0,5.0,very_hard,14.0,44.71,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 164.0}",objective,6,6
+221.0,5.0,easy,8.0,58.85,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 82.0}",objective,6,6
+222.0,5.0,medium,18.0,45.39,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 115.0}",objective,6,6
+223.0,5.0,medium,11.0,59.33,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 118.0}",objective,6,6
+224.0,5.0,hard,12.0,53.02,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 125.0}",objective,6,6
+225.0,5.0,easy,10.0,46.3,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 73.0}",objective,6,6
+226.0,5.0,medium,10.0,59.2,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 106.0}",objective,6,6
+227.0,5.0,hard,12.0,59.77,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 134.0}",objective,6,6
+228.0,5.0,easy,8.0,43.25,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 82.0}",objective,6,6
+229.0,5.0,medium,13.0,57.45,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 115.0}",objective,6,6
+230.0,5.0,very_hard,14.0,60.96,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 173.0}",objective,6,6
+231.0,5.0,easy,10.0,52.6,"magnet,conveyor,portal","{""conveyors"": 7.0, ""magnets"": 2.0, ""total"": 70.0}",objective,6,6
+232.0,5.0,medium,10.0,46.7,"magnet,conveyor,portal","{""conveyors"": 8.0, ""magnets"": 2.0, ""total"": 103.0}",objective,6,6
+233.0,5.0,medium,10.0,49.8,"magnet,conveyor,portal","{""conveyors"": 9.0, ""magnets"": 2.0, ""total"": 106.0}",objective,6,6
+234.0,5.0,hard,12.0,53.57,"magnet,conveyor,portal","{""conveyors"": 10.0, ""magnets"": 2.0, ""total"": 134.0}",objective,6,6
+235.0,5.0,easy,10.0,53.8,"magnet,conveyor,portal","{""conveyors"": 6.0, ""magnets"": 2.0, ""total"": 82.0}",objective,6,6
+236.0,5.0,medium,10.0,54.3,"magnet,conveyor,portal","{""conveyors"": 7.0, ""magnets"": 2.0, ""total"": 115.0}",objective,6,6
+237.0,5.0,hard,12.0,57.52,"magnet,conveyor,portal","{""conveyors"": 8.0, ""magnets"": 2.0, ""total"": 143.0}",objective,6,6
+238.0,5.0,easy,10.0,49.4,"magnet,conveyor,portal","{""conveyors"": 9.0, ""magnets"": 2.0, ""total"": 70.0}",objective,6,6
+239.0,5.0,medium,10.0,55.9,"magnet,conveyor,portal","{""conveyors"": 10.0, ""magnets"": 2.0, ""total"": 103.0}",objective,6,6
+240.0,5.0,very_hard,14.0,41.5,"magnet,conveyor,portal","{""conveyors"": 6.0, ""magnets"": 2.0, ""total"": 161.0}",objective,6,6
+241.0,5.0,easy,10.0,56.5,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 79.0}",lookahead,5,6
+242.0,5.0,medium,13.0,57.22,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 112.0}",objective,5,6
+243.0,5.0,medium,10.0,41.7,"magnet,portal","{""magnets"": 2.0, ""total"": 115.0}",objective,6,6
+244.0,5.0,hard,12.0,47.32,"vine,crate","{""crates"": 1.0, ""total"": 143.0, ""vines"": 1.0}",objective,6,6
+245.0,5.0,easy,8.0,53.35,"chameleon,lock","{""locks"": 1.0, ""shifts"": 2.0, ""total"": 70.0}",lookahead,5,6
+246.0,5.0,medium,13.0,59.72,"floor,stone","{""floors"": 1.0, ""stones"": 1.0, ""total"": 103.0}",objective,6,6
+247.0,5.0,hard,12.0,59.52,"giant,ice","{""giants"": 1.0, ""ice"": 2.0, ""total"": 131.0}",objective,6,6
+248.0,5.0,easy,10.0,35.3,"magnet,portal","{""magnets"": 2.0, ""total"": 79.0}",objective,6,6
+249.0,5.0,medium,14.0,52.6,"vine,crate","{""crates"": 1.0, ""total"": 112.0, ""vines"": 1.0}",lookahead,5,6
+250.0,5.0,very_hard,24.0,111.68,"core,giant,floor,stone","{""cores"": 1.0, ""floors"": 1.0, ""giants"": 1.0, ""shield0"": 12.0, ""shield1"": 12.0, ""shield2"": 10.0, ""shield3"": 10.0, ""stones"": 1.0, ""total"": 170.0}",objective,6,6

@@ -1,0 +1,9284 @@
+{
+  "version": 3,
+  "generator_version": 2,
+  "levels": [
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 42.71,
+          "parts": {
+            "goals": 8,
+            "durability": 4,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 9.11111111111111
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "parts": {},
+          "score": 0.0
+        },
+        "revision": 0.0,
+        "seed": 125251.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 151.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        0,
+        1,
+        4,
+        4,
+        2,
+        0,
+        0,
+        4,
+        4,
+        0,
+        0,
+        1,
+        0,
+        1,
+        4,
+        2,
+        4,
+        1,
+        2,
+        4,
+        2,
+        4,
+        0,
+        4,
+        2,
+        1,
+        2,
+        1,
+        2,
+        3,
+        4,
+        0,
+        0,
+        4,
+        1,
+        1,
+        3,
+        4,
+        2,
+        4,
+        4,
+        0,
+        2,
+        3,
+        3,
+        0,
+        3,
+        1,
+        3,
+        1,
+        2,
+        2,
+        4,
+        3,
+        2,
+        3,
+        0,
+        3,
+        3,
+        4,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        0,
+        4,
+        3,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 42.0,
+          "kind": "seed"
+        }
+      ],
+      "moves": 9.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seed"
+      ],
+      "resonance": true,
+      "seed": 125251.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        7384.0,
+        10153.0
+      ],
+      "targets": {
+        "flowers": 1.0,
+        "total": 82.0
+      },
+      "theme": "cloud",
+      "tutorial": "Yanında eşleştir; iki darbeyle çiçek açar. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 35.9,
+          "parts": {
+            "goals": 8,
+            "durability": 4,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 64,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.19,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125352.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 152.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        0,
+        3,
+        3,
+        1,
+        3,
+        2,
+        3,
+        2,
+        1,
+        3,
+        0,
+        3,
+        0,
+        3,
+        3,
+        0,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        0,
+        0,
+        3,
+        0,
+        3,
+        1,
+        3,
+        0,
+        0,
+        0,
+        3,
+        3,
+        1,
+        2,
+        2,
+        3,
+        2,
+        2,
+        0,
+        1,
+        2,
+        2,
+        1,
+        3,
+        1,
+        2,
+        0,
+        0,
+        2,
+        0,
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        1,
+        0,
+        1,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 125352.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        9632.0,
+        13244.0
+      ],
+      "targets": {
+        "ice": 2.0,
+        "total": 115.0
+      },
+      "theme": "cloud",
+      "tutorial": "Buzu komşu eşleşme veya özel güçle kır. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 37.0,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 11.8
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 68,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.19,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125453.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 153.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        1,
+        3,
+        3,
+        2,
+        1,
+        0,
+        4,
+        1,
+        4,
+        1,
+        4,
+        4,
+        3,
+        0,
+        0,
+        2,
+        1,
+        3,
+        4,
+        2,
+        4,
+        2,
+        4,
+        3,
+        0,
+        2,
+        0,
+        4,
+        3,
+        0,
+        1,
+        0,
+        4,
+        0,
+        4,
+        2,
+        3,
+        1,
+        0,
+        3,
+        3,
+        1,
+        4,
+        0,
+        1,
+        2,
+        4,
+        0,
+        3,
+        3,
+        0,
+        2,
+        4,
+        1,
+        4,
+        0,
+        4,
+        1,
+        3,
+        2,
+        1,
+        4,
+        2,
+        3,
+        2,
+        0,
+        4,
+        4,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 57.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 125453.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        7736.0,
+        10637.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "total": 118.0
+      },
+      "theme": "cloud",
+      "tutorial": "Kristal gösterdiği iki renkle eşleşir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 53.82,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.416666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 64,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.1875,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125554.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 154.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        1,
+        1,
+        3,
+        3,
+        2,
+        4,
+        4,
+        1,
+        4,
+        1,
+        0,
+        0,
+        2,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        4,
+        0,
+        0,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        1,
+        4,
+        3,
+        1,
+        3,
+        2,
+        0,
+        2,
+        4,
+        4,
+        0,
+        3,
+        2,
+        2,
+        4,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        0,
+        1,
+        1,
+        0,
+        4,
+        1,
+        0,
+        0,
+        1,
+        1,
+        2,
+        4,
+        0,
+        2,
+        0,
+        4,
+        1,
+        2,
+        1,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 11.0,
+          "kind": "seed"
+        },
+        {
+          "index": 26.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seed",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 125554.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        7752.0,
+        10659.0
+      ],
+      "targets": {
+        "flowers": 1.0,
+        "ice": 2.0,
+        "total": 125.0
+      },
+      "theme": "cloud",
+      "tutorial": "Yanında eşleştir; iki darbeyle çiçek açar. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 40.73,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 9.125
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 10,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.2152777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125655.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        2.0,
+        8.0,
+        9.0,
+        16.0,
+        55.0,
+        62.0,
+        63.0,
+        69.0,
+        70.0,
+        71.0
+      ],
+      "id": 155.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        0,
+        2,
+        2,
+        1,
+        4,
+        2,
+        0,
+        4,
+        0,
+        3,
+        3,
+        2,
+        0,
+        2,
+        4,
+        1,
+        1,
+        0,
+        1,
+        4,
+        0,
+        0,
+        3,
+        2,
+        3,
+        2,
+        4,
+        3,
+        3,
+        4,
+        4,
+        1,
+        4,
+        2,
+        0,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        0,
+        3,
+        2,
+        0,
+        1,
+        1,
+        3,
+        2,
+        3,
+        4,
+        2,
+        1,
+        0,
+        2,
+        4,
+        4,
+        2,
+        2,
+        4,
+        1,
+        0,
+        3,
+        4,
+        1,
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "mechanics": [
+        {
+          "color": 0.0,
+          "index": 58.0,
+          "kind": "fountain"
+        }
+      ],
+      "moves": 8.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "fountain"
+      ],
+      "resonance": true,
+      "seed": 125655.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        6768.0,
+        9306.0
+      ],
+      "targets": {
+        "fountains": 2.0,
+        "total": 73.0
+      },
+      "theme": "cloud",
+      "tutorial": "Çeşmenin yanında eşleştir; normal kristaller boyanır. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 50.4,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 56,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.44,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 0.6666666666666666,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125756.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 156.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        3,
+        2,
+        2,
+        0,
+        0,
+        3,
+        2,
+        0,
+        0,
+        3,
+        0,
+        0,
+        1,
+        1,
+        2,
+        1,
+        3,
+        2,
+        0,
+        1,
+        3,
+        0,
+        1,
+        1,
+        3,
+        3,
+        1,
+        3,
+        2,
+        0,
+        0,
+        3,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        0,
+        3,
+        2,
+        2,
+        1,
+        0,
+        0,
+        3,
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        1,
+        0,
+        2,
+        0,
+        0,
+        2,
+        3,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        3,
+        0,
+        3,
+        1,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "color": 0.0,
+          "index": 25.0,
+          "kind": "fountain"
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 11.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "fountain",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 125756.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        7616.0,
+        10472.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "fountains": 2.0,
+        "total": 106.0
+      },
+      "theme": "cloud",
+      "tutorial": "Çeşmenin yanında eşleştir; normal kristaller boyanır. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 41.98,
+          "parts": {
+            "goals": 8,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 6.380952380952381
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 9,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125857.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 157.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        0,
+        2,
+        2,
+        0,
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        2,
+        4,
+        3,
+        1,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        4,
+        3,
+        0,
+        1,
+        3,
+        0,
+        3,
+        4,
+        0,
+        1,
+        2,
+        1,
+        1,
+        3,
+        0,
+        3,
+        2,
+        0,
+        3,
+        3,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        3,
+        0,
+        2,
+        4,
+        4,
+        4,
+        1,
+        2,
+        4,
+        1,
+        1,
+        4,
+        2,
+        4,
+        0,
+        0,
+        2,
+        2,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 23.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 21.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 125857.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        7528.0,
+        10351.0
+      ],
+      "targets": {
+        "stones": 1.0,
+        "total": 134.0
+      },
+      "theme": "cloud",
+      "tutorial": "Taşın yanında eşleştir veya özel güç kullan. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 36.6,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 8.2
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.2,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 125958.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        32.0,
+        33.0,
+        38.0,
+        39.0,
+        40.0,
+        41.0,
+        46.0,
+        47.0
+      ],
+      "id": 158.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        0,
+        4,
+        0,
+        2,
+        0,
+        4,
+        0,
+        1,
+        4,
+        4,
+        0,
+        4,
+        2,
+        2,
+        2,
+        0,
+        4,
+        2,
+        2,
+        3,
+        4,
+        0,
+        3,
+        1,
+        3,
+        1,
+        3,
+        4,
+        4,
+        0,
+        2,
+        3,
+        0,
+        1,
+        1,
+        3,
+        1,
+        3,
+        2,
+        0,
+        0,
+        3,
+        4,
+        3,
+        1,
+        1,
+        3,
+        4,
+        4,
+        2,
+        0,
+        2,
+        2,
+        1,
+        2,
+        4,
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        4,
+        0,
+        2,
+        4,
+        1,
+        0,
+        4,
+        4
+      ],
+      "mechanics": [
+        {
+          "color": 3.0,
+          "index": 16.0,
+          "kind": "lock",
+          "required": 14.0
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 125958.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        6920.0,
+        9515.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "total": 82.0
+      },
+      "theme": "cloud",
+      "tutorial": "Kilidin istediği renkten enerji topla. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 41.18,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 9.583333333333334
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 27,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.2,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126059.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 159.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        1,
+        4,
+        2,
+        4,
+        2,
+        1,
+        4,
+        3,
+        0,
+        3,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        2,
+        1,
+        1,
+        3,
+        1,
+        2,
+        0,
+        2,
+        2,
+        0,
+        4,
+        4,
+        1,
+        1,
+        4,
+        1,
+        0,
+        2,
+        0,
+        3,
+        0,
+        1,
+        3,
+        2,
+        1,
+        2,
+        4,
+        3,
+        2,
+        0,
+        0,
+        2,
+        2,
+        1,
+        4,
+        2,
+        1,
+        0,
+        4,
+        0,
+        2,
+        0,
+        1,
+        4,
+        2,
+        1,
+        3,
+        1,
+        0,
+        0,
+        3,
+        0,
+        2,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 13.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 126059.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        8208.0,
+        11286.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "total": 115.0
+      },
+      "theme": "cloud",
+      "tutorial": "Köprü her renge uyum sağlar. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 41.36,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 12.357142857142858
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 39,
+          "playable_cells": 72,
+          "power_opportunities": 5
+        },
+        "neighbor_similarity": {
+          "score": 0.34,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 0.6666666666666666,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126160.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 160.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        0,
+        0,
+        1,
+        0,
+        3,
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        3,
+        2,
+        0,
+        2,
+        1,
+        0,
+        2,
+        2,
+        3,
+        3,
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        0,
+        3,
+        0,
+        0,
+        1,
+        3,
+        3,
+        2,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        3,
+        3,
+        1,
+        0,
+        2,
+        3,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 40.0,
+          "kind": "pin"
+        },
+        {
+          "index": 19.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 126160.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        13080.0,
+        17985.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 173.0
+      },
+      "theme": "cloud",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 39.38,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 7.777777777777778
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126261.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 161.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        4,
+        3,
+        1,
+        4,
+        0,
+        4,
+        1,
+        0,
+        1,
+        3,
+        1,
+        3,
+        0,
+        4,
+        0,
+        2,
+        0,
+        4,
+        0,
+        3,
+        4,
+        0,
+        0,
+        3,
+        0,
+        4,
+        0,
+        0,
+        4,
+        2,
+        1,
+        0,
+        3,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        0,
+        3,
+        0,
+        4,
+        0,
+        2,
+        4,
+        0,
+        2,
+        4,
+        4,
+        2,
+        3,
+        1,
+        1,
+        4,
+        3,
+        4,
+        3,
+        0,
+        4,
+        3,
+        4,
+        3,
+        0,
+        1,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 10.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 9.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 126261.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5608.0,
+        7711.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 70.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 43.7,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.3
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.4,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126362.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 162.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        4,
+        2,
+        3,
+        0,
+        2,
+        4,
+        0,
+        0,
+        0,
+        4,
+        2,
+        3,
+        4,
+        2,
+        3,
+        2,
+        2,
+        1,
+        4,
+        3,
+        4,
+        2,
+        1,
+        3,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1,
+        0,
+        3,
+        1,
+        1,
+        2,
+        0,
+        4,
+        0,
+        2,
+        4,
+        3,
+        3,
+        2,
+        4,
+        2,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        4,
+        1,
+        4,
+        2,
+        1,
+        3,
+        1,
+        3,
+        2,
+        3,
+        2,
+        3,
+        3,
+        2,
+        4,
+        0,
+        1,
+        0,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 32.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 61.0,
+          "exit": 64.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 126362.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        7760.0,
+        10670.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 103.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 32.27,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 7.066666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 68,
+          "power_opportunities": 5
+        },
+        "neighbor_similarity": {
+          "score": 0.4,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126463.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 163.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        1,
+        2,
+        1,
+        4,
+        1,
+        2,
+        1,
+        3,
+        1,
+        4,
+        1,
+        2,
+        0,
+        2,
+        2,
+        4,
+        2,
+        4,
+        0,
+        2,
+        2,
+        0,
+        2,
+        4,
+        3,
+        0,
+        3,
+        4,
+        4,
+        3,
+        3,
+        3,
+        4,
+        4,
+        3,
+        0,
+        0,
+        2,
+        2,
+        4,
+        0,
+        2,
+        4,
+        3,
+        0,
+        3,
+        1,
+        2,
+        2,
+        1,
+        4,
+        4,
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        2,
+        0,
+        0,
+        2,
+        0,
+        3,
+        3,
+        2,
+        0,
+        3,
+        3,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 62.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 15.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 126463.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        6872.0,
+        9449.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 106.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 33.57,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 11.166666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 27,
+          "playable_cells": 64,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126564.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 164.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        0,
+        1,
+        2,
+        0,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1,
+        0,
+        2,
+        2,
+        3,
+        2,
+        0,
+        1,
+        2,
+        0,
+        2,
+        0,
+        1,
+        3,
+        2,
+        3,
+        0,
+        3,
+        1,
+        0,
+        0,
+        2,
+        2,
+        1,
+        1,
+        3,
+        2,
+        3,
+        1,
+        3,
+        3,
+        0,
+        3,
+        0,
+        2,
+        0,
+        0,
+        3,
+        2,
+        0,
+        2,
+        0,
+        1,
+        2,
+        3,
+        1,
+        0,
+        2,
+        1,
+        1,
+        0,
+        3,
+        1,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 38.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 126564.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        10728.0,
+        14751.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 134.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 46.85,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.25
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 28,
+          "playable_cells": 60,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.4177777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126665.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 165.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        1,
+        4,
+        1,
+        0,
+        4,
+        3,
+        0,
+        4,
+        0,
+        1,
+        3,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        2,
+        2,
+        4,
+        2,
+        4,
+        0,
+        4,
+        1,
+        2,
+        2,
+        3,
+        4,
+        1,
+        0,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        4,
+        3,
+        3,
+        4,
+        1,
+        1,
+        4,
+        1,
+        4,
+        4,
+        4,
+        1,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        0,
+        4,
+        1,
+        1,
+        0,
+        4,
+        4,
+        1,
+        0,
+        0,
+        4,
+        0,
+        2,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 26.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 8.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 31.0,
+          "exit": 4.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 126665.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        7008.0,
+        9636.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 82.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 42.47,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 7.666666666666667
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 56,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126766.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 166.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        0,
+        1,
+        0,
+        2,
+        4,
+        0,
+        2,
+        4,
+        4,
+        2,
+        3,
+        1,
+        1,
+        2,
+        4,
+        1,
+        3,
+        4,
+        3,
+        2,
+        4,
+        4,
+        0,
+        2,
+        4,
+        4,
+        1,
+        2,
+        3,
+        0,
+        2,
+        4,
+        1,
+        3,
+        3,
+        1,
+        1,
+        3,
+        0,
+        0,
+        4,
+        2,
+        1,
+        4,
+        3,
+        2,
+        4,
+        0,
+        2,
+        0,
+        0,
+        2,
+        4,
+        2,
+        3,
+        4,
+        4,
+        0,
+        2,
+        4,
+        4,
+        0,
+        4,
+        3,
+        0,
+        3,
+        0,
+        2,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 32.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 15.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 126766.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        6424.0,
+        8833.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 115.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 40.54,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 8.9375
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126867.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 167.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        3,
+        2,
+        4,
+        0,
+        3,
+        1,
+        0,
+        3,
+        1,
+        1,
+        2,
+        4,
+        4,
+        3,
+        2,
+        2,
+        1,
+        0,
+        3,
+        1,
+        2,
+        3,
+        3,
+        2,
+        4,
+        3,
+        2,
+        2,
+        3,
+        1,
+        4,
+        0,
+        2,
+        4,
+        2,
+        0,
+        4,
+        1,
+        4,
+        0,
+        0,
+        1,
+        4,
+        2,
+        0,
+        0,
+        2,
+        1,
+        2,
+        4,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0,
+        3,
+        2,
+        3,
+        3,
+        4,
+        0,
+        2,
+        3,
+        0,
+        4,
+        2,
+        4,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 16.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 126867.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        7000.0,
+        9625.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 143.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 36.15,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.75
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 26,
+          "playable_cells": 64,
+          "power_opportunities": 9
+        },
+        "neighbor_similarity": {
+          "score": 0.39,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 126968.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 168.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        3,
+        0,
+        1,
+        0,
+        0,
+        2,
+        3,
+        3,
+        1,
+        0,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        1,
+        1,
+        3,
+        0,
+        3,
+        1,
+        0,
+        0,
+        3,
+        3,
+        2,
+        0,
+        1,
+        3,
+        1,
+        2,
+        3,
+        0,
+        3,
+        1,
+        3,
+        0,
+        2,
+        3,
+        1,
+        1,
+        3,
+        2,
+        1,
+        0,
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        2,
+        1,
+        3,
+        0,
+        0,
+        2,
+        1,
+        3,
+        3,
+        2,
+        0,
+        2,
+        3,
+        0,
+        2,
+        0,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 35.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 8.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 29.0,
+          "exit": 0.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 126968.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        7960.0,
+        10945.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 70.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 41.9,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 10.3
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 26,
+          "playable_cells": 60,
+          "power_opportunities": 6
+        },
+        "neighbor_similarity": {
+          "score": 0.39,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127069.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 169.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        2,
+        0,
+        3,
+        4,
+        1,
+        1,
+        1,
+        2,
+        4,
+        0,
+        3,
+        0,
+        3,
+        0,
+        4,
+        0,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        3,
+        1,
+        2,
+        2,
+        4,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0,
+        2,
+        4,
+        1,
+        1,
+        4,
+        0,
+        4,
+        1,
+        0,
+        2,
+        4,
+        4,
+        1,
+        4,
+        4,
+        3,
+        4,
+        4,
+        0,
+        4,
+        2,
+        4,
+        0,
+        1,
+        3,
+        1,
+        1,
+        2,
+        4,
+        1,
+        2,
+        0,
+        4,
+        4,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 33.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 127069.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5744.0,
+        7898.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 103.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 33.5,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 35,
+          "playable_cells": 72,
+          "power_opportunities": 6
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127170.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 170.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        2,
+        4,
+        0,
+        2,
+        2,
+        0,
+        4,
+        0,
+        2,
+        4,
+        1,
+        4,
+        2,
+        4,
+        0,
+        3,
+        4,
+        0,
+        2,
+        2,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4,
+        2,
+        0,
+        3,
+        1,
+        3,
+        2,
+        1,
+        4,
+        0,
+        4,
+        3,
+        1,
+        3,
+        2,
+        4,
+        0,
+        4,
+        0,
+        2,
+        4,
+        1,
+        3,
+        3,
+        2,
+        3,
+        1,
+        4,
+        1,
+        1,
+        2,
+        1,
+        3,
+        4,
+        2,
+        4,
+        1,
+        0,
+        4,
+        1,
+        1,
+        2,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 11.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bubble"
+      ],
+      "resonance": true,
+      "seed": 127170.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        8768.0,
+        12056.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 161.0
+      },
+      "theme": "cloud",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            12.0,
+            13.0,
+            14.0,
+            22.0,
+            21.0,
+            20.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 42.5,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.9
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.2,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127271.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 171.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        3,
+        2,
+        4,
+        3,
+        1,
+        0,
+        4,
+        1,
+        0,
+        0,
+        4,
+        4,
+        0,
+        1,
+        2,
+        2,
+        1,
+        0,
+        0,
+        3,
+        4,
+        4,
+        0,
+        0,
+        4,
+        3,
+        1,
+        0,
+        0,
+        3,
+        4,
+        4,
+        0,
+        1,
+        1,
+        3,
+        2,
+        3,
+        1,
+        0,
+        3,
+        1,
+        0,
+        1,
+        4,
+        4,
+        1,
+        1,
+        4,
+        4,
+        2,
+        3,
+        3,
+        0,
+        3,
+        1,
+        4,
+        2,
+        3,
+        0,
+        0,
+        4,
+        4,
+        0,
+        2,
+        2,
+        0,
+        0,
+        4,
+        0
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 5.0,
+          "exit": 66.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127271.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        6864.0,
+        9438.0
+      ],
+      "targets": {
+        "conveyors": 7.0,
+        "total": 79.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            27.0,
+            28.0,
+            29.0,
+            37.0,
+            36.0,
+            35.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 36.6,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.2
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 64,
+          "power_opportunities": 5
+        },
+        "neighbor_similarity": {
+          "score": 0.74,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127372.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 172.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        2,
+        0,
+        3,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        2,
+        3,
+        0,
+        3,
+        0,
+        0,
+        1,
+        3,
+        0,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        1,
+        3,
+        0,
+        1,
+        0,
+        1,
+        3,
+        1,
+        0,
+        3,
+        0,
+        2,
+        2,
+        2,
+        1,
+        1,
+        3,
+        2,
+        2,
+        0,
+        3,
+        0,
+        0,
+        3,
+        0,
+        3,
+        3,
+        1,
+        0
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 2.0,
+          "exit": 48.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127372.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        8984.0,
+        12353.0
+      ],
+      "targets": {
+        "conveyors": 8.0,
+        "total": 112.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            20.0,
+            21.0,
+            22.0,
+            30.0,
+            29.0,
+            28.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 39.7,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 68,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.74,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127473.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 173.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        4,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        0,
+        3,
+        4,
+        0,
+        2,
+        2,
+        3,
+        1,
+        3,
+        2,
+        3,
+        0,
+        0,
+        3,
+        0,
+        3,
+        4,
+        2,
+        2,
+        3,
+        1,
+        2,
+        3,
+        1,
+        1,
+        4,
+        1,
+        4,
+        2,
+        1,
+        3,
+        1,
+        0,
+        0,
+        4,
+        1,
+        4,
+        4,
+        1,
+        4,
+        0,
+        1,
+        3,
+        1,
+        4,
+        4,
+        2,
+        0,
+        4,
+        2,
+        0,
+        3,
+        3,
+        2,
+        0,
+        4,
+        4,
+        0,
+        2,
+        2,
+        4,
+        4,
+        1
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 13.0,
+          "exit": 31.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127473.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        7920.0,
+        10890.0
+      ],
+      "targets": {
+        "conveyors": 9.0,
+        "total": 115.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            49.0,
+            50.0,
+            51.0,
+            59.0,
+            58.0,
+            57.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 43.32,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.916666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.75,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127574.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 174.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        2,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        3,
+        2,
+        4,
+        0,
+        0,
+        1,
+        4,
+        0,
+        0,
+        1,
+        1,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        4,
+        2,
+        4,
+        2,
+        3,
+        4,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        0,
+        2,
+        2,
+        0,
+        0,
+        3,
+        4,
+        0,
+        4,
+        0,
+        4,
+        0,
+        1,
+        0,
+        0,
+        4,
+        0,
+        2,
+        4,
+        2,
+        2,
+        3,
+        1,
+        3,
+        0,
+        0,
+        3,
+        3
+      ],
+      "mechanics": [],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 7.0,
+          "exit": 32.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127574.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        10048.0,
+        13816.0
+      ],
+      "targets": {
+        "conveyors": 10.0,
+        "total": 143.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            35.0,
+            36.0,
+            37.0,
+            45.0,
+            44.0,
+            43.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 41.6,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 60,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.7777777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127675.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 175.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        4,
+        4,
+        2,
+        1,
+        3,
+        2,
+        1,
+        0,
+        1,
+        1,
+        0,
+        4,
+        1,
+        2,
+        3,
+        3,
+        1,
+        3,
+        4,
+        1,
+        1,
+        4,
+        1,
+        4,
+        2,
+        1,
+        0,
+        1,
+        4,
+        1,
+        3,
+        0,
+        0,
+        1,
+        1,
+        4,
+        2,
+        4,
+        3,
+        1,
+        4,
+        3,
+        3,
+        2,
+        0,
+        2,
+        4,
+        2,
+        3,
+        0,
+        4,
+        0,
+        2,
+        4,
+        1,
+        1,
+        3,
+        4,
+        2,
+        4,
+        3,
+        2,
+        2,
+        1,
+        0,
+        4
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 8.0,
+          "exit": 31.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127675.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        7320.0,
+        10065.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "total": 70.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            36.0,
+            37.0,
+            38.0,
+            46.0,
+            45.0,
+            44.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 38.9,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.3
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.8233333333333334,
+          "parts": {
+            "shape": 0.3333333333333333,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 1.0,
+        "seed": 127776.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 176.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        2,
+        3,
+        1,
+        2,
+        1,
+        2,
+        2,
+        2,
+        0,
+        0,
+        2,
+        1,
+        3,
+        0,
+        1,
+        1,
+        3,
+        1,
+        3,
+        3,
+        1,
+        1,
+        2,
+        3,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        3,
+        0,
+        0,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        0,
+        1,
+        2,
+        1,
+        2,
+        3,
+        0,
+        2,
+        2,
+        3,
+        3,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        0,
+        3,
+        2,
+        1,
+        2,
+        3,
+        0,
+        0,
+        1,
+        1,
+        2,
+        0,
+        1
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 9.0,
+          "exit": 40.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127776.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        12984.0,
+        17853.0
+      ],
+      "targets": {
+        "conveyors": 7.0,
+        "total": 103.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            36.0,
+            37.0,
+            38.0,
+            46.0,
+            45.0,
+            44.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 45.52,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.916666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.74,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127877.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 177.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        3,
+        4,
+        1,
+        4,
+        4,
+        2,
+        0,
+        0,
+        3,
+        4,
+        1,
+        1,
+        0,
+        2,
+        0,
+        2,
+        1,
+        0,
+        4,
+        0,
+        3,
+        3,
+        1,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        2,
+        0,
+        1,
+        3,
+        4,
+        3,
+        1,
+        3,
+        2,
+        1,
+        3,
+        1,
+        0,
+        2,
+        0,
+        3,
+        0,
+        3,
+        3,
+        4,
+        4,
+        4,
+        0,
+        0,
+        4,
+        0,
+        0,
+        1,
+        3,
+        2,
+        2,
+        4,
+        0,
+        0,
+        4,
+        3,
+        4
+      ],
+      "mechanics": [],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 31.0,
+          "exit": 65.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127877.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        9888.0,
+        13596.0
+      ],
+      "targets": {
+        "conveyors": 8.0,
+        "total": 131.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            12.0,
+            13.0,
+            14.0,
+            22.0,
+            21.0,
+            20.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 37.48,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.076923076923077
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.75,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 127978.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 178.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        2,
+        1,
+        4,
+        0,
+        4,
+        0,
+        0,
+        4,
+        0,
+        1,
+        3,
+        2,
+        3,
+        2,
+        2,
+        4,
+        3,
+        3,
+        1,
+        1,
+        2,
+        2,
+        0,
+        3,
+        3,
+        4,
+        4,
+        0,
+        1,
+        4,
+        2,
+        4,
+        1,
+        2,
+        2,
+        4,
+        3,
+        0,
+        3,
+        4,
+        0,
+        1,
+        3,
+        2,
+        1,
+        3,
+        1,
+        2,
+        4,
+        1,
+        2,
+        0,
+        1,
+        3,
+        4,
+        2,
+        0,
+        3,
+        0,
+        3,
+        2,
+        1,
+        2,
+        0,
+        3,
+        3,
+        0,
+        1,
+        1,
+        3
+      ],
+      "mechanics": [],
+      "moves": 13.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 56.0,
+          "exit": 23.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 127978.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5952.0,
+        8184.0
+      ],
+      "targets": {
+        "conveyors": 9.0,
+        "total": 79.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            51.0,
+            52.0,
+            53.0,
+            61.0,
+            60.0,
+            59.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 45.8,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.2
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 60,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.75,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 128079.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 179.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        0,
+        2,
+        2,
+        3,
+        3,
+        1,
+        1,
+        1,
+        3,
+        3,
+        4,
+        0,
+        4,
+        3,
+        1,
+        4,
+        1,
+        3,
+        3,
+        1,
+        0,
+        1,
+        4,
+        0,
+        4,
+        4,
+        2,
+        2,
+        4,
+        0,
+        0,
+        4,
+        1,
+        4,
+        4,
+        0,
+        3,
+        0,
+        1,
+        3,
+        3,
+        0,
+        4,
+        0,
+        2,
+        4,
+        3,
+        0,
+        3,
+        0,
+        0,
+        3,
+        1,
+        1,
+        0,
+        4,
+        2,
+        1,
+        0,
+        2,
+        2,
+        3,
+        0,
+        0,
+        1,
+        3,
+        3,
+        2,
+        2,
+        1
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 62.0,
+          "exit": 2.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 128079.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        7704.0,
+        10593.0
+      ],
+      "targets": {
+        "conveyors": 10.0,
+        "total": 112.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            44.0,
+            45.0,
+            46.0,
+            54.0,
+            53.0,
+            52.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 31.14,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 12.142857142857142
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 41,
+          "playable_cells": 72,
+          "power_opportunities": 6
+        },
+        "neighbor_similarity": {
+          "score": 0.74,
+          "parts": {
+            "shape": 0.0,
+            "placements": 1.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 128180.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 180.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        0,
+        2,
+        2,
+        0,
+        1,
+        1,
+        0,
+        3,
+        1,
+        3,
+        0,
+        3,
+        3,
+        0,
+        3,
+        3,
+        2,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        2,
+        1,
+        0,
+        3,
+        1,
+        1,
+        3,
+        2,
+        3,
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        3,
+        2,
+        2,
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        1,
+        0,
+        0,
+        2
+      ],
+      "mechanics": [],
+      "moves": 14.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 3.0,
+          "exit": 1.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 128180.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        13376.0,
+        18392.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "total": 170.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 51.18,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.777777777777779
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 64,
+          "power_opportunities": 3
+        },
+        "revision": 1.0,
+        "seed": 128281.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 181.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        0,
+        1,
+        0,
+        1,
+        4,
+        0,
+        0,
+        4,
+        0,
+        4,
+        0,
+        3,
+        0,
+        1,
+        4,
+        2,
+        4,
+        3,
+        4,
+        3,
+        0,
+        0,
+        4,
+        0,
+        2,
+        1,
+        3,
+        4,
+        1,
+        0,
+        2,
+        1,
+        2,
+        4,
+        1,
+        2,
+        0,
+        4,
+        2,
+        0,
+        1,
+        0,
+        3,
+        0,
+        1,
+        0,
+        1,
+        4,
+        0,
+        0,
+        3,
+        1,
+        2,
+        0,
+        0,
+        1,
+        4,
+        1,
+        4,
+        0,
+        3,
+        3,
+        4,
+        0,
+        2,
+        0,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 58.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 51.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 1.0,
+          "index": 11.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 9.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 128281.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        7528.0,
+        10351.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 88.0
+      },
+      "theme": "cloud",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 54.6,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 3,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 35,
+          "playable_cells": 60,
+          "power_opportunities": 8
+        },
+        "revision": 1.0,
+        "seed": 128382.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "neighbor_similarity": {
+          "score": 0.5277777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 182.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        0,
+        4,
+        0,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        3,
+        2,
+        3,
+        1,
+        2,
+        3,
+        3,
+        2,
+        2,
+        1,
+        4,
+        4,
+        3,
+        4,
+        3,
+        3,
+        1,
+        1,
+        4,
+        1,
+        4,
+        2,
+        2,
+        1,
+        1,
+        3,
+        0,
+        0,
+        3,
+        4,
+        1,
+        1,
+        4,
+        2,
+        2,
+        0,
+        1,
+        2,
+        1,
+        3,
+        1,
+        1,
+        0,
+        4,
+        3,
+        1,
+        4,
+        1,
+        0,
+        0,
+        2,
+        2,
+        1,
+        1,
+        3,
+        0,
+        3,
+        0,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 54.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 11.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 2.0,
+          "index": 32.0,
+          "kind": "lock",
+          "required": 14.0
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 128382.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        6976.0,
+        9592.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 100.0
+      },
+      "theme": "cloud",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 57.16,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.363636363636363
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 56,
+          "power_opportunities": 2
+        },
+        "revision": 1.0,
+        "seed": 128483.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "neighbor_similarity": {
+          "score": 0.65,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.2,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 183.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        1,
+        1,
+        4,
+        3,
+        2,
+        4,
+        4,
+        3,
+        1,
+        0,
+        0,
+        3,
+        1,
+        2,
+        3,
+        3,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        1,
+        4,
+        4,
+        2,
+        4,
+        0,
+        3,
+        1,
+        3,
+        0,
+        3,
+        3,
+        2,
+        0,
+        1,
+        2,
+        1,
+        3,
+        4,
+        0,
+        2,
+        2,
+        3,
+        0,
+        2,
+        1,
+        2,
+        1,
+        4,
+        2,
+        1,
+        0,
+        3,
+        1,
+        2,
+        2,
+        1,
+        4,
+        3,
+        1,
+        4,
+        3,
+        4,
+        1,
+        3,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 11.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 24.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 3.0,
+          "index": 38.0,
+          "kind": "lock",
+          "required": 15.0
+        }
+      ],
+      "moves": 11.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 128483.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        7984.0,
+        10978.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 103.0
+      },
+      "theme": "cloud",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 49.52,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.916666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "revision": 1.0,
+        "seed": 128584.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 184.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        2,
+        2,
+        0,
+        3,
+        3,
+        3,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        3,
+        2,
+        0,
+        3,
+        0,
+        2,
+        1,
+        1,
+        3,
+        0,
+        0,
+        3,
+        1,
+        1,
+        2,
+        1,
+        0,
+        0,
+        2,
+        0,
+        3,
+        1,
+        3,
+        0,
+        1,
+        3,
+        1,
+        3,
+        3,
+        0,
+        1,
+        2,
+        2,
+        3,
+        1,
+        0,
+        1,
+        3,
+        0,
+        2,
+        1,
+        0,
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 27.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 30.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 32.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 128584.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        9192.0,
+        12639.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 131.0
+      },
+      "theme": "cloud",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 46.05,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 4.647058823529412
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 64,
+          "power_opportunities": 2
+        },
+        "revision": 1.0,
+        "seed": 128685.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 185.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        1,
+        3,
+        3,
+        2,
+        1,
+        0,
+        2,
+        4,
+        3,
+        1,
+        4,
+        0,
+        3,
+        1,
+        2,
+        2,
+        1,
+        3,
+        0,
+        0,
+        3,
+        3,
+        0,
+        4,
+        4,
+        3,
+        4,
+        1,
+        4,
+        2,
+        0,
+        1,
+        0,
+        0,
+        2,
+        3,
+        1,
+        0,
+        2,
+        4,
+        0,
+        1,
+        4,
+        3,
+        2,
+        0,
+        1,
+        3,
+        4,
+        3,
+        4,
+        1,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        1,
+        4,
+        3,
+        3,
+        4,
+        0,
+        1,
+        0,
+        1,
+        3,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 35.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 11.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 51.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 17.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 128685.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5540.0,
+        7617.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 79.0
+      },
+      "theme": "cloud",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 52.63,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.833333333333333
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 56,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.18,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 128786.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 186.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        4,
+        0,
+        4,
+        4,
+        3,
+        4,
+        0,
+        0,
+        4,
+        1,
+        4,
+        4,
+        2,
+        4,
+        1,
+        3,
+        2,
+        3,
+        0,
+        0,
+        2,
+        2,
+        2,
+        4,
+        1,
+        1,
+        4,
+        4,
+        3,
+        1,
+        0,
+        2,
+        3,
+        1,
+        4,
+        0,
+        2,
+        1,
+        0,
+        4,
+        1,
+        0,
+        3,
+        1,
+        1,
+        4,
+        4,
+        1,
+        4,
+        3,
+        0,
+        2,
+        2,
+        4,
+        2,
+        0,
+        2,
+        1,
+        1,
+        0,
+        2,
+        3,
+        1,
+        4,
+        4,
+        3,
+        2,
+        3,
+        3,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 10.0,
+          "kind": "seal",
+          "sequence": [
+            1.0,
+            2.0
+          ]
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 52.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seal",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 128786.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        8040.0,
+        11055.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "seals": 1.0,
+        "total": 82.0
+      },
+      "theme": "cloud",
+      "tutorial": "Mühürdeki renk sırasını başarılı hamlelerle tamamla. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 50.84,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.235294117647058
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 128887.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 187.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        4,
+        0,
+        4,
+        0,
+        3,
+        3,
+        2,
+        3,
+        2,
+        0,
+        4,
+        1,
+        1,
+        2,
+        1,
+        0,
+        3,
+        4,
+        1,
+        0,
+        0,
+        1,
+        3,
+        2,
+        3,
+        1,
+        0,
+        3,
+        3,
+        1,
+        0,
+        0,
+        4,
+        0,
+        3,
+        1,
+        0,
+        2,
+        1,
+        2,
+        3,
+        4,
+        1,
+        2,
+        3,
+        3,
+        0,
+        3,
+        3,
+        1,
+        0,
+        3,
+        2,
+        0,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        0,
+        0,
+        3,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "seal",
+          "sequence": [
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 38.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 17.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seal",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 128887.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        6288.0,
+        8646.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "seals": 1.0,
+        "total": 140.0
+      },
+      "theme": "cloud",
+      "tutorial": "Mühürdeki renk sırasını başarılı hamlelerle tamamla. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 42.2,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.8
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 64,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 128988.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        32.0,
+        33.0,
+        38.0,
+        39.0,
+        40.0,
+        41.0,
+        46.0,
+        47.0
+      ],
+      "id": 188.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        3,
+        2,
+        2,
+        0,
+        1,
+        1,
+        2,
+        3,
+        0,
+        0,
+        3,
+        1,
+        0,
+        1,
+        2,
+        0,
+        0,
+        2,
+        2,
+        1,
+        3,
+        0,
+        0,
+        2,
+        3,
+        0,
+        3,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        0,
+        3,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        2,
+        1,
+        0,
+        0,
+        3,
+        3,
+        2,
+        3,
+        3,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 52.0,
+          "kind": "seal",
+          "sequence": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 16.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seal",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 128988.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        8640.0,
+        11880.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "seals": 1.0,
+        "total": 88.0
+      },
+      "theme": "cloud",
+      "tutorial": "Mühürdeki renk sırasını başarılı hamlelerle tamamla. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 52.6,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129089.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 189.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        4,
+        1,
+        1,
+        3,
+        2,
+        2,
+        1,
+        4,
+        3,
+        0,
+        2,
+        4,
+        2,
+        3,
+        1,
+        0,
+        0,
+        3,
+        2,
+        0,
+        3,
+        4,
+        0,
+        0,
+        4,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        3,
+        2,
+        1,
+        3,
+        2,
+        0,
+        0,
+        1,
+        2,
+        0,
+        1,
+        4,
+        1,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        4,
+        3,
+        1,
+        1,
+        4,
+        2,
+        4,
+        3,
+        2,
+        0,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 24.0,
+          "kind": "seal",
+          "sequence": [
+            4.0,
+            0.0
+          ]
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 50.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seal",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 129089.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        7320.0,
+        10065.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "seals": 1.0,
+        "total": 100.0
+      },
+      "theme": "cloud",
+      "tutorial": "Mühürdeki renk sırasını başarılı hamlelerle tamamla. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 50.29,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 11.285714285714286
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 72,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129190.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 190.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2,
+        0,
+        3,
+        4,
+        3,
+        4,
+        1,
+        1,
+        0,
+        2,
+        3,
+        4,
+        4,
+        3,
+        0,
+        3,
+        0,
+        0,
+        0,
+        3,
+        4,
+        0,
+        1,
+        2,
+        3,
+        4,
+        4,
+        1,
+        2,
+        2,
+        4,
+        0,
+        1,
+        2,
+        0,
+        3,
+        1,
+        0,
+        3,
+        2,
+        3,
+        0,
+        3,
+        3,
+        0,
+        4,
+        1,
+        3,
+        3,
+        3,
+        1,
+        2,
+        1,
+        3,
+        2,
+        4,
+        1,
+        1,
+        3,
+        4,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 53.0,
+          "kind": "seal",
+          "sequence": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 41.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Gökyüzü Bulmacası",
+      "objective_stages": [
+        {
+          "duals": 1.0,
+          "seals": 1.0,
+          "total": 79.0
+        },
+        {
+          "duals": 1.0,
+          "seals": 1.0,
+          "total": 158.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seal",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 129190.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        9728.0,
+        13376.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "seals": 1.0,
+        "total": 158.0
+      },
+      "theme": "cloud",
+      "tutorial": "Mühürdeki renk sırasını başarılı hamlelerle tamamla. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 50.03,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.428571428571429
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.18,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129291.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 191.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        4,
+        1,
+        2,
+        2,
+        3,
+        4,
+        0,
+        3,
+        3,
+        1,
+        4,
+        1,
+        1,
+        0,
+        3,
+        2,
+        3,
+        0,
+        4,
+        0,
+        1,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1,
+        4,
+        4,
+        2,
+        3,
+        2,
+        0,
+        3,
+        2,
+        0,
+        2,
+        4,
+        1,
+        2,
+        3,
+        1,
+        0,
+        1,
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        3,
+        4,
+        3,
+        3,
+        3,
+        1,
+        3,
+        4,
+        0,
+        1,
+        4,
+        2,
+        4,
+        2,
+        4,
+        0,
+        3,
+        4,
+        3,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 13.0,
+          "kind": "vine"
+        },
+        {
+          "index": 41.0,
+          "kind": "crate"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "vine",
+        "crate"
+      ],
+      "resonance": true,
+      "seed": 129291.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        4848.0,
+        6666.0
+      ],
+      "targets": {
+        "crates": 1.0,
+        "total": 76.0,
+        "vines": 1.0
+      },
+      "theme": "cloud",
+      "tutorial": "Sarmaşığı komşu eşleşmelerle temizle. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 45.78,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.384615384615385
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.07,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129392.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 192.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        3,
+        1,
+        1,
+        0,
+        3,
+        2,
+        0,
+        3,
+        1,
+        2,
+        2,
+        1,
+        0,
+        1,
+        2,
+        2,
+        3,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        0,
+        2,
+        3,
+        3,
+        3,
+        0,
+        0,
+        2,
+        1,
+        2,
+        1,
+        3,
+        3,
+        2,
+        1,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        0,
+        3,
+        1,
+        0,
+        2,
+        2,
+        0,
+        0,
+        3,
+        1,
+        0,
+        2,
+        0,
+        2,
+        3,
+        3,
+        2,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 39.0,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 61.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 13.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {
+        "32": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 129392.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        11488.0,
+        15796.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 109.0
+      },
+      "theme": "cloud",
+      "tutorial": "Roketi aynaya yönlendir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 47.4,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.2
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 68,
+          "power_opportunities": 5
+        },
+        "neighbor_similarity": {
+          "score": 0.07,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129493.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 193.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        1,
+        0,
+        4,
+        1,
+        3,
+        2,
+        0,
+        3,
+        4,
+        0,
+        4,
+        1,
+        0,
+        0,
+        3,
+        4,
+        3,
+        3,
+        0,
+        4,
+        1,
+        4,
+        0,
+        2,
+        3,
+        4,
+        0,
+        1,
+        1,
+        2,
+        1,
+        1,
+        0,
+        4,
+        3,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        1,
+        4,
+        3,
+        1,
+        2,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        2,
+        1,
+        4,
+        2,
+        3,
+        4,
+        3,
+        1,
+        1,
+        2,
+        3,
+        4,
+        3,
+        0,
+        0,
+        3,
+        2,
+        4,
+        4
+      ],
+      "mechanics": [
+        {
+          "color": 3.0,
+          "index": 62.0,
+          "kind": "fountain"
+        },
+        {
+          "index": 19.0,
+          "kind": "seal",
+          "sequence": [
+            3.0,
+            4.0
+          ]
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "fountain",
+        "seal"
+      ],
+      "resonance": true,
+      "seed": 129493.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        6696.0,
+        9207.0
+      ],
+      "targets": {
+        "fountains": 2.0,
+        "seals": 1.0,
+        "total": 112.0
+      },
+      "theme": "cloud",
+      "tutorial": "Çeşmenin yanında eşleştir; normal kristaller boyanır. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 50.73,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.333333333333334
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 64,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.18,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129594.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 194.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        4,
+        4,
+        0,
+        1,
+        0,
+        3,
+        4,
+        3,
+        3,
+        0,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        0,
+        2,
+        2,
+        4,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        1,
+        0,
+        4,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        3,
+        1,
+        4,
+        3,
+        4,
+        1,
+        3,
+        3,
+        1,
+        2,
+        1,
+        2,
+        0,
+        2,
+        1,
+        4,
+        4,
+        2,
+        4,
+        2,
+        0,
+        1,
+        4,
+        4,
+        0,
+        0,
+        3,
+        3,
+        3,
+        0,
+        1,
+        3,
+        2,
+        1,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 21.0,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 11.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 15.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seed",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 129594.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        7208.0,
+        9911.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "flowers": 1.0,
+        "total": 140.0
+      },
+      "theme": "cloud",
+      "tutorial": "Yanında eşleştir; iki darbeyle çiçek açar. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            25.0,
+            26.0,
+            27.0,
+            35.0,
+            34.0,
+            33.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 43.4,
+          "parts": {
+            "goals": 8,
+            "durability": 0,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.8
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.2152777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129695.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 195.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        4,
+        3,
+        4,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        3,
+        3,
+        1,
+        3,
+        0,
+        2,
+        1,
+        1,
+        4,
+        4,
+        3,
+        2,
+        1,
+        0,
+        1,
+        1,
+        3,
+        1,
+        0,
+        3,
+        1,
+        4,
+        4,
+        0,
+        1,
+        2,
+        1,
+        0,
+        0,
+        3,
+        0,
+        2,
+        2,
+        3,
+        0,
+        4,
+        2,
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        0,
+        4,
+        0,
+        4,
+        3,
+        4,
+        3,
+        1,
+        0,
+        0,
+        0,
+        4,
+        3,
+        3,
+        4,
+        3,
+        1,
+        4
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [
+        {
+          "entry": 46.0,
+          "exit": 68.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 129695.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5872.0,
+        8074.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "total": 88.0
+      },
+      "theme": "cloud",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 51.8,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 56,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.2775,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129796.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 196.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        1,
+        3,
+        0,
+        0,
+        3,
+        3,
+        1,
+        1,
+        3,
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        1,
+        3,
+        2,
+        2,
+        0,
+        3,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2,
+        3,
+        0,
+        3,
+        3,
+        1,
+        3,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        1,
+        2,
+        3,
+        2,
+        0,
+        2,
+        2,
+        1,
+        0,
+        0,
+        2,
+        1,
+        1,
+        1,
+        3,
+        3,
+        0,
+        0,
+        3,
+        0,
+        0,
+        2,
+        0,
+        0,
+        3,
+        2,
+        2,
+        3,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 33.0,
+          "kind": "vine"
+        },
+        {
+          "index": 32.0,
+          "kind": "crate"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "vine",
+        "crate"
+      ],
+      "resonance": true,
+      "seed": 129796.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        8168.0,
+        11231.0
+      ],
+      "targets": {
+        "crates": 1.0,
+        "total": 100.0,
+        "vines": 1.0
+      },
+      "theme": "cloud",
+      "tutorial": "Sarmaşığı komşu eşleşmelerle temizle. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 43.74,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.7368421052631575
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 27,
+          "playable_cells": 72,
+          "power_opportunities": 1
+        },
+        "revision": 1.0,
+        "seed": 129897.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "neighbor_similarity": {
+          "score": 0.07,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 0.0
+          }
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 197.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        0,
+        4,
+        2,
+        1,
+        4,
+        3,
+        2,
+        4,
+        4,
+        2,
+        0,
+        4,
+        0,
+        1,
+        2,
+        0,
+        0,
+        2,
+        2,
+        4,
+        1,
+        4,
+        0,
+        4,
+        0,
+        1,
+        3,
+        2,
+        1,
+        2,
+        3,
+        4,
+        3,
+        4,
+        3,
+        0,
+        0,
+        2,
+        4,
+        2,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        4,
+        4,
+        1,
+        2,
+        0,
+        4,
+        3,
+        3,
+        2,
+        4,
+        1,
+        3,
+        4,
+        0,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        3,
+        0,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 22.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 21.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 19.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {
+        "16": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 129897.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        11840.0,
+        16280.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 128.0
+      },
+      "theme": "cloud",
+      "tutorial": "Roketi aynaya yönlendir. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 44.83,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.428571428571429
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 7,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.08,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 129998.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 198.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        1,
+        1,
+        3,
+        1,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        0,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        0,
+        2,
+        3,
+        2,
+        0,
+        3,
+        2,
+        2,
+        4,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        3,
+        2,
+        1,
+        1,
+        0,
+        3,
+        1,
+        2,
+        4,
+        0,
+        0,
+        3,
+        2,
+        1,
+        3,
+        2,
+        1,
+        4,
+        1,
+        0,
+        4,
+        1,
+        2,
+        3,
+        3,
+        0,
+        4,
+        3,
+        4,
+        3,
+        4,
+        0,
+        4,
+        2,
+        0,
+        1,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "color": 3.0,
+          "index": 28.0,
+          "kind": "fountain"
+        },
+        {
+          "index": 22.0,
+          "kind": "seal",
+          "sequence": [
+            3.0,
+            4.0
+          ]
+        }
+      ],
+      "moves": 14.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "fountain",
+        "seal"
+      ],
+      "resonance": true,
+      "seed": 129998.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        7016.0,
+        9647.0
+      ],
+      "targets": {
+        "fountains": 2.0,
+        "seals": 1.0,
+        "total": 76.0
+      },
+      "theme": "cloud",
+      "tutorial": "Çeşmenin yanında eşleştir; normal kristaller boyanır. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 55.5,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.9
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.18,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130099.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 199.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        1,
+        2,
+        0,
+        4,
+        4,
+        1,
+        4,
+        2,
+        3,
+        1,
+        3,
+        2,
+        1,
+        4,
+        4,
+        0,
+        0,
+        2,
+        4,
+        0,
+        0,
+        3,
+        1,
+        4,
+        0,
+        1,
+        2,
+        0,
+        0,
+        4,
+        0,
+        3,
+        1,
+        3,
+        4,
+        3,
+        2,
+        4,
+        4,
+        3,
+        3,
+        1,
+        3,
+        3,
+        1,
+        1,
+        3,
+        4,
+        0,
+        1,
+        3,
+        2,
+        4,
+        4,
+        2,
+        1,
+        0,
+        2,
+        2,
+        0,
+        3,
+        1,
+        3,
+        0,
+        4,
+        1,
+        4,
+        4,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 24.0,
+          "kind": "seed"
+        },
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 30.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Gökyüzü Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "seed",
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 130099.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        6424.0,
+        8833.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "flowers": 1.0,
+        "total": 109.0
+      },
+      "theme": "cloud",
+      "tutorial": "Yanında eşleştir; iki darbeyle çiçek açar. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 42.28,
+          "parts": {
+            "goals": 12,
+            "durability": 4,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 9.277777777777779
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 72,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.17,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130200.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 200.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        2,
+        2,
+        3,
+        0,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1,
+        3,
+        1,
+        0,
+        0,
+        3,
+        3,
+        0,
+        3,
+        3,
+        0,
+        2,
+        3,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        0,
+        3,
+        3,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        1,
+        1,
+        2,
+        0,
+        1,
+        0,
+        0,
+        1,
+        3,
+        0,
+        1,
+        3,
+        3,
+        2,
+        3,
+        2,
+        2,
+        1,
+        0,
+        2,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "color": 0.0,
+          "index": 26.0,
+          "kind": "fountain"
+        },
+        {
+          "index": 61.0,
+          "kind": "seal",
+          "sequence": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "moves": 18.0,
+      "name": "Bulut Krallığı Finali",
+      "objective_stages": [
+        {
+          "fountains": 1.0,
+          "seals": 1.0,
+          "total": 83.0
+        },
+        {
+          "fountains": 2.0,
+          "seals": 1.0,
+          "total": 167.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "fountain",
+        "seal"
+      ],
+      "resonance": true,
+      "seed": 130200.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        13448.0,
+        18491.0
+      ],
+      "targets": {
+        "fountains": 2.0,
+        "seals": 1.0,
+        "total": 167.0
+      },
+      "theme": "cloud",
+      "tutorial": "Çeşmenin yanında eşleştir; normal kristaller boyanır. Hedef ikonlarına dokun.",
+      "world_id": 4.0
+    }
+  ]
+}

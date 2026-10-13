@@ -1,15 +1,17 @@
-name: PRIZMA Rainbow Canyon test release
+name: PRIZMA Level Generator 2.0 test release
 
 on:
   push:
-    branches: [prizma-release-v0.10.0]
+    branches: [prizma-release-v0.11.0]
+    paths-ignore:
+      - "**/*.md"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: prizma-test-release-v0.10.0
+  group: prizma-test-release-v0.11.0
   cancel-in-progress: true
 
 jobs:
@@ -18,7 +20,7 @@ jobs:
     timeout-minutes: 45
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: 34973a8e79f631592e39ae5bbf22fccbd1bf0e17
+      PRIZMA_ARTIFACT_COMMIT: 22b3e05ef91204addfcea58101fb51fae292c15f
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
@@ -51,13 +53,14 @@ jobs:
         run: bash tools/test_release_acceptance.sh
       - name: Retrieve exact tested APK without exposing signing key
         run: |
-          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.10.0
+          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.11.0
           test "$(git rev-parse FETCH_HEAD)" = "$PRIZMA_ARTIFACT_COMMIT"
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-match3.apk" > build/prizma-match3.apk
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-match3.apk.sha256" > build/prizma-match3.apk.sha256
           git show "$PRIZMA_ARTIFACT_COMMIT:prizma-runtime.sha256" > build/prizma-runtime.sha256
-          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-v010-report.zip" > build/prizma-v010-report.zip
-          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-canyon.png" > build/prizma-canyon.png
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-v011-report.zip" > build/prizma-v011-report.zip
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-cloud.png" > build/prizma-cloud.png
+          git show "$PRIZMA_ARTIFACT_COMMIT:prizma-lava.png" > build/prizma-lava.png
       - name: Verify exact runtime source, APK bytes and signature
         run: |
           python3 tools/runtime_digest.py > build/current-runtime.sha256
@@ -66,30 +69,28 @@ jobs:
           "$PRIZMA_TOOLS_DIR/android-sdk/build-tools/36.0.0/apksigner" verify --verbose build/prizma-match3.apk
           "$PRIZMA_TOOLS_DIR/android-sdk/build-tools/36.0.0/apksigner" verify --print-certs build/prizma-match3.apk > build/signing-certificate.txt
           python3 -c 'from pathlib import Path; assert "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a" in Path("build/signing-certificate.txt").read_text()'
-      - name: Create source archive
-        run: git archive --format=zip --output=build/prizma-source.zip HEAD
       - name: Publish Match-3 prerelease
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          cp build/prizma-match3.apk build/prizma-v0.10.0.apk
-          sha256sum build/prizma-v0.10.0.apk > build/prizma-v0.10.0.apk.sha256
-          if gh release view v0.10.0 >/dev/null 2>&1; then
+          cp build/prizma-match3.apk build/prizma-v0.11.0.apk
+          sha256sum build/prizma-v0.11.0.apk > build/prizma-v0.11.0.apk.sha256
+          if gh release view v0.11.0 >/dev/null 2>&1; then
             mkdir -p build/published
-            gh release download v0.10.0 --pattern prizma-runtime.sha256 --pattern prizma-v0.10.0.apk --dir build/published
+            gh release download v0.11.0 --pattern prizma-runtime.sha256 --pattern prizma-v0.11.0.apk --dir build/published
             cmp build/prizma-runtime.sha256 build/published/prizma-runtime.sha256
-            python3 -c 'from pathlib import Path; import hashlib; assert hashlib.sha256(Path("build/published/prizma-v0.10.0.apk").read_bytes()).digest() == hashlib.sha256(Path("build/prizma-match3.apk").read_bytes()).digest()'
+            python3 -c 'from pathlib import Path; import hashlib; assert hashlib.sha256(Path("build/published/prizma-v0.11.0.apk").read_bytes()).digest() == hashlib.sha256(Path("build/prizma-match3.apk").read_bytes()).digest()'
             echo "Existing prerelease matches the verified runtime and APK bytes."
             exit 0
           fi
-          gh release create v0.10.0 \
-            build/prizma-v0.10.0.apk \
-            build/prizma-v0.10.0.apk.sha256 \
+          gh release create v0.11.0 \
+            build/prizma-v0.11.0.apk \
+            build/prizma-v0.11.0.apk.sha256 \
             build/prizma-runtime.sha256 \
-            build/prizma-source.zip \
-            build/prizma-v010-report.zip \
-            build/prizma-canyon.png \
+            build/prizma-v011-report.zip \
+            build/prizma-cloud.png \
+            build/prizma-lava.png \
             --target "$GITHUB_SHA" \
-            --title "PRİZMA 0.10.0 — Gökkuşağı Kanyonu, 150 bölüm ve 20 mekanik" \
+            --title "PRİZMA 0.11.0 — Level Generator 2.0, 250 bölüm ve 5 dünya" \
             --prerelease \
-            --notes-file docs/RELEASE_v0.10.0.md
+            --notes-file docs/RELEASE_v0.11.0.md

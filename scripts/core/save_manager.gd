@@ -19,7 +19,7 @@ func _init(save_path: String = "user://prizma-save.json") -> void:
 	load_save()
 
 static func defaults() -> Dictionary:
-	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "world_rewards":[], "active": {}, "tutorials": [], "settings": {"music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false, "quality": "auto", "shake": true, "reduced_effects": false, "music_volume": 0.65, "sfx_volume": 0.8}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
+	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "world_rewards":[], "cosmetic_rewards":[], "active": {}, "tutorials": [], "settings": {"music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false, "quality": "auto", "shake": true, "reduced_effects": false, "music_volume": 0.65, "sfx_volume": 0.8}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
 
 static func canonical(value: Variant) -> Variant:
 	if value is Dictionary:
@@ -43,6 +43,12 @@ func valid_meta(parsed: Variant, version: int) -> bool:
 		for world in parsed.world_rewards:
 			if not Board.whole(world,1,maxi(1,Catalog.world_for(Catalog.count()))) or seen.has(int(world)): return false
 			seen[int(world)]=true
+	if parsed.has("cosmetic_rewards"):
+		if not parsed.cosmetic_rewards is Array:return false
+		var cosmetic_seen: Dictionary={}
+		for item in parsed.cosmetic_rewards:
+			if not item is String or item.is_empty() or item.length()>64 or cosmetic_seen.has(item):return false
+			cosmetic_seen[item]=true
 	for key in ["music", "sfx", "haptics", "reduced_motion", "colorblind"]:
 		if not parsed.settings.has(key) or not parsed.settings[key] is bool: return false
 	for key in ["shake", "reduced_effects"]:
@@ -92,7 +98,7 @@ func load_save() -> bool:
 			data.unlocked = int(data.unlocked)
 			# Previously ten was the catalog cap, even when level ten was complete.
 			var caps: Array=[10,30,75]
-			for world in range(1,Catalog.world_for(Catalog.count())+1):caps.append(world*50)
+			for world in preload("res://scripts/core/world_catalog.gd").playable_worlds():caps.append(int(world.end))
 			for cap in caps:
 				if data.unlocked==cap and data.results.has(str(cap)): data.unlocked=mini(cap+1,Catalog.count())
 			if not data.has("world_rewards"): data.world_rewards=[]
@@ -198,10 +204,14 @@ func complete(board) -> bool:
 	var first: bool = key not in data.rewarded
 	if first: data.rewarded.append(key)
 	data.unlocked = mini(Catalog.count(), maxi(int(data.unlocked), int(board.level.id) + 1))
-	if int(board.level.id)%50==0:
+	if int(board.level.id)==int(preload("res://scripts/core/world_catalog.gd").get_world(Catalog.world_for(int(board.level.id))).end):
 		if not data.has("world_rewards"): data.world_rewards=[]
 		var world:=Catalog.world_for(int(board.level.id))
 		if world not in data.world_rewards: data.world_rewards.append(world)
+		var metadata=preload("res://scripts/core/world_catalog.gd").get_world(world)
+		if metadata.has("reward_id"):
+			if not data.has("cosmetic_rewards"):data.cosmetic_rewards=[]
+			if metadata.reward_id not in data.cosmetic_rewards:data.cosmetic_rewards.append(metadata.reward_id)
 	data.active = {}
 	flush()
 	return first

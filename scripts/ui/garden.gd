@@ -3,6 +3,9 @@ const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 const Palette = preload("res://scripts/ui/palette.gd")
 ## Calm, layered world; monochrome slowly restores with collected color energy.
 var world:=1
+var world_completed:=false
+var shader_completed:=-1.0
+var last_flow:=0.0
 var quality := "balanced"
 var refresh_age := 0.0
 var backdrop: TextureRect
@@ -33,9 +36,12 @@ func _ready() -> void:
 
 func set_world(number: int) -> void:
 	world=number
+	world_completed=false
+	shader_completed=-1.0
 	if backdrop:
-		artwork=load("res://assets/casual/world-canyon.png" if world==3 else ("res://assets/casual/world-ocean.png" if world==2 else "res://assets/casual/world-garden.png"))
+		artwork=load(preload("res://scripts/core/world_catalog.gd").get_world(world).art)
 		backdrop.texture=artwork
+		backdrop.material.set_shader_parameter("lava_effect",1.0 if world==5 else 0.0)
 	queue_redraw()
 
 func _process(delta: float) -> void:
@@ -48,7 +54,15 @@ func _process(delta: float) -> void:
 	var interval := .05 if quality == "high" else .1
 	if refresh_age >= interval and (not reduced_motion and quality != "performance"):
 		refresh_age = 0
+		if backdrop and world==5:
+			last_flow=fmod(clock*.12,1.0);backdrop.material.set_shader_parameter("flow_phase",last_flow)
 		queue_redraw()
+	if backdrop:
+		var complete:=1.0 if world_completed else 0.0
+		if shader_completed!=complete:
+			shader_completed=complete;backdrop.material.set_shader_parameter("lava_complete",complete)
+		if (reduced_motion or quality=="performance") and last_flow!=0:
+			last_flow=0;backdrop.material.set_shader_parameter("flow_phase",0.0)
 
 func _draw() -> void:
 	var extent := size
@@ -70,7 +84,7 @@ func _draw() -> void:
 				var tip := base + Vector2(70 if side == 0 else -70, -66)
 				draw_line(base, tip, Color("25474b"), 9)
 				draw_circle(tip, 27, Color("244d51"))
-	if world==3 and not reduced_motion and quality!="performance":
+	if world in [3,4] and not reduced_motion and quality!="performance":
 		for k in 3:
 			var x:=fmod(clock*7+k*211,extent.x+100)-50
 			draw_ellipse_cloud(Vector2(x,80+k*110))

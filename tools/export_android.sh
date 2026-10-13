@@ -23,7 +23,7 @@ from pathlib import Path
 from zipfile import ZipFile
 manifest = Path('build/android-package.txt').read_text()
 assert "name='" + sys.argv[2] + "'" in manifest
-assert "versionName='0.10.0'" in manifest
+assert "versionName='0.11.0'" in manifest
 assert "sdkVersion:'24'" in manifest and "targetSdkVersion:'36'" in manifest
 assert 'android.permission.INTERNET' not in manifest
 assert 'android.permission.VIBRATE' in manifest
@@ -53,6 +53,10 @@ with ZipFile(sys.argv[1]) as apk:
     canyon = json.loads(apk.read('assets/data/levels-101-150.json'))['levels']
     assert [level['id'] for level in canyon] == list(range(101,151))
     assert canyon[-1]['targets']['cores'] == 1
+    for first,last in [(151,200),(201,250)]:
+        rows=json.loads(apk.read(f'assets/data/levels-{first}-{last}.json'))['levels']
+        assert [level['id'] for level in rows] == list(range(first,last+1))
+    assert json.loads(apk.read('assets/data/campaign.json'))['packages'][-1]['end'] == 250
     assert 'lib/arm64-v8a/libgodot_android.so' in names
     assert 'lib/armeabi-v7a/libgodot_android.so' in names
     assert not any(name.startswith(('assets/tests/', 'assets/tools/')) for name in names)

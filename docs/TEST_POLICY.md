@@ -25,14 +25,14 @@ python3 tools/test_profiles.py FULL --reuse --android-build
 |---|---|---|
 | SMOKE | Tek hızlı sahnede yatay Match-3, kararlı başlangıç, geçerli/geçersiz takas ve maliyeti, otomatik çözümleme, yer çekimi, diskten kayıt dönüşümü, gerçek ana sahne açılışı | Normal değişiklik sonrası hızlı kontrol |
 | TARGETED | Açıkça seçilen mevcut mekanik/UI testleri ve belirtilen bölüm aralıkları; bölüm kontrolünde deterministik tekrar ve kayıt karşılaştırması | Değiştirilen sistem, onu kullanan bölümler ve kritik komşu entegrasyonlar |
-| FULL | Temel ve 20 mekanik için mevcut unit/entegrasyon paketleri; fırtına/dalga/güç kombinasyonları; kalite, UI ve hedef paneli; bağımsız süreçte kayıt devamlılığı; 150 bölümün veri/oynanabilirlik/deterministik kayıt kontrolleri; Android APK bütünlük/imza kontrolü | Sürüm finali, büyük eşleşme/yer çekimi değişikliği veya kanıtlanan yüksek risk |
+| FULL | Temel ve 20 mekanik için mevcut unit/entegrasyon paketleri; fırtına/dalga/güç kombinasyonları; kalite, UI ve hedef paneli; bağımsız süreçte kayıt devamlılığı; hazırlanmış bütün bölümlerin (v0.11: 250) veri/oynanabilirlik/deterministik kayıt kontrolleri; Android APK bütünlük/imza kontrolü | Sürüm finali, büyük eşleşme/yer çekimi değişikliği veya kanıtlanan yüksek risk |
 
 FULL'de Android kontrolü atlanmaz: mevcut APK kaynak runtime parmak iziyle eşleşmiyorsa profil başarısız olur. `--android-build` verilmişse bir kez export edilip doğrulanır; eşleşen APK yeniden derlenmez. Paket, sürüm adı, aynı sertifika, ZIP bütünlüğü, bütün veri JSON'ları ve ARM kitaplıkları kontrol edilir. İmza anahtarı dış araç dizininde kalır. Tamamen yeni bir ortamda uygun Android SDK yoksa sonuç engeldir, başarılı sayılmaz.
 
 ## Değişiklikten kapsama
 
 - Sadece sanat/animasyon/UI: SMOKE + ilgili UI ve olay verisi bütünlüğü testleri. Gerçek render/perf ölçümü yalnızca efekt/render maliyeti değiştiyse; tüm bölüm simülasyonlarını başlatma.
-- Bölüm verisi: yalnızca değişen IDs; önce varsayılan seed ile deterministik oynanabilirlik/kayıt kontrolü. Sınırda sonuçta 3 seed, gerekirse daha fazla. Başlangıçta tüm 150 bölüm × yüzlerce seed çalıştırma.
+- Bölüm verisi: yalnızca değişen IDs; önce varsayılan seed ile deterministik oynanabilirlik/kayıt kontrolü. Sınırda sonuçta 3 seed, gerekirse daha fazla. Başlangıçta tüm kampanya × yüzlerce seed çalıştırma.
 - Mekanik: ilgili mevcut unit testi + o mekaniği kullanan bölüm IDs + etkilenen portal/fırtına/güç/kayıt entegrasyonları. Mekaniğin veri alanına göre bölüm JSON'larını sorgula; yalnızca dünya numarasına güvenme.
 - Eşleşme/yer çekimi/maliyet/hasar motoru: bütün bölüm aralığı için regresyon ve kritik kayıt/özel güç testleri. Büyük değişiklikte FULL.
 - Kayıt veya güvenlik: değişikliğin gerçek riskini doğrulayan test zorunludur. Ödeme gelecekte eklenirse ödeme bütünlüğü de zorunludur; şu anda oyunda ödeme sistemi yoktur.

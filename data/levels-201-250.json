@@ -1,0 +1,9310 @@
+{
+  "version": 3,
+  "generator_version": 2,
+  "levels": [
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 42.68,
+          "parts": {
+            "goals": 8,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 7.083333333333333
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "parts": {},
+          "score": 0.0
+        },
+        "revision": 0.0,
+        "seed": 130301.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 201.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        2,
+        3,
+        3,
+        1,
+        0,
+        1,
+        0,
+        4,
+        4,
+        2,
+        2,
+        0,
+        3,
+        4,
+        2,
+        3,
+        1,
+        0,
+        4,
+        3,
+        3,
+        1,
+        4,
+        1,
+        3,
+        3,
+        1,
+        3,
+        1,
+        0,
+        2,
+        4,
+        1,
+        3,
+        4,
+        1,
+        0,
+        3,
+        4,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        0,
+        1,
+        3,
+        1,
+        1,
+        2,
+        4,
+        1,
+        1,
+        0,
+        0,
+        3,
+        2,
+        3,
+        4,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        4,
+        0,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 13.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 130301.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5800.0,
+        7975.0
+      ],
+      "targets": {
+        "stones": 1.0,
+        "total": 85.0
+      },
+      "theme": "lava",
+      "tutorial": "Taşın yanında eşleştir veya özel güç kullan. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 41.13,
+          "parts": {
+            "goals": 8,
+            "durability": 4,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 10.727272727272727
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.2,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130402.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 202.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        0,
+        0,
+        3,
+        1,
+        0,
+        2,
+        4,
+        0,
+        1,
+        4,
+        0,
+        2,
+        4,
+        1,
+        4,
+        1,
+        3,
+        3,
+        2,
+        1,
+        4,
+        2,
+        2,
+        3,
+        2,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        1,
+        3,
+        3,
+        4,
+        3,
+        3,
+        0,
+        1,
+        2,
+        4,
+        0,
+        4,
+        2,
+        1,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        1,
+        2,
+        1,
+        2,
+        1,
+        3,
+        2,
+        2,
+        4,
+        3,
+        1,
+        3,
+        3,
+        4,
+        0,
+        0,
+        3,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 53.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 11.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 130402.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        6848.0,
+        9416.0
+      ],
+      "targets": {
+        "ice": 2.0,
+        "total": 118.0
+      },
+      "theme": "lava",
+      "tutorial": "Buzu komşu eşleşme veya özel güçle kır. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 31.45,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 6.25
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 68,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.2,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130503.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 203.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        4,
+        4,
+        2,
+        1,
+        3,
+        0,
+        2,
+        1,
+        1,
+        0,
+        4,
+        1,
+        1,
+        0,
+        2,
+        4,
+        2,
+        4,
+        0,
+        3,
+        1,
+        3,
+        4,
+        2,
+        3,
+        4,
+        4,
+        2,
+        0,
+        2,
+        3,
+        1,
+        2,
+        3,
+        1,
+        3,
+        3,
+        4,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        2,
+        0,
+        2,
+        3,
+        0,
+        3,
+        3,
+        1,
+        0,
+        3,
+        0,
+        2,
+        0,
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        3,
+        1,
+        4,
+        2,
+        2,
+        4,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 59.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 16.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 130503.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5488.0,
+        7546.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "total": 100.0
+      },
+      "theme": "lava",
+      "tutorial": "Kristal gösterdiği iki renkle eşleşir. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 46.07,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.666666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 64,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130604.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 204.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        3,
+        0,
+        1,
+        3,
+        3,
+        2,
+        0,
+        3,
+        3,
+        0,
+        1,
+        3,
+        2,
+        1,
+        3,
+        0,
+        2,
+        2,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        3,
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        3,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0,
+        3,
+        1,
+        1,
+        1,
+        0,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2,
+        3,
+        1,
+        1,
+        3,
+        3,
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 30.0,
+          "kind": "vine"
+        },
+        {
+          "index": 61.0,
+          "kind": "crate"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "vine",
+        "crate"
+      ],
+      "resonance": true,
+      "seed": 130604.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        11152.0,
+        15334.0
+      ],
+      "targets": {
+        "crates": 1.0,
+        "total": 128.0,
+        "vines": 1.0
+      },
+      "theme": "lava",
+      "tutorial": "Sarmaşığı komşu eşleşmelerle temizle. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 49.9,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 3.3043478260869565
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.09777777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130705.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 205.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        4,
+        2,
+        4,
+        3,
+        4,
+        1,
+        0,
+        4,
+        1,
+        0,
+        0,
+        1,
+        2,
+        1,
+        3,
+        1,
+        1,
+        3,
+        3,
+        0,
+        1,
+        4,
+        0,
+        0,
+        2,
+        4,
+        2,
+        3,
+        3,
+        2,
+        4,
+        0,
+        0,
+        1,
+        1,
+        3,
+        0,
+        2,
+        0,
+        4,
+        3,
+        1,
+        3,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0,
+        1,
+        1,
+        3,
+        2,
+        3,
+        3,
+        4,
+        4,
+        3,
+        3,
+        2,
+        3,
+        4,
+        0,
+        3,
+        3,
+        2,
+        1,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 41.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 26.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 23.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {
+        "40": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 130705.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        7096.0,
+        9757.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 76.0
+      },
+      "theme": "lava",
+      "tutorial": "Roketi aynaya yönlendir. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 49.7,
+          "parts": {
+            "goals": 8,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 10.9
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 56,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.35,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 0.5,
+            "targets": 0.6666666666666666,
+            "colors": 1.0,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130806.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 206.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        4,
+        1,
+        4,
+        3,
+        0,
+        3,
+        4,
+        2,
+        2,
+        1,
+        4,
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        4,
+        3,
+        0,
+        3,
+        0,
+        2,
+        2,
+        1,
+        4,
+        3,
+        2,
+        4,
+        0,
+        1,
+        0,
+        4,
+        3,
+        4,
+        2,
+        0,
+        1,
+        1,
+        4,
+        3,
+        1,
+        3,
+        1,
+        4,
+        0,
+        3,
+        3,
+        1,
+        0,
+        3,
+        2,
+        2,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2,
+        1,
+        3,
+        1,
+        3,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 18.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 130806.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        7840.0,
+        10780.0
+      ],
+      "targets": {
+        "stones": 1.0,
+        "total": 109.0
+      },
+      "theme": "lava",
+      "tutorial": "Taşın yanında eşleştir veya özel güç kullan. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 42.16,
+          "parts": {
+            "goals": 8,
+            "durability": 4,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 8.5625
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.2,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 130907.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 207.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        0,
+        1,
+        2,
+        2,
+        3,
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        1,
+        3,
+        0,
+        4,
+        2,
+        4,
+        2,
+        1,
+        1,
+        2,
+        0,
+        2,
+        1,
+        1,
+        0,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0,
+        4,
+        1,
+        3,
+        1,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        0,
+        1,
+        0,
+        4,
+        4,
+        1,
+        4,
+        2,
+        4,
+        0,
+        1,
+        1,
+        1,
+        3,
+        1,
+        4,
+        0,
+        0,
+        1,
+        3,
+        3,
+        1,
+        1,
+        4,
+        2,
+        2,
+        0,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 55.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 16.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 130907.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        6984.0,
+        9603.0
+      ],
+      "targets": {
+        "ice": 2.0,
+        "total": 137.0
+      },
+      "theme": "lava",
+      "tutorial": "Buzu komşu eşleşme veya özel güçle kır. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 33.02,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 0,
+            "stages": 0,
+            "move_pressure": 10.625
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 30,
+          "playable_cells": 64,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.19,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.3333333333333333,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131008.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 208.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        0,
+        0,
+        3,
+        1,
+        2,
+        3,
+        2,
+        2,
+        1,
+        0,
+        0,
+        3,
+        0,
+        1,
+        2,
+        0,
+        0,
+        2,
+        3,
+        1,
+        3,
+        1,
+        3,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        0,
+        1,
+        2,
+        1,
+        1,
+        0,
+        1,
+        2,
+        0,
+        2,
+        1,
+        0,
+        1,
+        2,
+        0,
+        1,
+        3,
+        2,
+        2,
+        0,
+        2,
+        3,
+        1,
+        1,
+        2,
+        0,
+        0,
+        3,
+        0,
+        2,
+        1,
+        0,
+        0,
+        3,
+        2
+      ],
+      "mechanics": [
+        {
+          "colors": [
+            0.0,
+            1.0
+          ],
+          "index": 14.0,
+          "kind": "dual"
+        }
+      ],
+      "moves": 8.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "dual"
+      ],
+      "resonance": true,
+      "seed": 131008.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        7520.0,
+        10340.0
+      ],
+      "targets": {
+        "duals": 1.0,
+        "total": 85.0
+      },
+      "theme": "lava",
+      "tutorial": "Kristal gösterdiği iki renkle eşleşir. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 56.4,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.8
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 10,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131109.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 209.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        2,
+        4,
+        1,
+        4,
+        3,
+        4,
+        1,
+        0,
+        4,
+        4,
+        1,
+        3,
+        1,
+        2,
+        0,
+        3,
+        1,
+        0,
+        4,
+        3,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        4,
+        4,
+        2,
+        0,
+        2,
+        4,
+        0,
+        4,
+        3,
+        3,
+        0,
+        2,
+        1,
+        4,
+        0,
+        1,
+        4,
+        2,
+        0,
+        1,
+        0,
+        1,
+        4,
+        2,
+        0,
+        0,
+        3,
+        2,
+        3,
+        2,
+        2,
+        0,
+        2,
+        2,
+        0,
+        1,
+        0,
+        4,
+        4,
+        0,
+        0,
+        3,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 40.0,
+          "kind": "vine"
+        },
+        {
+          "index": 29.0,
+          "kind": "crate"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "vine",
+        "crate"
+      ],
+      "resonance": true,
+      "seed": 131109.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        9112.0,
+        12529.0
+      ],
+      "targets": {
+        "crates": 1.0,
+        "total": 118.0,
+        "vines": 1.0
+      },
+      "theme": "lava",
+      "tutorial": "Sarmaşığı komşu eşleşmelerle temizle. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 48.07,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.071428571428571
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 72,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.08,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131210.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 210.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        4,
+        2,
+        0,
+        3,
+        4,
+        3,
+        2,
+        1,
+        1,
+        3,
+        3,
+        2,
+        2,
+        0,
+        3,
+        4,
+        4,
+        3,
+        4,
+        2,
+        3,
+        3,
+        4,
+        4,
+        2,
+        0,
+        1,
+        0,
+        4,
+        4,
+        3,
+        2,
+        1,
+        0,
+        2,
+        4,
+        2,
+        1,
+        3,
+        0,
+        0,
+        3,
+        2,
+        4,
+        1,
+        1,
+        0,
+        3,
+        3,
+        1,
+        0,
+        0,
+        1,
+        3,
+        0,
+        4,
+        2,
+        4,
+        0,
+        4,
+        0,
+        2,
+        2,
+        1,
+        3,
+        2,
+        2,
+        4,
+        1,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 12.0,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 33.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {
+        "8": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131210.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        12456.0,
+        17127.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 155.0
+      },
+      "theme": "lava",
+      "tutorial": "Roketi aynaya yönlendir. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 11.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 54.68,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.083333333333333
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.19166666666666665,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.3333333333333333,
+            "targets": 0.5,
+            "colors": 1.0,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131311.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 211.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        1,
+        2,
+        3,
+        0,
+        1,
+        1,
+        2,
+        4,
+        2,
+        0,
+        4,
+        3,
+        2,
+        4,
+        0,
+        2,
+        1,
+        3,
+        3,
+        0,
+        3,
+        4,
+        0,
+        1,
+        1,
+        3,
+        0,
+        1,
+        2,
+        2,
+        1,
+        2,
+        3,
+        1,
+        4,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        3,
+        2,
+        0,
+        3,
+        0,
+        3,
+        0,
+        3,
+        1,
+        1,
+        4,
+        0,
+        3,
+        1,
+        0,
+        3,
+        4,
+        4,
+        1,
+        3,
+        4,
+        3,
+        4,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 32.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131311.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5288.0,
+        7271.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 73.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 55.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 50.0,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 64,
+          "power_opportunities": 6
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131412.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 212.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        2,
+        3,
+        0,
+        2,
+        3,
+        1,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        3,
+        1,
+        1,
+        0,
+        1,
+        3,
+        0,
+        3,
+        1,
+        3,
+        0,
+        2,
+        0,
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        3,
+        2,
+        0,
+        0,
+        1,
+        0,
+        1,
+        2,
+        2,
+        3,
+        1,
+        3,
+        3,
+        2,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        0,
+        1,
+        3,
+        2,
+        0,
+        1,
+        2,
+        0,
+        2,
+        3,
+        2,
+        1,
+        3,
+        3,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 41.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131412.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        11072.0,
+        15224.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 106.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 14.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 49.01,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.8125
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 68,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131513.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 213.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        2,
+        2,
+        4,
+        2,
+        1,
+        1,
+        2,
+        0,
+        3,
+        0,
+        3,
+        0,
+        2,
+        0,
+        3,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2,
+        1,
+        1,
+        3,
+        1,
+        2,
+        1,
+        0,
+        0,
+        0,
+        4,
+        2,
+        0,
+        2,
+        4,
+        4,
+        4,
+        3,
+        4,
+        1,
+        0,
+        0,
+        3,
+        0,
+        4,
+        4,
+        1,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2,
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        0,
+        0,
+        2,
+        4,
+        2,
+        3,
+        4,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 40.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 16.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131513.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        6552.0,
+        9009.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 109.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 51.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 56.82,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.416666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131614.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 214.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        0,
+        2,
+        2,
+        3,
+        1,
+        1,
+        2,
+        4,
+        0,
+        0,
+        1,
+        1,
+        4,
+        1,
+        3,
+        2,
+        4,
+        2,
+        2,
+        1,
+        3,
+        0,
+        3,
+        1,
+        3,
+        0,
+        4,
+        0,
+        2,
+        1,
+        4,
+        4,
+        2,
+        0,
+        4,
+        2,
+        3,
+        2,
+        3,
+        2,
+        2,
+        3,
+        0,
+        4,
+        2,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        4,
+        4,
+        4,
+        2,
+        4,
+        2,
+        4,
+        2,
+        3,
+        1,
+        0,
+        4,
+        1,
+        1,
+        2,
+        0,
+        4,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131614.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        8200.0,
+        11275.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 137.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 42.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 56.33,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.7272727272727275
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5277777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131715.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        2.0,
+        8.0,
+        9.0,
+        16.0,
+        55.0,
+        62.0,
+        63.0,
+        69.0,
+        70.0,
+        71.0
+      ],
+      "id": 215.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        4,
+        4,
+        2,
+        1,
+        1,
+        4,
+        1,
+        2,
+        1,
+        4,
+        0,
+        4,
+        1,
+        4,
+        2,
+        2,
+        2,
+        0,
+        3,
+        2,
+        0,
+        1,
+        4,
+        1,
+        4,
+        2,
+        3,
+        1,
+        4,
+        0,
+        4,
+        4,
+        0,
+        0,
+        2,
+        1,
+        2,
+        0,
+        3,
+        1,
+        1,
+        0,
+        0,
+        3,
+        1,
+        4,
+        1,
+        4,
+        3,
+        3,
+        1,
+        3,
+        4,
+        1,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        4,
+        3,
+        2,
+        2,
+        4,
+        0,
+        2,
+        3,
+        3,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 51.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131715.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5824.0,
+        8008.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 85.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 20.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 56.53,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.727272727272727
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 23,
+          "playable_cells": 56,
+          "power_opportunities": 6
+        },
+        "neighbor_similarity": {
+          "score": 0.5900000000000001,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131816.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 216.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        0,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        3,
+        2,
+        0,
+        2,
+        2,
+        3,
+        1,
+        3,
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        3,
+        2,
+        2,
+        0,
+        3,
+        3,
+        0,
+        2,
+        2,
+        3,
+        2,
+        0,
+        2,
+        2,
+        3,
+        0,
+        2,
+        3,
+        3,
+        2,
+        3,
+        0,
+        0,
+        3,
+        3,
+        0,
+        0,
+        1,
+        2,
+        3,
+        2,
+        1,
+        0,
+        3,
+        3,
+        2,
+        0,
+        0,
+        1,
+        1,
+        2,
+        1,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 58.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131816.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        9688.0,
+        13321.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 118.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 53.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 55.18,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.578947368421052
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 10,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 131917.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 217.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        0,
+        0,
+        4,
+        3,
+        2,
+        0,
+        1,
+        2,
+        0,
+        2,
+        4,
+        0,
+        4,
+        3,
+        2,
+        0,
+        2,
+        4,
+        2,
+        3,
+        2,
+        3,
+        4,
+        1,
+        1,
+        3,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        1,
+        3,
+        1,
+        4,
+        1,
+        3,
+        2,
+        0,
+        3,
+        4,
+        0,
+        4,
+        3,
+        3,
+        2,
+        2,
+        0,
+        4,
+        3,
+        0,
+        2,
+        0,
+        1,
+        3,
+        3,
+        2,
+        3,
+        0,
+        1,
+        1,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 44.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 19.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 131917.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5624.0,
+        7733.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 125.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 21.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 52.04,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.636363636363637
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132018.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        32.0,
+        33.0,
+        38.0,
+        39.0,
+        40.0,
+        41.0,
+        46.0,
+        47.0
+      ],
+      "id": 218.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        4,
+        0,
+        1,
+        4,
+        4,
+        0,
+        3,
+        4,
+        4,
+        2,
+        4,
+        2,
+        3,
+        2,
+        4,
+        2,
+        2,
+        4,
+        1,
+        2,
+        3,
+        2,
+        0,
+        1,
+        3,
+        3,
+        0,
+        4,
+        1,
+        3,
+        2,
+        3,
+        0,
+        0,
+        3,
+        4,
+        4,
+        1,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0,
+        4,
+        2,
+        4,
+        1,
+        3,
+        0,
+        1,
+        1,
+        0,
+        4,
+        4,
+        0,
+        2,
+        2,
+        1,
+        3,
+        3,
+        1,
+        1,
+        1,
+        3,
+        0,
+        0,
+        1,
+        2,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 132018.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5928.0,
+        8151.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 73.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 29.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 57.43,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.833333333333334
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.5833333333333334,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.3333333333333333,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132119.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 219.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        4,
+        0,
+        2,
+        3,
+        4,
+        0,
+        4,
+        1,
+        2,
+        3,
+        0,
+        4,
+        2,
+        0,
+        1,
+        0,
+        2,
+        2,
+        3,
+        2,
+        3,
+        4,
+        1,
+        1,
+        0,
+        1,
+        2,
+        0,
+        1,
+        4,
+        3,
+        1,
+        0,
+        2,
+        3,
+        2,
+        0,
+        1,
+        1,
+        2,
+        2,
+        0,
+        0,
+        3,
+        2,
+        3,
+        4,
+        2,
+        2,
+        1,
+        4,
+        1,
+        1,
+        0,
+        4,
+        3,
+        3,
+        1,
+        0,
+        2,
+        0,
+        4,
+        3,
+        2,
+        1,
+        0,
+        3,
+        0,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 132119.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5776.0,
+        7942.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 106.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 47.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 44.71,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.714285714285714
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 32,
+          "playable_cells": 72,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132220.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 220.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        3,
+        3,
+        1,
+        1,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        0,
+        2,
+        1,
+        2,
+        0,
+        2,
+        3,
+        2,
+        0,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        1,
+        1,
+        2,
+        3,
+        3,
+        2,
+        0,
+        1,
+        2,
+        3,
+        2,
+        2,
+        3,
+        1,
+        3,
+        2,
+        1,
+        1,
+        3,
+        2,
+        2,
+        3,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 54.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 132220.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        11832.0,
+        16269.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 164.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 58.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 58.85,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.25
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.17,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132321.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 221.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        3,
+        4,
+        1,
+        1,
+        3,
+        0,
+        1,
+        1,
+        4,
+        3,
+        4,
+        1,
+        3,
+        0,
+        4,
+        3,
+        1,
+        4,
+        4,
+        3,
+        4,
+        3,
+        4,
+        1,
+        1,
+        0,
+        0,
+        3,
+        4,
+        2,
+        3,
+        4,
+        4,
+        1,
+        1,
+        2,
+        2,
+        0,
+        0,
+        4,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        1,
+        2,
+        3,
+        1,
+        3,
+        0,
+        4,
+        4,
+        3,
+        1,
+        1,
+        2,
+        4,
+        2,
+        0,
+        4,
+        1,
+        0,
+        0,
+        4,
+        0,
+        4,
+        4,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 18.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 8.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132321.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        6728.0,
+        9251.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 82.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 48.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 45.39,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.388888888888889
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 10,
+          "playable_cells": 72,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132422.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 222.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        0,
+        2,
+        2,
+        1,
+        4,
+        2,
+        1,
+        2,
+        4,
+        3,
+        1,
+        0,
+        0,
+        3,
+        4,
+        4,
+        1,
+        2,
+        3,
+        0,
+        0,
+        3,
+        3,
+        2,
+        3,
+        0,
+        1,
+        2,
+        1,
+        4,
+        0,
+        0,
+        1,
+        2,
+        3,
+        3,
+        0,
+        0,
+        4,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        4,
+        0,
+        4,
+        1,
+        1,
+        4,
+        0,
+        0,
+        3,
+        0,
+        3,
+        2,
+        4,
+        3,
+        0,
+        3,
+        2,
+        4,
+        0,
+        1,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 47.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 18.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132422.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        7016.0,
+        9647.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 115.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 36.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 59.33,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.727272727272727
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 9,
+          "playable_cells": 60,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132523.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 223.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        0,
+        4,
+        1,
+        4,
+        2,
+        2,
+        3,
+        0,
+        1,
+        1,
+        0,
+        1,
+        2,
+        4,
+        4,
+        0,
+        0,
+        2,
+        2,
+        3,
+        3,
+        1,
+        1,
+        1,
+        4,
+        4,
+        2,
+        4,
+        0,
+        3,
+        0,
+        0,
+        2,
+        4,
+        1,
+        2,
+        0,
+        4,
+        0,
+        4,
+        1,
+        2,
+        2,
+        0,
+        2,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        0,
+        2,
+        3,
+        2,
+        1,
+        1,
+        3,
+        2,
+        4,
+        1,
+        4,
+        0,
+        4,
+        1,
+        3,
+        3,
+        4,
+        4,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 28.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 11.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132523.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        6592.0,
+        9064.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 118.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 27.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 53.02,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.416666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.615,
+          "parts": {
+            "shape": 0.5,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132624.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 224.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        2,
+        0,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        0,
+        0,
+        1,
+        2,
+        2,
+        0,
+        1,
+        0,
+        2,
+        2,
+        0,
+        3,
+        3,
+        1,
+        0,
+        0,
+        2,
+        0,
+        2,
+        2,
+        3,
+        3,
+        2,
+        1,
+        0,
+        3,
+        0,
+        3,
+        0,
+        2,
+        0,
+        2,
+        2,
+        3,
+        0,
+        3,
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        0,
+        3,
+        3,
+        1,
+        0,
+        0,
+        3,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 53.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132624.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        13032.0,
+        17919.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 125.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 51.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 46.3,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.3
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 72,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132725.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 225.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        0,
+        2,
+        2,
+        1,
+        3,
+        4,
+        3,
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        4,
+        0,
+        4,
+        1,
+        3,
+        0,
+        0,
+        3,
+        1,
+        2,
+        1,
+        0,
+        1,
+        4,
+        4,
+        3,
+        0,
+        3,
+        2,
+        0,
+        1,
+        2,
+        4,
+        1,
+        1,
+        3,
+        3,
+        2,
+        3,
+        4,
+        1,
+        2,
+        1,
+        1,
+        0,
+        4,
+        4,
+        2,
+        1,
+        2,
+        3,
+        0,
+        4,
+        2,
+        0,
+        3,
+        2,
+        3,
+        2,
+        0,
+        1,
+        3,
+        0,
+        0,
+        2,
+        2,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 44.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132725.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        6808.0,
+        9361.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 73.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 33.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 59.2,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132826.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 226.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        2,
+        3,
+        2,
+        2,
+        1,
+        1,
+        0,
+        3,
+        4,
+        4,
+        0,
+        2,
+        2,
+        0,
+        1,
+        0,
+        3,
+        4,
+        3,
+        1,
+        4,
+        0,
+        1,
+        0,
+        3,
+        1,
+        1,
+        2,
+        3,
+        3,
+        0,
+        2,
+        0,
+        2,
+        4,
+        3,
+        1,
+        4,
+        4,
+        0,
+        2,
+        3,
+        1,
+        3,
+        1,
+        2,
+        1,
+        0,
+        0,
+        1,
+        3,
+        2,
+        0,
+        3,
+        2,
+        2,
+        3,
+        1,
+        3,
+        0,
+        3,
+        3,
+        4,
+        3,
+        1,
+        4,
+        0,
+        0,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 59.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132826.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        6968.0,
+        9581.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 106.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 53.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 59.77,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.166666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.625,
+          "parts": {
+            "shape": 0.5,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 132927.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 227.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        3,
+        0,
+        2,
+        1,
+        4,
+        0,
+        3,
+        3,
+        1,
+        0,
+        3,
+        3,
+        2,
+        2,
+        4,
+        0,
+        0,
+        1,
+        4,
+        1,
+        2,
+        0,
+        1,
+        0,
+        4,
+        3,
+        2,
+        4,
+        1,
+        3,
+        2,
+        2,
+        3,
+        3,
+        0,
+        2,
+        4,
+        2,
+        1,
+        4,
+        3,
+        4,
+        3,
+        2,
+        4,
+        0,
+        4,
+        0,
+        4,
+        3,
+        1,
+        4,
+        1,
+        0,
+        2,
+        0,
+        3,
+        0,
+        2,
+        1,
+        4,
+        4,
+        2,
+        4,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 47.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 132927.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        8208.0,
+        11286.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 134.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 37.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 43.25,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.25
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 29,
+          "playable_cells": 72,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133028.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 228.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        0,
+        0,
+        1,
+        3,
+        3,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        2,
+        0,
+        3,
+        3,
+        1,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0,
+        2,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        3,
+        3,
+        0,
+        3,
+        3,
+        0,
+        0,
+        2,
+        2,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        2,
+        0,
+        1,
+        0,
+        1,
+        1,
+        3,
+        0,
+        0,
+        2,
+        2,
+        1,
+        1,
+        2,
+        0,
+        1,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 52.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 8.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 133028.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        9560.0,
+        13145.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 82.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 53.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 57.45,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.846153846153847
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133129.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 229.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        0,
+        3,
+        4,
+        1,
+        3,
+        2,
+        3,
+        2,
+        4,
+        0,
+        3,
+        3,
+        1,
+        0,
+        1,
+        2,
+        1,
+        3,
+        1,
+        0,
+        1,
+        1,
+        2,
+        0,
+        0,
+        4,
+        4,
+        3,
+        0,
+        1,
+        4,
+        2,
+        3,
+        0,
+        4,
+        3,
+        4,
+        4,
+        2,
+        0,
+        2,
+        1,
+        3,
+        4,
+        3,
+        3,
+        1,
+        1,
+        1,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        1,
+        2,
+        4,
+        3,
+        0,
+        4,
+        1,
+        0,
+        2,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 11.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 13.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 133129.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5360.0,
+        7370.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 115.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 60.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 60.96,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 12.357142857142858
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.625,
+          "parts": {
+            "shape": 0.5,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133230.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 230.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        0,
+        2,
+        0,
+        3,
+        2,
+        0,
+        2,
+        4,
+        1,
+        2,
+        3,
+        4,
+        0,
+        1,
+        0,
+        1,
+        4,
+        4,
+        3,
+        1,
+        2,
+        0,
+        0,
+        2,
+        1,
+        3,
+        2,
+        1,
+        3,
+        0,
+        4,
+        1,
+        1,
+        3,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        2,
+        0,
+        1,
+        4,
+        0,
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        1,
+        2,
+        2,
+        0,
+        3,
+        0,
+        2,
+        0,
+        2,
+        0,
+        3,
+        1,
+        2,
+        4,
+        4,
+        3,
+        3,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 28.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 133230.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        10712.0,
+        14729.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 173.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 55.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            9.0,
+            10.0,
+            11.0,
+            19.0,
+            18.0,
+            17.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 52.6,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 7.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.305,
+          "parts": {
+            "shape": 0.5,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133331.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 231.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        3,
+        1,
+        4,
+        2,
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        4,
+        1,
+        3,
+        4,
+        4,
+        3,
+        2,
+        0,
+        3,
+        0,
+        2,
+        3,
+        4,
+        0,
+        4,
+        0,
+        4,
+        2,
+        2,
+        1,
+        2,
+        0,
+        1,
+        3,
+        1,
+        4,
+        3,
+        2,
+        3,
+        3,
+        4,
+        2,
+        4,
+        4,
+        3,
+        2,
+        1,
+        4,
+        4,
+        0,
+        0,
+        1,
+        1,
+        3,
+        0,
+        4,
+        2,
+        4,
+        3,
+        3,
+        0,
+        2,
+        2,
+        1,
+        4,
+        2,
+        0,
+        0,
+        4,
+        2
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 25.0,
+          "exit": 23.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133331.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        7816.0,
+        10747.0
+      ],
+      "targets": {
+        "conveyors": 7.0,
+        "magnets": 2.0,
+        "total": 70.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 16.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            34.0,
+            35.0,
+            36.0,
+            44.0,
+            43.0,
+            42.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 46.7,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 10.3
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 31,
+          "playable_cells": 64,
+          "power_opportunities": 5
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133432.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 232.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        1,
+        3,
+        1,
+        2,
+        2,
+        1,
+        1,
+        0,
+        3,
+        1,
+        2,
+        3,
+        0,
+        3,
+        1,
+        1,
+        0,
+        1,
+        1,
+        2,
+        3,
+        1,
+        3,
+        0,
+        3,
+        2,
+        0,
+        3,
+        0,
+        2,
+        1,
+        3,
+        0,
+        0,
+        2,
+        3,
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        0,
+        0,
+        3,
+        3,
+        0,
+        1,
+        3,
+        1,
+        3,
+        1
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 49.0,
+          "exit": 55.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133432.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        15784.0,
+        21703.0
+      ],
+      "targets": {
+        "conveyors": 8.0,
+        "magnets": 2.0,
+        "total": 103.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 14.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            11.0,
+            12.0,
+            13.0,
+            21.0,
+            20.0,
+            19.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 49.8,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 68,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133533.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 233.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        0,
+        1,
+        2,
+        0,
+        1,
+        1,
+        0,
+        0,
+        4,
+        3,
+        3,
+        1,
+        0,
+        1,
+        3,
+        3,
+        2,
+        3,
+        3,
+        2,
+        0,
+        4,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        4,
+        2,
+        1,
+        1,
+        2,
+        2,
+        0,
+        2,
+        2,
+        1,
+        3,
+        4,
+        0,
+        1,
+        2,
+        3,
+        3,
+        2,
+        0,
+        1,
+        0,
+        3,
+        4,
+        3,
+        3,
+        4,
+        3,
+        1,
+        2,
+        4,
+        3,
+        1,
+        2,
+        1,
+        3
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 48.0,
+          "exit": 3.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133533.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        6280.0,
+        8635.0
+      ],
+      "targets": {
+        "conveyors": 9.0,
+        "magnets": 2.0,
+        "total": 106.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 33.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            17.0,
+            18.0,
+            19.0,
+            27.0,
+            26.0,
+            25.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 53.57,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 11.166666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 64,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133634.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 234.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        2,
+        4,
+        0,
+        2,
+        3,
+        0,
+        1,
+        0,
+        2,
+        4,
+        2,
+        4,
+        0,
+        4,
+        4,
+        0,
+        1,
+        0,
+        0,
+        2,
+        4,
+        3,
+        0,
+        4,
+        3,
+        2,
+        0,
+        1,
+        3,
+        2,
+        0,
+        0,
+        3,
+        4,
+        3,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        0,
+        1,
+        1,
+        4,
+        2,
+        2,
+        3,
+        0,
+        1,
+        4,
+        0,
+        0,
+        0,
+        2,
+        2,
+        4,
+        2,
+        0,
+        0,
+        3,
+        4,
+        3,
+        0,
+        3,
+        2,
+        1,
+        1
+      ],
+      "mechanics": [],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 65.0,
+          "exit": 0.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133634.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        8584.0,
+        11803.0
+      ],
+      "targets": {
+        "conveyors": 10.0,
+        "magnets": 2.0,
+        "total": 134.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 13.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            50.0,
+            51.0,
+            52.0,
+            60.0,
+            59.0,
+            58.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 53.8,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 8.2
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.5277777777777778,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133735.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 235.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        3,
+        2,
+        0,
+        3,
+        2,
+        0,
+        3,
+        0,
+        3,
+        3,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0,
+        2,
+        4,
+        1,
+        1,
+        3,
+        1,
+        4,
+        3,
+        4,
+        4,
+        1,
+        3,
+        4,
+        2,
+        4,
+        4,
+        3,
+        0,
+        3,
+        2,
+        2,
+        4,
+        1,
+        0,
+        3,
+        0,
+        1,
+        4,
+        4,
+        1,
+        4,
+        4,
+        1,
+        4,
+        4,
+        3,
+        1,
+        4,
+        2,
+        0,
+        3,
+        0,
+        1,
+        3,
+        0,
+        2,
+        3,
+        0,
+        2,
+        0,
+        4,
+        4,
+        2,
+        2
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 61.0,
+          "exit": 68.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133735.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        10352.0,
+        14234.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "magnets": 2.0,
+        "total": 82.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 30.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            19.0,
+            20.0,
+            21.0,
+            29.0,
+            28.0,
+            27.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 54.3,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 56,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5900000000000001,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133836.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 236.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        0,
+        3,
+        0,
+        1,
+        2,
+        1,
+        2,
+        2,
+        0,
+        2,
+        2,
+        3,
+        3,
+        0,
+        3,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        1,
+        0,
+        1,
+        3,
+        2,
+        1,
+        3,
+        0,
+        2,
+        3,
+        1,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2,
+        2,
+        3,
+        0,
+        3,
+        0,
+        2,
+        1,
+        0,
+        0,
+        3,
+        2,
+        2,
+        3,
+        1,
+        2,
+        0,
+        1,
+        0,
+        0
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 3.0,
+          "exit": 67.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133836.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        22296.0,
+        30657.0
+      ],
+      "targets": {
+        "conveyors": 7.0,
+        "magnets": 2.0,
+        "total": 115.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 45.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            27.0,
+            28.0,
+            29.0,
+            37.0,
+            36.0,
+            35.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 57.52,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 11.916666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 60,
+          "power_opportunities": 4
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 133937.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 237.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        1,
+        3,
+        1,
+        0,
+        2,
+        0,
+        4,
+        4,
+        1,
+        1,
+        4,
+        0,
+        2,
+        2,
+        1,
+        4,
+        4,
+        2,
+        2,
+        1,
+        4,
+        1,
+        4,
+        3,
+        1,
+        3,
+        1,
+        4,
+        4,
+        0,
+        4,
+        3,
+        2,
+        4,
+        2,
+        3,
+        0,
+        4,
+        0,
+        0,
+        2,
+        0,
+        3,
+        4,
+        1,
+        1,
+        0,
+        1,
+        0,
+        3,
+        1,
+        1,
+        4,
+        3,
+        4,
+        4,
+        3,
+        0,
+        0,
+        1,
+        3,
+        3,
+        0,
+        4,
+        2,
+        3,
+        3,
+        2,
+        4,
+        4
+      ],
+      "mechanics": [],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 18.0,
+          "exit": 8.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 133937.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        9896.0,
+        13607.0
+      ],
+      "targets": {
+        "conveyors": 8.0,
+        "magnets": 2.0,
+        "total": 143.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 19.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            43.0,
+            44.0,
+            45.0,
+            53.0,
+            52.0,
+            51.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 49.4,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 7.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134038.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 238.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        3,
+        1,
+        3,
+        1,
+        4,
+        4,
+        0,
+        4,
+        0,
+        3,
+        1,
+        4,
+        1,
+        4,
+        4,
+        3,
+        3,
+        4,
+        2,
+        4,
+        0,
+        2,
+        4,
+        3,
+        0,
+        3,
+        3,
+        1,
+        2,
+        3,
+        3,
+        0,
+        4,
+        4,
+        1,
+        1,
+        2,
+        3,
+        4,
+        0,
+        0,
+        2,
+        2,
+        3,
+        3,
+        1,
+        4,
+        4,
+        0,
+        1,
+        3,
+        1,
+        4,
+        2,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        3,
+        4,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0,
+        4
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 36.0,
+          "exit": 55.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 134038.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        9960.0,
+        13695.0
+      ],
+      "targets": {
+        "conveyors": 9.0,
+        "magnets": 2.0,
+        "total": 70.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 50.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            18.0,
+            19.0,
+            20.0,
+            28.0,
+            27.0,
+            26.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 55.9,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 10.3
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.5,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134139.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 239.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        2,
+        4,
+        3,
+        4,
+        1,
+        3,
+        0,
+        4,
+        0,
+        0,
+        2,
+        1,
+        2,
+        3,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        4,
+        1,
+        2,
+        2,
+        3,
+        4,
+        0,
+        0,
+        2,
+        2,
+        1,
+        0,
+        4,
+        0,
+        3,
+        1,
+        3,
+        3,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4,
+        3,
+        0,
+        4,
+        0,
+        1,
+        0,
+        2,
+        0,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        4,
+        0,
+        1,
+        3,
+        0,
+        0
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 33.0,
+          "exit": 4.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 134139.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        9816.0,
+        13497.0
+      ],
+      "targets": {
+        "conveyors": 10.0,
+        "magnets": 2.0,
+        "total": 103.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 34.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [
+        {
+          "cells": [
+            20.0,
+            21.0,
+            22.0,
+            30.0,
+            29.0,
+            28.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 41.5,
+          "parts": {
+            "goals": 12,
+            "durability": 2,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 10,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 31,
+          "playable_cells": 72,
+          "power_opportunities": 5
+        },
+        "neighbor_similarity": {
+          "score": 0.49,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 1.0,
+            "targets": 1.0,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134240.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 240.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        3,
+        0,
+        0,
+        2,
+        1,
+        3,
+        1,
+        1,
+        0,
+        1,
+        3,
+        0,
+        2,
+        0,
+        3,
+        3,
+        1,
+        2,
+        1,
+        1,
+        0,
+        1,
+        3,
+        2,
+        1,
+        1,
+        0,
+        3,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0,
+        1,
+        1,
+        3,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        3,
+        0,
+        2,
+        2,
+        0,
+        3,
+        1,
+        0,
+        1,
+        0,
+        3,
+        3,
+        1,
+        3,
+        0,
+        2,
+        3
+      ],
+      "mechanics": [],
+      "moves": 14.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 60.0,
+          "exit": 55.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "conveyor",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 134240.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        15424.0,
+        21208.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "magnets": 2.0,
+        "total": 161.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 25.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 56.5,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.9
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60,
+          "power_opportunities": 3
+        },
+        "neighbor_similarity": {
+          "score": 0.17,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134341.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 241.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        4,
+        2,
+        4,
+        0,
+        0,
+        2,
+        3,
+        2,
+        1,
+        3,
+        1,
+        4,
+        0,
+        1,
+        1,
+        1,
+        0,
+        2,
+        2,
+        1,
+        3,
+        0,
+        2,
+        0,
+        1,
+        1,
+        2,
+        2,
+        4,
+        3,
+        0,
+        4,
+        1,
+        2,
+        1,
+        4,
+        0,
+        4,
+        2,
+        2,
+        3,
+        3,
+        2,
+        4,
+        0,
+        3,
+        2,
+        4,
+        4,
+        3,
+        3,
+        1,
+        2,
+        1,
+        0,
+        0,
+        4,
+        2,
+        4,
+        4,
+        3,
+        1,
+        0,
+        2,
+        0,
+        2,
+        3,
+        1,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 23.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 134341.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5192.0,
+        7139.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 79.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 28.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 57.22,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.615384615384615
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.305,
+          "parts": {
+            "shape": 0.5,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134442.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 242.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        3,
+        0,
+        2,
+        4,
+        0,
+        1,
+        3,
+        2,
+        3,
+        3,
+        4,
+        2,
+        2,
+        4,
+        3,
+        1,
+        1,
+        3,
+        3,
+        2,
+        4,
+        2,
+        2,
+        4,
+        4,
+        1,
+        1,
+        0,
+        1,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1,
+        3,
+        1,
+        1,
+        4,
+        1,
+        3,
+        1,
+        2,
+        4,
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        4,
+        0,
+        2,
+        0,
+        0,
+        2,
+        2,
+        3,
+        0,
+        0,
+        3,
+        3,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 41.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 13.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 134442.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        7744.0,
+        10648.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 112.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 30.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 41.7,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 68,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.1875,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134543.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 243.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        4,
+        3,
+        3,
+        1,
+        0,
+        3,
+        3,
+        3,
+        1,
+        0,
+        1,
+        1,
+        4,
+        1,
+        2,
+        0,
+        1,
+        0,
+        2,
+        4,
+        4,
+        1,
+        2,
+        1,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        3,
+        4,
+        1,
+        4,
+        3,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        4,
+        2,
+        1,
+        2,
+        0,
+        4,
+        3,
+        1,
+        3,
+        3,
+        0,
+        1,
+        3,
+        0,
+        0,
+        2,
+        4,
+        2,
+        4,
+        0,
+        3,
+        3,
+        2,
+        2,
+        0,
+        4,
+        1,
+        3,
+        1
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 40.0,
+          "exit": 66.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 134543.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        9936.0,
+        13662.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 115.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 47.32,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.916666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 64,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134644.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 244.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        1,
+        3,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        0,
+        3,
+        3,
+        2,
+        2,
+        0,
+        3,
+        0,
+        0,
+        2,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        2,
+        2,
+        0,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        3,
+        2,
+        2,
+        1,
+        0,
+        0,
+        3,
+        2,
+        1,
+        0,
+        3,
+        0,
+        2,
+        2,
+        3,
+        2,
+        0,
+        1,
+        0,
+        1,
+        1,
+        3,
+        2,
+        1,
+        3,
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 26.0,
+          "kind": "vine"
+        },
+        {
+          "index": 58.0,
+          "kind": "crate"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "vine",
+        "crate"
+      ],
+      "resonance": true,
+      "seed": 134644.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        13136.0,
+        18062.0
+      ],
+      "targets": {
+        "crates": 1.0,
+        "total": 143.0,
+        "vines": 1.0
+      },
+      "theme": "lava",
+      "tutorial": "Sarmaşığı komşu eşleşmelerle temizle. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 53.35,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.75
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.19777777777777777,
+          "parts": {
+            "shape": 0.1111111111111111,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134745.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        2.0,
+        8.0,
+        9.0,
+        16.0,
+        55.0,
+        62.0,
+        63.0,
+        69.0,
+        70.0,
+        71.0
+      ],
+      "id": 245.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        0,
+        2,
+        0,
+        4,
+        2,
+        2,
+        3,
+        2,
+        2,
+        4,
+        0,
+        1,
+        2,
+        3,
+        1,
+        4,
+        0,
+        0,
+        4,
+        0,
+        3,
+        3,
+        4,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        0,
+        0,
+        1,
+        3,
+        1,
+        0,
+        3,
+        4,
+        2,
+        3,
+        1,
+        4,
+        4,
+        0,
+        4,
+        2,
+        2,
+        3,
+        0,
+        3,
+        0,
+        2,
+        2,
+        1,
+        0,
+        0,
+        0,
+        2,
+        4,
+        3,
+        1,
+        1,
+        0,
+        0,
+        4,
+        0,
+        3,
+        4,
+        0,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 19.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 35.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 15.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 8.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 134745.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        6632.0,
+        9119.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 70.0
+      },
+      "theme": "lava",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 59.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 59.72,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.923076923076923
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 56,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.28,
+          "parts": {
+            "shape": 0.4,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134846.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 246.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        3,
+        0,
+        3,
+        4,
+        3,
+        1,
+        1,
+        1,
+        0,
+        2,
+        1,
+        4,
+        0,
+        4,
+        3,
+        0,
+        0,
+        2,
+        2,
+        0,
+        2,
+        1,
+        1,
+        2,
+        1,
+        4,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        4,
+        2,
+        3,
+        1,
+        3,
+        1,
+        4,
+        0,
+        1,
+        1,
+        0,
+        1,
+        2,
+        3,
+        3,
+        1,
+        0,
+        1,
+        2,
+        3,
+        3,
+        1,
+        4,
+        0,
+        3,
+        0,
+        3,
+        3,
+        0,
+        4,
+        3,
+        0,
+        0,
+        1,
+        4,
+        0,
+        3,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 13.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 13.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 134846.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        6344.0,
+        8723.0
+      ],
+      "targets": {
+        "floors": 1.0,
+        "stones": 1.0,
+        "total": 103.0
+      },
+      "theme": "lava",
+      "tutorial": "Zemini kır; kalıcı boşlukları hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 44.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "difficulty": {
+          "score": 59.52,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.916666666666666
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.3675,
+          "parts": {
+            "shape": 0.75,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.2,
+            "colors": 1.0,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 134947.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 247.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        2,
+        4,
+        3,
+        4,
+        1,
+        4,
+        0,
+        0,
+        3,
+        1,
+        1,
+        4,
+        0,
+        1,
+        1,
+        3,
+        0,
+        0,
+        0,
+        3,
+        4,
+        4,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        3,
+        1,
+        4,
+        4,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        4,
+        4,
+        3,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        2,
+        4,
+        3,
+        2,
+        4,
+        3,
+        2,
+        3,
+        0,
+        2,
+        1,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 60.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 12.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 134947.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        7992.0,
+        10989.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 131.0
+      },
+      "theme": "lava",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 35.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "difficulty": {
+          "score": 35.3,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.9
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64,
+          "power_opportunities": 2
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 135048.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        32.0,
+        33.0,
+        38.0,
+        39.0,
+        40.0,
+        41.0,
+        46.0,
+        47.0
+      ],
+      "id": 248.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        0,
+        2,
+        2,
+        3,
+        2,
+        2,
+        2,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        3,
+        1,
+        0,
+        3,
+        1,
+        2,
+        0,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        3,
+        1,
+        2,
+        0,
+        3,
+        3,
+        1,
+        0,
+        2,
+        1,
+        2,
+        1,
+        3,
+        0,
+        3,
+        3,
+        0,
+        3,
+        0,
+        3,
+        0,
+        1,
+        1,
+        2,
+        2,
+        0,
+        3,
+        2,
+        3,
+        3,
+        0,
+        2,
+        1,
+        0,
+        3,
+        1,
+        2,
+        0,
+        3,
+        3,
+        1,
+        3
+      ],
+      "mechanics": [],
+      "moves": 10.0,
+      "name": "Lav Bulmacası",
+      "portals": [
+        {
+          "entry": 70.0,
+          "exit": 31.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 135048.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        6752.0,
+        9284.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 79.0
+      },
+      "theme": "lava",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "difficulty": {
+          "score": 52.6,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.0
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 5,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60,
+          "power_opportunities": 0
+        },
+        "neighbor_similarity": {
+          "score": 0.17750000000000002,
+          "parts": {
+            "shape": 0.0,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.25,
+            "colors": 0.8,
+            "opportunities": 1.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 135149.0,
+        "simulation_strategy": "lookahead",
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 249.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        2,
+        3,
+        2,
+        3,
+        3,
+        1,
+        0,
+        3,
+        2,
+        3,
+        0,
+        2,
+        0,
+        4,
+        4,
+        0,
+        4,
+        0,
+        2,
+        4,
+        4,
+        2,
+        2,
+        4,
+        4,
+        3,
+        3,
+        1,
+        2,
+        2,
+        1,
+        4,
+        0,
+        3,
+        3,
+        0,
+        0,
+        1,
+        1,
+        3,
+        0,
+        2,
+        4,
+        1,
+        4,
+        3,
+        3,
+        0,
+        2,
+        3,
+        3,
+        4,
+        0,
+        1,
+        2,
+        0,
+        1,
+        3,
+        1,
+        2,
+        0,
+        1,
+        4,
+        4,
+        0,
+        4,
+        1,
+        4,
+        3,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 44.0,
+          "kind": "vine"
+        },
+        {
+          "index": 59.0,
+          "kind": "crate"
+        }
+      ],
+      "moves": 14.0,
+      "name": "Lav Bulmacası",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "vine",
+        "crate"
+      ],
+      "resonance": true,
+      "seed": 135149.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        6920.0,
+        9515.0
+      ],
+      "targets": {
+        "crates": 1.0,
+        "total": 112.0,
+        "vines": 1.0
+      },
+      "theme": "lava",
+      "tutorial": "Sarmaşığı komşu eşleşmelerle temizle. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 18.0,
+          "kind": "core",
+          "shields": [
+            12.0,
+            12.0,
+            10.0,
+            10.0
+          ]
+        },
+        {
+          "index": 36.0,
+          "kind": "giant"
+        },
+        {
+          "index": 58.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "difficulty": {
+          "score": 111.68,
+          "parts": {
+            "goals": 36,
+            "durability": 26,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 15,
+            "stages": 6,
+            "move_pressure": 7.083333333333333
+          }
+        },
+        "evidence": {
+          "trials": 6,
+          "wins": 6,
+          "strategies": [
+            "objective",
+            "lookahead"
+          ],
+          "human_tested": false
+        },
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60,
+          "power_opportunities": 1
+        },
+        "neighbor_similarity": {
+          "score": 0.18863636363636363,
+          "parts": {
+            "shape": 0.5,
+            "placements": 0.0,
+            "mechanics": 0.0,
+            "targets": 0.09090909090909091,
+            "colors": 1.0,
+            "opportunities": 0.0
+          }
+        },
+        "revision": 0.0,
+        "seed": 135250.0,
+        "simulation_strategy": "objective",
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 250.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        3,
+        2,
+        2,
+        3,
+        0,
+        2,
+        0,
+        3,
+        0,
+        4,
+        3,
+        4,
+        4,
+        0,
+        0,
+        2,
+        4,
+        0,
+        2,
+        1,
+        4,
+        1,
+        1,
+        0,
+        4,
+        3,
+        0,
+        4,
+        0,
+        3,
+        0,
+        1,
+        3,
+        0,
+        1,
+        3,
+        1,
+        2,
+        0,
+        1,
+        1,
+        0,
+        4,
+        0,
+        2,
+        0,
+        3,
+        2,
+        1,
+        4,
+        0,
+        3,
+        0,
+        0,
+        2,
+        3,
+        4,
+        4,
+        1,
+        3,
+        2,
+        2,
+        4,
+        1,
+        0,
+        2,
+        0,
+        4,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 14.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 24.0,
+      "name": "Lav Kristalleri Finali",
+      "objective_stages": [
+        {
+          "floors": 1.0,
+          "giants": 1.0,
+          "shield0": 6.0,
+          "shield1": 6.0,
+          "shield2": 5.0,
+          "shield3": 5.0,
+          "stones": 1.0,
+          "total": 85.0
+        },
+        {
+          "cores": 1.0,
+          "floors": 1.0,
+          "giants": 1.0,
+          "shield0": 12.0,
+          "shield1": 12.0,
+          "shield2": 10.0,
+          "shield3": 10.0,
+          "stones": 1.0,
+          "total": 170.0
+        }
+      ],
+      "portals": [],
+      "powers": {
+        "2": "rocket_h",
+        "69": "prism"
+      },
+      "recipe": [
+        "core",
+        "giant",
+        "floor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 135250.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        10232.0,
+        14069.0
+      ],
+      "targets": {
+        "cores": 1.0,
+        "floors": 1.0,
+        "giants": 1.0,
+        "shield0": 12.0,
+        "shield1": 12.0,
+        "shield2": 10.0,
+        "shield3": 10.0,
+        "stones": 1.0,
+        "total": 170.0
+      },
+      "theme": "lava",
+      "tutorial": "Dört renk kalkanını doldur; çekirdeği özel güçle aç. Hedef ikonlarına dokun.",
+      "world_id": 5.0
+    }
+  ]
+}

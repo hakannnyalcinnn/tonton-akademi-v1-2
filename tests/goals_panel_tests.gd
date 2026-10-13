@@ -31,6 +31,8 @@ func run() -> void:
     if Registry.relevant(key,game.board_view.displayed[i],i,game.board.canyon):expected.append(i)
    if key=="portals":
     for pair in game.board.level.get("portals",[]):expected.append(pair.entry);expected.append(pair.exit)
+   if key=="conveyors":
+    for rail in game.board.level.get("conveyors",[]):expected.append_array(rail.cells)
    check(game.board_view.goal_highlights==expected,"precise target highlights")
    check(game.board.snapshot()==state,"goal tapping never changes game state")
    game.close_goal_tip()
@@ -62,4 +64,4 @@ func run() -> void:
  game.queue_free();await process_frame;await process_frame
  for suffix in ["",".bak",".tmp"]:
   if FileAccess.file_exists(path+suffix):DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
- print("GOALS PANEL: %d checks, %d failures; all 150 levels, six goals, 3 ratios, descriptions, counters, highlights, save"%[checks,failures]);quit(1 if failures else 0)
+ print("GOALS PANEL: %d checks, %d failures; all %d levels, six goals, 3 ratios, descriptions, counters, highlights, save"%[checks,failures,Catalog.count()]);quit(1 if failures else 0)

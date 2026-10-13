@@ -1,0 +1,9 @@
+{
+  "changed_files": [
+    "tests/package4_ui.gd"
+  ],
+  "runtime_sha256": "1e3eaab99482dcb6f7e08b5e65fec6761f3890f3dadfb4c16d33a1dc77699252",
+  "original_full": "build/test-policy/1791932403283026483-full.json",
+  "completed_scope": "build/test-policy/1791933140603529703-targeted.json",
+  "reason": "Only failed test tree traversal changed; successful independent suites have identical runtime/test/tool inputs."
+}

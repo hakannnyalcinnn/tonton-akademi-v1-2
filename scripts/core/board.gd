@@ -52,6 +52,7 @@ var action_virtual: Array=[]
 var score := 0
 var collected: Dictionary = {"total": 0, "0": 0, "1": 0, "2": 0, "3": 0, "4": 0}
 var direction := "down"
+var palette: Array=[0,1,2,3,4]
 var energy := 0
 var energy_blocks := 0
 var serial := 0
@@ -68,6 +69,9 @@ var pending_portal_arrivals: Dictionary={}
 func _init(definition: Dictionary = {}) -> void:
 	if definition.is_empty(): return
 	level = definition.duplicate(true)
+	if level.has("active_colors"):level.active_colors=level.active_colors.map(func(color):return int(color))
+	palette=level.get("active_colors",palette)
+	direction=str(level.get("initial_gravity","down"))
 	moves = int(level.moves)
 	initial_moves=moves
 	rng = SeedRng.new(int(level.seed))
@@ -78,7 +82,7 @@ func _init(definition: Dictionary = {}) -> void:
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]: collected[key] = 0
 	canyon=Canyon.install(cells,level)
 	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:collected[key]=0
-	Generator.repair_start(cells, rng, WIDTH, HEIGHT)
+	Generator.repair_start(cells, rng, WIDTH, HEIGHT,palette)
 
 func find_matches(preferred: Array = []) -> Array:
 	var started := Time.get_ticks_usec()
@@ -88,7 +92,7 @@ func find_matches(preferred: Array = []) -> Array:
 
 func make_cell(color: int = -1, power: String = "") -> Dictionary:
 	serial += 1
-	return {"c": rng.next_int(5) if color < 0 else color, "p": power, "id": serial}
+	return {"c": int(palette[rng.next_int(palette.size())]) if color < 0 else color, "p": power, "id": serial}
 
 func transition(next_state: State) -> void:
 	state = next_state
@@ -303,7 +307,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 			var recovered := Generator.shuffle(cells,rng,WIDTH,HEIGHT)
 			if not recovered:
 				Metrics.incident("Cascade multiset cannot be stabilized; regenerate normal colors, preserve IDs and blockers", {"level":level.id,"depth":depth})
-				recovered = Generator.emergency_stabilize(cells,rng,WIDTH,HEIGHT)
+				recovered = Generator.emergency_stabilize(cells,rng,WIDTH,HEIGHT,palette)
 			if not recovered:
 				Metrics.incident("Cascade recovery failed", {"level":level.id,"depth":depth})
 				outcome = "lost"

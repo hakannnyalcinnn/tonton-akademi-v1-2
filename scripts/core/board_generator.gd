@@ -8,7 +8,7 @@ static func forbidden_prefix(cells: Array, i: int, color: int, width: int) -> bo
 	if i >= 2 * width and Match.normal(cells[i - width]) and Match.normal(cells[i - 2 * width]) and cells[i - width].c == color and cells[i - 2 * width].c == color: return true
 	return false
 
-static func repair_start(cells: Array, rng, width: int, height: int) -> void:
+static func repair_start(cells: Array, rng, width: int, height: int, palette: Array=[0,1,2,3,4]) -> void:
 	if has_traits(cells):
 		# Repair ordinary neighbors, never detach a trait from its defined colors/phase.
 		for attempt in 32:
@@ -22,7 +22,7 @@ static func repair_start(cells: Array, rng, width: int, height: int) -> void:
 				var old_color: int=cells[index].c
 				var best_color:=old_color
 				var best_count:=indices.size()
-				var colors: Array=[0,1,2,3,4]
+				var colors: Array=palette.duplicate()
 				rng.shuffle(colors)
 				for color in colors:
 					cells[index].c=color
@@ -37,7 +37,7 @@ static func repair_start(cells: Array, rng, width: int, height: int) -> void:
 	elif not Match.find(cells, width, height).is_empty():
 		for i in cells.size():
 			if not Match.normal(cells[i]): continue
-			var colors: Array = [0, 1, 2, 3, 4]
+			var colors: Array = palette.duplicate()
 			rng.shuffle(colors)
 			for color in colors:
 				if not forbidden_prefix(cells, i, color, width):
@@ -106,15 +106,15 @@ static func place(cells: Array, positions: Array, pools: Array, order: Array, cu
 		pools[color].append(cell)
 	return false
 
-static func emergency_stabilize(cells: Array, rng, width: int, height: int) -> bool:
+static func emergency_stabilize(cells: Array, rng, width: int, height: int, palette: Array=[0,1,2,3,4]) -> bool:
 	# Only diagnosed cascade corruption uses new colors. Ordinary no-move shuffles
 	# still preserve their color multiset, specials, cell identities and blockers.
 	for attempt in 32:
 		for i in cells.size():
 			if not Match.normal(cells[i]) or cells[i].has("trait"): continue
-			var start: int = rng.next_int(5)
-			for offset in 5:
-				var color := (start+offset)%5
+			var start: int = rng.next_int(palette.size())
+			for offset in palette.size():
+				var color: int=palette[(start+offset)%palette.size()]
 				if not forbidden_prefix(cells,i,color,width):
 					cells[i].c=color
 					break
