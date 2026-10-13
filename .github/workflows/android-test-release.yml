@@ -10,7 +10,7 @@ permissions:
 
 concurrency:
   group: prizma-test-release-v0.7.0
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   test-verify-release:
@@ -68,6 +68,14 @@ jobs:
         run: |
           cp build/prizma-match3.apk build/prizma-v0.7.0.apk
           sha256sum build/prizma-v0.7.0.apk > build/prizma-v0.7.0.apk.sha256
+          if gh release view v0.7.0 >/dev/null 2>&1; then
+            mkdir -p build/published
+            gh release download v0.7.0 --pattern prizma-runtime.sha256 --pattern prizma-v0.7.0.apk --dir build/published
+            cmp build/prizma-runtime.sha256 build/published/prizma-runtime.sha256
+            python3 -c 'from pathlib import Path; import hashlib; assert hashlib.sha256(Path("build/published/prizma-v0.7.0.apk").read_bytes()).digest() == hashlib.sha256(Path("build/prizma-match3.apk").read_bytes()).digest()'
+            echo "Existing prerelease matches the verified runtime and APK bytes."
+            exit 0
+          fi
           gh release create v0.7.0 \
             build/prizma-v0.7.0.apk \
             build/prizma-v0.7.0.apk.sha256 \
