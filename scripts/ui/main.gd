@@ -60,6 +60,7 @@ var score_target := 0.0
 var board_view
 var screen := "home"
 var paused := false
+var reading_goal:=false
 var game_hud
 var score_label: Label
 var moves_label: Label
@@ -210,6 +211,7 @@ func begin_page(next_screen: String) -> void:
 	transition_token+=1
 	close_overlay()
 	goal_tip=null
+	reading_goal=false
 	pending_goal_tutorials.clear()
 	if page != null:
 		page.hide()
@@ -443,6 +445,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	game_hud.configure(board.level,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),board.collected,save.data.settings.reduced_motion)
 	game_hud.pause_requested.connect(show_pause)
 	level_label=game_hud.title;score_label=game_hud.score;moves_label=game_hud.moves;star_progress=game_hud.stars;goals_panel=game_hud.goals
+	star_progress.star_earned.connect(func(_index):audio.play("star_award"))
 	goals_panel.configure(board.active_targets(),board.collected);game_hud.update_height()
 	goals_panel.goal_pressed.connect(show_goal_description)
 	goals_panel.goal_completed.connect(func(_key):audio.play("resonance"))
@@ -461,8 +464,8 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
-	card(page,Rect2(30,816,480,47),Color("fff8e9"))
-	storm_gauge=preload("res://scripts/ui/storm_gauge.gd").new();storm_gauge.position=Vector2(36,817);storm_gauge.size=Vector2(468,44);page.add_child(storm_gauge)
+	card(page,Rect2(76,816,388,33),Color("fff8e9"))
+	storm_gauge=preload("res://scripts/ui/storm_gauge.gd").new();storm_gauge.position=Vector2(82,817);storm_gauge.size=Vector2(376,30);storm_gauge.quiet=save.data.settings.reduced_motion;page.add_child(storm_gauge)
 	resonance_label=label(page,"",Rect2(38,869,414,22),12,Color("fff9e8"),HORIZONTAL_ALIGNMENT_CENTER)
 	resonance_label.add_theme_color_override("font_outline_color",Color(.13,.08,.2,.9));resonance_label.add_theme_constant_override("outline_size",3)
 	boss_badge=null
@@ -537,6 +540,7 @@ func set_hint(text: String) -> void:
 	if hint_label: hint_label.text = text
 
 func on_swap(a: int, b: int) -> void:
+	if reading_goal:close_goal_tip();return
 	if screen != "game" or paused or entering_level or board_view.busy or not board.available(): return
 	var started := Time.get_ticks_usec()
 	var event: Dictionary = board.swap(a,b)
@@ -544,6 +548,7 @@ func on_swap(a: int, b: int) -> void:
 	process_event(event)
 
 func on_special(index: int) -> void:
+	if reading_goal:close_goal_tip();return
 	if entering_level:return
 	if screen != "game" or paused or board_view.busy or not board.available() or board.cells[index].p == "": return
 	if board.cells[index].p == "color": show_color_picker(index)
@@ -674,17 +679,21 @@ func show_goal_description(key: String,tutorial: bool=false) -> void:
 	close_goal_tip()
 	board_view.highlight_goal(key)
 	if is_instance_valid(companion):companion.hide()
-	goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+75);goal_tip.size=Vector2(480,76)
+	goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+75);goal_tip.size=Vector2(480,60)
+	reading_goal=not tutorial
 	page.add_child(goal_tip)
-	card(goal_tip,Rect2(0,0,480,76),Color("fffaf0"))
+	card(goal_tip,Rect2(0,0,480,60),Color("fffaf0"))
 	var registry=preload("res://scripts/ui/goal_registry.gd")
-	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(10,10);icon.size=Vector2(48,48);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
-	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(68,5,345,20),12,Palette.GOLD)
-	var text:=label(goal_tip,registry.description(key,int(goals_panel.targets[key])),Rect2(68,25,346,46),13)
+	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(10,7);icon.size=Vector2(44,44);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
+	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(64,3,345,18),11,Palette.GOLD)
+	var text:=label(goal_tip,registry.description(key,int(goals_panel.targets[key])),Rect2(64,22,349,34),12)
 	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	button(goal_tip,"×",Rect2(423,8,48,48),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
+	button(goal_tip,"×",Rect2(423,5,48,48),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
+	if tutorial:
+		var timeout:=Timer.new();timeout.wait_time=2.6;timeout.one_shot=true;goal_tip.add_child(timeout);timeout.timeout.connect(advance_goal_tutorial);timeout.start()
 	
 func close_goal_tip() -> void:
+	reading_goal=false
 	if screen=="game" and is_instance_valid(companion):companion.show()
 	if is_instance_valid(goal_tip):goal_tip.hide();goal_tip.queue_free()
 	goal_tip=null

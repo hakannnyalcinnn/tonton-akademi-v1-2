@@ -42,3 +42,5 @@ Pırıl ve beş dünyaya ait canlılar `piril.png` atlasında, bu proje için g�
 
 ## v0.12.1 UI
 Parlak eylem yüzeyleri, dairesel bölüm noktası ve harita/görev/ayar ikonları bu proje için özgün SVG koduyla çizildi. v0.12.0 Pırıl ve canlı atlası aynen korundu; başka oyunların varlıkları kullanılmadı.
+
+Original v0.12.3 compact goal SVGs: giant, core, ice, dual and rainbow. Authored for PRİZMA, no third-party game assets.

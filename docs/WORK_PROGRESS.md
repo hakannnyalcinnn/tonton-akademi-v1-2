@@ -1,5 +1,3 @@
 # Güncel çalışma
 
-v0.12.2 tamamlandı: üç katmanlı HUD, 106 yüksekliği 215 → 176, 250 HUD yükleme, beş çözünürlük, hedef/son hamle/gerçek sürükleme ve kayıt regresyonu başarılı. Motor/bölüm/kayıt/Pırıl kaynakları değişmedi.
-
-Normal/dev 0.12.2 kod14 APK imza/bütünlük/veri/kaynak kontrolleri geçti. GitHub Actions 38534405045 başarılı; v0.12.2 Release iki APK, 106 önce/sonra ve kısa raporla yayımlandı. İki indirme HEAD 200 / 82104181 byte doğrulandı. Fiziksel Android FPS/kurulum testi yapılmadı. Sonraki aşama kullanıcı onayıyla.
+v0.12.3: temiz v0.12.2 ve AGENTS/TEST_POLICY incelendi; backup/before-v0.12.3 oluşturuldu. A: kompakt yıldız/hedef/bildirim/fırtına ve 247 Dev Kristal tanıtımı. B: olay verisinden roket/renk bombası/oluşum efektleri. C: süreler, yedi render senaryosunda profiler. D: hedefli regresyon, final APK ve Release. Motor, 250 bölüm ve kayıtlar korunacak.

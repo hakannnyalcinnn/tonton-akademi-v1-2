@@ -87,8 +87,9 @@ func _draw() -> void:
   var r: Rect2=rects[key];r.position.y-=offset
   var done:=int(amounts[key])>=int(targets[key])
   draw_style_box(styles[1 if done else 0],r)
-  var icon_size:=32.0 if compact and targets.size()<=3 else 22.0 if compact else 64.0 if r.size.y>80 else (30.0 if content_height>112 else 34.0)
-  var icon_rect:=Rect2(r.get_center().x-icon_size/2,r.position.y+(1 if compact and targets.size()>3 else 4),icon_size,icon_size)
+  var icon_size:=40.0 if compact and targets.size()<=3 else 32.0 if compact else 64.0 if r.size.y>80 else (30.0 if content_height>112 else 34.0)
+  var side_by_side:=compact and targets.size()>3
+  var icon_rect:=Rect2(r.position.x+3 if side_by_side else r.get_center().x-icon_size/2,r.position.y+2,icon_size,icon_size)
   if pulses[key]>0:draw_circle(icon_rect.get_center(),icon_size*.55,Color(1,.85,.35,float(pulses[key])*.5))
   if key=="total":
    for i in 3:draw_texture_rect(Registry.icon(str(i)),Rect2(icon_rect.position+Vector2(i*icon_size*.22,0),Vector2(icon_size*.62,icon_size*.85)),false)
@@ -97,9 +98,11 @@ func _draw() -> void:
    var color:=int(key.trim_prefix("shield"))
    draw_texture_rect(Registry.icon(str(color)),Rect2(icon_rect.get_center()-Vector2(9,9),Vector2(18,18)),false)
   var text:="Kalan %d"%maxi(0,int(targets[key])-int(amounts[key])) if remaining_mode else "%d/%d"%[roundi(float(displayed[key])),int(targets[key])]
-  draw_string(font,Vector2(r.get_center().x-font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x/2,r.end.y-(3 if compact and targets.size()>3 else 5)),text,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("425877"))
+  var counter_size:=12 if side_by_side else 14
+  var counter_x:=r.position.x+38 if side_by_side else r.get_center().x-font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,counter_size).x/2
+  draw_string(font,Vector2(counter_x,r.get_center().y+5 if side_by_side else r.end.y-5),text,HORIZONTAL_ALIGNMENT_LEFT,-1,counter_size,Color("425877"))
   if done:
-   var art=preload("res://scripts/ui/casual_skin.gd");draw_texture_rect_region(art.ADVANCED,Rect2(r.end.x-25,r.position.y+3,22,22),art.region("advanced",7))
+   var art=preload("res://scripts/ui/casual_skin.gd");draw_texture_rect_region(art.ADVANCED,Rect2(r.end.x-15,r.position.y+1,14,14) if side_by_side else Rect2(r.end.x-25,r.position.y+3,22,22),art.region("advanced",7))
  if content_height>size.y:
   draw_rect(Rect2(size.x-6,offset/content_height*size.y,4,size.y*size.y/content_height),Color("62b9b0"))
   draw_rect(Rect2(0,size.y-12,size.x-10,12),Color("fff9ec"))

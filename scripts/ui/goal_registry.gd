@@ -37,6 +37,8 @@ static func entry(key: String) -> Array:
  return ENTRIES.get(key,["ui",3,key,"Bu hedeften %d adet tamamla."])
 static func icon(key: String) -> Texture2D:
  if not icons.has(key):
+  if key in ["giants","cores","ice","duals"]:
+   icons[key]=load("res://assets/casual/goal-"+key+".svg");return icons[key]
   var e:=entry(key)
   if e[0]=="adventure":
    icons[key]=preload("res://scripts/ui/companion.gd").sprite(int(e[1]));return icons[key]
