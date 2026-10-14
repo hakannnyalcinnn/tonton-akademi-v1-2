@@ -11,3 +11,8 @@ Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrula
 - Mevcut 50 düğümlü dünya yolları korundu; dünyalar/güncel bölüm hiyerarşisi ve alt menü etiketleri düzeltildi.
 - Container tabanlı bölüm önizlemesi ve dünyaya uygun duraklatma paneli eklendi; eski splash ve native tooltip katmanları kaldırıldı.
 - İlk SMOKE ve hedefli eski UI/drag/helper/gravity kontrolleri geçti. Görsel kalite düzeltmeleri, gezegen giriş testleri ve final render/perf/APK doğrulaması sürüyor.
+
+- v0.13.0 final: native 360° / beş ray seçimi / kilit / yakınlaşma / tek açıklama testleri geçti; eski UI/helper/Storm/kurtarma-boss/kayıt ve 250 HUD yüklemeleri başarılı.
+- Beş gezegen/bölüm yolu, hareketli kare dizileri, 320×568 ve 390×844 gerçek render'ları kontrol edildi. Son llvmpipe p95: dengeli 44,17 ms, performans 29,99 ms; cihaz FPS doğrulanmadı.
+- İki APK v0.13.0/code18 tek sefer üretildi, aynı sertifika/paket ve ZIP/data/ARM doğrulandı. Paketlenmiş kaynak probe'ları normal/dev geçti; sabit 80 ms fixture beklemesi gerçek geçiş koşuluna dönüştürüldü, APK yeniden derlenmedi.
+- Yayın için doğrulanmış artefakt dalı prizma-apk-v0.13.0 hazır; GitHub push/CI/erişim doğrulaması kalan adımlar.

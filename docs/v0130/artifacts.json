@@ -1,0 +1,27 @@
+{
+  "source_commit": "d3127abe50355e7326617a67c3fb49726bfe8854",
+  "runtime_digest": "2939c419a5f3336a28f047b4e5029ebcc49b71ed355c7127f116ff343aaa77ee",
+  "apk_resources_probe": "PASS for both actual extracted APK sources (desktop Godot, not physical Android)",
+  "apks": [
+    {
+      "file": "prizma-v0.13.0.apk",
+      "bytes": 82248440,
+      "sha256": "6f43fa5f3b40da359af6ae237f00d11eacf44f425fa191d63140d1d6ceff2b85",
+      "package": "com.prizma.renklerinuyanisi.match3",
+      "version": "0.13.0",
+      "version_code": 18,
+      "certificate_sha256": "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3' versionCode='18' versionName='0.13.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'"
+    },
+    {
+      "file": "prizma-v0.13.0-dev.apk",
+      "bytes": 82244344,
+      "sha256": "1f6b4b74a1f3bd419b20a06c43a116dbea478ac4e003028fbe47c27797969245",
+      "package": "com.prizma.renklerinuyanisi.match3.dev",
+      "version": "0.13.0",
+      "version_code": 18,
+      "certificate_sha256": "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3.dev' versionCode='18' versionName='0.13.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'"
+    }
+  ]
+}

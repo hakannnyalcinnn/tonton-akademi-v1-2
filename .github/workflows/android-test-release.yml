@@ -1,8 +1,8 @@
-name: PRIZMA v0.12.4 adventure map and downward gameplay test release
+name: PRIZMA v0.13.0 adventure map and downward gameplay test release
 
 on:
   push:
-    branches: [prizma-release-v0.12.4]
+    branches: [prizma-release-v0.13.0]
     paths-ignore:
       - "**/*.md"
   workflow_dispatch:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: prizma-test-release-v0.12.4
+  group: prizma-test-release-v0.13.0
   cancel-in-progress: true
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 45
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: fc40012f0ea3f81fcb9facfd6162ed648ee77e8f
+      PRIZMA_ARTIFACT_COMMIT: 1bf2d38c3919a0c50e0b5f457576948c13d3537c
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
@@ -50,13 +50,13 @@ jobs:
             python3 tools/bootstrap_android.py --tools-root "$PRIZMA_TOOLS_DIR" --accept-sdk-license
           fi
       - name: Run release-critical acceptance once
-        run: bash tools/test_release_acceptance.sh
+        run: python3 tools/test_profiles.py TARGETED --suite workflow_smoke --suite v0130_tests --suite persistence_probe
       - name: Retrieve exact tested artifacts
         run: |
-          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.12.4
+          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.13.0
           test "$(git rev-parse FETCH_HEAD)" = "$PRIZMA_ARTIFACT_COMMIT"
           mkdir -p build
-          for file in prizma-v0.12.4.apk prizma-v0.12.4-dev.apk checksums.sha256 prizma-runtime.sha256 prizma-v0124-report.zip v124-map-1.png v124-preview-four.png v124-help-960.png v124-bomb_normal-3.png v124-centered-1200.png v124-storm-1.png; do
+          for file in prizma-v0.13.0.apk prizma-v0.13.0-dev.apk checksums.sha256 prizma-runtime.sha256 prizma-v0130-report.zip v130-planet-1.png v130-preview.png v130-small-help-320.png v130-rotation-3.png v130-world-path-1.png v130-pause.png; do
             git show "$PRIZMA_ARTIFACT_COMMIT:$file" > "build/$file"
           done
       - name: Verify exact runtime, APK bytes and signatures
@@ -64,7 +64,7 @@ jobs:
           python3 tools/runtime_digest.py > build/current-runtime.sha256
           cmp build/current-runtime.sha256 build/prizma-runtime.sha256
           (cd build && sha256sum --check checksums.sha256)
-          for apk in build/prizma-v0.12.4.apk build/prizma-v0.12.4-dev.apk; do
+          for apk in build/prizma-v0.13.0.apk build/prizma-v0.13.0-dev.apk; do
             "$PRIZMA_TOOLS_DIR/android-sdk/build-tools/36.0.0/apksigner" verify --print-certs "$apk" > build/signing-certificate.txt
             python3 -c 'from pathlib import Path; assert "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a" in Path("build/signing-certificate.txt").read_text()'
           done
@@ -72,27 +72,27 @@ jobs:
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          if gh release view v0.12.4 >/dev/null 2>&1; then
+          if gh release view v0.13.0 >/dev/null 2>&1; then
             mkdir -p build/published
-            gh release download v0.12.4 --pattern checksums.sha256 --pattern prizma-runtime.sha256 --dir build/published
+            gh release download v0.13.0 --pattern checksums.sha256 --pattern prizma-runtime.sha256 --dir build/published
             cmp build/checksums.sha256 build/published/checksums.sha256
             cmp build/prizma-runtime.sha256 build/published/prizma-runtime.sha256
             echo "Existing release matches exact tested source and artifacts."
             exit 0
           fi
-          gh release create v0.12.4 \
-            build/prizma-v0.12.4.apk \
-            build/prizma-v0.12.4-dev.apk \
+          gh release create v0.13.0 \
+            build/prizma-v0.13.0.apk \
+            build/prizma-v0.13.0-dev.apk \
             build/checksums.sha256 \
             build/prizma-runtime.sha256 \
-            build/prizma-v0124-report.zip \
-            build/v124-map-1.png \
-            build/v124-preview-four.png \
-            build/v124-help-960.png \
-            build/v124-bomb_normal-3.png \
-            build/v124-centered-1200.png \
-            build/v124-storm-1.png \
+            build/prizma-v0130-report.zip \
+            build/v130-planet-1.png \
+            build/v130-preview.png \
+            build/v130-small-help-320.png \
+            build/v130-rotation-3.png \
+            build/v130-world-path-1.png \
+            build/v130-pause.png \
             --target "$GITHUB_SHA" \
-            --title "PRİZMA v0.12.4 — Duyarlı arayüz ve kademeli enerji efektleri" \
+            --title "PRİZMA v0.13.0 — Döndürülebilir 3D gezegen ve macera menüleri" \
             --prerelease \
-            --notes-file docs/RELEASE_v0.12.4.md
+            --notes-file docs/RELEASE_v0.13.0.md

@@ -1,0 +1,32 @@
+{
+  "platform": "Actual Godot renderer, desktop Xvfb / llvmpipe software; not Android hardware",
+  "rows": [
+    {
+      "draw_calls_p95": 99.0,
+      "engine_process_p95_ms": 224.052,
+      "first_build_ms": 132.065,
+      "frames": 120,
+      "map_and_cached_reopen_ms": 24.678,
+      "max_ms": 54.327,
+      "max_scene_nodes": 51,
+      "p95_ms": 44.168,
+      "quality": "balanced",
+      "viewport_pixels": "(477, 477)",
+      "warmup_frames": 25
+    },
+    {
+      "draw_calls_p95": 99.0,
+      "engine_process_p95_ms": 118.277,
+      "first_build_ms": 66.662,
+      "frames": 120,
+      "map_and_cached_reopen_ms": 20.821,
+      "max_ms": 32.023,
+      "max_scene_nodes": 51,
+      "p95_ms": 29.994,
+      "quality": "performance",
+      "viewport_pixels": "(318, 318)",
+      "warmup_frames": 25
+    }
+  ],
+  "target_ms": 16.7
+}

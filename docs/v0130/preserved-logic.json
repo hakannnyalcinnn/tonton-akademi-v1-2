@@ -1,0 +1,14 @@
+{
+  "scripts/core": {
+    "before": "4adef220241ca530808b488ac74490a397a875ea",
+    "after": "4adef220241ca530808b488ac74490a397a875ea"
+  },
+  "scripts/mechanics": {
+    "before": "1e42d7c95d62e60fbc6155d45d55c94d9ce2e6ef",
+    "after": "1e42d7c95d62e60fbc6155d45d55c94d9ce2e6ef"
+  },
+  "data": {
+    "before": "76dd6c8f3d3af9c777982ac0c24f56926df2fe07",
+    "after": "76dd6c8f3d3af9c777982ac0c24f56926df2fe07"
+  }
+}

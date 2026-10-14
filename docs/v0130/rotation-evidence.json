@@ -1,0 +1,53 @@
+[
+  {
+    "gesture": 0,
+    "step": 3,
+    "time_ms": 2272,
+    "yaw": 1.368
+  },
+  {
+    "gesture": 0,
+    "step": 7,
+    "time_ms": 2640,
+    "yaw": 2.736
+  },
+  {
+    "gesture": 1,
+    "step": 3,
+    "time_ms": 2996,
+    "yaw": 4.104
+  },
+  {
+    "gesture": 1,
+    "step": 7,
+    "time_ms": 3370,
+    "yaw": 5.472
+  },
+  {
+    "gesture": 2,
+    "step": 3,
+    "time_ms": 3761,
+    "yaw": 6.84
+  },
+  {
+    "gesture": 2,
+    "step": 7,
+    "time_ms": 4121,
+    "yaw": 8.208
+  },
+  {
+    "camera_size": 7.31430530548096,
+    "time_ms": 7610,
+    "zoom_frame": 0
+  },
+  {
+    "camera_size": 5.98357248306274,
+    "time_ms": 7820,
+    "zoom_frame": 1
+  },
+  {
+    "camera_size": 4.58206129074097,
+    "time_ms": 8005,
+    "zoom_frame": 2
+  }
+]
