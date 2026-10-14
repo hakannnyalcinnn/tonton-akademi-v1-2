@@ -388,6 +388,7 @@ func request_level(number: int) -> void:
 	var definition: Dictionary=save.data.active.get("level_definition",Catalog.get_level(number)) if resume_requested else Catalog.get_level(number)
 	apply_world_progress(Catalog.world_for(number))
 	open_overlay("","")
+	audio.play("preview_open")
 	for child in overlay.get_children():child.queue_free()
 	overlay.set_meta("preview_level",number)
 	card(overlay,Rect2(54,155,432,650))
@@ -414,7 +415,7 @@ func request_level(number: int) -> void:
 			var rules=preload("res://scripts/core/booster_catalog.gd")
 			if not rules.available(save.data,key):
 				explanation.text="Bu güç %d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Stok yok. Bölüm ve hazine ödülleriyle kazanabilirsin."
-				audio.play("invalid");return
+				audio.play("locked");return
 			explanation.text=rules.ITEMS[key].help
 			audio.play("click")
 			selected_booster=key if selected_booster!=key else ""
@@ -489,6 +490,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.special_pressed.connect(on_special)
 	board_view.cell_pressed.connect(on_helper_cell)
 	board_view.device_pressed.connect(show_seal_description)
+	board_view.feedback.connect(func(key):audio.play(key))
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
@@ -597,6 +599,7 @@ func process_event(event: Dictionary) -> void:
 		set_hint(Strings.text("invalid"))
 		board_view.animate(event)
 		return
+	audio.play("swap_accept")
 	var tutorial := "m3_level_%d" % int(board.level.id)
 	if not test_mode and tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
 	if not test_mode and event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
@@ -816,6 +819,7 @@ func select_navigation(index: int) -> void:
 		if child is IconButton and child.has_meta("navigation_index"):child.chosen=int(child.get_meta("navigation_index"))==index;child.queue_redraw()
 
 func close_overlay() -> void:
+	audio.play("panel_close")
 	select_navigation(0)
 	if overlay != null:
 		overlay_root.hide()
@@ -1188,10 +1192,10 @@ func build_helper_bar() -> void:
 		item.pressed.connect(func():
 			if board_view.busy or not board.available():return
 			close_goal_tip()
-			if not rules.available(save.data,key):set_hint("%d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Bu güçten stok kalmadı.");audio.play("invalid");return
+			if not rules.available(save.data,key):set_hint("%d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Bu güçten stok kalmadı.");audio.play("locked");return
 			armed_helper="" if armed_helper==key else key
 			for other in helper_buttons:helper_buttons[other].chosen=other==armed_helper;helper_buttons[other].queue_redraw()
-			set_hint("İptal için güce tekrar dokun." if armed_helper!="" else "Güç seçimi iptal edildi.");audio.play("click"))
+			set_hint("İptal için güce tekrar dokun." if armed_helper!="" else "Güç seçimi iptal edildi.");audio.play("booster_select"))
 func on_helper_cell(index: int) -> void:
 	if armed_helper=="" or board_view.busy or not board.available():return
 	var rules=preload("res://scripts/core/booster_catalog.gd")

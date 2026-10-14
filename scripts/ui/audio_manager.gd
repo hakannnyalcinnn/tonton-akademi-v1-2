@@ -7,7 +7,7 @@ var last_played: Dictionary={}
 var music: AudioStreamPlayer
 
 func _ready() -> void:
-	for key in ["rocket_impact","double_color","rescue","boss_hit","boss_win","chest","star_award","world_unlock","click","pop","large","resonance","power","gravity","win","lose","invalid","rocket","color","cascade","portal","vine","crate","mirror","match3","match4","match5","prism","combo_power","storm","crystal_wave","combo_big","success2","floor_crack","giant_break","core_break","magnet","shuffle"]:
+	for key in ["touch","swap_motion","swap_accept","fall_group","land_group","preview_open","panel_close","locked","booster_select","rocket_impact","double_color","rescue","boss_hit","boss_win","chest","star_award","world_unlock","click","pop","large","resonance","power","gravity","win","lose","invalid","rocket","color","cascade","portal","vine","crate","mirror","match3","match4","match5","prism","combo_power","storm","crystal_wave","combo_big","success2","floor_crack","giant_break","core_break","magnet","shuffle"]:
 		streams[key] = load("res://assets/audio/"+key+".wav")
 	for i in 5:
 		var voice := AudioStreamPlayer.new()
@@ -35,7 +35,7 @@ func apply_settings(value: Dictionary) -> void:
 func play(key: String, intensity: int = 0) -> void:
 	if not settings.get("sfx",true) or voices.is_empty() or not streams.has(key): return
 	var now:=Time.get_ticks_msec()
-	if now-int(last_played.get(key,-1000))<35:return
+	if now-int(last_played.get(key,-1000))<(75 if key in ["fall_group","land_group","touch"] else 35):return
 	last_played[key]=now
 	var voice: AudioStreamPlayer = voices[cursor%voices.size()]
 	cursor += 1

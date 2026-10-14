@@ -495,13 +495,16 @@ func settle(record: bool = false) -> void:
 	transition(State.REFILLING)
 	var refill_started := Time.get_ticks_usec()
 	var spawn_origins: Dictionary={}
+	var spawn_clip_top: Dictionary={}
 	for column in WIDTH:
 		var source_row:=-1
 		var pending: Array=[]
 		for row in HEIGHT+1:
 			var index:=row*WIDTH+column
 			if row==HEIGHT or (cells[index]!=null and cells[index].get("fixed",false)):
-				for offset in pending.size():spawn_origins[pending[offset]]=float(source_row-pending.size()+1+offset)*60.0
+				for offset in pending.size():
+					spawn_origins[pending[offset]]=float(source_row-pending.size()+1+offset)*60.0
+					spawn_clip_top[pending[offset]]=float(source_row+1)*60.0
 				pending.clear();source_row=row
 			elif cells[index]==null:pending.append(index)
 	for line in Gravity.lines(WIDTH, HEIGHT, direction):
@@ -509,7 +512,7 @@ func settle(record: bool = false) -> void:
 			if cells[index] == null:
 				cells[index] = make_cell(int(refill_stream.pop_front())) if not refill_stream.is_empty() else make_cell()
 	Metrics.elapsed("refill_logic", refill_started)
-	if record: frame("refill", before,{"spawn_origins":spawn_origins})
+	if record: frame("refill", before,{"spawn_origins":spawn_origins,"spawn_clip_top":spawn_clip_top})
 
 func change_gravity(_next_direction: String) -> Dictionary:
 	# Kept only as a safe compatibility rejection: players cannot select direction.

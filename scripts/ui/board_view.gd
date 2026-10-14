@@ -1,4 +1,5 @@
 extends Control
+signal feedback(key: String)
 signal cell_pressed(index: int)
 signal rocket_impact
 signal swap_requested(a: int, b: int)
@@ -344,6 +345,8 @@ func next_frame() -> void:
 			for k in vertices:
 				var u:=float(k)/(vertices-1);points.append(source+delta*u+bend*sin(u*PI))
 			energy_paths[index]=points
+	if current.kind=="swap":feedback.emit("swap_motion")
+	elif current.kind in ["fall","refill"] and previous!=target:feedback.emit("fall_group")
 	age = 0
 	board.visual_phase(int(current.state))
 	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave","shuffle","magnet"]:
@@ -398,6 +401,7 @@ func _process(delta: float) -> void:
 		if age >= duration:
 			if current.kind=="clear" and not render_beams.is_empty():rocket_impact.emit()
 			Metrics.record("animation_"+str(current.kind),age*1000)
+			if current.kind in ["fall","refill"] and previous!=target:feedback.emit("land_group")
 			displayed = target
 			next_frame()
 	for i in particle_count:
@@ -454,6 +458,7 @@ func _gui_input(event: InputEvent) -> void:
 		if index<0:return
 		if board.cells[index].get("obstacle",{}).get("kind","")=="seal":device_pressed.emit(index);return
 		if board.cells[index].get("fixed",false):return
+		feedback.emit("touch")
 		drag_index = index
 		selected = index
 		pointer_id = pointer
@@ -585,6 +590,7 @@ func _draw() -> void:
 				draw_cell(cell,Rect2(anchor+Vector2(28,28)-extent/2,extent),true)
 				continue
 			pos = origin.lerp(pos, ease)
+			if current.kind=="refill" and not origins.has(cell.id) and pos.y<float(current.get("spawn_clip_top",{}).get(i,0)):continue
 			if current.kind=="storm" and not reduced_motion:pos+=Vector2(sin(t*TAU*2+i),cos(t*TAU*2+i))*sin(t*PI)*1.2
 			if current.kind=="shuffle":pos.y-=sin(t*PI)*12
 			if current.kind in ["fall", "refill"] and t > 0.85: pos.y += sin((t - 0.85) / 0.15 * PI) * 2

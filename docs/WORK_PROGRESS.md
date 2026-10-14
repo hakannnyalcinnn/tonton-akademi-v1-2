@@ -6,4 +6,4 @@ A tamam: tek sınırlı açıklama paneli, gerçek stok/kilit güçleri; 120 hı
 B tamam: beş özgün dünya yapısı, aşağıdan yukarı 50 düğümlü kıvrımlı harita; beş harita render testi.
 C tamam: sakin kontrast, gerçek stok tüketen iptal edilebilir iki güç; geçersiz hedef/çift kullanım koruması test edildi.
 D sürüyor: normal yer çekimi aşağı, eski kayıt yönü güvenle normalleştirilir; Fırtına yön değiştirmeden üç uygun kristali temizler. İlk 250 bölüm regresyonunda varsayılan bot 247 kazandı, 25/197/213 kaybetti; beş stratejili ek kontrolde üçü de farklı stratejilerle kazanıldı. Bu ilk koşu başarılı olarak raporlanmaz.
-Kalan: D dolum/animasyon ve risk seed testleri, E sesler, F final regresyon/perf/iki APK/Release. Gerçek Android cihaz erişimi yok.
+D dolum animasyonu üstten ve sabit engel altında giriş sınırına uygun. Riskli üç bölüm × üç seed × beş strateji değerlendirildi; sonuçlar build/r2-balance-probe.json. E yeni özgün dokunma/takas/gruplu düşüş/yerleşme/önizleme/kilit/güç sesleri; beş ses kanalı, yeniden tetikleme sınırı korundu. Kalan: F final regresyon/perf/iki APK/Release. Gerçek Android cihaz erişimi yok.
