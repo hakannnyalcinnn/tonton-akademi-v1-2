@@ -37,3 +37,5 @@ Oynanış 2.0 sesleri: tools/generate_gameplay2_audio.py ile özgün matematikse
 
 ## v0.12 özgün varlıkları
 Pırıl ve beş dünyaya ait canlılar `piril.png` atlasında, bu proje için görsel üretim aracıyla oluşturuldu; harici oyun varlıkları kullanılmadı. Kurtarma, boss, sandık, yıldız ve dünya açılışı sesleri `tools/generate_adventure_audio.py` ile özgün sentezlenir. Referans görselin içeriği kopyalanmadı.
+
+Ödül sandığının gövde/kapak SVG çizimleri ve açılış ışığı bu proje için özgün kodla çizildi; dış ses veya görsel kullanılmadı.

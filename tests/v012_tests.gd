@@ -38,6 +38,8 @@ func run() -> void:
 	Progress.complete(data,board,true);var coins: int=data.adventure_progress.coins
 	Progress.complete(data,board,false)
 	check(coins==30 and data.adventure_progress.coins==coins,"treasure rewards are exactly once")
+	Progress.action(data,{"frames":[{"kind":"clear","combo":3,"removed":[]},{"kind":"clear","combo":4,"removed":[]}]})
+	check(Progress.daily(data).combos==1,"one long player chain counts as one big daily combo")
 	var d:=Progress.daily(data);d.blue=30
 	check(Progress.claim_daily(data,"blue") and not Progress.claim_daily(data,"blue"),"daily reward is exactly once")
 	var restore:=Board.new(definition);var snapshot:=restore.snapshot()

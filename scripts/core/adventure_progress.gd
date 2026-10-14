@@ -18,11 +18,13 @@ static func daily(data: Dictionary) -> Dictionary:
 	return progress.daily[day]
 static func action(data: Dictionary,event: Dictionary) -> void:
 	var d:=daily(data)
+	var big_combo:=false
 	for frame in event.get("frames",[]):
 		if frame.kind!="clear":continue
 		for index in frame.get("removed",[]):
 			if frame.before[index]!=null and frame.before[index].p=="" and not frame.before[index].get("fixed",false) and int(frame.get("colors",{}).get(index,frame.before[index].c))==1:d.blue+=1
-		if int(frame.combo)>=3:d.combos+=1
+		if int(frame.combo)>=3:big_combo=true
+	if big_combo:d.combos+=1
 static func complete(data: Dictionary,board,first: bool) -> void:
 	ensure(data)
 	var progress: Dictionary=data.adventure_progress

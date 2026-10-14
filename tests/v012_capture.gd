@@ -24,5 +24,6 @@ func run() -> void:
 	var report:=Metrics.report(game.save.data.settings);report.android_device_tested=false;report.source="Godot --profiling / Xvfb llvmpipe desktop"
 	var file:=FileAccess.open("res://build/v012-performance.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
 	game.close_overlay();game.show_adventure_menu(1);await capture("collection")
+	game.close_overlay();game.start_level(20);game.board.outcome="won";game.earned_treasure=true;game.show_result();await create_timer(.45).timeout;await capture("treasure")
 	game.save.finish_writes();game.queue_free();await process_frame;await process_frame
 	print("V012 CAPTURE: PASS; desktop renderer, no Android device");quit()

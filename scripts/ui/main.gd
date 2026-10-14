@@ -834,6 +834,7 @@ func show_result() -> void:
 
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 		if earned_treasure:
+			var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.position=Vector2(391,390);chest.size=Vector2(77,70);chest.quiet=save.data.settings.reduced_motion or save.data.settings.reduced_effects;overlay.add_child(chest)
 			audio.play("chest")
 			label(overlay,"HAZİNE · +%d kristal para · yalnızca ilk kazanım"%int(board.level.treasure.coins),Rect2(66,507,408,23),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 		label(overlay, "2★: %d   ·   3★: %d" % [board.level.stars[1], board.level.stars[2]], Rect2(66, 475, 408, 28), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
