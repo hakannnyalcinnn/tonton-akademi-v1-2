@@ -1,4 +1,5 @@
 extends Control
+signal cell_pressed(index: int)
 signal rocket_impact
 signal swap_requested(a: int, b: int)
 signal special_pressed(index: int)
@@ -517,7 +518,9 @@ func finish_drag(point: Vector2) -> void:
 	cancel_drag()
 	if source < 0 or not inside(point): return
 	if delta.length() < DRAG_THRESHOLD:
-		if not was_moved and board.cells[source].p != "": special_pressed.emit(source)
+		if not was_moved:
+			cell_pressed.emit(source)
+			if not busy and board.cells[source].p != "": special_pressed.emit(source)
 		return
 	var destination := -1
 	if absf(delta.x) > absf(delta.y) * 1.2:

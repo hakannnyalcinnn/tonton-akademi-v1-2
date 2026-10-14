@@ -669,3 +669,11 @@ static func canonical_definition(value: Variant) -> Variant:
 		return result
 	if value is float and whole(value,-2147483648,2147483647):return int(value)
 	return value
+
+func deploy_power(index: int,kind: String) -> Dictionary:
+	if not available() or index<0 or index>=cells.size() or kind not in ["rocket_h","prism"]:return {"accepted":false}
+	var cell=cells[index]
+	if cell==null or cell.get("fixed",false) or cell.p!="" or cell.has("obstacle") or cell.has("armor") or cell.has("trait") or cell.has("motion"):return {"accepted":false}
+	frames.clear();var before:=cells.duplicate(true);cell.p=kind
+	frame("trait",before,{"traits":[]})
+	return {"accepted":true,"attempted":true,"frames":frames.duplicate(),"helper":true,"points":0}

@@ -60,6 +60,8 @@ var score_target := 0.0
 var board_view
 var screen := "home"
 var paused := false
+var armed_helper:=""
+var helper_buttons: Dictionary={}
 var reading_goal:=false
 var game_hud
 var score_label: Label
@@ -134,7 +136,7 @@ func layout_stage() -> void:
 			if is_instance_valid(node):
 				node.position.y = float(node.get_meta("base_y"))-56+(board_view.position.y-200)
 				if node.get_script()==preload("res://scripts/ui/companion.gd"):node.base_y=node.position.y
-	if screen=="game" and is_instance_valid(goal_tip):goal_tip.position.y=board_view.position.y+board_view.size.y+75
+	if screen=="game" and is_instance_valid(goal_tip):goal_tip.position.y=board_view.position.y+board_view.size.y+148
 	if overlay_root:
 		overlay_root.size = stage.size
 		overlay_root.get_child(0).size = stage.size
@@ -221,6 +223,9 @@ func begin_page(next_screen: String) -> void:
 	page.size = Vector2(540, 960)
 	stage.add_child(page)
 	screen = next_screen
+	armed_helper=""
+	helper_buttons.clear()
+	if garden.backdrop:garden.backdrop.material.set_shader_parameter("game_focus",1.0 if next_screen in ["game","transition"] else 0.0)
 	board_view = null
 	footer_nodes.clear()
 	garden.reduced_motion = save.data.settings.reduced_motion or save.data.settings.get("reduced_effects",false)
@@ -459,7 +464,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	goals_panel.configure(board.active_targets(),board.collected);game_hud.update_height()
 	goals_panel.goal_pressed.connect(show_goal_description)
 	goals_panel.goal_completed.connect(func(_key):audio.play("resonance"))
-	companion=preload("res://scripts/ui/companion.gd").new();companion.position=Vector2(458,873);companion.size=Vector2(48,48);companion.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(companion)
+	companion=preload("res://scripts/ui/companion.gd").new();companion.position=Vector2(458,936);companion.size=Vector2(48,48);companion.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(companion)
 	board_view = BoardView.new()
 	board_view.position = Vector2(32, Design.BOARD_Y)
 	board_view.size = Vector2(476, 536)
@@ -470,6 +475,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.set_board(board)
 	board_view.swap_requested.connect(on_swap)
 	board_view.special_pressed.connect(on_special)
+	board_view.cell_pressed.connect(on_helper_cell)
 	board_view.device_pressed.connect(show_seal_description)
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
@@ -477,18 +483,19 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.rocket_impact.connect(func():audio.play("rocket_impact"))
 	card(page,Rect2(76,816,388,33),Color("fff8e9"))
 	storm_gauge=preload("res://scripts/ui/storm_gauge.gd").new();storm_gauge.position=Vector2(82,817);storm_gauge.size=Vector2(376,30);storm_gauge.quiet=save.data.settings.reduced_motion;page.add_child(storm_gauge)
-	resonance_label=label(page,"",Rect2(38,869,414,22),12,Color("fff9e8"),HORIZONTAL_ALIGNMENT_CENTER)
+	resonance_label=label(page,"",Rect2(38,936,414,22),12,Color("fff9e8"),HORIZONTAL_ALIGNMENT_CENTER)
 	resonance_label.add_theme_color_override("font_outline_color",Color(.13,.08,.2,.9));resonance_label.add_theme_constant_override("outline_size",3)
 	boss_badge=null
 	if board.adventure.has("boss"):
-		boss_badge=preload("res://scripts/ui/boss_badge.gd").new();boss_badge.position=Vector2(38,865);boss_badge.size=Vector2(370,40);page.add_child(boss_badge);boss_badge.update_state(board.adventure.boss)
+		boss_badge=preload("res://scripts/ui/boss_badge.gd").new();boss_badge.position=Vector2(38,940);boss_badge.size=Vector2(370,40);page.add_child(boss_badge);boss_badge.update_state(board.adventure.boss)
 		resonance_label.hide()
+	build_helper_bar()
 	gravity_buttons.clear()
-	hint_label=label(page,"",Rect2(28,898,484,38),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER);hint_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	hint_label=label(page,"",Rect2(28,972,350 if developer_tools_available() else 484,30),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER);hint_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	hint_label.add_theme_color_override("font_color",Color("fff9e8"))
 	hint_label.add_theme_color_override("font_outline_color",Color(.13,.08,.2,.85))
 	hint_label.add_theme_constant_override("outline_size",3)
-	if developer_tools_available():button(page,"Test araçları",Rect2(330,937,172,23),show_developer_menu,false,11)
+	if developer_tools_available():button(page,"Test araçları",Rect2(390,974,114,28),show_developer_menu,false,11)
 	for node in page.get_children():
 		if node is Control and node.position.y<Design.BOARD_Y:node.set_meta("hud_y",node.position.y)
 		if node is Control and node.position.y>=816:
@@ -551,6 +558,7 @@ func set_hint(text: String) -> void:
 	if hint_label: hint_label.text = text
 
 func on_swap(a: int, b: int) -> void:
+	if armed_helper!="":set_hint("Gücü uygulamak için bir kristale dokun; iptal için güce tekrar bas.");return
 	if reading_goal:close_goal_tip();return
 	if screen != "game" or paused or entering_level or board_view.busy or not board.available(): return
 	var started := Time.get_ticks_usec()
@@ -559,6 +567,7 @@ func on_swap(a: int, b: int) -> void:
 	process_event(event)
 
 func on_special(index: int) -> void:
+	if armed_helper!="":on_helper_cell(index);return
 	if reading_goal:close_goal_tip();return
 	if entering_level:return
 	if screen != "game" or paused or board_view.busy or not board.available() or board.cells[index].p == "": return
@@ -678,7 +687,7 @@ func show_seal_description(index: int) -> void:
 	if screen!="game" or board_view.busy:return
 	var m: Dictionary=board.cells[index].get("obstacle",{})
 	if m.get("kind","")!="seal":return
-	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+75);goal_tip.size=Vector2(480,76);page.add_child(goal_tip)
+	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+148);goal_tip.size=Vector2(480,76);page.add_child(goal_tip)
 	card(goal_tip,Rect2(0,0,480,76),Color("fffaf0"))
 	label(goal_tip,"ŞİFRELİ MÜHÜR · RENK SIRASI",Rect2(18,4,400,20),12,Palette.GOLD)
 	for k in m.sequence.size():
@@ -690,7 +699,7 @@ func show_goal_description(key: String,tutorial: bool=false) -> void:
 	close_goal_tip()
 	board_view.highlight_goal(key)
 	if is_instance_valid(companion):companion.hide()
-	goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+75);goal_tip.size=Vector2(480,60)
+	goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+148);goal_tip.size=Vector2(480,60)
 	reading_goal=not tutorial
 	page.add_child(goal_tip)
 	card(goal_tip,Rect2(0,0,480,60),Color("fffaf0"))
@@ -1158,3 +1167,27 @@ func dev_command(command: String,number: int=1) -> void:
 			else:board.cells[i].p="rocket_h" if command=="rocket" else "prism"
 			break
 		board_view.set_board(board)
+
+func build_helper_bar() -> void:
+	var rules=preload("res://scripts/core/booster_catalog.gd")
+	for i in 2:
+		var key: String=["rocket","prism"][i]
+		var item:=IconButton.new();item.position=Vector2(115+i*133,860);item.size=Vector2(96,72);item.image=Design.icon("gems",int(rules.ITEMS[key].image));item.amount=int(save.data.adventure_progress.inventory.get(key,0));item.locked=not rules.unlocked(save.data,key);item.unavailable=not rules.available(save.data,key);item.tooltip_text=rules.ITEMS[key].name;page.add_child(item);helper_buttons[key]=item
+		item.pressed.connect(func():
+			if board_view.busy or not board.available():return
+			close_goal_tip()
+			if not rules.available(save.data,key):set_hint("%d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Bu güçten stok kalmadı.");audio.play("invalid");return
+			armed_helper="" if armed_helper==key else key
+			for other in helper_buttons:helper_buttons[other].chosen=other==armed_helper;helper_buttons[other].queue_redraw()
+			set_hint("İptal için güce tekrar dokun." if armed_helper!="" else "Güç seçimi iptal edildi.");audio.play("click"))
+func on_helper_cell(index: int) -> void:
+	if armed_helper=="" or board_view.busy or not board.available():return
+	var rules=preload("res://scripts/core/booster_catalog.gd")
+	if not rules.available(save.data,armed_helper):return
+	var event: Dictionary=board.deploy_power(index,str(rules.ITEMS[armed_helper].power))
+	if not event.accepted:audio.play("invalid");set_hint("Korunmamış normal bir kristal seç.");return
+	preload("res://scripts/core/adventure_progress.gd").consume(save.data,armed_helper)
+	armed_helper=""
+	for key in helper_buttons:
+		helper_buttons[key].amount=int(save.data.adventure_progress.inventory.get(key,0));helper_buttons[key].chosen=false;helper_buttons[key].unavailable=not rules.available(save.data,key);helper_buttons[key].queue_redraw()
+	save.save_active(board);board_view.animate(event);board_view.spawn_stars(board_view.cell_position(index)+Vector2(28,28),4);audio.play("power");set_hint("Güç yerleştirildi; normal hamle harcanmadı.")
