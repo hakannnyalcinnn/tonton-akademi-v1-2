@@ -32,7 +32,7 @@ h.update(json.dumps([version,platform.platform(),os.environ.get('PRIZMA_TOOLS_DI
 fingerprint=h.hexdigest()
 def gd(suite,*args):return ['bash','tools/godot.sh','--headless','--audio-driver','Dummy','--max-fps','60','--script',f'tests/{suite}.gd']+(['--',*map(str,args)] if args else [])
 jobs=[('import',['bash','tools/godot.sh','--headless','--editor','--import','--quit'])]
-full=['workflow_smoke','generator_tests','world_expansion_tests','generator_data_tests','run_tests','mechanic_tests','package2_tests','package4_tests','package5_mechanics','gameplay2_tests','deadlock_tests','canyon_mechanics_tests','quality_tests','mechanic_ui_tests','package2_ui','package4_ui','package5_ui','casual_ui','canyon_ui','goals_panel_tests','gameplay2_ui','finale_ui']
+full=['v012_tests','adventure_campaign','workflow_smoke','generator_tests','world_expansion_tests','generator_data_tests','run_tests','mechanic_tests','package2_tests','package4_tests','package5_mechanics','gameplay2_tests','deadlock_tests','canyon_mechanics_tests','quality_tests','mechanic_ui_tests','package2_ui','package4_ui','package5_ui','casual_ui','canyon_ui','goals_panel_tests','gameplay2_ui','finale_ui']
 suites=['workflow_smoke'] if a.profile=='SMOKE' else full if a.profile=='FULL' else a.suite
 for suite in dict.fromkeys(suites):
  if not re.fullmatch(r'[a-zA-Z0-9_]+',suite) or not (ROOT/f'tests/{suite}.gd').is_file():p.error('unknown suite: '+suite)

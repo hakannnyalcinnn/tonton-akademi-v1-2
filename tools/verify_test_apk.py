@@ -17,7 +17,7 @@ tool=Path(os.environ.get('PRIZMA_TOOLS_DIR',str(root/'.tools')))/'android-sdk/bu
 cert=subprocess.check_output([str(tool/'apksigner'),'verify','--print-certs',str(apk)],text=True)
 assert '01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a' in cert,'Signing certificate changed'
 badging=subprocess.check_output([str(tool/'aapt'),'dump','badging',str(apk)],text=True)
-package='com.prizma.renklerinuyanisi.match3' if preset=='Android Match3 Test' else 'com.prizma.renklerinuyanisi'
+package='com.prizma.renklerinuyanisi.match3' if preset=='Android Match3 Test' else 'com.prizma.renklerinuyanisi.match3.dev'
 assert "name='"+package+"'" in badging
 version=re.search(r'config/version="([^"]+)"',Path("project.godot").read_text()).group(1)
 assert "versionName='"+version+"'" in badging

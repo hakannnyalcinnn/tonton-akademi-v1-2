@@ -6,7 +6,7 @@ cd "$PRIZMA_ROOT"
 PRIZMA_PRESET="${PRIZMA_ANDROID_PRESET:-Android Match3 Test}"
 case "$PRIZMA_PRESET" in
   "Android Match3 Test") PRIZMA_APK_FILE=build/prizma-match3.apk; PRIZMA_PACKAGE=com.prizma.renklerinuyanisi.match3 ;;
-  "Android") PRIZMA_APK_FILE=build/prizma-debug.apk; PRIZMA_PACKAGE=com.prizma.renklerinuyanisi ;;
+  "Android") PRIZMA_APK_FILE=build/prizma-debug.apk; PRIZMA_PACKAGE=com.prizma.renklerinuyanisi.match3.dev ;;
   *) echo 'Unsupported Android preset' >&2; exit 1 ;;
 esac
 # Export/verify only. The standard build entry runs the full test suite first.
@@ -23,7 +23,7 @@ from pathlib import Path
 from zipfile import ZipFile
 manifest = Path('build/android-package.txt').read_text()
 assert "name='" + sys.argv[2] + "'" in manifest
-assert "versionName='0.11.0'" in manifest
+assert "versionName='0.12.0'" in manifest
 assert "sdkVersion:'24'" in manifest and "targetSdkVersion:'36'" in manifest
 assert 'android.permission.INTERNET' not in manifest
 assert 'android.permission.VIBRATE' in manifest
