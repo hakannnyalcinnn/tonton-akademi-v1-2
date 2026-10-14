@@ -49,7 +49,8 @@ static func decorate(source: Dictionary) -> Dictionary:
 	else:
 		definition.targets.bosses=1
 		definition.tutorial="Bekçinin gösterdiği renkleri eşleştir; son kalkanı özel güçle kır."
-		if definition.powers.is_empty():
+		if definition.get("powers",{}).is_empty():
+			definition.powers=definition.get("powers",{})
 			for i in 72:
 				if int(definition.layout[i])>=0 and not definition.mechanics.any(func(m):return int(m.index)==i):definition.powers[str(i)]="rocket_h";break
 	if definition.has("objective_stages"):definition.objective_stages[-1].merge(definition.targets,true)

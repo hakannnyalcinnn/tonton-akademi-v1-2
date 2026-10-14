@@ -22,7 +22,12 @@ const BoardView = preload("res://scripts/ui/board_view.gd")
 const Audio = preload("res://scripts/ui/audio_manager.gd")
 const Celebration = preload("res://scripts/ui/celebration.gd")
 
+var production_mode:=OS.has_feature("prizma_production")
+var boss_badge
 var companion
+var earned_treasure:=false
+var selected_booster:=""
+var fast_test:=false
 var selected_world:=1
 var map_group := 0
 var test_mode := false
@@ -62,7 +67,8 @@ var gravity_buttons: Dictionary = {}
 var toast_label: Label
 
 func _ready() -> void:
-	if save==null:save = Save.new()
+	if save==null:save = Save.new("user://prizma-dev-save.json" if OS.has_feature("prizma_dev_tools") or OS.has_feature("editor") else "user://prizma-save.json")
+	if OS.has_feature("prizma_dev_tools"):save.data.unlocked=Catalog.count()
 	save.background_writes = true
 	Engine.max_fps = 60
 	audio = Audio.new()
@@ -364,7 +370,8 @@ func show_map(group: int = -1) -> void:
 			var star:=TextureRect.new();star.texture=CasualSkin.texture("ui",3,CasualSkin.UI)
 			star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;star.position=center+Vector2(-29+star_index*20,35);star.size=Vector2(19,19);star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;star.mouse_filter=Control.MOUSE_FILTER_IGNORE;path.add_child(star)
 
-	scroll.set_deferred("scroll_vertical",maxi(0,(map_group*10+1-first)*100-70))
+	var focus_level:=int(save.data.unlocked) if int(save.data.unlocked)>=first and int(save.data.unlocked)<=last else map_group*10+1
+	scroll.set_deferred("scroll_vertical",maxi(0,(focus_level-first)*100-180))
 
 	var start_group:=int((first-1)/10)
 	var groups:=int(ceil(float(last-first+1)/10))
@@ -375,19 +382,31 @@ func show_map(group: int = -1) -> void:
 		button(page,["GÜNLÜK","KOLEKSİYON","ÖDÜLLER"][i],Rect2(33+i*164,918,154,33),show_adventure_menu.bind(i),false,12)
 
 func request_level(number: int) -> void:
+	selected_booster=""
 	if number<1 or number>mini(Catalog.count(),int(save.data.unlocked)):return
 	persist_board()
 	var definition: Dictionary=Catalog.get_level(number)
 	apply_world_progress(Catalog.world_for(number))
 	open_overlay("BÖLÜM %d"%number, "%s · %s"%[world_name(Catalog.world_for(number)),definition.name])
+	var greeting:=preload("res://scripts/ui/companion.gd").new();greeting.position=Vector2(393,284);greeting.size=Vector2(74,74);greeting.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;overlay.add_child(greeting)
 	var preview:=preload("res://scripts/ui/goals_panel.gd").new()
-	preview.position=Vector2(48,367);preview.size=Vector2(480,112);preview.quiet=true
+	preview.position=Vector2(30,367);preview.size=Vector2(480,112);preview.quiet=true
 	overlay.add_child(preview);preview.configure(definition.targets,{})
-	preview.goal_pressed.connect(func(key):label(overlay,preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])),Rect2(68,525,404,48),13,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER))
+	preview.goal_pressed.connect(func(key):label(overlay,preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])),Rect2(68,712,404,36),13,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER))
+	preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
+	for i in 2:
+		var key: String=["rocket","prism"][i]
+		var amount:=int(save.data.adventure_progress.inventory.get(key,0))
+		var choose:=button(overlay,"%s · %d"%[["ROKET","YILDIZ"][i],amount],Rect2(68+i*207,535,197,37),func():
+			selected_booster=key if selected_booster!=key else ""
+			for item in overlay.get_children():
+				if item is Button and item.has_meta("booster"):update_option_style(item,str(item.get_meta("booster"))==selected_booster),false,13)
+		choose.set_meta("booster",key);choose.disabled=amount<=0
 	label(overlay,"%d HAMLE"%int(definition.moves),Rect2(68,488,404,32),20,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	button(overlay,"OYNA!",Rect2(68,583,404,58),func():
 		close_overlay()
 		begin_page("transition")
+		var guide:=preload("res://scripts/ui/companion.gd").new();guide.position=Vector2(198,260);guide.size=Vector2(144,144);guide.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(guide);guide.react("excited")
 		label(page,"KRİSTALLER UYANIYOR",Rect2(38,425,464,60),25,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 		var destination:=number
 		await get_tree().create_timer(.6 if not save.data.settings.reduced_motion else .05).timeout
@@ -396,11 +415,18 @@ func request_level(number: int) -> void:
 
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
 	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
+	earned_treasure=false
 	test_mode = not test_definition.is_empty()
 	var definition: Dictionary=Catalog.get_level(number) if not test_mode else test_definition
 	if resume and not save.data.active.is_empty():definition=save.data.active.get("level_definition",definition)
 	board = Board.new(definition)
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
+	elif selected_booster!="" and not test_mode:
+		var slot:=-1
+		for i in board.cells.size():
+			if board.cells[i]!=null and not board.cells[i].get("fixed",false) and board.cells[i].p=="":slot=i;break
+		if slot>=0 and preload("res://scripts/core/adventure_progress.gd").consume(save.data,selected_booster):board.cells[slot].p="rocket_h" if selected_booster=="rocket" else "prism"
+	selected_booster=""
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
 	card(page,Rect2(23,12,494,59),Color(1,.98,.94,.9))
@@ -427,7 +453,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view = BoardView.new()
 	board_view.position = Vector2(32, 270)
 	board_view.size = Vector2(476, 536)
-	board_view.reduced_motion = save.data.settings.reduced_motion
+	board_view.reduced_motion = save.data.settings.reduced_motion or fast_test
 	board_view.colorblind = save.data.settings.colorblind
 	board_view.settings = save.data.settings
 	page.add_child(board_view)
@@ -440,13 +466,18 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.animation_finished.connect(on_animation_finished)
 	card(page,Rect2(30,816,480,47),Color("fff8e9"))
 	storm_gauge=preload("res://scripts/ui/storm_gauge.gd").new();storm_gauge.position=Vector2(36,817);storm_gauge.size=Vector2(468,44);page.add_child(storm_gauge)
-	resonance_label=label(page,"",Rect2(38,869,464,22),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	resonance_label=label(page,"",Rect2(38,869,414,22),12,Color("fff9e8"),HORIZONTAL_ALIGNMENT_CENTER)
+	resonance_label.add_theme_color_override("font_outline_color",Color(.13,.08,.2,.9));resonance_label.add_theme_constant_override("outline_size",3)
+	boss_badge=null
+	if board.adventure.has("boss"):
+		boss_badge=preload("res://scripts/ui/boss_badge.gd").new();boss_badge.position=Vector2(38,865);boss_badge.size=Vector2(370,40);page.add_child(boss_badge);boss_badge.update_state(board.adventure.boss)
+		resonance_label.hide()
 	gravity_buttons.clear()
 	hint_label=label(page,"",Rect2(28,898,484,38),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER);hint_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	hint_label.add_theme_color_override("font_color",Color("fff9e8"))
 	hint_label.add_theme_color_override("font_outline_color",Color(.13,.08,.2,.85))
 	hint_label.add_theme_constant_override("outline_size",3)
-	if test_mode:button(page,"Test araçları",Rect2(330,937,172,23),show_mechanic_test_tools,false,11)
+	if developer_tools_available():button(page,"Test araçları",Rect2(330,937,172,23),show_developer_menu,false,11)
 	for node in page.get_children():
 		if node is Control and node.position.y<270:node.set_meta("hud_y",node.position.y)
 		if node is Control and node.position.y>=816:
@@ -476,6 +507,13 @@ func update_hud(update_goals: bool=true) -> void:
 		if goals_panel.targets!=board.active_targets():goals_panel.configure(board.active_targets(),board.collected)
 		goals_panel.update_progress(board.collected,false)
 	resonance_label.text = "YANKI  ·  %s %d/3" % [Strings.COLORS[board.resonance.color] if board.resonance.color >= 0 else "", board.resonance.count] if board.level.resonance else ""
+	if board.adventure.has("boss"):
+		if is_instance_valid(boss_badge):boss_badge.update_state(board.adventure.boss)
+		var boss: Dictionary=board.adventure.boss
+		resonance_label.text="BEKÇİ YENİLDİ!" if boss.defeated else "%s · %d/%d · %d enerji"%[boss.name,int(boss.phase)+1,boss.phases.size(),boss.remaining]
+		if not boss.defeated:
+			var phase: Dictionary=boss.phases[int(boss.phase)]
+			set_hint("Sıradaki kalkan: özel güç kullan." if phase.get("special",false) else "Sıradaki kalkan: %s eşleştir."%", ".join(phase.colors.map(func(c):return Strings.COLORS[int(c)])))
 	if update_goals:storm_gauge.set_value(board.storm_charge())
 	var progress := 0.0
 	for color in 5: garden.color_energy[color] = board.collected[str(color)]
@@ -514,6 +552,7 @@ func process_event(event: Dictionary) -> void:
 	if not test_mode and tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
 	if not test_mode and event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
 	if not test_mode and event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
+	if board.moves<=5:moves_label.add_theme_color_override("font_color",Color("de4779"))
 	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Dünya renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
 	update_hud(false)
@@ -523,6 +562,7 @@ func process_event(event: Dictionary) -> void:
 	score_label.text = str(int(score_display))
 	# Persist only the completely settled logical result, before cosmetic playback.
 	if not test_mode:
+		earned_treasure=board.outcome=="won" and not board.level.get("treasure",{}).is_empty() and "level-%d"%int(board.level.id) not in save.data.adventure_progress.claimed
 		preload("res://scripts/core/adventure_progress.gd").action(save.data,event)
 		if board.outcome == "won": save.complete(board)
 		else: save.save_active(board)
@@ -540,6 +580,13 @@ func on_environment(data: Dictionary) -> void:
 	if data.has("collected"):goals_panel.update_progress(data.collected)
 
 func on_wave(data: Dictionary) -> void:
+	if data.get("adventure",{}).has("boss"):
+		var boss: Dictionary=data.adventure.boss
+		if is_instance_valid(boss_badge):boss_badge.update_state(boss)
+		resonance_label.text="BEKÇİ YENİLDİ!" if boss.defeated else "%s · %d/%d · %d enerji"%[boss.name,int(boss.phase)+1,boss.phases.size(),boss.remaining]
+	for e in data.get("adventure_events",[]):
+		if e.kind=="rescue" and e.hp==0:audio.play("rescue")
+		elif e.kind=="boss":audio.play("boss_hit")
 	if is_instance_valid(companion):companion.react("excited" if int(data.combo)>2 or data.get("combo_kind","")!="" else "happy")
 	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
 	goals_panel.update_progress(data.get("collected",board.collected))
@@ -765,6 +812,8 @@ func show_result() -> void:
 	audio.play("success2" if won else "lose")
 	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (str(Worlds.get_world(Catalog.world_for(int(board.level.id))).get("success_text","Dünya renkleniyor!")) if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya özel güç birleşimi dene.")
 	if won:
+		var face_host:=Control.new();face_host.position=Vector2(390,310);overlay.add_child(face_host)
+		var face:=preload("res://scripts/ui/companion.gd").new();face.size=Vector2(78,78);face.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;face_host.add_child(face);face.react("happy")
 		if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 			var confetti := Celebration.new()
 			confetti.world_finale=int(board.level.id)==75
@@ -783,14 +832,19 @@ func show_result() -> void:
 				var tween:=star.create_tween();tween.tween_property(star,"scale",Vector2.ONE,.24).set_delay(i*.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
+		if earned_treasure:
+			audio.play("chest")
+			label(overlay,"HAZİNE · +%d kristal para · yalnızca ilk kazanım"%int(board.level.treasure.coins),Rect2(66,507,408,23),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 		label(overlay, "2★: %d   ·   3★: %d" % [board.level.stars[1], board.level.stars[2]], Rect2(66, 475, 408, 28), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 		if int(board.level.id) < Catalog.count():
 			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), request_level.bind(int(board.level.id) + 1), true)
 		else:
 			label(overlay, "%d bölüm tamamlandı!"%Catalog.count(), Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-			button(overlay, "OKYANUSU KEŞFET" if int(board.level.id)>=51 else Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
+			button(overlay, "HARİTAYI KEŞFET", Rect2(68, 567, 404, 53), show_map, true)
 		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), request_level.bind(int(board.level.id)))
 	else:
+		var sad_host:=Control.new();sad_host.position=Vector2(390,282);overlay.add_child(sad_host)
+		var sad:=preload("res://scripts/ui/companion.gd").new();sad.size=Vector2(70,70);sad.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;sad_host.add_child(sad);sad.react("sad")
 		var remaining:=preload("res://scripts/ui/goals_panel.gd").new()
 		remaining.position=Vector2(30,357);remaining.size=Vector2(480,112);remaining.quiet=true
 		overlay.add_child(remaining);remaining.configure(board.active_targets(),board.collected)
@@ -824,7 +878,7 @@ func show_settings() -> void:
 	label(page,"PRİZMA 0.12 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
-		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
+		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),show_developer_menu,false,12)
 
 func volume_slider(key: String, title: String, y: float) -> void:
 	card(page,Rect2(32,y-4,476,69),Color(1,.98,.94,.93))
@@ -889,7 +943,7 @@ func show_diagnostics() -> void:
 	button(overlay,"KAPAT",Rect2(68,677,404,38),close_overlay,false,14)
 
 func developer_tools_available() -> bool:
-	return OS.has_feature("editor") or OS.has_feature("prizma_dev_tools")
+	return not production_mode and (OS.has_feature("editor") or OS.has_feature("prizma_dev_tools"))
 
 func start_mechanic_test() -> void:
 	if not developer_tools_available(): return
@@ -1036,3 +1090,51 @@ func show_adventure_menu(kind: int) -> void:
 	else:
 		label(overlay,"%d KRİSTAL PARA\n\nRoket: %d · Gökkuşağı Yıldızı: %d\n\n%d hazine sandığı açıldı"%[progress.coins,progress.inventory.get("rocket",0),progress.inventory.get("prism",0),progress.claimed.size()],Rect2(68,375,404,230),20,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
 	button(overlay,"KAPAT",Rect2(68,690,404,45),close_overlay,false,16)
+
+func show_developer_menu() -> void:
+	if not developer_tools_available():return
+	open_overlay("Geliştirici testi","Ayrı test APK ve kayıt profili · 1–250")
+	var number:=SpinBox.new();number.min_value=1;number.max_value=Catalog.count();number.value=int(board.level.id) if board!=null else 1;number.position=Vector2(70,369);number.size=Vector2(210,40);overlay.add_child(number)
+	button(overlay,"BÖLÜME GİT",Rect2(293,369,178,40),func():dev_command("jump",int(number.value)),true,14)
+	var commands: Array=[["Kazan","win"],["Kaybet","lose"],["Önceki","previous"],["Sonraki","next"],["+10 hamle","moves"],["İki bomba","double"],["Roket ekle","rocket"],["Yıldız ekle","prism"],["Boss aç","boss"],["Kurtarma aç","rescue"],["Seed ile başlat","seed"],["Hızlı / normal","speed"],["Mekanik laboratuvarı","lab"],["Dünyaları aç","worlds"],["Mekanik araçları","layers"],["Yeniden başlat","seed"]]
+	for i in commands.size():
+		button(overlay,commands[i][0],Rect2(68+(i%2)*207,428+int(i/2)*39,197,34),dev_command.bind(commands[i][1],int(number.value)),false,12)
+	button(overlay,"KAPAT",Rect2(68,753,404,38),close_overlay,false,14)
+
+func dev_command(command: String,number: int=1) -> void:
+	if not developer_tools_available():return
+	# Only the isolated developer build can bypass campaign unlocks.
+	if not OS.has_feature("prizma_dev_tools") and not OS.has_feature("editor"):return
+	if command=="layers":
+		if test_mode:show_mechanic_test_tools()
+		return
+	if command=="lab":start_mechanic_test();return
+	if command=="worlds":save.data.unlocked=Catalog.count();show_worlds();return
+	if command=="speed":
+		fast_test=not fast_test;close_overlay()
+		if is_instance_valid(board_view):board_view.reduced_motion=fast_test or save.data.settings.reduced_motion
+		return
+	if command in ["jump","boss","rescue","next","previous","seed"]:
+		if command=="boss":number=35
+		if command=="rescue":number=12
+		if command=="next" and board!=null:number=int(board.level.id)+1
+		if command=="previous" and board!=null:number=int(board.level.id)-1
+		if command=="seed" and board!=null:number=int(board.level.id)
+		if number<1 or number>Catalog.count():return
+		save.data.unlocked=Catalog.count();start_level(number);return
+	if board==null or screen!="game" or board_view.busy:return
+	close_overlay()
+	if command=="win":
+		for key in board.level.targets:board.collected[key]=int(board.level.targets[key])
+		board.outcome="won";show_result();return
+	if command=="lose":board.moves=0;board.outcome="lost";show_result();return
+	if command=="moves":board.moves+=10;board.initial_moves+=10;board.level.moves=board.initial_moves;update_hud();return
+	if command in ["double","rocket","prism"]:
+		for i in 71:
+			if board.cells[i]==null or board.cells[i].get("fixed",false):continue
+			if command=="double":
+				if i%8==7 or board.cells[i+1]==null or board.cells[i+1].get("fixed",false):continue
+				board.cells[i].p="color";board.cells[i+1].p="color"
+			else:board.cells[i].p="rocket_h" if command=="rocket" else "prism"
+			break
+		board_view.set_board(board)

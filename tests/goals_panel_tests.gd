@@ -28,7 +28,7 @@ func run() -> void:
    check(game.goal_tip!=null and not game.paused,"nonblocking description")
    var expected: Array=[]
    for i in 72:
-    if Registry.relevant(key,game.board_view.displayed[i],i,game.board.canyon):expected.append(i)
+    if Registry.relevant(key,game.board_view.displayed[i],i,game.board.adventure if key=="rescues" else game.board.canyon):expected.append(i)
    if key=="portals":
     for pair in game.board.level.get("portals",[]):expected.append(pair.entry);expected.append(pair.exit)
    if key=="conveyors":

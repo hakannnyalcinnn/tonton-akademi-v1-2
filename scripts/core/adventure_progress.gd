@@ -12,6 +12,9 @@ static func daily(data: Dictionary) -> Dictionary:
 	if day<str(progress.latest_day):day=str(progress.latest_day)
 	progress.latest_day=day
 	if not progress.daily.has(day):progress.daily[day]={"blue":0,"wins":0,"combos":0,"claimed":[]}
+	if progress.daily.size()>14:
+		var dates: Array=progress.daily.keys();dates.sort()
+		while dates.size()>14:progress.daily.erase(dates.pop_front())
 	return progress.daily[day]
 static func action(data: Dictionary,event: Dictionary) -> void:
 	var d:=daily(data)
@@ -41,3 +44,22 @@ static func consume(data: Dictionary,booster: String) -> bool:
 	var inventory: Dictionary=data.adventure_progress.inventory
 	if int(inventory.get(booster,0))<=0:return false
 	inventory[booster]-=1;return true
+
+static func valid(value: Variant) -> bool:
+	if not value is Dictionary or not value.has_all(["coins","inventory","claimed","creatures","daily","latest_day"]):return false
+	if not preload("res://scripts/mechanics/mechanic_registry.gd").integer(value.coins,0,2147483647):return false
+	if not value.inventory is Dictionary or not value.claimed is Array or not value.creatures is Array or not value.daily is Dictionary or not value.latest_day is String:return false
+	for key in value.inventory:
+		if key not in ["rocket","prism"] or not preload("res://scripts/mechanics/mechanic_registry.gd").integer(value.inventory[key],0,100000):return false
+	for key in value.claimed:
+		if not key is String or not key.begins_with("level-"):return false
+	for key in value.creatures:
+		if key not in ["creature-1","creature-2","creature-3","creature-4","creature-5"]:return false
+	for day in value.daily:
+		var item=value.daily[day]
+		if not day is String or not item is Dictionary or not item.has_all(["blue","wins","combos","claimed"]) or not item.claimed is Array:return false
+		for key in ["blue","wins","combos"]:
+			if not preload("res://scripts/mechanics/mechanic_registry.gd").integer(item[key],0,2147483647):return false
+		for key in item.claimed:
+			if key not in ["blue","wins","combos"]:return false
+	return true

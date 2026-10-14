@@ -426,7 +426,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 				if cells[i].get("trait",{}).get("kind","")=="dual": collected.duals+=1
 				if Traits.bridge(cells[i]):collected.bridges+=1
 			if i not in canyon.holes:cells[i] = null
-		var adventure_events:=preload("res://scripts/core/adventure.gd").wave(adventure,unique,normal_colors,special or not triggered.is_empty() or combined,collected)
+		var adventure_events:=preload("res://scripts/core/adventure.gd").wave(adventure,unique,normal_colors,not triggered.is_empty() or (combined and depth==depth_offset+1),collected)
 		collected.total += normal_count
 		for creation in creations:
 			if creation.i not in canyon.holes:continue

@@ -4,6 +4,8 @@ static func initial(definition: Dictionary) -> Dictionary:
 	var result: Dictionary=definition.get("adventure",{}).duplicate(true)
 	for cage in result.get("cages",[]):cage.remaining=int(cage.hp)
 	if result.has("boss"):
+		for phase in result.boss.phases:
+			if phase.has("colors"):phase.colors=phase.colors.map(func(c):return int(c))
 		result.boss.phase=0;result.boss.remaining=int(result.boss.phases[0].hp);result.boss.defeated=false
 	return result
 static func wave(state: Dictionary, removed: Array, normal_colors: Dictionary, special: bool, collected: Dictionary) -> Array:

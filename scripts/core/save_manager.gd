@@ -35,6 +35,7 @@ static func canonical(value: Variant) -> Variant:
 	return value
 
 func valid_meta(parsed: Variant, version: int) -> bool:
+	if parsed is Dictionary and parsed.has("adventure_progress") and not preload("res://scripts/core/adventure_progress.gd").valid(parsed.adventure_progress):return false
 	if not parsed is Dictionary or not parsed.has_all(["version", "unlocked", "results", "rewarded", "active", "tutorials", "settings"]): return false
 	if not Board.whole(parsed.version, version, version) or not Board.whole(parsed.unlocked, 1, Catalog.count()): return false
 	if not parsed.results is Dictionary or not parsed.active is Dictionary or not parsed.settings is Dictionary or not parsed.rewarded is Array or not parsed.tutorials is Array: return false

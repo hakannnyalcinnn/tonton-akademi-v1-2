@@ -34,3 +34,6 @@ Oynanış 2.0 sesleri: tools/generate_gameplay2_audio.py ile özgün matematikse
 - `casual/world-cloud.png` ve `casual/world-lava.png`: bu proje için özgün olarak sanat üretim aracıyla oluşturuldu; başka oyunlardan alınmadı veya yeniden renklendirilmedi.
 - `casual/sky-crown.svg` ve `casual/lava-crown.svg`: bu proje için yazılmış özgün vektör kozmetik ödüller.
 - Mevcut özgün sesler korunur; bu sürüm harici/telifli ses indirmez.
+
+## v0.12 özgün varlıkları
+Pırıl ve beş dünyaya ait canlılar `piril.png` atlasında, bu proje için görsel üretim aracıyla oluşturuldu; harici oyun varlıkları kullanılmadı. Kurtarma, boss, sandık, yıldız ve dünya açılışı sesleri `tools/generate_adventure_audio.py` ile özgün sentezlenir. Referans görselin içeriği kopyalanmadı.

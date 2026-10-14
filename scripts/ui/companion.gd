@@ -1,14 +1,17 @@
 extends TextureRect
 const ATLAS=preload("res://assets/casual/piril.png")
+static var sprites: Dictionary={}
 var creature:=0
 var quiet:=false
 var base_y:=0.0
 var clock:=0.0
 var reaction_tween: Tween
 static func sprite(index: int) -> AtlasTexture:
+	if sprites.has(index):return sprites[index]
 	var result:=AtlasTexture.new();result.atlas=ATLAS
 	var tile:=ATLAS.get_size()/Vector2(3,2)
 	result.region=Rect2(Vector2(index%3,int(index/3))*tile,tile)
+	sprites[index]=result
 	return result
 func _ready() -> void:
 	texture=sprite(creature);expand_mode=TextureRect.EXPAND_IGNORE_SIZE;stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED

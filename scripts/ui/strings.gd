@@ -7,7 +7,7 @@ const COPY := {
 	"chapter": "BİRİNCİ DÜNYA · 50 BÖLÜM",
 	"play": "OYNA",
 	"resume": "DEVAM ET",
-	"map": "Bahçeyi keşfet",
+	"map": "Haritayı keşfet",
 	"settings": "Ayarlar",
 	"moves": "HAMLE",
 	"score": "PUAN",

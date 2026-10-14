@@ -35,6 +35,7 @@ var textures: Array[AtlasTexture] = []
 var mechanic_textures: Array[AtlasTexture] = []
 var trait_regions: Array[Rect2] = []
 var trait_idle_animation := false
+var energy_paths: Dictionary={}
 var bomb_origin := -1
 var mechanic_font: Font
 var layer_cells: Array = []
@@ -296,6 +297,17 @@ func next_frame() -> void:
 			if previous[index]!=null and previous[index].p=="color":bomb_origin=index;break
 		if bomb_origin>=0 and not reduced_motion:duration=.30
 	if current.get("combo_kind","")!="" and not reduced_motion:duration=.30
+	energy_paths.clear()
+	if bomb_origin>=0 and not settings.get("reduced_effects",false):
+		var source:=cell_position(bomb_origin)+Vector2(28,28)
+		for index in current.get("removed",[]):
+			var destination:=cell_position(index)+Vector2(28,28)
+			var delta:=destination-source
+			var bend:=Vector2(-delta.y,delta.x).normalized()*minf(34,delta.length()*.16)*(-1 if index%2 else 1)
+			var points:=PackedVector2Array()
+			for k in 9:
+				var u:=float(k)/8;points.append(source+delta*u+bend*sin(u*PI))
+			energy_paths[index]=points
 	age = 0
 	board.visual_phase(int(current.state))
 	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave","shuffle","magnet"]:
@@ -879,12 +891,10 @@ func draw_canyon(data: Dictionary) -> void:
 				if data.cores[key].shields.all(func(n):return n==0):draw_arc(center,54,clock,clock+TAU,32,Color("fff0ae"),3,true)
 
 func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, progress: float, index: int) -> void:
-	var points:=PackedVector2Array()
+	var points: PackedVector2Array=energy_paths.get(index,PackedVector2Array())
+	if points.is_empty():return
 	var delta:=destination-source
 	var bend:=Vector2(-delta.y,delta.x).normalized()*minf(34,delta.length()*.16)*(-1 if index%2 else 1)
-	for k in 9:
-		var u:=float(k)/8
-		points.append(source+delta*u+bend*sin(u*PI))
 	var alpha:=sin(progress*PI)*.8
 	draw_polyline(points,Color(tint,alpha*.35),5,true)
 	draw_polyline(points,Color(tint.lightened(.65),alpha),1.5,true)
