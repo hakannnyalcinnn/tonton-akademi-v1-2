@@ -586,7 +586,7 @@ func on_wave(data: Dictionary) -> void:
 		resonance_label.text="BEKÇİ YENİLDİ!" if boss.defeated else "%s · %d/%d · %d enerji"%[boss.name,int(boss.phase)+1,boss.phases.size(),boss.remaining]
 	for e in data.get("adventure_events",[]):
 		if e.kind=="rescue" and e.hp==0:audio.play("rescue")
-		elif e.kind=="boss":audio.play("boss_hit")
+		elif e.kind=="boss":audio.play("boss_win" if data.get("adventure",{}).get("boss",{}).get("defeated",false) else "boss_hit")
 	if is_instance_valid(companion):companion.react("excited" if int(data.combo)>2 or data.get("combo_kind","")!="" else "happy")
 	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
 	goals_panel.update_progress(data.get("collected",board.collected))
@@ -830,6 +830,7 @@ func show_result() -> void:
 			if not save.data.settings.reduced_motion:
 				star.scale=Vector2(.1,.1)
 				var tween:=star.create_tween();tween.tween_property(star,"scale",Vector2.ONE,.24).set_delay(i*.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				if i<stars:tween.tween_callback(func():audio.play("star_award"))
 
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 		if earned_treasure:
@@ -1030,7 +1031,7 @@ func show_mechanic_help() -> void:
 	button(overlay,"ANLADIM",Rect2(68,699,404,35),close_overlay,true,15)
 
 func show_world_result() -> void:
-	audio.play("success2")
+	audio.play("world_unlock")
 	garden.vitality=1.0
 	garden.world_completed=true
 	garden.color_energy=[18,18,18,18,18]

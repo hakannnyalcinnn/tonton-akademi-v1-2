@@ -1,7 +1,7 @@
 extends RefCounted
 ## One deterministic objective layer over the existing Match-3 damage transaction.
 static func initial(definition: Dictionary) -> Dictionary:
-	var result: Dictionary=definition.get("adventure",{}).duplicate(true)
+	var result: Dictionary=normalize(definition.get("adventure",{}))
 	for cage in result.get("cages",[]):cage.remaining=int(cage.hp)
 	if result.has("boss"):
 		for phase in result.boss.phases:
@@ -56,3 +56,15 @@ static func valid(state: Variant) -> bool:
 			if boss.defeated!=(int(boss.phase)==boss.phases.size()):return false
 			if not boss.defeated and not preload("res://scripts/mechanics/mechanic_registry.gd").integer(boss.get("remaining",-1),1,int(boss.phases[int(boss.phase)].hp)):return false
 	return true
+
+static func normalize(value: Variant) -> Variant:
+	if value is Dictionary:
+		var result: Dictionary={}
+		for key in value:result[key]=normalize(value[key])
+		return result
+	if value is Array:
+		var result: Array=[]
+		for item in value:result.append(normalize(item))
+		return result
+	if value is float and value==floor(value):return int(value)
+	return value

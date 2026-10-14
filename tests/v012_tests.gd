@@ -42,6 +42,9 @@ func run() -> void:
 	check(Progress.claim_daily(data,"blue") and not Progress.claim_daily(data,"blue"),"daily reward is exactly once")
 	var restore:=Board.new(definition);var snapshot:=restore.snapshot()
 	check(restore.restore(snapshot),"new objective state survives canonical snapshot")
+	var persistence:=Save.new("user://v012-rescue-roundtrip.json");persistence.data=Save.defaults();persistence.data.unlocked=12;persistence.save_active(restore);persistence.finish_writes()
+	var reload:=Save.new(persistence.path)
+	check(reload.data.active==restore.snapshot(),"rescue fields roundtrip through actual JSON disk without numeric type drift")
 	var invalid:=snapshot.duplicate(true);invalid.adventure.cages[0].remaining=-1
 	check(not restore.restore(invalid),"invalid cage state cannot load")
 	var game=load("res://scenes/main.tscn").instantiate()

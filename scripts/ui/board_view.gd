@@ -35,6 +35,7 @@ var textures: Array[AtlasTexture] = []
 var mechanic_textures: Array[AtlasTexture] = []
 var trait_regions: Array[Rect2] = []
 var trait_idle_animation := false
+var presented_adventure: Dictionary={}
 var energy_paths: Dictionary={}
 var bomb_origin := -1
 var mechanic_font: Font
@@ -227,6 +228,7 @@ func start_environment(data: Dictionary) -> void:
 func set_board(value) -> void:
 	lock_labels.clear()
 	board = value
+	presented_adventure=value.adventure.duplicate(true)
 	if get_child_count()>0:
 		get_child(0).world=int(board.level.get("world",1));get_child(0).queue_redraw()
 	busy = false
@@ -282,6 +284,7 @@ func next_frame() -> void:
 		animation_finished.emit()
 		return
 	current = queue.pop_front()
+	if current.has("adventure"):presented_adventure=current.adventure.duplicate(true)
 	creation_indices.clear()
 	for c in current.get("creations",[]):creation_indices[int(c.i)]=true
 	previous = current.before
@@ -903,7 +906,15 @@ func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, prog
 	draw_circle(head,2.5,Color(1,1,1,alpha))
 
 func draw_adventure() -> void:
-	var state: Dictionary=current.get("adventure",board.adventure) if busy else board.adventure
+	var state: Dictionary=presented_adventure
+	if busy and current.kind=="clear":
+		var progress:=clampf(age/duration,0,1)
+		for event in current.get("adventure_events",[]):
+			if event.kind=="rescue" and int(event.hp)==0:
+				var center:=cell_position(int(event.index))+Vector2(28,28-progress*24)
+				var index:=int(str(event.creature).trim_prefix("creature-"))
+				draw_texture_rect(preload("res://scripts/ui/companion.gd").sprite(index),Rect2(center-Vector2(24,24),Vector2(48,48)),false,Color(1,1,1,1-progress*.65))
+				draw_arc(center,24+progress*16,0,TAU,20,Color(1,.9,.6,1-progress),2,true)
 	for cage in state.get("cages",[]):
 		if int(cage.remaining)<=0:continue
 		var center:=cell_position(int(cage.index))+Vector2(28,28)

@@ -6,6 +6,13 @@ const Match = preload("res://scripts/core/match_detector.gd")
 const PATH := "user://process-probe.json"
 
 func _initialize() -> void:
+	if OS.get_cmdline_user_args().is_empty():
+		for phase in ["write","read"]:
+			var output: Array=[]
+			var code:=OS.execute(OS.get_executable_path(),["--headless","--audio-driver","Dummy","--path",ProjectSettings.globalize_path("res://"),"--script","tests/persistence_probe.gd","--",phase],output,true)
+			for line in output:print(line)
+			if code!=0:quit(code);return
+		quit();return
 	var mode: String = OS.get_cmdline_user_args()[0]
 	var save = Save.new(PATH)
 	var board = Board.new(Catalog.get_level(10))

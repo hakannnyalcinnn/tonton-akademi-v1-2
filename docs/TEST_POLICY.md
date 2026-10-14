@@ -25,7 +25,7 @@ python3 tools/test_profiles.py FULL --reuse --android-build
 |---|---|---|
 | SMOKE | Tek hızlı sahnede yatay Match-3, kararlı başlangıç, geçerli/geçersiz takas ve maliyeti, otomatik çözümleme, yer çekimi, diskten kayıt dönüşümü, gerçek ana sahne açılışı | Normal değişiklik sonrası hızlı kontrol |
 | TARGETED | Açıkça seçilen mevcut mekanik/UI testleri ve belirtilen bölüm aralıkları; bölüm kontrolünde deterministik tekrar ve kayıt karşılaştırması | Değiştirilen sistem, onu kullanan bölümler ve kritik komşu entegrasyonlar |
-| FULL | Temel ve 20 mekanik için mevcut unit/entegrasyon paketleri; fırtına/dalga/güç kombinasyonları; kalite, UI ve hedef paneli; bağımsız süreçte kayıt devamlılığı; hazırlanmış bütün bölümlerin (v0.11: 250) veri/oynanabilirlik/deterministik kayıt kontrolleri; Android APK bütünlük/imza kontrolü | Sürüm finali, büyük eşleşme/yer çekimi değişikliği veya kanıtlanan yüksek risk |
+| FULL | Temel ve 20 mekanik için mevcut unit/entegrasyon paketleri; fırtına/dalga/güç kombinasyonları; kalite, UI ve hedef paneli; bağımsız süreçte kayıt devamlılığı; hazırlanmış bütün bölümlerin (v0.12: 250) veri/oynanabilirlik/deterministik kayıt kontrolleri; Android APK bütünlük/imza kontrolü | Sürüm finali, büyük eşleşme/yer çekimi değişikliği veya kanıtlanan yüksek risk |
 
 FULL'de Android kontrolü atlanmaz: mevcut APK kaynak runtime parmak iziyle eşleşmiyorsa profil başarısız olur. `--android-build` verilmişse bir kez export edilip doğrulanır; eşleşen APK yeniden derlenmez. Paket, sürüm adı, aynı sertifika, ZIP bütünlüğü, bütün veri JSON'ları ve ARM kitaplıkları kontrol edilir. İmza anahtarı dış araç dizininde kalır. Tamamen yeni bir ortamda uygun Android SDK yoksa sonuç engeldir, başarılı sayılmaz.
 
@@ -53,3 +53,7 @@ Varsayılan iş başı zaman sınırı 600 saniyedir; SMOKE için `--timeout 60`
 Önce risk uygun testler ve final artefakt; sonra Git commit/push, yeni Releases sürümü, APK Assets ve erişim kontrolü. GitHub geçici hatalarında ilk denemeden sonra en fazla iki kontrollü yeniden deneme; kalıcı hata veya yineleme sınırında nedeni ve yerel APK yolunu bildirip dur. Başarılı gönderimi tekrar tekrar doğrulama, erişilebilir APK'yı gereksiz yeniden indirme, aynı APK'yı yeniden derleme. CI'nin aynı ağır simülasyonları gereksiz tekrar etmesi yerine final kabul/artefakt doğrulamasını seç; bağımsız gerekli kontrolleri atlama.
 
 Kısa teslimat: özellikler, başarılı/başarısız ve çalıştırılmamış testler, APK sürümü, Releases bağlantısı, önemli sorunlar. Gereksiz büyük rapor/video yok. Sonraki aşama kullanıcı onayıyla başlar.
+
+## v0.12 hedefli kontroller
+`v012_tests`: kurtarma/boss evreleri, gerçek JSON kayıt dönüşü, envanter, tek seferlik ödüller, önizleme ve üretim kapısı. `adventure_campaign`: yeni amaçlı 25 bölüm × üç seed; insan dengesi kanıtı değildir. `tools/probe_exported_apks.py`: gerçekten üretilmiş iki APK içindeki kaynakları masaüstü Godot ile açar ve üretim/geliştirici özellik kapılarını doğrular; fiziksel Android çalıştırması değildir.
+Bir paket yalnızca arayüz varsayımı nedeniyle kesilirse, başarılı çekirdek bölümleri kanıtlı logla saklanır ve ilgili UI ile henüz çalışmamış paketler tamamlanır. Kesilen paket geçmişte başarılı diye işaretlenmez.

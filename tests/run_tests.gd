@@ -487,6 +487,11 @@ func test_ui() -> void:
 	game.audio.apply_settings(game.save.data.settings)
 	game.show_home(); game.play_latest()
 	await process_frame
+	check(game.overlay!=null and game.board==null,"new game requires explicit preflight Play")
+	for child in game.overlay.get_children():
+		if child is Button and child.text=="OYNA!":child.pressed.emit();break
+	await create_timer(.08).timeout
+	await process_frame
 	var before: Dictionary = game.board.snapshot()
 	mouse(game,Vector2(26,26),true); mouse(game,Vector2(26,26),false)
 	check(game.board.snapshot() == before and not game.board_view.busy, "actual normal GUI tap does nothing")
