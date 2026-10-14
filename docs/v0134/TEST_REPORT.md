@@ -10,4 +10,4 @@ Sadece map_terrain.gd değişti: arka plan görünür viewport'u tamamen kapsar.
 - 390×844 örneğinde üst 36 px şeritte eski kök arka plan rengini taşıyan 11.674 piksel varken düzeltmeden sonra bu sayı 0. Doğal koyu yaprak/gölge pikselleri boş alan sayılmadı.
 - Görünüm dışındaki oyun motoru, bölüm verisi ve kayıt kodu Git karşılaştırmasıyla değişmedi. FULL/kampanya simülasyonu yapılmadı.
 
-Fiziksel Android cihazda kurulum/çentik/FPS testi yapılmadı. Bunlar gerçek Godot render'ında simüle edilen güvenli ekran alanı sonuçlarıdır. Normal/DEV APK kimlik, önceki imza, ZIP, ARM ve bölüm verisi bütünlüğü doğrulaması teslim aşamasında kaydedilir.
+Fiziksel Android cihazda kurulum/çentik/FPS testi yapılmadı. Bunlar gerçek Godot render'ında simüle edilen güvenli ekran alanı sonuçlarıdır. Normal/DEV APK birer kez üretildi; paket kimlikleri, önceki sertifika, sürüm/yapı 0.13.4/23, ZIP/CRC, ARM kütüphaneleri ve bölüm JSON baytları doğrulandı. Ek masaüstü kontrolünde 1080×2340 fiziksel / 540×1170 mantıksal viewport ve 28 px güvenli üst alanla tam zemin kapsamı başarılı.

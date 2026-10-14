@@ -1,0 +1,24 @@
+{
+  "runtime_source_commit": "df43d3794a28441ff4c265d9ccb14e13371eeeb3",
+  "runtime_digest": "d3491d20cfb8ac128c302d1a915eb7dd56f44c65a12fb58d7fd27ab7d4d99265",
+  "passed": [
+    "v0134_top_inset:100",
+    "v0133_ui_tests:377",
+    "workflow_smoke",
+    "actual_render_with_simulated_insets",
+    "hidpi_1080x2340",
+    "normal_apk_identity_signature_integrity",
+    "dev_apk_identity_signature_integrity"
+  ],
+  "real_android_tested": false,
+  "apk": {
+    "prizma-v0.13.4.apk": {
+      "sha256": "add7715c98064456433d596771026379b3f50e23c32aa2a0a0ee82201d756bb3",
+      "bytes": 95767616
+    },
+    "prizma-v0.13.4-dev.apk": {
+      "sha256": "d82433abc542652ae06df304f66c1bdb4c640c000d2e094185ac44b1bda6d6ea",
+      "bytes": 95767616
+    }
+  }
+}
