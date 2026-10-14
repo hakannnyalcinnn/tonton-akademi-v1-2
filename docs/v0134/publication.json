@@ -1,0 +1,37 @@
+{
+  "release": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.4",
+  "workflow_run": 38647637921,
+  "verified_assets": [
+    {
+      "name": "prizma-v0.13.4.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.4/prizma-v0.13.4.apk",
+      "bytes": 95767616,
+      "accessible": true
+    },
+    {
+      "name": "prizma-v0.13.4-dev.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.4/prizma-v0.13.4-dev.apk",
+      "bytes": 95767616,
+      "accessible": true
+    },
+    {
+      "name": "map-top-fixed-844.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.4/map-top-fixed-844.png",
+      "bytes": 757828,
+      "accessible": true
+    },
+    {
+      "name": "map-top-fixed-1200.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.4/map-top-fixed-1200.png",
+      "bytes": 1392695,
+      "accessible": true
+    },
+    {
+      "name": "prizma-v0.13.4-gorseller.zip",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.4/prizma-v0.13.4-gorseller.zip",
+      "bytes": 5290166,
+      "accessible": true
+    }
+  ],
+  "real_android_tested": false
+}
