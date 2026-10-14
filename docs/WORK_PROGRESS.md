@@ -26,3 +26,11 @@ Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrula
 
 - v0.13.0 yapı 19 final: iki APK aynı kimlik/imza, ZIP/veri/ABI ve gerçek APK kaynak probe kontrollerinden geçti. GitHub doğrudan upload 401 aldı; aynı komut tekrarlanmadı. Hazır APK artefaktları Actions ile yeniden derlemeden yayımlandı.
 - Yayın https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.0-r2 ; Actions 38627411307 success. İki indirme bağlantısı 206 Range/doğru boyut/APK ZIP başlangıcıyla doğrulandı. Eski v0.13.0 yayını korunuyor. Fiziksel cihaz testi yok. Aşama tamamlandı, yeni geliştirmeye geçilmedi.
+
+## v0.13.1 — Yaşayan Macera Haritası
+- Geri dönüş backup/before-v0.13.1; dal prizma-release-v0.13.1. Gezegen aktif akıştan çıkarıldı, Android paketinden eski gezegen scripti hariç tutuluyor; sanat çalışmaları eski dallarda korunuyor.
+- Mevcut arka planlar üzerinde geniş Bézier S yolu, 50 noktalı tek dikey harita, görünür alana sınırlı canlı 2D dekorlar, güncel bölüm odağı, beş görselli dünya kartı ve dört otomatik dünya geçişi eklendi. Kompakt pause/ikonlar, sürüm yazısı ve başlık kontrastı düzenlendi.
+- Bahçe önce gerçek render ile kontrol edildi; ardından beş dünya, 320×568/390×844 kart/yardım, kapı, pause ve varış görüntüleri alındı. Dikiş ve ters resim sorunu giderildi; düz yönde örtüşen arka plan kullanılıyor.
+- SMOKE; 49 v0131 kontrolü; persistence_probe, goals_panel_tests, r2_gravity_tests, güncellenmiş v0121_ui_tests ve v012_tests geçti. Eski 3D seçici kontrolü yeni beş kart/gezegensiz akışa uyarlandı; test atlanmadı. İlk S genişliği testi yalnız düğümleri örnekliyordu; gerçek Bézier uçlarını içeren baked yol kontrolüyle düzeltildi.
+- Çekirdek/mekanik/veri Git ağaçları aynı. 250 bölüm yeniden üretilmedi veya geniş simülasyona sokulmadı. Masaüstü llvmpipe p95 24,75–35,99 ms; Android 60 FPS doğrulanmadı.
+- İki imzalı APK ve v0.13.1 yayını hazırlanıyor; sonraki sürüme geçilmeyecek.

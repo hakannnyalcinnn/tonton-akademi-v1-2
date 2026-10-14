@@ -1,0 +1,23 @@
+{
+  "passed": [
+    "SMOKE/workflow_smoke",
+    "v0131_tests:49",
+    "persistence_probe",
+    "goals_panel_tests",
+    "r2_gravity_tests",
+    "v0121_ui_tests",
+    "v012_tests",
+    "actual five-world/UI Godot captures",
+    "actual motion side-region image differences"
+  ],
+  "resolved_initial_failures": [
+    "reserved Skin constant renamed",
+    "S-span fixture now samples actual baked Bezier extrema",
+    "legacy v0121 check now requires five world cards and no planet"
+  ],
+  "unrun": [
+    "FULL campaign simulation: UI-only risk scope",
+    "physical Android FPS/input/install"
+  ],
+  "protected_game_data_unchanged": true
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "world": 1,
+    "changed_side_decoration_pixels": 44159,
+    "actual_frame_pair": true
+  },
+  {
+    "world": 2,
+    "changed_side_decoration_pixels": 41305,
+    "actual_frame_pair": true
+  },
+  {
+    "world": 3,
+    "changed_side_decoration_pixels": 31163,
+    "actual_frame_pair": true
+  },
+  {
+    "world": 4,
+    "changed_side_decoration_pixels": 43844,
+    "actual_frame_pair": true
+  },
+  {
+    "world": 5,
+    "changed_side_decoration_pixels": 30623,
+    "actual_frame_pair": true
+  }
+]
