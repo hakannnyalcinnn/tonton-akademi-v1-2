@@ -1,0 +1,25 @@
+{
+  "version": "0.12.0",
+  "version_code": 12,
+  "source_runtime_sha256": "0f524f8ee46d0814ddbaefa9302cdd445910487eb2c8d87a8270c782ae40efde",
+  "signing_certificate_sha256": "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a",
+  "normal_package": "com.prizma.renklerinuyanisi.match3",
+  "developer_package": "com.prizma.renklerinuyanisi.match3.dev",
+  "normal_profile": "prizma-save.json",
+  "developer_profile": "prizma-dev-save.json",
+  "files": {
+    "prizma-v0.12.0.apk": {
+      "bytes": 82048625,
+      "sha256": "3bc3dd7e744999217262d6e512cd1ba9e71b4cca0af0d38227d33eca48ee5107"
+    },
+    "prizma-v0.12.0-dev.apk": {
+      "bytes": 82048625,
+      "sha256": "e5982c22e67bf81d48046f0d6ddecbc47ae6cb4cb9ffbea355cf3833eab33bf5"
+    }
+  },
+  "exported_source_probes": [
+    "PASS: exported APK resources / production gate rejects every developer mutation",
+    "PASS: exported APK resources / isolated developer jump + powers + lose"
+  ],
+  "android_device_tested": false
+}

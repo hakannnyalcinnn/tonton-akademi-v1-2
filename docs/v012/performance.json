@@ -1,0 +1,24 @@
+{
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "android_device_tested": false,
+  "source_commit_measured": "8f779dd",
+  "scenarios": 24,
+  "png_captures_during_measurement": false,
+  "results": {
+    "balanced": {
+      "scenarios": 12,
+      "mean_frame_ms": 17.381709336465065,
+      "worst_scenario_p95_ms": 30.349,
+      "worst_scenario_p99_ms": 37.6430015563965,
+      "max_logic_ms": 7.994
+    },
+    "performance": {
+      "scenarios": 12,
+      "mean_frame_ms": 17.06262003454232,
+      "worst_scenario_p95_ms": 27.986,
+      "worst_scenario_p99_ms": 35.9410018920898,
+      "max_logic_ms": 5.691
+    }
+  }
+}
