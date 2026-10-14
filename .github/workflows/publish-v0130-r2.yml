@@ -1,0 +1,63 @@
+name: Publish verified PRIZMA build 19
+on:
+  push:
+    branches: [prizma-release-v0.13.0-r2]
+    paths: [.github/workflows/publish-v0130-r2.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: prizma-publish-v0130-r2
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Checkout tested runtime
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Checkout exact locally verified APKs
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ce759b55861bff7b38c672857cdadc3ae12e57d0
+          path: release-artifacts
+          persist-credentials: false
+      - name: Verify runtime and exact artifact bytes without rebuilding
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/runtime_digest.py > current-runtime.sha256
+          cmp current-runtime.sha256 release-artifacts/prizma-runtime.sha256
+          (cd release-artifacts && sha256sum --check checksums.sha256)
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          for path in Path('release-artifacts').glob('*.apk'):
+              with ZipFile(path) as apk:
+                  assert apk.testzip() is None
+                  assert 'lib/arm64-v8a/libgodot_android.so' in apk.namelist()
+                  assert not any('garden-review-r3' in name or 'planet-review' in name for name in apk.namelist())
+          print('PASS: exact locally signed/verified artifacts and unchanged runtime')
+          PY
+      - name: Publish new revision while preserving v0.13.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v0.13.0-r2 >/dev/null 2>&1; then
+            echo 'Revision already exists; refusing to overwrite any release assets.' >&2
+            exit 1
+          fi
+          gh release create v0.13.0-r2 \
+            release-artifacts/prizma-v0.13.0.apk \
+            release-artifacts/prizma-v0.13.0-dev.apk \
+            release-artifacts/checksums.sha256 \
+            release-artifacts/v130-small-pause-390.png \
+            release-artifacts/TEST_REPORT.md \
+            --verify-tag --prerelease \
+            --title 'PRİZMA v0.13.0 — Gezegen Macerası (yapı 19)' \
+            --notes-file release-artifacts/release-notes.md
