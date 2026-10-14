@@ -1,0 +1,344 @@
+{
+  "profile": "TARGETED",
+  "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+  "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "results": [
+    {
+      "name": "import",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "commit": "e4ceaaaf0be31ce93f78f13cc70a1640dafae6ae",
+      "fingerprint": "b7fb164f38c62f34dabd99dbe571895aadab23c0590e27c0cb0ce732816580b4",
+      "status": "passed",
+      "log": "build/test-policy/3999aea9006126665462a8f51da1250b84a5af0a1382f1a1f7c58be44975dae8.log",
+      "exit_code": 0,
+      "seconds": 3.725,
+      "log_sha256": "bda3b24a6bc09c6b171250535a6856dffecb55519194cb78f7a6bb0bde3a40ae"
+    },
+    {
+      "name": "workflow_smoke",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/workflow_smoke.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/b4dfa7acbfa450a42dde2a3707403e581cc9b74b20511a85069b7a4350569b08.log",
+      "exit_code": 0,
+      "seconds": 0.817,
+      "log_sha256": "c261aba7c5a5a2bb54b8a98115c9b627a9b0a7bd25e7b950547bcf6799df80b1"
+    },
+    {
+      "name": "v0121_ui_tests",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/v0121_ui_tests.gd"
+      ],
+      "commit": "e4ceaaaf0be31ce93f78f13cc70a1640dafae6ae",
+      "fingerprint": "b7fb164f38c62f34dabd99dbe571895aadab23c0590e27c0cb0ce732816580b4",
+      "status": "passed",
+      "log": "build/test-policy/fbbf6edc782ca51386fa09ae3f7f35f7d91e8124269fc51cd6dfcbd17a162259.log",
+      "exit_code": 0,
+      "seconds": 2.02,
+      "log_sha256": "dcea33093f031dfeadc4448eaae860607a8430b623a73e50f143538d4685b825"
+    },
+    {
+      "name": "v012_tests",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/v012_tests.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/8c6136c73cfc42a31756e168ec5b943ca919613b9d401eadc0eb833f65723309.log",
+      "exit_code": 0,
+      "seconds": 0.918,
+      "log_sha256": "0820dd0b85bd05b70fbc12d5fd1079f4667b272ee539900f200a4f9740b0287a"
+    },
+    {
+      "name": "quality_tests",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/quality_tests.gd"
+      ],
+      "commit": "e4ceaaaf0be31ce93f78f13cc70a1640dafae6ae",
+      "fingerprint": "b7fb164f38c62f34dabd99dbe571895aadab23c0590e27c0cb0ce732816580b4",
+      "status": "passed",
+      "log": "build/test-policy/932f0f68b690aeabbe5fffb1a2087c801cedd1063a58566d4be12d8be1087c60.log",
+      "exit_code": 0,
+      "seconds": 5.984,
+      "log_sha256": "2c77de184956cbc7f7ab3d3b8765bae42f20f9fd08e9a35213f0f8145746ff65"
+    },
+    {
+      "name": "goals_panel_tests",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/goals_panel_tests.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/f432bd4864da775b4543ec5dbe83729596d5299acb6532d6b7e25fceccd77838.log",
+      "exit_code": 0,
+      "seconds": 6.986,
+      "log_sha256": "75c1e7e83fa9cb7c20a51f36e950193eb7c0a087ce58e104f7fac0742592122b"
+    },
+    {
+      "name": "gameplay2_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/gameplay2_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/54dcf686250777b7c6b847c0cd0a01232bf01e89cdd2bed7c3996194c27965de.log",
+      "exit_code": 0,
+      "seconds": 4.927,
+      "log_sha256": "9488c43cc6087965385f1c6d3222bbc7733f313a144ba1ac31f53461e38937cf"
+    },
+    {
+      "name": "match3_ui_only",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/match3_ui_only.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/9e5e2c6e4b773bc2007b89062b978c572b98d492f29abadff3561a34835d292b.log",
+      "exit_code": 0,
+      "seconds": 2.07,
+      "log_sha256": "0095b914bf537dc242c28cc963bb1356c9340bc5e43dc6261a0530015b829e36"
+    },
+    {
+      "name": "persistence_probe",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/persistence_probe.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/083dfb0260e0d0e95de83ed086d4255cf32e034f024ff450aa95b74bc5bf4a04.log",
+      "exit_code": 0,
+      "seconds": 1.017,
+      "log_sha256": "fdfb51acec2836810755a2727295c4fa011f93bc63339adaef498e952beb232c"
+    },
+    {
+      "name": "casual_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/casual_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/b764bcb9a7a0b5ca60ec90afdfd24b896bdf461d6bfdd5215cf6234e7915b422.log",
+      "exit_code": 0,
+      "seconds": 1.619,
+      "log_sha256": "94b1c545dacf154e3c6b94dc2e6d42e5af4fe45ce529b991e3763befd00795e1"
+    },
+    {
+      "name": "finale_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/finale_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/05d12917cfff4ba8e36b1bafdd8f2947b982e3181a58bc7e423681f0356a90cb.log",
+      "exit_code": 0,
+      "seconds": 1.218,
+      "log_sha256": "c95148d281a98c7008ff1fbc16cd8ca7c2c0d50d038e6666a9ee6f4d5f07287a"
+    },
+    {
+      "name": "canyon_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/canyon_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/fc6bbabefea09cdbaf39570bd60478ec99cf44d5efe2c007d15115099387dabd.log",
+      "exit_code": 0,
+      "seconds": 1.319,
+      "log_sha256": "decc5394fc885ad84f81efc1fe25ef1a222082d7c29e91ac2a71020c9e04cf39"
+    },
+    {
+      "name": "package2_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/package2_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/046ae7e7a6376d5fea85676fa97cdb309b4ec764e356451cbf526645d312fbd2.log",
+      "exit_code": 0,
+      "seconds": 7.736,
+      "log_sha256": "8afcb0a1bf824cc9963d17bbe0eae580d1b80183a5c12a13c10996aec4b85478"
+    },
+    {
+      "name": "package4_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/package4_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/68ab150b56f653f62026e3236b1c66d946cfa651da48939999d29d7485890c04.log",
+      "exit_code": 0,
+      "seconds": 7.234,
+      "log_sha256": "1bb9abc47a698c5e089b8b5de6adf3a6309d0996f1f3fe635b6b3ac9a02d664d"
+    },
+    {
+      "name": "package5_ui",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/package5_ui.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/3fd5e39ac9500efb4e3c114498a74ee5a20fd1ac8d4579ab8433765651140c99.log",
+      "exit_code": 0,
+      "seconds": 2.973,
+      "log_sha256": "16391ae290670ad937f0ab0ea2909f14d66a994e3892977bc53fd6f5ef2339aa"
+    },
+    {
+      "name": "mechanic_ui_tests",
+      "command": [
+        "bash",
+        "tools/godot.sh",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--max-fps",
+        "60",
+        "--script",
+        "tests/mechanic_ui_tests.gd"
+      ],
+      "commit": "383532f8e9a35027bd06383338655abc17a71e8f",
+      "fingerprint": "f00d69a9cae20901cbc6d485afffe99599d64d221a8a729a0ae181305cbb5c50",
+      "status": "passed",
+      "log": "build/test-policy/470092a9689c5b704c4b970d540c823ab385cdf8a8d0dc38ccbda0b12f13a0d0.log",
+      "exit_code": 0,
+      "seconds": 9.393,
+      "log_sha256": "12097f1c7d64b43661d10b3551e1b910b3c2b1083e598028948b6b188ab3f31b"
+    }
+  ],
+  "unchanged_engine_mechanics_data_and_character_art_verified": true,
+  "baseline": "backup/before-v0.12.1",
+  "scope": "UI final regression; unchanged engine/mechanic simulation results preserved rather than repeated"
+}

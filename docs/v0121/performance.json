@@ -1,0 +1,162 @@
+{
+  "android_device_tested": false,
+  "audio_output_latency_ms": 0.0,
+  "counters": {
+    "active_quality": "balanced",
+    "frames": 82,
+    "frames_over_33ms": 1,
+    "peak_live_objects": 1872,
+    "peak_static_memory_bytes": 44558272
+  },
+  "device_model": "GenericDevice",
+  "display": {
+    "height": 1200,
+    "refresh_rate_hz": null,
+    "safe_area": [
+      0,
+      0,
+      1080,
+      1920
+    ],
+    "width": 540
+  },
+  "incidents": [],
+  "metrics": {
+    "board_draw_cpu": {
+      "max_ms": 0.643999993801117,
+      "mean_ms": 0.392169013829298,
+      "p50_ms": 0.375,
+      "p95_ms": 0.569000005722046,
+      "p99_ms": 0.58899998664856,
+      "samples": 71
+    },
+    "frame_interval": {
+      "max_ms": 38.625,
+      "mean_ms": 17.3954878318601,
+      "p50_ms": 16.6879997253418,
+      "p95_ms": 20.8400001525879,
+      "p99_ms": 22.4659996032715,
+      "samples": 82
+    },
+    "main_thread_cpu": {
+      "max_ms": 46.75,
+      "mean_ms": 39.9143414381074,
+      "p50_ms": 46.75,
+      "p95_ms": 46.75,
+      "p99_ms": 46.75,
+      "samples": 82
+    },
+    "render_cpu": {
+      "max_ms": 6.02500009536743,
+      "mean_ms": 1.60892207591565,
+      "p50_ms": 1.38499999046326,
+      "p95_ms": 1.98000001907349,
+      "p99_ms": 5.375,
+      "samples": 77
+    },
+    "render_gpu": {
+      "max_ms": 17.253999710083,
+      "mean_ms": 11.4334934284161,
+      "p50_ms": 10.6359996795654,
+      "p95_ms": 16.4290008544922,
+      "p99_ms": 17.0429992675781,
+      "samples": 77
+    },
+    "save_worker": {
+      "max_ms": 2.64299988746643,
+      "mean_ms": 1.93466659386953,
+      "p50_ms": 2.41899991035461,
+      "p95_ms": 2.41899991035461,
+      "p99_ms": 2.41899991035461,
+      "samples": 3
+    },
+    "ui_frame_interval": {
+      "max_ms": 66.2620010375977,
+      "mean_ms": 18.0296135574091,
+      "p50_ms": 16.681999206543,
+      "p95_ms": 24.0389995574951,
+      "p99_ms": 34.1389999389648,
+      "samples": 427
+    }
+  },
+  "operation_timings": [
+    {
+      "cpu_ms": 22.665,
+      "group": 0,
+      "operation": "world_map"
+    },
+    {
+      "cpu_ms": 7.025,
+      "group": 0,
+      "operation": "preview"
+    },
+    {
+      "cpu_ms": 19.881,
+      "group": 5,
+      "operation": "world_map"
+    },
+    {
+      "cpu_ms": 3.837,
+      "group": 5,
+      "operation": "preview"
+    },
+    {
+      "cpu_ms": 17.959,
+      "group": 10,
+      "operation": "world_map"
+    },
+    {
+      "cpu_ms": 3.015,
+      "group": 10,
+      "operation": "preview"
+    },
+    {
+      "cpu_ms": 20.532,
+      "group": 15,
+      "operation": "world_map"
+    },
+    {
+      "cpu_ms": 4.531,
+      "group": 15,
+      "operation": "preview"
+    },
+    {
+      "cpu_ms": 21.008,
+      "group": 20,
+      "operation": "world_map"
+    },
+    {
+      "cpu_ms": 4.955,
+      "group": 20,
+      "operation": "preview"
+    },
+    {
+      "elapsed_ms": 696.262,
+      "operation": "play_to_ready"
+    },
+    {
+      "cpu_ms": 1.566,
+      "operation": "failure_popup"
+    }
+  ],
+  "peak_nodes": 102,
+  "peak_static_memory_bytes": 48547584,
+  "platform": "Linux",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "settings": {
+    "colorblind": false,
+    "companion_quiet": false,
+    "haptics": true,
+    "music": false,
+    "music_volume": 0.65,
+    "quality": "auto",
+    "reduced_effects": false,
+    "reduced_motion": false,
+    "sfx": false,
+    "sfx_volume": 0.8,
+    "shake": true
+  },
+  "slow_frames": [],
+  "source": "Godot --profiling / Xvfb llvmpipe desktop / 540x1200; synthetic native touch",
+  "version": "0.12.0"
+}
