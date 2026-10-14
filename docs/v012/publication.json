@@ -1,0 +1,24 @@
+{
+  "release": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.12.0",
+  "ci_run": {
+    "run_id": "38520389513",
+    "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/actions/runs/38520389513"
+  },
+  "ci_status": "success",
+  "source_commit": "4eed6db",
+  "verified_apks": {
+    "prizma-v0.12.0.apk": {
+      "status": 200,
+      "bytes": 82048625
+    },
+    "prizma-v0.12.0-dev.apk": {
+      "status": 200,
+      "bytes": 82048625
+    }
+  },
+  "release_page_status": 200,
+  "asset_list_status": 200,
+  "first_head_attempt": "redirected CDN 404; cache-refresh HEAD succeeded; no APK redownload",
+  "normal_apk": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.12.0/prizma-v0.12.0.apk?download=1",
+  "developer_apk": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.12.0/prizma-v0.12.0-dev.apk?download=1"
+}
