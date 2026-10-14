@@ -631,6 +631,7 @@ func on_environment(data: Dictionary) -> void:
 		if marker not in save.data.tutorials:
 			save.data.tutorials.append(marker);save.flush()
 			set_hint("12 enerji: Fırtına en yakın üç normal kristali temizler." if data.kind=="storm" else "Üç eşleşme zinciri: Dalga en fazla iki normal kristali boyar.")
+	if data.kind=="storm":storm_gauge.pulse=.48
 	if data.kind=="shuffle":set_hint("Kristaller karıştırılıyor!")
 	storm_gauge.set_value(int(data.get("energy_before",data.get("storm_energy",board.storm_charge()))))
 	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance","storm":"storm","crystal_wave":"crystal_wave","shuffle":"shuffle","magnet":"magnet"}.get(data.kind,"pop"))
@@ -1005,7 +1006,7 @@ func show_diagnostics() -> void:
 	var lines := "Oynanış ort.: %.1f FPS · %s\n\n" % [fps,OS.get_model_name()]
 	for key in ["frame_interval","touch_to_visual_submit","swap_and_cascades","match_scan","portal_logic","vine_logic","effect_queue_logic","beam_logic","board_draw_cpu"]:
 		if report.metrics.has(key): lines += "%s: %.2f ms (p95)\n" % [key,report.metrics[key].p95_ms]
-	var body := flowing_text(overlay,lines,Rect2(59,375,425,240),14)
+	var body := flowing_text(overlay,lines,Rect2(59,386,425,220),14)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	button(overlay,"RAPORU KOPYALA",Rect2(68,620,404,44),func():
 		var content := JSON.stringify(Metrics.report(save.data.settings),"  ")

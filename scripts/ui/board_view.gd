@@ -623,6 +623,8 @@ func _draw() -> void:
 		draw_arc(center,20+t*270,0,TAU,40,Color(color,(1-t)*.7),3.5,true)
 		draw_texture_rect(GLOW,Rect2(center-Vector2(140,140),Vector2(280,280)),false,Color(color,sin(t*PI)*.2))
 		if current.kind=="storm":
+			for band in (2 if quality=="performance" or settings.get("reduced_effects",false) else 5):
+				draw_arc(center,20+t*270-band*5,0,TAU,32,Color(Palette.COLORS[band],(1-t)*.5),2,true)
 			for index in current.get("targets",[]):
 				var target:=cell_position(int(index))+Vector2(28,28)
 				draw_line(center,target,Color(color,sin(t*PI)*.65),2,true)
@@ -653,6 +655,9 @@ func _draw() -> void:
 			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(Color("ffe693") if e.opened or e.correct else Color("ee91b3"),sin(t*PI)*.65))
 			if e.opened:draw_texture_rect_region(CasualSkin.ADVANCED,Rect2(center-Vector2(28,28),Vector2(56,56)),CasualSkin.region("advanced",6),Color(1,1,1,1-t))
 	if busy and current.kind == "clear":
+		if bomb_origin>=0:
+			var core:=cell_position(bomb_origin)+Vector2(28,28)
+			draw_texture_rect(GLOW,Rect2(core-Vector2(45,45),Vector2(90,90)),false,Color(1,.9,1,sin(t*PI)*.65))
 		for index in energy_paths:
 			draw_energy_thread(cell_position(bomb_origin)+Vector2(28,28),cell_position(int(index))+Vector2(28,28),Palette.COLORS[int(previous[index].c)],t,int(index))
 		for i in current.removed:
@@ -960,9 +965,10 @@ func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, prog
 	visible.append(head)
 	if flow>0:
 		if not lite:draw_polyline(visible,Color(tint.darkened(.6),alpha*.65),4,true)
-		draw_polyline(visible,Color(tint.lightened(.65),alpha),1.5,true)
+		draw_polyline(visible,Color(tint.lightened(.65),alpha),2.4,true)
+		if not lite:draw_polyline(visible,Color(1,1,1,alpha*.7),.8,true)
 	if progress>=.67 and progress<.72:draw_texture_rect(GLOW,Rect2(destination-Vector2(35,35),Vector2(70,70)),false,Color(tint,.65))
-	draw_circle(head,2.5,Color(1,1,1,alpha))
+	draw_circle(head,3.2,Color(1,1,1,alpha))
 	if not lite:draw_texture_rect(GLOW,Rect2(head-Vector2(9,9),Vector2(18,18)),false,Color(tint,alpha*.45))
 
 func draw_adventure() -> void:

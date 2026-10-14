@@ -48,7 +48,7 @@ func run() -> void:
      milestones.append(t);rows.append({"kind":kind,"progress":t,"duration":view.duration,"paths":view.energy_paths.size(),"impact":view.bomb_impact_sent,"energy":game.storm_gauge.value})
      if kind=="bomb_normal" and t<.7:assert(not view.bomb_impact_sent and view.duration>=.5 and not view.energy_paths.is_empty())
      if kind=="storm":assert(game.storm_gauge.value>=12 and game.board.direction=="down")
-     await shot("%s-%d"%[kind,milestones.size()])
+     view.set_process(false);view.queue_redraw();await RenderingServer.frame_post_draw;root.get_texture().get_image().save_png("res://build/v124-%s-%d.png"%[kind,milestones.size()]);view.set_process(true)
   assert(milestones.size()==stages.size() and game.board.snapshot()==logical and game.board.frames==event.frames)
  var file:=FileAccess.open("res://build/v124-animation-evidence.json",FileAccess.WRITE);file.store_string(JSON.stringify(rows,"  "));file.close()
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame;print("PASS: container text separation, 100 target replacements, Bezier node continuity, three centered aspects, timed energy/impact and storm frame sequences preserve logical snapshots");quit()
