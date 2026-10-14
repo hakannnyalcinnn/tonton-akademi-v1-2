@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 45
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: 8d40da2bc0f8aad3af0aa4ac4440dd5545efbc85
+      PRIZMA_ARTIFACT_COMMIT: fc40012f0ea3f81fcb9facfd6162ed648ee77e8f
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
