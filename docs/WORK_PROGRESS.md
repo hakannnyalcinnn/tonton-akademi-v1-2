@@ -17,3 +17,9 @@ Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrula
 - İki APK v0.13.0/code18 tek sefer üretildi, aynı sertifika/paket ve ZIP/data/ARM doğrulandı. Paketlenmiş kaynak probe'ları normal/dev geçti; sabit 80 ms fixture beklemesi gerçek geçiş koşuluna dönüştürüldü, APK yeniden derlenmedi.
 - v0.13.0 yayımlandı: kaynak ad5b8e9, artefakt 1bf2d38c3919a0c50e0b5f457576948c13d3537c. CI 38596989187 Success; iki APK 206 Range GET ile 4 bayt / doğru toplam boyut / APK-ZIP başlangıcı doğrulandı. Yayın: https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.0
 - Bu aşama tamamlandı; yeni geliştirmeye geçilmedi. Fiziksel Android performans/görsel kabulü kullanıcı cihazında bekliyor.
+
+## v0.13.0 yapı 19 — işlevsel gezegen sürümü
+- Daha önce yayımlanan v0.13.0 gerçek 3D gezegeni temel alındı; sanat prototipleri ayrı Git dallarında korundu ve uygulamaya alınmadı.
+- Eksik duraklatma ikon satırı düzeltildi: büyük Devam Et + Yeniden Oyna/Ayarlar/Harita. Paket kimlikleri, imza ve oyun sürüm adı korunup Android yapı kodu 19 yapıldı.
+- SMOKE, v0130_tests ve persistence_probe geçti; 15 ek dönüş ataleti/Android geri bildirimi simülasyonu/kazanma kaydı/disk yükleme/doğrudan sonraki bölüm kontrolü geçti. İlk ek fixture tek frame bekleyerek erken kontrol etti; gerçek transition koşulunu bekleyecek şekilde düzeltildi.
+- 320×568 ve 390×844 gerçek Godot render kontrolü geçti. Android fiziksel cihaz testi yok. Eski v0.13.0 yayını korunacak; yeni APK teslimatı v0.13.0-r2 etiketi altında hazırlanıyor.

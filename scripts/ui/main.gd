@@ -890,14 +890,16 @@ func show_pause(already_saved: bool = false) -> void:
 	open_overlay("MACERAYA KISA BİR MOLA", "")
 	for child in overlay.get_children():
 		overlay.remove_child(child);child.queue_free()
-	var panel:=PanelContainer.new();panel.name="PausePanel";panel.position=Vector2(54,224);panel.size=Vector2(432,518);panel.add_theme_stylebox_override("panel",Design.surface());overlay.add_child(panel)
+	var panel:=PanelContainer.new();panel.name="PausePanel";panel.position=Vector2(54,274);panel.size=Vector2(432,390);panel.add_theme_stylebox_override("panel",Design.surface());overlay.add_child(panel)
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",14);panel.add_child(column)
-	var portrait:=TextureRect.new();portrait.texture=preload("res://scripts/ui/companion.gd").sprite(Catalog.world_for(int(board.level.id)));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.custom_minimum_size=Vector2(0,95);column.add_child(portrait)
+	var portrait:=TextureRect.new();portrait.texture=preload("res://scripts/ui/companion.gd").sprite(Catalog.world_for(int(board.level.id)));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.custom_minimum_size=Vector2(0,76);column.add_child(portrait)
 	var heading:=Label.new();heading.text="Küçük bir mola!";heading.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;heading.add_theme_font_size_override("font_size",26);heading.add_theme_color_override("font_color",Design.INK);column.add_child(heading)
 	var subtitle:=Label.new();subtitle.text="%s · Bölüm %d\nİlerlemen kaydedildi."%[Worlds.get_world(Catalog.world_for(int(board.level.id))).title,int(board.level.id)] if save.last_error=="" else save.last_error;subtitle.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;subtitle.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;subtitle.add_theme_font_size_override("font_size",14);subtitle.add_theme_color_override("font_color",Design.ACCENT);column.add_child(subtitle)
-	var actions: Array=[["DEVAM ET",close_overlay,true],["YENİDEN OYNA",confirm_restart,false],["HARİTAYA DÖN",show_map,false],["AYARLAR",show_settings,false]]
+	var resume_button:=button(column,"DEVAM ET",Rect2(0,0,404,60),close_overlay,true,22);resume_button.custom_minimum_size.y=60
+	var icons:=HBoxContainer.new();icons.name="PauseActions";icons.add_theme_constant_override("separation",12);column.add_child(icons)
+	var actions: Array=[["Yeniden Oyna",confirm_restart,preload("res://assets/casual/pause-replay.svg")],["Ayarlar",show_settings,preload("res://assets/casual/navigation-settings.svg")],["Harita",show_map,preload("res://assets/casual/navigation-map.svg")]]
 	for action in actions:
-		var btn:=button(column,action[0],Rect2(0,0,404,54),action[1],action[2],20 if action[2] else 16);btn.custom_minimum_size.y=60 if action[2] else 46
+		var item:=IconButton.new();item.custom_minimum_size=Vector2(100,74);item.size_flags_horizontal=Control.SIZE_EXPAND_FILL;item.icon_radius=24;item.caption=action[0];item.image=action[2];item.pressed.connect(action[1]);icons.add_child(item)
 
 func confirm_restart() -> void:
 	open_overlay("Baştan başlayalım mı?", "Bu bölümün mevcut hamleleri sıfırlanır. Kazandığın yıldızlar korunur.")
