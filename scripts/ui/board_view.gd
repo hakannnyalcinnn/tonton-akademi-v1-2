@@ -548,7 +548,7 @@ func _draw() -> void:
 	draw_set_transform(shake)
 	var values: Array = target if busy else displayed
 	var t := clampf(age / duration, 0, 1) if busy else 1.0
-	var ease := 1 - pow(1 - t, 3)
+	var ease := t*t if busy and current.kind in ["fall","refill"] else 1 - pow(1 - t, 3)
 	var portal_pairs: Array=board.level.get("portals",[])
 	for pair_index in portal_pairs.size():
 		var pair: Dictionary=portal_pairs[pair_index]
@@ -578,11 +578,7 @@ func _draw() -> void:
 		if busy:
 			var origin: Vector2 = origins.get(cell.id, pos)
 			if not origins.has(cell.id) and current.kind == "refill":
-				match current.direction:
-					"down": origin.y = -STRIDE * (1 + int(i / WIDTH))
-					"up": origin.y = HEIGHT * STRIDE + STRIDE * (HEIGHT - int(i / WIDTH))
-					"left": origin.x = WIDTH * STRIDE + STRIDE * (WIDTH - i % WIDTH)
-					"right": origin.x = -STRIDE * (1 + i % WIDTH)
+				origin.y = float(current.get("spawn_origins",{}).get(i,-STRIDE))
 			if (current.kind=="portal" or (current.kind=="storm" and origin.distance_to(pos)>STRIDE*1.5)) and origin!=pos:
 				var extent:=Vector2.ONE*CELL*(absf(2*t-1)*.85+.15)
 				var anchor:=origin if t<.5 else pos
@@ -607,10 +603,10 @@ func _draw() -> void:
 		draw_arc(center,20+t*270,0,TAU,40,Color(color,(1-t)*.7),3.5,true)
 		draw_texture_rect(GLOW,Rect2(center-Vector2(140,140),Vector2(280,280)),false,Color(color,sin(t*PI)*.2))
 		if current.kind=="storm":
-			var axis: Vector2={"down":Vector2.DOWN,"up":Vector2.UP,"left":Vector2.LEFT,"right":Vector2.RIGHT}[current.direction]
-			var tip:=center+axis*(55+25*t);var side:=Vector2(-axis.y,axis.x)
-			draw_line(center-axis*35,tip,Color(1,1,1,1-t),4,true)
-			draw_polyline(PackedVector2Array([tip-axis*17+side*14,tip,tip-axis*17-side*14]),Color(1,1,1,1-t),4,true)
+			for index in current.get("targets",[]):
+				var target:=cell_position(int(index))+Vector2(28,28)
+				draw_line(center,target,Color(color,sin(t*PI)*.65),2,true)
+				draw_texture_rect(GLOW,Rect2(target-Vector2(35,35),Vector2(70,70)),false,Color(color,sin(t*PI)*.8))
 		else:
 			for c in current.get("painted",[]):draw_texture_rect(GLOW,Rect2(cell_position(c.index)-Vector2(7,7),Vector2(70,70)),false,Color(color,sin(t*PI)*.75))
 	if busy and current.kind=="magnet":

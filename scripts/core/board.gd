@@ -72,7 +72,7 @@ func _init(definition: Dictionary = {}) -> void:
 	level = definition.duplicate(true)
 	if level.has("active_colors"):level.active_colors=level.active_colors.map(func(color):return int(color))
 	palette=level.get("active_colors",palette)
-	direction=str(level.get("initial_gravity","down"))
+	direction="down"
 	moves = int(level.moves)
 	initial_moves=moves
 	rng = SeedRng.new(int(level.seed))
@@ -238,19 +238,15 @@ func complete_action(event: Dictionary,selected_color: int) -> void:
 		merge_event(event,resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count)))
 	apply_crystal_wave(event,selected_color)
 	if level.gravity and level.get("automatic_storm",true) and energy>0 and not action_storm_used and not event.cascade_guard:
-		action_storm_used=true
-		var charge_before:=storm_charge();energy-=1
-		var old_direction:=direction;direction=Storm.choose(direction,rng)
-		var before:=cells.duplicate(true)
-		transition(State.APPLYING_GRAVITY)
-		var started:=Time.get_ticks_usec()
-		var transports:=Storm.reflow(cells,WIDTH,HEIGHT,direction)
-		for t in transports:pending_portal_arrivals[int(t.id)]=true
-		Metrics.elapsed("storm_logic",started)
-		frame("storm",before,{"from_direction":old_direction,"transports":transports,"energy_before":charge_before})
-		settle(true)
-		merge_event(event,resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count)))
-		apply_crystal_wave(event,selected_color)
+		var affected:=Storm.targets(cells,last_match_origin,WIDTH)
+		if not affected.is_empty():
+			action_storm_used=true
+			var charge_before:=storm_charge();energy-=1
+			direction="down"
+			var before:=cells.duplicate(true)
+			frame("storm",before,{"targets":affected,"origin":last_match_origin,"energy_before":charge_before})
+			merge_event(event,resolve([],affected,[],-1,selected_color,false,false,false,int(event.cascade_count)))
+			apply_crystal_wave(event,selected_color)
 	event.storm=action_storm_used;event.crystal_wave=action_wave_used;event.match_stages=action_match_stages;event.combo_kind=action_combo
 func apply_crystal_wave(event: Dictionary,selected_color: int) -> void:
 	if action_wave_used or action_match_stages<Wave.THRESHOLD or event.cascade_guard or not level.get("crystal_wave",true):return
@@ -464,6 +460,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 	return {"accepted": true, "attempted": true, "invalid": false, "frames": frames.duplicate(), "points": score - original_score, "resonated": did_resonate, "created_count": power_count, "cascade_count": depth-depth_offset, "normal_count": total_removed, "shuffled": shuffled, "cascade_guard": guarded}
 
 func settle(record: bool = false) -> void:
+	direction="down"
 	var before := cells.duplicate(true) if record else []
 	transition(State.APPLYING_GRAVITY)
 	var gravity_started := Time.get_ticks_usec()
@@ -497,12 +494,22 @@ func settle(record: bool = false) -> void:
 	before = cells.duplicate(true) if record else []
 	transition(State.REFILLING)
 	var refill_started := Time.get_ticks_usec()
+	var spawn_origins: Dictionary={}
+	for column in WIDTH:
+		var source_row:=-1
+		var pending: Array=[]
+		for row in HEIGHT+1:
+			var index:=row*WIDTH+column
+			if row==HEIGHT or (cells[index]!=null and cells[index].get("fixed",false)):
+				for offset in pending.size():spawn_origins[pending[offset]]=float(source_row-pending.size()+1+offset)*60.0
+				pending.clear();source_row=row
+			elif cells[index]==null:pending.append(index)
 	for line in Gravity.lines(WIDTH, HEIGHT, direction):
 		for index in line:
 			if cells[index] == null:
 				cells[index] = make_cell(int(refill_stream.pop_front())) if not refill_stream.is_empty() else make_cell()
 	Metrics.elapsed("refill_logic", refill_started)
-	if record: frame("refill", before)
+	if record: frame("refill", before,{"spawn_origins":spawn_origins})
 
 func change_gravity(_next_direction: String) -> Dictionary:
 	# Kept only as a safe compatibility rejection: players cannot select direction.
@@ -571,7 +578,7 @@ func resume() -> void:
 	if state == State.PAUSED: state = paused_state
 
 func snapshot() -> Dictionary:
-	return {"adventure":adventure.duplicate(true),"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":3,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
+	return {"adventure":adventure.duplicate(true),"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":4,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
 
 static func whole(value: Variant, minimum: int, maximum: int) -> bool:
 	if not (value is int or value is float): return false
@@ -642,7 +649,7 @@ func restore(data: Dictionary) -> bool:
 		if not collected.has(key): collected[key] = 0
 	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:
 		if not collected.has(key):collected[key]=0
-	direction = str(data.direction)
+	direction = "down"
 	energy = int(data.energy)
 	energy_blocks = int(data.energy_blocks)
 	serial = int(data.serial)

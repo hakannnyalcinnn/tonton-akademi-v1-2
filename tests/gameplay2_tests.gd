@@ -15,35 +15,17 @@ func check(ok: bool,message: String) -> void:
  if not ok:failures+=1;printerr("FAIL: "+message)
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
- for direction in Storm.DIRECTIONS:
-  var a=Rng.new(7741);var b=Rng.new(7741);var counts: Dictionary={}
-  for n in 3000:
-   var picked:=Storm.choose(direction,a)
-   check(picked!=direction and picked==Storm.choose(direction,b),"seeded choice excludes current direction")
-   counts[picked]=counts.get(picked,0)+1
-  check(counts.size()==3,"all alternative directions sampled")
-  for count in counts.values():check(count>850 and count<1150,"distribution sanity; no outcome-dependent choice")
-  var d:=Catalog.get_level(7);d.moves=100;d.targets={"total":100000}
-  var board=Board.new(d);board.direction=direction;board.energy=3;board.energy_blocks=11
-  var snapshot:=board.snapshot()
-  check(not board.change_gravity("up").accepted and board.snapshot()==snapshot,"manual selection rejected without mutation")
-  var before: Array=board.cells.duplicate(true);board.cells[27].fixed=true
-  var fixed_id: int=board.cells[27].id
-  Storm.reflow(board.cells,8,9,direction)
-  var ids: Dictionary={}
-  for c in board.cells:ids[c.id]=true
-  check(ids.size()==72 and board.cells[27].id==fixed_id,"storm retains all identities and barriers")
-  board=Board.new(d);board.direction=direction;board.energy=3;board.energy_blocks=11
-  var clone=Board.new(d);check(clone.restore(board.snapshot()),"overflow snapshot restores")
-  var move:=Solver.best_move(board);var e: Dictionary=board.swap(move[0],move[1]);clone.swap(move[0],move[1])
-  var storm_frames:=0;var wave_frames:=0
-  for f in e.frames:
-   storm_frames+=int(f.kind=="storm");wave_frames+=int(f.kind=="crystal_wave")
-  check(e.accepted and e.storm and storm_frames==1 and wave_frames<=1,"one storm and at most one wave per action")
-  check(board.direction!=direction and board.moves==99,"storm changes direction and no extra move")
-  check(board.storm_charge()==47+e.normal_count-12,"central charge conserves overflow and normal crystal energy")
-  check(board.snapshot()==clone.snapshot(),"whole transaction replay, RNG and cascades deterministic")
-  check(board.find_matches().is_empty() and Match.has_move(board.cells,8,9),"automatic storm resolves to stable playable board")
+ for legacy_direction in ["up","down","left","right"]:
+  var definition:=Catalog.get_level(7);var board=Board.new(definition);board.direction=legacy_direction;board.moves=7
+  var legacy: Dictionary=board.snapshot();legacy.gameplay_version=3
+  var restored=Board.new(definition)
+  check(restored.restore(legacy) and restored.direction=="down","legacy direction normalizes safely")
+  check(restored.cells==board.cells and restored.moves==7 and restored.score==board.score and restored.collected==board.collected and restored.rng.state==board.rng.state,"normalizing gravity preserves player state")
+ var probe=Board.new(Catalog.get_level(7));var before: Dictionary=probe.snapshot()
+ var storm_targets: Array=Storm.targets(probe.cells,27,8)
+ check(storm_targets.size()<=3 and storm_targets==Storm.targets(probe.cells,27,8),"storm targets deterministic and bounded")
+ check(storm_targets.all(func(i):return probe.cells[i].p=="" and not probe.cells[i].get("fixed",false)),"storm touches only suitable normal crystals")
+ check(not probe.change_gravity("up").accepted and probe.snapshot()==before,"manual direction rejected without mutation")
  var exact=Board.new(Catalog.get_level(7));exact.level.targets={"total":100000};exact.begin_action()
  exact.credit_storm(11);check(exact.energy==0 and exact.storm_charge()==11,"energy below twelve is not ready")
  exact.credit_storm(1);check(exact.energy==1 and exact.storm_charge()==12,"exactly twelve normal crystals make storm ready")

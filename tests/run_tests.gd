@@ -252,13 +252,14 @@ func test_gravity_and_shuffle() -> void:
 		b.direction = direction
 		b.refill_stream.clear()
 		var event: Dictionary = b.swap(1,9)
+		check(b.direction=="down", "legacy direction canonicalized to normal downward gravity")
 		check(event.accepted and b.moves == 99 and Match.find(b.cells,8,9).is_empty(), "Match-3 chain settles in direction " + direction)
 		for f in event.frames:
 			if f.kind != "refill": continue
 			var original_ids: Dictionary = {}
 			for cell in f.before:
 				if cell != null: original_ids[cell.id] = true
-			for line in Gravity.lines(8,9,direction):
+			for line in Gravity.lines(8,9,"down"):
 				var new_seen := false
 				for i in line:
 					if not original_ids.has(f.after[i].id): new_seen = true

@@ -40,7 +40,7 @@ for suite in dict.fromkeys(suites):
 if a.profile=='FULL':
  jobs.append(('persistence_write',gd('persistence_probe','write')))
  jobs.append(('persistence_read',gd('persistence_probe','read')))
- jobs.append(('campaign_all',gd('campaign_smoke')))
+ jobs.append(('campaign_all',gd('r2_campaign_tests')))
  jobs.append(('android',['python3','tools/verify_test_apk.py']+(['--build-if-needed'] if a.android_build else [])))
 if a.levels:
  ids=set()

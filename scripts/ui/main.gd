@@ -420,6 +420,18 @@ func request_level(number: int) -> void:
 			selected_booster=key if selected_booster!=key else ""
 			for item in overlay.get_children():
 				if item is IconButton:item.chosen=str(item.get_meta("booster",""))==selected_booster;item.queue_redraw())
+	var booster_rules=preload("res://scripts/core/booster_catalog.gd")
+	for key in booster_rules.ITEMS:
+		var marker: String="booster_intro_"+key
+		if booster_rules.unlocked(save.data,key) and marker not in save.data.tutorials:
+			save.data.tutorials.append(marker);save.flush()
+			explanation.text="Yeni güç açıldı! "+str(booster_rules.ITEMS[key].name)+" · "+str(booster_rules.ITEMS[key].help)
+			var acknowledgement:=button(overlay,"ANLADIM",Rect2(306,668,150,30),func():
+				explanation.text="Hedef simgelerine dokunarak açıklamaları görebilirsin."
+				var node=overlay.get_node_or_null("BoosterAcknowledgement")
+				if node:node.hide(),false,13)
+			acknowledgement.name="BoosterAcknowledgement"
+			break
 	button(overlay,"OYNA!",Rect2(83,711,374,63),func():
 		close_overlay();begin_page("transition")
 		var trail:=preload("res://scripts/ui/level_transition.gd").new();trail.quiet=save.data.settings.reduced_effects or save.data.settings.reduced_motion;page.add_child(trail)
@@ -609,7 +621,7 @@ func on_environment(data: Dictionary) -> void:
 		var marker: String="gameplay2_"+str(data.kind)
 		if marker not in save.data.tutorials:
 			save.data.tutorials.append(marker);save.flush()
-			set_hint("12 kristal enerjisi: Fırtına yönü kendisi seçer." if data.kind=="storm" else "Üç eşleşme zinciri: Dalga en fazla iki normal kristali boyar.")
+			set_hint("12 enerji: Fırtına en yakın üç normal kristali temizler." if data.kind=="storm" else "Üç eşleşme zinciri: Dalga en fazla iki normal kristali boyar.")
 	if data.kind=="shuffle":set_hint("Kristaller karıştırılıyor!")
 	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
 	audio.play({"portal":"portal","vine":"vine","paint":"resonance","bubble":"pop","conveyor":"gravity","seal":"color","trait":"resonance","storm":"storm","crystal_wave":"crystal_wave","shuffle":"shuffle","magnet":"magnet"}.get(data.kind,"pop"))
