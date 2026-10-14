@@ -23,7 +23,10 @@ from pathlib import Path
 from zipfile import ZipFile
 manifest = Path('build/android-package.txt').read_text()
 assert "name='" + sys.argv[2] + "'" in manifest
-assert "versionName='0.12.3'" in manifest
+from pathlib import Path
+import re
+version=re.search(r'config/version="([^"]+)"',Path("project.godot").read_text()).group(1)
+assert "versionName='"+version+"'" in manifest
 assert "sdkVersion:'24'" in manifest and "targetSdkVersion:'36'" in manifest
 assert 'android.permission.INTERNET' not in manifest
 assert 'android.permission.VIBRATE' in manifest

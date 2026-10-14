@@ -1,0 +1,19 @@
+{
+  "version": "0.12.4",
+  "version_code": 17,
+  "artifacts": [
+    {
+      "file": "prizma-v0.12.4.apk",
+      "bytes": 82223701,
+      "sha256": "c382862e16a6bef06e32c487df30d886b208e69beee870149d8065eed7b33aa0",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3' versionCode='17' versionName='0.12.4' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'"
+    },
+    {
+      "file": "prizma-v0.12.4-dev.apk",
+      "bytes": 82223701,
+      "sha256": "cd74b453dc754a88d948b226c3e618bd68be06240055fc1e66a1b71e1271f26a",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3.dev' versionCode='17' versionName='0.12.4' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'"
+    }
+  ],
+  "runtime": "4357ca588b40d872bd7832cdd91e356c462213e648d1fd3ab0de9f3fa302c8e6"
+}

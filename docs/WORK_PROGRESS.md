@@ -1,8 +1,6 @@
 # Güncel çalışma
 
-v0.12.3-r2: A–F geliştirme ve bulutta doğrulanabilir testler tamamlandı. Geri dönüş backup/before-v0.12.3-r2 (6729814); eski Release korunur.
-Tamam: tek önizleme açıklaması/gerçek stok ve kilit öğretimi; beş özgün aşağıdan-yukarı macera haritası; sakin tahta ve iki gerçek yardımcı; yalnız aşağı normal dolum/kısmi kristal giriş animasyonu/yön değiştirmeyen Fırtına; özgün sınırlı gruplu sesler. Eski profil ve geliştirici sahne izolasyonu düzeltildi.
-Kapsamlı regresyon seçici devamla tamamlandı; 250 bölüm, mekanikler (800 seed dahil), kayıtlar, hedef paneli, dokunma/harita ve animasyon verisi geçti. İlk bot 247/250; üç riskli bölüm alternatif stratejilerle kazanıldı. İlk başarısızlıklar raporda saklandı. Motor/veri ağaçlarının değişmediği Git ağaç hash'iyle doğrulandı; son render düzeltmesinden sonra yalnız etkilenen testler/ölçüm/artefaktlar yenilendi.
-Final APK'lar 0.12.3 / kod16; aynı sertifika, ZIP/veri/ABI, parmak izi ve gerçek APK üretim/geliştirici kapıları doğrulandı. Dosyalar build/prizma-v0.12.3.apk ve build/prizma-v0.12.3-dev.apk; artefakt commit 8d40da2bc0f8aad3af0aa4ac4440dd5545efbc85. GitHub gönderimi ve yayın başarılı: https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.12.3-r2 . CI 38564372871 Success. İki APK dört baytlık Range GET ile 206/doğru toplam boyut/ZIP başlangıcı doğrulandı; HEAD 404 döndüğü için dosyalar yeniden indirilmedi. Yayın kaydı docs/v0123-r2/publication.json.
-Son masaüstü yazılım render ölçümü: tepe 78,48 ms; Android 60 FPS iddiası yok. Fiziksel kurulum/FPS/ses/titreşim ve insan bölüm dengesi test edilmedi. Ayrıntı docs/v0123-r2/TEST_REPORT.md.
-Yeni aşamaya geçilmez.
+v0.12.4 geliştirme tamamlandı, GitHub yayın/erişim kaldı. Geri dönüş: backup/before-v0.12.4.
+Altı görev: kaydırılabilir yardım/ayarlar/tek açıklama, beş Bézier harita, merkez tahta ve bitişik hedefler, kademeli 0,72 s enerji/varış sesi, görünür 12/12 Fırtına/0,48 s dalga, gruplanmış ses/kalite ayarları koruması.
+İlgili testler ve gerçek render/kare dizisi geçti; 250 bölüm verisi/hamle/denge ve motor ağaçları değişmedi. Normal/dev APK birer kez üretildi, aynı kimlik/imza/kod17/ZIP/veri/ABI ve APK içi yeni UI/efekt kapıları doğrulandı. Eski export assertion'ı nedeniyle normal dosya tekrar derlenmedi.
+Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrulanmadı. Ayrıntı docs/v0124/TEST_REPORT.md. Bu sürümden sonra yeni aşamaya geçilmez.

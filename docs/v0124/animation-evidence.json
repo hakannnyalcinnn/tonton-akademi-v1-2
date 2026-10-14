@@ -1,0 +1,50 @@
+[
+  {
+    "duration": 0.72,
+    "energy": 0,
+    "impact": false,
+    "kind": "bomb_normal",
+    "paths": 15,
+    "progress": 0.195440277777778
+  },
+  {
+    "duration": 0.72,
+    "energy": 0,
+    "impact": false,
+    "kind": "bomb_normal",
+    "paths": 15,
+    "progress": 0.384259259259259
+  },
+  {
+    "duration": 0.72,
+    "energy": 0,
+    "impact": false,
+    "kind": "bomb_normal",
+    "paths": 15,
+    "progress": 0.638888888888889
+  },
+  {
+    "duration": 0.72,
+    "energy": 14,
+    "impact": true,
+    "kind": "bomb_normal",
+    "paths": 15,
+    "progress": 0.842623148148148
+  },
+  {
+    "duration": 0.48,
+    "energy": 21,
+    "impact": false,
+    "kind": "storm",
+    "paths": 0,
+    "progress": 0.279059722222222
+  },
+  {
+    "duration": 0.48,
+    "energy": 21,
+    "impact": false,
+    "kind": "storm",
+    "paths": 0,
+    "progress": 0.665228472222222
+  }
+]

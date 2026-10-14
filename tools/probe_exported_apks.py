@@ -39,6 +39,14 @@ func run() -> void:
   game.dev_command("win");game.dev_command("moves");game.dev_command("jump",237)
   for command in ["rr","cr","storm","giant"]:game.dev_command(command)
   assert(game.board.snapshot()==state and int(game.board.level.id)==1)
+ game.show_help();await process_frame
+ assert(game.overlay.get_node("DialogFlow/TextScroll") is ScrollContainer)
+ game.close_overlay();game.save.data.unlocked=250;game.start_level(7);game.close_goal_tip();await process_frame
+ assert(game.goals_panel.get_parent()==game.page)
+ game.board.cells[0].p="color"
+ var energy_event: Dictionary=game.board.activate(0,1);assert(energy_event.accepted);game.process_event(energy_event)
+ assert(game.board_view.bomb_origin>=0 and game.board_view.duration>=.5)
+ while game.board_view.busy:await process_frame
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
  print("PASS: exported APK resources / "+("isolated developer jump + powers + lose" if developer else "production gate rejects every developer mutation"))
  quit()
