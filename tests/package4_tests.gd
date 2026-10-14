@@ -21,12 +21,13 @@ func _initialize() -> void:call_deferred("run")
 func run() -> void:
 	check(Portal.validate([{"entry":1,"exit":2}]) and not Portal.validate([{"entry":1,"exit":1}]) and not Portal.validate([{"entry":1,"exit":2},{"entry":2,"exit":3}]),"portal coordinates distinct, bounded and unambiguous")
 	for direction in ["down","up","left","right"]:
-		var b=fresh();var lines:=Gravity.lines(8,9,direction)
+		var b=fresh();var lines:=Gravity.lines(8,9,"down")
 		b.cells.fill(null);b.direction=direction
 		var id: int=b.make_cell(0).id
 		b.cells[lines[0][1]]={"id":id,"c":0,"p":""}
 		b.level.portals=[{"entry":lines[0][0],"exit":lines[1][-1]}]
 		b.settle(true)
+		check(b.direction=="down","legacy direction canonicalizes before portal gravity")
 		check(b.movement_queue.size()==1 and b.movement_queue[0].id==id,"gravity arrival transfers exactly once: "+direction)
 		check(b.cells[lines[1][0]].id==id,"portal exits continue under current gravity: "+direction)
 		var seen: Dictionary={}

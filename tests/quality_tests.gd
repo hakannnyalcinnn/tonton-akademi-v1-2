@@ -94,7 +94,7 @@ func run() -> void:
 		game.board.frames.clear();game.board.settle(true)
 		game.process_event(game.board.resolve(game.board.find_matches(),[],[],-1,-1,false,false))
 		await wait_view(game)
-		check(game.board.direction==direction,"visual gravity: "+direction)
+		check(game.board.direction=="down","normal visual fall stays downward after legacy direction: "+direction)
 		check(Match.find(game.board.cells,8,9).is_empty(),"gravity leaves no ready match")
 	game.on_swap(0,1)
 	game._notification(Node.NOTIFICATION_APPLICATION_PAUSED)

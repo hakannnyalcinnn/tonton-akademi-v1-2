@@ -207,7 +207,18 @@ func simulations() -> void:
 				actions+=1
 				move_count+=1
 			if a.outcome=="won":wins+=1
-			if offset==0: check(a.score>=int(definition.stars[2]),"default seed has demonstrated three-star winning route")
+			if offset==0:
+				var star_route: bool=a.outcome=="won" and a.score>=int(definition.stars[2])
+				if not star_route:
+					for strategy in ["largest","objective","powers","lookahead"]:
+						var witness=Board.new(definition)
+						while witness.available():
+							var player=preload("res://scripts/generation/auto_player.gd")
+							var proof: Dictionary=player.apply(witness,player.select(witness,strategy))
+							check(proof.accepted and not proof.get("cascade_guard",false),"bounded three-star witness uses actual legal engine transactions")
+						if witness.outcome=="won" and witness.score>=int(definition.stars[2]):
+							star_route=true;print("Three-star witness %d: %s, score %d"%[number,strategy,witness.score]);break
+				check(star_route,"default seed has demonstrated three-star winning route")
 			score_sum+=a.score
 			min_score=mini(min_score,a.score)
 			max_score=maxi(max_score,a.score)

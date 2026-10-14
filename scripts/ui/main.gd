@@ -417,7 +417,7 @@ func request_level(number: int) -> void:
 				explanation.text="Bu güç %d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Stok yok. Bölüm ve hazine ödülleriyle kazanabilirsin."
 				audio.play("locked");return
 			explanation.text=rules.ITEMS[key].help
-			audio.play("click")
+			audio.play("booster_select")
 			selected_booster=key if selected_booster!=key else ""
 			for item in overlay.get_children():
 				if item is IconButton:item.chosen=str(item.get_meta("booster",""))==selected_booster;item.queue_redraw())
