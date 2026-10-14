@@ -1,5 +1,11 @@
 extends Control
 
+const Economy=preload("res://scripts/core/economy.gd")
+const EconomyScreen=preload("res://scripts/ui/economy_screen.gd")
+var settlement_pending: Dictionary={}
+var economy_status: Label
+var life_wait_label: Label
+var economy_refresh:=0.0
 const Design=preload("res://scripts/ui/ui_theme.gd")
 const IconButton=preload("res://scripts/ui/visual_icon_button.gd")
 var map_scroll: ScrollContainer
@@ -81,6 +87,8 @@ var toast_label: Label
 func _ready() -> void:
 	if save==null:save = Save.new("user://prizma-dev-save.json" if OS.has_feature("prizma_dev_tools") or OS.has_feature("editor") else "user://prizma-save.json")
 	if OS.has_feature("prizma_dev_tools"):save.data.unlocked=Catalog.count()
+	save.infinite_lives=developer_tools_available()
+	Economy.ensure(save.data)
 	save.background_writes = true
 	Engine.max_fps = 60
 	audio = Audio.new()
@@ -154,6 +162,9 @@ func layout_stage() -> void:
 		overlay.position.y = extra*.5
 
 func _process(delta: float) -> void:
+	economy_refresh+=delta
+	if save and economy_refresh>=1:
+		economy_refresh=0;refresh_economy_status()
 	if save:
 		save.poll_flush()
 		if save.last_error!="" and save.last_error!=reported_save_error:
@@ -207,7 +218,7 @@ func go_back() -> void:
 	else:show_home()
 
 func persist_board() -> void:
-	if test_mode: return
+	if test_mode or not settlement_pending.is_empty(): return
 	if board != null and screen == "game":
 		if board.outcome == "won": save.complete(board)
 		elif board.outcome == "playing": save.save_active(board)
@@ -322,7 +333,7 @@ func show_worlds() -> void:
 	card(page,Rect2(20,16,500,78))
 	var world_icon:=TextureRect.new();world_icon.name="WorldsHeaderIcon";world_icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;world_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;world_icon.texture=preload("res://assets/casual/navigation-worlds.svg");world_icon.position=Vector2(34,29);world_icon.size=Vector2(42,42);world_icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(world_icon)
 	label(page,"DÜNYALAR",Rect2(86,25,340,32),27,Design.INK)
-	label(page,"Beş farklı diyar, tek macera",Rect2(86,61,340,24),14,Design.ACCENT)
+	label(page,"%d farklı diyar, tek macera"%Worlds.playable_worlds().size(),Rect2(86,61,340,24),14,Design.ACCENT)
 	button(page,"×",Rect2(456,30,44,44),show_home,false,23)
 	var scroll:=preload("res://scripts/ui/world_scroll.gd").new();scroll.name="WorldCardsScroll";scroll.position=Vector2(22,110);scroll.size=Vector2(496,760);scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
 	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override("separation",14);scroll.add_child(column)
@@ -350,7 +361,10 @@ func show_map(group: int=-1) -> void:
 	card(page,Rect2(20,10,500,64))
 	var portrait:=preload("res://scripts/ui/companion.gd").new();portrait.position=Vector2(25,17);portrait.size=Vector2(52,52);portrait.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(portrait)
 	label(page,"PRİZMA",Rect2(88,17,230,25),20)
-	label(page,"%d kristal"%int(save.data.adventure_progress.coins),Rect2(110,49,200,20),12,Design.ACCENT)
+	economy_status=label(page,"",Rect2(110,49,296,20),12,Design.ACCENT)
+	refresh_economy_status()
+	var shop_hit:=button(page,"",Rect2(84,38,326,36),func():EconomyScreen.build(self,"shop"),false,12);shop_hit.name="OpenCrystalShop";shop_hit.tooltip_text="Prizma Mağazası"
+	for style in ["normal","hover","pressed","focus"]:shop_hit.add_theme_stylebox_override(style,StyleBoxEmpty.new())
 	var coin:=TextureRect.new();coin.texture=Design.icon("gems",3);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.position=Vector2(88,49);coin.size=Vector2(18,18);coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(coin)
 	button(page,"AYARLAR",Rect2(422,27,82,43),show_settings,false,12)
 	card(page,Rect2(24,78,282,40),Color(1,.98,.94,.94))
@@ -390,6 +404,7 @@ func show_map(group: int=-1) -> void:
 func request_level(number: int) -> void:
 	selected_booster=""
 	if number<1 or number>mini(Catalog.count(),int(save.data.unlocked)):return
+	if not Economy.allowed(save.data,number,developer_tools_available()):show_no_lives();return
 	persist_board()
 	var resume_requested: bool=not save.data.active.is_empty() and int(save.data.active.get("level_id",0))==number
 	var definition: Dictionary=save.data.active.get("level_definition",Catalog.get_level(number)) if resume_requested else Catalog.get_level(number)
@@ -473,6 +488,11 @@ func request_level(number: int) -> void:
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}, animate_entry: bool=false) -> void:
 	entering_level=false
 	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
+	if test_definition.is_empty():
+		if not Economy.allowed(save.data,number,developer_tools_available()):show_no_lives();return
+	var spent_booster:=""
+	var previous_board=board
+	var previous_test_mode:=test_mode
 	earned_treasure=false
 	test_mode = not test_definition.is_empty()
 	var definition: Dictionary=Catalog.get_level(number) if not test_mode else test_definition
@@ -490,8 +510,18 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 			var valid: bool=not preserve_hint or Match.can_swap(board.cells,int(hint[0]),int(hint[1]),8,9)
 			board.cells[i].p=""
 			if valid:slot=i;break
-		if slot>=0 and preload("res://scripts/core/adventure_progress.gd").consume(save.data,selected_booster):board.cells[slot].p="rocket_h" if selected_booster=="rocket" else "prism"
+		if slot>=0:spent_booster=selected_booster;board.cells[slot].p="rocket_h" if selected_booster=="rocket" else "prism"
 	selected_booster=""
+	if not test_mode:
+		var admission: Dictionary=save.economy_transaction(func(payload):
+			var result:=Economy.begin_run(payload,number,resume,developer_tools_available())
+			if not result.ok:return result
+			if spent_booster!="" and not preload("res://scripts/core/adventure_progress.gd").consume(payload,spent_booster):return {"ok":false,"message":"Güç stokta yok."}
+			payload.active=board.snapshot();return {"ok":true})
+		if not admission.ok:
+			board=previous_board;test_mode=previous_test_mode
+			open_overlay("Kayıt tamamlanamadı",str(admission.get("message","")))
+			button(overlay,"HARİTAYA DÖN",Rect2(70,490,400,52),show_home,true,18);return
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
 	game_hud=preload("res://scripts/ui/game_hud.gd").new()
@@ -552,7 +582,6 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	if tutorial_key not in save.data.tutorials and board.level.has("tutorial_swap"):
 		board_view.hint_index = int(board.level.tutorial_swap[0])
 		board_view.hint_target = int(board.level.tutorial_swap[1])
-	if not test_mode: save.save_active(board)
 	queue_goal_tutorials()
 	if animate_entry and not fast_test and not save.data.settings.reduced_motion:
 		entering_level=true
@@ -599,6 +628,7 @@ func set_hint(text: String) -> void:
 	if hint_label: hint_label.text = text
 
 func on_swap(a: int, b: int) -> void:
+	if not settlement_pending.is_empty():return
 	if armed_helper!="":set_hint("Gücü uygulamak için bir kristale dokun; iptal için güce tekrar bas.");return
 	if reading_goal:close_goal_tip();return
 	if screen != "game" or paused or entering_level or board_view.busy or not board.available(): return
@@ -608,6 +638,7 @@ func on_swap(a: int, b: int) -> void:
 	process_event(event)
 
 func on_special(index: int) -> void:
+	if not settlement_pending.is_empty():return
 	if armed_helper!="":on_helper_cell(index);return
 	if reading_goal:close_goal_tip();return
 	if entering_level:return
@@ -641,9 +672,8 @@ func process_event(event: Dictionary) -> void:
 	# Persist only the completely settled logical result, before cosmetic playback.
 	if not test_mode:
 		earned_treasure=board.outcome=="won" and not board.level.get("treasure",{}).is_empty() and "level-%d"%int(board.level.id) not in save.data.adventure_progress.claimed
-		preload("res://scripts/core/adventure_progress.gd").action(save.data,event)
-		if board.outcome == "won": save.complete(board)
-		else: save.save_active(board)
+		if not save.record_action(board,event):
+			show_settlement_retry(event);return
 	board_view.animate(event)
 
 func on_environment(data: Dictionary) -> void:
@@ -858,6 +888,7 @@ func select_navigation(index: int) -> void:
 		if child is IconButton and child.has_meta("navigation_index"):child.chosen=int(child.get_meta("navigation_index"))==index;child.queue_redraw()
 
 func close_overlay() -> void:
+	if not settlement_pending.is_empty():return
 	audio.play("panel_close")
 	select_navigation(0)
 	if overlay != null:
@@ -913,7 +944,8 @@ func show_result() -> void:
 		button(overlay,"HARİTA",Rect2(80,533,380,48),show_home);return
 	var won: bool=board.outcome=="won"
 	if won:save.complete(board)
-	else:save.data.active={};save.flush()
+	else:
+		if not save.fail_run(board):show_no_lives(save.last_error);return
 	var final: bool=won and int(board.level.id)==int(Worlds.get_world(Catalog.world_for(int(board.level.id))).end)
 	if final:show_world_result()
 	else:show_result_popup(won,false)
@@ -927,7 +959,9 @@ func show_result_popup(won: bool,finale: bool=false) -> void:
 	card(overlay,Rect2(54,239,432,482) if won else Rect2(54,280,432,400))
 	label(overlay,str(metadata.success_text) if won else "Bir kez daha deneyelim",Rect2(72,249 if won else 292,396,48),25,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
 	var host:=Control.new();host.position=Vector2(222,298 if won else 340);overlay.add_child(host)
-	var face:=preload("res://scripts/ui/companion.gd").new();face.size=Vector2(96,84);face.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;host.add_child(face);face.react("happy" if won else "sad")
+	var face:=preload("res://scripts/ui/companion.gd").new();face.size=Vector2(96,84);face.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;host.add_child(face)
+	if won and not save.data.economy.last_receipt.get("characters",[]).is_empty():face.texture=preload("res://scripts/ui/companion.gd").sprite(int(str(save.data.economy.last_receipt.characters[0]).get_slice("-",1)))
+	face.react("happy" if won else "sad")
 	if won:
 		var count:=Score.stars(board.score,board.level.stars)
 		for i in 3:
@@ -935,12 +969,16 @@ func show_result_popup(won: bool,finale: bool=false) -> void:
 			if not save.data.settings.reduced_motion:
 				star.scale=Vector2(.2,.2);var t:=star.create_tween();t.tween_property(star,"scale",Vector2.ONE,.22).set_delay(i*.11).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 				if i<count:t.tween_callback(func():audio.play("star_award"))
-		label(overlay,"%d PUAN"%board.score,Rect2(74,436,392,36),28,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		label(overlay,"%d PUAN  ·  +%d KRİSTAL"%[board.score,int(save.data.economy.last_receipt.get("coins",0))],Rect2(74,436,392,36),22,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		var goals:=preload("res://scripts/ui/goals_panel.gd").new();goals.position=Vector2(83,479);goals.size=Vector2(480,112);goals.scale=Vector2(.78,.78);goals.quiet=true;overlay.add_child(goals);goals.configure(board.level.targets,board.collected)
 		if earned_treasure:
 			var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.position=Vector2(392,315);chest.size=Vector2(61,57);chest.quiet=save.data.settings.reduced_motion;overlay.add_child(chest);audio.play("chest")
 			label(overlay,"HAZİNE +%d kristal"%int(board.level.treasure.coins),Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		elif not save.data.economy.last_receipt.get("characters",[]).is_empty():label(overlay,"Yeni PRİZMA dostu koleksiyonuna katıldı!",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		elif finale:label(overlay,str(metadata.reward)+" kaydedildi",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		else:
+			var ready:=Economy.missions(save.data).filter(func(m):return not m.claimed and int(m.progress)>=int(m.goal)).size()
+			label(overlay,"%d görev ödülü hazır · Ödüller menüsünden alabilirsin."%ready if ready>0 else "Kristallerin ve ilerlemen kaydedildi.",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		if not save.data.settings.reduced_motion and not save.data.settings.reduced_effects:
 			var confetti:=Celebration.new();confetti.world_finale=finale;confetti.world_theme=str(metadata.theme);confetti.ocean=int(metadata.id)==2;confetti.canyon=int(metadata.id)==3;overlay.add_child(confetti)
 		if int(board.level.id)<Catalog.count():button(overlay,"SONRAKİ BÖLÜM",Rect2(83,604,374,57),advance_after_win.bind(int(board.level.id)),true,22)
@@ -1167,29 +1205,28 @@ func show_crystal_help() -> void:
 	button(overlay,"ANLADIM",Rect2(68,658,404,48),close_overlay,true,16)
 
 func show_adventure_menu(kind: int) -> void:
-	var progress_rule=preload("res://scripts/core/adventure_progress.gd")
-	progress_rule.ensure(save.data)
-	var progress: Dictionary=save.data.adventure_progress
-	open_overlay(["Günlük görevler","Kurtardığın dostlar","Kazanılan ödüller"][kind],"Çevrimdışı maceran bu cihazda saklanır.")
+	EconomyScreen.build(self,["missions","collection","achievements"][kind])
 	select_navigation(kind+1)
-	if kind==0:
-		var d: Dictionary=progress_rule.daily(save.data)
-		var keys: Array=["blue","wins","combos"]
-		var names: Array=["Mavi kristal", "Yeni bölüm tamamla", "Büyük kombo"]
-		var amounts: Array=[30,3,2]
-		for i in 3:
-			label(overlay,"%s · %d/%d"%[names[i],mini(int(d[keys[i]]),amounts[i]),amounts[i]],Rect2(65,374+i*72,282,44),17)
-			var claim:=button(overlay,"ALINDI" if keys[i] in d.claimed else "+15",Rect2(360,374+i*72,112,44),func():
-				if progress_rule.claim_daily(save.data,keys[i]):save.flush();show_adventure_menu(0),false,15)
-			claim.disabled=keys[i] in d.claimed or int(d[keys[i]])<amounts[i]
-	elif kind==1:
-		for i in 5:
-			var c:=preload("res://scripts/ui/companion.gd").new();c.creature=i+1;c.position=Vector2(69+(i%3)*136,365+int(i/3)*125);c.size=Vector2(108,108);c.quiet=save.data.settings.reduced_motion
-			c.modulate=Color.WHITE if "creature-%d"%(i+1) in progress.creatures else Color(.4,.45,.5,.45);overlay.add_child(c)
-		label(overlay,"%d / 5 dost kurtarıldı"%progress.creatures.size(),Rect2(68,623,404,34),19,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
-	else:
-		label(overlay,"%d KRİSTAL PARA\n\nRoket: %d · Gökkuşağı Yıldızı: %d\n\n%d hazine sandığı açıldı"%[progress.coins,progress.inventory.get("rocket",0),progress.inventory.get("prism",0),progress.claimed.size()],Rect2(68,375,404,230),20,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
-	button(overlay,"KAPAT",Rect2(68,690,404,45),close_overlay,false,16)
+
+func refresh_economy_status() -> void:
+	var lives:=Economy.lives(save.data)
+	if screen=="map" and is_instance_valid(economy_status):economy_status.text="%d Kristal · Can %s"%[int(save.data.adventure_progress.coins),"∞" if developer_tools_available() else "%d/5"%int(lives.count)]
+	if is_instance_valid(life_wait_label):life_wait_label.text="Sonraki can: %02d:%02d"%[int(lives.remaining)/60,int(lives.remaining)%60]
+
+func show_no_lives(message: String="") -> void:
+	open_overlay("Canların yenileniyor",message if message!="" else "Her 30 dakikada bir can gelir. İlk 10 bölüm can tüketmez.")
+	life_wait_label=label(overlay,"",Rect2(70,400,400,48),24,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	refresh_economy_status()
+	button(overlay,"KRİSTALLE CANLARI DOLDUR",Rect2(70,478,400,56),func():EconomyScreen.build(self,"shop"),true,18)
+	button(overlay,"HARİTAYA DÖN",Rect2(70,552,400,48),show_home,false,18)
+
+func show_settlement_retry(event: Dictionary) -> void:
+	settlement_pending={}
+	open_overlay("Kayıt tamamlanamadı","Ödül ve oyun durumu birlikte kaydedilene kadar yeni hamle durduruldu.")
+	button(overlay,"YENİDEN DENE",Rect2(70,470,400,56),func():
+		if save.record_action(board,event):settlement_pending={};close_overlay();board_view.animate(event)
+		else:show_settlement_retry(event),true,19)
+	settlement_pending=event
 
 func show_developer_menu() -> void:
 	if not developer_tools_available():return
@@ -1268,13 +1305,17 @@ func on_helper_cell(index: int) -> void:
 	if test_mode or armed_helper=="" or board_view.busy or not board.available():return
 	var rules=preload("res://scripts/core/booster_catalog.gd")
 	if not rules.available(save.data,armed_helper):return
+	var previous_state: Dictionary=board.snapshot()
 	var event: Dictionary=board.deploy_power(index,str(rules.ITEMS[armed_helper].power))
 	if not event.accepted:audio.play("invalid");set_hint("Korunmamış normal bir kristal seç.");return
-	preload("res://scripts/core/adventure_progress.gd").consume(save.data,armed_helper)
+	var helper_result: Dictionary=save.economy_transaction(func(payload):
+		if not preload("res://scripts/core/adventure_progress.gd").consume(payload,armed_helper):return {"ok":false}
+		payload.active=board.snapshot();return {"ok":true})
+	if not helper_result.ok:board.restore(previous_state);set_hint("Güç kaydedilemedi; envanter değiştirilmedi.");return
 	armed_helper=""
 	for key in helper_buttons:
 		helper_buttons[key].amount=int(save.data.adventure_progress.inventory.get(key,0));helper_buttons[key].chosen=false;helper_buttons[key].unavailable=not rules.available(save.data,key);helper_buttons[key].queue_redraw()
-	save.save_active(board);board_view.animate(event);board_view.spawn_stars(board_view.cell_position(index)+Vector2(28,28),4);audio.play("power");set_hint("Güç yerleştirildi; normal hamle harcanmadı.")
+	board_view.animate(event);board_view.spawn_stars(board_view.cell_position(index)+Vector2(28,28),4);audio.play("power");set_hint("Güç yerleştirildi; normal hamle harcanmadı.")
 
 func preview_text(parent: Node,text: String,font_size: int,color: Color) -> Label:
 	var result:=Label.new();result.text=text;result.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;result.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;result.add_theme_font_size_override("font_size",font_size);result.add_theme_color_override("font_color",color);parent.add_child(result);return result

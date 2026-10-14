@@ -1,6 +1,8 @@
 extends RefCounted
 
-const SCHEMA := 3
+const SCHEMA := 4
+const Economy=preload("res://scripts/core/economy.gd")
+var infinite_lives:=false
 const Catalog = preload("res://scripts/core/level_catalog.gd")
 const Board = preload("res://scripts/core/board.gd")
 const Score = preload("res://scripts/core/score.gd")
@@ -18,6 +20,7 @@ func _init(save_path: String = "user://prizma-save.json") -> void:
 	data = defaults()
 	load_save()
 	preload("res://scripts/core/adventure_progress.gd").ensure(data)
+	Economy.ensure(data)
 
 static func defaults() -> Dictionary:
 	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "world_rewards":[], "cosmetic_rewards":[], "active": {}, "tutorials": [], "settings": {"companion_quiet":false, "music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false, "quality": "auto", "shake": true, "reduced_effects": false, "music_volume": 0.65, "sfx_volume": 0.8}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
@@ -35,6 +38,7 @@ static func canonical(value: Variant) -> Variant:
 	return value
 
 func valid_meta(parsed: Variant, version: int) -> bool:
+	if parsed is Dictionary and parsed.has("economy") and not Economy.valid(parsed.economy):return false
 	if parsed is Dictionary and parsed.has("adventure_progress") and not preload("res://scripts/core/adventure_progress.gd").valid(parsed.adventure_progress):return false
 	if not parsed is Dictionary or not parsed.has_all(["version", "unlocked", "results", "rewarded", "active", "tutorials", "settings"]): return false
 	if not Board.whole(parsed.version, version, version) or not Board.whole(parsed.unlocked, 1, Catalog.count()): return false
@@ -92,7 +96,13 @@ func load_save() -> bool:
 				if not FileAccess.file_exists(archive) and DirAccess.copy_absolute(ProjectSettings.globalize_path(candidate),ProjectSettings.globalize_path(archive))!=OK:
 					last_error="Önceki kayıt arşivlenemedi; üzerine yazma durduruldu.";read_only=true;return false
 				parsed=upgraded
+		if valid_meta(parsed,3):
+			parsed=parsed.duplicate(true);parsed.version=SCHEMA
+		if parsed is Dictionary and parsed.get("economy",{}) is Dictionary and parsed.get("economy",{}).get("version",1)>1:
+			last_error="Ekonomi kaydı daha yeni; üzerine yazılmayacak.";read_only=true;return false
 		if valid(parsed):
+			if not parsed.has("economy") and not FileAccess.file_exists(path+".pre-v014"):
+				if DirAccess.copy_absolute(ProjectSettings.globalize_path(candidate),ProjectSettings.globalize_path(path+".pre-v014"))!=OK:last_error="Ekonomi geçiş yedeği yazılamadı.";read_only=true;return false
 			data = parsed
 			var merged: Dictionary = defaults().settings
 			merged.merge(data.settings, true)
@@ -188,7 +198,7 @@ func write_snapshot(payload: Dictionary) -> String:
 		var old_parser := JSON.new()
 		var parse_error := old_parser.parse(FileAccess.get_file_as_string(path))
 		var old_data = old_parser.data if parse_error == OK else null
-		if valid(old_data) or valid_meta(old_data,1) or valid_meta(old_data,2):
+		if valid(old_data) or valid_meta(old_data,1) or valid_meta(old_data,2) or valid_meta(old_data,3):
 			if DirAccess.copy_absolute(absolute, absolute + ".bak") != OK: return "Kayıt yedeği yazılamadı."
 	var error := DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), absolute)
 	return "" if error == OK else "Kayıt değiştirilemedi: " + str(error)
@@ -197,7 +207,8 @@ func save_active(board) -> bool:
 	data.active = board.snapshot()
 	return flush()
 
-func complete(board) -> bool:
+func _complete(board) -> bool:
+	Economy.ensure(data)
 	if board.outcome != "won": return false
 	var key := str(int(board.level.id))
 	var old: Dictionary = data.results.get(key, {"score": 0, "stars": 0})
@@ -214,12 +225,41 @@ func complete(board) -> bool:
 		if metadata.has("reward_id"):
 			if not data.has("cosmetic_rewards"):data.cosmetic_rewards=[]
 			if metadata.reward_id not in data.cosmetic_rewards:data.cosmetic_rewards.append(metadata.reward_id)
+	Economy.complete(data,board,stars)
 	preload("res://scripts/core/adventure_progress.gd").complete(data,board,first)
 	data.active = {}
-	flush()
 	return first
 
 func mark_tutorial(key: String) -> void:
 	if key not in data.tutorials:
 		data.tutorials.append(key)
 		flush()
+
+func economy_transaction(operation: Callable) -> Dictionary:
+	finish_writes()
+	if read_only:return {"ok":false,"message":"Kayıt salt okunur; işlem yapılmadı."}
+	var before:=data.duplicate(true)
+	var result: Dictionary=operation.call(data)
+	if not result.get("ok",false):data=before;return result
+	if not Economy.valid(data.economy) or not preload("res://scripts/core/adventure_progress.gd").valid(data.adventure_progress):data=before;return {"ok":false,"message":"Ekonomi verisi doğrulanamadı; işlem geri alındı."}
+	var error:=write_snapshot(data)
+	if error!="":data=before;last_error=error;return {"ok":false,"message":error}
+	last_error="";return result
+func complete(board) -> bool:
+	if board.outcome!="won":return false
+	var result:=economy_transaction(func(_data):return {"ok":true,"first":_complete(board)})
+	return result.get("first",false) if result.ok else false
+func begin_run(level: int,resume: bool) -> Dictionary:
+	return economy_transaction(func(payload):return Economy.begin_run(payload,level,resume,infinite_lives))
+func fail_run(board) -> bool:
+	var result:=economy_transaction(func(payload):Economy.fail(payload,int(board.level.id),infinite_lives);payload.active={};return {"ok":true})
+	return result.ok
+func record_action(board,event: Dictionary) -> bool:
+	var result:=economy_transaction(func(payload):
+		Economy.action(payload,event,board)
+		preload("res://scripts/core/adventure_progress.gd").action(payload,event)
+		if board.outcome=="won":_complete(board)
+		elif board.outcome=="lost":Economy.fail(payload,int(board.level.id),infinite_lives);payload.active={}
+		else:payload.active=board.snapshot()
+		return {"ok":true})
+	return result.ok

@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "star_rewards": [
+    0,
+    10,
+    15,
+    25
+  ],
+  "milestone_interval": 10,
+  "milestone_crystals": 50,
+  "world_crystals": 250,
+  "max_lives": 5,
+  "life_seconds": 1800,
+  "tutorial_free_until": 10,
+  "login": [
+    {
+      "coins": 25
+    },
+    {
+      "coins": 50
+    },
+    {
+      "rocket": 1
+    },
+    {
+      "coins": 75
+    },
+    {
+      "prism": 1
+    },
+    {
+      "coins": 100
+    },
+    {
+      "coins": 150,
+      "rocket": 2,
+      "prism": 1
+    }
+  ],
+  "shop": {
+    "rocket": {
+      "title": "Roket desteği",
+      "price": 75,
+      "quantity": 1,
+      "unlock": 3
+    },
+    "prism": {
+      "title": "Prizma bombası",
+      "price": 150,
+      "quantity": 1,
+      "unlock": 9
+    },
+    "lives": {
+      "title": "Canları doldur",
+      "price": 200,
+      "quantity": 5,
+      "unlock": 11
+    }
+  },
+  "missions": [
+    {
+      "id": "wins",
+      "title": "3 bölüm tamamla",
+      "goal": 3,
+      "unlock": 1,
+      "reward": {
+        "coins": 40
+      }
+    },
+    {
+      "id": "crystals",
+      "title": "100 kristal temizle",
+      "goal": 100,
+      "unlock": 1,
+      "reward": {
+        "coins": 30
+      }
+    },
+    {
+      "id": "blue",
+      "title": "20 mavi kristal temizle",
+      "goal": 20,
+      "unlock": 1,
+      "reward": {
+        "coins": 25
+      }
+    },
+    {
+      "id": "rockets",
+      "title": "5 roket oluştur",
+      "goal": 5,
+      "unlock": 3,
+      "reward": {
+        "rocket": 1
+      }
+    },
+    {
+      "id": "combos",
+      "title": "3 büyük kombo yap",
+      "goal": 3,
+      "unlock": 7,
+      "reward": {
+        "coins": 50
+      }
+    },
+    {
+      "id": "combinations",
+      "title": "2 özel güç birleştir",
+      "goal": 2,
+      "unlock": 9,
+      "reward": {
+        "coins": 60
+      }
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first",
+      "title": "İlk adım",
+      "stat": "levels",
+      "goal": 1,
+      "reward": {
+        "coins": 25,
+        "character": "creature-1"
+      }
+    },
+    {
+      "id": "three_stars",
+      "title": "Kusursuz parıltı",
+      "stat": "three_stars",
+      "goal": 1,
+      "reward": {
+        "rocket": 1
+      }
+    },
+    {
+      "id": "ten",
+      "title": "Yol açıcı",
+      "stat": "levels",
+      "goal": 10,
+      "reward": {
+        "coins": 75
+      }
+    },
+    {
+      "id": "fifty",
+      "title": "Dünya gezgini",
+      "stat": "levels",
+      "goal": 50,
+      "reward": {
+        "coins": 150
+      }
+    },
+    {
+      "id": "hundred",
+      "title": "Kristal ustası",
+      "stat": "levels",
+      "goal": 100,
+      "reward": {
+        "coins": 250
+      }
+    },
+    {
+      "id": "rocket100",
+      "title": "Roket ustası",
+      "stat": "rockets",
+      "goal": 100,
+      "reward": {
+        "prism": 2
+      }
+    },
+    {
+      "id": "combo10",
+      "title": "Enerji mimarı",
+      "stat": "combinations",
+      "goal": 10,
+      "reward": {
+        "coins": 100
+      }
+    },
+    {
+      "id": "world1",
+      "title": "Bahçenin koruyucusu",
+      "stat": "worlds",
+      "goal": 1,
+      "reward": {
+        "coins": 100
+      }
+    }
+  ],
+  "characters": [
+    {
+      "id": "creature-1",
+      "name": "Filiz",
+      "world": 1,
+      "level": 10,
+      "description": "Bahçenin renklerini koruyan meraklı dost."
+    },
+    {
+      "id": "creature-2",
+      "name": "İnci",
+      "world": 2,
+      "level": 60,
+      "description": "Mercanların arasında ışıldayan okyanus rehberi."
+    },
+    {
+      "id": "creature-3",
+      "name": "Işıltı",
+      "world": 3,
+      "level": 110,
+      "description": "Kristal yankılarını dinleyen kanyon dostu."
+    },
+    {
+      "id": "creature-4",
+      "name": "Pofuduk",
+      "world": 4,
+      "level": 160,
+      "description": "Bulut yollarında süzülen neşeli kaşif."
+    },
+    {
+      "id": "creature-5",
+      "name": "Köz",
+      "world": 5,
+      "level": 210,
+      "description": "Lav kristallerine sıcaklık veren küçük koruyucu."
+    }
+  ]
+}
