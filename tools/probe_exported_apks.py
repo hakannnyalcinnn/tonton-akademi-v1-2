@@ -18,12 +18,26 @@ func run() -> void:
   game.dev_command("jump",237);await process_frame
   assert(int(game.board.level.id)==237)
   game.dev_command("double");assert(game.board.cells[0].p=="color" and game.board.cells[1].p=="color")
+  game.dev_command("rr");assert(game.board.cells[0].p=="rocket_h" and game.board.cells[1].p=="rocket_v")
+  game.dev_command("cr");assert(game.board.cells[0].p=="color" and game.board.cells[1].p=="rocket_h")
+  game.dev_command("storm")
+  while game.board_view.busy:await process_frame
+  assert(game.board.action_storm_used)
+  game.dev_command("giant");game.close_goal_tip()
+  assert(int(game.board.level.id)==247 and game.board.canyon.giants["44"]==1)
+  var pair:=-1
+  for i in 71:
+   if i%8<7 and game.board.cells[i]!=null and game.board.cells[i+1]!=null and game.board.cells[i].p=="color" and game.board.cells[i+1].p=="color":pair=i;break
+  assert(pair>=0);game.on_swap(pair,pair+1)
+  while game.board_view.busy:await process_frame
+  assert(game.board.collected.giants==1)
   game.dev_command("lose");assert(game.board.outcome=="lost")
  else:
   assert(not game.developer_tools_available())
   game.start_level(1);await process_frame
   var state: Dictionary=game.board.snapshot()
   game.dev_command("win");game.dev_command("moves");game.dev_command("jump",237)
+  for command in ["rr","cr","storm","giant"]:game.dev_command(command)
   assert(game.board.snapshot()==state and int(game.board.level.id)==1)
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
  print("PASS: exported APK resources / "+("isolated developer jump + powers + lose" if developer else "production gate rejects every developer mutation"))

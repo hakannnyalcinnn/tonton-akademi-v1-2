@@ -464,6 +464,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	board_view.wave_started.connect(on_wave)
 	board_view.environment_started.connect(on_environment)
 	board_view.animation_finished.connect(on_animation_finished)
+	board_view.rocket_impact.connect(func():audio.play("rocket_impact"))
 	card(page,Rect2(76,816,388,33),Color("fff8e9"))
 	storm_gauge=preload("res://scripts/ui/storm_gauge.gd").new();storm_gauge.position=Vector2(82,817);storm_gauge.size=Vector2(376,30);storm_gauge.quiet=save.data.settings.reduced_motion;page.add_child(storm_gauge)
 	resonance_label=label(page,"",Rect2(38,869,414,22),12,Color("fff9e8"),HORIZONTAL_ALIGNMENT_CENTER)
@@ -614,7 +615,7 @@ func on_wave(data: Dictionary) -> void:
 	star_progress.target=data.score
 	score_target = data.score
 	if data.get("combo_kind","")!="":
-		audio.play("combo_power");audio.vibrate(true)
+		audio.play("double_color" if data.combo_kind=="color_color" else "combo_power");audio.vibrate(true)
 	elif data.resonated:
 		audio.play("resonance")
 		audio.vibrate(true)
@@ -675,7 +676,7 @@ func show_seal_description(index: int) -> void:
 		label(goal_tip,"✓" if k<int(m.step) else ("SIRADAKİ" if k==int(m.step) else ""),Rect2(12+k*61,53,56,17),10,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	button(goal_tip,"×",Rect2(423,8,48,48),close_goal_tip,false,20)
 func show_goal_description(key: String,tutorial: bool=false) -> void:
-	if screen!="game" or goals_panel==null or not goals_panel.targets.has(key):return
+	if screen!="game" or goals_panel==null or not goals_panel.targets.has(key) or (board_view.busy and not tutorial):return
 	close_goal_tip()
 	board_view.highlight_goal(key)
 	if is_instance_valid(companion):companion.hide()
@@ -900,7 +901,7 @@ func show_settings() -> void:
 	button(page,"YARDIM / ÖĞRETİCİLER",Rect2(42,768,222,44),show_help,false,13)
 	button(page,"Performans raporu",Rect2(274,768,224,44),show_diagnostics,false,13)
 	button(page,Strings.text("resume") if settings_origin=="game" and not save.data.active.is_empty() else Strings.text("map"),Rect2(42,835,456,56),play_latest if settings_origin=="game" and not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.12.2 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.12.3 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),show_developer_menu,false,12)
@@ -1094,9 +1095,9 @@ func show_developer_menu() -> void:
 	open_overlay("Geliştirici testi","Ayrı test APK ve kayıt profili · 1–250")
 	var number:=SpinBox.new();number.min_value=1;number.max_value=Catalog.count();number.value=int(board.level.id) if board!=null else 1;number.position=Vector2(70,369);number.size=Vector2(210,40);overlay.add_child(number)
 	button(overlay,"BÖLÜME GİT",Rect2(293,369,178,40),func():dev_command("jump",int(number.value)),true,14)
-	var commands: Array=[["Kazan","win"],["Kaybet","lose"],["Önceki","previous"],["Sonraki","next"],["+10 hamle","moves"],["İki bomba","double"],["Roket ekle","rocket"],["Yıldız ekle","prism"],["Boss aç","boss"],["Kurtarma aç","rescue"],["Seed ile başlat","seed"],["Hızlı / normal","speed"],["Mekanik laboratuvarı","lab"],["Dünyaları aç","worlds"],["Mekanik araçları","layers"],["Yeniden başlat","seed"],["Önizleme","preview"],["Harita testi","map"],["Testi sıfırla","reset"]]
+	var commands: Array=[["Kazan","win"],["Kaybet","lose"],["Önceki","previous"],["Sonraki","next"],["+10 hamle","moves"],["İki bomba","double"],["Roket ekle","rocket"],["Yıldız ekle","prism"],["Boss aç","boss"],["Kurtarma aç","rescue"],["Seed ile başlat","seed"],["Hızlı / normal","speed"],["Mekanik laboratuvarı","lab"],["Dünyaları aç","worlds"],["Mekanik araçları","layers"],["Yeniden başlat","seed"],["Önizleme","preview"],["Harita testi","map"],["Testi sıfırla","reset"],["Roket + roket","rr"],["Bomba + roket","cr"],["Fırtına","storm"],["Dev kırılması","giant"]]
 	for i in commands.size():
-		button(overlay,commands[i][0],Rect2(68+(i%3)*138,428+int(i/3)*43,130,36),dev_command.bind(commands[i][1],int(number.value)),false,12)
+		button(overlay,commands[i][0],Rect2(68+(i%4)*103,428+int(i/4)*43,96,36),dev_command.bind(commands[i][1],int(number.value)),false,12)
 	button(overlay,"KAPAT",Rect2(68,753,404,38),close_overlay,false,14)
 
 func dev_command(command: String,number: int=1) -> void:
@@ -1130,12 +1131,20 @@ func dev_command(command: String,number: int=1) -> void:
 		board.outcome="won";show_result();return
 	if command=="lose":board.moves=0;board.outcome="lost";show_result();return
 	if command=="moves":board.moves+=10;board.initial_moves+=10;board.level.moves=board.initial_moves;update_hud();return
-	if command in ["double","rocket","prism"]:
+	if command=="storm":
+		board.energy=1;board.energy_blocks=0
+		board.level.gravity=true;board.level.automatic_storm=true;close_goal_tip()
+		var moves: Array=Match.legal_swaps(board.cells,8,9)
+		if not moves.is_empty():on_swap(int(moves[0][0]),int(moves[0][1]))
+		return
+	if command=="giant":
+		start_level(247);close_goal_tip();board.canyon.giants["44"]=1;command="double"
+	if command in ["double","rr","cr","rocket","prism"]:
 		for i in 71:
 			if board.cells[i]==null or board.cells[i].get("fixed",false):continue
-			if command=="double":
+			if command in ["double","rr","cr"]:
 				if i%8==7 or board.cells[i+1]==null or board.cells[i+1].get("fixed",false):continue
-				board.cells[i].p="color";board.cells[i+1].p="color"
+				board.cells[i].p="rocket_h" if command=="rr" else "color";board.cells[i+1].p="rocket_v" if command=="rr" else "rocket_h" if command=="cr" else "color"
 			else:board.cells[i].p="rocket_h" if command=="rocket" else "prism"
 			break
 		board_view.set_board(board)

@@ -9,8 +9,8 @@ static func beam(view: Control,points: PackedVector2Array,t: float,tint: Color,l
  var last:=points[0]
  for k in whole+1:
   var destination:=head if k==whole else points[k+1]
-  if not lite:view.draw_line(last,destination,Color(tint,alpha*.22),11,true)
-  view.draw_line(last,destination,Color(tint.lightened(.2),alpha*.8),4 if not lite else 2,true)
+  if not lite:view.draw_line(last,destination,Color(tint.darkened(.7),alpha*.4),9,true)
+  view.draw_line(last,destination,Color(tint,alpha),5 if not lite else 2,true)
   if not lite:view.draw_line(last,destination,Color(1,.98,.94,alpha),1.6,true)
   if k==whole:
    var axis:=(destination-last).normalized();var side:=Vector2(-axis.y,axis.x)

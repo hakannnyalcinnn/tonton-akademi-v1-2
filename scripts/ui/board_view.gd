@@ -1,4 +1,5 @@
 extends Control
+signal rocket_impact
 signal swap_requested(a: int, b: int)
 signal special_pressed(index: int)
 signal device_pressed(index: int)
@@ -161,7 +162,7 @@ func particle_budget() -> int:
 
 func start_wave(data: Dictionary) -> void:
 	var budget := particle_budget()
-	var count := (14 if data.removed.size()>=5 or not data.get("creations",[]).is_empty() else 10)+mini(4,int(data.combo)-1)
+	var count := (14 if data.removed.size()>=5 or not data.get("creations",[]).is_empty() else 12)+mini(4,int(data.combo)-1)
 	if quality == "performance": count = 3
 	if reduced_motion: count = 0
 	for index in data.removed:
@@ -176,6 +177,7 @@ func start_wave(data: Dictionary) -> void:
 			particle_colors[slot] = Palette.COLORS[k%5 if Traits.bridge(previous[index]) else int(data.get("colors",{}).get(index,previous[index].c))].lightened(.16)
 			particle_ages[slot] = -.075-.008*(index%4) if not reduced_motion else 0
 			particle_styles[slot] = 0
+	for creation in data.get("creations",[]):spawn_stars(cell_position(int(creation.i))+Vector2(28,28),4)
 	for effect in data.get("canyon_events",[]):
 		if effect.get("hp",1)==0 or effect.get("opened",false):
 			spawn_stars(cell_position(int(effect.index))+Vector2(58,58),8 if quality=="performance" else 16)
@@ -393,6 +395,7 @@ func _process(delta: float) -> void:
 	if busy:
 		age += delta
 		if age >= duration:
+			if current.kind=="clear" and not render_beams.is_empty():rocket_impact.emit()
 			Metrics.record("animation_"+str(current.kind),age*1000)
 			displayed = target
 			next_frame()
@@ -583,6 +586,7 @@ func _draw() -> void:
 				draw_cell(cell,Rect2(anchor+Vector2(28,28)-extent/2,extent),true)
 				continue
 			pos = origin.lerp(pos, ease)
+			if current.kind=="storm" and not reduced_motion:pos+=Vector2(sin(t*TAU*2+i),cos(t*TAU*2+i))*sin(t*PI)*1.2
 			if current.kind=="shuffle":pos.y-=sin(t*PI)*12
 			if current.kind in ["fall", "refill"] and t > 0.85: pos.y += sin((t - 0.85) / 0.15 * PI) * 2
 		if pos.y < -CELL or pos.y > HEIGHT * STRIDE or pos.x < -CELL or pos.x > WIDTH * STRIDE: continue
@@ -614,6 +618,7 @@ func _draw() -> void:
 		for e in current.get("canyon_events",[]):
 			if e.get("hp",1)==0 or e.get("opened",false):
 				var center:=cell_position(e.index)+Vector2(58,58)
+				if e.kind=="giant" and canyon_atlas!=null:draw_large_shards(center,t)
 				for k in (4 if e.kind=="core" else 1):draw_arc(center,15+t*(70+k*25),0,TAU,32,Color(Palette.COLORS[k],(1-t)*.7),3,true)
 	if busy and current.kind=="paint":
 		for e in current.get("fountains",[]):
@@ -640,9 +645,16 @@ func _draw() -> void:
 				phase=clampf((t-float(i%6)*.045)/.775,0,1)
 
 			if phase<.32:
-				var block_size:=Vector2.ONE*CELL*(1+.22*sin(phase/.32*PI*.5))
+				var block_size:=Vector2.ONE*CELL*(1+.16*sin(phase/.32*PI*.5))
 				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true,int(current.get("colors",{}).get(i,previous[i].c)))
-				draw_texture_rect(GLOW,Rect2(center-Vector2(38,38),Vector2(76,76)),false,Color(1,1,1,sin(phase/.32*PI)*.92))
+				draw_texture_rect(GLOW,Rect2(center-Vector2(38,38),Vector2(76,76)),false,Color(1,1,1,sin(phase/.32*PI)*.75))
+			elif phase<.72 and current.removed.size()>12 and quality!="performance" and not reduced_motion and not previous[i].has("trait") and previous[i].p=="":
+				var region: Rect2=textures[int(previous[i].c)].region
+				var corner:=Vector2(i%2,int(i/2)%2)
+				var fragment:=Rect2(region.position+corner*region.size*.5,region.size*.5)
+				var extent:=Vector2(22,22)*(1-phase*.5)
+				var flight:=center+Vector2.from_angle(i*2.4)*(phase-.25)*75
+				draw_texture_rect_region(ATLAS,Rect2(flight-extent*.5,extent),fragment,Color(1,1,1,1-phase))
 			elif phase<.72 and current.removed.size()<=12 and quality!="performance" and not reduced_motion and not previous[i].has("trait") and previous[i].p=="":
 				draw_shattered_crystal(previous[i],center,(phase-.32)/.4,shake)
 			if phase>.22:
@@ -920,7 +932,7 @@ func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, prog
 	if points.is_empty():return
 	var lite: bool=quality=="performance" or settings.get("reduced_effects",false)
 	var alpha:=sin(progress*PI)*.8
-	if not lite:draw_polyline(points,Color(tint,alpha*.28),6,true)
+	if not lite:draw_polyline(points,Color(tint.darkened(.6),alpha*.65),4,true)
 	draw_polyline(points,Color(tint.lightened(.65),alpha),1.5,true)
 	var flow:=clampf(progress*1.8-float(index%6)*.04,0,1)*(points.size()-1)
 	var part:=mini(points.size()-2,int(flow))
@@ -946,3 +958,13 @@ func draw_adventure() -> void:
 		draw_arc(center,24,0,TAU,20,Color("a9eeff"),2.5,true)
 		for x in [-10,0,10]:draw_line(center+Vector2(x,-20),center+Vector2(x,20),Color("ffd98a"),1.5,true)
 		draw_string(ThemeDB.fallback_font,center+Vector2(14,20),str(cage.remaining),HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color.WHITE)
+
+func draw_large_shards(center: Vector2,t: float) -> void:
+	if reduced_motion or settings.get("reduced_effects",false):return
+	var region: Rect2=canyon_regions[1]
+	var fitted: Rect2=CasualSkin.fit(Rect2(center-Vector2(58,58),Vector2(116,116)),region)
+	for k in 4:
+		var corner:=Vector2(k%2,int(k/2));var axis:=corner*2-Vector2.ONE
+		var source:=Rect2(region.position+corner*region.size*.5,region.size*.5)
+		var dest:=Rect2(fitted.position+corner*fitted.size*.5+axis*(10+t*35),fitted.size*.5)
+		draw_texture_rect_region(canyon_atlas,dest,source,Color(1,1,1,1-t))

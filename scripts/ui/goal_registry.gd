@@ -6,7 +6,7 @@ const ENTRIES={
  "rescues":["adventure",1,"Kristal kurtarma","Kafesin çevresinde eşleştirerek %d canlı kurtar."],
  "bosses":["adventure",0,"Mini boss","Gösterilen renkler ve özel güçlerle %d rakibin kalkanını kır."],
  "floors":["canyon",0,"Kırılgan zemin","Üzerindeki kristalleri iki ayrı kez temizleyerek %d zemini kır. Kırılan hücre kapanır."],
- "giants":["canyon",1,"Dev kristal","Yanında üç ayrı patlama yaparak %d dev kristali kır."],
+ "giants":["canyon",1,"Dev kristal","2×2 Dev Kristale üç ayrı darbe vererek %d Dev Kristal kır."],
  "magnets":["canyon",2,"Manyetik düğüm","Her üç başarılı hamlede etkinleşen %d manyetik değişimi gerçekleştir."],
  "cores":["canyon",3,"Prizma çekirdeği","Dört kalkanı kaldır, ardından özel güçle %d çekirdeğe son darbeyi vur."],
  "shield0":["canyon",4,"Kırmızı kalkan","Kalkan için %d kırmızı kristal enerjisi topla."],
