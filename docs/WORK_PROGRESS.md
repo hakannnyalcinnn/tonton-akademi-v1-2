@@ -23,3 +23,6 @@ Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrula
 - Eksik duraklatma ikon satırı düzeltildi: büyük Devam Et + Yeniden Oyna/Ayarlar/Harita. Paket kimlikleri, imza ve oyun sürüm adı korunup Android yapı kodu 19 yapıldı.
 - SMOKE, v0130_tests ve persistence_probe geçti; 15 ek dönüş ataleti/Android geri bildirimi simülasyonu/kazanma kaydı/disk yükleme/doğrudan sonraki bölüm kontrolü geçti. İlk ek fixture tek frame bekleyerek erken kontrol etti; gerçek transition koşulunu bekleyecek şekilde düzeltildi.
 - 320×568 ve 390×844 gerçek Godot render kontrolü geçti. Android fiziksel cihaz testi yok. Eski v0.13.0 yayını korunacak; yeni APK teslimatı v0.13.0-r2 etiketi altında hazırlanıyor.
+
+- v0.13.0 yapı 19 final: iki APK aynı kimlik/imza, ZIP/veri/ABI ve gerçek APK kaynak probe kontrollerinden geçti. GitHub doğrudan upload 401 aldı; aynı komut tekrarlanmadı. Hazır APK artefaktları Actions ile yeniden derlemeden yayımlandı.
+- Yayın https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.0-r2 ; Actions 38627411307 success. İki indirme bağlantısı 206 Range/doğru boyut/APK ZIP başlangıcıyla doğrulandı. Eski v0.13.0 yayını korunuyor. Fiziksel cihaz testi yok. Aşama tamamlandı, yeni geliştirmeye geçilmedi.
