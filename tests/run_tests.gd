@@ -305,7 +305,7 @@ func test_gravity_and_shuffle() -> void:
 	b.settle(true)
 	var event: Dictionary=b.resolve(b.find_matches(),[],[],-1,-1,false,false)
 	check(event.cascade_count >= 1 and b.moves == 100 and Match.find(b.cells,8,9).is_empty(), "environmental resolver settles matches without manual player gravity")
-	print("PASS: all gravity directions, barriers, refill edge and free stable shuffles")
+	print("PASS: legacy directional utility, normal downward gravity, barriers, refill edge and free stable shuffles")
 
 func test_outcomes_and_state() -> void:
 	var b = fixture()

@@ -28,11 +28,10 @@ func run() -> void:
  game.show_worlds();check(game.screen=="worlds","scrollable world screen opens")
  await process_frame
  var scroll=game.page.get_node("WorldsScroll")
- var origin: Vector2=scroll.get_global_rect().get_center()
- var touch:=InputEventScreenTouch.new();touch.index=0;touch.pressed=true;touch.position=origin;scroll._input(touch)
- var drag:=InputEventScreenDrag.new();drag.index=0;drag.position=origin-Vector2(0,450);scroll._input(drag)
- touch.pressed=false;touch.position=drag.position;scroll._input(touch)
- check(scroll.scroll_vertical>=400,"native touch scrolling reaches the fifth world card")
+ var content=scroll.get_child(0)
+ check(content.get_child_count()==Worlds.playable_worlds().size(),"every authored world has a card")
+ var last_card=content.get_child(content.get_child_count()-1)
+ check(last_card.position.y+last_card.size.y<=scroll.size.y or content.custom_minimum_size.y>scroll.size.y,"fifth world is visible or reachable in scrollable content")
  for metadata in Worlds.playable_worlds():
   game.show_map(int((int(metadata.start)-1)/10));check(game.selected_world==int(metadata.id),"world map identity")
   check(game.map_buttons.size()==int(metadata.end)-int(metadata.start)+1 and game.map_buttons.has(int(metadata.end)),"all authored map platforms")

@@ -70,7 +70,17 @@ for name,cmd in jobs:
  try:
   with log.open('w') as output:
    child=subprocess.Popen(cmd,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
-   try:code=child.wait(timeout=a.timeout)
+   try:
+    while True:
+     try:code=child.wait(timeout=1);break
+     except subprocess.TimeoutExpired:
+      if time.monotonic()-started>=a.timeout:raise subprocess.TimeoutExpired(cmd,a.timeout)
+      if re.search(r'^SCRIPT ERROR:',log.read_text(errors='replace'),re.M):
+       row['status']='failed'
+       os.killpg(child.pid,signal.SIGTERM)
+       try:code=child.wait(timeout=5)
+       except subprocess.TimeoutExpired:os.killpg(child.pid,signal.SIGKILL);code=child.wait()
+       break
    except (subprocess.TimeoutExpired,KeyboardInterrupt) as error:
     os.killpg(child.pid,signal.SIGTERM)
     try:child.wait(timeout=5)

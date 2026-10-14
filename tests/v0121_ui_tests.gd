@@ -26,6 +26,7 @@ func run() -> void:
   if child is Icon:nav+=1;check(child.image!=null,"navigation has real icon")
   if child is Button:check(not child.text.begins_with("1–10"),"no decade selector")
  check(nav==5,"five working navigation destinations")
+ game.save.data.unlocked=9 # Prism stock becomes usable only at its declared unlock.
  game.request_level(1);await process_frame
  var inventory: Dictionary=game.save.data.adventure_progress.inventory
  var initial: int=inventory.prism
@@ -35,7 +36,7 @@ func run() -> void:
  game.close_overlay();check(inventory.prism==initial,"cancel does not consume stock")
  inventory.rocket=0;game.request_level(1);await process_frame
  for child in game.overlay.get_children():
-  if child is Icon and child.get_meta("booster","")=="rocket":check(child.disabled and child.amount==0,"zero stock passive, no purchase UI")
+  if child is Icon and child.get_meta("booster","")=="rocket":check(child.unavailable and child.amount==0,"zero stock explains availability without purchase UI");child.pressed.emit();check(game.selected_booster=="","zero stock cannot select or consume")
   elif child is Icon and child.get_meta("booster","")=="prism":child.pressed.emit()
  find_button("OYNA!").pressed.emit();await create_timer(.1).timeout;await process_frame
  check(game.screen=="game" and inventory.prism==initial-1,"Play starts and consumes exactly one owned booster")
