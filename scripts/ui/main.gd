@@ -118,6 +118,8 @@ func layout_stage() -> void:
 	if page:
 		page.position.y = 0 if screen in ["game","map","worlds"] else extra*.5
 		if screen=="worlds":
+			var atmosphere=page.get_node_or_null("WorldsAtmosphere")
+			if atmosphere:atmosphere.size=stage.size
 			var cards=page.get_node_or_null("WorldCardsScroll")
 			if cards:cards.size.y=maxf(200,stage.size.y-210)
 			for node in footer_nodes:
@@ -316,14 +318,16 @@ func apply_world_progress(number: int) -> void:
 func show_worlds() -> void:
 	persist_board();test_mode=false;begin_page("worlds")
 	garden.visible=true;garden.vitality=1.0
+	var veil:=ColorRect.new();veil.name="WorldsAtmosphere";veil.color=Color(.18,.13,.32,.62);veil.size=stage.size;veil.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(veil)
 	card(page,Rect2(20,16,500,78))
-	label(page,"DÜNYALAR",Rect2(38,25,370,32),27,Design.INK)
-	label(page,"Beş farklı diyar, tek macera",Rect2(38,61,370,24),14,Design.ACCENT)
+	var world_icon:=TextureRect.new();world_icon.name="WorldsHeaderIcon";world_icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;world_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;world_icon.texture=preload("res://assets/casual/navigation-worlds.svg");world_icon.position=Vector2(34,29);world_icon.size=Vector2(42,42);world_icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(world_icon)
+	label(page,"DÜNYALAR",Rect2(86,25,340,32),27,Design.INK)
+	label(page,"Beş farklı diyar, tek macera",Rect2(86,61,340,24),14,Design.ACCENT)
 	button(page,"×",Rect2(456,30,44,44),show_home,false,23)
 	var scroll:=preload("res://scripts/ui/world_scroll.gd").new();scroll.name="WorldCardsScroll";scroll.position=Vector2(22,110);scroll.size=Vector2(496,760);scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
 	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override("separation",14);scroll.add_child(column)
 	for world in Worlds.playable_worlds():
-		var tile:=preload("res://scripts/ui/world_card.gd").new();tile.metadata=world;tile.completed=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==int(world.id)).size();tile.disabled=int(save.data.unlocked)<int(world.start);tile.pressed.connect(open_world_map.bind(int(world.id)));column.add_child(tile)
+		var tile:=preload("res://scripts/ui/world_card.gd").new();tile.metadata=world;tile.selected=int(world.id)==selected_world;tile.completed=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==int(world.id)).size();tile.disabled=int(save.data.unlocked)<int(world.start);tile.pressed.connect(open_world_map.bind(int(world.id)));column.add_child(tile)
 	var back:=button(page,"GÜNCEL BÖLÜME DÖN",Rect2(68,886,404,56),show_home,true,18);back.set_meta("base_y",886);footer_nodes.append(back)
 	layout_stage()
 
@@ -340,6 +344,8 @@ func show_map(group: int=-1) -> void:
 	apply_world_progress(Catalog.world_for(map_group*10+1))
 	garden.vitality=1.0
 	var metadata:=Worlds.get_world(selected_world)
+	garden.visible=false
+	var terrain:=preload("res://scripts/ui/map_terrain.gd").new();terrain.world_theme=str(metadata.map_style);page.add_child(terrain)
 	preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
 	card(page,Rect2(20,10,500,64))
 	var portrait:=preload("res://scripts/ui/companion.gd").new();portrait.position=Vector2(25,17);portrait.size=Vector2(52,52);portrait.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(portrait)
@@ -349,16 +355,16 @@ func show_map(group: int=-1) -> void:
 	button(page,"AYARLAR",Rect2(422,27,82,43),show_settings,false,12)
 	card(page,Rect2(24,78,282,40),Color(1,.98,.94,.94))
 	label(page,str(metadata.title),Rect2(36,83,266,28),20,Design.INK)
-	button(page,"DÜNYALAR",Rect2(316,77,190,44),show_worlds,true,15)
+	var worlds_button:=button(page,"DÜNYALAR",Rect2(316,77,190,44),show_worlds,true,15);worlds_button.name="WorldsButton";worlds_button.icon=preload("res://assets/casual/navigation-worlds.svg");worlds_button.expand_icon=true;worlds_button.add_theme_constant_override("icon_max_width",30);worlds_button.add_theme_constant_override("h_separation",8)
 	map_buttons.clear()
 	map_scroll=preload("res://scripts/ui/world_scroll.gd").new()
 	map_scroll.position=Vector2(0,130);map_scroll.size=Vector2(540,674)
-	map_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;map_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_SHOW_NEVER;map_scroll.follow_focus=false;page.add_child(map_scroll)
+	map_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;map_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_SHOW_NEVER;map_scroll.follow_focus=false;page.add_child(map_scroll);terrain.scroll=map_scroll
 	var path:=MapPath.new()
 	var first:=int(metadata.start);var last:=mini(Catalog.count(),int(metadata.end))
 	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3;path.world_theme=str(metadata.map_style);path.accent=Color(metadata.accent)
 	path.quiet=save.data.settings.reduced_motion;path.completed_count=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()
-	path.name="LivingAdventurePath";path.world_id=selected_world;path.quality=str(save.data.settings.get("quality","balanced"));path.custom_minimum_size=Vector2(540,path.count*146+280);map_scroll.add_child(path)
+	path.name="LivingAdventurePath";path.world_id=selected_world;path.quality=str(save.data.settings.get("quality","balanced"));path.custom_minimum_size=Vector2(540,path.count*146+280);map_scroll.add_child(path);terrain.path=path;terrain.queue_redraw()
 	for n in range(first,last+1):
 		var center: Vector2=path.node_position(n-first)
 		var node:=preload("res://scripts/ui/level_node.gd").new()
@@ -370,10 +376,10 @@ func show_map(group: int=-1) -> void:
 		node.pressed.connect(request_level.bind(n));path.add_child(node);map_buttons[n]=node
 	var focus:=current_level() if current_level()>=first and current_level()<=last else first
 	map_scroll.set_deferred("scroll_vertical",maxi(0,int(path.node_position(focus-first).y-map_scroll.size.y*.7)))
-	button(page,"GÜNCEL BÖLÜME DÖN",Rect2(88,820,364,54),show_home,true,18).set_meta("base_y",820)
+	var current_button:=button(page,"GÜNCEL BÖLÜME DÖN",Rect2(68,820,404,54),show_home,true,18);current_button.name="CurrentLevelButton";current_button.set_meta("base_y",820)
 	var bar:=card(page,Rect2(17,878,506,70));bar.set_meta("base_y",878);footer_nodes.append(bar)
 	var names: Array=["Dünyalar","Günlük","Dostlar","Ödüller","Ayarlar"]
-	var images: Array=[preload("res://assets/casual/navigation-map.svg"),preload("res://assets/casual/navigation-tasks.svg"),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),preload("res://assets/casual/navigation-settings.svg")]
+	var images: Array=[preload("res://assets/casual/navigation-worlds.svg"),preload("res://assets/casual/navigation-tasks.svg"),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),preload("res://assets/casual/navigation-settings.svg")]
 	var actions: Array=[show_worlds,show_adventure_menu.bind(0),show_adventure_menu.bind(1),show_adventure_menu.bind(2),show_settings]
 	for i in 5:
 		var nav:=IconButton.new();nav.position=Vector2(25+i*99,879);nav.size=Vector2(94,66);nav.icon_radius=20;nav.caption=names[i];nav.image=images[i];nav.chosen=i==0;nav.set_meta("navigation_index",i);nav.pressed.connect(actions[i]);page.add_child(nav);nav.set_meta("base_y",879);footer_nodes.append(nav)

@@ -1,8 +1,6 @@
-# PRİZMA v0.13.2
+# PRİZMA v0.13.3 — Harita/dünya UI final paketi
 
-- Geri dönüş: `backup/before-v0.13.2`; çalışma dalı `prizma-release-v0.13.2`.
-- Tam ekran, oranı korunmuş ve örtüşerek döşenen harita; sabit alt menüden ayrı kaydırma alanı.
-- Deterministik dekor çeşitleri, sakin aktif bölüm halkası, bütünleşik geçit tabelası/açılış enerjisi.
-- Kompakt dünya kartları, gerçek KEŞFET butonu; ortak HUD/hedef/tahta ve alt kontrol yerleşimi.
-- Korunan: çekirdek motor, bütün bölüm verileri, kayıt kodu, normal/dev ayrımı.
-- 840 UI kontrolü, hedefli regresyon, SMOKE ve gerçek Godot render incelemesi başarılı. İki APK birer kez üretildi; kimlik/imza/bütünlük ve gerçek APK özellik kapıları doğrulandı. v0.13.2 GitHub Release yayımlandı; 10 APK/PNG/ZIP bağlantısı Range/206 ve toplam boyut kontrolüyle doğrulandı. Tamamlandı; sonraki aşama kullanıcı onayı bekler.
+- Geri dönüş: `backup/before-map-final-polish`; dal `prizma-map-final-polish`.
+- Ortak tam ekran dünya zemini/yolu, beş özgün ortografik zemin, küre simgesi, temalı kartlar ve dengeli dekorlar tamamlandı.
+- Gerçek Godot görüntüleri incelendi; 377 UI + mevcut 49 akış kontrolü, persistence_probe ve SMOKE başarılı. Piksel kaydırma sürekliliği doğrulandı.
+- Oynanış, tahta, HUD, hedef paneli, bölüm ve kayıt kodu korunuyor. Normal/DEV APK ve yayın doğrulaması sırada.

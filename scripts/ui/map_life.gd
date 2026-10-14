@@ -53,7 +53,7 @@ func _draw() -> void:
   var center:=Vector2(side+sin(i*2.39)*14,anchor.y+12+sin(i*3.7)*20)
   var scale_factor:=.72+fposmod(i*.173,.33)
   if biome=="garden":
-   sprite(sprites[[1,0,2,0,1,2,0][i%7]],center,Vector2(132,139)*scale_factor,sin(phase*.5)*.014)
+   if i%3!=1:sprite(sprites[[1,0,2,0,1,2,0][i%7]],center,Vector2(120,128)*scale_factor,sin(phase*.5)*.014)
    if i%3!=1:sprite(sprites[2 if i%4 else 1],Vector2(540-side,anchor.y+74),Vector2(65,68)*scale_factor,sin(phase*.8)*.025)
    sprite(sprites[3],center+Vector2(sin(phase*.7)*23,-65+cos(phase)*10),Vector2(37,34),sin(phase)*.16)
   elif biome=="ocean":
@@ -62,8 +62,8 @@ func _draw() -> void:
   else:
    var main_landmark:=i%3==0
    var feature: Texture2D=landmarks[world_id-3] if main_landmark else landmarks[4] if biome=="cloud" and i%3==2 else landmarks[5]
-   sprite(feature,center,Vector2(150,158)*scale_factor if main_landmark else Vector2(110,115)*scale_factor,sin(phase*.4)*(.015 if biome=="cloud" else .004))
-   sprite(gem,Vector2(540-side,anchor.y+70),Vector2(64,70),sin(phase*.5)*.045)
+   sprite(feature,center,Vector2(132,139)*scale_factor if main_landmark else Vector2(92,96)*scale_factor,sin(phase*.4)*(.015 if biome=="cloud" else .004))
+   if i%3!=1:sprite(gem,Vector2(540-side,anchor.y+70),Vector2(43,48)*(1+sin(i*2.17)*.15),sin(phase*.5)*.045)
    if biome=="cloud":sprite(landmarks[4],Vector2(540-side+sin(phase*.25)*18,anchor.y-16),Vector2(126,76),0,.85)
    elif biome=="canyon" and main_landmark:
     for k in 3:
