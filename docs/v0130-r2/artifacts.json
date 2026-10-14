@@ -1,0 +1,26 @@
+{
+  "app_version": "0.13.0",
+  "android_version_code": 19,
+  "release_tag": "v0.13.0-r2",
+  "runtime_digest": "c192e5e2b0f94646ec8fe351e18021e5f9dc725cb58ccaa9f253344df23b3510",
+  "apk_resource_probes": "PASS normal/dev",
+  "art_prototypes_included": false,
+  "apks": [
+    {
+      "file": "prizma-v0.13.0.apk",
+      "bytes": 82252749,
+      "sha256": "5098a127df37f2c595a81c2c9c614b9f24b79283472a08c3e060e8423eb3d5ee",
+      "package": "com.prizma.renklerinuyanisi.match3",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3' versionCode='19' versionName='0.13.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+      "signature_verified": true
+    },
+    {
+      "file": "prizma-v0.13.0-dev.apk",
+      "bytes": 82252749,
+      "sha256": "ca4202d6ec1f677eef0f1eee91e6bf8c0c2818189db054b1db93c9e64b16475f",
+      "package": "com.prizma.renklerinuyanisi.match3.dev",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3.dev' versionCode='19' versionName='0.13.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+      "signature_verified": true
+    }
+  ]
+}

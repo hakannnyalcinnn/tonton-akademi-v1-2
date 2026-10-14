@@ -42,6 +42,12 @@ func run() -> void:
  game.show_help();await process_frame
  assert(game.overlay.get_node("DialogFlow/TextScroll") is ScrollContainer)
  game.close_overlay();game.save.data.unlocked=250;game.start_level(7);game.close_goal_tip();await process_frame
+ var before_pause: Dictionary=game.board.snapshot()
+ game.show_pause();await process_frame
+ var pause_actions=game.overlay.get_node("PausePanel").find_child("PauseActions",true,false)
+ assert(pause_actions is HBoxContainer and pause_actions.get_child_count()==3)
+ assert(pause_actions.get_child(0).image!=null and pause_actions.get_child(1).caption=="Ayarlar" and pause_actions.get_child(2).caption=="Harita")
+ game.close_overlay();assert(game.board.snapshot()==before_pause)
  assert(game.goals_panel.get_parent()==game.page)
  game.board.cells[0].p="color"
  var energy_event: Dictionary=game.board.activate(0,1);assert(energy_event.accepted);game.process_event(energy_event)
