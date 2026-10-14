@@ -1185,11 +1185,13 @@ func dev_command(command: String,number: int=1) -> void:
 		board_view.set_board(board)
 
 func build_helper_bar() -> void:
+	if not test_mode:preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
 	var rules=preload("res://scripts/core/booster_catalog.gd")
 	for i in 2:
 		var key: String=["rocket","prism"][i]
-		var item:=IconButton.new();item.position=Vector2(115+i*133,860);item.size=Vector2(96,72);item.image=Design.icon("gems",int(rules.ITEMS[key].image));item.amount=int(save.data.adventure_progress.inventory.get(key,0));item.locked=not rules.unlocked(save.data,key);item.unavailable=not rules.available(save.data,key);item.tooltip_text=rules.ITEMS[key].name;page.add_child(item);helper_buttons[key]=item
+		var item:=IconButton.new();item.position=Vector2(115+i*133,860);item.size=Vector2(96,72);item.image=Design.icon("gems",int(rules.ITEMS[key].image));item.amount=int(save.data.get("adventure_progress",{}).get("inventory",{}).get(key,0));item.disabled=test_mode;item.locked=not rules.unlocked(save.data,key);item.unavailable=test_mode or not rules.available(save.data,key);item.tooltip_text=rules.ITEMS[key].name;page.add_child(item);helper_buttons[key]=item
 		item.pressed.connect(func():
+			if test_mode:return
 			if board_view.busy or not board.available():return
 			close_goal_tip()
 			if not rules.available(save.data,key):set_hint("%d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Bu güçten stok kalmadı.");audio.play("locked");return
@@ -1197,7 +1199,7 @@ func build_helper_bar() -> void:
 			for other in helper_buttons:helper_buttons[other].chosen=other==armed_helper;helper_buttons[other].queue_redraw()
 			set_hint("İptal için güce tekrar dokun." if armed_helper!="" else "Güç seçimi iptal edildi.");audio.play("booster_select"))
 func on_helper_cell(index: int) -> void:
-	if armed_helper=="" or board_view.busy or not board.available():return
+	if test_mode or armed_helper=="" or board_view.busy or not board.available():return
 	var rules=preload("res://scripts/core/booster_catalog.gd")
 	if not rules.available(save.data,armed_helper):return
 	var event: Dictionary=board.deploy_power(index,str(rules.ITEMS[armed_helper].power))

@@ -17,6 +17,8 @@ func run() -> void:
 		if child is ScrollContainer:scroll=child
 	check(scroll!=null,"map uses real vertical scroll container")
 	check(game.map_buttons.size()==50,"garden has exactly 50 nodes")
+	scroll.scroll_vertical=2200 # Probe real dragging away from the new bottom-to-top focus boundary.
+	await process_frame
 	var start:=scroll.scroll_vertical
 	var touch:=InputEventScreenTouch.new();touch.index=0;touch.pressed=true;touch.position=scroll.get_global_transform_with_canvas()*Vector2(200,400);root.push_input(touch,true);await process_frame
 	for i in 12:

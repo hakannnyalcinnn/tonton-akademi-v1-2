@@ -4,6 +4,7 @@ var game
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
  game=load("res://scenes/main.tscn").instantiate();game.production_mode=true;game.save=Save.new("user://r2-helper-only.json");game.save.data=Save.defaults();game.save.data.unlocked=250;game.save.data.settings.music=false;game.save.data.settings.sfx=false;game.save.data.settings.reduced_motion=true;root.add_child(game);await process_frame
+ game.save.data.erase("adventure_progress") # Legacy/default profiles gain inventory additively before HUD access.
  game.start_level(247);game.close_goal_tip();await process_frame
  var stock: int=game.save.data.adventure_progress.inventory.rocket;var moves: int=game.board.moves;var score: int=game.board.score
  game.helper_buttons.rocket.pressed.emit();assert(game.armed_helper=="rocket")
