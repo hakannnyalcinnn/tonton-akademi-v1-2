@@ -10,7 +10,7 @@ var ocean:=false
 var canyon:=false
 var road:=PackedVector2Array()
 func node_position(index: int) -> Vector2:
-	return Vector2(228+sin(float(index)*.83)*145,70+index*100)
+	return Vector2(228+sin(float(index)*.83)*145,70+index*112)
 func _ready() -> void:
 	mouse_filter=Control.MOUSE_FILTER_PASS
 	for i in range(0,count,10):
@@ -18,7 +18,7 @@ func _ready() -> void:
 		creature.position=node_position(i)+Vector2(-165,-25);creature.size=Vector2(72,72);creature.quiet=quiet;creature.modulate.a=1 if i<completed_count else .4;add_child(creature)
 	for i in range(count*16):
 		var index:=float(i)/16
-		road.append(Vector2(228+sin(index*.83)*145,70+index*100))
+		road.append(Vector2(228+sin(index*.83)*145,70+index*112))
 func _draw() -> void:
 	draw_polyline(road,Color(.38,.57,.65,.2),31,true)
 	draw_polyline(road,accent,26,true)
@@ -26,7 +26,7 @@ func _draw() -> void:
 	for i in range(0,count,8):
 		if not ocean:
 			var source:=CasualSkin.region("ui",5)
-			draw_texture_rect_region(CasualSkin.UI,CasualSkin.fit(Rect2(Vector2(300,90+i*100),Vector2(100,50)),source),source,Color(1,1,1,.65))
+			draw_texture_rect_region(CasualSkin.UI,CasualSkin.fit(Rect2(Vector2(300,90+i*112),Vector2(100,50)),source),source,Color(1,1,1,.65))
 	if canyon:
 		for i in range(0,count,3):
 			var center:=node_position(i)+Vector2(-165 if i%2==0 else 135,0)

@@ -23,7 +23,7 @@ func run() -> void:
   for button in buttons(game.page):
    check(button.text!="Nasıl oynanır?" and button.text not in ["←","→","↑","↓"],"game page contains no help or direction selection")
   check(game.storm_gauge.mouse_filter==Control.MOUSE_FILTER_IGNORE,"gauge is informational and cannot choose a direction")
-  check(game.goals_panel.position.y+game.goals_panel.size.y<=game.board_view.position.y,"icon goals stay above board")
+  check(game.goals_panel.get_global_rect().end.y<=game.board_view.get_global_rect().position.y,"icon goals stay above board")
   var point: Vector2=game.board_view.get_global_transform_with_canvas()*(game.board_view.cell_position(71)+Vector2(28,28))
   check(game.board_view.index_at(game.board_view.get_global_transform_with_canvas().affine_inverse()*point)==71,"edge coordinates survive all aspects")
  game.start_level(7);game.close_goal_tip();game.board.level.targets={"total":100000};game.board.energy=3

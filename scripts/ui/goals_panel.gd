@@ -8,6 +8,7 @@ var amounts: Dictionary={}
 var displayed: Dictionary={}
 var pulses: Dictionary={}
 var rects: Dictionary={}
+var remaining_mode:=false
 var quiet:=false
 var offset:=0.0
 var pressed_key:=""
@@ -86,7 +87,7 @@ func _draw() -> void:
   if key.begins_with("shield"):
    var color:=int(key.trim_prefix("shield"))
    draw_texture_rect(Registry.icon(str(color)),Rect2(icon_rect.get_center()-Vector2(9,9),Vector2(18,18)),false)
-  var text:="%d/%d"%[roundi(float(displayed[key])),int(targets[key])]
+  var text:="Kalan %d"%maxi(0,int(targets[key])-int(amounts[key])) if remaining_mode else "%d/%d"%[roundi(float(displayed[key])),int(targets[key])]
   draw_string(font,Vector2(r.get_center().x-font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x/2,r.end.y-5),text,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("425877"))
   if done:
    var art=preload("res://scripts/ui/casual_skin.gd");draw_texture_rect_region(art.ADVANCED,Rect2(r.end.x-25,r.position.y+3,22,22),art.region("advanced",7))

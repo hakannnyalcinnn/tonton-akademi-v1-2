@@ -16,7 +16,7 @@ const COPY := {
 	"lost": "Bir kez daha deneyelim",
 	"replay": "YENİDEN OYNA",
 	"next": "SONRAKİ BÖLÜM",
-	"home": "ANA MENÜ",
+	"home": "HARİTA",
 	"no_energy": "12 normal kristal: Prizma Fırtınası kendiliğinden çalışır.",
 	"gravity_hint": "Fırtına üç farklı yönden birini rastgele seçer; hamle harcamaz.",
 	"swap_hint": "Bir bloğu kaydır; üç aynı sembolü yatay veya dikey eşleştir.",

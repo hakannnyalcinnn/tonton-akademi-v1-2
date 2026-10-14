@@ -1,5 +1,12 @@
 extends Control
 
+const Design=preload("res://scripts/ui/ui_theme.gd")
+const IconButton=preload("res://scripts/ui/visual_icon_button.gd")
+var map_scroll: ScrollContainer
+var settings_origin:="map"
+var transition_token:=0
+var last_move_badge:=-1
+var move_tween: Tween
 const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 const MapPath=preload("res://scripts/ui/map_path.gd")
 var map_buttons: Dictionary={}
@@ -83,6 +90,11 @@ func _ready() -> void:
 	get_tree().auto_accept_quit = false
 	show_home()
 	layout_stage()
+	if not save.data.settings.reduced_motion:
+		var splash:=Control.new();splash.size=stage.size;splash.mouse_filter=Control.MOUSE_FILTER_IGNORE;stage.add_child(splash)
+		var emblem:=TextureRect.new();emblem.texture=Design.icon("gems",7);emblem.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;emblem.position=Vector2(211,stage.size.y*.42);emblem.size=Vector2(118,118);splash.add_child(emblem)
+		label(splash,"PRİZMA",Rect2(155,stage.size.y*.42+125,230,50),40,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+		var intro:=splash.create_tween();intro.tween_property(splash,"modulate:a",0,.3);intro.tween_callback(splash.queue_free)
 
 func safe_rect() -> Rect2:
 	if safe_rect_override.has_area(): return safe_rect_override
@@ -104,13 +116,19 @@ func layout_stage() -> void:
 	garden.size = size
 	var extra := stage.size.y-960
 	if page:
-		page.position.y = 0 if screen == "game" else extra*.5
+		page.position.y = 0 if screen in ["game","map","worlds"] else extra*.5
+		if screen=="map" and is_instance_valid(map_scroll):
+			map_scroll.size.y=maxf(200,stage.size.y-226)
+			for node in footer_nodes:
+				if is_instance_valid(node):node.position.y=float(node.get_meta("base_y"))+extra
 	if screen == "game" and board_view:
-		board_view.position.y = 270+extra*.5
+		board_view.position.y = Design.BOARD_Y+extra*.5
 		for node in page.get_children():
 			if node is Control and node.has_meta("hud_y"):node.position.y=float(node.get_meta("hud_y"))+extra*.5
 		for node in footer_nodes:
-			if is_instance_valid(node): node.position.y = float(node.get_meta("base_y"))+extra
+			if is_instance_valid(node):
+				node.position.y = float(node.get_meta("base_y"))+extra*.5
+				if node.get_script()==preload("res://scripts/ui/companion.gd"):node.base_y=node.position.y
 	if overlay_root:
 		overlay_root.size = stage.size
 		overlay_root.get_child(0).size = stage.size
@@ -159,16 +177,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func go_back() -> void:
-	if overlay != null:
-		close_overlay()
-	elif screen == "game":
-		show_pause()
-	elif screen != "home":
-		show_home()
-	else:
-		persist_board()
-		save.finish_writes()
-		get_tree().quit()
+	if overlay != null:close_overlay()
+	elif screen=="game":show_pause()
+	elif screen=="map":
+		open_overlay("Oyundan çıkılsın mı?","İlerlemen bu cihazda korunur.")
+		button(overlay,"HARİTADA KAL",Rect2(80,461,380,58),close_overlay,true)
+		button(overlay,"ÇIK",Rect2(80,536,380,48),func():persist_board();save.finish_writes();get_tree().quit(),false,17)
+	elif screen=="worlds":show_map()
+	else:show_home()
 
 func persist_board() -> void:
 	if test_mode: return
@@ -179,6 +195,7 @@ func persist_board() -> void:
 	settings_dirty = false
 
 func begin_page(next_screen: String) -> void:
+	transition_token+=1
 	close_overlay()
 	goal_tip=null
 	pending_goal_tutorials.clear()
@@ -213,7 +230,7 @@ func card(parent: Node, rect: Rect2, tint: Color = Color("fff7ee")) -> Panel:
 	var panel := Panel.new()
 	panel.position = rect.position
 	panel.size = rect.size
-	panel.add_theme_stylebox_override("panel",Palette.panel(tint,18,Color("edc69a")))
+	panel.add_theme_stylebox_override("panel",Design.surface())
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(panel)
 	return panel
@@ -224,10 +241,10 @@ func button(parent: Node, text: String, rect: Rect2, callback: Callable, primary
 	btn.position = rect.position
 	btn.size = rect.size
 	btn.add_theme_font_size_override("font_size", font_size)
-	btn.add_theme_stylebox_override("normal",CasualSkin.panel_style(0 if primary else 1))
-	btn.add_theme_stylebox_override("hover",CasualSkin.panel_style(0 if primary else 1,Color(1.05,1.05,1.05)))
-	btn.add_theme_stylebox_override("pressed",CasualSkin.panel_style(0 if primary else 1,Color(.92,.92,.92)))
-	btn.add_theme_stylebox_override("disabled",CasualSkin.panel_style(1,Color(.72,.76,.8)))
+	btn.add_theme_stylebox_override("normal",Design.action(primary))
+	btn.add_theme_stylebox_override("hover",Design.action(primary))
+	btn.add_theme_stylebox_override("pressed",Design.action(primary,true))
+	btn.add_theme_stylebox_override("disabled",Design.action(false,true))
 	btn.add_theme_stylebox_override("focus",Palette.panel(Color.TRANSPARENT,18,Palette.GOLD))
 	btn.add_theme_color_override("font_color", Color("102d32") if primary else Palette.INK)
 	btn.add_theme_color_override("font_hover_color", Color("102d32") if primary else Palette.INK)
@@ -246,38 +263,12 @@ func title_header(title: String, subtitle: String) -> void:
 	label(page, title, Rect2(32, 88, 476, 45), 33)
 	label(page, subtitle, Rect2(32, 136, 476, 28), 14, Palette.MUTED)
 
-func show_home() -> void:
-	selected_world=Catalog.world_for(int(save.data.unlocked))
-	apply_world_progress(selected_world)
-	test_mode = false
-	begin_page("home")
-	apply_world_progress(selected_world)
-	if selected_world==1 and 1 in save.data.get("world_rewards",[]):
-		label(page,"BÜYÜLÜ BAHÇE MADALYASI",Rect2(20,373,500,25),14,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-		garden.color_energy=[18,18,18,18,18]
-	label(page, "ÇEVRİMDIŞI · SANA AİT BİR DÜNYA", Rect2(30, 44, 480, 28), 13, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-	var logo := TextureRect.new()
-	logo.texture=CasualSkin.texture("gems",7,CasualSkin.GEMS)
-	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	logo.position = Vector2(210, 119)
-	logo.size = Vector2(120, 120)
-	page.add_child(logo)
-	label(page, "PRİZMA", Rect2(20, 251, 500, 78), 62, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, Strings.text("tagline"), Rect2(20, 333, 500, 32), 17, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, "Renkleri eşleştir, dünyayı uyandır.", Rect2(20, 402, 500, 34), 21, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
-	label(page, "Kaydır. Eşleştir. Dünyayı canlandır.", Rect2(20, 438, 500, 28), 15, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-	card(page, Rect2(44, 518, 452, 102))
-	label(page, world_name(selected_world), Rect2(65, 532, 350, 32), 24)
-	var stars := 0
-	for result in save.data.results.values(): stars += int(result.stars)
-	label(page, "%d / %d bölüm  ·  %d / %d yıldız" % [save.data.results.size(), Catalog.count(), stars, Catalog.count()*3], Rect2(65, 572, 395, 28), 16, Palette.GOLD)
-	var active: bool = not save.data.active.is_empty()
-	button(page, Strings.text("resume") if active else Strings.text("play"), Rect2(44, 648, 452, 70), play_latest, true, 25)
-	button(page, Strings.text("map"), Rect2(44, 733, 452, 57), show_worlds)
-	button(page, Strings.text("settings"), Rect2(162, 818, 216, 48), show_settings, false, 17)
-	label(page, Strings.text("saved"), Rect2(25, 898, 490, 28), 12, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+func current_level() -> int:
+	return int(save.data.active.get("level_id",save.data.unlocked))
 
-	if save.data.get("migration_notice", false): call_deferred("show_migration_notice")
+func show_home() -> void:
+	persist_board()
+	show_map(int((current_level()-1)/10))
 
 func play_latest() -> void:
 	if not save.data.active.is_empty():
@@ -301,117 +292,113 @@ func apply_world_progress(number: int) -> void:
 
 func show_worlds() -> void:
 	persist_board();test_mode=false;begin_page("worlds")
-	title_header("Dünyaların uyanışı","RENKLERİNİ GERİ GETİR")
-	var scroll:=preload("res://scripts/ui/world_scroll.gd").new()
-	scroll.name="WorldsScroll"
-	scroll.position=Vector2(32,205);scroll.size=Vector2(476,730)
-	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
-	page.add_child(scroll)
-	var content:=Control.new();content.custom_minimum_size=Vector2(476,Worlds.playable_worlds().size()*235)
-	scroll.add_child(content)
-	var index:=0
+	card(page,Rect2(20,14,500,86))
+	label(page,"DÜNYALAR",Rect2(39,29,360,38),29)
+	button(page,"×",Rect2(456,33,44,40),go_back,false,23)
+	var scroll:=ScrollContainer.new();scroll.name="WorldsScroll";scroll.position=Vector2(27,121);scroll.size=Vector2(486,704);scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
+	var content:=Control.new();content.custom_minimum_size=Vector2(476,Worlds.playable_worlds().size()*116);scroll.add_child(content)
+	var i:=0
 	for metadata in Worlds.playable_worlds():
-		var world:=int(metadata.id);var y:=index*235;index+=1
-		card(content,Rect2(0,y,476,225))
-		var picture:=TextureRect.new()
-		picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-		var source: Texture2D=load(metadata.art)
-		var thumbnail:=AtlasTexture.new();thumbnail.atlas=source
-		thumbnail.region=Rect2(0,source.get_height()*(.63 if world==2 else .48),source.get_width(),source.get_height()*.32)
-		picture.texture=thumbnail
-		picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
-		picture.position=Vector2(14,y+14);picture.size=Vector2(448,110)
-		picture.mouse_filter=Control.MOUSE_FILTER_IGNORE;picture.clip_contents=true;content.add_child(picture)
-		label(content,world_name(world),Rect2(24,y+125,390,30),23,Color(metadata.accent))
-		var unlocked: bool=int(save.data.unlocked)>=int(metadata.start)
-		var node:=button(content,("%d–%d · KEŞFET"%[int(metadata.start),int(metadata.end)]) if unlocked else ("%d. BÖLÜMÜ TAMAMLA"%[int(metadata.start)-1]),Rect2(16,y+174,444,37),show_map.bind(int((int(metadata.start)-1)/10)),unlocked,15)
-		node.disabled=not unlocked
+		var world: int=int(metadata.id)
+		var row:=button(content,str(metadata.title).to_upper()+" · %d–%d"%[int(metadata.start),int(metadata.end)],Rect2(6,i*116+4,462,104),func():selected_world=world;show_map(int((int(metadata.start)-1)/10)),false,18)
+		row.add_theme_stylebox_override("normal",Design.surface());row.add_theme_stylebox_override("disabled",Design.surface());row.add_theme_color_override("font_color",Color.TRANSPARENT);row.add_theme_color_override("font_disabled_color",Color.TRANSPARENT)
+		row.disabled=int(save.data.unlocked)<int(metadata.start)
+		var image:=TextureRect.new();image.texture=load(metadata.art);image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;image.position=Vector2(9,9);image.size=Vector2(88,86);image.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(image)
+		label(row,str(metadata.title),Rect2(111,14,326,33),21)
+		var done: int=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==world).size()
+		label(row,"%d–%d · %d/50 tamamlandı"%[int(metadata.start),int(metadata.end),done],Rect2(111,50,326,27),14,Design.ACCENT)
+		if row.disabled:label(row,"KİLİTLİ",Rect2(111,76,326,19),11,Palette.MUTED)
+		i+=1
+	label(page,"%d gerçek bölüm · %d dünya"%[Catalog.count(),Worlds.playable_worlds().size()],Rect2(35,871,470,37),16,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
 
-
-func show_map(group: int = -1) -> void:
+func show_map(group: int=-1) -> void:
 	persist_board();test_mode=false
 	if group>=0:map_group=clampi(group,0,int((Catalog.count()-1)/10))
 	else:map_group=int((int(Worlds.get_world(selected_world).start)-1)/10)
 	begin_page("map")
 	apply_world_progress(Catalog.world_for(map_group*10+1))
 	var metadata:=Worlds.get_world(selected_world)
-	title_header(world_name(selected_world),"%d–%d · %d / %d TAMAMLANDI"%[int(metadata.start),int(metadata.end),save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size(),int(metadata.end)-int(metadata.start)+1])
-	button(page,"DÜNYALAR",Rect2(350,179,158,35),show_worlds,false,13)
-	label(page,"Her bölüm yeni bir renk.",Rect2(32,179,305,30),17,Palette.GOLD)
+	preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
+	card(page,Rect2(20,14,500,76))
+	var portrait:=preload("res://scripts/ui/companion.gd").new();portrait.position=Vector2(25,17);portrait.size=Vector2(65,65);portrait.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(portrait)
+	label(page,"PRİZMA",Rect2(99,23,230,27),24)
+	label(page,"%d kristal"%int(save.data.adventure_progress.coins),Rect2(126,53,200,23),15,Design.ACCENT)
+	var coin:=TextureRect.new();coin.texture=Design.icon("gems",3);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.position=Vector2(99,55);coin.size=Vector2(22,22);coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(coin)
+	button(page,"AYARLAR",Rect2(376,27,129,43),show_settings,false,13)
+	label(page,str(metadata.title),Rect2(29,94,292,29),20,Design.INK)
+	button(page,"DÜNYALAR",Rect2(350,94,156,31),show_worlds,false,12)
 	map_buttons.clear()
-	var scroll:=preload("res://scripts/ui/world_scroll.gd").new()
-	scroll.position=Vector2(32,226);scroll.size=Vector2(476,620)
-	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.follow_focus=false
-	page.add_child(scroll)
+	map_scroll=preload("res://scripts/ui/world_scroll.gd").new()
+	map_scroll.position=Vector2(32,126);map_scroll.size=Vector2(476,734)
+	map_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;map_scroll.follow_focus=false;page.add_child(map_scroll)
 	var path:=MapPath.new()
-	var first:=int(metadata.start)
-	var last:=mini(Catalog.count(),int(metadata.end))
+	var first:=int(metadata.start);var last:=mini(Catalog.count(),int(metadata.end))
 	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3;path.world_theme=str(metadata.map_style);path.accent=Color(metadata.accent)
 	path.quiet=save.data.settings.reduced_motion;path.completed_count=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()
-	path.custom_minimum_size=Vector2(456,path.count*100+100)
-	scroll.add_child(path)
+	path.custom_minimum_size=Vector2(456,path.count*112+110);map_scroll.add_child(path)
 	for n in range(first,last+1):
-		var local_index:=n-first
-		var center: Vector2=path.node_position(local_index)
-		var unlocked: bool=n<=save.data.unlocked
-		var result: Dictionary=save.data.results.get(str(n),{})
-		if unlocked and n==save.data.unlocked:
-			var glow:=TextureRect.new();glow.texture=load("res://assets/crystals/glow.svg")
-			glow.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;glow.position=center-Vector2(49,49);glow.size=Vector2(98,98);glow.mouse_filter=Control.MOUSE_FILTER_IGNORE;glow.modulate=Color(1,.9,.4,.8);path.add_child(glow)
-			if not save.data.settings.reduced_motion:
-				var pulse:=glow.create_tween().set_loops();pulse.tween_property(glow,"modulate:a",.35,.65);pulse.tween_property(glow,"modulate:a",.8,.65)
-		var node:=button(path,str(n),Rect2(center-Vector2(36,36),Vector2(72,72)),request_level.bind(n),unlocked and n==save.data.unlocked,25)
-		node.disabled=not unlocked;map_buttons[n]=node
-		if not unlocked:
-			var lock:=TextureRect.new();lock.texture=CasualSkin.texture("ui",4,CasualSkin.UI)
-			lock.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;lock.position=center+Vector2(22,-37);lock.size=Vector2(22,22);lock.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;lock.mouse_filter=Control.MOUSE_FILTER_IGNORE;path.add_child(lock)
-		for star_index in int(result.get("stars",0)):
-			var star:=TextureRect.new();star.texture=CasualSkin.texture("ui",3,CasualSkin.UI)
-			star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;star.position=center+Vector2(-29+star_index*20,35);star.size=Vector2(19,19);star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;star.mouse_filter=Control.MOUSE_FILTER_IGNORE;path.add_child(star)
-
-	var focus_level:=int(save.data.unlocked) if int(save.data.unlocked)>=first and int(save.data.unlocked)<=last else map_group*10+1
-	scroll.set_deferred("scroll_vertical",maxi(0,(focus_level-first)*100-180))
-
-	var start_group:=int((first-1)/10)
-	var groups:=int(ceil(float(last-first+1)/10))
-	for i in groups:
-		var group_index:=start_group+i
-		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+i*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
-	for i in 3:
-		button(page,["GÜNLÜK","KOLEKSİYON","ÖDÜLLER"][i],Rect2(33+i*164,918,154,33),show_adventure_menu.bind(i),false,12)
+		var center: Vector2=path.node_position(n-first)
+		var node:=preload("res://scripts/ui/level_node.gd").new()
+		node.number=n;node.text=str(n);node.stars=int(save.data.results.get(str(n),{}).get("stars",0));node.active=n==current_level();node.finale=n==last
+		node.size=Vector2(88,88) if node.finale else Vector2(76,76);node.position=center-node.size/2;node.disabled=n>save.data.unlocked
+		var definition: Dictionary=Catalog.get_level(n)
+		if not definition.get("treasure",{}).is_empty():node.marker=preload("res://assets/casual/treasure-lid.svg")
+		elif definition.has("adventure"):node.marker=preload("res://scripts/ui/goal_registry.gd").icon("rescues" if definition.adventure.kind=="rescue" else "bosses")
+		node.pressed.connect(request_level.bind(n));path.add_child(node);map_buttons[n]=node
+		if node.active and not save.data.settings.reduced_motion:
+			node.pivot_offset=node.size/2;var pulse:=node.create_tween().set_loops();pulse.tween_property(node,"scale",Vector2(1.05,1.05),.6);pulse.tween_property(node,"scale",Vector2.ONE,.6)
+	var focus:=current_level() if current_level()>=first and current_level()<=last else first
+	map_scroll.set_deferred("scroll_vertical",maxi(0,(focus-first)*112-230))
+	button(page,"GÜNCEL BÖLÜM",Rect2(316,812,188,41),show_home,false,12).set_meta("base_y",812)
+	var bar:=card(page,Rect2(17,868,506,80));bar.set_meta("base_y",868);footer_nodes.append(bar)
+	var names: Array=["Harita","Günlük","Dostlar","Ödüller","Ayarlar"]
+	var images: Array=[Design.icon("ui",5),Design.icon("ui",3),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),Design.icon("gems",7)]
+	var actions: Array=[show_home,show_adventure_menu.bind(0),show_adventure_menu.bind(1),show_adventure_menu.bind(2),show_settings]
+	for i in 5:
+		var nav:=IconButton.new();nav.position=Vector2(25+i*99,873);nav.size=Vector2(94,76);nav.caption=names[i];nav.image=images[i];nav.chosen=i==0;nav.pressed.connect(actions[i]);page.add_child(nav);nav.set_meta("base_y",873);footer_nodes.append(nav)
+	for node in page.get_children():
+		if node is Button and node.has_meta("base_y"):footer_nodes.append(node)
+	layout_stage()
 
 func request_level(number: int) -> void:
 	selected_booster=""
 	if number<1 or number>mini(Catalog.count(),int(save.data.unlocked)):return
 	persist_board()
-	var definition: Dictionary=Catalog.get_level(number)
+	var resume_requested: bool=not save.data.active.is_empty() and int(save.data.active.get("level_id",0))==number
+	var definition: Dictionary=save.data.active.get("level_definition",Catalog.get_level(number)) if resume_requested else Catalog.get_level(number)
 	apply_world_progress(Catalog.world_for(number))
-	open_overlay("BÖLÜM %d"%number, "%s · %s"%[world_name(Catalog.world_for(number)),definition.name])
-	var greeting:=preload("res://scripts/ui/companion.gd").new();greeting.position=Vector2(393,284);greeting.size=Vector2(74,74);greeting.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;overlay.add_child(greeting)
-	var preview:=preload("res://scripts/ui/goals_panel.gd").new()
-	preview.position=Vector2(30,367);preview.size=Vector2(480,112);preview.quiet=true
-	overlay.add_child(preview);preview.configure(definition.targets,{})
-	preview.goal_pressed.connect(func(key):label(overlay,preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])),Rect2(68,712,404,36),13,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER))
+	open_overlay("","")
+	for child in overlay.get_children():child.queue_free()
+	overlay.set_meta("preview_level",number)
+	card(overlay,Design.MODAL)
+	var kind: String="DÜNYA FİNALİ" if number==int(Worlds.get_world(Catalog.world_for(number)).end) else "KURTARMA" if definition.get("adventure",{}).get("kind","")=="rescue" else "BEKÇİ MÜCADELESİ" if definition.get("adventure",{}).get("kind","")=="boss" else "HAZİNE" if definition.has("treasure") else "KRİSTAL MACERASI"
+	label(overlay,kind,Rect2(78,278,348,24),12,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+	label(overlay,"BÖLÜM %d"%number,Rect2(78,305,348,39),30,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"×",Rect2(426,277,48,48),close_overlay,false,22)
+	var preview:=preload("res://scripts/ui/goals_panel.gd").new();preview.position=Vector2(72,356);preview.size=Vector2(480,112);preview.scale=Vector2(.825,.825);preview.quiet=true;overlay.add_child(preview)
+	preview.configure(definition.targets,save.data.active.get("collected",{}) if resume_requested else {})
+	preview.goal_pressed.connect(func(key):
+		var explanation:=label(overlay,preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])),Rect2(78,649,384,40),12,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+		explanation.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART)
+	label(overlay,"%d hamle%s"%[int(save.data.active.get("moves",definition.moves)) if resume_requested else int(definition.moves)," · kayıtlı oyun" if resume_requested else ""],Rect2(94,457,352,28),16,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 	preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
 	for i in 2:
-		var key: String=["rocket","prism"][i]
-		var amount:=int(save.data.adventure_progress.inventory.get(key,0))
-		var choose:=button(overlay,"%s · %d"%[["ROKET","YILDIZ"][i],amount],Rect2(68+i*207,535,197,37),func():
+		var key: String=["rocket","prism"][i];var stock:=int(save.data.adventure_progress.inventory.get(key,0))
+		var choose:=IconButton.new();choose.position=Vector2(170+i*119,493);choose.size=Vector2(82,70);choose.image=Design.icon("gems",5 if i==0 else 7);choose.amount=stock;choose.tooltip_text="Roket" if i==0 else "Gökkuşağı Yıldızı"
+		choose.disabled=stock<=0 or resume_requested;choose.set_meta("booster",key);overlay.add_child(choose)
+		choose.pressed.connect(func():
 			selected_booster=key if selected_booster!=key else ""
 			for item in overlay.get_children():
-				if item is Button and item.has_meta("booster"):update_option_style(item,str(item.get_meta("booster"))==selected_booster),false,13)
-		choose.set_meta("booster",key);choose.disabled=amount<=0
-	label(overlay,"%d HAMLE"%int(definition.moves),Rect2(68,488,404,32),20,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-	button(overlay,"OYNA!",Rect2(68,583,404,58),func():
-		close_overlay()
-		begin_page("transition")
-		var guide:=preload("res://scripts/ui/companion.gd").new();guide.position=Vector2(198,260);guide.size=Vector2(144,144);guide.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(guide);guide.react("excited")
-		label(page,"KRİSTALLER UYANIYOR",Rect2(38,425,464,60),25,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-		var destination:=number
-		await get_tree().create_timer(.6 if not save.data.settings.reduced_motion else .05).timeout
-		if screen=="transition":start_level(destination),true,22)
-	button(overlay,"VAZGEÇ",Rect2(68,663,404,45),close_overlay,false,16)
+				if item is IconButton:item.chosen=str(item.get_meta("booster",""))==selected_booster;item.queue_redraw())
+	button(overlay,"OYNA!",Rect2(83,593,374,63),func():
+		close_overlay();begin_page("transition")
+		var guide:=preload("res://scripts/ui/companion.gd").new();guide.position=Vector2(198,299);guide.size=Vector2(144,144);guide.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(guide);guide.react("excited")
+		label(page,"KRİSTALLER UYANIYOR",Rect2(38,456,464,60),24,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+		var launch_token:=transition_token
+		await get_tree().create_timer(.05 if fast_test or save.data.settings.reduced_motion else .55).timeout
+		if screen=="transition" and launch_token==transition_token:start_level(number,resume_requested),true,25)
+	if not save.data.settings.reduced_motion:
+		overlay.pivot_offset=Vector2(270,488);overlay.scale=Vector2(.88,.88);var intro:=overlay.create_tween();intro.tween_property(overlay,"scale",Vector2.ONE,.24).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
 	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
@@ -429,21 +416,21 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	selected_booster=""
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
-	card(page,Rect2(23,12,494,59),Color(1,.98,.94,.9))
-	label(page,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),Rect2(32,15,350,19),11,Palette.GOLD)
-	level_label=label(page,"%02d  /  %s"%[number,board.level.name],Rect2(32,35,415,31),20)
+	card(page,Rect2(23,12,494,215),Color(1,.98,.94,.9))
+	label(page,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),Rect2(146,57,290,19),11,Palette.GOLD)
+	level_label=label(page,"%02d  /  %s"%[number,board.level.name],Rect2(146,24,290,29),19)
 	button(page,"Ⅱ",Rect2(456,23,52,40),show_pause,false,23)
-	card(page,Rect2(30,79,480,57))
-	label(page,Strings.text("score"),Rect2(49,85,150,17),11,Palette.MUTED)
-	score_label=label(page,"0",Rect2(49,104,140,27),23)
-	label(page,Strings.text("moves"),Rect2(351,85,139,17),11,Palette.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
-	moves_label=label(page,"",Rect2(354,104,136,27),23,Palette.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
+	
+	label(page,Strings.text("score"),Rect2(146,107,150,17),11,Palette.MUTED)
+	score_label=label(page,"0",Rect2(146,80,140,27),23)
+	label(page,Strings.text("moves"),Rect2(38,101,100,17),11,Palette.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+	moves_label=label(page,"",Rect2(38,30,100,68),46,Palette.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
 	star_progress=preload("res://scripts/ui/star_progress.gd").new()
-	star_progress.position=Vector2(195,102);star_progress.size=Vector2(142,24)
+	star_progress.position=Vector2(301,86);star_progress.size=Vector2(142,24)
 	star_progress.thresholds=board.level.stars;star_progress.quiet=save.data.settings.reduced_motion
 	page.add_child(star_progress)
 	goals_panel=preload("res://scripts/ui/goals_panel.gd").new()
-	goals_panel.position=Vector2(30,145);goals_panel.size=Vector2(480,112)
+	goals_panel.position=Vector2(59,127);goals_panel.size=Vector2(480,112);goals_panel.scale=Vector2(.88,.88)
 	goals_panel.quiet=save.data.settings.reduced_motion
 	page.add_child(goals_panel)
 	goals_panel.configure(board.active_targets(),board.collected)
@@ -451,7 +438,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	goals_panel.goal_completed.connect(func(_key):audio.play("resonance"))
 	companion=preload("res://scripts/ui/companion.gd").new();companion.position=Vector2(458,873);companion.size=Vector2(48,48);companion.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(companion)
 	board_view = BoardView.new()
-	board_view.position = Vector2(32, 270)
+	board_view.position = Vector2(32, Design.BOARD_Y)
 	board_view.size = Vector2(476, 536)
 	board_view.reduced_motion = save.data.settings.reduced_motion or fast_test
 	board_view.colorblind = save.data.settings.colorblind
@@ -479,7 +466,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	hint_label.add_theme_constant_override("outline_size",3)
 	if developer_tools_available():button(page,"Test araçları",Rect2(330,937,172,23),show_developer_menu,false,11)
 	for node in page.get_children():
-		if node is Control and node.position.y<270:node.set_meta("hud_y",node.position.y)
+		if node is Control and node.position.y<Design.BOARD_Y:node.set_meta("hud_y",node.position.y)
 		if node is Control and node.position.y>=816:
 			node.set_meta("base_y",node.position.y)
 			footer_nodes.append(node)
@@ -503,6 +490,11 @@ func update_hud(update_goals: bool=true) -> void:
 	score_display = board.score
 	score_label.text = str(board.score)
 	moves_label.text = str(board.moves)
+	if board.moves!=last_move_badge and board.moves<=5 and not save.data.settings.reduced_motion:
+		if move_tween and move_tween.is_valid():move_tween.kill()
+		moves_label.pivot_offset=Vector2(50,34);move_tween=moves_label.create_tween();move_tween.tween_property(moves_label,"scale",Vector2(1.06,1.06),.12);move_tween.tween_property(moves_label,"scale",Vector2.ONE,.2)
+	last_move_badge=board.moves
+	moves_label.add_theme_color_override("font_color",Color("d63e69") if board.moves<=3 else Color("ce8129") if board.moves<=5 else Design.INK)
 	if update_goals:
 		if goals_panel.targets!=board.active_targets():goals_panel.configure(board.active_targets(),board.collected)
 		goals_panel.update_progress(board.collected,false)
@@ -552,7 +544,6 @@ func process_event(event: Dictionary) -> void:
 	if not test_mode and tutorial not in save.data.tutorials: save.data.tutorials.append(tutorial)
 	if not test_mode and event.get("resonated", false) and "m3_resonance" not in save.data.tutorials: save.data.tutorials.append("m3_resonance")
 	if not test_mode and event.get("gravity", false) and "m3_gravity" not in save.data.tutorials: save.data.tutorials.append("m3_gravity")
-	if board.moves<=5:moves_label.add_theme_color_override("font_color",Color("de4779"))
 	set_hint("+%d puan  ·  %s" % [event.points, "Özel güç oluştu!" if event.created_count > 0 else "Dünya renkleniyor."])
 	if event.get("shuffled", false): set_hint(Strings.text("shuffle"))
 	update_hud(false)
@@ -638,7 +629,7 @@ func on_animation_finished() -> void:
 	if board.recovery_failed:
 		open_overlay("Tahta kurtarılamadı","Durum tanılama kaydına alındı. Hamle, puan ve hedefler korunuyor.")
 		button(overlay,"BÖLÜMÜ YENİDEN DENE",Rect2(68,605,404,45),request_level.bind(int(board.level.id)),true,16)
-		button(overlay,"ANA MENÜ",Rect2(68,661,404,45),show_home,false,16)
+		button(overlay,"HARİTA",Rect2(68,661,404,45),show_home,false,16)
 		return
 	if board.outcome != "playing": show_result()
 
@@ -651,28 +642,30 @@ func show_seal_description(index: int) -> void:
 	if screen!="game" or board_view.busy:return
 	var m: Dictionary=board.cells[index].get("obstacle",{})
 	if m.get("kind","")!="seal":return
-	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,12+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,125);page.add_child(goal_tip)
-	card(goal_tip,Rect2(0,0,480,125),Color("fffaf0"))
-	label(goal_tip,"ŞİFRELİ MÜHÜR · RENK SIRASI",Rect2(18,8,400,25),16,Palette.GOLD)
+	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,867+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,76);page.add_child(goal_tip)
+	card(goal_tip,Rect2(0,0,480,76),Color("fffaf0"))
+	label(goal_tip,"ŞİFRELİ MÜHÜR · RENK SIRASI",Rect2(18,4,400,20),12,Palette.GOLD)
 	for k in m.sequence.size():
-		var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=preload("res://scripts/ui/goal_registry.gd").icon(str(m.sequence[k]));icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(25+k*70,42);icon.size=Vector2(42,42);goal_tip.add_child(icon)
-		label(goal_tip,"✓" if k<int(m.step) else ("SIRADAKİ" if k==int(m.step) else ""),Rect2(15+k*70,91,62,18),10,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-	button(goal_tip,"×",Rect2(429,9,42,38),close_goal_tip,false,20)
+		var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=preload("res://scripts/ui/goal_registry.gd").icon(str(m.sequence[k]));icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(25+k*61,26);icon.size=Vector2(26,26);goal_tip.add_child(icon)
+		label(goal_tip,"✓" if k<int(m.step) else ("SIRADAKİ" if k==int(m.step) else ""),Rect2(12+k*61,53,56,17),10,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(goal_tip,"×",Rect2(423,8,48,48),close_goal_tip,false,20)
 func show_goal_description(key: String,tutorial: bool=false) -> void:
 	if screen!="game" or not board.level.targets.has(key):return
 	close_goal_tip()
 	board_view.highlight_goal(key)
-	goal_tip=Control.new();goal_tip.position=Vector2(30,12+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,125)
+	if is_instance_valid(companion):companion.hide()
+	goal_tip=Control.new();goal_tip.position=Vector2(30,867+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,76)
 	page.add_child(goal_tip)
-	card(goal_tip,Rect2(0,0,480,125),Color("fffaf0"))
+	card(goal_tip,Rect2(0,0,480,76),Color("fffaf0"))
 	var registry=preload("res://scripts/ui/goal_registry.gd")
-	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(12,24);icon.size=Vector2(65,65);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
-	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(88,10,325,23),16,Palette.GOLD)
-	var text:=label(goal_tip,registry.description(key,int(board.level.targets[key])),Rect2(88,35,330,70),15)
+	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(10,10);icon.size=Vector2(48,48);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
+	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(68,5,345,20),12,Palette.GOLD)
+	var text:=label(goal_tip,registry.description(key,int(board.level.targets[key])),Rect2(68,25,346,46),13)
 	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	button(goal_tip,"×",Rect2(429,9,42,38),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
-	if tutorial:button(goal_tip,"GEÇ",Rect2(374,92,95,26),advance_goal_tutorial,false,11)
+	button(goal_tip,"×",Rect2(423,8,48,48),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
+	
 func close_goal_tip() -> void:
+	if screen=="game" and is_instance_valid(companion):companion.show()
 	if is_instance_valid(goal_tip):goal_tip.hide();goal_tip.queue_free()
 	goal_tip=null
 func queue_goal_tutorials() -> void:
@@ -794,66 +787,61 @@ func show_color_picker(index: int) -> void:
 	button(overlay, "VAZGEÇ", Rect2(171, 681, 198, 38), close_overlay, false, 13)
 
 func show_result() -> void:
+	if board==null or board.outcome=="playing":return
+	close_goal_tip();pending_goal_tutorials.clear()
 	if test_mode:
-		open_overlay("Test tamamlandı","Laboratuvar sonuçları ilerlemene kaydedilmez.")
-		button(overlay,"TAHTAYI SIFIRLA",Rect2(68,421,404,59),start_mechanic_test,true)
-		button(overlay,"ANA MENÜ",Rect2(68,508,404,55),show_home)
-		return
-	if board.outcome == "playing": return
-	var won: bool = board.outcome == "won"
-	if won and int(board.level.id)==int(Worlds.get_world(Catalog.world_for(int(board.level.id))).end):
-		save.complete(board)
-		show_world_result()
-		return
-	if won: save.complete(board)
-	else:
-		save.data.active = {}
-		save.flush()
-	audio.play("success2" if won else "lose")
-	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (str(Worlds.get_world(Catalog.world_for(int(board.level.id))).get("success_text","Dünya renkleniyor!")) if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya özel güç birleşimi dene.")
-	if won:
-		var face_host:=Control.new();face_host.position=Vector2(390,310);overlay.add_child(face_host)
-		var face:=preload("res://scripts/ui/companion.gd").new();face.size=Vector2(78,78);face.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;face_host.add_child(face);face.react("happy")
-		if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
-			var confetti := Celebration.new()
-			confetti.world_finale=int(board.level.id)==75
-			confetti.challenge=int(board.level.id)==75
-			overlay.add_child(confetti)
-		var stars: int = Score.stars(board.score, board.level.stars)
-		for i in 3:
-			var star:=TextureRect.new();star.texture=CasualSkin.texture("ui",3,CasualSkin.UI)
-			star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-			star.position=Vector2(165+i*72,371);star.size=Vector2(66,66)
-			star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			star.modulate=Color.WHITE if i<stars else Color(.6,.65,.7,.45)
-			star.pivot_offset=Vector2(33,33);overlay.add_child(star)
-			if not save.data.settings.reduced_motion:
-				star.scale=Vector2(.1,.1)
-				var tween:=star.create_tween();tween.tween_property(star,"scale",Vector2.ONE,.24).set_delay(i*.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-				if i<stars:tween.tween_callback(func():audio.play("star_award"))
+		open_overlay("Test tamamlandı","Laboratuvar sonuçları gerçek oyuncu profiline yazılmaz.")
+		button(overlay,"YENİ TEST",Rect2(80,456,380,58),start_mechanic_test,true)
+		button(overlay,"HARİTA",Rect2(80,533,380,48),show_home);return
+	var won: bool=board.outcome=="won"
+	if won:save.complete(board)
+	else:save.data.active={};save.flush()
+	var final: bool=won and int(board.level.id)==int(Worlds.get_world(Catalog.world_for(int(board.level.id))).end)
+	if final:show_world_result()
+	else:show_result_popup(won,false)
 
-		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
+func show_result_popup(won: bool,finale: bool=false) -> void:
+	var metadata: Dictionary=Worlds.get_world(Catalog.world_for(int(board.level.id)))
+	audio.play("world_unlock" if finale else "success2" if won else "lose")
+	open_overlay("","")
+	for child in overlay.get_children():child.queue_free()
+	card(overlay,Rect2(54,239,432,482) if won else Rect2(54,280,432,400))
+	label(overlay,str(metadata.success_text) if won else "Bir kez daha deneyelim",Rect2(72,249 if won else 292,396,48),25,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	var host:=Control.new();host.position=Vector2(222,298 if won else 340);overlay.add_child(host)
+	var face:=preload("res://scripts/ui/companion.gd").new();face.size=Vector2(96,84);face.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;host.add_child(face);face.react("happy" if won else "sad")
+	if won:
+		var count:=Score.stars(board.score,board.level.stars)
+		for i in 3:
+			var star:=TextureRect.new();star.texture=Design.icon("ui",3);star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;star.position=Vector2(175+i*67,377);star.size=Vector2(56,56);star.pivot_offset=Vector2(28,28);star.modulate=Color.WHITE if i<count else Color(.55,.59,.65,.4);star.set_meta("result_star",true);overlay.add_child(star)
+			if not save.data.settings.reduced_motion:
+				star.scale=Vector2(.2,.2);var t:=star.create_tween();t.tween_property(star,"scale",Vector2.ONE,.22).set_delay(i*.11).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				if i<count:t.tween_callback(func():audio.play("star_award"))
+		label(overlay,"%d PUAN"%board.score,Rect2(74,436,392,36),28,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		var goals:=preload("res://scripts/ui/goals_panel.gd").new();goals.position=Vector2(83,479);goals.size=Vector2(480,112);goals.scale=Vector2(.78,.78);goals.quiet=true;overlay.add_child(goals);goals.configure(board.level.targets,board.collected)
 		if earned_treasure:
-			var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.position=Vector2(391,390);chest.size=Vector2(77,70);chest.quiet=save.data.settings.reduced_motion or save.data.settings.reduced_effects;overlay.add_child(chest)
-			audio.play("chest")
-			label(overlay,"HAZİNE · +%d kristal para · yalnızca ilk kazanım"%int(board.level.treasure.coins),Rect2(66,507,408,23),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-		label(overlay, "2★: %d   ·   3★: %d" % [board.level.stars[1], board.level.stars[2]], Rect2(66, 475, 408, 28), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
-		if int(board.level.id) < Catalog.count():
-			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), request_level.bind(int(board.level.id) + 1), true)
-		else:
-			label(overlay, "%d bölüm tamamlandı!"%Catalog.count(), Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-			button(overlay, "HARİTAYI KEŞFET", Rect2(68, 567, 404, 53), show_map, true)
-		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), request_level.bind(int(board.level.id)))
+			var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.position=Vector2(392,315);chest.size=Vector2(61,57);chest.quiet=save.data.settings.reduced_motion;overlay.add_child(chest);audio.play("chest")
+			label(overlay,"HAZİNE +%d kristal"%int(board.level.treasure.coins),Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		elif finale:label(overlay,str(metadata.reward)+" kaydedildi",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		if not save.data.settings.reduced_motion and not save.data.settings.reduced_effects:
+			var confetti:=Celebration.new();confetti.world_finale=finale;confetti.world_theme=str(metadata.theme);confetti.ocean=int(metadata.id)==2;confetti.canyon=int(metadata.id)==3;overlay.add_child(confetti)
+		if int(board.level.id)<Catalog.count():button(overlay,"SONRAKİ BÖLÜM",Rect2(83,604,374,57),request_level.bind(int(board.level.id)+1),true,22)
+		else:button(overlay,"HARİTAYI KEŞFET",Rect2(83,604,374,57),show_home,true,21)
+		button(overlay,"YENİDEN OYNA",Rect2(83,674,182,36),request_level.bind(int(board.level.id)),false,12)
+		button(overlay,"HARİTA",Rect2(275,674,182,36),show_map,false,12)
 	else:
-		var sad_host:=Control.new();sad_host.position=Vector2(390,282);overlay.add_child(sad_host)
-		var sad:=preload("res://scripts/ui/companion.gd").new();sad.size=Vector2(70,70);sad.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;sad_host.add_child(sad);sad.react("sad")
-		var remaining:=preload("res://scripts/ui/goals_panel.gd").new()
-		remaining.position=Vector2(30,357);remaining.size=Vector2(480,112);remaining.quiet=true
-		overlay.add_child(remaining);remaining.configure(board.active_targets(),board.collected)
-		button(overlay, Strings.text("replay"), Rect2(68, 467, 404, 59), request_level.bind(int(board.level.id)), true)
-		button(overlay, Strings.text("map"), Rect2(68, 552, 404, 55), show_map)
+		label(overlay,"Kalan hedefleri farklı bir hamleyle tamamlayabilirsin.",Rect2(80,426,380,31),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		var unfinished: Dictionary={}
+		for key in board.active_targets():
+			if Objectives.value(board.collected,key)<int(board.active_targets()[key]):unfinished[key]=board.active_targets()[key]
+		var goals:=preload("res://scripts/ui/goals_panel.gd").new();goals.position=Vector2(83,464);goals.size=Vector2(480,112);goals.scale=Vector2(.78,.78);goals.quiet=true;goals.remaining_mode=true;overlay.add_child(goals)
+		if not unfinished.is_empty():goals.configure(unfinished,board.collected)
+		button(overlay,"YENİDEN OYNA",Rect2(83,567,374,57),request_level.bind(int(board.level.id)),true,22)
+		button(overlay,"HARİTA",Rect2(83,636,374,35),show_map,false,14)
+	# Additional-move providers can extend the presentation later; no unavailable offers.
+	overlay.set_meta("result_extensions",[])
 
 func show_settings() -> void:
+	settings_origin=screen
 	persist_board()
 	begin_page("settings")
 	title_header(Strings.text("settings"), "KRİSTALLERİ KENDİ RİTMİNDE UYANDIR")
@@ -876,8 +864,8 @@ func show_settings() -> void:
 	volume_slider("sfx","Efekt sesi",693)
 	button(page,"YARDIM / ÖĞRETİCİLER",Rect2(42,768,222,44),show_help,false,13)
 	button(page,"Performans raporu",Rect2(274,768,224,44),show_diagnostics,false,13)
-	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.12 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(page,Strings.text("resume") if settings_origin=="game" and not save.data.active.is_empty() else Strings.text("map"),Rect2(42,835,456,56),play_latest if settings_origin=="game" and not save.data.active.is_empty() else show_home,true)
+	label(page,"PRİZMA 0.12.1 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),show_developer_menu,false,12)
@@ -914,7 +902,7 @@ func toggle_setting(key: String) -> void:
 
 func update_option_style(btn: Button, active: bool) -> void:
 	for state in ["normal","hover","pressed"]:
-		btn.add_theme_stylebox_override(state,CasualSkin.panel_style(0 if active else 1))
+		btn.add_theme_stylebox_override(state,Design.action(active,state=="pressed"))
 	for key in ["font_color","font_hover_color","font_pressed_color"]:
 		btn.add_theme_color_override(key,Palette.INK)
 
@@ -1032,36 +1020,8 @@ func show_mechanic_help() -> void:
 	button(overlay,"ANLADIM",Rect2(68,699,404,35),close_overlay,true,15)
 
 func show_world_result() -> void:
-	audio.play("world_unlock")
-	garden.vitality=1.0
-	garden.world_completed=true
-	garden.color_energy=[18,18,18,18,18]
-	var metadata:=Worlds.get_world(selected_world)
-	var finale_text: String={"cloud":"Bulutların arasında gökkuşağı dalgası yayıldı!","lava":"Lav nehirleri kristal enerjisine dönüştü!"}.get(str(metadata.theme),"Renkler uyandı!")
-	open_overlay(str(metadata.title)+" uyandı!",finale_text+" "+str(metadata.reward)+" kaydedildi.")
-	var medal:=TextureRect.new()
-	medal.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-	medal.texture=load(metadata.reward_icon) if metadata.has("reward_icon") else (CasualSkin.texture("decor",7,CasualSkin.DECOR) if selected_world==2 else CasualSkin.texture("traits",18,CasualSkin.TRAITS))
-	medal.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	medal.position=Vector2(202,376)
-	medal.size=Vector2(136,136)
-	medal.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	overlay.add_child(medal)
-	label(overlay,str(metadata.reward).to_upper(),Rect2(55,514,430,31),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-	label(overlay,"★".repeat(Score.stars(board.score,board.level.stars))+"  ·  %d PUAN"%board.score,Rect2(55,553,430,30),19,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
-	if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
-		var celebration:=Celebration.new()
-		celebration.world_finale=true
-		celebration.ocean=selected_world==2
-		celebration.canyon=selected_world==3
-		celebration.world_theme=str(metadata.theme)
-		celebration.accent=Color(metadata.accent)
-		overlay.add_child(celebration)
-	if int(board.level.id)<Catalog.count():
-		button(overlay,"SONRAKİ DÜNYA",Rect2(68,604,404,45),request_level.bind(int(board.level.id)+1),true,17)
-	else:
-		label(overlay,"%d dünya · %d bölüm tamamlandı!"%[Worlds.playable_worlds().size(),Catalog.count()],Rect2(55,599,430,32),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-	button(overlay,"DÜNYAYI KEŞFET",Rect2(68,653,404,45),show_map.bind(int((int(Worlds.get_world(selected_world).end)-1)/10)),true,17)
+	garden.vitality=1.0;garden.world_completed=true;garden.color_energy=[18,18,18,18,18]
+	show_result_popup(true,true)
 
 func show_crystal_help() -> void:
 	open_overlay("İki rengin uyanışı")
@@ -1098,15 +1058,18 @@ func show_developer_menu() -> void:
 	open_overlay("Geliştirici testi","Ayrı test APK ve kayıt profili · 1–250")
 	var number:=SpinBox.new();number.min_value=1;number.max_value=Catalog.count();number.value=int(board.level.id) if board!=null else 1;number.position=Vector2(70,369);number.size=Vector2(210,40);overlay.add_child(number)
 	button(overlay,"BÖLÜME GİT",Rect2(293,369,178,40),func():dev_command("jump",int(number.value)),true,14)
-	var commands: Array=[["Kazan","win"],["Kaybet","lose"],["Önceki","previous"],["Sonraki","next"],["+10 hamle","moves"],["İki bomba","double"],["Roket ekle","rocket"],["Yıldız ekle","prism"],["Boss aç","boss"],["Kurtarma aç","rescue"],["Seed ile başlat","seed"],["Hızlı / normal","speed"],["Mekanik laboratuvarı","lab"],["Dünyaları aç","worlds"],["Mekanik araçları","layers"],["Yeniden başlat","seed"]]
+	var commands: Array=[["Kazan","win"],["Kaybet","lose"],["Önceki","previous"],["Sonraki","next"],["+10 hamle","moves"],["İki bomba","double"],["Roket ekle","rocket"],["Yıldız ekle","prism"],["Boss aç","boss"],["Kurtarma aç","rescue"],["Seed ile başlat","seed"],["Hızlı / normal","speed"],["Mekanik laboratuvarı","lab"],["Dünyaları aç","worlds"],["Mekanik araçları","layers"],["Yeniden başlat","seed"],["Önizleme","preview"],["Harita testi","map"],["Testi sıfırla","reset"]]
 	for i in commands.size():
-		button(overlay,commands[i][0],Rect2(68+(i%2)*207,428+int(i/2)*39,197,34),dev_command.bind(commands[i][1],int(number.value)),false,12)
+		button(overlay,commands[i][0],Rect2(68+(i%3)*138,428+int(i/3)*43,130,36),dev_command.bind(commands[i][1],int(number.value)),false,12)
 	button(overlay,"KAPAT",Rect2(68,753,404,38),close_overlay,false,14)
 
 func dev_command(command: String,number: int=1) -> void:
 	if not developer_tools_available():return
 	# Only the isolated developer build can bypass campaign unlocks.
 	if not OS.has_feature("prizma_dev_tools") and not OS.has_feature("editor"):return
+	if command=="preview":save.data.unlocked=Catalog.count();request_level(number);return
+	if command=="map":show_home();return
+	if command=="reset":save.data=Save.defaults();save.data.unlocked=Catalog.count();board=null;save.flush();show_home();return
 	if command=="layers":
 		if test_mode:show_mechanic_test_tools()
 		return

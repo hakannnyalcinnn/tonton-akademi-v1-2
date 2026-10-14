@@ -38,7 +38,7 @@ func run() -> void:
  check(clone.restore(loaded.data.active) and clone.snapshot()==b.snapshot(),"disk save roundtrip")
  var game=load("res://scenes/main.tscn").instantiate();game.save=Save.new("user://workflow-smoke-ui-only.json");game.save.data=Save.defaults();game.save.data.settings.music=false;game.save.data.settings.sfx=false
  root.add_child(game);await process_frame
- check(game.screen=="home" and game.stage!=null,"game startup")
+ check(game.screen=="map" and game.stage!=null,"game startup")
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
  for suffix in ["",".bak",".tmp"]:
   if FileAccess.file_exists(path+suffix):DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))

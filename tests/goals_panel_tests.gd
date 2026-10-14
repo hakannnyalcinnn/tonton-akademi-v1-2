@@ -18,7 +18,7 @@ func run() -> void:
   var panel=game.goals_panel
   check(panel.targets==game.board.active_targets(),"targets read exact level data %d"%n)
   check(panel.rects.size()==game.board.active_targets().size(),"all targets visible %d"%n)
-  check(panel.position.y+panel.size.y<game.board_view.position.y,"panel cannot overlap board")
+  check(panel.get_global_rect().end.y<game.board_view.get_global_rect().position.y,"panel cannot overlap board")
   for key in panel.targets:
    check(Registry.icon(key)!=null,"actual target art loaded")
    check(panel.amounts[key]==game.board.collected.get(key,0),"central initial counter")
