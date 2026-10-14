@@ -590,7 +590,17 @@ func _draw() -> void:
 				draw_cell(cell,Rect2(anchor+Vector2(28,28)-extent/2,extent),true)
 				continue
 			pos = origin.lerp(pos, ease)
-			if current.kind=="refill" and not origins.has(cell.id) and pos.y<float(current.get("spawn_clip_top",{}).get(i,0)):continue
+			if current.kind=="refill" and not origins.has(cell.id):
+				var limit:=float(current.get("spawn_clip_top",{}).get(i,0))
+				var source: Rect2=textures[int(cell.c)].region
+				var full: Rect2=CasualSkin.fit(Rect2(pos,Vector2(CELL,CELL)),source)
+				if full.position.y<limit:
+					var visible:=Rect2(full.position.x,limit,full.size.x,maxf(0,full.end.y-limit))
+					if visible.size.y>0:
+						var cut: float=(limit-full.position.y)/full.size.y
+						var cropped:=Rect2(source.position+Vector2(0,source.size.y*cut),Vector2(source.size.x,source.size.y*(1-cut)))
+						draw_texture_rect_region(ATLAS,visible,cropped)
+					continue
 			if current.kind=="storm" and not reduced_motion:pos+=Vector2(sin(t*TAU*2+i),cos(t*TAU*2+i))*sin(t*PI)*1.2
 			if current.kind=="shuffle":pos.y-=sin(t*PI)*12
 			if current.kind in ["fall", "refill"] and t > 0.85: pos.y += sin((t - 0.85) / 0.15 * PI) * 2
