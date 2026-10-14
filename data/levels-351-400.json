@@ -1,0 +1,9740 @@
+{
+  "generator_version": 2.0,
+  "levels": [
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 52.68,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.083333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "639a1b2c4b1ca2fd683ebd5f1b17cc882277fe637e49ac748393ce16aad9b489",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {},
+          "score": 0.0
+        },
+        "revision": 0.0,
+        "seed": 145451.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 8,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 351.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        3,
+        4,
+        0,
+        4,
+        4,
+        2,
+        0,
+        3,
+        0,
+        3,
+        1,
+        1,
+        3,
+        2,
+        3,
+        1,
+        2,
+        2,
+        3,
+        1,
+        1,
+        3,
+        4,
+        0,
+        0,
+        2,
+        3,
+        3,
+        4,
+        1,
+        3,
+        4,
+        4,
+        1,
+        2,
+        1,
+        1,
+        3,
+        4,
+        4,
+        3,
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        1,
+        4,
+        0,
+        3,
+        2,
+        2,
+        0,
+        2,
+        2,
+        3,
+        2,
+        4,
+        4,
+        3,
+        0,
+        2,
+        0,
+        3,
+        2,
+        1,
+        2,
+        1,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 44.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 17.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 1",
+      "portals": [],
+      "powers": {
+        "40": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 145451.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 73.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 46.0,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "91f1bd071c22a99f52e2f4901a1b75a6966496a4024557bb8db149d5e3385d7a",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 23,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 145552.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 352.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        3,
+        2,
+        0,
+        3,
+        3,
+        0,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        2,
+        0,
+        0,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        3,
+        3,
+        0,
+        3,
+        3,
+        0,
+        3,
+        2,
+        2,
+        0,
+        2,
+        2,
+        3,
+        0,
+        0,
+        3,
+        0,
+        0,
+        2,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        2,
+        3,
+        2,
+        0,
+        0,
+        3,
+        2,
+        3,
+        2,
+        3,
+        0,
+        0,
+        3,
+        3,
+        2,
+        0,
+        1,
+        2,
+        0,
+        2,
+        1,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 52.0,
+          "kind": "pin"
+        },
+        {
+          "index": 18.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 10,
+      "name": "Yıldız Çölü · 2",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 145552.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 106.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 53.83,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 13.625
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "fabacdf56e4d1e51aa073f1739f297b1cc9fc94100aa8d2e59643c6abb8b90ec",
+          "trials": 1,
+          "winning_moves": 2
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 145653.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 2,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 353.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        0,
+        3,
+        0,
+        2,
+        0,
+        4,
+        2,
+        1,
+        4,
+        3,
+        4,
+        2,
+        4,
+        1,
+        2,
+        4,
+        0,
+        1,
+        1,
+        0,
+        2,
+        3,
+        4,
+        2,
+        2,
+        3,
+        0,
+        2,
+        2,
+        4,
+        0,
+        0,
+        3,
+        1,
+        2,
+        0,
+        4,
+        4,
+        4,
+        1,
+        1,
+        0,
+        0,
+        4,
+        3,
+        1,
+        4,
+        0,
+        0,
+        3,
+        3,
+        2,
+        0,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        4,
+        2,
+        1,
+        0,
+        4,
+        0,
+        3,
+        2,
+        4,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 54.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 26.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 3",
+      "portals": [],
+      "powers": {
+        "48": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 145653.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 109.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.53,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.133333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "cbbaef7a18e0f78307495d626e02c1fe88453191ee56fd5e8e211f386a5eb55a",
+          "trials": 1,
+          "winning_moves": 13
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.08
+        },
+        "revision": 0.0,
+        "seed": 145754.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 13,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 354.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        4,
+        2,
+        3,
+        4,
+        3,
+        3,
+        1,
+        3,
+        2,
+        1,
+        3,
+        1,
+        2,
+        0,
+        4,
+        1,
+        3,
+        4,
+        4,
+        2,
+        3,
+        2,
+        4,
+        0,
+        0,
+        2,
+        1,
+        1,
+        4,
+        3,
+        2,
+        3,
+        4,
+        3,
+        0,
+        1,
+        2,
+        1,
+        2,
+        3,
+        0,
+        4,
+        1,
+        0,
+        0,
+        3,
+        3,
+        0,
+        1,
+        2,
+        4,
+        4,
+        3,
+        3,
+        1,
+        1,
+        1,
+        3,
+        2,
+        2,
+        0,
+        2,
+        3,
+        2,
+        2,
+        1,
+        3,
+        0,
+        3,
+        1,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 22.0,
+          "kind": "pin"
+        },
+        {
+          "index": 18.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 15,
+      "name": "Yıldız Çölü · 4",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 145754.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 137.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.65,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 4.0476190476190474
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "powers",
+          "trace_sha256": "e5b29072b12d569e08f1fd365109cad4818dcebacb49018400f425e7e8d70d59",
+          "trials": 3,
+          "winning_moves": 15
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.2
+          },
+          "score": 0.207777777777778
+        },
+        "revision": 0.0,
+        "seed": 145855.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 15,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 355.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        1,
+        4,
+        1,
+        0,
+        1,
+        0,
+        0,
+        2,
+        3,
+        2,
+        3,
+        1,
+        0,
+        2,
+        0,
+        1,
+        1,
+        4,
+        2,
+        2,
+        0,
+        1,
+        4,
+        2,
+        1,
+        2,
+        3,
+        3,
+        4,
+        1,
+        2,
+        3,
+        3,
+        0,
+        2,
+        3,
+        0,
+        2,
+        4,
+        0,
+        3,
+        0,
+        3,
+        4,
+        4,
+        1,
+        1,
+        3,
+        0,
+        3,
+        4,
+        2,
+        2,
+        3,
+        4,
+        1,
+        1,
+        2,
+        4,
+        4,
+        3,
+        4,
+        2,
+        1,
+        4,
+        2,
+        3,
+        2,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 22.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 16.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 21,
+      "name": "Yıldız Çölü · 5",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 145855.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 85.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 54.91,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 13.11111111111111
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "fe447ad4871444ef3eb945e43f940ae2510bd8123303cdcba937535367848267",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.2
+          },
+          "score": 0.27
+        },
+        "revision": 0.0,
+        "seed": 145956.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 356.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        1,
+        0,
+        3,
+        0,
+        3,
+        1,
+        3,
+        3,
+        0,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        0,
+        3,
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        3,
+        2,
+        0,
+        1,
+        0,
+        3,
+        2,
+        3,
+        1,
+        0,
+        0,
+        1,
+        3,
+        1,
+        1,
+        2,
+        1,
+        3,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        0,
+        2,
+        2,
+        3,
+        2,
+        2,
+        0,
+        2,
+        0,
+        0,
+        1,
+        3,
+        1,
+        3,
+        0,
+        2,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 12.0,
+          "kind": "pin"
+        },
+        {
+          "index": 55.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 9,
+      "name": "Yıldız Çölü · 6",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 145956.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 118.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 57.96,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.363636363636363
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "d80620fa605928d0cc0c8958c62944c794a5d32bd39be6d0dcef4b829a5c0b4e",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 146057.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 357.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        4,
+        1,
+        4,
+        0,
+        3,
+        4,
+        1,
+        4,
+        0,
+        3,
+        1,
+        0,
+        0,
+        3,
+        3,
+        2,
+        0,
+        4,
+        0,
+        4,
+        0,
+        3,
+        4,
+        4,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        3,
+        3,
+        4,
+        1,
+        1,
+        0,
+        4,
+        2,
+        1,
+        3,
+        0,
+        1,
+        1,
+        2,
+        0,
+        4,
+        3,
+        0,
+        1,
+        2,
+        4,
+        2,
+        3,
+        1,
+        3,
+        2,
+        1,
+        4,
+        2,
+        3,
+        2,
+        3,
+        2,
+        3,
+        3,
+        4,
+        1,
+        3,
+        4,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 33.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 49.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 7",
+      "portals": [],
+      "powers": {
+        "32": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 146057.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 125.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.04,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.636363636363637
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "7393a54a32157290e7d3a6dbf5accf9aa8214b3b9c475b9139f6c1e04b68bce3",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.08
+        },
+        "revision": 0.0,
+        "seed": 146158.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 358.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        1,
+        4,
+        1,
+        2,
+        4,
+        1,
+        1,
+        1,
+        4,
+        1,
+        0,
+        1,
+        4,
+        2,
+        2,
+        0,
+        3,
+        3,
+        2,
+        1,
+        2,
+        0,
+        2,
+        3,
+        3,
+        4,
+        0,
+        4,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        2,
+        3,
+        0,
+        0,
+        4,
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        3,
+        4,
+        3,
+        1,
+        4,
+        1,
+        4,
+        3,
+        3,
+        2,
+        3,
+        4,
+        4,
+        0,
+        3,
+        3,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 13.0,
+          "kind": "pin"
+        },
+        {
+          "index": 53.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 8",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 146158.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 73.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 57.2,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "a39bd35612fc24e12386565e02a837e304d73d1508cf5f39c2abbb2ff27b5b0a",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 8,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.08
+        },
+        "revision": 0.0,
+        "seed": 146259.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 359.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        0,
+        1,
+        1,
+        3,
+        3,
+        2,
+        2,
+        2,
+        4,
+        3,
+        0,
+        0,
+        2,
+        1,
+        4,
+        3,
+        4,
+        4,
+        3,
+        0,
+        3,
+        4,
+        2,
+        2,
+        3,
+        0,
+        2,
+        4,
+        1,
+        1,
+        1,
+        4,
+        0,
+        1,
+        1,
+        4,
+        3,
+        3,
+        2,
+        3,
+        4,
+        3,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        0,
+        4,
+        2,
+        1,
+        0,
+        3,
+        3,
+        1,
+        3,
+        1,
+        3,
+        1,
+        3,
+        4,
+        2,
+        0,
+        0,
+        2,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 31.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 32.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10,
+      "name": "Yıldız Çölü · 9",
+      "portals": [],
+      "powers": {
+        "24": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 146259.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 106.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 55.5,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 20.5
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "4baec7956394eb493c544fbe887b6bee0f3b0c66b02f1900b90501a9af4378c5",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 31,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 146360.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 360.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        2,
+        1,
+        0,
+        2,
+        3,
+        1,
+        3,
+        3,
+        1,
+        2,
+        3,
+        1,
+        3,
+        3,
+        2,
+        0,
+        1,
+        2,
+        0,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        1,
+        2,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        3,
+        0,
+        3,
+        3,
+        0,
+        1,
+        0,
+        2,
+        2,
+        0,
+        1,
+        1,
+        2,
+        3,
+        1,
+        0,
+        0,
+        2,
+        1,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 56.0,
+          "kind": "pin"
+        },
+        {
+          "index": 40.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 10",
+      "objective_stages": [
+        {
+          "bridges": 1.0,
+          "pins": 1.0,
+          "total": 82.0
+        },
+        {
+          "bridges": 1.0,
+          "pins": 1.0,
+          "total": 164.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 146360.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 164.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 52.91,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.3076923076923075
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "f4ac0d09fa26ad666a1d956688d248bf278a18b57f8d918167d7506376141587",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 10,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 146461.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 361.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        3,
+        0,
+        0,
+        3,
+        0,
+        1,
+        2,
+        4,
+        0,
+        4,
+        1,
+        1,
+        3,
+        0,
+        0,
+        4,
+        3,
+        4,
+        3,
+        1,
+        1,
+        3,
+        0,
+        1,
+        2,
+        0,
+        4,
+        0,
+        2,
+        2,
+        3,
+        1,
+        2,
+        2,
+        4,
+        0,
+        4,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        2,
+        1,
+        3,
+        4,
+        0,
+        0,
+        4,
+        3,
+        4,
+        1,
+        1,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        4,
+        2,
+        3,
+        0,
+        1,
+        3,
+        0,
+        2,
+        1,
+        3,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 60.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 57.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü · 11",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 146461.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 82.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.25,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.846153846153847
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "9915579dcb0558b109622407bdd4978cbf444ba71a17b2c0085000f34156f709",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 146562.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 362.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        2,
+        1,
+        1,
+        2,
+        4,
+        1,
+        1,
+        4,
+        2,
+        3,
+        4,
+        0,
+        3,
+        0,
+        1,
+        2,
+        4,
+        0,
+        4,
+        4,
+        0,
+        3,
+        2,
+        3,
+        2,
+        0,
+        0,
+        4,
+        3,
+        3,
+        0,
+        2,
+        3,
+        4,
+        1,
+        3,
+        1,
+        0,
+        1,
+        2,
+        1,
+        4,
+        3,
+        1,
+        0,
+        3,
+        2,
+        3,
+        0,
+        0,
+        3,
+        2,
+        1,
+        0,
+        4,
+        4,
+        2,
+        4,
+        0,
+        4,
+        0,
+        1,
+        4,
+        4,
+        2,
+        3,
+        3,
+        2,
+        4,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 55.0,
+          "kind": "pin"
+        },
+        {
+          "index": 32.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü · 12",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 146562.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 115.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            11.0,
+            12.0,
+            13.0,
+            21.0,
+            20.0,
+            19.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.03,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.833333333333334
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "202e18ef91890f4fc8e2c14f88d613f2e609420e76974b28dfc68588b11188ae",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 146663.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 363.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        4,
+        1,
+        1,
+        2,
+        4,
+        1,
+        3,
+        2,
+        3,
+        3,
+        0,
+        4,
+        3,
+        1,
+        1,
+        3,
+        2,
+        4,
+        4,
+        1,
+        3,
+        4,
+        4,
+        4,
+        1,
+        3,
+        3,
+        4,
+        0,
+        0,
+        3,
+        1,
+        4,
+        3,
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        4,
+        4,
+        1,
+        0,
+        3,
+        3,
+        2,
+        2,
+        2,
+        0,
+        0,
+        4,
+        2,
+        4,
+        2,
+        3,
+        4,
+        4,
+        2,
+        2,
+        3,
+        3,
+        4,
+        2,
+        3,
+        3,
+        2,
+        4,
+        1,
+        4,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 39.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 13",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 146663.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 9.0,
+        "stones": 1.0,
+        "total": 118.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.02,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 15.625
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "b242f9abd85c97c9262ea0dc0d5f9cb7c9d7496df82dbdb761d0c9176e786de8",
+          "trials": 1,
+          "winning_moves": 3
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 146764.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 3,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 364.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        0,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        2,
+        2,
+        3,
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        3,
+        2,
+        2,
+        1,
+        3,
+        0,
+        2,
+        1,
+        3,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        3,
+        1,
+        1,
+        3,
+        0,
+        3,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0,
+        1,
+        0,
+        2,
+        2,
+        1,
+        3,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 38.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 37.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 28.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 14",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 146764.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 125.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.25,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 3.65
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "745472b971fa8d36de2271bc0734428ff5446f720da3163dc52cb8ca28f25e6d",
+          "trials": 1,
+          "winning_moves": 14
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.2
+          },
+          "score": 0.0977777777777778
+        },
+        "revision": 0.0,
+        "seed": 146865.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 14,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        2.0,
+        8.0,
+        9.0,
+        16.0,
+        55.0,
+        62.0,
+        63.0,
+        69.0,
+        70.0,
+        71.0
+      ],
+      "id": 365.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        0,
+        3,
+        2,
+        2,
+        2,
+        0,
+        3,
+        4,
+        0,
+        4,
+        0,
+        2,
+        2,
+        4,
+        4,
+        1,
+        2,
+        0,
+        2,
+        3,
+        0,
+        4,
+        3,
+        2,
+        3,
+        4,
+        1,
+        4,
+        4,
+        0,
+        3,
+        4,
+        2,
+        1,
+        3,
+        3,
+        2,
+        2,
+        1,
+        3,
+        1,
+        3,
+        3,
+        2,
+        1,
+        2,
+        2,
+        0,
+        4,
+        4,
+        2,
+        1,
+        2,
+        0,
+        4,
+        0,
+        3,
+        1,
+        3,
+        2,
+        3,
+        0,
+        2,
+        2,
+        3,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 49.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 44.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 20,
+      "name": "Yıldız Çölü · 15",
+      "portals": [],
+      "powers": {
+        "48": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 146865.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 73.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 55.95,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.153846153846153
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "6cddbf6d270bd080e283aa0a142fc8a2d5627254f897cf97fd81557a52dbc00e",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 146966.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 366.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        4,
+        1,
+        1,
+        3,
+        1,
+        3,
+        1,
+        4,
+        0,
+        1,
+        2,
+        1,
+        0,
+        4,
+        0,
+        2,
+        3,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        4,
+        2,
+        1,
+        0,
+        1,
+        1,
+        3,
+        4,
+        2,
+        1,
+        3,
+        2,
+        3,
+        3,
+        0,
+        3,
+        4,
+        2,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 16.0,
+          "kind": "pin"
+        },
+        {
+          "index": 43.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü · 16",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 146966.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 106.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            35.0,
+            36.0,
+            37.0,
+            45.0,
+            44.0,
+            43.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 56.78,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 12.181818181818182
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "4f2ee30db4f4452cf467575fa0bf59145a914cf8e5c5c2e08d9da469d213f4a1",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 147067.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 367.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        3,
+        0,
+        3,
+        1,
+        2,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        1,
+        4,
+        4,
+        2,
+        0,
+        1,
+        0,
+        0,
+        3,
+        1,
+        2,
+        0,
+        1,
+        2,
+        4,
+        4,
+        1,
+        1,
+        3,
+        1,
+        1,
+        4,
+        2,
+        2,
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        3,
+        0,
+        0,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        0,
+        3,
+        1,
+        3,
+        1,
+        3,
+        4,
+        1,
+        4,
+        3,
+        2,
+        0,
+        3,
+        0,
+        3,
+        0,
+        0,
+        4,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 27.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 17",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 147067.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 8.0,
+        "stones": 1.0,
+        "total": 134.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 42.85,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.454545454545454
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "a213ed8f7abeb04d1bf06b94874efbb54252032a7668a93c91f57ac4fb41c128",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 147168.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        32.0,
+        33.0,
+        38.0,
+        39.0,
+        40.0,
+        41.0,
+        46.0,
+        47.0
+      ],
+      "id": 368.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        0,
+        1,
+        3,
+        3,
+        0,
+        3,
+        0,
+        2,
+        3,
+        2,
+        2,
+        0,
+        3,
+        2,
+        3,
+        1,
+        2,
+        3,
+        0,
+        3,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0,
+        0,
+        1,
+        0,
+        3,
+        1,
+        0,
+        0,
+        3,
+        1,
+        3,
+        1,
+        2,
+        0,
+        1,
+        1,
+        0,
+        0,
+        3,
+        2,
+        2,
+        2,
+        2,
+        0,
+        1,
+        0,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        3,
+        1,
+        3,
+        0,
+        2,
+        0,
+        0,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 50.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 51.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 9.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 18",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 147168.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 82.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 57.05,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.454545454545455
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "5730c053155ae76e3a87c5138835b4033f22c1d7cbbf0ec19b0fccd70959a798",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 147269.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 369.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        4,
+        2,
+        4,
+        4,
+        1,
+        3,
+        4,
+        4,
+        3,
+        2,
+        1,
+        2,
+        0,
+        1,
+        1,
+        4,
+        1,
+        0,
+        4,
+        2,
+        4,
+        0,
+        0,
+        1,
+        2,
+        2,
+        1,
+        0,
+        0,
+        1,
+        4,
+        2,
+        0,
+        3,
+        3,
+        4,
+        1,
+        3,
+        2,
+        1,
+        2,
+        4,
+        4,
+        2,
+        0,
+        1,
+        2,
+        1,
+        2,
+        0,
+        3,
+        4,
+        1,
+        0,
+        0,
+        4,
+        0,
+        0,
+        2,
+        1,
+        4,
+        1,
+        4,
+        2,
+        1,
+        1,
+        4,
+        1,
+        3,
+        4,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 29.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 20.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 19",
+      "portals": [],
+      "powers": {
+        "24": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 147269.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 115.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 62.62,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 21.625
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "fa8602a1bf01c36a5cb11970c623d2c816db1eecf0fe56e773470b1ea3c0bf0a",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 23,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.08
+        },
+        "revision": 0.0,
+        "seed": 147370.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 370.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        0,
+        2,
+        3,
+        4,
+        1,
+        0,
+        4,
+        4,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        4,
+        1,
+        0,
+        1,
+        2,
+        0,
+        4,
+        2,
+        2,
+        0,
+        1,
+        2,
+        4,
+        4,
+        3,
+        4,
+        1,
+        0,
+        2,
+        4,
+        0,
+        2,
+        4,
+        1,
+        3,
+        4,
+        0,
+        0,
+        3,
+        2,
+        3,
+        1,
+        1,
+        4,
+        3,
+        4,
+        1,
+        3,
+        2,
+        4,
+        0,
+        1,
+        2,
+        4,
+        2,
+        4,
+        2,
+        3,
+        4,
+        0,
+        4,
+        3,
+        2,
+        0,
+        4,
+        3,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 48.0,
+          "kind": "pin"
+        },
+        {
+          "index": 47.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 20",
+      "objective_stages": [
+        {
+          "bridges": 1.0,
+          "pins": 1.0,
+          "total": 86.0
+        },
+        {
+          "bridges": 1.0,
+          "pins": 1.0,
+          "total": 173.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 147370.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 173.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            11.0,
+            12.0,
+            13.0,
+            21.0,
+            20.0,
+            19.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.96,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.363636363636363
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "6dad78b3b7921d4a6789444cd3a601f8d8a61eb13f10802e415f76b02ae1acee",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 147471.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 371.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        3,
+        0,
+        4,
+        0,
+        0,
+        4,
+        2,
+        1,
+        2,
+        2,
+        0,
+        3,
+        3,
+        1,
+        0,
+        2,
+        4,
+        2,
+        1,
+        4,
+        1,
+        3,
+        4,
+        1,
+        1,
+        3,
+        1,
+        0,
+        1,
+        3,
+        0,
+        2,
+        0,
+        0,
+        2,
+        3,
+        0,
+        2,
+        4,
+        3,
+        2,
+        3,
+        3,
+        0,
+        4,
+        0,
+        4,
+        4,
+        0,
+        2,
+        3,
+        0,
+        3,
+        1,
+        1,
+        3,
+        3,
+        0,
+        2,
+        3,
+        0,
+        2,
+        1,
+        0,
+        2,
+        2,
+        3,
+        1,
+        1,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 41.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 21",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 147471.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 7.0,
+        "stones": 1.0,
+        "total": 70.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 44.76,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.363636363636363
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "obstacles",
+          "trace_sha256": "b5a051e3d1a9a89bd8bd8fb13447537f2b01ccab83b95542efe76ec6d3e7cfcd",
+          "trials": 2,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 147572.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 372.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        3,
+        3,
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        3,
+        0,
+        2,
+        2,
+        0,
+        3,
+        1,
+        3,
+        1,
+        1,
+        3,
+        0,
+        3,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        2,
+        0,
+        0,
+        2,
+        2,
+        1,
+        3,
+        2,
+        2,
+        3,
+        0,
+        1,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        1,
+        3,
+        2,
+        3,
+        2,
+        1,
+        3,
+        2,
+        2,
+        3,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 15.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 61.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 9.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 22",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 147572.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 103.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.98,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.777777777777779
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "3db5b946dd4b6f09e08ee389be938dc5e4b08c3fa69e91445d4d7937bcd52623",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 147673.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 373.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        0,
+        3,
+        3,
+        0,
+        4,
+        4,
+        0,
+        4,
+        1,
+        1,
+        0,
+        1,
+        0,
+        2,
+        3,
+        3,
+        4,
+        2,
+        2,
+        1,
+        3,
+        0,
+        3,
+        4,
+        1,
+        1,
+        4,
+        3,
+        0,
+        1,
+        4,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1,
+        3,
+        3,
+        2,
+        4,
+        2,
+        4,
+        0,
+        3,
+        0,
+        2,
+        2,
+        0,
+        3,
+        0,
+        0,
+        4,
+        2,
+        4,
+        4,
+        3,
+        3,
+        0,
+        4,
+        1,
+        4,
+        3,
+        2,
+        3,
+        2,
+        1,
+        0,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 61.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 32.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 9,
+      "name": "Yıldız Çölü · 23",
+      "portals": [],
+      "powers": {
+        "56": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 147673.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 106.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 58.15,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 16.75
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "38a7fd862d10180d4b461976df0fd8bce060664833b17d9a11ca6b1600a8d51e",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.08
+        },
+        "revision": 0.0,
+        "seed": 147774.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 374.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        3,
+        1,
+        4,
+        0,
+        3,
+        0,
+        0,
+        2,
+        0,
+        4,
+        2,
+        4,
+        0,
+        2,
+        0,
+        4,
+        1,
+        1,
+        4,
+        3,
+        1,
+        3,
+        3,
+        4,
+        0,
+        4,
+        4,
+        2,
+        3,
+        0,
+        2,
+        3,
+        0,
+        4,
+        3,
+        3,
+        2,
+        3,
+        3,
+        4,
+        3,
+        1,
+        0,
+        2,
+        0,
+        3,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        0,
+        2,
+        4,
+        1,
+        2,
+        2,
+        0,
+        1,
+        3,
+        0,
+        2,
+        0,
+        1,
+        0,
+        4,
+        2,
+        2,
+        4,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 58.0,
+          "kind": "pin"
+        },
+        {
+          "index": 22.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 24",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 147774.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 134.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            33.0,
+            34.0,
+            35.0,
+            43.0,
+            42.0,
+            41.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 52.8,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.2
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "216ecc85da6642e6586a9185449b5ab4148e835dc090037a85d84cdcf76465e4",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 26,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.2
+          },
+          "score": 0.207777777777778
+        },
+        "revision": 0.0,
+        "seed": 147875.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 375.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        3,
+        1,
+        0,
+        4,
+        0,
+        2,
+        2,
+        4,
+        4,
+        1,
+        0,
+        1,
+        2,
+        0,
+        3,
+        2,
+        4,
+        2,
+        3,
+        0,
+        0,
+        3,
+        0,
+        3,
+        0,
+        4,
+        0,
+        3,
+        0,
+        2,
+        3,
+        1,
+        3,
+        3,
+        2,
+        0,
+        2,
+        2,
+        3,
+        0,
+        3,
+        3,
+        2,
+        0,
+        4,
+        3,
+        1,
+        3,
+        0,
+        0,
+        3,
+        4,
+        2,
+        3,
+        0,
+        1,
+        0,
+        0,
+        3,
+        0,
+        3,
+        0,
+        3,
+        3,
+        2,
+        1,
+        0,
+        1,
+        1,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 25.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10,
+      "name": "Yıldız Çölü · 25",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 147875.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "stones": 1.0,
+        "total": 82.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 54.58,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 12.777777777777779
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "2d4bce7e7f339ce5c68841c2eec64c37ccae697cfe0473f68dd67a296cc8f665",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.2
+          },
+          "score": 0.27
+        },
+        "revision": 0.0,
+        "seed": 147976.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 376.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        3,
+        2,
+        3,
+        1,
+        3,
+        2,
+        2,
+        1,
+        3,
+        2,
+        0,
+        1,
+        3,
+        2,
+        2,
+        1,
+        1,
+        0,
+        3,
+        3,
+        0,
+        1,
+        1,
+        0,
+        3,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        3,
+        1,
+        3,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        2,
+        3,
+        3,
+        1,
+        2,
+        1,
+        3,
+        0,
+        0,
+        2,
+        2,
+        1,
+        1,
+        0,
+        1,
+        2,
+        0,
+        1,
+        3,
+        0,
+        3,
+        2,
+        3,
+        0,
+        2,
+        1,
+        2,
+        3,
+        3,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 50.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 34.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 25.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 9,
+      "name": "Yıldız Çölü · 26",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 147976.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 115.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 54.13,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.526315789473684
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "65feedd45bc9061bd3e6815e7a9d3fc59c459e584743ac91e8de692c6712aec9",
+          "trials": 1,
+          "winning_moves": 17
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 148077.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 17,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 377.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        1,
+        0,
+        4,
+        4,
+        2,
+        2,
+        1,
+        3,
+        2,
+        3,
+        0,
+        1,
+        4,
+        0,
+        0,
+        4,
+        1,
+        4,
+        4,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1,
+        0,
+        0,
+        1,
+        1,
+        2,
+        4,
+        1,
+        4,
+        4,
+        0,
+        1,
+        1,
+        2,
+        1,
+        4,
+        1,
+        4,
+        4,
+        0,
+        3,
+        0,
+        1,
+        4,
+        3,
+        1,
+        0,
+        2,
+        0,
+        4,
+        0,
+        3,
+        0,
+        1,
+        2,
+        3,
+        2,
+        3,
+        0,
+        2,
+        1,
+        3,
+        3,
+        2,
+        3,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 26.0,
+          "kind": "mirror",
+          "orientation": "/"
+        },
+        {
+          "index": 49.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 19,
+      "name": "Yıldız Çölü · 27",
+      "portals": [],
+      "powers": {
+        "24": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 148077.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 143.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 46.4,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "c0056ae205924e6d57dceeec5eeeccb46b70a5880d85d416e81d3bcf571f0bad",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.08
+        },
+        "revision": 0.0,
+        "seed": 148178.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 378.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        2,
+        1,
+        2,
+        0,
+        4,
+        3,
+        4,
+        1,
+        3,
+        3,
+        4,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        2,
+        3,
+        0,
+        0,
+        4,
+        3,
+        3,
+        1,
+        0,
+        3,
+        0,
+        4,
+        0,
+        0,
+        4,
+        3,
+        0,
+        0,
+        3,
+        3,
+        0,
+        3,
+        0,
+        2,
+        3,
+        0,
+        1,
+        4,
+        2,
+        4,
+        4,
+        1,
+        1,
+        3,
+        0,
+        3,
+        3,
+        0,
+        0,
+        1,
+        4,
+        0,
+        1,
+        3,
+        3,
+        1,
+        4,
+        2,
+        1,
+        2,
+        2,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 27.0,
+          "kind": "pin"
+        },
+        {
+          "index": 48.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 14,
+      "name": "Yıldız Çölü · 28",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 148178.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 70.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            28.0,
+            29.0,
+            30.0,
+            38.0,
+            37.0,
+            36.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 52.52,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.923076923076923
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "e99bc887b03429a73deb4254f9580cd3605c717be34eb05ea3bf107648fb7de9",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 148279.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 379.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        0,
+        0,
+        1,
+        1,
+        4,
+        1,
+        3,
+        2,
+        4,
+        1,
+        0,
+        4,
+        4,
+        1,
+        0,
+        4,
+        2,
+        4,
+        3,
+        3,
+        1,
+        2,
+        1,
+        0,
+        0,
+        4,
+        3,
+        1,
+        2,
+        1,
+        0,
+        2,
+        3,
+        1,
+        2,
+        3,
+        4,
+        0,
+        3,
+        4,
+        3,
+        4,
+        0,
+        3,
+        3,
+        1,
+        0,
+        3,
+        0,
+        4,
+        4,
+        1,
+        3,
+        4,
+        2,
+        3,
+        1,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        4,
+        1,
+        0,
+        4,
+        2,
+        3,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 26.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü · 29",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 148279.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 10.0,
+        "stones": 1.0,
+        "total": 103.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 55.12,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 20.125
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "405f9b1e2d7378182ce5b68e0521a912cb17e04eeaf3b68dea0b202b1a53c7a0",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 26,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 148380.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 380.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        3,
+        1,
+        3,
+        3,
+        2,
+        0,
+        3,
+        2,
+        3,
+        1,
+        2,
+        1,
+        1,
+        3,
+        3,
+        1,
+        2,
+        3,
+        2,
+        1,
+        0,
+        2,
+        0,
+        0,
+        3,
+        0,
+        1,
+        0,
+        2,
+        0,
+        1,
+        1,
+        3,
+        3,
+        2,
+        3,
+        3,
+        1,
+        0,
+        2,
+        0,
+        0,
+        3,
+        0,
+        1,
+        3,
+        2,
+        2,
+        1,
+        2,
+        2,
+        0,
+        0,
+        3,
+        3,
+        0,
+        0,
+        1,
+        2,
+        2,
+        0,
+        0,
+        1,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 50.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 26.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 15.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 30",
+      "objective_stages": [
+        {
+          "locks": 1.0,
+          "shifts": 1.0,
+          "total": 80.0
+        },
+        {
+          "locks": 1.0,
+          "shifts": 2.0,
+          "total": 161.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 148380.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 161.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.78,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.181818181818182
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "896d9c8f3e500df54563fd70db59cc54172d65c3442f7d885e33b5797e1108bc",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 1.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 1.0
+          },
+          "score": 0.49
+        },
+        "revision": 0.0,
+        "seed": 148481.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 381.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        2,
+        1,
+        0,
+        4,
+        0,
+        1,
+        3,
+        3,
+        4,
+        0,
+        4,
+        1,
+        4,
+        2,
+        0,
+        0,
+        1,
+        0,
+        3,
+        2,
+        2,
+        0,
+        0,
+        1,
+        2,
+        4,
+        2,
+        4,
+        4,
+        3,
+        3,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        4,
+        0,
+        4,
+        0,
+        3,
+        1,
+        4,
+        1,
+        3,
+        1,
+        1,
+        3,
+        4,
+        4,
+        1,
+        1,
+        0,
+        4,
+        4,
+        2,
+        1,
+        0,
+        2,
+        0,
+        3,
+        3,
+        4,
+        0,
+        4,
+        2,
+        0,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 35.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 60.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 1.0,
+          "index": 42.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 31",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 148481.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 79.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            42.0,
+            43.0,
+            44.0,
+            52.0,
+            51.0,
+            50.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 55.4,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 14.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "c1e30aa4bf33bc691931c3320083d6bbd87e21cc3a0499f769259e1d1172d8c1",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 148582.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 382.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        4,
+        4,
+        0,
+        3,
+        1,
+        3,
+        2,
+        3,
+        1,
+        0,
+        1,
+        1,
+        2,
+        3,
+        2,
+        0,
+        3,
+        3,
+        4,
+        4,
+        1,
+        1,
+        4,
+        4,
+        0,
+        0,
+        1,
+        4,
+        4,
+        3,
+        0,
+        4,
+        2,
+        3,
+        4,
+        2,
+        4,
+        2,
+        4,
+        2,
+        2,
+        0,
+        0,
+        4,
+        2,
+        0,
+        2,
+        1,
+        1,
+        2,
+        4,
+        3,
+        3,
+        1,
+        4,
+        3,
+        2,
+        4,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 39.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 32",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 148582.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 8.0,
+        "stones": 1.0,
+        "total": 112.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.65,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.454545454545455
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "d6cf418d0bd4299200a0a2b09d241c50afc1de5c5ab5b8feadaa788e14bb459c",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 148683.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 383.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        1,
+        3,
+        3,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        4,
+        3,
+        3,
+        0,
+        2,
+        0,
+        0,
+        1,
+        2,
+        2,
+        4,
+        1,
+        4,
+        4,
+        3,
+        2,
+        2,
+        4,
+        2,
+        2,
+        4,
+        0,
+        2,
+        4,
+        3,
+        3,
+        2,
+        4,
+        2,
+        3,
+        2,
+        3,
+        4,
+        2,
+        1,
+        3,
+        0,
+        1,
+        0,
+        1,
+        4,
+        2,
+        1,
+        2,
+        4,
+        0,
+        4,
+        0,
+        3,
+        3,
+        0,
+        4,
+        2,
+        2,
+        3,
+        4,
+        4,
+        2,
+        3,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 52.0,
+          "kind": "pin"
+        },
+        {
+          "index": 17.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 33",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 148683.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 115.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 49.32,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.916666666666666
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "51e81566fd6d4e3f6a03782e2dca1646cd1006159e4733c7204812aac112bea7",
+          "trials": 1,
+          "winning_moves": 10
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 148784.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 10,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 384.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        0,
+        1,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        0,
+        0,
+        3,
+        2,
+        3,
+        2,
+        0,
+        3,
+        3,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        2,
+        3,
+        0,
+        3,
+        0,
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        0,
+        3,
+        0,
+        0,
+        1,
+        2,
+        0,
+        1,
+        3,
+        0,
+        3,
+        0,
+        2,
+        0,
+        2,
+        3,
+        0,
+        1,
+        2,
+        2,
+        0,
+        2,
+        1,
+        3,
+        3,
+        0,
+        1,
+        0,
+        3,
+        3,
+        1,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 41.0,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 21.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 34",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 148784.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 143.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.43,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.833333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "2869c3822e059cf9bafefc67302bb17f3b4bb026c3750dd50cbc829655bfec93",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.2
+          },
+          "score": 0.197777777777778
+        },
+        "revision": 0.0,
+        "seed": 148885.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 385.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        4,
+        3,
+        4,
+        3,
+        2,
+        0,
+        4,
+        4,
+        1,
+        2,
+        4,
+        0,
+        3,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        4,
+        4,
+        2,
+        3,
+        1,
+        3,
+        2,
+        1,
+        0,
+        4,
+        2,
+        1,
+        4,
+        2,
+        2,
+        0,
+        4,
+        1,
+        0,
+        2,
+        2,
+        4,
+        0,
+        3,
+        0,
+        2,
+        1,
+        3,
+        3,
+        0,
+        1,
+        3,
+        3,
+        1,
+        2,
+        3,
+        1,
+        2,
+        1,
+        4,
+        0,
+        1,
+        1,
+        4,
+        0,
+        0,
+        3,
+        1,
+        0,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 13.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 59.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 60.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 35",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 148885.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 70.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            41.0,
+            42.0,
+            43.0,
+            51.0,
+            50.0,
+            49.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 58.1,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.3
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "663ed82fa2088b7b8f1c3054a84607736aba3b7c860196c07e962bf73c75bf6b",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 10,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.2
+          },
+          "score": 0.28
+        },
+        "revision": 0.0,
+        "seed": 148986.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 386.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        3,
+        2,
+        0,
+        3,
+        4,
+        1,
+        4,
+        0,
+        0,
+        2,
+        1,
+        4,
+        4,
+        0,
+        2,
+        1,
+        4,
+        3,
+        4,
+        3,
+        3,
+        4,
+        1,
+        0,
+        2,
+        2,
+        4,
+        0,
+        2,
+        1,
+        3,
+        4,
+        2,
+        2,
+        0,
+        0,
+        4,
+        4,
+        3,
+        1,
+        3,
+        3,
+        1,
+        3,
+        3,
+        1,
+        1,
+        3,
+        4,
+        4,
+        2,
+        4,
+        3,
+        2,
+        4,
+        3,
+        3,
+        4,
+        0,
+        3,
+        2,
+        4,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 19.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10,
+      "name": "Yıldız Çölü · 36",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 148986.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 7.0,
+        "stones": 1.0,
+        "total": 103.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 53.96,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.357142857142858
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "8cf0d6d0a3f9c1e8ff362cf2e2f1fb3c5b6f769e8c2c538d1bb5d3246940fb4c",
+          "trials": 1,
+          "winning_moves": 12
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 149087.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 12,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 387.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        2,
+        2,
+        1,
+        1,
+        3,
+        4,
+        0,
+        4,
+        0,
+        4,
+        2,
+        0,
+        2,
+        3,
+        1,
+        2,
+        4,
+        3,
+        3,
+        4,
+        2,
+        0,
+        0,
+        3,
+        4,
+        3,
+        3,
+        2,
+        1,
+        0,
+        3,
+        0,
+        0,
+        4,
+        1,
+        2,
+        1,
+        1,
+        0,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        4,
+        1,
+        2,
+        2,
+        4,
+        0,
+        3,
+        3,
+        0,
+        2,
+        1,
+        0,
+        4,
+        2,
+        2,
+        3,
+        2,
+        1,
+        4,
+        4,
+        0,
+        4,
+        0,
+        0,
+        4,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 38.0,
+          "kind": "pin"
+        },
+        {
+          "index": 62.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 14,
+      "name": "Yıldız Çölü · 37",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 149087.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 131.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 45.3,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.9
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "682b57c8e49decf604d9e0d544cb0e486312f90536fe2bd9010ac19659ceb0e4",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 149188.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 388.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        0,
+        2,
+        2,
+        1,
+        0,
+        2,
+        3,
+        0,
+        2,
+        0,
+        3,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        0,
+        3,
+        1,
+        3,
+        0,
+        1,
+        3,
+        2,
+        0,
+        0,
+        3,
+        3,
+        2,
+        2,
+        0,
+        2,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        3,
+        3,
+        2,
+        3,
+        2,
+        0,
+        3,
+        2,
+        2,
+        1,
+        3,
+        3,
+        0,
+        1,
+        3,
+        2,
+        2,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 29.0,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 57.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 10,
+      "name": "Yıldız Çölü · 38",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 149188.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 79.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 53.93,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.333333333333334
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "a130f20e43d315b7de13d91fd57566f6fe75417dc33595028ea20b82899950a2",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 149289.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 389.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        2,
+        1,
+        1,
+        4,
+        4,
+        1,
+        1,
+        2,
+        1,
+        4,
+        2,
+        4,
+        3,
+        0,
+        1,
+        1,
+        3,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        4,
+        1,
+        0,
+        0,
+        3,
+        2,
+        3,
+        1,
+        3,
+        3,
+        0,
+        2,
+        2,
+        4,
+        3,
+        1,
+        0,
+        3,
+        4,
+        1,
+        4,
+        0,
+        1,
+        0,
+        0,
+        2,
+        3,
+        0,
+        4,
+        1,
+        0,
+        2,
+        3,
+        3,
+        0,
+        3,
+        0,
+        3,
+        4,
+        0,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 54.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 11.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 4.0,
+          "index": 13.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 39",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 149289.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 112.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            50.0,
+            51.0,
+            52.0,
+            60.0,
+            59.0,
+            58.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 62.25,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 21.25
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "8e8d9081291a6f9e3b5e9e9908147131260609ac534fe720709791480085ef25",
+          "trials": 1,
+          "winning_moves": 4
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 149390.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 4,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 390.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        4,
+        2,
+        2,
+        4,
+        1,
+        3,
+        3,
+        0,
+        2,
+        0,
+        3,
+        2,
+        3,
+        0,
+        0,
+        3,
+        2,
+        0,
+        1,
+        2,
+        1,
+        4,
+        1,
+        0,
+        0,
+        3,
+        0,
+        4,
+        4,
+        0,
+        4,
+        2,
+        0,
+        1,
+        3,
+        1,
+        3,
+        1,
+        1,
+        1,
+        3,
+        4,
+        3,
+        3,
+        2,
+        0,
+        1,
+        2,
+        0,
+        4,
+        0,
+        4,
+        1,
+        4,
+        2,
+        2,
+        3,
+        3,
+        4,
+        1,
+        3,
+        1,
+        4,
+        0,
+        4,
+        4,
+        0,
+        3,
+        4,
+        4,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 32.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 40",
+      "objective_stages": [
+        {
+          "conveyors": 3.0,
+          "stones": 1.0,
+          "total": 85.0
+        },
+        {
+          "conveyors": 6.0,
+          "stones": 1.0,
+          "total": 170.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 149390.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 6.0,
+        "stones": 1.0,
+        "total": 170.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.37,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.769230769230769
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "48eef4406be5cefa7d49d368f5deb746fb684eef357f8bea3a37d6cab09585ac",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 149491.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 391.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        1,
+        0,
+        0,
+        3,
+        0,
+        3,
+        4,
+        4,
+        2,
+        0,
+        0,
+        4,
+        1,
+        3,
+        2,
+        4,
+        2,
+        4,
+        1,
+        1,
+        3,
+        0,
+        3,
+        3,
+        1,
+        2,
+        3,
+        1,
+        4,
+        4,
+        2,
+        3,
+        4,
+        1,
+        4,
+        0,
+        4,
+        1,
+        4,
+        4,
+        3,
+        4,
+        0,
+        1,
+        3,
+        0,
+        0,
+        3,
+        2,
+        1,
+        1,
+        2,
+        0,
+        3,
+        3,
+        4,
+        4,
+        3,
+        2,
+        2,
+        1,
+        3,
+        2,
+        4,
+        4,
+        1,
+        2,
+        1,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 10.0,
+          "kind": "pin"
+        },
+        {
+          "index": 58.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü · 41",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 149491.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 88.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.51,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.11111111111111
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "6aebe4863be3636e5c0032c5c6557166fb029bef8b9111127e13f092cdf94edb",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 149592.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 392.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        3,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        2,
+        1,
+        3,
+        1,
+        0,
+        0,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        1,
+        1,
+        3,
+        2,
+        3,
+        1,
+        3,
+        3,
+        2,
+        2,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        1,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        3,
+        3,
+        1,
+        3,
+        1,
+        0,
+        3,
+        2,
+        0,
+        1,
+        2,
+        1,
+        2,
+        3,
+        2,
+        2,
+        0,
+        3,
+        3,
+        2,
+        2,
+        3,
+        0,
+        0,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 49.0,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 40.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 9,
+      "name": "Yıldız Çölü · 42",
+      "portals": [],
+      "powers": {
+        "48": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 149592.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 100.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 46.12,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.923076923076923
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "34fa3bf5d5552bb5da0dcd36d7208e386c2f023eef288f9ba9a8b3f8f2c7ea6d",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 149693.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 393.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        4,
+        2,
+        1,
+        4,
+        2,
+        4,
+        3,
+        4,
+        1,
+        0,
+        3,
+        4,
+        4,
+        2,
+        2,
+        1,
+        0,
+        4,
+        3,
+        0,
+        4,
+        0,
+        2,
+        2,
+        1,
+        2,
+        1,
+        0,
+        2,
+        1,
+        3,
+        4,
+        3,
+        3,
+        2,
+        2,
+        4,
+        3,
+        4,
+        3,
+        2,
+        4,
+        1,
+        4,
+        4,
+        0,
+        1,
+        4,
+        1,
+        4,
+        0,
+        2,
+        1,
+        3,
+        0,
+        4,
+        4,
+        0,
+        1,
+        2,
+        4,
+        0,
+        1,
+        2,
+        2,
+        0,
+        3,
+        1,
+        1,
+        4,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 22.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 16.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 3.0,
+          "index": 43.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü · 43",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 149693.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 103.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            42.0,
+            43.0,
+            44.0,
+            52.0,
+            51.0,
+            50.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 57.77,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 16.375
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "1470fbf5e69f29cd6caae4e81ad58e60e54bec800f2ecf69eeb590e1e4a82663",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 149794.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 394.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        2,
+        1,
+        3,
+        4,
+        2,
+        0,
+        1,
+        3,
+        1,
+        2,
+        2,
+        0,
+        1,
+        4,
+        3,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        1,
+        2,
+        4,
+        0,
+        2,
+        1,
+        3,
+        3,
+        1,
+        3,
+        1,
+        4,
+        3,
+        2,
+        4,
+        3,
+        2,
+        2,
+        0,
+        4,
+        4,
+        3,
+        4,
+        1,
+        2,
+        3,
+        0,
+        3,
+        4,
+        4,
+        2,
+        2,
+        1,
+        4,
+        1,
+        0,
+        3,
+        0,
+        2,
+        2,
+        4,
+        4,
+        1,
+        3,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 28.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 8,
+      "name": "Yıldız Çölü · 44",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 149794.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 10.0,
+        "stones": 1.0,
+        "total": 131.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.18,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.583333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "7d8d73964d93c214904c278381936287152c7d77fea4be47b6831054d8522460",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 21,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.2
+          },
+          "score": 0.207777777777778
+        },
+        "revision": 0.0,
+        "seed": 149895.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        2.0,
+        8.0,
+        9.0,
+        16.0,
+        55.0,
+        62.0,
+        63.0,
+        69.0,
+        70.0,
+        71.0
+      ],
+      "id": 395.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        3,
+        2,
+        4,
+        4,
+        3,
+        1,
+        3,
+        3,
+        4,
+        4,
+        0,
+        4,
+        0,
+        2,
+        4,
+        2,
+        0,
+        2,
+        0,
+        0,
+        1,
+        4,
+        4,
+        2,
+        2,
+        3,
+        2,
+        2,
+        4,
+        3,
+        0,
+        3,
+        4,
+        4,
+        0,
+        2,
+        1,
+        1,
+        3,
+        3,
+        2,
+        3,
+        2,
+        0,
+        4,
+        4,
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        0,
+        4,
+        3,
+        4,
+        2,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        3,
+        0,
+        0,
+        3,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 32.0,
+          "kind": "pin"
+        },
+        {
+          "index": 40.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 45",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 149895.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 79.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 53.13,
+          "parts": {
+            "goals": 12,
+            "durability": 8,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.333333333333334
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "db15795457cdd4eb6ae5f123411224144f68436e52ffc0706bca3c860129ddc2",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 149996.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 396.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        1,
+        0,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0,
+        3,
+        1,
+        2,
+        3,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        2,
+        1,
+        3,
+        3,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        2,
+        2,
+        3,
+        0,
+        3,
+        1,
+        0,
+        1,
+        2,
+        2,
+        1,
+        3,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        0,
+        2,
+        0,
+        3,
+        2,
+        1,
+        1,
+        3,
+        3,
+        0,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 42.0,
+          "kind": "mirror",
+          "orientation": "\\"
+        },
+        {
+          "index": 39.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 46",
+      "portals": [],
+      "powers": {
+        "40": "rocket_h"
+      },
+      "recipe": [
+        "mirror",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 149996.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "mirrors": 1.0,
+        "stones": 1.0,
+        "total": 112.0
+      },
+      "theme": "desert",
+      "tutorial": "Roketi aynaya yönlendir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 54.6,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "f4c0082385db918cfdb730d87c88a83052aa2a525ab5242e9e2d11ff21e797ee",
+          "trials": 1,
+          "winning_moves": 12
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 7,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 0.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.07
+        },
+        "revision": 0.0,
+        "seed": 150097.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 12,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 397.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        2,
+        0,
+        1,
+        3,
+        3,
+        4,
+        4,
+        2,
+        1,
+        1,
+        0,
+        1,
+        0,
+        4,
+        4,
+        0,
+        3,
+        4,
+        4,
+        1,
+        4,
+        0,
+        3,
+        1,
+        4,
+        2,
+        4,
+        0,
+        4,
+        1,
+        3,
+        3,
+        2,
+        0,
+        1,
+        0,
+        2,
+        1,
+        4,
+        4,
+        3,
+        0,
+        2,
+        4,
+        3,
+        3,
+        2,
+        0,
+        4,
+        4,
+        3,
+        1,
+        0,
+        3,
+        0,
+        1,
+        0,
+        3,
+        4,
+        1,
+        2,
+        1,
+        3,
+        4,
+        0,
+        2,
+        2,
+        4,
+        3,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 55.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 56.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 2.0,
+          "index": 61.0,
+          "kind": "lock",
+          "required": 13.0
+        }
+      ],
+      "moves": 14,
+      "name": "Yıldız Çölü · 47",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 150097.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 140.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [
+        {
+          "cells": [
+            43.0,
+            44.0,
+            45.0,
+            53.0,
+            52.0,
+            51.0
+          ],
+          "loop": true
+        }
+      ],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.73,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.333333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "8145ea5a27036f988696aeaec9a3783125101a3b2bbacbd1255dbab99aa9011e",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 150198.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        32.0,
+        33.0,
+        38.0,
+        39.0,
+        40.0,
+        41.0,
+        46.0,
+        47.0
+      ],
+      "id": 398.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        2,
+        4,
+        4,
+        3,
+        4,
+        0,
+        0,
+        4,
+        3,
+        3,
+        4,
+        3,
+        3,
+        1,
+        1,
+        2,
+        1,
+        4,
+        0,
+        1,
+        4,
+        0,
+        0,
+        4,
+        0,
+        3,
+        1,
+        4,
+        1,
+        1,
+        2,
+        1,
+        0,
+        3,
+        2,
+        1,
+        1,
+        3,
+        1,
+        2,
+        4,
+        0,
+        2,
+        4,
+        0,
+        4,
+        0,
+        3,
+        0,
+        3,
+        3,
+        4,
+        1,
+        2,
+        3,
+        3,
+        0,
+        1,
+        3,
+        3,
+        4,
+        4,
+        3,
+        0,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 54.0,
+          "kind": "stone"
+        }
+      ],
+      "moves": 12,
+      "name": "Yıldız Çölü · 48",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "conveyor",
+        "stone"
+      ],
+      "resonance": true,
+      "seed": 150198.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "conveyors": 9.0,
+        "stones": 1.0,
+        "total": 88.0
+      },
+      "theme": "desert",
+      "tutorial": "Raylar başarılı hamle sonunda bir hücre ilerler.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 53.69,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.090909090909092
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "132244cac3bb492cce618f2343abb67b937c2b0e25cf5381d186237c47643eba",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 27,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 150299.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 399.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        2,
+        4,
+        4,
+        0,
+        3,
+        3,
+        3,
+        2,
+        4,
+        1,
+        0,
+        1,
+        4,
+        4,
+        1,
+        4,
+        3,
+        4,
+        3,
+        0,
+        4,
+        2,
+        3,
+        3,
+        4,
+        0,
+        1,
+        4,
+        0,
+        4,
+        0,
+        3,
+        0,
+        1,
+        0,
+        1,
+        2,
+        2,
+        1,
+        4,
+        2,
+        1,
+        4,
+        4,
+        0,
+        0,
+        1,
+        3,
+        0,
+        4,
+        1,
+        4,
+        3,
+        3,
+        2,
+        0,
+        2,
+        2,
+        4,
+        1,
+        4,
+        4,
+        3,
+        3,
+        2,
+        3,
+        1,
+        3,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 62.0,
+          "kind": "pin"
+        },
+        {
+          "index": 53.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 11,
+      "name": "Yıldız Çölü · 49",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "pin",
+        "bridge"
+      ],
+      "resonance": true,
+      "seed": 150299.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "pins": 1.0,
+        "total": 100.0
+      },
+      "theme": "desert",
+      "tutorial": "Çivili kristali iki darbeyle serbest bırak.",
+      "world_id": 8.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 47.15,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 12.153846153846153
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "1659eac318c7e662e2b9d92dc5aa0599fee07a3f75c5c059f9c1c91a8229ec3b",
+          "trials": 4,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 24,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.17
+        },
+        "revision": 0.0,
+        "seed": 151409,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 6,
+          "original_moves": 28,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 400.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        0,
+        2,
+        0,
+        1,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        1,
+        1,
+        3,
+        3,
+        1,
+        1,
+        2,
+        1,
+        0,
+        3,
+        2,
+        1,
+        3,
+        1,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        0,
+        3,
+        3,
+        1,
+        0,
+        2,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        0,
+        0,
+        2,
+        1,
+        3,
+        3,
+        2,
+        3,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        0,
+        3,
+        2,
+        0,
+        2,
+        2,
+        0,
+        1,
+        3,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 28.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        {
+          "index": 16.0,
+          "kind": "chameleon",
+          "period": 2.0,
+          "sequence": [
+            1.0,
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "color": 0.0,
+          "index": 34.0,
+          "kind": "lock",
+          "required": 12.0
+        }
+      ],
+      "moves": 13,
+      "name": "Yıldız Çölü Finali",
+      "objective_stages": [
+        {
+          "locks": 1.0,
+          "shifts": 1.0,
+          "total": 79.0
+        },
+        {
+          "locks": 1.0,
+          "shifts": 2.0,
+          "total": 158.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "chameleon",
+        "lock"
+      ],
+      "resonance": true,
+      "seed": 151409,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "locks": 1.0,
+        "shifts": 2.0,
+        "total": 158.0
+      },
+      "theme": "desert",
+      "tutorial": "Bukalemunu koru; başarılı hamlelerde rengi değişir.",
+      "world_id": 8.0
+    }
+  ],
+  "version": 3.0
+}

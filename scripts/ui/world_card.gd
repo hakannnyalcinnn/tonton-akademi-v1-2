@@ -5,6 +5,7 @@ var metadata: Dictionary={}
 var completed:=0
 var selected:=false
 var preview: TextureRect
+var preview_age:=.2
 func caption(parent: Node,value: String,font_size: int) -> Label:
  var label:=Label.new();label.text=value;label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;label.add_theme_font_size_override("font_size",font_size);label.add_theme_color_override("font_color",Design.INK);label.mouse_filter=Control.MOUSE_FILTER_IGNORE;parent.add_child(label);return label
 func _ready() -> void:
@@ -32,6 +33,13 @@ func _ready() -> void:
  var track:=StyleBoxFlat.new();track.bg_color=Color("d8d2df");track.set_corner_radius_all(5);progress.add_theme_stylebox_override("background",track)
  var fill:=StyleBoxFlat.new();fill.bg_color=Color(metadata.accent);fill.set_corner_radius_all(5);progress.add_theme_stylebox_override("fill",fill);column.add_child(progress)
  var explore:=Button.new();explore.name="Explore";explore.text="%d. bölümde açılır"%int(metadata.start) if disabled else "KEŞFET  ›";explore.custom_minimum_size.y=40;explore.disabled=disabled;explore.add_theme_font_size_override("font_size",16);explore.add_theme_color_override("font_color",Color("42243e"));var action_style:=StyleBoxFlat.new();action_style.bg_color=Color(metadata.accent).darkened(.48);action_style.border_color=Color(metadata.accent).lightened(.35);action_style.set_border_width_all(1);action_style.set_corner_radius_all(14);action_style.shadow_color=Color(0,0,0,.13);action_style.shadow_size=2;action_style.shadow_offset=Vector2(0,2);explore.add_theme_color_override("font_color",Color.WHITE);explore.add_theme_stylebox_override("normal",action_style);explore.add_theme_stylebox_override("hover",action_style);explore.add_theme_stylebox_override("focus",action_style);explore.add_theme_stylebox_override("pressed",Design.action(true,true));explore.pressed.connect(func():pressed.emit());column.add_child(explore)
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+ preview_age+=delta
+ if preview_age<(.05 if preview.texture==null else .2):return
+ preview_age=0
+ var viewport=get_parent().get_parent()
+ if viewport is ScrollContainer and not get_global_rect().intersects(viewport.get_global_rect()):
+  preview.texture=null;return
+ if preview.texture!=null:return
  var texture=Art.ready(str(metadata.art))
- if texture:preview.texture=texture;set_process(false)
+ if texture:preview.texture=texture

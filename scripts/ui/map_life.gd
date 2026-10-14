@@ -16,7 +16,10 @@ var gem: Texture2D
 var creature: Texture2D
 func _ready() -> void:
  mouse_filter=Control.MOUSE_FILTER_IGNORE
- creature=preload("res://scripts/ui/companion.gd").sprite(world_id)
+ var metadata:=preload("res://scripts/core/world_catalog.gd").get_world(world_id)
+ biome=str(metadata.get("decor_style",biome))
+ var decor_world:=int(metadata.get("decor_world",clampi(world_id,1,5)))
+ creature=preload("res://scripts/ui/companion.gd").sprite(decor_world)
  gem=CasualSkin.texture("gems",[4,1,0][clampi(world_id-3,0,2)],CasualSkin.GEMS)
  for i in 8:sprites.append(CasualSkin.texture("decor",i,CasualSkin.DECOR))
  if ResourceLoader.exists("res://assets/casual/map-landmarks.png"):
@@ -61,7 +64,7 @@ func _draw() -> void:
    sprite(sprites[5],Vector2(540-side+sin(phase*.6)*22,anchor.y+55),Vector2(65,55),sin(phase*.5)*.06)
   else:
    var main_landmark:=i%3==0
-   var feature: Texture2D=landmarks[world_id-3] if main_landmark else landmarks[4] if biome=="cloud" and i%3==2 else landmarks[5]
+   var feature: Texture2D=landmarks[{"canyon":0,"cloud":1,"lava":2}.get(biome,0)] if main_landmark else landmarks[4] if biome=="cloud" and i%3==2 else landmarks[5]
    sprite(feature,center,Vector2(132,139)*scale_factor if main_landmark else Vector2(92,96)*scale_factor,sin(phase*.4)*(.015 if biome=="cloud" else .004))
    if i%3!=1:sprite(gem,Vector2(540-side,anchor.y+70),Vector2(43,48)*(1+sin(i*2.17)*.15),sin(phase*.5)*.045)
    if biome=="cloud":sprite(landmarks[4],Vector2(540-side+sin(phase*.25)*18,anchor.y-16),Vector2(126,76),0,.85)

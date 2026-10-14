@@ -16,7 +16,7 @@ func node_position(index: int) -> Vector2:
  return Vector2(270+sin(float(index)*1.05)*130,160+(count-1-index)*146)
 func _ready() -> void:
  mouse_filter=Control.MOUSE_FILTER_PASS
- var gate:=preload("res://scripts/ui/world_gate.gd").new();gate.position=Vector2(190,0);gate.size=Vector2(160,124);gate.quiet=quiet;gate.opened=completed_count>=50;gate.final_world=world_id==5;add_child(gate)
+ var gate:=preload("res://scripts/ui/world_gate.gd").new();gate.position=Vector2(190,0);gate.size=Vector2(160,124);gate.quiet=quiet;gate.opened=completed_count>=50;gate.final_world=world_id==preload("res://scripts/core/world_catalog.gd").for_level(preload("res://scripts/core/world_catalog.gd").count());add_child(gate)
  curve.bake_interval=5
  for i in count:
   var tangent:=Vector2(130*1.05*cos(i*1.05),-146)/3

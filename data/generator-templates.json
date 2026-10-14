@@ -252,6 +252,359 @@
           ]
         ]
       }
+    ],
+    "moon": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "seed",
+            "dual"
+          ],
+          [
+            "fountain",
+            "dual"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 30,
+        "recipes": [
+          [
+            "seed",
+            "dual"
+          ],
+          [
+            "fountain",
+            "dual"
+          ],
+          [
+            "seal",
+            "dual"
+          ],
+          [
+            "seed",
+            "ice"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 49,
+        "recipes": [
+          [
+            "seed",
+            "ice"
+          ],
+          [
+            "seal",
+            "dual"
+          ],
+          [
+            "fountain",
+            "dual"
+          ],
+          [
+            "seed",
+            "dual"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "seed",
+            "ice"
+          ]
+        ]
+      }
+    ],
+    "palace": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "dual",
+            "ice"
+          ],
+          [
+            "bubble",
+            "portal"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 30,
+        "recipes": [
+          [
+            "dual",
+            "ice"
+          ],
+          [
+            "bubble",
+            "portal"
+          ],
+          [
+            "conveyor",
+            "portal"
+          ],
+          [
+            "seed",
+            "ice"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 49,
+        "recipes": [
+          [
+            "seed",
+            "ice"
+          ],
+          [
+            "conveyor",
+            "portal"
+          ],
+          [
+            "bubble",
+            "portal"
+          ],
+          [
+            "dual",
+            "ice"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "seed",
+            "ice"
+          ]
+        ]
+      }
+    ],
+    "desert": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "mirror",
+            "stone"
+          ],
+          [
+            "pin",
+            "bridge"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 30,
+        "recipes": [
+          [
+            "mirror",
+            "stone"
+          ],
+          [
+            "pin",
+            "bridge"
+          ],
+          [
+            "conveyor",
+            "stone"
+          ],
+          [
+            "chameleon",
+            "lock"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 49,
+        "recipes": [
+          [
+            "chameleon",
+            "lock"
+          ],
+          [
+            "conveyor",
+            "stone"
+          ],
+          [
+            "pin",
+            "bridge"
+          ],
+          [
+            "mirror",
+            "stone"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "chameleon",
+            "lock"
+          ]
+        ]
+      }
+    ],
+    "aurora": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "bubble",
+            "portal"
+          ],
+          [
+            "giant",
+            "ice"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 30,
+        "recipes": [
+          [
+            "bubble",
+            "portal"
+          ],
+          [
+            "giant",
+            "ice"
+          ],
+          [
+            "magnet",
+            "portal"
+          ],
+          [
+            "bridge",
+            "floor"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 49,
+        "recipes": [
+          [
+            "bridge",
+            "floor"
+          ],
+          [
+            "magnet",
+            "portal"
+          ],
+          [
+            "giant",
+            "ice"
+          ],
+          [
+            "bubble",
+            "portal"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "bridge",
+            "floor"
+          ]
+        ]
+      }
+    ],
+    "ruins": [
+      {
+        "start": 1,
+        "end": 10,
+        "recipes": [
+          [
+            "core",
+            "stone"
+          ],
+          [
+            "magnet",
+            "conveyor",
+            "portal"
+          ]
+        ]
+      },
+      {
+        "start": 11,
+        "end": 30,
+        "recipes": [
+          [
+            "core",
+            "stone"
+          ],
+          [
+            "magnet",
+            "conveyor",
+            "portal"
+          ],
+          [
+            "bridge",
+            "floor"
+          ],
+          [
+            "fountain",
+            "seal"
+          ]
+        ]
+      },
+      {
+        "start": 31,
+        "end": 49,
+        "recipes": [
+          [
+            "fountain",
+            "seal"
+          ],
+          [
+            "bridge",
+            "floor"
+          ],
+          [
+            "magnet",
+            "conveyor",
+            "portal"
+          ],
+          [
+            "core",
+            "stone"
+          ]
+        ]
+      },
+      {
+        "start": 50,
+        "end": 50,
+        "recipes": [
+          [
+            "core",
+            "stone"
+          ]
+        ]
+      }
     ]
   },
   "default_plan": "cloud"

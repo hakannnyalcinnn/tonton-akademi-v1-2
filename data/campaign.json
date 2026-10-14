@@ -64,6 +64,86 @@
       "reward_id": "lava-crown",
       "reward_icon": "res://assets/casual/lava-crown.svg",
       "success_text": "Kristaller parlıyor!"
+    },
+    {
+      "id": 6,
+      "start": 251,
+      "end": 300,
+      "title": "Ayışığı Korusu",
+      "theme": "moon",
+      "art": "res://assets/casual/terrain-moon.png",
+      "map_style": "moon",
+      "decor_style": "garden",
+      "decor_world": 1,
+      "generation_plan": "moon",
+      "accent": "#a9a8f5",
+      "reward": "Ayışığı Korusu Madalyası",
+      "reward_id": "world-6-medal",
+      "success_text": "Ayışığı Korusu ışıldıyor!"
+    },
+    {
+      "id": 7,
+      "start": 301,
+      "end": 350,
+      "title": "Mercan Sarayı",
+      "theme": "palace",
+      "art": "res://assets/casual/terrain-palace.png",
+      "map_style": "palace",
+      "decor_style": "ocean",
+      "decor_world": 2,
+      "generation_plan": "palace",
+      "accent": "#ffb1cf",
+      "reward": "Mercan Sarayı Madalyası",
+      "reward_id": "world-7-medal",
+      "success_text": "Mercan Sarayı ışıldıyor!"
+    },
+    {
+      "id": 8,
+      "start": 351,
+      "end": 400,
+      "title": "Yıldız Çölü",
+      "theme": "desert",
+      "art": "res://assets/casual/terrain-desert.png",
+      "map_style": "desert",
+      "decor_style": "canyon",
+      "decor_world": 3,
+      "generation_plan": "desert",
+      "accent": "#f5c777",
+      "reward": "Yıldız Çölü Madalyası",
+      "reward_id": "world-8-medal",
+      "success_text": "Yıldız Çölü ışıldıyor!"
+    },
+    {
+      "id": 9,
+      "start": 401,
+      "end": 450,
+      "title": "Aurora Vadisi",
+      "theme": "aurora",
+      "art": "res://assets/casual/terrain-aurora.png",
+      "map_style": "aurora",
+      "decor_style": "cloud",
+      "decor_world": 4,
+      "generation_plan": "aurora",
+      "accent": "#8ee6e1",
+      "reward": "Aurora Vadisi Madalyası",
+      "reward_id": "world-9-medal",
+      "success_text": "Aurora Vadisi ışıldıyor!"
+    },
+    {
+      "id": 10,
+      "start": 451,
+      "end": 500,
+      "title": "Zümrüt Harabeleri",
+      "theme": "ruins",
+      "art": "res://assets/casual/terrain-ruins.png",
+      "map_style": "ruins",
+      "decor_style": "garden",
+      "decor_world": 1,
+      "generation_plan": "ruins",
+      "accent": "#7ce0aa",
+      "reward": "Zümrüt Harabeleri Madalyası",
+      "reward_id": "world-10-medal",
+      "success_text": "Zümrüt Harabeleri ışıldıyor!"
     }
   ],
   "packages": [
@@ -106,6 +186,37 @@
       "path": "res://data/levels-201-250.json",
       "start": 201,
       "end": 250
+    },
+    {
+      "path": "res://data/levels-251-300.json",
+      "start": 251,
+      "end": 300
+    },
+    {
+      "path": "res://data/levels-301-350.json",
+      "start": 301,
+      "end": 350
+    },
+    {
+      "path": "res://data/levels-351-400.json",
+      "start": 351,
+      "end": 400
+    },
+    {
+      "path": "res://data/levels-401-450.json",
+      "start": 401,
+      "end": 450
+    },
+    {
+      "path": "res://data/levels-451-500.json",
+      "start": 451,
+      "end": 500
     }
-  ]
+  ],
+  "capacity": {
+    "levels": 10000,
+    "worlds": 200,
+    "levels_per_world": 50,
+    "published_levels": 500
+  }
 }

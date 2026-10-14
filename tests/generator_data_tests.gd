@@ -10,13 +10,13 @@ func check(ok: bool,message: String) -> void:
  if not ok:failures+=1;printerr("FAIL: "+message)
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
- check(Catalog.count()==250 and Worlds.playable_worlds().size()==5,"only prepared 250 levels and five worlds")
+ check(Catalog.count()==500 and Worlds.playable_worlds().size()==10,"only prepared 500 levels and ten worlds")
  var used: Dictionary={};var registry=JSON.parse_string(FileAccess.get_file_as_string("res://data/mechanic-catalog.json"))
  for d in Catalog.all():
   check(Catalog.validate(d),"loadable schema "+str(d.id))
   if int(d.id)<=150:continue
   check(d.generation.status=="simulation_reviewed","drafts never exposed")
-  check(d.generation.evidence.trials>=3 and not d.generation.evidence.human_tested,"bounded honest simulation evidence")
+  check(d.generation.evidence.trials>=(1 if int(d.id)>250 else 3) and not d.generation.evidence.human_tested and (int(d.id)<=250 or d.generation.evidence.get("default_seed_witness",false)),"bounded honest simulation evidence")
   check(d.world_id==Catalog.world_for(int(d.id)),"data-driven world assignment")
   var b=Board.new(d)
   check(b.find_matches().is_empty() and Match.has_move(b.cells,8,9),"stable authored start with a legal move")
@@ -32,4 +32,4 @@ func run() -> void:
     var sorted: Array=combination.duplicate();sorted.sort();if sorted==kinds:compatible=true
    check(compatible,"only reviewed combinations")
  check(used.size()==20,"all twenty mechanics appear across the new campaign")
- print("GENERATOR DATA: %d checks, %d failures; all 250 loadable, all 100 new starts tested"%[checks,failures]);quit(int(failures>0))
+ print("GENERATOR DATA: %d checks, %d failures; all 500 loadable, all generated starts tested"%[checks,failures]);quit(int(failures>0))

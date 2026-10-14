@@ -1,0 +1,9429 @@
+{
+  "generator_version": 2.0,
+  "levels": [
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 42.45,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.846153846153846
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "8039110f759747379fbdc531e3efe27edcf9b1328d7f78422f8846f80e777c1f",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {},
+          "score": 0.0
+        },
+        "revision": 0.0,
+        "seed": 150501.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 8,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 401.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        2,
+        0,
+        0,
+        3,
+        2,
+        0,
+        1,
+        4,
+        3,
+        1,
+        3,
+        1,
+        0,
+        1,
+        4,
+        3,
+        1,
+        0,
+        3,
+        2,
+        4,
+        2,
+        1,
+        4,
+        1,
+        0,
+        0,
+        3,
+        1,
+        2,
+        0,
+        2,
+        2,
+        1,
+        0,
+        4,
+        3,
+        0,
+        4,
+        1,
+        2,
+        1,
+        4,
+        3,
+        3,
+        1,
+        3,
+        1,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        3,
+        0,
+        4,
+        2,
+        0,
+        1,
+        2,
+        2,
+        2,
+        4,
+        4,
+        0,
+        4,
+        4,
+        0,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 47.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 1",
+      "portals": [
+        {
+          "entry": 41.0,
+          "exit": 16.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 150501.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 76.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 62.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.91,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.909090909090908
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "c1131df1643341cb333eb95e90fbf1d24478dbe63aeb592d816489f1a22c92de",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 150602.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 402.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        1,
+        3,
+        2,
+        3,
+        4,
+        4,
+        0,
+        4,
+        2,
+        1,
+        0,
+        1,
+        1,
+        4,
+        3,
+        1,
+        1,
+        2,
+        4,
+        3,
+        0,
+        0,
+        0,
+        3,
+        1,
+        1,
+        2,
+        1,
+        3,
+        3,
+        1,
+        3,
+        4,
+        3,
+        3,
+        4,
+        4,
+        0,
+        4,
+        0,
+        1,
+        1,
+        0,
+        0,
+        3,
+        1,
+        4,
+        1,
+        2,
+        2,
+        0,
+        2,
+        2,
+        0,
+        3,
+        1,
+        3,
+        4,
+        2,
+        0,
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        1,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 53.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 2",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 150602.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 109.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 40.38,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.181818181818182
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "b41524419fd2fbf9c8cb7fe1866aa427d52f41cc4cfe8d23c1c245e876ee23de",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 150703.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 403.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        3,
+        0,
+        0,
+        4,
+        0,
+        1,
+        0,
+        2,
+        1,
+        3,
+        1,
+        4,
+        0,
+        4,
+        3,
+        0,
+        2,
+        0,
+        1,
+        0,
+        4,
+        0,
+        4,
+        1,
+        0,
+        4,
+        2,
+        3,
+        4,
+        3,
+        2,
+        2,
+        1,
+        3,
+        3,
+        1,
+        2,
+        2,
+        4,
+        3,
+        1,
+        3,
+        4,
+        3,
+        1,
+        1,
+        0,
+        0,
+        4,
+        4,
+        1,
+        4,
+        4,
+        3,
+        1,
+        4,
+        1,
+        2,
+        2,
+        3,
+        3,
+        1,
+        3,
+        3,
+        0,
+        2,
+        1,
+        4,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 20.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 3",
+      "portals": [
+        {
+          "entry": 52.0,
+          "exit": 7.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 150703.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 112.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 45.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 56.6,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 14.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "0789119d8378d9699a42af3ceddecaf1f2b31c92d6112ca4fac9b9ed995cc8bf",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 150804.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 404.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        2,
+        0,
+        0,
+        2,
+        0,
+        2,
+        2,
+        0,
+        1,
+        2,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        2,
+        0,
+        0,
+        3,
+        0,
+        2,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        0,
+        3,
+        1,
+        0,
+        2,
+        2,
+        3,
+        2,
+        0,
+        0,
+        0,
+        3,
+        2,
+        3,
+        0,
+        2,
+        1,
+        1,
+        2,
+        3,
+        0,
+        1,
+        3,
+        0,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        3,
+        3,
+        0,
+        3,
+        3,
+        0,
+        3,
+        0,
+        2,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 41.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 4",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 150804.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 140.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 44.6,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "9609e167e880e6ebd8ab3e4287fd4adfe981d3a1222edf3b0b2895c4e3f361db",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.333333333333333,
+            "targets": 0.25
+          },
+          "score": 0.260833333333333
+        },
+        "revision": 0.0,
+        "seed": 150905.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 405.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        4,
+        1,
+        3,
+        1,
+        0,
+        4,
+        0,
+        1,
+        4,
+        2,
+        0,
+        4,
+        4,
+        0,
+        1,
+        0,
+        2,
+        2,
+        4,
+        2,
+        3,
+        0,
+        4,
+        2,
+        2,
+        4,
+        0,
+        3,
+        2,
+        1,
+        2,
+        3,
+        3,
+        4,
+        3,
+        2,
+        0,
+        1,
+        3,
+        2,
+        2,
+        0,
+        1,
+        2,
+        1,
+        3,
+        1,
+        2,
+        3,
+        0,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2,
+        0,
+        1,
+        1,
+        0,
+        4,
+        0,
+        3,
+        2,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 29.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 5",
+      "portals": [
+        {
+          "entry": 16.0,
+          "exit": 55.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 150905.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 88.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 33.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 58.6,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "924afe419768455dc44b2918fd15908d3c8231f137b896beee96acde31465cd7",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.333333333333333,
+            "targets": 0.25
+          },
+          "score": 0.270833333333333
+        },
+        "revision": 0.0,
+        "seed": 151006.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 406.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        2,
+        4,
+        2,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        3,
+        4,
+        3,
+        2,
+        2,
+        1,
+        4,
+        2,
+        4,
+        0,
+        1,
+        4,
+        0,
+        4,
+        1,
+        4,
+        0,
+        0,
+        3,
+        1,
+        0,
+        4,
+        4,
+        2,
+        2,
+        3,
+        0,
+        1,
+        3,
+        2,
+        0,
+        4,
+        0,
+        3,
+        3,
+        4,
+        0,
+        4,
+        2,
+        4,
+        0,
+        4,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3,
+        4,
+        4,
+        1,
+        4,
+        4,
+        0,
+        4,
+        2,
+        3,
+        2,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 16.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 6",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 151006.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 100.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 46.45,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.846153846153847
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "0415702c7b9ccfbcf963401bad6890f948216f4b96cf47a8c7ab0b65d0171dd0",
+          "trials": 1,
+          "winning_moves": 11
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 20,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 151107.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 11,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 407.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        0,
+        3,
+        2,
+        4,
+        0,
+        1,
+        4,
+        0,
+        2,
+        2,
+        4,
+        1,
+        4,
+        0,
+        4,
+        0,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        1,
+        2,
+        0,
+        2,
+        1,
+        1,
+        0,
+        3,
+        0,
+        2,
+        4,
+        1,
+        3,
+        1,
+        4,
+        0,
+        4,
+        1,
+        2,
+        1,
+        3,
+        3,
+        1,
+        1,
+        1,
+        4,
+        4,
+        2,
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        3,
+        2,
+        0,
+        2,
+        0,
+        1,
+        0,
+        2,
+        3,
+        0,
+        3,
+        4,
+        2,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 10.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 7",
+      "portals": [
+        {
+          "entry": 32.0,
+          "exit": 47.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 151107.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 128.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 48.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 42.5,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.5
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "9e8bb361d8c45956b4c1e3cd5d54143957436f410b0ba7268d2ff9f5a56e8015",
+          "trials": 1,
+          "winning_moves": 2
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 38,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 151208.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 2,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 408.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        3,
+        0,
+        1,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        0,
+        3,
+        2,
+        3,
+        2,
+        1,
+        3,
+        1,
+        3,
+        0,
+        1,
+        1,
+        3,
+        1,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        3,
+        1,
+        0,
+        3,
+        3,
+        2,
+        3,
+        0,
+        0,
+        2,
+        1,
+        3,
+        2,
+        1,
+        2,
+        3,
+        0,
+        1,
+        0,
+        0,
+        3,
+        3,
+        1,
+        3,
+        3,
+        0,
+        3,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 17.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 8,
+      "name": "Aurora Vadisi · 8",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 151208.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 76.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 47.5,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.9
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "43daaec9674c13990479d49977031364e5a4cac5c390b13489f47e6c256722c5",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 23,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 151309.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 409.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        4,
+        2,
+        0,
+        0,
+        2,
+        2,
+        1,
+        1,
+        4,
+        1,
+        4,
+        3,
+        1,
+        3,
+        4,
+        2,
+        2,
+        3,
+        4,
+        1,
+        3,
+        3,
+        4,
+        0,
+        0,
+        2,
+        0,
+        1,
+        1,
+        2,
+        3,
+        2,
+        2,
+        4,
+        4,
+        0,
+        1,
+        1,
+        2,
+        0,
+        4,
+        4,
+        1,
+        1,
+        0,
+        3,
+        1,
+        2,
+        1,
+        0,
+        1,
+        3,
+        3,
+        2,
+        4,
+        0,
+        4,
+        0,
+        2,
+        1,
+        4,
+        4,
+        3,
+        0,
+        2,
+        2,
+        4,
+        1,
+        2,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 54.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 9",
+      "portals": [
+        {
+          "entry": 43.0,
+          "exit": 68.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 151309.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 109.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 26.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 71.3,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 16.7
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "62aa14e7021b0034a1c41f9c515a4e955f6f4d5dbb083c489ab75303edf71c3e",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 1.0,
+            "targets": 0.25
+          },
+          "score": 0.4375
+        },
+        "revision": 0.0,
+        "seed": 151410.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 410.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        1,
+        0,
+        1,
+        0,
+        2,
+        3,
+        1,
+        4,
+        4,
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        2,
+        0,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        0,
+        1,
+        4,
+        3,
+        1,
+        4,
+        3,
+        2,
+        2,
+        0,
+        0,
+        2,
+        3,
+        4,
+        3,
+        2,
+        3,
+        0,
+        4,
+        3,
+        0,
+        0,
+        2,
+        3,
+        1,
+        4,
+        1,
+        3,
+        0,
+        3,
+        4,
+        1,
+        1,
+        1,
+        0,
+        1,
+        3,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        4,
+        4,
+        0,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 19.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 10",
+      "objective_stages": [
+        {
+          "giants": 1.0,
+          "ice": 1.0,
+          "total": 83.0
+        },
+        {
+          "giants": 1.0,
+          "ice": 2.0,
+          "total": 167.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 151410.0,
+      "shape": "terraces",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 167.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 43.68,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.083333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "716b2ef0002b5a147960fb8991f5ac366dccb5b63d839900fa8ca70a2559240f",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.5,
+            "targets": 0.25
+          },
+          "score": 0.3125
+        },
+        "revision": 0.0,
+        "seed": 151511.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 411.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        0,
+        1,
+        2,
+        2,
+        0,
+        3,
+        0,
+        1,
+        2,
+        4,
+        1,
+        4,
+        2,
+        3,
+        1,
+        2,
+        2,
+        3,
+        4,
+        2,
+        3,
+        0,
+        3,
+        1,
+        0,
+        4,
+        4,
+        0,
+        2,
+        2,
+        2,
+        1,
+        0,
+        3,
+        3,
+        0,
+        0,
+        1,
+        4,
+        0,
+        4,
+        3,
+        4,
+        2,
+        1,
+        0,
+        3,
+        1,
+        1,
+        4,
+        0,
+        0,
+        4,
+        0,
+        3,
+        0,
+        3,
+        4,
+        4,
+        0,
+        4,
+        1,
+        4,
+        1,
+        3,
+        1,
+        0,
+        3,
+        2,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 18.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 12,
+      "name": "Aurora Vadisi · 11",
+      "portals": [
+        {
+          "entry": 54.0,
+          "exit": 2.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 151511.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 85.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 52.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 57.35,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 14.75
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "e4e435458ebc17a63912092d8a7a0754efb07549454a5d41d40e60dd42f3fb37",
+          "trials": 1,
+          "winning_moves": 3
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 1.0,
+            "targets": 0.25
+          },
+          "score": 0.4275
+        },
+        "revision": 0.0,
+        "seed": 151612.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 3,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 412.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        0,
+        3,
+        3,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        3,
+        2,
+        0,
+        0,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0,
+        3,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        3,
+        0,
+        3,
+        3,
+        2,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        2,
+        3,
+        0,
+        2,
+        1,
+        3,
+        3,
+        2,
+        3,
+        3,
+        2,
+        3,
+        1,
+        1,
+        0,
+        1,
+        2,
+        2,
+        0,
+        1,
+        3,
+        3,
+        0,
+        0,
+        3,
+        3,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 30.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 8,
+      "name": "Aurora Vadisi · 12",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 151612.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 118.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 53.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 40.2,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "25107e64e3041773f5b7022309d2ba3f72f01c9bcb9f6d9e468aadc489af49e0",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 151713.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 413.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        4,
+        2,
+        4,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        2,
+        3,
+        2,
+        1,
+        1,
+        2,
+        0,
+        4,
+        1,
+        0,
+        3,
+        2,
+        2,
+        4,
+        3,
+        3,
+        0,
+        3,
+        2,
+        2,
+        1,
+        4,
+        0,
+        1,
+        3,
+        4,
+        1,
+        4,
+        3,
+        0,
+        0,
+        3,
+        3,
+        2,
+        1,
+        1,
+        4,
+        1,
+        3,
+        4,
+        1,
+        3,
+        0,
+        0,
+        3,
+        0,
+        2,
+        0,
+        1,
+        2,
+        2,
+        3,
+        1,
+        3,
+        2,
+        0,
+        0,
+        1,
+        3,
+        1,
+        0,
+        4
+      ],
+      "mechanics": [],
+      "moves": 10,
+      "name": "Aurora Vadisi · 13",
+      "portals": [
+        {
+          "entry": 56.0,
+          "exit": 7.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 151713.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 100.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 18.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 55.62,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 14.222222222222221
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "ff5e5ade343553837be5ac8f288973156e615da580c5cf582a39437756d2bc5e",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 151814.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 414.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        1,
+        3,
+        4,
+        4,
+        1,
+        3,
+        3,
+        3,
+        1,
+        2,
+        4,
+        4,
+        3,
+        4,
+        2,
+        0,
+        0,
+        2,
+        2,
+        1,
+        4,
+        2,
+        3,
+        3,
+        4,
+        1,
+        3,
+        4,
+        3,
+        4,
+        0,
+        2,
+        3,
+        2,
+        3,
+        4,
+        1,
+        2,
+        2,
+        4,
+        1,
+        4,
+        2,
+        1,
+        4,
+        4,
+        4,
+        0,
+        3,
+        4,
+        4,
+        2,
+        3,
+        4,
+        4,
+        1,
+        3,
+        1,
+        4,
+        2,
+        0,
+        2,
+        1,
+        1,
+        0,
+        4,
+        0,
+        1,
+        3,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 9.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 9,
+      "name": "Aurora Vadisi · 14",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 151814.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 128.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 42.45,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.846153846153846
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "db569f67b9e6ce2d9817e7206c1f748855dc928f35c4de0f2a9bf66d0f300f8d",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.25
+          },
+          "score": 0.215277777777778
+        },
+        "revision": 0.0,
+        "seed": 151915.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 415.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        4,
+        0,
+        1,
+        3,
+        2,
+        0,
+        1,
+        4,
+        1,
+        3,
+        0,
+        4,
+        0,
+        4,
+        4,
+        0,
+        4,
+        1,
+        3,
+        2,
+        1,
+        3,
+        0,
+        2,
+        3,
+        4,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        2,
+        4,
+        4,
+        1,
+        0,
+        1,
+        4,
+        0,
+        4,
+        3,
+        2,
+        2,
+        1,
+        3,
+        3,
+        1,
+        2,
+        4,
+        3,
+        2,
+        4,
+        4,
+        4,
+        3,
+        2,
+        2,
+        3,
+        4,
+        0,
+        0,
+        4,
+        3,
+        1,
+        0,
+        2,
+        3,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 34.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 15",
+      "portals": [
+        {
+          "entry": 31.0,
+          "exit": 24.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 151915.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 76.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 33.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.98,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.384615384615385
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "6875368d0209d4e3af3988e32a1e60d02c4958450e7111d3cf4e6847aa4c266d",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.333333333333333,
+            "targets": 0.25
+          },
+          "score": 0.260833333333333
+        },
+        "revision": 0.0,
+        "seed": 152016.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 416.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        3,
+        1,
+        2,
+        0,
+        3,
+        3,
+        1,
+        3,
+        0,
+        0,
+        3,
+        2,
+        1,
+        2,
+        0,
+        2,
+        0,
+        1,
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        2,
+        1,
+        0,
+        3,
+        2,
+        0,
+        3,
+        1,
+        2,
+        3,
+        1,
+        2,
+        2,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3,
+        3,
+        0,
+        2,
+        2,
+        1,
+        2,
+        1,
+        2,
+        3,
+        2,
+        2,
+        0,
+        0,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 37.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 16",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 152016.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 109.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 17.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 45.16,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.5625
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "856fca153802976547d1d0e5c16bdf60c67745c347ff7b4c8aefc00bd82d4d4f",
+          "trials": 1,
+          "winning_moves": 14
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 152117.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 14,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 417.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        1,
+        2,
+        0,
+        1,
+        3,
+        1,
+        4,
+        3,
+        2,
+        4,
+        3,
+        3,
+        0,
+        3,
+        4,
+        1,
+        3,
+        3,
+        2,
+        4,
+        2,
+        4,
+        0,
+        4,
+        0,
+        3,
+        0,
+        4,
+        1,
+        3,
+        0,
+        3,
+        3,
+        2,
+        0,
+        3,
+        2,
+        3,
+        3,
+        2,
+        4,
+        1,
+        1,
+        0,
+        4,
+        2,
+        3,
+        0,
+        1,
+        2,
+        4,
+        1,
+        0,
+        0,
+        4,
+        3,
+        3,
+        4,
+        1,
+        2,
+        4,
+        2,
+        4,
+        0,
+        2,
+        0,
+        0,
+        2,
+        1,
+        1
+      ],
+      "mechanics": [],
+      "moves": 16,
+      "name": "Aurora Vadisi · 17",
+      "portals": [
+        {
+          "entry": 21.0,
+          "exit": 31.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 152117.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 137.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 42.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 47.94,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.538461538461538
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "98fb6ec4580144ce1fed5cae2e61e6ad70206193df71aab1b32319921d0d31e7",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 152218.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 418.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        2,
+        1,
+        0,
+        0,
+        4,
+        4,
+        2,
+        3,
+        2,
+        4,
+        4,
+        0,
+        1,
+        3,
+        1,
+        0,
+        1,
+        1,
+        0,
+        2,
+        1,
+        1,
+        0,
+        0,
+        2,
+        4,
+        4,
+        1,
+        3,
+        4,
+        3,
+        2,
+        1,
+        4,
+        0,
+        0,
+        1,
+        4,
+        4,
+        2,
+        4,
+        2,
+        0,
+        1,
+        4,
+        1,
+        1,
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        4,
+        2,
+        3,
+        1,
+        2,
+        1,
+        4,
+        4,
+        3,
+        2,
+        4,
+        3,
+        0,
+        2,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 50.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 18",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 152218.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 85.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 47.33,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.727272727272727
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "68e815074cfe44f0b60538a6e457466f76c57d427d309854536e495b7d29bd20",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 17,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 152319.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 419.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        1,
+        1,
+        4,
+        4,
+        3,
+        0,
+        3,
+        1,
+        0,
+        2,
+        0,
+        3,
+        3,
+        0,
+        3,
+        1,
+        4,
+        4,
+        2,
+        0,
+        0,
+        2,
+        1,
+        4,
+        3,
+        3,
+        4,
+        2,
+        3,
+        2,
+        0,
+        0,
+        3,
+        4,
+        3,
+        2,
+        1,
+        4,
+        2,
+        2,
+        1,
+        2,
+        4,
+        1,
+        3,
+        2,
+        2,
+        0,
+        2,
+        0,
+        3,
+        1,
+        0,
+        4,
+        0,
+        4,
+        4,
+        0,
+        0,
+        3,
+        4,
+        1,
+        3,
+        2,
+        3,
+        2,
+        3,
+        1,
+        2,
+        3,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 9.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 19",
+      "portals": [
+        {
+          "entry": 14.0,
+          "exit": 69.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 152319.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 118.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 37.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 58.38,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 19.375
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "0285e42967e817b696962268ab9436814fb20db7964e431dbce839248b27b948",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 23,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 152420.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 420.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        2,
+        0,
+        0,
+        2,
+        3,
+        0,
+        1,
+        3,
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        3,
+        1,
+        3,
+        1,
+        0,
+        0,
+        2,
+        2,
+        0,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0,
+        3,
+        1,
+        0,
+        3,
+        1,
+        3,
+        0,
+        0,
+        2,
+        0,
+        0,
+        3,
+        2,
+        0,
+        3,
+        2,
+        0,
+        1,
+        2,
+        2,
+        2,
+        3,
+        1,
+        0,
+        1,
+        3,
+        3,
+        0,
+        3,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 18.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 8,
+      "name": "Aurora Vadisi · 20",
+      "objective_stages": [
+        {
+          "giants": 1.0,
+          "ice": 1.0,
+          "total": 77.0
+        },
+        {
+          "giants": 1.0,
+          "ice": 2.0,
+          "total": 155.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 152420.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 155.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 46.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 42.22,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.615384615384615
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "fff1a26ef97329cd6dd3eafbda130d61b24fc77406db73d4d38673219c498895",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 152521.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 421.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        3,
+        3,
+        4,
+        3,
+        3,
+        0,
+        2,
+        4,
+        3,
+        0,
+        1,
+        0,
+        2,
+        1,
+        3,
+        1,
+        1,
+        2,
+        1,
+        0,
+        4,
+        2,
+        4,
+        0,
+        0,
+        2,
+        3,
+        4,
+        0,
+        4,
+        2,
+        1,
+        0,
+        1,
+        0,
+        0,
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        4,
+        2,
+        3,
+        0,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0,
+        2,
+        1,
+        3,
+        0,
+        1,
+        0,
+        2,
+        3,
+        4,
+        2,
+        1,
+        3,
+        2,
+        0,
+        4,
+        2,
+        1,
+        3
+      ],
+      "mechanics": [],
+      "moves": 13,
+      "name": "Aurora Vadisi · 21",
+      "portals": [
+        {
+          "entry": 17.0,
+          "exit": 24.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 152521.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 73.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 42.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 49.55,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.153846153846153
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "e30c2f09d867481f2cbe0253afd89c11cfecef0f1b05194828e3465e1847cd65",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 152622.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 422.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        2,
+        0,
+        1,
+        0,
+        4,
+        1,
+        1,
+        0,
+        1,
+        4,
+        2,
+        4,
+        3,
+        3,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3,
+        3,
+        4,
+        3,
+        4,
+        4,
+        2,
+        3,
+        4,
+        4,
+        3,
+        1,
+        0,
+        1,
+        0,
+        2,
+        3,
+        3,
+        2,
+        1,
+        0,
+        4,
+        3,
+        0,
+        4,
+        4,
+        2,
+        0,
+        2,
+        4,
+        2,
+        0,
+        0,
+        4,
+        3,
+        3,
+        1,
+        2,
+        1,
+        3,
+        1,
+        2,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 14.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 22",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 152622.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 106.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 40.11,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.909090909090908
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "697fed927baa48f60856f3661b6e30454d8bda6c7fb125024e0f0d8ac7ee4ef5",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 152723.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        27.0,
+        28.0,
+        35.0,
+        36.0
+      ],
+      "id": 423.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        0,
+        3,
+        0,
+        4,
+        4,
+        3,
+        0,
+        2,
+        4,
+        0,
+        3,
+        1,
+        1,
+        0,
+        0,
+        2,
+        2,
+        3,
+        2,
+        3,
+        3,
+        0,
+        2,
+        1,
+        1,
+        3,
+        4,
+        0,
+        4,
+        4,
+        1,
+        2,
+        0,
+        2,
+        4,
+        0,
+        3,
+        4,
+        2,
+        0,
+        1,
+        1,
+        0,
+        1,
+        2,
+        3,
+        3,
+        4,
+        3,
+        3,
+        4,
+        0,
+        0,
+        2,
+        1,
+        4,
+        1,
+        4,
+        1,
+        3,
+        1,
+        4,
+        4,
+        3,
+        4,
+        3,
+        0,
+        1,
+        0,
+        2,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 14.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 23",
+      "portals": [
+        {
+          "entry": 59.0,
+          "exit": 47.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 152723.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 109.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 18.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 59.73,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 17.125
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "2182705b17244b32de1b6951fb7fa96d7c172db4af0381335a10a5712adf9ee7",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 152824.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 424.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        2,
+        0,
+        3,
+        3,
+        0,
+        1,
+        0,
+        2,
+        2,
+        3,
+        3,
+        1,
+        2,
+        0,
+        1,
+        1,
+        1,
+        3,
+        1,
+        0,
+        0,
+        1,
+        2,
+        1,
+        2,
+        0,
+        3,
+        1,
+        1,
+        3,
+        1,
+        3,
+        3,
+        3,
+        0,
+        0,
+        2,
+        0,
+        3,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        2,
+        0,
+        2,
+        2,
+        0,
+        0,
+        2,
+        3,
+        1,
+        3,
+        0,
+        2,
+        2,
+        3,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 58.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 8,
+      "name": "Aurora Vadisi · 24",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 152824.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 137.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 20.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 41.6,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "a7a6c7b2690abdd8bd82f07d81dbe78c36c8c581e72d35ffa6508918ae74abbe",
+          "trials": 1,
+          "winning_moves": 11
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 14,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.333333333333333,
+            "targets": 0.25
+          },
+          "score": 0.260833333333333
+        },
+        "revision": 0.0,
+        "seed": 152925.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 11,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        2.0,
+        8.0,
+        9.0,
+        16.0,
+        55.0,
+        62.0,
+        63.0,
+        69.0,
+        70.0,
+        71.0
+      ],
+      "id": 425.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        2,
+        0,
+        0,
+        3,
+        4,
+        4,
+        2,
+        0,
+        3,
+        3,
+        2,
+        2,
+        4,
+        1,
+        4,
+        1,
+        3,
+        4,
+        1,
+        2,
+        3,
+        0,
+        3,
+        1,
+        2,
+        2,
+        0,
+        1,
+        3,
+        2,
+        2,
+        0,
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        4,
+        1,
+        4,
+        1,
+        1,
+        3,
+        2,
+        1,
+        2,
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        3,
+        2,
+        3,
+        0,
+        0,
+        2,
+        2,
+        0,
+        4,
+        0,
+        3,
+        1,
+        3,
+        3,
+        0,
+        3,
+        3
+      ],
+      "mechanics": [],
+      "moves": 17,
+      "name": "Aurora Vadisi · 25",
+      "portals": [
+        {
+          "entry": 42.0,
+          "exit": 5.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 152925.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 85.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 27.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 54.74,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.9411764705882355
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "b99e0084ba26c91cf1b66dbee6c1dea6ff9c9b50cc66aa61f22468793f446d46",
+          "trials": 1,
+          "winning_moves": 13
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.25
+          },
+          "score": 0.2875
+        },
+        "revision": 0.0,
+        "seed": 153026.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 13,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 426.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        1,
+        0,
+        4,
+        4,
+        3,
+        1,
+        3,
+        3,
+        2,
+        4,
+        3,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        4,
+        3,
+        3,
+        1,
+        3,
+        2,
+        4,
+        1,
+        3,
+        1,
+        0,
+        1,
+        2,
+        3,
+        2,
+        0,
+        0,
+        1,
+        2,
+        4,
+        3,
+        2,
+        1,
+        3,
+        0,
+        2,
+        1,
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        0,
+        2,
+        4,
+        1,
+        3,
+        1,
+        0,
+        4,
+        1,
+        2,
+        3,
+        3,
+        0,
+        3,
+        2,
+        4,
+        3,
+        4,
+        4,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 10.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 17,
+      "name": "Aurora Vadisi · 26",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 153026.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 118.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 45.53,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.928571428571429
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "ea58844fc52aca58c3fbc95c2b34ed1c9ba06ec9b5dfa4473696119e6b9e1b03",
+          "trials": 1,
+          "winning_moves": 12
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 12,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 153127.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 12,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 427.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        0,
+        4,
+        1,
+        3,
+        3,
+        0,
+        4,
+        0,
+        4,
+        1,
+        4,
+        4,
+        0,
+        0,
+        2,
+        2,
+        2,
+        3,
+        3,
+        1,
+        1,
+        4,
+        4,
+        4,
+        3,
+        1,
+        3,
+        3,
+        4,
+        0,
+        4,
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        2,
+        0,
+        3,
+        3,
+        4,
+        2,
+        0,
+        3,
+        0,
+        1,
+        2,
+        2,
+        0,
+        0,
+        2,
+        4,
+        0,
+        1,
+        0,
+        4,
+        1,
+        3,
+        0,
+        3,
+        2,
+        2,
+        1,
+        4,
+        3,
+        0,
+        3,
+        0,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 56.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 14,
+      "name": "Aurora Vadisi · 27",
+      "portals": [
+        {
+          "entry": 23.0,
+          "exit": 16.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 153127.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 125.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 33.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.71,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.11111111111111
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "fb466778ca1b903ac8e1be26668fee6fdc3fe305ddc7c880620b07e89d9b66d8",
+          "trials": 1,
+          "winning_moves": 3
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 153228.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 3,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 428.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        2,
+        3,
+        1,
+        0,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        0,
+        2,
+        1,
+        1,
+        3,
+        2,
+        2,
+        3,
+        3,
+        3,
+        0,
+        3,
+        1,
+        0,
+        2,
+        3,
+        3,
+        3,
+        0,
+        3,
+        3,
+        1,
+        3,
+        0,
+        0,
+        2,
+        2,
+        0,
+        2,
+        1,
+        3,
+        1,
+        1,
+        2,
+        0,
+        2,
+        0,
+        3,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        3,
+        0,
+        3,
+        0,
+        3,
+        0,
+        2,
+        1,
+        1,
+        0,
+        3,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 10.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 9,
+      "name": "Aurora Vadisi · 28",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 153228.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 73.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 10.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 47.2,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "f548b8809e53d044dac4ad5792380f5f395eb3265f9054ff97841b973d9bd7be",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 1.0,
+            "targets": 0.25
+          },
+          "score": 0.4275
+        },
+        "revision": 0.0,
+        "seed": 153329.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 429.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        3,
+        4,
+        4,
+        0,
+        0,
+        2,
+        2,
+        0,
+        3,
+        3,
+        4,
+        0,
+        2,
+        3,
+        1,
+        2,
+        0,
+        1,
+        0,
+        3,
+        4,
+        3,
+        1,
+        4,
+        4,
+        1,
+        0,
+        4,
+        2,
+        2,
+        4,
+        4,
+        0,
+        0,
+        4,
+        0,
+        2,
+        4,
+        2,
+        2,
+        1,
+        0,
+        0,
+        3,
+        1,
+        0,
+        1,
+        3,
+        0,
+        3,
+        3,
+        4,
+        1,
+        3,
+        3,
+        2,
+        1,
+        2,
+        0,
+        4,
+        3,
+        3,
+        0,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        2,
+        4
+      ],
+      "mechanics": [],
+      "moves": 10,
+      "name": "Aurora Vadisi · 29",
+      "portals": [
+        {
+          "entry": 42.0,
+          "exit": 5.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 153329.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 106.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 54.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 61.5,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 20.5
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "3d31eb16db316bfe751172db44d7902308a1992375ca0738cbd10ecebaa8cc8a",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 153430.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 430.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        2,
+        4,
+        4,
+        1,
+        3,
+        0,
+        4,
+        4,
+        0,
+        0,
+        4,
+        1,
+        4,
+        4,
+        3,
+        0,
+        1,
+        2,
+        0,
+        2,
+        1,
+        4,
+        1,
+        0,
+        1,
+        0,
+        4,
+        3,
+        2,
+        1,
+        4,
+        2,
+        2,
+        0,
+        1,
+        4,
+        2,
+        0,
+        0,
+        2,
+        0,
+        4,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        2,
+        0,
+        4,
+        2,
+        4,
+        3,
+        3,
+        1,
+        1,
+        4,
+        1,
+        0,
+        3,
+        0,
+        2,
+        1,
+        0,
+        3,
+        3,
+        1,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 29.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 8,
+      "name": "Aurora Vadisi · 30",
+      "objective_stages": [
+        {
+          "bridges": 1.0,
+          "floors": 1.0,
+          "total": 82.0
+        },
+        {
+          "bridges": 1.0,
+          "floors": 1.0,
+          "total": 164.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 153430.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 164.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 12.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.43,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.833333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "97ea35d4026c7d39635d6333acbb4e05d9386d6f2b746d65fbdfc23030515763",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 30,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 1.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 1.0
+          },
+          "score": 0.5
+        },
+        "revision": 0.0,
+        "seed": 153531.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 431.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        2,
+        0,
+        4,
+        1,
+        2,
+        3,
+        4,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        3,
+        3,
+        2,
+        1,
+        1,
+        3,
+        3,
+        2,
+        1,
+        1,
+        4,
+        2,
+        2,
+        4,
+        1,
+        1,
+        3,
+        3,
+        1,
+        3,
+        0,
+        2,
+        2,
+        4,
+        0,
+        3,
+        3,
+        3,
+        2,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        1,
+        0,
+        4,
+        4,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        0,
+        3,
+        4,
+        2,
+        4,
+        3,
+        1,
+        0,
+        3,
+        0,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 28.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 12,
+      "name": "Aurora Vadisi · 31",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 153531.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 82.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 10.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 36.25,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 8.846153846153847
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "e69c58da22af21a2676c318830d73c0445f1c9cac50a19eeeb524f44c88f3a4b",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 153632.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 432.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        0,
+        1,
+        0,
+        3,
+        1,
+        1,
+        2,
+        3,
+        0,
+        2,
+        1,
+        1,
+        3,
+        3,
+        1,
+        2,
+        3,
+        0,
+        1,
+        3,
+        3,
+        0,
+        2,
+        2,
+        2,
+        3,
+        2,
+        3,
+        2,
+        1,
+        3,
+        3,
+        1,
+        2,
+        1,
+        1,
+        0,
+        1,
+        3,
+        1,
+        3,
+        3,
+        0,
+        0,
+        2,
+        2,
+        0,
+        2,
+        3,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        3,
+        3,
+        3,
+        1,
+        1,
+        0,
+        2,
+        0,
+        2,
+        2
+      ],
+      "mechanics": [],
+      "moves": 13,
+      "name": "Aurora Vadisi · 32",
+      "portals": [
+        {
+          "entry": 23.0,
+          "exit": 64.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 153632.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 115.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 16.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 57.68,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.076923076923077
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "2778c00c1b3989312626cca549dbb1723450f5aab2d86b229a3176154961597f",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 7,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 153733.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 433.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        3,
+        0,
+        0,
+        4,
+        4,
+        1,
+        1,
+        2,
+        3,
+        4,
+        0,
+        2,
+        3,
+        0,
+        1,
+        1,
+        4,
+        2,
+        4,
+        1,
+        1,
+        3,
+        2,
+        0,
+        0,
+        2,
+        3,
+        2,
+        2,
+        0,
+        1,
+        2,
+        0,
+        0,
+        3,
+        2,
+        0,
+        3,
+        3,
+        3,
+        4,
+        0,
+        2,
+        3,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4,
+        4,
+        0,
+        2,
+        1,
+        2,
+        4,
+        1,
+        3,
+        2,
+        0,
+        1,
+        3,
+        2,
+        2,
+        0,
+        3,
+        4,
+        3,
+        1,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 26.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 33",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 153733.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 118.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 47.29,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 13.88888888888889
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "62dfd632cf704f8300007d77860044dd5641b11f621c2f7204595024acbfd264",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 153834.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 434.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        1,
+        0,
+        3,
+        2,
+        0,
+        1,
+        0,
+        0,
+        3,
+        0,
+        0,
+        3,
+        4,
+        3,
+        4,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2,
+        0,
+        0,
+        3,
+        0,
+        2,
+        4,
+        4,
+        3,
+        0,
+        4,
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        4,
+        4,
+        0,
+        4,
+        1,
+        2,
+        1,
+        1,
+        3,
+        3,
+        4,
+        1,
+        4,
+        1,
+        2,
+        0,
+        3,
+        0,
+        1,
+        2,
+        2,
+        0,
+        3,
+        2,
+        1,
+        4,
+        4,
+        1,
+        1,
+        3,
+        2,
+        4,
+        1,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 58.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 9,
+      "name": "Aurora Vadisi · 34",
+      "portals": [
+        {
+          "entry": 20.0,
+          "exit": 67.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 153834.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 125.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 11.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.68,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.083333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "a7ce3b777e1c7db366858ca5f2079a9d5d892705a01b9f412f770f71db433bfb",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 29,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.111111111111111,
+            "targets": 0.25
+          },
+          "score": 0.215277777777778
+        },
+        "revision": 0.0,
+        "seed": 153935.0,
+        "status": "simulation_reviewed",
+        "template": "staircase",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        5.0,
+        6.0,
+        7.0,
+        14.0,
+        15.0,
+        23.0,
+        48.0,
+        56.0,
+        57.0,
+        64.0,
+        65.0,
+        66.0
+      ],
+      "id": 435.0,
+      "initial_gravity": "down",
+      "layout": [
+        4,
+        4,
+        2,
+        1,
+        4,
+        4,
+        2,
+        4,
+        2,
+        2,
+        3,
+        2,
+        4,
+        3,
+        0,
+        2,
+        1,
+        0,
+        3,
+        1,
+        3,
+        4,
+        1,
+        3,
+        2,
+        1,
+        1,
+        0,
+        4,
+        0,
+        0,
+        3,
+        2,
+        4,
+        3,
+        0,
+        3,
+        1,
+        0,
+        2,
+        1,
+        2,
+        0,
+        3,
+        1,
+        2,
+        2,
+        4,
+        2,
+        0,
+        0,
+        4,
+        2,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        0,
+        2,
+        4,
+        2,
+        1,
+        3,
+        1,
+        1,
+        2,
+        1,
+        3,
+        1,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 37.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 12,
+      "name": "Aurora Vadisi · 35",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 153935.0,
+      "shape": "staircase",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 73.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 51.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 44.4,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 12.8,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "169e1fa3e0eea604efb3ef423c636d216e0e1c3715f83cc95148401aa63fc818",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 22,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.25
+          },
+          "score": 0.2775
+        },
+        "revision": 0.0,
+        "seed": 154036.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 436.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        3,
+        3,
+        0,
+        0,
+        3,
+        1,
+        1,
+        0,
+        3,
+        0,
+        3,
+        3,
+        1,
+        3,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        3,
+        0,
+        3,
+        1,
+        3,
+        3,
+        1,
+        3,
+        1,
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        1,
+        1,
+        3,
+        2,
+        0,
+        2,
+        0,
+        3,
+        1,
+        0,
+        1,
+        0,
+        2,
+        2,
+        1,
+        1,
+        2,
+        3,
+        2,
+        0,
+        3,
+        0,
+        0,
+        2,
+        1,
+        0,
+        0,
+        2,
+        0
+      ],
+      "mechanics": [],
+      "moves": 10,
+      "name": "Aurora Vadisi · 36",
+      "portals": [
+        {
+          "entry": 45.0,
+          "exit": 5.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 154036.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 106.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 18.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 62.0,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 13.4
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "a7055e6ecfe55c43d4faf1a91686d680c488228b7b4a68b2ac3b2f9a650805d9",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 11,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.4,
+            "targets": 0.25
+          },
+          "score": 0.2775
+        },
+        "revision": 0.0,
+        "seed": 154137.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 437.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        1,
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        0,
+        3,
+        4,
+        1,
+        3,
+        4,
+        0,
+        2,
+        1,
+        1,
+        2,
+        0,
+        1,
+        3,
+        3,
+        4,
+        1,
+        4,
+        2,
+        4,
+        4,
+        0,
+        2,
+        0,
+        3,
+        3,
+        1,
+        1,
+        3,
+        4,
+        4,
+        3,
+        1,
+        3,
+        1,
+        2,
+        4,
+        2,
+        0,
+        3,
+        1,
+        1,
+        2,
+        2,
+        4,
+        1,
+        4,
+        0,
+        2,
+        2,
+        4,
+        0,
+        2,
+        3,
+        3,
+        4,
+        3,
+        1,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 38.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 37",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 154137.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 134.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 38.87,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.466666666666667
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "2defa879774285b7a7236d5716fa1ec053625b8109a0bdb53775e5a235ec32ff",
+          "trials": 1,
+          "winning_moves": 9
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 15,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 154238.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 9,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 438.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        0,
+        4,
+        2,
+        3,
+        0,
+        2,
+        0,
+        4,
+        3,
+        2,
+        1,
+        1,
+        4,
+        4,
+        3,
+        0,
+        3,
+        2,
+        0,
+        0,
+        1,
+        4,
+        1,
+        2,
+        4,
+        3,
+        0,
+        1,
+        0,
+        2,
+        1,
+        1,
+        2,
+        3,
+        2,
+        4,
+        0,
+        4,
+        4,
+        1,
+        0,
+        4,
+        3,
+        1,
+        3,
+        1,
+        3,
+        4,
+        2,
+        0,
+        3,
+        2,
+        1,
+        0,
+        2,
+        2,
+        0,
+        1,
+        2,
+        4,
+        1,
+        3,
+        3,
+        1,
+        3,
+        3,
+        1,
+        0,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 26.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 15,
+      "name": "Aurora Vadisi · 38",
+      "portals": [
+        {
+          "entry": 34.0,
+          "exit": 8.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 154238.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 82.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 38.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 50.65,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.052631578947368
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "e74916eaa90b1e8391d57d964af5b41779503cf96a90c89e869da5c11124fe63",
+          "trials": 1,
+          "winning_moves": 15
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 13,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 154339.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 15,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 439.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        3,
+        3,
+        4,
+        3,
+        4,
+        3,
+        0,
+        2,
+        4,
+        3,
+        2,
+        2,
+        3,
+        4,
+        2,
+        1,
+        2,
+        4,
+        3,
+        2,
+        3,
+        0,
+        1,
+        4,
+        1,
+        2,
+        3,
+        0,
+        4,
+        1,
+        2,
+        3,
+        0,
+        4,
+        1,
+        2,
+        3,
+        0,
+        4,
+        1,
+        2,
+        3,
+        0,
+        4,
+        1,
+        2,
+        3,
+        4,
+        0,
+        4,
+        1,
+        2,
+        3,
+        4,
+        2,
+        4,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        3,
+        1,
+        4,
+        2,
+        3,
+        0,
+        4,
+        1,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 19.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 19,
+      "name": "Aurora Vadisi · 39",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 154339.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 115.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 43.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.62,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 0.0,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 21.625
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "f5a0b2cbbceeca9c6084bd4c10c0864a845563d60e3ce9357b226a90c0aa147e",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 29,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 154440.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 1,
+          "original_moves": 26,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 440.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        1,
+        3,
+        0,
+        3,
+        1,
+        2,
+        2,
+        1,
+        3,
+        0,
+        3,
+        2,
+        3,
+        0,
+        3,
+        3,
+        2,
+        3,
+        1,
+        0,
+        1,
+        0,
+        2,
+        0,
+        1,
+        2,
+        1,
+        2,
+        0,
+        2,
+        2,
+        2,
+        0,
+        3,
+        3,
+        1,
+        2,
+        0,
+        1,
+        3,
+        0,
+        2,
+        1,
+        1,
+        3,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        0,
+        3,
+        2,
+        2,
+        3,
+        1,
+        2,
+        2,
+        2,
+        0,
+        3,
+        0,
+        1,
+        3,
+        2,
+        3
+      ],
+      "mechanics": [],
+      "moves": 8,
+      "name": "Aurora Vadisi · 40",
+      "objective_stages": [
+        {
+          "magnets": 1.0,
+          "total": 86.0
+        },
+        {
+          "magnets": 2.0,
+          "total": 173.0
+        }
+      ],
+      "portals": [
+        {
+          "entry": 46.0,
+          "exit": 56.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 154440.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 173.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 50.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 45.36,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 6.363636363636363
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "f1d005a708782dd75473e4b3d1f6a5cf190ca1a7fae0cce25cb7fe9a3f32d343",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 1.0,
+            "targets": 0.25
+          },
+          "score": 0.4275
+        },
+        "revision": 0.0,
+        "seed": 154541.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 441.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        2,
+        2,
+        4,
+        2,
+        4,
+        3,
+        1,
+        4,
+        2,
+        3,
+        0,
+        2,
+        4,
+        0,
+        0,
+        3,
+        3,
+        2,
+        0,
+        0,
+        2,
+        3,
+        3,
+        0,
+        0,
+        2,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        3,
+        2,
+        3,
+        4,
+        3,
+        3,
+        1,
+        2,
+        0,
+        4,
+        4,
+        1,
+        0,
+        1,
+        0,
+        2,
+        4,
+        3,
+        3,
+        1,
+        4,
+        0,
+        3,
+        1,
+        3,
+        3,
+        4,
+        2,
+        0,
+        0,
+        0,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        2
+      ],
+      "mechanics": [
+        {
+          "index": 39.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 41",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 154541.0,
+      "shape": "open",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 70.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 42.76,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 9.363636363636363
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "cf88dbc3b578dc650eeac33e289077b389f797ba6e297b6bb904b6f4b3b423b8",
+          "trials": 1,
+          "winning_moves": 7
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 25,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 154642.0,
+        "status": "simulation_reviewed",
+        "template": "islands",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 7,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 442.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        0,
+        3,
+        1,
+        2,
+        4,
+        2,
+        2,
+        4,
+        2,
+        1,
+        1,
+        0,
+        4,
+        4,
+        4,
+        2,
+        1,
+        2,
+        3,
+        1,
+        0,
+        1,
+        4,
+        4,
+        2,
+        1,
+        1,
+        3,
+        3,
+        0,
+        2,
+        0,
+        2,
+        4,
+        3,
+        0,
+        3,
+        0,
+        4,
+        0,
+        0,
+        1,
+        3,
+        4,
+        0,
+        4,
+        4,
+        3,
+        1,
+        2,
+        4,
+        1,
+        0,
+        2,
+        3,
+        1,
+        1,
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        1,
+        0,
+        4,
+        4,
+        0,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 30.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 42",
+      "portals": [
+        {
+          "entry": 19.0,
+          "exit": 24.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 154642.0,
+      "shape": "islands",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 103.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 54.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 48.8,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 3.2,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 10.6
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "4090e65ae33f04e1f50f023e8d133c2fccdb8888cab12b4d9ab3eee6f21d3cea",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 68
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 154743.0,
+        "status": "simulation_reviewed",
+        "template": "window",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        35.0,
+        36.0,
+        43.0,
+        44.0
+      ],
+      "id": 443.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        4,
+        0,
+        2,
+        0,
+        0,
+        3,
+        0,
+        3,
+        2,
+        4,
+        2,
+        0,
+        4,
+        3,
+        3,
+        4,
+        0,
+        0,
+        3,
+        4,
+        1,
+        2,
+        4,
+        3,
+        1,
+        0,
+        0,
+        3,
+        3,
+        0,
+        0,
+        4,
+        0,
+        3,
+        4,
+        3,
+        3,
+        2,
+        2,
+        0,
+        2,
+        4,
+        0,
+        4,
+        1,
+        1,
+        4,
+        2,
+        1,
+        3,
+        4,
+        4,
+        2,
+        3,
+        2,
+        4,
+        4,
+        2,
+        1,
+        1,
+        2,
+        3,
+        4,
+        1,
+        1,
+        0,
+        4,
+        3,
+        1,
+        1,
+        0
+      ],
+      "mechanics": [
+        {
+          "index": 49.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 43",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 154743.0,
+      "shape": "window",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 106.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 60.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 44.15,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 16.75
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "4fe689213965ed47924ab849df3e7a23b1e7501f0bb2aa0d205a6bec0e8b2499",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 19,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 154844.0,
+        "status": "simulation_reviewed",
+        "template": "hourglass",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        16.0,
+        23.0,
+        24.0,
+        31.0,
+        40.0,
+        47.0,
+        48.0,
+        55.0
+      ],
+      "id": 444.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        1,
+        0,
+        0,
+        3,
+        0,
+        1,
+        2,
+        2,
+        0,
+        0,
+        3,
+        1,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0,
+        3,
+        0,
+        3,
+        3,
+        2,
+        0,
+        0,
+        3,
+        0,
+        1,
+        1,
+        2,
+        0,
+        1,
+        1,
+        3,
+        2,
+        3,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        2,
+        0,
+        2,
+        2,
+        0,
+        1,
+        3,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        3,
+        3,
+        2,
+        0,
+        1
+      ],
+      "mechanics": [],
+      "moves": 8,
+      "name": "Aurora Vadisi · 44",
+      "portals": [
+        {
+          "entry": 66.0,
+          "exit": 1.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 154844.0,
+      "shape": "hourglass",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 134.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 44.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 56.05,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 7.454545454545454
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "60cca3419eee54274b77d7108cc3d747feb1b664fc59fbe619684cacab53dd29",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 6,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 154945.0,
+        "status": "simulation_reviewed",
+        "template": "corner-cut",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        15.0,
+        56.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 445.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        3,
+        4,
+        2,
+        2,
+        0,
+        0,
+        2,
+        1,
+        0,
+        3,
+        1,
+        0,
+        3,
+        4,
+        4,
+        0,
+        4,
+        2,
+        1,
+        1,
+        4,
+        0,
+        1,
+        2,
+        2,
+        1,
+        3,
+        3,
+        0,
+        1,
+        1,
+        1,
+        3,
+        3,
+        4,
+        3,
+        0,
+        4,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        0,
+        3,
+        4,
+        0,
+        2,
+        2,
+        0,
+        1,
+        1,
+        0,
+        4,
+        0,
+        3,
+        0,
+        1,
+        0,
+        2,
+        0,
+        2,
+        4,
+        4,
+        1,
+        4,
+        2,
+        0,
+        3
+      ],
+      "mechanics": [
+        {
+          "index": 49.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 11,
+      "name": "Aurora Vadisi · 45",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 154945.0,
+      "shape": "corner-cut",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 82.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 51.3,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 12.8,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "95bf3d3560bbddab485f664eb392d6e631a5cf29613c92930049f6c7eee6257b",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 34,
+          "playable_cells": 56
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.75,
+            "targets": 0.25
+          },
+          "score": 0.375
+        },
+        "revision": 0.0,
+        "seed": 155046.0,
+        "status": "simulation_reviewed",
+        "template": "cross",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        1.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        14.0,
+        15.0,
+        56.0,
+        57.0,
+        62.0,
+        63.0,
+        64.0,
+        65.0,
+        70.0,
+        71.0
+      ],
+      "id": 446.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        4,
+        0,
+        2,
+        1,
+        3,
+        4,
+        2,
+        2,
+        3,
+        1,
+        0,
+        2,
+        3,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2,
+        0,
+        2,
+        3,
+        3,
+        0,
+        2,
+        1,
+        0,
+        3,
+        0,
+        3,
+        0,
+        0,
+        4,
+        2,
+        2,
+        0,
+        4,
+        0,
+        3,
+        3,
+        0,
+        4,
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        3,
+        4,
+        4,
+        2,
+        3,
+        0,
+        3,
+        4,
+        4,
+        2,
+        1,
+        0,
+        1,
+        3,
+        3,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 44.0,
+          "kind": "bubble"
+        }
+      ],
+      "moves": 10,
+      "name": "Aurora Vadisi · 46",
+      "portals": [
+        {
+          "entry": 40.0,
+          "exit": 55.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "bubble",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 155046.0,
+      "shape": "cross",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bubbles": 1.0,
+        "total": 115.0
+      },
+      "theme": "aurora",
+      "tutorial": "Baloncuklar yer çekiminin tersine hareket eder.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 44.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 55.6,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.0
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "c5c6c1ab1979a4913488fa8012c3088481dbbdb1e5d302c5249f69e1dd604733",
+          "trials": 1,
+          "winning_moves": 11
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 16,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1875
+        },
+        "revision": 0.0,
+        "seed": 155147.0,
+        "status": "simulation_reviewed",
+        "template": "wings",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 11,
+          "margin": 2,
+          "original_moves": 24,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        3.0,
+        4.0,
+        11.0,
+        12.0,
+        19.0,
+        20.0,
+        51.0,
+        52.0,
+        59.0,
+        60.0,
+        67.0,
+        68.0
+      ],
+      "id": 447.0,
+      "initial_gravity": "down",
+      "layout": [
+        2,
+        2,
+        4,
+        3,
+        0,
+        3,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        4,
+        2,
+        0,
+        1,
+        4,
+        3,
+        4,
+        0,
+        1,
+        4,
+        3,
+        1,
+        0,
+        2,
+        4,
+        3,
+        1,
+        2,
+        2,
+        4,
+        1,
+        1,
+        3,
+        2,
+        2,
+        1,
+        3,
+        0,
+        0,
+        4,
+        3,
+        4,
+        3,
+        2,
+        2,
+        4,
+        0,
+        0,
+        2,
+        3,
+        1,
+        4,
+        4,
+        3,
+        2,
+        2,
+        3,
+        4,
+        2,
+        0,
+        0,
+        3,
+        1,
+        4,
+        4,
+        1,
+        4,
+        4,
+        2,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 33.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 13,
+      "name": "Aurora Vadisi · 47",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 155147.0,
+      "shape": "wings",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 143.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 50.0,
+          "kind": "magnet"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "easy",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 33.23,
+          "parts": {
+            "goals": 8,
+            "durability": 2,
+            "restricted_cells": 6.4,
+            "colors": 6,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 5.833333333333333
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "9b829da81653d80e56b112b1a7f6eac80b16ce658932ba74a656a33df56f4804",
+          "trials": 1,
+          "winning_moves": 6
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 18,
+          "playable_cells": 64
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 155248.0,
+        "status": "simulation_reviewed",
+        "template": "corridor",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 6,
+          "margin": 6,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        24.0,
+        25.0,
+        30.0,
+        31.0,
+        32.0,
+        33.0,
+        38.0,
+        39.0
+      ],
+      "id": 448.0,
+      "initial_gravity": "down",
+      "layout": [
+        3,
+        0,
+        1,
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        3,
+        3,
+        1,
+        3,
+        1,
+        1,
+        3,
+        1,
+        3,
+        0,
+        2,
+        1,
+        1,
+        3,
+        1,
+        3,
+        0,
+        3,
+        1,
+        2,
+        2,
+        1,
+        0,
+        3,
+        2,
+        3,
+        3,
+        1,
+        3,
+        1,
+        0,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        3,
+        2,
+        1,
+        3,
+        2,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        3,
+        1,
+        0,
+        0,
+        3,
+        1,
+        0,
+        0,
+        2,
+        3,
+        0
+      ],
+      "mechanics": [],
+      "moves": 12,
+      "name": "Aurora Vadisi · 48",
+      "portals": [
+        {
+          "entry": 15.0,
+          "exit": 3.0
+        }
+      ],
+      "powers": {},
+      "recipe": [
+        "magnet",
+        "portal"
+      ],
+      "resonance": true,
+      "seed": 155248.0,
+      "shape": "corridor",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "magnets": 2.0,
+        "total": 70.0
+      },
+      "theme": "aurora",
+      "tutorial": "Çekim düğümünün hareketini hesaba kat.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 42.0,
+          "kind": "giant"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "medium",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 60.04,
+          "parts": {
+            "goals": 12,
+            "durability": 10,
+            "restricted_cells": 9.600000000000001,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 0,
+            "move_pressure": 11.444444444444445
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "d8d8b45cd3fc599b34977a4c81fb82c3fd8692d440dbaf66c1550f089c7101a0",
+          "trials": 1,
+          "winning_moves": 5
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 6,
+          "playable_cells": 60
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 0.8,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.25
+          },
+          "score": 0.1775
+        },
+        "revision": 0.0,
+        "seed": 155349.0,
+        "status": "simulation_reviewed",
+        "template": "terraces",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 5,
+          "margin": 4,
+          "original_moves": 23,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [
+        0.0,
+        7.0,
+        8.0,
+        15.0,
+        16.0,
+        23.0,
+        48.0,
+        55.0,
+        56.0,
+        63.0,
+        64.0,
+        71.0
+      ],
+      "id": 449.0,
+      "initial_gravity": "down",
+      "layout": [
+        1,
+        3,
+        2,
+        0,
+        3,
+        2,
+        0,
+        1,
+        4,
+        3,
+        2,
+        4,
+        0,
+        4,
+        2,
+        0,
+        1,
+        1,
+        0,
+        2,
+        0,
+        0,
+        1,
+        4,
+        3,
+        4,
+        4,
+        0,
+        1,
+        2,
+        4,
+        2,
+        3,
+        0,
+        1,
+        2,
+        0,
+        3,
+        1,
+        3,
+        4,
+        1,
+        4,
+        1,
+        2,
+        0,
+        4,
+        2,
+        1,
+        4,
+        3,
+        3,
+        4,
+        4,
+        3,
+        1,
+        4,
+        2,
+        2,
+        0,
+        3,
+        0,
+        3,
+        4,
+        0,
+        4,
+        0,
+        2,
+        3,
+        0,
+        0,
+        4
+      ],
+      "mechanics": [
+        {
+          "index": 27.0,
+          "kind": "ice"
+        }
+      ],
+      "moves": 9,
+      "name": "Aurora Vadisi · 49",
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "giant",
+        "ice"
+      ],
+      "resonance": true,
+      "seed": 155349.0,
+      "shape": "terraces",
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "giants": 1.0,
+        "ice": 2.0,
+        "total": 103.0
+      },
+      "theme": "aurora",
+      "tutorial": "Dev kristale komşu eşleşmelerle darbe ver.",
+      "world_id": 9.0
+    },
+    {
+      "active_colors": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "automatic_storm": true,
+      "canyon": [
+        {
+          "index": 53.0,
+          "kind": "floor"
+        }
+      ],
+      "conveyors": [],
+      "crystal_wave": true,
+      "definition_version": 3.0,
+      "difficulty": "very_hard",
+      "generation": {
+        "authoring_revision": "v0.14.0",
+        "difficulty": {
+          "score": 52.5,
+          "parts": {
+            "goals": 12,
+            "durability": 6,
+            "restricted_cells": 0.0,
+            "colors": 12,
+            "interaction": 5,
+            "stages": 6,
+            "move_pressure": 11.5
+          }
+        },
+        "evidence": {
+          "default_seed_witness": true,
+          "human_tested": false,
+          "strategy": "objective",
+          "trace_sha256": "139398f78fd8602b78a020ab8dc5973bb587c524b075cb25231f432c02e7fd45",
+          "trials": 1,
+          "winning_moves": 8
+        },
+        "human_tested": false,
+        "initial_analysis": {
+          "legal_swaps": 23,
+          "playable_cells": 72
+        },
+        "neighbor_similarity": {
+          "parts": {
+            "colors": 1.0,
+            "mechanics": 0.0,
+            "opportunities": 1.0,
+            "placements": 0.0,
+            "shape": 0.0,
+            "targets": 0.2
+          },
+          "score": 0.18
+        },
+        "revision": 0.0,
+        "seed": 155450.0,
+        "status": "simulation_reviewed",
+        "template": "open",
+        "version": 2.0,
+        "balance": {
+          "witness_moves": 8,
+          "margin": 6,
+          "original_moves": 28,
+          "human_validated": false
+        }
+      },
+      "gravity": true,
+      "holes": [],
+      "id": 450.0,
+      "initial_gravity": "down",
+      "layout": [
+        0,
+        4,
+        1,
+        2,
+        1,
+        1,
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4,
+        0,
+        1,
+        2,
+        3,
+        2,
+        0,
+        0,
+        4,
+        0,
+        3,
+        0,
+        1,
+        4,
+        2,
+        0,
+        1,
+        3,
+        4,
+        1,
+        3,
+        2,
+        1,
+        4,
+        0,
+        4,
+        1,
+        0,
+        3,
+        1,
+        3,
+        2,
+        0,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        1,
+        4,
+        4,
+        0,
+        3,
+        2,
+        0,
+        2,
+        0,
+        2,
+        3,
+        4,
+        1,
+        1,
+        2,
+        3,
+        3,
+        2,
+        3,
+        4,
+        1
+      ],
+      "mechanics": [
+        {
+          "index": 27.0,
+          "kind": "bridge"
+        }
+      ],
+      "moves": 14,
+      "name": "Aurora Vadisi Finali",
+      "objective_stages": [
+        {
+          "bridges": 1.0,
+          "floors": 1.0,
+          "total": 80.0
+        },
+        {
+          "bridges": 1.0,
+          "floors": 1.0,
+          "total": 161.0
+        }
+      ],
+      "portals": [],
+      "powers": {},
+      "recipe": [
+        "bridge",
+        "floor"
+      ],
+      "resonance": true,
+      "seed": 155450.0,
+      "shape": "open",
+      "showcase": true,
+      "stars": [
+        0.0,
+        5000.0,
+        8500.0
+      ],
+      "targets": {
+        "bridges": 1.0,
+        "floors": 1.0,
+        "total": 161.0
+      },
+      "theme": "aurora",
+      "tutorial": "Köprü her renge uyum sağlar.",
+      "world_id": 9.0
+    }
+  ],
+  "version": 3.0
+}
