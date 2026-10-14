@@ -1,0 +1,68 @@
+{
+  "release": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.2",
+  "tag": "v0.13.2",
+  "workflow_run": 38642228507,
+  "verified_assets": [
+    {
+      "name": "prizma-v0.13.2.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/prizma-v0.13.2.apk",
+      "bytes": 84399584,
+      "range_status": 206
+    },
+    {
+      "name": "prizma-v0.13.2-dev.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/prizma-v0.13.2-dev.apk",
+      "bytes": 84399584,
+      "range_status": 206
+    },
+    {
+      "name": "prizma-v0.13.2-gorseller.zip",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/prizma-v0.13.2-gorseller.zip",
+      "bytes": 21056354,
+      "range_status": 206
+    },
+    {
+      "name": "map-world-1.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/map-world-1.png",
+      "bytes": 839922,
+      "range_status": 206
+    },
+    {
+      "name": "map-world-2.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/map-world-2.png",
+      "bytes": 839742,
+      "range_status": 206
+    },
+    {
+      "name": "map-world-3.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/map-world-3.png",
+      "bytes": 966952,
+      "range_status": 206
+    },
+    {
+      "name": "map-world-4.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/map-world-4.png",
+      "bytes": 927959,
+      "range_status": 206
+    },
+    {
+      "name": "map-world-5.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/map-world-5.png",
+      "bytes": 919064,
+      "range_status": 206
+    },
+    {
+      "name": "world-cards.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/world-cards.png",
+      "bytes": 537195,
+      "range_status": 206
+    },
+    {
+      "name": "game-960.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.2/game-960.png",
+      "bytes": 638728,
+      "range_status": 206
+    }
+  ],
+  "real_android_tested": false
+}
