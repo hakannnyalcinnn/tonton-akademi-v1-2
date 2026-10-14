@@ -1,0 +1,122 @@
+[
+  {
+    "actual_godot": true,
+    "file": "map-world-1.png",
+    "screen": "map",
+    "world": 1
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-1.png",
+    "screen": "map",
+    "world": 1
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-1-motion.png",
+    "screen": "map",
+    "world": 1
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-2.png",
+    "screen": "map",
+    "world": 2
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-2-motion.png",
+    "screen": "map",
+    "world": 2
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-3.png",
+    "screen": "map",
+    "world": 3
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-3-motion.png",
+    "screen": "map",
+    "world": 3
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-4.png",
+    "screen": "map",
+    "world": 4
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-4-motion.png",
+    "screen": "map",
+    "world": 4
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-5.png",
+    "screen": "map",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "map-world-5-motion.png",
+    "screen": "map",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "world-gate.png",
+    "screen": "map",
+    "world": 1
+  },
+  {
+    "actual_godot": true,
+    "file": "world-cards.png",
+    "screen": "worlds",
+    "world": 1
+  },
+  {
+    "actual_godot": true,
+    "file": "world-cards-bottom.png",
+    "screen": "worlds",
+    "world": 1
+  },
+  {
+    "actual_godot": true,
+    "file": "pause.png",
+    "screen": "game",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "world-cards-320.png",
+    "screen": "worlds",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "help-320.png",
+    "screen": "settings",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "world-cards-390.png",
+    "screen": "worlds",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "help-390.png",
+    "screen": "settings",
+    "world": 5
+  },
+  {
+    "actual_godot": true,
+    "file": "arrival-lava.png",
+    "screen": "world_transition",
+    "world": 5
+  }
+]

@@ -2,9 +2,6 @@ extends Control
 
 const Design=preload("res://scripts/ui/ui_theme.gd")
 const IconButton=preload("res://scripts/ui/visual_icon_button.gd")
-var planet_view
-var planet_info: Label
-var planet_enter: Button
 var map_scroll: ScrollContainer
 var settings_origin:="map"
 var transition_token:=0
@@ -119,10 +116,12 @@ func layout_stage() -> void:
 	garden.size = size
 	var extra := stage.size.y-960
 	if page:
-		page.position.y = 0 if screen in ["game","map"] else extra*.5
+		page.position.y = 0 if screen in ["game","map","worlds"] else extra*.5
 		if screen=="worlds":
-			var sky=page.get_node_or_null("PlanetSky")
-			if sky:sky.position.y=-extra*.5;sky.size=stage.size
+			var cards=page.get_node_or_null("WorldCardsScroll")
+			if cards:cards.size.y=maxf(200,stage.size.y-210)
+			for node in footer_nodes:
+				if is_instance_valid(node):node.position.y=float(node.get_meta("base_y"))+extra
 		if screen=="map" and is_instance_valid(map_scroll):
 			map_scroll.size.y=maxf(200,stage.size.y-262)
 			for node in footer_nodes:
@@ -225,7 +224,7 @@ func begin_page(next_screen: String) -> void:
 	page.size = Vector2(540, 960)
 	stage.add_child(page)
 	screen = next_screen
-	garden.visible=next_screen!="worlds"
+	garden.visible=true
 	armed_helper=""
 	helper_buttons.clear()
 	if garden.backdrop:garden.backdrop.material.set_shader_parameter("game_focus",1.0 if next_screen in ["game","transition"] else 0.0)
@@ -314,41 +313,22 @@ func apply_world_progress(number: int) -> void:
 
 func show_worlds() -> void:
 	persist_board();test_mode=false;begin_page("worlds")
-	var sky:=ColorRect.new();sky.name="PlanetSky";sky.size=stage.size;sky.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	var sky_shader:=Shader.new();sky_shader.code="shader_type canvas_item; void fragment(){ vec3 a=vec3(0.08,0.11,0.25);vec3 b=vec3(0.35,0.29,0.53);float halo=exp(-length((UV-vec2(0.5,0.4))*vec2(1.3,1.0))*3.0);COLOR=vec4(mix(a,b,halo),1.0); }"
-	var sky_material:=ShaderMaterial.new();sky_material.shader=sky_shader;sky.material=sky_material;page.add_child(sky)
-	card(page,Rect2(20,14,500,80))
-	label(page,"PRİZMA GEZEGENİ",Rect2(38,27,370,32),26,Design.INK)
-	label(page,"Beş dünya, tek büyülü macera",Rect2(38,61,370,22),14,Design.ACCENT)
-	button(page,"×",Rect2(456,30,44,44),go_back,false,23)
-	planet_view=preload("res://scripts/ui/planet_view.gd").new();planet_view.name="PrizmaPlanet"
-	planet_view.position=Vector2(5,104);planet_view.size=Vector2(530,530)
-	planet_view.selected=selected_world;planet_view.unlocked=int(save.data.unlocked);planet_view.quiet=save.data.settings.reduced_motion;planet_view.quality=save.data.settings.quality;page.add_child(planet_view)
-	planet_view.focused.connect(select_planet_world)
-	planet_view.world_selected.connect(func(world):
-		if screen=="worlds" and int(Worlds.get_world(world).start)<=int(save.data.unlocked):selected_world=world;show_map(int((int(Worlds.get_world(world).start)-1)/10)))
-	label(page,"Gezegeni döndür · Bir bölgeye dokun",Rect2(30,636,480,26),15,Color("e5ddff"),HORIZONTAL_ALIGNMENT_CENTER)
-	var info:=PanelContainer.new();info.name="PlanetInformation";info.position=Vector2(30,677);info.size=Vector2(480,154);info.add_theme_stylebox_override("panel",Design.surface());page.add_child(info)
-	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);info.add_child(column)
-	planet_info=Label.new();planet_info.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;planet_info.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;planet_info.add_theme_color_override("font_color",Design.INK);planet_info.add_theme_font_size_override("font_size",20);column.add_child(planet_info)
-	planet_enter=button(column,"DÜNYAYI KEŞFET",Rect2(0,0,400,52),func():planet_view.focus_world(selected_world,true),true,20);planet_enter.custom_minimum_size.y=52
-	var choices:=HBoxContainer.new();choices.position=Vector2(24,851);choices.size=Vector2(492,82);choices.add_theme_constant_override("separation",8);page.add_child(choices)
+	garden.visible=true;garden.vitality=1.0
+	card(page,Rect2(20,16,500,78))
+	label(page,"DÜNYALAR",Rect2(38,25,370,32),27,Design.INK)
+	label(page,"Beş farklı diyar, tek macera",Rect2(38,61,370,24),14,Design.ACCENT)
+	button(page,"×",Rect2(456,30,44,44),show_home,false,23)
+	var scroll:=preload("res://scripts/ui/world_scroll.gd").new();scroll.name="WorldCardsScroll";scroll.position=Vector2(22,110);scroll.size=Vector2(496,760);scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
+	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override("separation",14);scroll.add_child(column)
 	for world in Worlds.playable_worlds():
-		var id:=int(world.id);var choice:=IconButton.new();choice.custom_minimum_size=Vector2(90,80);choice.size_flags_horizontal=Control.SIZE_EXPAND_FILL;choice.icon_radius=24;choice.caption_color=Color("e5ddff");choice.locked=int(save.data.unlocked)<int(world.start);choice.image=preload("res://scripts/ui/companion.gd").sprite(id);choice.caption=["Bahçe","Okyanus","Kanyon","Bulut","Lav"][id-1];choice.set_meta("planet_world",id);choice.pressed.connect(select_planet_world.bind(id));choices.add_child(choice)
-	select_planet_world(selected_world)
+		var tile:=preload("res://scripts/ui/world_card.gd").new();tile.metadata=world;tile.completed=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==int(world.id)).size();tile.disabled=int(save.data.unlocked)<int(world.start);tile.pressed.connect(open_world_map.bind(int(world.id)));column.add_child(tile)
+	var back:=button(page,"GÜNCEL BÖLÜME DÖN",Rect2(68,886,404,56),show_home,true,18);back.set_meta("base_y",886);footer_nodes.append(back)
+	layout_stage()
 
-func select_planet_world(world: int) -> void:
-	selected_world=world
+func open_world_map(world: int) -> void:
 	var metadata:=Worlds.get_world(world)
-	var done: int=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==world).size()
-	var locked: bool=int(save.data.unlocked)<int(metadata.start)
-	planet_info.text="%s\n%d–%d · %d/50 tamamlandı"%[metadata.title,int(metadata.start),int(metadata.end),done]
-	planet_enter.text="%d. BÖLÜMDE AÇILIR"%int(metadata.start) if locked else "DÜNYAYI KEŞFET"
-	planet_enter.disabled=locked
-	planet_view.unlocked=int(save.data.unlocked)
-	planet_view.focus_world(world)
-	for choice in page.find_children("*","",true,false):
-		if choice.has_meta("planet_world"):choice.chosen=int(choice.get_meta("planet_world"))==world;choice.queue_redraw()
+	if metadata.is_empty() or int(metadata.start)>int(save.data.unlocked):return
+	selected_world=world;show_map(int((int(metadata.start)-1)/10))
 
 func show_map(group: int=-1) -> void:
 	persist_board();test_mode=false
@@ -356,6 +336,7 @@ func show_map(group: int=-1) -> void:
 	else:map_group=int((int(Worlds.get_world(selected_world).start)-1)/10)
 	begin_page("map")
 	apply_world_progress(Catalog.world_for(map_group*10+1))
+	garden.vitality=1.0
 	var metadata:=Worlds.get_world(selected_world)
 	preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
 	card(page,Rect2(20,10,500,64))
@@ -364,7 +345,8 @@ func show_map(group: int=-1) -> void:
 	label(page,"%d kristal"%int(save.data.adventure_progress.coins),Rect2(110,49,200,20),12,Design.ACCENT)
 	var coin:=TextureRect.new();coin.texture=Design.icon("gems",3);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.position=Vector2(88,49);coin.size=Vector2(18,18);coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(coin)
 	button(page,"AYARLAR",Rect2(422,27,82,43),show_settings,false,12)
-	label(page,str(metadata.title),Rect2(29,82,278,30),20,Design.INK)
+	card(page,Rect2(24,78,282,40),Color(1,.98,.94,.94))
+	label(page,str(metadata.title),Rect2(36,83,266,28),20,Design.INK)
 	button(page,"DÜNYALAR",Rect2(316,77,190,44),show_worlds,true,15)
 	map_buttons.clear()
 	map_scroll=preload("res://scripts/ui/world_scroll.gd").new()
@@ -374,7 +356,7 @@ func show_map(group: int=-1) -> void:
 	var first:=int(metadata.start);var last:=mini(Catalog.count(),int(metadata.end))
 	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3;path.world_theme=str(metadata.map_style);path.accent=Color(metadata.accent)
 	path.quiet=save.data.settings.reduced_motion;path.completed_count=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()
-	path.custom_minimum_size=Vector2(456,path.count*128+188);map_scroll.add_child(path)
+	path.name="LivingAdventurePath";path.world_id=selected_world;path.quality=str(save.data.settings.get("quality","balanced"));path.custom_minimum_size=Vector2(456,path.count*146+280);map_scroll.add_child(path)
 	for n in range(first,last+1):
 		var center: Vector2=path.node_position(n-first)
 		var node:=preload("res://scripts/ui/level_node.gd").new()
@@ -388,11 +370,11 @@ func show_map(group: int=-1) -> void:
 			node.pivot_offset=node.size/2;var pulse:=node.create_tween().set_loops();pulse.tween_property(node,"scale",Vector2(1.05,1.05),.6);pulse.tween_property(node,"scale",Vector2.ONE,.6)
 	var focus:=current_level() if current_level()>=first and current_level()<=last else first
 	map_scroll.set_deferred("scroll_vertical",maxi(0,int(path.node_position(focus-first).y-map_scroll.size.y*.7)))
-	button(page,"GÜNCEL BÖLÜME DÖN",Rect2(110,832,320,44),show_home,true,16).set_meta("base_y",832)
+	button(page,"GÜNCEL BÖLÜME DÖN",Rect2(88,820,364,54),show_home,true,18).set_meta("base_y",820)
 	var bar:=card(page,Rect2(17,878,506,70));bar.set_meta("base_y",878);footer_nodes.append(bar)
-	var names: Array=["Harita","Günlük","Dostlar","Ödüller","Ayarlar"]
+	var names: Array=["Dünyalar","Günlük","Dostlar","Ödüller","Ayarlar"]
 	var images: Array=[preload("res://assets/casual/navigation-map.svg"),preload("res://assets/casual/navigation-tasks.svg"),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),preload("res://assets/casual/navigation-settings.svg")]
-	var actions: Array=[show_home,show_adventure_menu.bind(0),show_adventure_menu.bind(1),show_adventure_menu.bind(2),show_settings]
+	var actions: Array=[show_worlds,show_adventure_menu.bind(0),show_adventure_menu.bind(1),show_adventure_menu.bind(2),show_settings]
 	for i in 5:
 		var nav:=IconButton.new();nav.position=Vector2(25+i*99,879);nav.size=Vector2(94,66);nav.icon_radius=20;nav.caption=names[i];nav.image=images[i];nav.chosen=i==0;nav.set_meta("navigation_index",i);nav.pressed.connect(actions[i]);page.add_child(nav);nav.set_meta("base_y",879);footer_nodes.append(nav)
 	for node in page.get_children():
@@ -890,9 +872,9 @@ func show_pause(already_saved: bool = false) -> void:
 	open_overlay("MACERAYA KISA BİR MOLA", "")
 	for child in overlay.get_children():
 		overlay.remove_child(child);child.queue_free()
-	var panel:=PanelContainer.new();panel.name="PausePanel";panel.position=Vector2(54,274);panel.size=Vector2(432,390);panel.add_theme_stylebox_override("panel",Design.surface());overlay.add_child(panel)
-	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",14);panel.add_child(column)
-	var portrait:=TextureRect.new();portrait.texture=preload("res://scripts/ui/companion.gd").sprite(Catalog.world_for(int(board.level.id)));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.custom_minimum_size=Vector2(0,76);column.add_child(portrait)
+	var panel:=PanelContainer.new();panel.name="PausePanel";panel.position=Vector2(54,288);panel.size=Vector2(432,354);panel.add_theme_stylebox_override("panel",Design.surface());overlay.add_child(panel)
+	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);panel.add_child(column)
+	var portrait:=TextureRect.new();portrait.texture=preload("res://scripts/ui/companion.gd").sprite(Catalog.world_for(int(board.level.id)));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.custom_minimum_size=Vector2(0,62);column.add_child(portrait)
 	var heading:=Label.new();heading.text="Küçük bir mola!";heading.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;heading.add_theme_font_size_override("font_size",26);heading.add_theme_color_override("font_color",Design.INK);column.add_child(heading)
 	var subtitle:=Label.new();subtitle.text="%s · Bölüm %d\nİlerlemen kaydedildi."%[Worlds.get_world(Catalog.world_for(int(board.level.id))).title,int(board.level.id)] if save.last_error=="" else save.last_error;subtitle.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;subtitle.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;subtitle.add_theme_font_size_override("font_size",14);subtitle.add_theme_color_override("font_color",Design.ACCENT);column.add_child(subtitle)
 	var resume_button:=button(column,"DEVAM ET",Rect2(0,0,404,60),close_overlay,true,22);resume_button.custom_minimum_size.y=60
@@ -955,7 +937,7 @@ func show_result_popup(won: bool,finale: bool=false) -> void:
 		elif finale:label(overlay,str(metadata.reward)+" kaydedildi",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		if not save.data.settings.reduced_motion and not save.data.settings.reduced_effects:
 			var confetti:=Celebration.new();confetti.world_finale=finale;confetti.world_theme=str(metadata.theme);confetti.ocean=int(metadata.id)==2;confetti.canyon=int(metadata.id)==3;overlay.add_child(confetti)
-		if int(board.level.id)<Catalog.count():button(overlay,"SONRAKİ BÖLÜM",Rect2(83,604,374,57),request_level.bind(int(board.level.id)+1),true,22)
+		if int(board.level.id)<Catalog.count():button(overlay,"SONRAKİ BÖLÜM",Rect2(83,604,374,57),advance_after_win.bind(int(board.level.id)),true,22)
 		else:button(overlay,"HARİTAYI KEŞFET",Rect2(83,604,374,57),show_home,true,21)
 		button(overlay,"YENİDEN OYNA",Rect2(83,674,182,36),request_level.bind(int(board.level.id)),false,12)
 		button(overlay,"HARİTA",Rect2(275,674,182,36),show_map,false,12)
@@ -995,7 +977,7 @@ func show_settings() -> void:
 	if developer_tools_available():
 		var dev:=button(column,"Geliştirici: mekanik laboratuvarı",Rect2(0,0,400,44),show_developer_menu,false,13);dev.custom_minimum_size.y=44
 	button(page,Strings.text("resume") if settings_origin=="game" and not save.data.active.is_empty() else Strings.text("map"),Rect2(42,835,456,56),play_latest if settings_origin=="game" and not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.13.0 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA %s · YAŞAYAN MACERA"%str(ProjectSettings.get_setting("application/config/version")),Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 func volume_slider(key: String, title: String, y: float) -> void:
 	card(page,Rect2(32,y-4,476,69),Color(1,.98,.94,.93))
@@ -1149,6 +1131,28 @@ func show_mechanic_help() -> void:
 func show_world_result() -> void:
 	garden.vitality=1.0;garden.world_completed=true;garden.color_energy=[18,18,18,18,18]
 	show_result_popup(true,true)
+
+func arrival_text(parent: Node,value: String,font_size: int,color: Color) -> void:
+	var text:=Label.new();text.text=value;text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;text.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;text.add_theme_font_size_override("font_size",font_size);text.add_theme_color_override("font_color",color);parent.add_child(text)
+
+func advance_after_win(completed: int) -> void:
+	var next:=completed+1
+	if next>Catalog.count():show_home();return
+	if Catalog.world_for(completed)==Catalog.world_for(next):request_level(next);return
+	persist_board();begin_page("world_transition");apply_world_progress(Catalog.world_for(next));garden.vitality=1.0
+	var metadata:=Worlds.get_world(Catalog.world_for(next))
+	var panel:=PanelContainer.new();panel.name="WorldArrival";panel.position=Vector2(50,300);panel.size=Vector2(440,300);panel.add_theme_stylebox_override("panel",Design.surface());page.add_child(panel)
+	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",18);panel.add_child(column)
+	var portrait:=TextureRect.new();portrait.texture=preload("res://scripts/ui/companion.gd").sprite(int(metadata.id));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.custom_minimum_size.y=120;column.add_child(portrait)
+	arrival_text(column,"YENİ BİR DÜNYA",17,Design.ACCENT)
+	arrival_text(column,str(metadata.title),29,Design.INK)
+	arrival_text(column,"%d–%d · Macera devam ediyor"%[int(metadata.start),int(metadata.end)],17,Design.ACCENT)
+	audio.play("world_unlock")
+	var token:=transition_token
+	if not save.data.settings.reduced_motion:
+		panel.modulate.a=0;panel.position.y+=20;var arrival:=panel.create_tween().set_parallel();arrival.tween_property(panel,"modulate:a",1.0,.28);arrival.tween_property(panel,"position:y",300.0,.35).set_trans(Tween.TRANS_SINE)
+	await get_tree().create_timer(.06 if save.data.settings.reduced_motion else .85).timeout
+	if token==transition_token and screen=="world_transition":show_map(int((next-1)/10));request_level(next)
 
 func show_crystal_help() -> void:
 	open_overlay("İki rengin uyanışı")

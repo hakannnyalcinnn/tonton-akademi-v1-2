@@ -1,0 +1,14 @@
+{
+  "rollback": "backup/before-v0.13.1",
+  "protected_trees": {
+    "scripts/core": "4adef220241ca530808b488ac74490a397a875ea",
+    "scripts/mechanics": "1e42d7c95d62e60fbc6155d45d55c94d9ce2e6ef",
+    "data": "76dd6c8f3d3af9c777982ac0c24f56926df2fe07"
+  },
+  "unchanged": true,
+  "atlas_source": "image_gen.imagegen exec-66ec24a2-265f-474c-920b-e47770cb18e1.png",
+  "atlas_sha256": "bd587cb5748c10edfee77251255303183535d29aa283447a3702389ecf4867d7",
+  "world_backgrounds": "existing original world-garden/ocean/canyon/cloud/lava PNGs retained",
+  "motion_frames": "five actual Godot image pairs differ; not a static screenshot claim",
+  "physical_android_tested": false
+}

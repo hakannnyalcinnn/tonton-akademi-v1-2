@@ -71,7 +71,7 @@ func run() -> void:
  game.close_overlay();game.show_map(5);await process_frame
  var world: int=game.selected_world;game.go_back();check(game.selected_world==world and game.overlay!=null,"map back confirms exit, does not jump worlds")
  game.close_overlay();game.show_worlds();await process_frame
- check(game.planet_view.globe!=null and game.page.get_children().filter(func(n):return n is HBoxContainer).size()==1,"five real worlds in a 3D selector")
+ check(game.page.get_node("WorldCardsScroll").get_child(0).get_child_count()==5 and game.find_children("*","SubViewport",true,false).is_empty(),"five real worlds in scrollable cards without the removed planet")
  game.save.finish_writes()
  var saved_board:=Board.new(Catalog.get_level(60));saved_board.moves=3
  var active: Dictionary=saved_board.snapshot()

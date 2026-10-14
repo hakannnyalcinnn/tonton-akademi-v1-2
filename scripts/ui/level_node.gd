@@ -20,8 +20,8 @@ func _draw() -> void:
  var center:=size/2
  if active:draw_arc(center-Vector2(0,3),size.x*.47,0,TAU,36,Color("fff0a8"),3,true)
  var font:=ThemeDB.fallback_font;var caption:=str(number)
- var width:=font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,25).x
- draw_string(font,center+Vector2(-width/2,5),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,25,UI.INK)
+ var width:=font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,29).x
+ draw_string(font,center+Vector2(-width/2,7),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,29,UI.INK)
  if disabled:draw_texture_rect(lock_icon,Rect2(size.x-25,0,22,22),false)
  elif marker:draw_texture_rect(marker,Rect2(size.x-27,-4,28,28),false)
  for k in stars:draw_texture_rect(star_icon,Rect2(center.x-26+k*18,size.y-8,18,18),false)

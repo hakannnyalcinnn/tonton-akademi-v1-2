@@ -54,12 +54,11 @@ func run() -> void:
  assert(game.board_view.bomb_origin>=0 and game.board_view.duration>=.5)
  while game.board_view.busy:await process_frame
  game.selected_world=3;game.show_worlds();await process_frame
- assert(game.planet_view.viewport.own_world_3d and game.planet_view.globe.get_child_count()>=8)
- game.planet_view.quiet=true;game.planet_view.focus_world(3,true)
- var deadline: int=Time.get_ticks_msec()+2000
- while game.screen=="worlds" and Time.get_ticks_msec()<deadline:await process_frame
- if game.screen!="map":print("PROBE TRANSITION STATE ",game.screen," / ",game.selected_world," / ",game.planet_view.choosing," / unlocked ",game.save.data.unlocked)
+ assert(game.page.get_node("WorldCardsScroll").get_child(0).get_child_count()==5)
+ assert(game.find_children("*","SubViewport",true,false).is_empty())
+ game.open_world_map(3);await process_frame
  assert(game.screen=="map" and game.selected_world==3 and game.map_buttons.size()==50)
+ assert(game.map_scroll.get_child(0).curve.point_count==51)
  game.request_level(101);await process_frame
  assert(game.overlay.find_child("PreviewLayout",true,false) is VBoxContainer)
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
