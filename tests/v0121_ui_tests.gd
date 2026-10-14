@@ -40,6 +40,9 @@ func run() -> void:
  find_button("OYNA!").pressed.emit();await create_timer(.1).timeout;await process_frame
  check(game.screen=="game" and inventory.prism==initial-1,"Play starts and consumes exactly one owned booster")
  game.save.data.unlocked=250
+ game.request_level(2);await process_frame;find_button("OYNA!").pressed.emit();game.go_back()
+ game.request_level(3);await process_frame;find_button("OYNA!").pressed.emit();await create_timer(.1).timeout
+ check(int(game.board.level.id)==3,"cancelled transition cannot later start a stale level")
  for height in [960,1080,1170,1200]:
   root.size=Vector2i(540,height);game.size=Vector2(540,height)
   for n in [1,2,10,25,50,75,100,150,200,250,12,35]:
@@ -66,5 +69,14 @@ func run() -> void:
  var world: int=game.selected_world;game.go_back();check(game.selected_world==world and game.overlay!=null,"map back confirms exit, does not jump worlds")
  game.close_overlay();game.show_worlds();await process_frame
  check(game.page.get_node("WorldsScroll").get_child(0).get_child_count()==5,"five real worlds with same selector")
+ game.save.finish_writes()
+ var saved_board:=Board.new(Catalog.get_level(60));saved_board.moves=3
+ var active: Dictionary=saved_board.snapshot()
+ game.save.data.active=active;game.save.data.unlocked=75;game.save.flush();game.save.finish_writes()
+ game.save=Save.new(game.save.path);game.show_home();await process_frame
+ check(game.selected_world==2 and game.map_buttons[60].active,"disk save opens correct world and active node")
+ var owned: int=game.save.data.adventure_progress.inventory.prism
+ game.request_level(60);await process_frame;find_button("OYNA!").pressed.emit();await create_timer(.1).timeout
+ check(game.board.snapshot()==active and game.save.data.adventure_progress.inventory.prism==owned,"resume preserves exact saved game and never consumes another booster")
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
  print("V0121 UI: %d checks, %d failures"%[checks,failures]);quit(1 if failures else 0)

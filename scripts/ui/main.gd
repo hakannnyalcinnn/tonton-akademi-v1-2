@@ -302,11 +302,12 @@ func show_worlds() -> void:
 		var world: int=int(metadata.id)
 		var row:=button(content,str(metadata.title).to_upper()+" · %d–%d"%[int(metadata.start),int(metadata.end)],Rect2(6,i*116+4,462,104),func():selected_world=world;show_map(int((int(metadata.start)-1)/10)),false,18)
 		row.add_theme_stylebox_override("normal",Design.surface());row.add_theme_stylebox_override("disabled",Design.surface());row.add_theme_color_override("font_color",Color.TRANSPARENT);row.add_theme_color_override("font_disabled_color",Color.TRANSPARENT)
+		row.set_meta("world_id",world)
 		row.disabled=int(save.data.unlocked)<int(metadata.start)
 		var image:=TextureRect.new();image.texture=load(metadata.art);image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;image.position=Vector2(9,9);image.size=Vector2(88,86);image.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(image)
 		label(row,str(metadata.title),Rect2(111,14,326,33),21)
 		var done: int=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==world).size()
-		label(row,"%d–%d · %d/50 tamamlandı"%[int(metadata.start),int(metadata.end),done],Rect2(111,50,326,27),14,Design.ACCENT)
+		label(row,"%d–%d · %d/%d tamamlandı"%[int(metadata.start),int(metadata.end),done,int(metadata.end)-int(metadata.start)+1],Rect2(111,50,326,27),14,Design.ACCENT)
 		if row.disabled:label(row,"KİLİTLİ",Rect2(111,76,326,19),11,Palette.MUTED)
 		i+=1
 	label(page,"%d gerçek bölüm · %d dünya"%[Catalog.count(),Worlds.playable_worlds().size()],Rect2(35,871,470,37),16,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
@@ -355,7 +356,7 @@ func show_map(group: int=-1) -> void:
 	var images: Array=[Design.icon("ui",5),Design.icon("ui",3),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),Design.icon("gems",7)]
 	var actions: Array=[show_home,show_adventure_menu.bind(0),show_adventure_menu.bind(1),show_adventure_menu.bind(2),show_settings]
 	for i in 5:
-		var nav:=IconButton.new();nav.position=Vector2(25+i*99,873);nav.size=Vector2(94,76);nav.caption=names[i];nav.image=images[i];nav.chosen=i==0;nav.pressed.connect(actions[i]);page.add_child(nav);nav.set_meta("base_y",873);footer_nodes.append(nav)
+		var nav:=IconButton.new();nav.position=Vector2(25+i*99,873);nav.size=Vector2(94,76);nav.caption=names[i];nav.image=images[i];nav.chosen=i==0;nav.set_meta("navigation_index",i);nav.pressed.connect(actions[i]);page.add_child(nav);nav.set_meta("base_y",873);footer_nodes.append(nav)
 	for node in page.get_children():
 		if node is Button and node.has_meta("base_y"):footer_nodes.append(node)
 	layout_stage()
@@ -749,7 +750,13 @@ func open_overlay(title: String, subtitle: String = "") -> Control:
 	sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	return overlay
 
+func select_navigation(index: int) -> void:
+	if screen!="map" or page==null:return
+	for child in page.get_children():
+		if child is IconButton and child.has_meta("navigation_index"):child.chosen=int(child.get_meta("navigation_index"))==index;child.queue_redraw()
+
 func close_overlay() -> void:
+	select_navigation(0)
 	if overlay != null:
 		overlay_root.hide()
 		overlay_root.queue_free()
@@ -1034,6 +1041,7 @@ func show_adventure_menu(kind: int) -> void:
 	progress_rule.ensure(save.data)
 	var progress: Dictionary=save.data.adventure_progress
 	open_overlay(["Günlük görevler","Kurtardığın dostlar","Kazanılan ödüller"][kind],"Çevrimdışı maceran bu cihazda saklanır.")
+	select_navigation(kind+1)
 	if kind==0:
 		var d: Dictionary=progress_rule.daily(save.data)
 		var keys: Array=["blue","wins","combos"]

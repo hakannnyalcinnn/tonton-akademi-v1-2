@@ -39,7 +39,7 @@ func run() -> void:
 	game.board.outcome="won";game.board.score=1000;game.show_result();await process_frame;await process_frame
 	var result_stars:=0
 	for node in game.overlay.get_children():
-		if node is TextureRect:result_stars+=1;check(node.size==Vector2(66,66),"success stars fit inside result card after layout")
+		if node is TextureRect:result_stars+=1;check(Rect2(168,375,208,65).encloses(Rect2(node.position,node.size)),"success stars fit inside result card after layout")
 	check(result_stars==3,"success screen contains three real asset stars")
 	var path: String=game.save.path
 	game.save.finish_writes();game.audio._notification(Node.NOTIFICATION_APPLICATION_PAUSED);await create_timer(.25).timeout

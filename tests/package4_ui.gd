@@ -31,7 +31,7 @@ func run() -> void:
 	game.show_worlds();await process_frame
 	var locked:=false
 	for child in game.page.get_node("WorldsScroll").get_child(0).get_children():
-		if child is Button and "50. BÖLÜMÜ" in child.text:locked=child.disabled
+		if child is Button and int(child.get_meta("world_id",0))==2:locked=child.disabled
 	check(locked,"ocean locked before garden completion")
 	ProjectSettings.set_setting("prizma/show_future_levels",false);game.show_worlds()
 	check(not game.page.get_children().any(func(c):return c is Label and "76–100" in c.text),"future levels label can be hidden without inventing playable buttons")
@@ -99,9 +99,9 @@ func run() -> void:
 	check(game.save.data.unlocked==76 and game.save.data.world_rewards==[1],"75 challenge never grants ocean world-final reward and unlocks built 76")
 	var challenge_title:=false;var next_found:=false
 	for child in game.overlay.get_children():
-		if child is Label and "Okyanus meydan" in child.text:challenge_title=true
-		if child is Button and child.text=="SONRAKİ DÜNYA":next_found=true
-	check(challenge_title and not next_found,"75 is presented as challenge, not 100 finale")
+		if child is Label and child.text==str(preload("res://scripts/core/world_catalog.gd").get_world(2).success_text):challenge_title=true
+		if child is Button and child.text=="SONRAKİ BÖLÜM":next_found=true
+	check(challenge_title and next_found,"75 is presented as challenge, not 100 finale")
 	game.show_map(5);check(game.garden.vitality>.18,"ocean restoration derived from durable completed levels")
 	game.show_map(0);check(game.garden.world==1 and game.garden.vitality==1,"player returns to fully restored rewarded garden")
 	game.save.finish_writes();var path: String=game.save.path

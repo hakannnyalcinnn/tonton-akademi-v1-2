@@ -31,7 +31,7 @@ func run() -> void:
  for key in d.targets:check(int(game.goals_panel.amounts[key])==int(d.targets[key]),"final visual counter corresponds to actual completed target "+key)
  var title_found:=false
  for child in game.overlay.get_children():
-  if child is Label and child.text=="Kristal Okyanus uyandı!":title_found=true
+  if child is Label and child.text==str(preload("res://scripts/core/world_catalog.gd").get_world(2).success_text):title_found=true
  check(title_found,"ocean final screen uses ocean title / art")
  var snapshot: Dictionary=game.save.data.duplicate(true);game.show_result();check(game.save.data==snapshot and game.save.data.world_rewards.size()==1,"final reward is idempotent across result reopening")
  game.save.finish_writes();var saved=Save.new(game.save.path);check(saved.data.world_rewards==[2] and saved.data.results.has("100"),"reward survives disk reload")

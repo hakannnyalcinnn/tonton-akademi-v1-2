@@ -81,8 +81,8 @@ func run() -> void:
 	check(game.save.data.world_rewards==[1] and game.garden.vitality==1,"world finale restores garden and grants durable medal")
 	var next_exists:=false
 	for child in game.overlay.get_children():
-		if child is Button and child.text=="SONRAKİ DÜNYA":next_exists=true
-		if child is TextureRect:check(child.size==Vector2(136,136),"world medal fits its reserved card without overflowing")
+		if child is Button and child.text=="SONRAKİ BÖLÜM":next_exists=true
+		if child is TextureRect:check(Rect2(168,375,208,65).encloses(Rect2(child.position,child.size)),"world medal fits its reserved card without overflowing")
 	check(next_exists,"released ocean is accessible from garden finale")
 	game.show_result();check(game.save.data.world_rewards==[1],"reopened finale does not duplicate reward")
 	game.save.finish_writes()
