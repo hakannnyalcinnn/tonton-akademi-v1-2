@@ -36,6 +36,11 @@ func _process(delta: float) -> void:
   if not quiet:clock+=elapsed
   elapsed=0;queue_redraw()
 func sprite(texture: Texture2D,center: Vector2,extent: Vector2,angle: float=0.0,alpha: float=1.0) -> void:
+ for n in range(maxi(0,int((path.count-1)-(center.y-160)/146)-2),mini(path.count,int((path.count-1)-(center.y-160)/146)+3)):
+  var node_center: Vector2=path.node_position(n)
+  var exclusion:=Rect2(node_center-Vector2(60,60),Vector2(120,120))
+  if Rect2(center-extent/2,extent).intersects(exclusion):
+   center.x=clampf(node_center.x+(-1 if center.x<node_center.x else 1)*(60+extent.x/2+6),extent.x/2,540-extent.x/2)
  draw_set_transform(center,angle)
  draw_texture_rect(texture,CasualSkin.fit(Rect2(-extent/2,extent),Rect2(Vector2.ZERO,texture.get_size())),false,Color(1,1,1,alpha));draw_set_transform(Vector2.ZERO)
 func _draw() -> void:
@@ -43,26 +48,27 @@ func _draw() -> void:
  for i in range(path.count):
   var anchor: Vector2=path.node_position(i)
   if anchor.y<visible_top-180 or anchor.y>visible_bottom+180:continue
-  var side:=68.0 if anchor.x>228 else 388.0
+  var side:=68.0 if anchor.x>270 else 472.0
   var phase:=clock+i*1.79
-  var center:=Vector2(side,anchor.y+20)
+  var center:=Vector2(side+sin(i*2.39)*14,anchor.y+12+sin(i*3.7)*20)
+  var scale_factor:=.72+fposmod(i*.173,.33)
   if biome=="garden":
-   sprite(sprites[1 if i%5==0 else 0],center,Vector2(138,145),sin(phase*.5)*.014)
-   sprite(sprites[2],Vector2(456-side,anchor.y+68),Vector2(82,80),sin(phase*.8)*.035)
+   sprite(sprites[[1,0,2,0,1,2,0][i%7]],center,Vector2(132,139)*scale_factor,sin(phase*.5)*.014)
+   if i%3!=1:sprite(sprites[2 if i%4 else 1],Vector2(540-side,anchor.y+74),Vector2(65,68)*scale_factor,sin(phase*.8)*.025)
    sprite(sprites[3],center+Vector2(sin(phase*.7)*23,-65+cos(phase)*10),Vector2(37,34),sin(phase)*.16)
   elif biome=="ocean":
-   sprite(sprites[4 if i%2==0 else 6],center,Vector2(140,140),sin(phase*.55)*.025)
-   sprite(sprites[5],Vector2(456-side+sin(phase*.6)*22,anchor.y+55),Vector2(65,55),sin(phase*.5)*.06)
+   sprite(sprites[4 if i%2==0 else 6],center,Vector2(140,140)*scale_factor,sin(phase*.55)*.025)
+   sprite(sprites[5],Vector2(540-side+sin(phase*.6)*22,anchor.y+55),Vector2(65,55),sin(phase*.5)*.06)
   else:
    var main_landmark:=i%3==0
    var feature: Texture2D=landmarks[world_id-3] if main_landmark else landmarks[4] if biome=="cloud" and i%3==2 else landmarks[5]
-   sprite(feature,center,Vector2(150,158) if main_landmark else Vector2(110,115),sin(phase*.4)*(.015 if biome=="cloud" else .004))
-   sprite(gem,Vector2(456-side,anchor.y+70),Vector2(64,70),sin(phase*.5)*.045)
-   if biome=="cloud":sprite(landmarks[4],Vector2(456-side+sin(phase*.25)*18,anchor.y-16),Vector2(126,76),0,.85)
+   sprite(feature,center,Vector2(150,158)*scale_factor if main_landmark else Vector2(110,115)*scale_factor,sin(phase*.4)*(.015 if biome=="cloud" else .004))
+   sprite(gem,Vector2(540-side,anchor.y+70),Vector2(64,70),sin(phase*.5)*.045)
+   if biome=="cloud":sprite(landmarks[4],Vector2(540-side+sin(phase*.25)*18,anchor.y-16),Vector2(126,76),0,.85)
    elif biome=="canyon" and main_landmark:
     for k in 3:
      var drop:=fposmod(clock*28+k*19,62)
      draw_line(center+Vector2(-11+k*5,drop-10),center+Vector2(-11+k*5,drop+3),Color(.7,.97,1,.40),2,true)
    elif biome=="lava":draw_arc(center+Vector2(0,48),29,0,PI,16,Color(1,.42,.10,.12+.08*sin(phase)),9,true)
   if i%10==5:sprite(creature,Vector2(side,anchor.y-68+sin(phase)*4),Vector2(63,63),sin(phase*.6)*.035)
-  if i%10==8:sprite(landmarks[3],Vector2(228,anchor.y-64),Vector2(124,60))
+  if i%10==8:sprite(landmarks[3],Vector2(270,anchor.y-64),Vector2(124,60))

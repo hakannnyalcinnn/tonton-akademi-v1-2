@@ -45,7 +45,7 @@ func configure(level: Dictionary,world: String,progress: Dictionary,reduced: boo
  update_height()
 func update_height() -> void:
  goals.custom_minimum_size.y=58 if goals.targets.size()<=3 else 88
- custom_minimum_size.y=118+goals.custom_minimum_size.y
+ custom_minimum_size.y=118+(goals.custom_minimum_size.y if goals.get_parent()==stack else 0)
  size.y=custom_minimum_size.y
 func show_score(value: int) -> void:
  var raw:=str(maxi(0,value));var formatted:=""

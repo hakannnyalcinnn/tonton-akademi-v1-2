@@ -5,6 +5,8 @@ const UI=preload("res://scripts/ui/ui_theme.gd")
 var number:=1
 var stars:=0
 var active:=false
+var quiet:=false
+var phase:=0.0
 var finale:=false
 var marker: Texture2D
 var star_icon: Texture2D
@@ -14,11 +16,17 @@ func _ready() -> void:
  for key in ["font_color","font_hover_color","font_pressed_color","font_disabled_color"]:add_theme_color_override(key,Color.TRANSPARENT)
  star_icon=UI.icon("ui",3);lock_icon=UI.icon("ui",4)
  mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+func _process(delta: float) -> void:
+ if active and not quiet:
+  phase+=delta;queue_redraw()
 func _draw() -> void:
  var tint:=Color(.7,.74,.84,.58) if disabled else Color("ffe4ad") if stars>0 else Color.WHITE
  draw_texture_rect(ART,Rect2(Vector2.ZERO,size),false,tint)
  var center:=size/2
- if active:draw_arc(center-Vector2(0,3),size.x*.47,0,TAU,36,Color("fff0a8"),3,true)
+ if active:
+  var glow:=.30+.10*sin(phase*2)
+  draw_arc(center-Vector2(0,3),size.x*.48,0,TAU,64,Color(1,.85,.42,glow),10,true)
+  draw_arc(center-Vector2(0,3),size.x*.47,0,TAU,64,Color("fff0a8"),3,true)
  var font:=ThemeDB.fallback_font;var caption:=str(number)
  var width:=font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,29).x
  draw_string(font,center+Vector2(-width/2,7),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,29,UI.INK)

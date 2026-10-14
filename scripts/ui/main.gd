@@ -123,17 +123,19 @@ func layout_stage() -> void:
 			for node in footer_nodes:
 				if is_instance_valid(node):node.position.y=float(node.get_meta("base_y"))+extra
 		if screen=="map" and is_instance_valid(map_scroll):
-			map_scroll.size.y=maxf(200,stage.size.y-262)
+			map_scroll.size.y=maxf(200,stage.size.y-286)
 			for node in footer_nodes:
 				if is_instance_valid(node):node.position.y=float(node.get_meta("base_y"))+extra
 	if screen == "game" and board_view:
 		game_hud.position=Vector2(23,12+minf(24,extra*.1));game_hud.size.x=stage.size.x-46
 		game_hud.update_height()
-		var top: float=game_hud.position.y+game_hud.size.y+12
-		var available_bottom: float=stage.size.y-190
-		board_view.position.y = maxf(top,top+(available_bottom-top-board_view.size.y)*.5)
 		goals_panel.size=Vector2(game_hud.size.x,goals_panel.custom_minimum_size.y)
-		goals_panel.position=Vector2(game_hud.position.x,board_view.position.y-goals_panel.size.y-12)
+		goals_panel.position=Vector2(game_hud.position.x,game_hud.position.y+game_hud.size.y+8)
+		var available_bottom: float=stage.size.y-158
+		var content_height: float=game_hud.size.y+8+goals_panel.size.y+12+board_view.size.y
+		game_hud.position.y=maxf(12,(available_bottom-content_height)*.5)
+		goals_panel.position.y=game_hud.position.y+game_hud.size.y+8
+		board_view.position.y=goals_panel.position.y+goals_panel.size.y+12
 		for node in page.get_children():
 			if node is Control and node.has_meta("hud_y") and node not in [game_hud,goals_panel]:node.position.y=float(node.get_meta("hud_y"))+extra*.5
 		for node in footer_nodes:
@@ -141,7 +143,7 @@ func layout_stage() -> void:
 				var base: int=int(node.get_meta("base_y"))
 				var offset: float={816:12,817:13,860:49,936:125,940:125,972:153,974:153}.get(base,base-736)
 				if node.get_script()==preload("res://scripts/ui/companion.gd"):offset=92
-				node.position.y=board_view.position.y+board_view.size.y+offset
+				node.position.y=stage.size.y-146+offset-12
 				if node.get_script()==preload("res://scripts/ui/companion.gd"):node.base_y=node.position.y
 	if screen=="game" and is_instance_valid(goal_tip):goal_tip.position.y=minf(board_view.position.y+board_view.size.y+125,stage.size.y-76)
 	if overlay_root:
@@ -350,24 +352,22 @@ func show_map(group: int=-1) -> void:
 	button(page,"DÜNYALAR",Rect2(316,77,190,44),show_worlds,true,15)
 	map_buttons.clear()
 	map_scroll=preload("res://scripts/ui/world_scroll.gd").new()
-	map_scroll.position=Vector2(32,130);map_scroll.size=Vector2(476,698)
-	map_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;map_scroll.follow_focus=false;page.add_child(map_scroll)
+	map_scroll.position=Vector2(0,130);map_scroll.size=Vector2(540,674)
+	map_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;map_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_SHOW_NEVER;map_scroll.follow_focus=false;page.add_child(map_scroll)
 	var path:=MapPath.new()
 	var first:=int(metadata.start);var last:=mini(Catalog.count(),int(metadata.end))
 	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3;path.world_theme=str(metadata.map_style);path.accent=Color(metadata.accent)
 	path.quiet=save.data.settings.reduced_motion;path.completed_count=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()
-	path.name="LivingAdventurePath";path.world_id=selected_world;path.quality=str(save.data.settings.get("quality","balanced"));path.custom_minimum_size=Vector2(456,path.count*146+280);map_scroll.add_child(path)
+	path.name="LivingAdventurePath";path.world_id=selected_world;path.quality=str(save.data.settings.get("quality","balanced"));path.custom_minimum_size=Vector2(540,path.count*146+280);map_scroll.add_child(path)
 	for n in range(first,last+1):
 		var center: Vector2=path.node_position(n-first)
 		var node:=preload("res://scripts/ui/level_node.gd").new()
 		node.number=n;node.text=str(n);node.stars=int(save.data.results.get(str(n),{}).get("stars",0));node.active=n==current_level();node.finale=n==last
-		node.size=Vector2(88,88) if node.finale or node.active else Vector2(76,76);node.position=center-node.size/2;node.disabled=n>save.data.unlocked
+		node.quiet=save.data.settings.reduced_motion;node.size=Vector2(100,100) if node.active else Vector2(88,88) if node.finale else Vector2(76,76);node.position=center-node.size/2;node.disabled=n>save.data.unlocked
 		var special: Dictionary=Design.marker_for(n)
 		if not special.get("treasure",{}).is_empty():node.marker=preload("res://assets/casual/treasure-lid.svg")
 		elif special.has("kind"):node.marker=preload("res://scripts/ui/goal_registry.gd").icon("rescues" if special.kind=="rescue" else "bosses")
 		node.pressed.connect(request_level.bind(n));path.add_child(node);map_buttons[n]=node
-		if node.active and not save.data.settings.reduced_motion:
-			node.pivot_offset=node.size/2;var pulse:=node.create_tween().set_loops();pulse.tween_property(node,"scale",Vector2(1.05,1.05),.6);pulse.tween_property(node,"scale",Vector2.ONE,.6)
 	var focus:=current_level() if current_level()>=first and current_level()<=last else first
 	map_scroll.set_deferred("scroll_vertical",maxi(0,int(path.node_position(focus-first).y-map_scroll.size.y*.7)))
 	button(page,"GÜNCEL BÖLÜME DÖN",Rect2(88,820,364,54),show_home,true,18).set_meta("base_y",820)
