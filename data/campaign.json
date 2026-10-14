@@ -10,7 +10,8 @@
       "art": "res://assets/casual/world-garden.png",
       "reward": "Bahçe Madalyası",
       "accent": "#72dbb3",
-      "map_style": "garden"
+      "map_style": "garden",
+      "success_text": "Bahçe canlanıyor!"
     },
     {
       "id": 2,
@@ -21,7 +22,8 @@
       "art": "res://assets/casual/world-ocean.png",
       "reward": "Okyanus Madalyası",
       "accent": "#68d9ee",
-      "map_style": "ocean"
+      "map_style": "ocean",
+      "success_text": "Okyanus ışıldıyor!"
     },
     {
       "id": 3,
@@ -32,7 +34,8 @@
       "art": "res://assets/casual/world-canyon.png",
       "reward": "Kanyon Madalyası",
       "accent": "#dd8bff",
-      "map_style": "canyon"
+      "map_style": "canyon",
+      "success_text": "Renkler geri dönüyor!"
     },
     {
       "id": 4,
@@ -45,7 +48,8 @@
       "accent": "#ffd992",
       "map_style": "cloud",
       "reward_id": "sky-crown",
-      "reward_icon": "res://assets/casual/sky-crown.svg"
+      "reward_icon": "res://assets/casual/sky-crown.svg",
+      "success_text": "Gökyüzü aydınlanıyor!"
     },
     {
       "id": 5,
@@ -58,7 +62,8 @@
       "accent": "#ffa05f",
       "map_style": "lava",
       "reward_id": "lava-crown",
-      "reward_icon": "res://assets/casual/lava-crown.svg"
+      "reward_icon": "res://assets/casual/lava-crown.svg",
+      "success_text": "Kristaller parlıyor!"
     }
   ],
   "packages": [

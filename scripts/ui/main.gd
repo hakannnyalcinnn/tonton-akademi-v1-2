@@ -276,7 +276,7 @@ func play_latest() -> void:
 	if not save.data.active.is_empty():
 		start_level(int(save.data.active.level_id), true)
 	else:
-		start_level(int(save.data.unlocked))
+		request_level(int(save.data.unlocked))
 
 func world_name(number: int) -> String:
 	return str(Worlds.get_world(number).get("title","PRİZMA")).to_upper()
@@ -353,7 +353,7 @@ func show_map(group: int = -1) -> void:
 			glow.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;glow.position=center-Vector2(49,49);glow.size=Vector2(98,98);glow.mouse_filter=Control.MOUSE_FILTER_IGNORE;glow.modulate=Color(1,.9,.4,.8);path.add_child(glow)
 			if not save.data.settings.reduced_motion:
 				var pulse:=glow.create_tween().set_loops();pulse.tween_property(glow,"modulate:a",.35,.65);pulse.tween_property(glow,"modulate:a",.8,.65)
-		var node:=button(path,str(n),Rect2(center-Vector2(36,36),Vector2(72,72)),start_level.bind(n),unlocked and n==save.data.unlocked,25)
+		var node:=button(path,str(n),Rect2(center-Vector2(36,36),Vector2(72,72)),request_level.bind(n),unlocked and n==save.data.unlocked,25)
 		node.disabled=not unlocked;map_buttons[n]=node
 		if not unlocked:
 			var lock:=TextureRect.new();lock.texture=CasualSkin.texture("ui",4,CasualSkin.UI)
@@ -370,6 +370,26 @@ func show_map(group: int = -1) -> void:
 		var group_index:=start_group+i
 		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+i*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
 	label(page,world_name(selected_world),Rect2(30,918,480,26),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+
+func request_level(number: int) -> void:
+	if number<1 or number>mini(Catalog.count(),int(save.data.unlocked)):return
+	persist_board()
+	var definition: Dictionary=Catalog.get_level(number)
+	apply_world_progress(Catalog.world_for(number))
+	open_overlay("BÖLÜM %d"%number, "%s · %s"%[world_name(Catalog.world_for(number)),definition.name])
+	var preview:=preload("res://scripts/ui/goals_panel.gd").new()
+	preview.position=Vector2(48,367);preview.size=Vector2(480,112);preview.quiet=true
+	overlay.add_child(preview);preview.configure(definition.targets,{})
+	preview.goal_pressed.connect(func(key):label(overlay,preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])),Rect2(68,525,404,48),13,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER))
+	label(overlay,"%d HAMLE"%int(definition.moves),Rect2(68,488,404,32),20,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"OYNA!",Rect2(68,583,404,58),func():
+		close_overlay()
+		begin_page("transition")
+		label(page,"KRİSTALLER UYANIYOR",Rect2(38,425,464,60),25,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+		var destination:=number
+		await get_tree().create_timer(.6 if not save.data.settings.reduced_motion else .05).timeout
+		if screen=="transition":start_level(destination),true,22)
+	button(overlay,"VAZGEÇ",Rect2(68,663,404,45),close_overlay,false,16)
 
 func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
 	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
@@ -564,7 +584,7 @@ func on_animation_finished() -> void:
 	update_hud()
 	if board.recovery_failed:
 		open_overlay("Tahta kurtarılamadı","Durum tanılama kaydına alındı. Hamle, puan ve hedefler korunuyor.")
-		button(overlay,"BÖLÜMÜ YENİDEN DENE",Rect2(68,605,404,45),start_level.bind(int(board.level.id)),true,16)
+		button(overlay,"BÖLÜMÜ YENİDEN DENE",Rect2(68,605,404,45),request_level.bind(int(board.level.id)),true,16)
 		button(overlay,"ANA MENÜ",Rect2(68,661,404,45),show_home,false,16)
 		return
 	if board.outcome != "playing": show_result()
@@ -707,7 +727,7 @@ func show_pause(already_saved: bool = false) -> void:
 
 func confirm_restart() -> void:
 	open_overlay("Baştan başlayalım mı?", "Bu bölümün mevcut hamleleri sıfırlanır. Kazandığın yıldızlar korunur.")
-	button(overlay, Strings.text("replay"), Rect2(68, 421, 404, 59), start_level.bind(int(board.level.id)), true)
+	button(overlay, Strings.text("replay"), Rect2(68, 421, 404, 59), request_level.bind(int(board.level.id)), true)
 	button(overlay, "VAZGEÇ", Rect2(68, 508, 404, 55), show_pause)
 
 func show_color_picker(index: int) -> void:
@@ -737,7 +757,7 @@ func show_result() -> void:
 		save.data.active = {}
 		save.flush()
 	audio.play("success2" if won else "lose")
-	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (Strings.text("won") if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya özel güç birleşimi dene.")
+	open_overlay("Okyanus meydan okuması!" if won and int(board.level.id)==75 else (str(Worlds.get_world(Catalog.world_for(int(board.level.id))).get("success_text","Dünya renkleniyor!")) if won else Strings.text("lost")), "Her renk bir iz bırakır." if won else "Farklı bir renk sırası veya özel güç birleşimi dene.")
 	if won:
 		if not save.data.settings.reduced_motion and not save.data.settings.get("reduced_effects",false) and save.data.settings.get("quality","auto")!="performance":
 			var confetti := Celebration.new()
@@ -759,16 +779,17 @@ func show_result() -> void:
 		label(overlay, "%d PUAN" % board.score, Rect2(66, 436, 408, 37), 26, Palette.INK, HORIZONTAL_ALIGNMENT_CENTER)
 		label(overlay, "2★: %d   ·   3★: %d" % [board.level.stars[1], board.level.stars[2]], Rect2(66, 475, 408, 28), 13, Palette.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
 		if int(board.level.id) < Catalog.count():
-			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), start_level.bind(int(board.level.id) + 1), true)
+			button(overlay, Strings.text("next"), Rect2(68, 529, 404, 58), request_level.bind(int(board.level.id) + 1), true)
 		else:
 			label(overlay, "%d bölüm tamamlandı!"%Catalog.count(), Rect2(66, 516, 408, 38), 22, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
 			button(overlay, "OKYANUSU KEŞFET" if int(board.level.id)>=51 else Strings.text("map"), Rect2(68, 567, 404, 53), show_map, true)
-		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), start_level.bind(int(board.level.id)))
+		button(overlay, Strings.text("replay"), Rect2(68, 637, 404, 53), request_level.bind(int(board.level.id)))
 	else:
-		label(overlay, "%d PUAN" % board.score, Rect2(66, 388, 408, 50), 30, Palette.GOLD, HORIZONTAL_ALIGNMENT_CENTER)
-		button(overlay, Strings.text("replay"), Rect2(68, 467, 404, 59), start_level.bind(int(board.level.id)), true)
+		var remaining:=preload("res://scripts/ui/goals_panel.gd").new()
+		remaining.position=Vector2(30,357);remaining.size=Vector2(480,112);remaining.quiet=true
+		overlay.add_child(remaining);remaining.configure(board.active_targets(),board.collected)
+		button(overlay, Strings.text("replay"), Rect2(68, 467, 404, 59), request_level.bind(int(board.level.id)), true)
 		button(overlay, Strings.text("map"), Rect2(68, 552, 404, 55), show_map)
-		button(overlay, Strings.text("home"), Rect2(68, 630, 404, 53), show_home)
 
 func show_settings() -> void:
 	persist_board()
@@ -794,7 +815,7 @@ func show_settings() -> void:
 	button(page,"YARDIM / ÖĞRETİCİLER",Rect2(42,768,222,44),show_help,false,13)
 	button(page,"Performans raporu",Rect2(274,768,224,44),show_diagnostics,false,13)
 	button(page,Strings.text("resume") if not save.data.active.is_empty() else Strings.text("home"),Rect2(42,835,456,56),play_latest if not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.9 · OYNANIŞ 2.0",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.12 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),start_mechanic_test,false,12)
@@ -975,7 +996,7 @@ func show_world_result() -> void:
 		celebration.accent=Color(metadata.accent)
 		overlay.add_child(celebration)
 	if int(board.level.id)<Catalog.count():
-		button(overlay,"SONRAKİ DÜNYA",Rect2(68,604,404,45),start_level.bind(int(board.level.id)+1),true,17)
+		button(overlay,"SONRAKİ DÜNYA",Rect2(68,604,404,45),request_level.bind(int(board.level.id)+1),true,17)
 	else:
 		label(overlay,"%d dünya · %d bölüm tamamlandı!"%[Worlds.playable_worlds().size(),Catalog.count()],Rect2(55,599,430,32),17,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	button(overlay,"DÜNYAYI KEŞFET",Rect2(68,653,404,45),show_map.bind(int((int(Worlds.get_world(selected_world).end)-1)/10)),true,17)
