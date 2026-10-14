@@ -1,0 +1,17 @@
+{
+  "source": "first v0121_performance.gd real profiler run, captured console summary before caching",
+  "renderer": "llvmpipe / Godot 4.6.3",
+  "mean_frame_ms": 18.0160104082776,
+  "p95_ms": 21.5149993896484,
+  "p99_ms": 75.9800033569336,
+  "max_frame_ms": 101.23999786377,
+  "world_map_cpu_ms": [
+    58.678,
+    66.538,
+    54.437,
+    62.979,
+    58.143
+  ],
+  "peak_static_mib": 41.8,
+  "android_device_tested": false
+}

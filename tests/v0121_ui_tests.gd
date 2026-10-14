@@ -39,6 +39,8 @@ func run() -> void:
   elif child is Icon and child.get_meta("booster","")=="prism":child.pressed.emit()
  find_button("OYNA!").pressed.emit();await create_timer(.1).timeout;await process_frame
  check(game.screen=="game" and inventory.prism==initial-1,"Play starts and consumes exactly one owned booster")
+ var teaching: Array=game.board.level.tutorial_swap
+ check(preload("res://scripts/core/match_detector.gd").can_swap(game.board.cells,int(teaching[0]),int(teaching[1]),8,9),"starting booster preserves the teaching swap")
  game.save.data.unlocked=250
  game.request_level(2);await process_frame;find_button("OYNA!").pressed.emit();game.go_back()
  game.request_level(3);await process_frame;find_button("OYNA!").pressed.emit();await create_timer(.1).timeout

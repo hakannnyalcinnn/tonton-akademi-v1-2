@@ -23,7 +23,7 @@ from pathlib import Path
 from zipfile import ZipFile
 manifest = Path('build/android-package.txt').read_text()
 assert "name='" + sys.argv[2] + "'" in manifest
-assert "versionName='0.12.0'" in manifest
+assert "versionName='0.12.1'" in manifest
 assert "sdkVersion:'24'" in manifest and "targetSdkVersion:'36'" in manifest
 assert 'android.permission.INTERNET' not in manifest
 assert 'android.permission.VIBRATE' in manifest

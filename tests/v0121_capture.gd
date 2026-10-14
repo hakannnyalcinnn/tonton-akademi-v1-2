@@ -16,6 +16,6 @@ func run() -> void:
  for key in game.board.level.targets:game.board.collected[key]=int(game.board.level.targets[key])
  game.show_result();await create_timer(.4).timeout;await shot("success")
  game.close_overlay();game.start_level(25);game.board.outcome="lost";game.board.moves=0;game.show_result();await shot("failure")
- game.close_overlay();game.save.data.unlocked=250;game.show_worlds();await shot("worlds")
+ game.close_overlay();game.save.data.unlocked=250;game.show_worlds();await create_timer(.35).timeout;await shot("worlds")
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
  print("PASS: six final Godot screens and visible tutorial HUD; isolated test profile");quit()

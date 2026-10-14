@@ -25,7 +25,15 @@ func run() -> void:
   start=Time.get_ticks_usec();game.request_level(group*10+1);timings.append({"operation":"preview","group":group,"cpu_ms":float(Time.get_ticks_usec()-start)/1000})
   for i in 22:await frame()
   game.close_overlay()
- game.start_level(25);game.close_goal_tip();await frame()
+ game.request_level(25);await frame()
+ var launch: Button
+ for child in game.overlay.get_children():
+  if child is Button and child.text=="OYNA!":launch=child
+ var launch_start:=Time.get_ticks_usec();launch.pressed.emit();var wait:=0
+ while (game.screen!="game" or game.entering_level) and wait<120:await frame();wait+=1
+ assert(wait<120)
+ timings.append({"operation":"play_to_ready","elapsed_ms":float(Time.get_ticks_usec()-launch_start)/1000})
+ game.close_goal_tip();await frame()
  for i in 45:await frame()
  game.board.outcome="lost";game.board.moves=0;var start:=Time.get_ticks_usec();game.show_result();timings.append({"operation":"failure_popup","cpu_ms":float(Time.get_ticks_usec()-start)/1000})
  for i in 30:await frame()

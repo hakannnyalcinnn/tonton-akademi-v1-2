@@ -5,6 +5,7 @@ const IconButton=preload("res://scripts/ui/visual_icon_button.gd")
 var map_scroll: ScrollContainer
 var settings_origin:="map"
 var transition_token:=0
+var entering_level:=false
 var last_move_badge:=-1
 var move_tween: Tween
 const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
@@ -135,6 +136,12 @@ func layout_stage() -> void:
 		overlay.position.y = extra*.5
 
 func _process(delta: float) -> void:
+	if screen=="worlds" and page!=null:
+		var list:=page.get_node_or_null("WorldsScroll")
+		if list!=null:
+			for row in list.get_child(0).get_children():
+				var image=row.get_child(0)
+				if image is TextureRect and image.texture==null:image.texture=preload("res://scripts/ui/world_art_cache.gd").ready(str(image.get_meta("world_art")))
 	if save:
 		save.poll_flush()
 		if save.last_error!="" and save.last_error!=reported_save_error:
@@ -304,7 +311,7 @@ func show_worlds() -> void:
 		row.add_theme_stylebox_override("normal",Design.surface());row.add_theme_stylebox_override("disabled",Design.surface());row.add_theme_color_override("font_color",Color.TRANSPARENT);row.add_theme_color_override("font_disabled_color",Color.TRANSPARENT)
 		row.set_meta("world_id",world)
 		row.disabled=int(save.data.unlocked)<int(metadata.start)
-		var image:=TextureRect.new();image.texture=load(metadata.art);image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;image.position=Vector2(9,9);image.size=Vector2(88,86);image.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(image)
+		var image:=TextureRect.new();image.texture=preload("res://scripts/ui/world_art_cache.gd").ready(str(metadata.art));image.set_meta("world_art",str(metadata.art));image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;image.position=Vector2(9,9);image.size=Vector2(88,86);image.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(image)
 		label(row,str(metadata.title),Rect2(111,14,326,33),21)
 		var done: int=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==world).size()
 		label(row,"%d–%d · %d/%d tamamlandı"%[int(metadata.start),int(metadata.end),done,int(metadata.end)-int(metadata.start)+1],Rect2(111,50,326,27),14,Design.ACCENT)
@@ -342,9 +349,9 @@ func show_map(group: int=-1) -> void:
 		var node:=preload("res://scripts/ui/level_node.gd").new()
 		node.number=n;node.text=str(n);node.stars=int(save.data.results.get(str(n),{}).get("stars",0));node.active=n==current_level();node.finale=n==last
 		node.size=Vector2(88,88) if node.finale else Vector2(76,76);node.position=center-node.size/2;node.disabled=n>save.data.unlocked
-		var definition: Dictionary=Catalog.get_level(n)
-		if not definition.get("treasure",{}).is_empty():node.marker=preload("res://assets/casual/treasure-lid.svg")
-		elif definition.has("adventure"):node.marker=preload("res://scripts/ui/goal_registry.gd").icon("rescues" if definition.adventure.kind=="rescue" else "bosses")
+		var special: Dictionary=Design.marker_for(n)
+		if not special.get("treasure",{}).is_empty():node.marker=preload("res://assets/casual/treasure-lid.svg")
+		elif special.has("kind"):node.marker=preload("res://scripts/ui/goal_registry.gd").icon("rescues" if special.kind=="rescue" else "bosses")
 		node.pressed.connect(request_level.bind(n));path.add_child(node);map_buttons[n]=node
 		if node.active and not save.data.settings.reduced_motion:
 			node.pivot_offset=node.size/2;var pulse:=node.create_tween().set_loops();pulse.tween_property(node,"scale",Vector2(1.05,1.05),.6);pulse.tween_property(node,"scale",Vector2.ONE,.6)
@@ -353,7 +360,7 @@ func show_map(group: int=-1) -> void:
 	button(page,"GÜNCEL BÖLÜM",Rect2(316,812,188,41),show_home,false,12).set_meta("base_y",812)
 	var bar:=card(page,Rect2(17,868,506,80));bar.set_meta("base_y",868);footer_nodes.append(bar)
 	var names: Array=["Harita","Günlük","Dostlar","Ödüller","Ayarlar"]
-	var images: Array=[Design.icon("ui",5),Design.icon("ui",3),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),Design.icon("gems",7)]
+	var images: Array=[preload("res://assets/casual/navigation-map.svg"),preload("res://assets/casual/navigation-tasks.svg"),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),preload("res://assets/casual/navigation-settings.svg")]
 	var actions: Array=[show_home,show_adventure_menu.bind(0),show_adventure_menu.bind(1),show_adventure_menu.bind(2),show_settings]
 	for i in 5:
 		var nav:=IconButton.new();nav.position=Vector2(25+i*99,873);nav.size=Vector2(94,76);nav.caption=names[i];nav.image=images[i];nav.chosen=i==0;nav.set_meta("navigation_index",i);nav.pressed.connect(actions[i]);page.add_child(nav);nav.set_meta("base_y",873);footer_nodes.append(nav)
@@ -393,15 +400,17 @@ func request_level(number: int) -> void:
 				if item is IconButton:item.chosen=str(item.get_meta("booster",""))==selected_booster;item.queue_redraw())
 	button(overlay,"OYNA!",Rect2(83,593,374,63),func():
 		close_overlay();begin_page("transition")
+		var trail:=preload("res://scripts/ui/level_transition.gd").new();trail.quiet=save.data.settings.reduced_effects or save.data.settings.reduced_motion;page.add_child(trail)
 		var guide:=preload("res://scripts/ui/companion.gd").new();guide.position=Vector2(198,299);guide.size=Vector2(144,144);guide.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(guide);guide.react("excited")
 		label(page,"KRİSTALLER UYANIYOR",Rect2(38,456,464,60),24,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
 		var launch_token:=transition_token
 		await get_tree().create_timer(.05 if fast_test or save.data.settings.reduced_motion else .55).timeout
-		if screen=="transition" and launch_token==transition_token:start_level(number,resume_requested),true,25)
+		if screen=="transition" and launch_token==transition_token:start_level(number,resume_requested,{},true),true,25)
 	if not save.data.settings.reduced_motion:
 		overlay.pivot_offset=Vector2(270,488);overlay.scale=Vector2(.88,.88);var intro:=overlay.create_tween();intro.tween_property(overlay,"scale",Vector2.ONE,.24).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
-func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}) -> void:
+func start_level(number: int, resume: bool = false, test_definition: Dictionary = {}, animate_entry: bool=false) -> void:
+	entering_level=false
 	if test_definition.is_empty() and (number < 1 or number > mini(Catalog.count(),int(save.data.unlocked))): return
 	earned_treasure=false
 	test_mode = not test_definition.is_empty()
@@ -411,8 +420,15 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
 	elif selected_booster!="" and not test_mode:
 		var slot:=-1
-		for i in board.cells.size():
-			if board.cells[i]!=null and not board.cells[i].get("fixed",false) and board.cells[i].p=="":slot=i;break
+		var hint: Array=board.level.get("tutorial_swap",[])
+		var preserve_hint: bool=hint.size()==2 and Match.can_swap(board.cells,int(hint[0]),int(hint[1]),8,9)
+		var kind: String="rocket_h" if selected_booster=="rocket" else "prism"
+		for i in range(board.cells.size()-1,-1,-1):
+			if board.cells[i]==null or board.cells[i].get("fixed",false) or board.cells[i].p!="" or (preserve_hint and i in hint):continue
+			board.cells[i].p=kind
+			var valid: bool=not preserve_hint or Match.can_swap(board.cells,int(hint[0]),int(hint[1]),8,9)
+			board.cells[i].p=""
+			if valid:slot=i;break
 		if slot>=0 and preload("res://scripts/core/adventure_progress.gd").consume(save.data,selected_booster):board.cells[slot].p="rocket_h" if selected_booster=="rocket" else "prism"
 	selected_booster=""
 	begin_page("game")
@@ -483,6 +499,13 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 		board_view.hint_target = int(board.level.tutorial_swap[1])
 	if not test_mode: save.save_active(board)
 	queue_goal_tutorials()
+	if animate_entry and not fast_test and not save.data.settings.reduced_motion:
+		entering_level=true
+		var view=board_view;view.mouse_filter=Control.MOUSE_FILTER_IGNORE;view.modulate.a=0
+		var entrance: Tween=view.create_tween();entrance.tween_property(view,"modulate:a",1,.15)
+		entrance.tween_callback(func():
+			if is_instance_valid(view):view.mouse_filter=Control.MOUSE_FILTER_STOP
+			entering_level=false)
 
 func update_hud(update_goals: bool=true) -> void:
 	if update_goals and board.level.has("objective_stages"):level_label.text="%d / %s · %d/%d"%[int(board.level.id),board.level.name,board.objective_stage+1,board.level.objective_stages.size()]
@@ -519,13 +542,14 @@ func set_hint(text: String) -> void:
 	if hint_label: hint_label.text = text
 
 func on_swap(a: int, b: int) -> void:
-	if screen != "game" or paused or board_view.busy or not board.available(): return
+	if screen != "game" or paused or entering_level or board_view.busy or not board.available(): return
 	var started := Time.get_ticks_usec()
 	var event: Dictionary = board.swap(a,b)
 	Metrics.elapsed("swap_and_cascades",started)
 	process_event(event)
 
 func on_special(index: int) -> void:
+	if entering_level:return
 	if screen != "game" or paused or board_view.busy or not board.available() or board.cells[index].p == "": return
 	if board.cells[index].p == "color": show_color_picker(index)
 	else: perform_special(index)
@@ -651,7 +675,7 @@ func show_seal_description(index: int) -> void:
 		label(goal_tip,"✓" if k<int(m.step) else ("SIRADAKİ" if k==int(m.step) else ""),Rect2(12+k*61,53,56,17),10,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 	button(goal_tip,"×",Rect2(423,8,48,48),close_goal_tip,false,20)
 func show_goal_description(key: String,tutorial: bool=false) -> void:
-	if screen!="game" or not board.level.targets.has(key):return
+	if screen!="game" or goals_panel==null or not goals_panel.targets.has(key):return
 	close_goal_tip()
 	board_view.highlight_goal(key)
 	if is_instance_valid(companion):companion.hide()
@@ -661,7 +685,7 @@ func show_goal_description(key: String,tutorial: bool=false) -> void:
 	var registry=preload("res://scripts/ui/goal_registry.gd")
 	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(10,10);icon.size=Vector2(48,48);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
 	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(68,5,345,20),12,Palette.GOLD)
-	var text:=label(goal_tip,registry.description(key,int(board.level.targets[key])),Rect2(68,25,346,46),13)
+	var text:=label(goal_tip,registry.description(key,int(goals_panel.targets[key])),Rect2(68,25,346,46),13)
 	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	button(goal_tip,"×",Rect2(423,8,48,48),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
 	

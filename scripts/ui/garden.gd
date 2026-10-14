@@ -1,4 +1,6 @@
 extends Control
+const WorldArt=preload("res://scripts/ui/world_art_cache.gd")
+var pending_art:=""
 const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 const Palette = preload("res://scripts/ui/palette.gd")
 ## Calm, layered world; monochrome slowly restores with collected color energy.
@@ -39,12 +41,17 @@ func set_world(number: int) -> void:
 	world_completed=false
 	shader_completed=-1.0
 	if backdrop:
-		artwork=load(preload("res://scripts/core/world_catalog.gd").get_world(world).art)
-		backdrop.texture=artwork
+		pending_art=str(preload("res://scripts/core/world_catalog.gd").get_world(world).art)
+		WorldArt.prefetch(world)
+		backdrop.modulate.a=0
 		backdrop.material.set_shader_parameter("lava_effect",1.0 if world==5 else 0.0)
 	queue_redraw()
 
 func _process(delta: float) -> void:
+	if pending_art!="" and backdrop:
+		var loaded:=WorldArt.ready(pending_art)
+		if loaded!=null:artwork=loaded;backdrop.texture=loaded;pending_art=""
+	if backdrop and pending_art=="":backdrop.modulate.a=1 if reduced_motion else minf(1,backdrop.modulate.a+delta*9)
 	if not reduced_motion: clock += delta
 	var previous_vitality := displayed_vitality
 	displayed_vitality = vitality if reduced_motion else lerpf(displayed_vitality,vitality,minf(1,delta*2.5))

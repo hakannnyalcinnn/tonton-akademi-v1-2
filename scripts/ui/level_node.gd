@@ -1,4 +1,5 @@
 extends Button
+static var empty_style:=StyleBoxEmpty.new()
 const ART=preload("res://assets/casual/level-node.svg")
 const UI=preload("res://scripts/ui/ui_theme.gd")
 var number:=1
@@ -9,7 +10,7 @@ var marker: Texture2D
 var star_icon: Texture2D
 var lock_icon: Texture2D
 func _ready() -> void:
- for key in ["normal","hover","pressed","disabled","focus"]:add_theme_stylebox_override(key,StyleBoxEmpty.new())
+ for key in ["normal","hover","pressed","disabled","focus"]:add_theme_stylebox_override(key,empty_style)
  for key in ["font_color","font_hover_color","font_pressed_color","font_disabled_color"]:add_theme_color_override(key,Color.TRANSPARENT)
  star_icon=UI.icon("ui",3);lock_icon=UI.icon("ui",4)
  mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
