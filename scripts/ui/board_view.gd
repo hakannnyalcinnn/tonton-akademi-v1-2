@@ -44,6 +44,7 @@ var energy_paths: Dictionary={}
 var render_beams: Array[PackedVector2Array]=[]
 var bomb_sources:=PackedVector2Array()
 var swap_pair: Array=[0,1]
+var bomb_impact_sent:=false
 var bomb_origin := -1
 var mechanic_font: Font
 var layer_cells: Array = []
@@ -302,7 +303,8 @@ func next_frame() -> void:
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.16, "revert": 0.12, "clear": 0.17, "fall": 0.12, "refill": 0.13, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.22,"crystal_wave":.22}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.16, "revert": 0.12, "clear": 0.17, "fall": 0.12, "refill": 0.13, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.48,"crystal_wave":.22}.get(current.kind, 0.12)
+	bomb_impact_sent=false
 	bomb_origin=-1
 	bomb_sources.clear()
 	render_beams.clear()
@@ -327,8 +329,8 @@ func next_frame() -> void:
 			if previous[index]!=null and previous[index].p=="color":
 				if bomb_origin<0:bomb_origin=index
 				bomb_sources.append(cell_position(index)+Vector2(28,28))
-		if bomb_origin>=0 and not reduced_motion:duration=.28
-	if current.get("combo_kind","")!="" and not reduced_motion:duration=.28
+		if bomb_origin>=0 and not reduced_motion:duration=.72
+	if current.get("combo_kind","")!="" and not reduced_motion:duration=maxf(duration,.28)
 	if current.kind=="clear" and not current.get("creations",[]).is_empty() and not reduced_motion:duration=maxf(duration,.22)
 	energy_paths.clear()
 	if bomb_origin>=0:
@@ -358,8 +360,8 @@ func next_frame() -> void:
 	if current.kind=="shuffle":
 		combo_label.text="KRİSTALLER KARIŞTIRILIYOR!";combo_label.add_theme_font_size_override("font_size",24);combo_age=0;combo_label.show()
 	if current.kind == "clear":
-		start_wave(current)
-		wave_started.emit(current)
+		if bomb_origin<0:start_wave(current);wave_started.emit(current)
+		else:feedback.emit("resonance")
 
 func _process(delta: float) -> void:
 	var now := Time.get_ticks_usec()
@@ -398,6 +400,8 @@ func _process(delta: float) -> void:
 		goal_highlight_time=maxf(0,goal_highlight_time-delta);active=true
 	if busy:
 		age += delta
+		if bomb_origin>=0 and not bomb_impact_sent and age/duration>=.72:
+			bomb_impact_sent=true;start_wave(current);wave_started.emit(current)
 		if age >= duration:
 			if current.kind=="clear" and not render_beams.is_empty():rocket_impact.emit()
 			Metrics.record("animation_"+str(current.kind),age*1000)
@@ -655,9 +659,10 @@ func _draw() -> void:
 			if previous[i] == null: continue
 			var center := cell_position(i) + Vector2(28,28)
 			var color: Color = Palette.COLORS[int(current.get("colors",{}).get(i,previous[i].c))]
+			if bomb_origin>=0 and t>.6 and t<.72:center.x+=sin(t*100+i)*1.2
 			var phase:=t
 			if bomb_origin>=0:
-				phase=clampf((t-float(i%6)*.045)/.775,0,1)
+				phase=clampf((t-.72)/.28,0,1)
 
 			if phase<.32:
 				var block_size:=Vector2.ONE*CELL*(1+.16*sin(phase/.32*PI*.5))
@@ -726,7 +731,7 @@ func _draw() -> void:
 			var center:=cell_position(growth.index)+Vector2(28,28)
 			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(.5,1,.6,sin(t*PI)*.6))
 	if busy and current.kind=="clear":
-		for path in render_beams:PremiumVFX.beam(self,path,t,Color("63dcfa"),quality=="performance" or settings.get("reduced_effects",false))
+		for path in render_beams:PremiumVFX.beam(self,path,clampf((t-.72)/.28,0,1) if bomb_origin>=0 else t,Color("63dcfa"),quality=="performance" or settings.get("reduced_effects",false))
 	if busy and current.kind=="clear":
 		for effect in current.get("mechanics",[]):
 			var center := cell_position(effect.index)+Vector2(28,28)
@@ -947,11 +952,16 @@ func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, prog
 	if points.is_empty():return
 	var lite: bool=quality=="performance" or settings.get("reduced_effects",false)
 	var alpha:=sin(progress*PI)*.8
-	if not lite:draw_polyline(points,Color(tint.darkened(.6),alpha*.65),4,true)
-	draw_polyline(points,Color(tint.lightened(.65),alpha),1.5,true)
-	var flow:=clampf(progress*1.8-float(index%6)*.04,0,1)*(points.size()-1)
+	var flow:=clampf((progress-.12)/.55,0,1)*(points.size()-1)
 	var part:=mini(points.size()-2,int(flow))
 	var head:=points[part].lerp(points[part+1],flow-part)
+	var visible:=PackedVector2Array()
+	for k in range(part+1):visible.append(points[k])
+	visible.append(head)
+	if flow>0:
+		if not lite:draw_polyline(visible,Color(tint.darkened(.6),alpha*.65),4,true)
+		draw_polyline(visible,Color(tint.lightened(.65),alpha),1.5,true)
+	if progress>=.67 and progress<.72:draw_texture_rect(GLOW,Rect2(destination-Vector2(35,35),Vector2(70,70)),false,Color(tint,.65))
 	draw_circle(head,2.5,Color(1,1,1,alpha))
 	if not lite:draw_texture_rect(GLOW,Rect2(head-Vector2(9,9),Vector2(18,18)),false,Color(tint,alpha*.45))
 

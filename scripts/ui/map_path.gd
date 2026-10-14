@@ -8,6 +8,7 @@ var quiet:=false
 var count:=50
 var ocean:=false
 var canyon:=false
+var curve:=Curve2D.new()
 var road:=PackedVector2Array()
 var landmark: Texture2D
 func node_position(index: int) -> Vector2:
@@ -17,10 +18,12 @@ func _ready() -> void:
 	landmark=load("res://assets/casual/map-"+world_theme+"-landmark.svg")
 	for i in range(0,count,10):
 		var creature:=preload("res://scripts/ui/companion.gd").new();creature.creature=1 if world_theme=="garden" else 2 if world_theme=="ocean" else 3 if world_theme=="canyon" else 4 if world_theme=="cloud" else 5
-		creature.position=node_position(i)+Vector2(-165,-25);creature.size=Vector2(72,72);creature.quiet=quiet;creature.modulate.a=1 if i<completed_count else .4;add_child(creature)
-	for i in range((count-1)*20+1):
-		var step:=float(i)/20
-		road.append(Vector2(228+sin(step*.71)*134+sin(step*.23)*14,94+(count-1-step)*128))
+		creature.position=Vector2(12 if node_position(i).x>228 else 372,node_position(i).y-25);creature.size=Vector2(72,72);creature.quiet=quiet;creature.modulate.a=1 if i<completed_count else .4;add_child(creature)
+	curve.bake_interval=5
+	for i in count:
+		var tangent:=Vector2(134*.71*cos(i*.71)+14*.23*cos(i*.23),-128)/3
+		curve.add_point(node_position(i),-tangent,tangent)
+	road=curve.get_baked_points()
 func _draw() -> void:
 	draw_polyline(road,Color(.12,.15,.28,.28),39,true)
 	draw_polyline(road,accent.darkened(.15),33,true)
