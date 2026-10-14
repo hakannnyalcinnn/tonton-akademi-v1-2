@@ -5,6 +5,7 @@ signal device_pressed(index: int)
 signal animation_finished
 signal environment_started(data: Dictionary)
 signal wave_started(data: Dictionary)
+const PremiumVFX=preload("res://scripts/ui/premium_vfx.gd")
 const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 const DeviceVFX=preload("res://scripts/ui/mechanic4_animation.gd")
 const TraitVFX=preload("res://scripts/ui/crystal_trait_animation.gd")
@@ -37,6 +38,9 @@ var trait_regions: Array[Rect2] = []
 var trait_idle_animation := false
 var presented_adventure: Dictionary={}
 var energy_paths: Dictionary={}
+var render_beams: Array[PackedVector2Array]=[]
+var bomb_sources:=PackedVector2Array()
+var swap_pair: Array=[0,1]
 var bomb_origin := -1
 var mechanic_font: Font
 var layer_cells: Array = []
@@ -287,29 +291,55 @@ func next_frame() -> void:
 	if current.has("adventure"):presented_adventure=current.adventure.duplicate(true)
 	creation_indices.clear()
 	for c in current.get("creations",[]):creation_indices[int(c.i)]=true
+	if current.kind=="swap":swap_pair=[int(current.a),int(current.b)]
 	previous = current.before
 	target = current.after
 	trait_idle_animation=has_trait_animation(target) or not board.canyon.giants.is_empty() or not board.canyon.cores.is_empty()
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.18, "revert": 0.14, "clear": 0.21, "fall": 0.15, "refill": 0.17, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.24,"crystal_wave":.22}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"swap": 0.16, "revert": 0.12, "clear": 0.17, "fall": 0.12, "refill": 0.13, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.22,"crystal_wave":.22}.get(current.kind, 0.12)
 	bomb_origin=-1
+	bomb_sources.clear()
+	render_beams.clear()
+	for ray in current.get("beams",[]):
+		var path:=PackedVector2Array([cell_position(int(ray.source))+Vector2(28,28)])
+		for index in ray.path:path.append(cell_position(int(index))+Vector2(28,28))
+		render_beams.append(path)
+	if current.kind=="clear" and render_beams.is_empty():
+		var sources: Array=[]
+		for index in current.get("triggered",[]):
+			if previous[index]!=null and str(previous[index].p).begins_with("rocket"):sources.append({"index":index,"kind":previous[index].p})
+		sources.append_array(current.get("virtual_powers",[]))
+		for source in sources:
+			if not str(source.kind).begins_with("rocket"):continue
+			for axis in ([Vector2i.LEFT,Vector2i.RIGHT] if source.kind=="rocket_h" else [Vector2i.UP,Vector2i.DOWN]):
+				var ray:=preload("res://scripts/mechanics/beam_resolver.gd").trace(int(source.index),axis,previous,8)
+				var path:=PackedVector2Array([cell_position(int(source.index))+Vector2(28,28)])
+				for index in ray.path:path.append(cell_position(int(index))+Vector2(28,28))
+				render_beams.append(path)
 	if current.kind=="clear":
 		for index in current.get("triggered",[]):
-			if previous[index]!=null and previous[index].p=="color":bomb_origin=index;break
-		if bomb_origin>=0 and not reduced_motion:duration=.30
-	if current.get("combo_kind","")!="" and not reduced_motion:duration=.30
+			if previous[index]!=null and previous[index].p=="color":
+				if bomb_origin<0:bomb_origin=index
+				bomb_sources.append(cell_position(index)+Vector2(28,28))
+		if bomb_origin>=0 and not reduced_motion:duration=.28
+	if current.get("combo_kind","")!="" and not reduced_motion:duration=.28
+	if current.kind=="clear" and not current.get("creations",[]).is_empty() and not reduced_motion:duration=maxf(duration,.22)
 	energy_paths.clear()
-	if bomb_origin>=0 and not settings.get("reduced_effects",false):
+	if bomb_origin>=0:
 		var source:=cell_position(bomb_origin)+Vector2(28,28)
-		for index in current.get("removed",[]):
+		var power_rules=preload("res://scripts/core/powerups.gd")
+		var selected: int=int(current.get("selected_color",power_rules.dominant_color(previous)))
+		var destinations: Array=current.get("removed",[]) if current.get("combo_kind","")=="color_color" else power_rules.area(bomb_origin,"color",previous,8,selected)
+		for index in destinations:
 			var destination:=cell_position(index)+Vector2(28,28)
 			var delta:=destination-source
 			var bend:=Vector2(-delta.y,delta.x).normalized()*minf(34,delta.length()*.16)*(-1 if index%2 else 1)
 			var points:=PackedVector2Array()
-			for k in 9:
-				var u:=float(k)/8;points.append(source+delta*u+bend*sin(u*PI))
+			var vertices:=3 if quality=="performance" or settings.get("reduced_effects",false) else 9
+			for k in vertices:
+				var u:=float(k)/(vertices-1);points.append(source+delta*u+bend*sin(u*PI))
 			energy_paths[index]=points
 	age = 0
 	board.visual_phase(int(current.state))
@@ -599,6 +629,8 @@ func _draw() -> void:
 			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(Color("ffe693") if e.opened or e.correct else Color("ee91b3"),sin(t*PI)*.65))
 			if e.opened:draw_texture_rect_region(CasualSkin.ADVANCED,Rect2(center-Vector2(28,28),Vector2(56,56)),CasualSkin.region("advanced",6),Color(1,1,1,1-t))
 	if busy and current.kind == "clear":
+		for index in energy_paths:
+			draw_energy_thread(cell_position(bomb_origin)+Vector2(28,28),cell_position(int(index))+Vector2(28,28),Palette.COLORS[int(previous[index].c)],t,int(index))
 		for i in current.removed:
 			if previous[i] == null: continue
 			var center := cell_position(i) + Vector2(28,28)
@@ -606,7 +638,7 @@ func _draw() -> void:
 			var phase:=t
 			if bomb_origin>=0:
 				phase=clampf((t-float(i%6)*.045)/.775,0,1)
-				if not settings.get("reduced_effects",false):draw_energy_thread(cell_position(bomb_origin)+Vector2(28,28),center,color,t,i)
+
 			if phase<.32:
 				var block_size:=Vector2.ONE*CELL*(1+.22*sin(phase/.32*PI*.5))
 				draw_cell(previous[i],Rect2(center-block_size/2,block_size),true,int(current.get("colors",{}).get(i,previous[i].c)))
@@ -635,19 +667,13 @@ func _draw() -> void:
 				else:
 					var axis := Vector2.RIGHT if creation.kind == "rocket_h" else Vector2.UP
 					draw_line(center-axis*52*sin(t*PI),center+axis*52*sin(t*PI),Color(1,.94,.75,(1-t)*.8),2,true)
-		var beam_count := 0
 		for index in current.get("triggered",[]):
-			if beam_count>=6: break
-			beam_count+=1
-			var center := cell_position(index)+Vector2(28,28)
-			var kind: String = previous[index].p
-			if kind.begins_with("rocket"):
-				var axis := Vector2.RIGHT if kind == "rocket_h" else Vector2.UP
-				draw_line(center-axis*285*t,center+axis*285*t,Color(.85,1,1,(1-t)*.75),6*(1-t)+1,true)
-			elif kind == "color":
-				for k in 5: draw_arc(center,t*(60+k*15),k*TAU/5,(k+1)*TAU/5,10,Color(Palette.COLORS[k],1-t),3,true)
-			else:
-				draw_arc(center,t*120,0,TAU,28,Color(.8,.65,1,1-t),4,true)
+			if previous[index]==null:continue
+			var center:=cell_position(index)+Vector2(28,28)
+			if previous[index].p=="color":
+				for k in 5:draw_arc(center,t*(60+k*15),k*TAU/5,(k+1)*TAU/5,10,Color(Palette.COLORS[k],1-t),3,true)
+			elif previous[index].p=="prism":draw_arc(center,t*120,0,TAU,28,Color(.8,.65,1,1-t),4,true)
+		if current.get("combo_kind","")=="color_color":PremiumVFX.double_bomb(self,bomb_sources,t,quality=="performance" or settings.get("reduced_effects",false))
 		if current.resonated and not reduced_motion:
 			draw_arc(cell_position(current.origin)+Vector2(28,28),t*150,0,TAU,40,Color(.7,1,.94,1-t),3,true)
 	if busy and current.kind=="trait":
@@ -673,14 +699,7 @@ func _draw() -> void:
 			var center:=cell_position(growth.index)+Vector2(28,28)
 			draw_texture_rect(GLOW,Rect2(center-Vector2(35,35),Vector2(70,70)),false,Color(.5,1,.6,sin(t*PI)*.6))
 	if busy and current.kind=="clear":
-		for beam in current.get("beams",[]):
-			var prior:=cell_position(int(beam.source))+Vector2(28,28)
-			var count:=mini(beam.path.size(),int(ceil(t*beam.path.size()*2)))
-			for k in count:
-				var center:=cell_position(int(beam.path[k]))+Vector2(28,28)
-				draw_line(prior,center,Color(.35,.8,1,sin(t*PI)),7,true)
-				draw_line(prior,center,Color(1,1,1,sin(t*PI)),2.2,true)
-				prior=center
+		for path in render_beams:PremiumVFX.beam(self,path,t,Color("63dcfa"),quality=="performance" or settings.get("reduced_effects",false))
 	if busy and current.kind=="clear":
 		for effect in current.get("mechanics",[]):
 			var center := cell_position(effect.index)+Vector2(28,28)
@@ -882,7 +901,10 @@ func draw_canyon(data: Dictionary) -> void:
 				var hp: int=data.giants[key]
 				if hp<3:draw_line(center+Vector2(-35,-36),center+Vector2(26,31),Color("fff5ff"),2,true)
 				if hp<2:draw_line(center+Vector2(29,-38),center+Vector2(-30,32),Color("ffddfa"),2,true)
-				draw_string(mechanic_font,center+Vector2(-6,40),str(hp),HORIZONTAL_ALIGNMENT_LEFT,-1,17,Color.WHITE)
+				draw_rect(Rect2(center+Vector2(-31,33),Vector2(62,19)),Color(.25,.08,.4,.85))
+				draw_string(mechanic_font,center+Vector2(-26,46),"%d VURUŞ"%hp,HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color.WHITE)
+				for k in 3:draw_circle(center+Vector2(-12+k*12,28),3,Color("ffd0fa") if k<hp else Color(.5,.25,.6,.4))
+				if hp==1 and not reduced_motion and quality!="performance":draw_texture_rect(GLOW,Rect2(center-Vector2(30,30),Vector2(60,60)),false,Color(1,.4,.8,.18+.08*sin(clock*6)))
 			elif kind=="magnets":
 				draw_arc(center,25,-PI/2,-PI/2+TAU*float(data.magnets[key])/3,16,Color("a6dbff"),2,true)
 			else:
@@ -894,16 +916,17 @@ func draw_canyon(data: Dictionary) -> void:
 				if data.cores[key].shields.all(func(n):return n==0):draw_arc(center,54,clock,clock+TAU,32,Color("fff0ae"),3,true)
 
 func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, progress: float, index: int) -> void:
-	var points: PackedVector2Array=energy_paths.get(index,PackedVector2Array())
+	var points: PackedVector2Array=energy_paths[index] if energy_paths.has(index) else PackedVector2Array()
 	if points.is_empty():return
-	var delta:=destination-source
-	var bend:=Vector2(-delta.y,delta.x).normalized()*minf(34,delta.length()*.16)*(-1 if index%2 else 1)
+	var lite: bool=quality=="performance" or settings.get("reduced_effects",false)
 	var alpha:=sin(progress*PI)*.8
-	draw_polyline(points,Color(tint,alpha*.35),5,true)
+	if not lite:draw_polyline(points,Color(tint,alpha*.28),6,true)
 	draw_polyline(points,Color(tint.lightened(.65),alpha),1.5,true)
-	var flow:=clampf(progress*1.8-float(index%6)*.04,0,1)
-	var head:=source+delta*flow+bend*sin(flow*PI)
+	var flow:=clampf(progress*1.8-float(index%6)*.04,0,1)*(points.size()-1)
+	var part:=mini(points.size()-2,int(flow))
+	var head:=points[part].lerp(points[part+1],flow-part)
 	draw_circle(head,2.5,Color(1,1,1,alpha))
+	if not lite:draw_texture_rect(GLOW,Rect2(head-Vector2(9,9),Vector2(18,18)),false,Color(tint,alpha*.45))
 
 func draw_adventure() -> void:
 	var state: Dictionary=presented_adventure
