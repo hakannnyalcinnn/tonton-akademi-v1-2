@@ -1,0 +1,21 @@
+{
+  "original_synthesized": true,
+  "voices": 5,
+  "max_voice_db": -16,
+  "short_duplicate_cooldown_ms": 35,
+  "physical_audio_test": false,
+  "assets": [
+    {
+      "name": "rocket_impact",
+      "seconds": 0.14,
+      "peak": 0.2613525390625,
+      "sha256": "6c1f4110ddd764a5acd2b5f1423c9ebe6814ab05bad5222956919d7298d07eb0"
+    },
+    {
+      "name": "double_color",
+      "seconds": 0.34,
+      "peak": 0.295867919921875,
+      "sha256": "c7e2a75a4fcc2e4b8678c006ac1ef22da5578df19441cbda11552c5c3c40ad56"
+    }
+  ]
+}

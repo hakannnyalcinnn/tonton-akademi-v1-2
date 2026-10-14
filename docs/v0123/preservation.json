@@ -1,0 +1,13 @@
+{
+  "backup": "backup/before-v0.12.3",
+  "unchanged_paths": [
+    "scripts/mechanics",
+    "scripts/generation",
+    "data",
+    "assets/casual/piril.png",
+    "scripts/core/save_manager.gd",
+    "scripts/core/powerups.gd",
+    "scripts/core/match_detector.gd"
+  ],
+  "board_change": "Only selected_color added to a clear presentation event; swap, score, damage, storm, RNG and save logic byte-identical."
+}

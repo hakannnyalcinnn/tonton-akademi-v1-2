@@ -1,0 +1,15 @@
+{
+  "prizma-v0.12.3.apk": {
+    "bytes": 82142685,
+    "sha256": "2b0567149cc091398de7689b8a09868d66de4424bd5659b586fad4b7ea9d5077"
+  },
+  "prizma-v0.12.3-dev.apk": {
+    "bytes": 82142685,
+    "sha256": "0f2868d6fdd2c8f0fa88ea62b8f60064b18ec7ccb89841b44d783a4d83da4c34"
+  },
+  "version": "0.12.3",
+  "version_code": 15,
+  "certificate_sha256": "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a",
+  "exported_resource_probes": "Passed: normal rejects developer mutation; dev jump, rr/cr pairs, actual storm, last-hit giant destruction and force lose; actual APK resources executed on desktop Godot, not an Android device",
+  "physical_android_test": false
+}

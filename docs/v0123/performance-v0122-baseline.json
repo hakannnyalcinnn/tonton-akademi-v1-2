@@ -1,0 +1,589 @@
+{
+  "cpu_monitor_note": "Performance.TIME_PROCESS samples are engine monitors, not precise per-frame CPU timings",
+  "fps_target": 60,
+  "platform": "Godot profiler / desktop Xvfb llvmpipe; not physical Android",
+  "rows": [
+    {
+      "animation_ms": 1851.589,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 104,
+        "max_ms": 32.095,
+        "mean_ms": 17.8031826923077,
+        "p95_ms": 25.459,
+        "p99_ms": 30.2
+      },
+      "logic_ms": 2.748,
+      "particle_slots": 96,
+      "peak_static_bytes": 45781060,
+      "process_cpu": {
+        "frames": 104,
+        "max_ms": 110.825,
+        "mean_ms": 73.4058461538461,
+        "p95_ms": 110.825,
+        "p99_ms": 110.825
+      },
+      "quality": "balanced",
+      "scenario": "normal",
+      "slow_frames": [
+        {
+          "ms": 26.504,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 28.853,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.535,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 30.2,
+          "pending_world_art": 2,
+          "phase": "fall"
+        },
+        {
+          "ms": 32.095,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.459,
+          "pending_world_art": 2,
+          "phase": "clear"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 746.438,
+      "cascade_stages": 1,
+      "frame_interval": {
+        "frames": 45,
+        "max_ms": 25.352,
+        "mean_ms": 16.5862444444444,
+        "p95_ms": 17.092,
+        "p99_ms": 25.352
+      },
+      "logic_ms": 2.483,
+      "particle_slots": 70,
+      "peak_static_bytes": 42849410,
+      "process_cpu": {
+        "frames": 45,
+        "max_ms": 32.569,
+        "mean_ms": 32.569,
+        "p95_ms": 32.569,
+        "p99_ms": 32.569
+      },
+      "quality": "balanced",
+      "scenario": "five",
+      "slow_frames": [
+        {
+          "ms": 25.352,
+          "pending_world_art": 2,
+          "phase": "clear"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 1950.74,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 109,
+        "max_ms": 34.953,
+        "mean_ms": 17.8960917431193,
+        "p95_ms": 31.121,
+        "p99_ms": 34.233
+      },
+      "logic_ms": 4.294,
+      "particle_slots": 96,
+      "peak_static_bytes": 45957642,
+      "process_cpu": {
+        "frames": 109,
+        "max_ms": 34.816,
+        "mean_ms": 30.6791376146788,
+        "p95_ms": 34.816,
+        "p99_ms": 34.816
+      },
+      "quality": "balanced",
+      "scenario": "double",
+      "slow_frames": [
+        {
+          "ms": 29.233,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 31.403,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 29.408,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 29.158,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 34.233,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 34.953,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 26.979,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 31.121,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 31.945,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 32.177,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 28.991,
+          "pending_world_art": 2,
+          "phase": "clear"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 2511.728,
+      "cascade_stages": 4,
+      "frame_interval": {
+        "frames": 151,
+        "max_ms": 23.569,
+        "mean_ms": 16.6335298013245,
+        "p95_ms": 19.777,
+        "p99_ms": 23.509
+      },
+      "logic_ms": 3.734,
+      "particle_slots": 96,
+      "peak_static_bytes": 46712546,
+      "process_cpu": {
+        "frames": 151,
+        "max_ms": 29.031,
+        "mean_ms": 24.707476821192,
+        "p95_ms": 29.031,
+        "p99_ms": 29.031
+      },
+      "quality": "balanced",
+      "scenario": "rockets",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 2451.266,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 147,
+        "max_ms": 26.739,
+        "mean_ms": 16.6748299319728,
+        "p95_ms": 19.694,
+        "p99_ms": 23.573
+      },
+      "logic_ms": 4.799,
+      "particle_slots": 96,
+      "peak_static_bytes": 46790680,
+      "process_cpu": {
+        "frames": 147,
+        "max_ms": 29.738,
+        "mean_ms": 25.454544217687,
+        "p95_ms": 29.738,
+        "p99_ms": 29.738
+      },
+      "quality": "balanced",
+      "scenario": "storm",
+      "slow_frames": [
+        {
+          "ms": 26.739,
+          "pending_world_art": 2,
+          "phase": "swap"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 1934.231,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 109,
+        "max_ms": 33.697,
+        "mean_ms": 17.7435412844037,
+        "p95_ms": 24.944,
+        "p99_ms": 28.104
+      },
+      "logic_ms": 3.906,
+      "particle_slots": 96,
+      "peak_static_bytes": 47412144,
+      "process_cpu": {
+        "frames": 109,
+        "max_ms": 35.904,
+        "mean_ms": 31.370495412844,
+        "p95_ms": 35.904,
+        "p99_ms": 35.904
+      },
+      "quality": "balanced",
+      "scenario": "giant",
+      "slow_frames": [
+        {
+          "ms": 25.748,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 28.104,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 27.781,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 33.697,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 26.935,
+          "pending_world_art": 2,
+          "phase": "clear"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 2628.105,
+      "cascade_stages": 4,
+      "frame_interval": {
+        "frames": 158,
+        "max_ms": 22.729,
+        "mean_ms": 16.6331012658228,
+        "p95_ms": 19.863,
+        "p99_ms": 22.075
+      },
+      "logic_ms": 5.117,
+      "particle_slots": 96,
+      "peak_static_bytes": 48384034,
+      "process_cpu": {
+        "frames": 158,
+        "max_ms": 71.436,
+        "mean_ms": 39.8240126582278,
+        "p95_ms": 71.436,
+        "p99_ms": 71.436
+      },
+      "quality": "balanced",
+      "scenario": "chain",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 1879.175,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 113,
+        "max_ms": 19.572,
+        "mean_ms": 16.6292477876106,
+        "p95_ms": 17.844,
+        "p99_ms": 19.177
+      },
+      "logic_ms": 3.057,
+      "particle_slots": 35,
+      "peak_static_bytes": 47196892,
+      "process_cpu": {
+        "frames": 113,
+        "max_ms": 30.823,
+        "mean_ms": 25.7331504424779,
+        "p95_ms": 30.823,
+        "p99_ms": 30.823
+      },
+      "quality": "performance",
+      "scenario": "normal",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 746.367,
+      "cascade_stages": 1,
+      "frame_interval": {
+        "frames": 45,
+        "max_ms": 22.773,
+        "mean_ms": 16.5848222222222,
+        "p95_ms": 20.597,
+        "p99_ms": 22.773
+      },
+      "logic_ms": 2.397,
+      "particle_slots": 15,
+      "peak_static_bytes": 44260018,
+      "process_cpu": {
+        "frames": 45,
+        "max_ms": 33.053,
+        "mean_ms": 30.0294444444444,
+        "p95_ms": 33.053,
+        "p99_ms": 33.053
+      },
+      "quality": "performance",
+      "scenario": "five",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 1966.099,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 110,
+        "max_ms": 48.903,
+        "mean_ms": 17.8729727272727,
+        "p95_ms": 29.399,
+        "p99_ms": 35.621
+      },
+      "logic_ms": 3.231,
+      "particle_slots": 36,
+      "peak_static_bytes": 47157398,
+      "process_cpu": {
+        "frames": 110,
+        "max_ms": 48.791,
+        "mean_ms": 38.7980363636364,
+        "p95_ms": 48.791,
+        "p99_ms": 48.791
+      },
+      "quality": "performance",
+      "scenario": "double",
+      "slow_frames": [
+        {
+          "ms": 29.399,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 29.706,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 30.792,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 27.785,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 30.472,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 35.621,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 27.151,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 27.955,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.792,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.704,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 48.903,
+          "pending_world_art": 2,
+          "phase": "fall"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 2541.935,
+      "cascade_stages": 4,
+      "frame_interval": {
+        "frames": 153,
+        "max_ms": 22.496,
+        "mean_ms": 16.6134901960784,
+        "p95_ms": 19.197,
+        "p99_ms": 21.845
+      },
+      "logic_ms": 5.484,
+      "particle_slots": 36,
+      "peak_static_bytes": 47895078,
+      "process_cpu": {
+        "frames": 153,
+        "max_ms": 39.359,
+        "mean_ms": 26.4558235294118,
+        "p95_ms": 39.359,
+        "p99_ms": 39.359
+      },
+      "quality": "performance",
+      "scenario": "rockets",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 2410.989,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 145,
+        "max_ms": 23.475,
+        "mean_ms": 16.6269793103448,
+        "p95_ms": 18.076,
+        "p99_ms": 20.555
+      },
+      "logic_ms": 4.36,
+      "particle_slots": 36,
+      "peak_static_bytes": 47968392,
+      "process_cpu": {
+        "frames": 145,
+        "max_ms": 26.807,
+        "mean_ms": 21.6655655172413,
+        "p95_ms": 26.807,
+        "p99_ms": 26.807
+      },
+      "quality": "performance",
+      "scenario": "storm",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 1933.138,
+      "cascade_stages": 3,
+      "frame_interval": {
+        "frames": 110,
+        "max_ms": 30.502,
+        "mean_ms": 17.5734545454545,
+        "p95_ms": 26.684,
+        "p99_ms": 28.062
+      },
+      "logic_ms": 4.433,
+      "particle_slots": 36,
+      "peak_static_bytes": 47457664,
+      "process_cpu": {
+        "frames": 110,
+        "max_ms": 31.731,
+        "mean_ms": 29.7665727272728,
+        "p95_ms": 31.731,
+        "p99_ms": 31.731
+      },
+      "quality": "performance",
+      "scenario": "giant",
+      "slow_frames": [
+        {
+          "ms": 28.062,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 27.29,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.695,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 27.765,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 26.722,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.075,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 30.502,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.789,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 25.314,
+          "pending_world_art": 2,
+          "phase": "clear"
+        },
+        {
+          "ms": 26.684,
+          "pending_world_art": 2,
+          "phase": "clear"
+        }
+      ],
+      "warm_up_frames": 20
+    },
+    {
+      "animation_ms": 2676.726,
+      "cascade_stages": 4,
+      "frame_interval": {
+        "frames": 161,
+        "max_ms": 23.25,
+        "mean_ms": 16.6250683229814,
+        "p95_ms": 19.81,
+        "p99_ms": 23.231
+      },
+      "logic_ms": 5.246,
+      "particle_slots": 36,
+      "peak_static_bytes": 48435154,
+      "process_cpu": {
+        "frames": 161,
+        "max_ms": 67.011,
+        "mean_ms": 31.6119192546584,
+        "p95_ms": 67.011,
+        "p99_ms": 67.011
+      },
+      "quality": "performance",
+      "scenario": "chain",
+      "slow_frames": [],
+      "warm_up_frames": 20
+    }
+  ]
+}
