@@ -22,6 +22,15 @@ static func move_value(b, a: int, destination: int) -> float:
 			for i in component.cells: effective[i]=int(component.color)
 			var kind: String = Powers.created(component)
 			power_bonus += {"":0.0,"rocket_h":2.0,"rocket_v":2.0,"prism":4.0,"color":8.0}[kind]
+	for cage in b.adventure.get("cages",[]):
+		if int(cage.remaining)>0 and removed.any(func(i):return absi(int(i)%8-int(cage.index)%8)+absi(int(i)/8-int(cage.index)/8)<=1):power_bonus+=75
+	if b.adventure.has("boss") and not b.adventure.boss.defeated:
+		var phase: Dictionary=b.adventure.boss.phases[int(b.adventure.boss.phase)]
+		var special: bool=b.cells[a].p!="" or b.cells[destination].p!=""
+		if phase.get("special",false):power_bonus+=120 if special else 0
+		else:
+			for i in removed:
+				if Match.normal(b.cells[i]) and phase.colors.has(int(b.cells[i].c)):power_bonus+=10
 	var value := power_bonus
 	var unique: Dictionary = {}
 	for i in removed:
