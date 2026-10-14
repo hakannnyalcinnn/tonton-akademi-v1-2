@@ -225,6 +225,7 @@ func begin_page(next_screen: String) -> void:
 	page.size = Vector2(540, 960)
 	stage.add_child(page)
 	screen = next_screen
+	garden.visible=next_screen!="worlds"
 	armed_helper=""
 	helper_buttons.clear()
 	if garden.backdrop:garden.backdrop.material.set_shader_parameter("game_focus",1.0 if next_screen in ["game","transition"] else 0.0)
@@ -333,7 +334,7 @@ func show_worlds() -> void:
 	planet_enter=button(column,"DÜNYAYI KEŞFET",Rect2(0,0,400,52),func():planet_view.focus_world(selected_world,true),true,20);planet_enter.custom_minimum_size.y=52
 	var choices:=HBoxContainer.new();choices.position=Vector2(24,851);choices.size=Vector2(492,82);choices.add_theme_constant_override("separation",8);page.add_child(choices)
 	for world in Worlds.playable_worlds():
-		var id:=int(world.id);var choice:=IconButton.new();choice.custom_minimum_size=Vector2(90,80);choice.size_flags_horizontal=Control.SIZE_EXPAND_FILL;choice.icon_radius=24;choice.image=preload("res://scripts/ui/companion.gd").sprite(id);choice.caption=["Bahçe","Okyanus","Kanyon","Bulut","Lav"][id-1];choice.set_meta("planet_world",id);choice.pressed.connect(select_planet_world.bind(id));choices.add_child(choice)
+		var id:=int(world.id);var choice:=IconButton.new();choice.custom_minimum_size=Vector2(90,80);choice.size_flags_horizontal=Control.SIZE_EXPAND_FILL;choice.icon_radius=24;choice.caption_color=Color("e5ddff");choice.locked=int(save.data.unlocked)<int(world.start);choice.image=preload("res://scripts/ui/companion.gd").sprite(id);choice.caption=["Bahçe","Okyanus","Kanyon","Bulut","Lav"][id-1];choice.set_meta("planet_world",id);choice.pressed.connect(select_planet_world.bind(id));choices.add_child(choice)
 	select_planet_world(selected_world)
 
 func select_planet_world(world: int) -> void:
@@ -344,6 +345,7 @@ func select_planet_world(world: int) -> void:
 	planet_info.text="%s\n%d–%d · %d/50 tamamlandı"%[metadata.title,int(metadata.start),int(metadata.end),done]
 	planet_enter.text="%d. BÖLÜMDE AÇILIR"%int(metadata.start) if locked else "DÜNYAYI KEŞFET"
 	planet_enter.disabled=locked
+	planet_view.unlocked=int(save.data.unlocked)
 	planet_view.focus_world(world)
 	for choice in page.find_children("*","",true,false):
 		if choice.has_meta("planet_world"):choice.chosen=int(choice.get_meta("planet_world"))==world;choice.queue_redraw()
@@ -431,6 +433,10 @@ func request_level(number: int) -> void:
 	explanation.text="Hedeflerin nasıl tamamlandığını görmek için bir simgeye dokun."
 	preview.goal_pressed.connect(func(key):explanation_panel.show();explanation.text=preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])))
 	overlay.gui_input.connect(func(event):
+		if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:explanation_panel.hide())
+	body_scroll.gui_input.connect(func(event):
+		if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:explanation_panel.hide())
+	shell.gui_input.connect(func(event):
 		if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:explanation_panel.hide())
 	body.gui_input.connect(func(event):
 		if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:explanation_panel.hide())
@@ -757,7 +763,7 @@ func show_goal_description(key: String,tutorial: bool=false) -> void:
 	var registry=preload("res://scripts/ui/goal_registry.gd")
 	var icon:=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=registry.icon(key);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.position=Vector2(10,7);icon.size=Vector2(44,44);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;goal_tip.add_child(icon)
 	label(goal_tip,"YENİ HEDEF · "+registry.entry(key)[2] if tutorial else registry.entry(key)[2],Rect2(64,3,345,18),11,Palette.GOLD)
-	var text:=label(goal_tip,registry.description(key,int(goals_panel.targets[key])),Rect2(64,22,349,34),12)
+	var text:=flowing_text(goal_tip,registry.description(key,int(goals_panel.targets[key])),Rect2(64,22,349,34),12)
 	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	button(goal_tip,"×",Rect2(423,5,48,48),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
 	if tutorial:
@@ -987,7 +993,7 @@ func show_settings() -> void:
 	if developer_tools_available():
 		var dev:=button(column,"Geliştirici: mekanik laboratuvarı",Rect2(0,0,400,44),show_developer_menu,false,13);dev.custom_minimum_size.y=44
 	button(page,Strings.text("resume") if settings_origin=="game" and not save.data.active.is_empty() else Strings.text("map"),Rect2(42,835,456,56),play_latest if settings_origin=="game" and not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.12.4 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.13.0 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 func volume_slider(key: String, title: String, y: float) -> void:
 	card(page,Rect2(32,y-4,476,69),Color(1,.98,.94,.93))

@@ -8,6 +8,7 @@ var image: Texture2D
 var amount:=-1
 var chosen:=false
 var caption:=""
+var caption_color:=Design.INK
 var quiet:=false
 var check_icon: Texture2D
 func _ready() -> void:
@@ -31,4 +32,4 @@ func _draw() -> void:
   var point:=center+Vector2(radius*.72,radius*.68);draw_circle(point,11,Color("584882"));draw_string(font,point+Vector2(-5,5),str(amount),HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color.WHITE)
  if chosen and amount>=0:
   draw_texture_rect(check_icon,Rect2(center+Vector2(-28,13),Vector2(18,18)),false)
- if caption!="" and size.y>=60:draw_string(font,Vector2(1,size.y-6),caption,HORIZONTAL_ALIGNMENT_CENTER,size.x-2,12,Design.INK)
+ if caption!="" and size.y>=60:draw_string(font,Vector2(1,size.y-6),caption,HORIZONTAL_ALIGNMENT_CENTER,size.x-2,12,caption_color)

@@ -6,6 +6,7 @@ const TITLES=["Büyülü Bahçe","Kristal Okyanus","Gökkuşağı Kanyonu","Bulu
 const CENTERS=[Vector2(0,.12),Vector2(TAU/5,-.08),Vector2(TAU*2/5,.18),Vector2(TAU*3/5,-.04),Vector2(TAU*4/5,.12)]
 const TINTS=[Color("82ce54"),Color("36bfb6"),Color("b997e5"),Color("b7d6f3"),Color("ef895b")]
 var viewport: SubViewport
+var axis: Node3D
 var globe: Node3D
 var camera: Camera3D
 var yaw:=0.0
@@ -20,17 +21,21 @@ var selected:=1
 var unlocked:=1
 var quiet:=false
 var quality:="balanced"
+var requested_quality:="balanced"
 var batches: Dictionary={}
 var materials: Dictionary={}
 var mesh_cache: Dictionary={}
+static var geometry_cache: Dictionary={}
 var intro_tween: Tween
 var water: MeshInstance3D
 var seconds:=0.0
 
 func _ready() -> void:
+	requested_quality=quality
+	quality="performance" if quality=="performance" else "balanced"
 	mouse_filter=Control.MOUSE_FILTER_STOP
 	viewport=SubViewport.new();viewport.name="PlanetViewport";viewport.own_world_3d=true
-	viewport.transparent_bg=true;viewport.msaa_3d=Viewport.MSAA_DISABLED if quality=="performance" else Viewport.MSAA_2X
+	viewport.transparent_bg=true;viewport.msaa_3d=Viewport.MSAA_2X if requested_quality=="high" else Viewport.MSAA_DISABLED
 	viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;add_child(viewport)
 	var image:=TextureRect.new();image.name="LivePlanet";image.texture=viewport.get_texture();image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.mouse_filter=Control.MOUSE_FILTER_IGNORE;image.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(image)
 	var scene:=Node3D.new();viewport.add_child(scene)
@@ -39,17 +44,26 @@ func _ready() -> void:
 	var sun:=DirectionalLight3D.new();sun.rotation_degrees=Vector3(-35,-35,0);sun.light_color=Color("fff0ce");sun.light_energy=1.0;sun.shadow_enabled=false;scene.add_child(sun)
 	var rim:=DirectionalLight3D.new();rim.rotation_degrees=Vector3(20,140,0);rim.light_color=Color("b6daff");rim.light_energy=.28;scene.add_child(rim)
 	camera=Camera3D.new();camera.position=Vector3(0,1.8,9);camera.look_at_from_position(camera.position,Vector3(0,.1,0));camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=7.4;camera.near=.1;scene.add_child(camera)
-	globe=Node3D.new();globe.rotation.x=-.65;scene.add_child(globe)
-	build_surface()
-	for world in 5:build_biome(world)
-	build_clouds()
-	flush_batches()
+	axis=Node3D.new();axis.rotation.x=-.65;scene.add_child(axis)
+	globe=Node3D.new();axis.add_child(globe)
+	if geometry_cache.has(quality):
+		for record in geometry_cache[quality]:
+			var instance: GeometryInstance3D=MeshInstance3D.new() if record.has("surface") else MultiMeshInstance3D.new()
+			if record.has("surface"):instance.mesh=record.surface
+			else:instance.multimesh=record.multimesh
+			instance.material_override=record.material;globe.add_child(instance)
+	else:
+		geometry_cache[quality]=[]
+		build_surface()
+		for world in 5:build_biome(world)
+		build_clouds()
+		flush_batches()
 	yaw=-CENTERS[selected-1].x;globe.rotation.y=yaw
 	resized.connect(resize_view);resize_view();set_process(true)
 
 func resize_view() -> void:
 	if viewport==null:return
-	var ratio:=.8 if quality=="performance" else 1.0
+	var ratio:=.6 if quality=="performance" else 1.0 if requested_quality=="high" else .9
 	viewport.size=Vector2i(maxi(1,int(size.x*ratio)),maxi(1,int(size.y*ratio)))
 
 static func direction(lon: float,lat: float) -> Vector3:
@@ -66,34 +80,38 @@ static func ground(normal: Vector3) -> float:
 	var index:=biome_at(normal)
 	if index<0:return 2.35
 	var center:=direction(CENTERS[index].x,CENTERS[index].y)
-	var d:=acos(clampf(normal.dot(center),-1,1))
+	var d:=acos(clampf(normal.dot(center),-1,1))*(1.0+.09*sin(atan2(normal.x,normal.z)*15+normal.y*19))
 	var edge:=1.0-smoothstep(.56,.75,d)
-	var ripple:=sin(normal.x*27+normal.z*13)*sin(normal.y*23)*.025
+	var ripple:=sin(normal.x*16+normal.z*13)*sin(normal.y*17)*.075
 	return 2.35+edge*(.24+(.09 if index!=1 else .02))+ripple*edge
 
 func build_surface() -> void:
 	var tool:=SurfaceTool.new();tool.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var rows:=64 if quality=="performance" else 96
+	var rows:=48 if quality=="performance" else 72
 	var columns:=rows*2
+	for y in range(rows+1):
+		for x in range(columns+1):
+			var lon: float=float(x)/columns*TAU;var lat: float=(float(y)/rows-.5)*PI
+			var n:=direction(lon,lat);var region:=biome_at(n);var tint:=Color("279bbd");var radius:=ground(n);var normal:=n
+			if region>=0:
+				var distance:=acos(clampf(n.dot(direction(CENTERS[region].x,CENTERS[region].y)),-1,1))*(1.0+.09*sin(lon*15+n.y*19))
+				tint=TINTS[region].lerp(Color("f5d395"),smoothstep(.62,.72,distance)).lerp(Color("42cad4"),smoothstep(.73,.80,distance))
+				var east:=direction(lon+.001,lat);var north:=direction(lon,lat+.001)
+				normal=(east*ground(east)-n*radius).cross(north*ground(north)-n*radius).normalized()
+				if normal.length_squared()<.5:normal=n
+			else:tint=Color("42cad4").lerp(Color("237cab"),clampf((sin(n.x*19+n.y*12)+1)*.5,0,1)*.35)
+			tint=tint.lightened(sin(n.x*95+n.z*87)*sin(n.y*61)*.025)
+			tool.set_color(tint);tool.set_normal(normal);tool.add_vertex(n*radius)
 	for y in rows:
 		for x in columns:
-			var corners: Array[Vector3]=[]
-			for point in [Vector2(x,y),Vector2(x+1,y),Vector2(x,y+1),Vector2(x+1,y+1)]:
-				corners.append(direction(point.x/columns*TAU,(point.y/rows-.5)*PI))
-			for index in [0,1,2,1,3,2]:
-				var n:=corners[index];var region:=biome_at(n);var tint:=Color("279bbd")
-				if region>=0:
-					var distance:=acos(clampf(n.dot(direction(CENTERS[region].x,CENTERS[region].y)),-1,1))
-					tint=TINTS[region].lerp(Color("f5d395"),smoothstep(.62,.72,distance)).lerp(Color("42cad4"),smoothstep(.73,.80,distance))
-				else:tint=Color("42cad4").lerp(Color("237cab"),clampf((sin(n.x*19+n.y*12)+1)*.5,0,1)*.35)
-				tint=tint.lightened(sin(n.x*95+n.z*87)*sin(n.y*61)*.025)
-				tool.set_color(tint);tool.set_normal(n);tool.add_vertex(n*ground(n))
-	var body:=MeshInstance3D.new();body.name="SculptedPlanet";body.mesh=tool.commit();var mat:=StandardMaterial3D.new();mat.vertex_color_use_as_albedo=true;mat.roughness=.78;mat.cull_mode=BaseMaterial3D.CULL_DISABLED;body.material_override=mat;globe.add_child(body)
+			var start: int=y*(columns+1)+x
+			for index in [start,start+1,start+columns+1,start+1,start+columns+2,start+columns+1]:tool.add_index(index)
+	var body:=MeshInstance3D.new();body.name="SculptedPlanet";body.mesh=tool.commit();var mat:=StandardMaterial3D.new();mat.vertex_color_use_as_albedo=true;mat.roughness=.78;mat.cull_mode=BaseMaterial3D.CULL_DISABLED;body.material_override=mat;globe.add_child(body);geometry_cache[quality].append({"surface":body.mesh,"material":mat})
 
 func material(color: Color,glow: bool=false) -> StandardMaterial3D:
 	var key:=color.to_html()+str(glow)
 	if not materials.has(key):
-		var m:=StandardMaterial3D.new();m.albedo_color=color;m.roughness=.5 if not glow else .24
+		var m:=StandardMaterial3D.new();m.albedo_color=color;m.vertex_color_use_as_albedo=true;m.roughness=.5 if not glow else .24
 		if glow:m.emission_enabled=true;m.emission=color;m.emission_energy_multiplier=.25
 		materials[key]=m
 	return materials[key]
@@ -103,9 +121,17 @@ func shape(kind: String) -> Mesh:
 	var result: Mesh
 	match kind:
 		"ball":
-			var s:=SphereMesh.new();s.radius=.5;s.height=1;s.radial_segments=12;s.rings=6;result=s
+			var s:=SphereMesh.new();s.radius=.5;s.height=1;s.radial_segments=8 if quality=="performance" else 12;s.rings=4 if quality=="performance" else 6;result=s
 		"cone","crystal","trunk","tower","roof":
 			var c:=CylinderMesh.new();c.height=1;c.bottom_radius=.5;c.top_radius=0 if kind in ["cone","roof"] else .12 if kind=="crystal" else .5;c.radial_segments=6 if kind=="crystal" else 12;result=c
+		"arch":
+			var arch:=SurfaceTool.new();arch.begin(Mesh.PRIMITIVE_TRIANGLES)
+			for segment in 24:
+				for side in 6:
+					for point in [Vector2(segment,side),Vector2(segment+1,side),Vector2(segment,side+1),Vector2(segment+1,side),Vector2(segment+1,side+1),Vector2(segment,side+1)]:
+						var angle: float=point.x/24*PI;var around: float=point.y/6*TAU
+						arch.add_vertex(Vector3(cos(angle)*(.5+cos(around)*.022),sin(angle)*(1+cos(around)*.044)-.5,sin(around)*.022))
+			arch.generate_normals();result=arch.commit()
 		"ring":
 			var t:=TorusMesh.new();t.inner_radius=.42;t.outer_radius=.5;t.rings=20;t.ring_segments=6;result=t
 		_:
@@ -114,9 +140,9 @@ func shape(kind: String) -> Mesh:
 
 func piece(kind: String,color: Color,position: Vector3,scale_size: Vector3,normal: Vector3,twist: float=0,glow: bool=false) -> void:
 	var basis:=Basis(Quaternion(Vector3.UP,normal.normalized())).rotated(normal.normalized(),twist)*Basis.from_scale(scale_size)
-	var key:=kind+color.to_html()+str(glow)
-	if not batches.has(key):batches[key]={"mesh":shape(kind),"material":material(color,glow),"transforms":[]}
-	batches[key].transforms.append(Transform3D(basis,position))
+	var key:=kind+str(glow)
+	if not batches.has(key):batches[key]={"mesh":shape(kind),"material":material(Color.WHITE,glow),"transforms":[],"colors":[]}
+	batches[key].transforms.append(Transform3D(basis,position));batches[key].colors.append(color)
 
 func local_normal(world: int,x: float,y: float) -> Vector3:
 	var c: Vector2=CENTERS[world]
@@ -188,7 +214,7 @@ func build_biome(world: int) -> void:
 			castle(world,-.3,-.08,Color("dcbfdc"),Color("6b9ddd"))
 			# Rainbow bridge with distinct arches, rather than a pasted image.
 			for i in 7:
-				place(world,.16+i*.018,.09,"ring",[Color("fc7c9b"),Color("ffd377"),Color("98dc85"),Color("69d5e2"),Color("99a3e9"),Color("d59bea"),Color("ffa8ce")][i],Vector3(.45-i*.027,.07,.45-i*.027),.19,PI/2)
+				place(world,.16,.09+i*.015,"arch",[Color("fc7c9b"),Color("ffd377"),Color("98dc85"),Color("69d5e2"),Color("99a3e9"),Color("d59bea"),Color("ffa8ce")][i],Vector3(.55-i*.018,.42-i*.021,1),.025,0)
 		3:
 			for i in 18:
 				var x:=rng.randf_range(-.49,.49);var y:=rng.randf_range(-.46,.43)
@@ -236,17 +262,36 @@ func build_clouds() -> void:
 		var n:=direction(float(i)*TAU/18,-.87)
 		piece("ball",Color("bcf4f2"),n*2.38,Vector3(.12,.015,.16),n)
 
+	# Ocean details are physical meshes too: pearl foam, sailing boats and tiny islets.
+	for i in 8:
+		var lon: float=float(i)*TAU/8+.18;var n:=direction(lon,-.62)
+		piece("ball",Color("b3f2ea"),n*2.36,Vector3(.25,.008,.16),n)
+		piece("ball",Color("33869f"),n*2.37,Vector3(.18,.01,.1),n)
+		if i%2==0:
+			piece("ball",Color("ad8668"),n*2.39,Vector3(.25,.09,.12),n)
+			piece("trunk",Color("ecd5a9"),n*2.52,Vector3(.018,.25,.018),n)
+			piece("box",Color("fff0cf"),n*2.55,Vector3(.14,.16,.018),n,.4)
+			piece("box",Color("e88eb5"),n*2.55,Vector3(.025,.16,.021),n,.4)
+		else:
+			piece("ball",Color("dec99b"),n*2.38,Vector3(.27,.035,.2),n)
+			piece("ball",Color("7ac664"),n*2.4,Vector3(.18,.025,.13),n)
+			piece("trunk",Color("ad865d"),n*2.46,Vector3(.025,.14,.025),n)
+			piece("ball",Color("57b774"),n*2.55,Vector3(.15,.075,.15),n)
+
 func flush_batches() -> void:
 	for key in batches:
-		var batch: Dictionary=batches[key];var multi:=MultiMesh.new();multi.transform_format=MultiMesh.TRANSFORM_3D;multi.mesh=batch.mesh;multi.instance_count=batch.transforms.size()
-		for i in multi.instance_count:multi.set_instance_transform(i,batch.transforms[i])
-		var instance:=MultiMeshInstance3D.new();instance.multimesh=multi;instance.material_override=batch.material;globe.add_child(instance)
+		var batch: Dictionary=batches[key];var multi:=MultiMesh.new();multi.transform_format=MultiMesh.TRANSFORM_3D;multi.use_colors=true;multi.mesh=batch.mesh;multi.instance_count=batch.transforms.size()
+		for i in multi.instance_count:multi.set_instance_transform(i,batch.transforms[i]);multi.set_instance_color(i,batch.colors[i])
+		var instance:=MultiMeshInstance3D.new();instance.multimesh=multi;instance.material_override=batch.material;globe.add_child(instance);geometry_cache[quality].append({"multimesh":multi,"material":batch.material})
 	batches.clear()
 
 func _process(delta: float) -> void:
 	seconds+=delta
 	if pointer<0 and not mouse_down and not choosing and absf(velocity)>.002:
 		yaw+=velocity*delta;velocity*=exp(-delta*5);globe.rotation.y=yaw
+	var moving: bool=pointer>=0 or mouse_down or absf(velocity)>.002 or (intro_tween!=null and intro_tween.is_running())
+	if moving:viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
+	elif viewport.render_target_update_mode==SubViewport.UPDATE_ALWAYS:viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
 	queue_redraw()
 
 func _draw() -> void:
@@ -277,6 +322,7 @@ func _gui_input(event: InputEvent) -> void:
 func rotate_drag(point: Vector2) -> void:
 	var movement:=point.x-last.x
 	if point.distance_to(start)>8:dragged=true
+	viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
 	yaw+=movement*.009;velocity=clampf(movement*.24,-3,3);last=point;globe.rotation.y=yaw
 
 func select_at(point: Vector2) -> void:
@@ -302,7 +348,7 @@ func focus_world(world: int,enter: bool=false) -> void:
 	intro_tween.tween_property(self,"yaw",target,.6 if not quiet else .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	intro_tween.tween_method(func(value):globe.rotation.y=value,yaw,target,.6 if not quiet else .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if enter:
-		var target_point: Vector3=Basis.from_euler(Vector3(-.65,target,0),globe.rotation_order)*direction(CENTERS[world-1].x,CENTERS[world-1].y)*1.25
+		var target_point: Vector3=axis.global_basis*Basis(Vector3.UP,target)*direction(CENTERS[world-1].x,CENTERS[world-1].y)*1.25
 		intro_tween.tween_method(func(value):camera.look_at(target_point*value),0.0,1.0,.7 if not quiet else .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 		intro_tween.tween_property(camera,"size",4.4,.7 if not quiet else .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 		intro_tween.chain().tween_callback(func():world_selected.emit(world))

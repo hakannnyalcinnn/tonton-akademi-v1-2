@@ -47,6 +47,12 @@ func run() -> void:
  var energy_event: Dictionary=game.board.activate(0,1);assert(energy_event.accepted);game.process_event(energy_event)
  assert(game.board_view.bomb_origin>=0 and game.board_view.duration>=.5)
  while game.board_view.busy:await process_frame
+ game.selected_world=3;game.show_worlds();await process_frame
+ assert(game.planet_view.viewport.own_world_3d and game.planet_view.globe.get_child_count()>=8)
+ game.planet_view.quiet=true;game.planet_view.focus_world(3,true);await create_timer(.08).timeout
+ assert(game.screen=="map" and game.selected_world==3 and game.map_buttons.size()==50)
+ game.request_level(101);await process_frame
+ assert(game.overlay.find_child("PreviewLayout",true,false) is VBoxContainer)
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame
  print("PASS: exported APK resources / "+("isolated developer jump + powers + lose" if developer else "production gate rejects every developer mutation"))
  quit()
