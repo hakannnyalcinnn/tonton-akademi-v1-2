@@ -32,6 +32,14 @@ static func preview(board,a: int,b: int) -> Dictionary:
   if kind in ["dual","bridge","bubble"]:objective+=12
   if kind=="chameleon" and board.collected.shifts<int(board.level.targets.get("shifts",0)):objective-=150
   if board.canyon.floors.has(str(i)):obstruction+=22
+ for cage in board.adventure.get("cages",[]):
+  if int(cage.remaining)>0 and removed.any(func(i):return absi(int(i)%8-int(cage.index)%8)+absi(int(i)/8-int(cage.index)/8)<=1):objective+=75
+ if board.adventure.has("boss") and not board.adventure.boss.defeated:
+  var phase: Dictionary=board.adventure.boss.phases[int(board.adventure.boss.phase)]
+  if phase.get("special",false):objective+=120 if special else 0
+  else:
+   for i in removed:
+    if Match.normal(probe[i]) and phase.colors.has(int(probe[i].c)):objective+=10
  var hits:=Damage.plan(probe,removed,removed,[],8,9)
  obstruction+=hits.size()*12
  for key in board.canyon.giants:

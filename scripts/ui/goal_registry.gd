@@ -3,6 +3,8 @@ extends RefCounted
 const Art=preload("res://scripts/ui/casual_skin.gd")
 const COLORS=["Kırmızı","Mavi","Yeşil","Sarı","Mor"]
 const ENTRIES={
+ "rescues":["adventure",1,"Kristal kurtarma","Kafesin çevresinde eşleştirerek %d canlı kurtar."],
+ "bosses":["adventure",0,"Mini boss","Gösterilen renkler ve özel güçlerle %d rakibin kalkanını kır."],
  "floors":["canyon",0,"Kırılgan zemin","Üzerindeki kristalleri iki ayrı kez temizleyerek %d zemini kır. Kırılan hücre kapanır."],
  "giants":["canyon",1,"Dev kristal","Yanında üç ayrı patlama yaparak %d dev kristali kır."],
  "magnets":["canyon",2,"Manyetik düğüm","Her üç başarılı hamlede etkinleşen %d manyetik değişimi gerçekleştir."],
@@ -36,6 +38,8 @@ static func entry(key: String) -> Array:
 static func icon(key: String) -> Texture2D:
  if not icons.has(key):
   var e:=entry(key)
+  if e[0]=="adventure":
+   icons[key]=preload("res://scripts/ui/companion.gd").sprite(int(e[1]));return icons[key]
   if e[0]=="canyon":
    var atlas:=AtlasTexture.new();atlas.atlas=load("res://assets/casual/canyon-devices.png")
    var r: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/casual/canyon-regions.json"))[int(e[1])]
@@ -45,6 +49,7 @@ static func icon(key: String) -> Texture2D:
  return icons[key]
 static func description(key: String,amount: int) -> String:return entry(key)[3]%amount
 static func relevant(key: String,cell: Variant,index: int=-1,terrain: Dictionary={}) -> bool:
+ if key=="rescues":return terrain.get("cages",[]).any(func(c):return int(c.index)==index and int(c.remaining)>0)
  if key=="floors":return terrain.get("floors",{}).has(str(index))
  if cell==null:return false
  if key in ["giants","magnets","cores"]:return cell.get("canyon",{}).get("kind","")=={"giants":"giant","magnets":"magnet","cores":"core"}[key]

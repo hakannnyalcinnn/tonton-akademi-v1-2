@@ -1,0 +1,505 @@
+{
+  "version": 1,
+  "levels": {
+    "12": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 1,
+          "creature": "creature-1"
+        }
+      ]
+    },
+    "27": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 2,
+          "creature": "creature-1"
+        }
+      ]
+    },
+    "42": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 43,
+          "hp": 2,
+          "creature": "creature-1"
+        }
+      ]
+    },
+    "35": {
+      "kind": "boss",
+      "boss": {
+        "name": "Diken Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "50": {
+      "kind": "boss",
+      "boss": {
+        "name": "Diken Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "20": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "40": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "62": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 1,
+          "creature": "creature-2"
+        }
+      ]
+    },
+    "77": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 2,
+          "creature": "creature-2"
+        }
+      ]
+    },
+    "92": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 43,
+          "hp": 2,
+          "creature": "creature-2"
+        }
+      ]
+    },
+    "85": {
+      "kind": "boss",
+      "boss": {
+        "name": "Mercan Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "100": {
+      "kind": "boss",
+      "boss": {
+        "name": "Mercan Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "70": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "90": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "112": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 1,
+          "creature": "creature-3"
+        }
+      ]
+    },
+    "127": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 2,
+          "creature": "creature-3"
+        }
+      ]
+    },
+    "142": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 43,
+          "hp": 2,
+          "creature": "creature-3"
+        }
+      ]
+    },
+    "135": {
+      "kind": "boss",
+      "boss": {
+        "name": "Kristal Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "150": {
+      "kind": "boss",
+      "boss": {
+        "name": "Kristal Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "120": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "140": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "162": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 1,
+          "creature": "creature-4"
+        }
+      ]
+    },
+    "177": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 2,
+          "creature": "creature-4"
+        }
+      ]
+    },
+    "192": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 43,
+          "hp": 2,
+          "creature": "creature-4"
+        }
+      ]
+    },
+    "185": {
+      "kind": "boss",
+      "boss": {
+        "name": "Bulut Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "200": {
+      "kind": "boss",
+      "boss": {
+        "name": "Bulut Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "170": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "190": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "212": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 1,
+          "creature": "creature-5"
+        }
+      ]
+    },
+    "227": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 27,
+          "hp": 2,
+          "creature": "creature-5"
+        }
+      ]
+    },
+    "242": {
+      "kind": "rescue",
+      "cages": [
+        {
+          "index": 43,
+          "hp": 2,
+          "creature": "creature-5"
+        }
+      ]
+    },
+    "235": {
+      "kind": "boss",
+      "boss": {
+        "name": "Lav Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "250": {
+      "kind": "boss",
+      "boss": {
+        "name": "Lav Bekçisi",
+        "phases": [
+          {
+            "colors": [
+              0,
+              1
+            ],
+            "hp": 4
+          },
+          {
+            "colors": [
+              2,
+              3,
+              4
+            ],
+            "hp": 4
+          },
+          {
+            "special": true,
+            "hp": 1
+          }
+        ]
+      }
+    },
+    "220": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    },
+    "240": {
+      "treasure": {
+        "coins": 30,
+        "boosters": {
+          "rocket": 1
+        }
+      }
+    }
+  }
+}

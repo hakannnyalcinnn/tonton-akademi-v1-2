@@ -240,7 +240,7 @@ func set_board(value) -> void:
 func highlight_goal(key: String) -> void:
 	goal_highlights.clear()
 	for i in displayed.size():
-		if preload("res://scripts/ui/goal_registry.gd").relevant(key,displayed[i],i,board.canyon):goal_highlights.append(i)
+		if preload("res://scripts/ui/goal_registry.gd").relevant(key,displayed[i],i,board.adventure if key=="rescues" else board.canyon):goal_highlights.append(i)
 	if key=="conveyors":
 		for rail in board.level.get("conveyors",[]):goal_highlights.append_array(rail.cells)
 	if key=="portals":
@@ -642,6 +642,7 @@ func _draw() -> void:
 				var old: Dictionary=previous[effect.index]
 				draw_texture_rect_region(TraitVFX.ATLAS,Rect2(center-Vector2(28,28),Vector2(CELL,CELL)),trait_regions[TraitVFX.index(old)],Color(1,1,1,1-ease))
 			draw_texture_rect(GLOW,Rect2(center-Vector2(34,34),Vector2(68,68)),false,Color(Palette.COLORS[int(effect.to)],sin(t*PI)*.7))
+	draw_adventure()
 	draw_mechanic_layers()
 	for rail in board.level.get("conveyors",[]):
 		for k in rail.cells.size():
@@ -890,3 +891,14 @@ func draw_energy_thread(source: Vector2, destination: Vector2, tint: Color, prog
 	var flow:=clampf(progress*1.8-float(index%6)*.04,0,1)
 	var head:=source+delta*flow+bend*sin(flow*PI)
 	draw_circle(head,2.5,Color(1,1,1,alpha))
+
+func draw_adventure() -> void:
+	var state: Dictionary=current.get("adventure",board.adventure) if busy else board.adventure
+	for cage in state.get("cages",[]):
+		if int(cage.remaining)<=0:continue
+		var center:=cell_position(int(cage.index))+Vector2(28,28)
+		var creature:=int(str(cage.creature).trim_prefix("creature-"))
+		draw_texture_rect(preload("res://scripts/ui/companion.gd").sprite(creature),Rect2(center-Vector2(19,19),Vector2(38,38)),false)
+		draw_arc(center,24,0,TAU,20,Color("a9eeff"),2.5,true)
+		for x in [-10,0,10]:draw_line(center+Vector2(x,-20),center+Vector2(x,20),Color("ffd98a"),1.5,true)
+		draw_string(ThemeDB.fallback_font,center+Vector2(14,20),str(cage.remaining),HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color.WHITE)

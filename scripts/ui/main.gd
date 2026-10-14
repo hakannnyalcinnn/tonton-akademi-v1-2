@@ -22,6 +22,7 @@ const BoardView = preload("res://scripts/ui/board_view.gd")
 const Audio = preload("res://scripts/ui/audio_manager.gd")
 const Celebration = preload("res://scripts/ui/celebration.gd")
 
+var companion
 var selected_world:=1
 var map_group := 0
 var test_mode := false
@@ -341,6 +342,7 @@ func show_map(group: int = -1) -> void:
 	var first:=int(metadata.start)
 	var last:=mini(Catalog.count(),int(metadata.end))
 	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3;path.world_theme=str(metadata.map_style);path.accent=Color(metadata.accent)
+	path.quiet=save.data.settings.reduced_motion;path.completed_count=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()
 	path.custom_minimum_size=Vector2(456,path.count*100+100)
 	scroll.add_child(path)
 	for n in range(first,last+1):
@@ -369,7 +371,8 @@ func show_map(group: int = -1) -> void:
 	for i in groups:
 		var group_index:=start_group+i
 		button(page,"%d–%d"%[group_index*10+1,mini(Catalog.count(),group_index*10+10)],Rect2(33+i*96,864,89,45),show_map.bind(group_index),group_index==map_group,14)
-	label(page,world_name(selected_world),Rect2(30,918,480,26),12,Palette.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+	for i in 3:
+		button(page,["GÜNLÜK","KOLEKSİYON","ÖDÜLLER"][i],Rect2(33+i*164,918,154,33),show_adventure_menu.bind(i),false,12)
 
 func request_level(number: int) -> void:
 	if number<1 or number>mini(Catalog.count(),int(save.data.unlocked)):return
@@ -420,6 +423,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	goals_panel.configure(board.active_targets(),board.collected)
 	goals_panel.goal_pressed.connect(show_goal_description)
 	goals_panel.goal_completed.connect(func(_key):audio.play("resonance"))
+	companion=preload("res://scripts/ui/companion.gd").new();companion.position=Vector2(458,873);companion.size=Vector2(48,48);companion.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(companion)
 	board_view = BoardView.new()
 	board_view.position = Vector2(32, 270)
 	board_view.size = Vector2(476, 536)
@@ -519,6 +523,7 @@ func process_event(event: Dictionary) -> void:
 	score_label.text = str(int(score_display))
 	# Persist only the completely settled logical result, before cosmetic playback.
 	if not test_mode:
+		preload("res://scripts/core/adventure_progress.gd").action(save.data,event)
 		if board.outcome == "won": save.complete(board)
 		else: save.save_active(board)
 	board_view.animate(event)
@@ -535,6 +540,7 @@ func on_environment(data: Dictionary) -> void:
 	if data.has("collected"):goals_panel.update_progress(data.collected)
 
 func on_wave(data: Dictionary) -> void:
+	if is_instance_valid(companion):companion.react("excited" if int(data.combo)>2 or data.get("combo_kind","")!="" else "happy")
 	storm_gauge.set_value(int(data.get("storm_energy",board.storm_charge())))
 	goals_panel.update_progress(data.get("collected",board.collected))
 	if not data.get("beams",[]).is_empty():audio.play("mirror")
@@ -802,10 +808,10 @@ func show_settings() -> void:
 	for i in 4:
 		var mode: String = modes[i]
 		quality_buttons[mode] = button(page,names[i],Rect2(32+i*122,225,113,43),set_quality.bind(mode),save.data.settings.get("quality","auto")==mode,13)
-	var definitions := [["shake","Hafif ekran sarsıntısı"],["reduced_effects","Azaltılmış efektler"],["reduced_motion","Daha az hareket"],["haptics","Dokunma titreşimi"],["colorblind","Şekille renk erişimi"]]
+	var definitions := [["companion_quiet","Pırıl için sakin mod"],["shake","Hafif ekran sarsıntısı"],["reduced_effects","Azaltılmış efektler"],["reduced_motion","Daha az hareket"],["haptics","Dokunma titreşimi"],["colorblind","Şekille renk erişimi"]]
 	for k in definitions.size():
 		var key: String = definitions[k][0]
-		var y := 287+k*62
+		var y := 275+k*53
 		card(page,Rect2(32,y,476,54))
 		label(page,definitions[k][1],Rect2(48,y+7,314,40),18)
 		var toggle := button(page,"AÇIK" if save.data.settings[key] else "KAPALI",Rect2(371,y+8,119,38),func(): toggle_setting(key),save.data.settings[key],13)
@@ -1006,3 +1012,27 @@ func show_crystal_help() -> void:
 	var body:=label(overlay,"Çift renkli kristal yalnızca gösterdiği iki renkle eşleşir. Bir dalgada tek renk olarak sayılır.\n\nBukalemun iki başarılı takasın zincirleri bittikten sonra sıradaki rengine geçer. Parlayan çerçeve dönüşümün yaklaştığını gösterir. Geçersiz takas, zincirler ve yön değişimi sayacı ilerletmez.\n\nPrizma Köprüsü her renge uyum sağlar; en az bir renkli kristalle üçlü çizgi oluşturmalıdır. 51. bölümde tanıtılır.\n\nYer Çekimi Çivisi kristali sabit tutar; iki ayrı darbeyle açılır. 56. bölümde tanıtılır.",Rect2(61,315,418,315),17)
 	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	button(overlay,"ANLADIM",Rect2(68,658,404,48),close_overlay,true,16)
+
+func show_adventure_menu(kind: int) -> void:
+	var progress_rule=preload("res://scripts/core/adventure_progress.gd")
+	progress_rule.ensure(save.data)
+	var progress: Dictionary=save.data.adventure_progress
+	open_overlay(["Günlük görevler","Kurtardığın dostlar","Kazanılan ödüller"][kind],"Çevrimdışı maceran bu cihazda saklanır.")
+	if kind==0:
+		var d: Dictionary=progress_rule.daily(save.data)
+		var keys: Array=["blue","wins","combos"]
+		var names: Array=["Mavi kristal", "Yeni bölüm tamamla", "Büyük kombo"]
+		var amounts: Array=[30,3,2]
+		for i in 3:
+			label(overlay,"%s · %d/%d"%[names[i],mini(int(d[keys[i]]),amounts[i]),amounts[i]],Rect2(65,374+i*72,282,44),17)
+			var claim:=button(overlay,"ALINDI" if keys[i] in d.claimed else "+15",Rect2(360,374+i*72,112,44),func():
+				if progress_rule.claim_daily(save.data,keys[i]):save.flush();show_adventure_menu(0),false,15)
+			claim.disabled=keys[i] in d.claimed or int(d[keys[i]])<amounts[i]
+	elif kind==1:
+		for i in 5:
+			var c:=preload("res://scripts/ui/companion.gd").new();c.creature=i+1;c.position=Vector2(69+(i%3)*136,365+int(i/3)*125);c.size=Vector2(108,108);c.quiet=save.data.settings.reduced_motion
+			c.modulate=Color.WHITE if "creature-%d"%(i+1) in progress.creatures else Color(.4,.45,.5,.45);overlay.add_child(c)
+		label(overlay,"%d / 5 dost kurtarıldı"%progress.creatures.size(),Rect2(68,623,404,34),19,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	else:
+		label(overlay,"%d KRİSTAL PARA\n\nRoket: %d · Gökkuşağı Yıldızı: %d\n\n%d hazine sandığı açıldı"%[progress.coins,progress.inventory.get("rocket",0),progress.inventory.get("prism",0),progress.claimed.size()],Rect2(68,375,404,230),20,Palette.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"KAPAT",Rect2(68,690,404,45),close_overlay,false,16)

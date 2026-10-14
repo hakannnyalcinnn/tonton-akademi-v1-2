@@ -50,6 +50,7 @@ var last_match_origin:=0
 var action_combo:=""
 var action_virtual: Array=[]
 var score := 0
+var adventure: Dictionary={}
 var collected: Dictionary = {"total": 0, "0": 0, "1": 0, "2": 0, "3": 0, "4": 0}
 var direction := "down"
 var palette: Array=[0,1,2,3,4]
@@ -82,6 +83,8 @@ func _init(definition: Dictionary = {}) -> void:
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]: collected[key] = 0
 	canyon=Canyon.install(cells,level)
 	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:collected[key]=0
+	adventure=preload("res://scripts/core/adventure.gd").initial(level)
+	collected.rescues=0;collected.bosses=0
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT,palette)
 
 func find_matches(preferred: Array = []) -> Array:
@@ -423,6 +426,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 				if cells[i].get("trait",{}).get("kind","")=="dual": collected.duals+=1
 				if Traits.bridge(cells[i]):collected.bridges+=1
 			if i not in canyon.holes:cells[i] = null
+		var adventure_events:=preload("res://scripts/core/adventure.gd").wave(adventure,unique,normal_colors,special or not triggered.is_empty() or combined,collected)
 		collected.total += normal_count
 		for creation in creations:
 			if creation.i not in canyon.holes:continue
@@ -440,7 +444,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "collected":collected.duplicate(), "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events,"canyon_events":canyon_events,"canyon":canyon.duplicate(true), "beams":beams, "colors":effective_colors, "origin":last_match_origin,"combo_kind":action_combo if combined else "","virtual_powers":action_virtual if combined else []})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "collected":collected.duplicate(), "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events,"adventure_events":adventure_events,"adventure":adventure.duplicate(true),"canyon_events":canyon_events,"canyon":canyon.duplicate(true), "beams":beams, "colors":effective_colors, "origin":last_match_origin,"combo_kind":action_combo if combined else "","virtual_powers":action_virtual if combined else []})
 		Metrics.elapsed("clear_logic", clear_started)
 		var pre_paint:=cells.duplicate(true) if cells.any(func(c):return c!=null and c.get("obstacle",{}).get("kind","")=="fountain") else []
 		var paint_started:=Time.get_ticks_usec()
@@ -567,13 +571,14 @@ func resume() -> void:
 	if state == State.PAUSED: state = paused_state
 
 func snapshot() -> Dictionary:
-	return {"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":3,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
+	return {"adventure":adventure.duplicate(true),"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":3,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
 
 static func whole(value: Variant, minimum: int, maximum: int) -> bool:
 	if not (value is int or value is float): return false
 	return value >= minimum and value <= maximum and float(value) == floor(float(value))
 
 func restore(data: Dictionary) -> bool:
+	if not preload("res://scripts/core/adventure.gd").valid(data.get("adventure",{})):return false
 	if data.has("recovery_failed") and not data.recovery_failed is bool:return false
 	if not data.has_all(["rules", "state", "level_id", "cells", "moves", "score", "collected", "direction", "energy", "energy_blocks", "serial", "rng", "resonance_color", "resonance_count", "outcome", "refill_stream"]): return false
 	if not whole(data.get("vine_count",0),0,2):return false
@@ -630,6 +635,7 @@ func restore(data: Dictionary) -> bool:
 	initial_moves=int(data.get("move_budget",maxi(int(level.moves),int(level.get("legacy_moves",level.moves)))))
 	moves = int(data.moves)
 	score = int(data.score)
+	adventure=data.get("adventure",preload("res://scripts/core/adventure.gd").initial(level)).duplicate(true)
 	collected = data.collected.duplicate()
 	for key in collected: collected[key] = int(collected[key])
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]:

@@ -3,6 +3,8 @@ const CanyonArt=preload("res://scripts/ui/goal_registry.gd")
 const CasualSkin=preload("res://scripts/ui/casual_skin.gd")
 var world_theme:="garden"
 var accent:=Color("f7d697")
+var completed_count:=0
+var quiet:=false
 var count:=50
 var ocean:=false
 var canyon:=false
@@ -11,6 +13,9 @@ func node_position(index: int) -> Vector2:
 	return Vector2(228+sin(float(index)*.83)*145,70+index*100)
 func _ready() -> void:
 	mouse_filter=Control.MOUSE_FILTER_PASS
+	for i in range(0,count,10):
+		var creature:=preload("res://scripts/ui/companion.gd").new();creature.creature=1 if world_theme=="garden" else 2 if world_theme=="ocean" else 3 if world_theme=="canyon" else 4 if world_theme=="cloud" else 5
+		creature.position=node_position(i)+Vector2(-165,-25);creature.size=Vector2(72,72);creature.quiet=quiet;creature.modulate.a=1 if i<completed_count else .4;add_child(creature)
 	for i in range(count*16):
 		var index:=float(i)/16
 		road.append(Vector2(228+sin(index*.83)*145,70+index*100))

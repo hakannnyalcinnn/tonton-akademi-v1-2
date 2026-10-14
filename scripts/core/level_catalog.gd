@@ -3,6 +3,7 @@ const Registry = preload("res://scripts/mechanics/mechanic_registry.gd")
 const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
 
 static var cache: Array = []
+static var adventures: Dictionary={}
 
 const Worlds=preload("res://scripts/core/world_catalog.gd")
 static var loaded: Dictionary={}
@@ -18,7 +19,7 @@ static func packet(path: String) -> Array:
 	return loaded[path]
 static func all() -> Array:
 	if not cache.is_empty():return cache
-	for entry in Worlds.manifest().packages:cache.append_array(packet(entry.path))
+	for entry in Worlds.manifest().packages:cache.append_array(packet(entry.path).map(func(d):return decorate(d)))
 	cache.sort_custom(func(a,b):return int(a.id)<int(b.id))
 	assert(cache.size()==count())
 	for index in cache.size():assert(int(cache[index].id)==index+1)
@@ -31,11 +32,31 @@ static func get_level(number: int) -> Dictionary:
 	for entry in Worlds.manifest().packages:
 		if number>=int(entry.start) and number<=int(entry.end):
 			for definition in packet(entry.path):
-				if int(definition.id)==number:return definition.duplicate(true)
+				if int(definition.id)==number:return decorate(definition)
 	assert(false,"Campaign packet missing requested authored level")
 	return {}
 
+static func decorate(source: Dictionary) -> Dictionary:
+	var definition: Dictionary=source.duplicate(true)
+	if adventures.is_empty():adventures=JSON.parse_string(FileAccess.get_file_as_string("res://data/adventure-levels.json")).levels
+	var addition: Dictionary=adventures.get(str(int(definition.id)),{})
+	if addition.has("treasure"):definition.treasure=addition.treasure.duplicate(true)
+	if not addition.has("kind"):return definition
+	definition.adventure=addition.duplicate(true);definition.adventure.erase("treasure")
+	if addition.kind=="rescue":
+		definition.targets.rescues=addition.cages.size()
+		definition.tutorial="Kafesin çevresinde eşleştir; dostunu kurtar."
+	else:
+		definition.targets.bosses=1
+		definition.tutorial="Bekçinin gösterdiği renkleri eşleştir; son kalkanı özel güçle kır."
+		if definition.powers.is_empty():
+			for i in 72:
+				if int(definition.layout[i])>=0 and not definition.mechanics.any(func(m):return int(m.index)==i):definition.powers[str(i)]="rocket_h";break
+	if definition.has("objective_stages"):definition.objective_stages[-1].merge(definition.targets,true)
+	return definition
+
 static func validate(level: Dictionary) -> bool:
+	if not preload("res://scripts/core/adventure.gd").valid(level.get("adventure",{})):return false
 	if not level.has_all(["id", "seed", "moves", "targets", "stars", "layout", "gravity", "resonance"]): return false
 	# Snapshots now contain definitions: reject malformed saved types before indexing/casting.
 	if not level.layout is Array or not level.stars is Array or not level.targets is Dictionary:return false

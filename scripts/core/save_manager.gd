@@ -17,9 +17,10 @@ func _init(save_path: String = "user://prizma-save.json") -> void:
 	path = save_path
 	data = defaults()
 	load_save()
+	preload("res://scripts/core/adventure_progress.gd").ensure(data)
 
 static func defaults() -> Dictionary:
-	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "world_rewards":[], "cosmetic_rewards":[], "active": {}, "tutorials": [], "settings": {"music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false, "quality": "auto", "shake": true, "reduced_effects": false, "music_volume": 0.65, "sfx_volume": 0.8}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
+	return {"version": SCHEMA, "unlocked": 1, "results": {}, "rewarded": [], "world_rewards":[], "cosmetic_rewards":[], "active": {}, "tutorials": [], "settings": {"companion_quiet":false, "music": true, "sfx": true, "haptics": true, "reduced_motion": false, "colorblind": false, "quality": "auto", "shake": true, "reduced_effects": false, "music_volume": 0.65, "sfx_volume": 0.8}, "migration_notice": false, "legacy_results": {}, "legacy_active": {}, "migrated_from": 0}
 
 static func canonical(value: Variant) -> Variant:
 	if value is Dictionary:
@@ -212,6 +213,7 @@ func complete(board) -> bool:
 		if metadata.has("reward_id"):
 			if not data.has("cosmetic_rewards"):data.cosmetic_rewards=[]
 			if metadata.reward_id not in data.cosmetic_rewards:data.cosmetic_rewards.append(metadata.reward_id)
+	preload("res://scripts/core/adventure_progress.gd").complete(data,board,first)
 	data.active = {}
 	flush()
 	return first
