@@ -132,8 +132,10 @@ func layout_stage() -> void:
 		var top: float=game_hud.position.y+game_hud.size.y+12
 		var available_bottom: float=stage.size.y-190
 		board_view.position.y = maxf(top,top+(available_bottom-top-board_view.size.y)*.5)
+		goals_panel.size=Vector2(game_hud.size.x,goals_panel.custom_minimum_size.y)
+		goals_panel.position=Vector2(game_hud.position.x,board_view.position.y-goals_panel.size.y-12)
 		for node in page.get_children():
-			if node is Control and node.has_meta("hud_y") and node!=game_hud:node.position.y=float(node.get_meta("hud_y"))+extra*.5
+			if node is Control and node.has_meta("hud_y") and node not in [game_hud,goals_panel]:node.position.y=float(node.get_meta("hud_y"))+extra*.5
 		for node in footer_nodes:
 			if is_instance_valid(node):
 				var base: int=int(node.get_meta("base_y"))
@@ -479,6 +481,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	game_hud.configure(board.level,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),board.collected,save.data.settings.reduced_motion)
 	game_hud.pause_requested.connect(show_pause)
 	level_label=game_hud.title;score_label=game_hud.score;moves_label=game_hud.moves;star_progress=game_hud.stars;goals_panel=game_hud.goals
+	goals_panel.reparent(page)
 	star_progress.star_earned.connect(func(_index):audio.play("star_award"))
 	goals_panel.configure(board.active_targets(),board.collected);game_hud.update_height()
 	goals_panel.goal_pressed.connect(show_goal_description)

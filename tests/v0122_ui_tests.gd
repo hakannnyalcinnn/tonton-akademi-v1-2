@@ -30,7 +30,7 @@ func run() -> void:
    game.start_level(n);await frame()
    var moves: Rect2=game.moves_label.get_global_rect();var score: Rect2=game.score_label.get_global_rect();var stars: Rect2=game.star_progress.get_global_rect();var grid: Rect2=game.board_view.get_global_rect();var goals: Rect2=game.goals_panel.get_global_rect()
    check(not moves.intersects(score) and not moves.intersects(stars) and not stars.intersects(score),"distinct information modules")
-   check(goals.end.y<grid.position.y and absf((grid.position.y-goals.end.y)-(game.stage.get_global_rect().end.y-190*game.stage.scale.y-grid.end.y))<=20*game.stage.scale.y,"centered usable-area spacing with separate HUD")
+   check(goals.end.y<grid.position.y and grid.position.y-goals.end.y<=14*game.stage.scale.y,"target cards remain adjacent to centered board")
    check(game.safe_rect().encloses(game.game_hud.get_global_rect()),"HUD fits notch safe area")
    check(game.safe_rect().encloses(grid),"board fits safe area")
    check(game.moves_label.get_theme_font_size("font_size")>=36,"moves stay readable")

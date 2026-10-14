@@ -21,11 +21,14 @@ func run() -> void:
  var goals=game.overlay.get_children().filter(func(node):return node.get_script()==preload("res://scripts/ui/goals_panel.gd"))[0]
  for tap in 100:goals.goal_pressed.emit(goals.targets.keys()[tap%4]);assert(text.get_instance_id()==original)
  await shot("preview-four");game.close_overlay()
- for group in [0,5,20]:
+ for group in [0,5,10,15,20]:
+  game.save.data.unlocked=group*10+25
+  for n in range(1,game.save.data.unlocked):game.save.data.results[str(n)]={"score":1000,"stars":2}
   game.show_map(group);game.map_scroll.scroll_vertical=3100;await create_timer(.4).timeout
   var path=game.map_scroll.get_child(0);assert(path.curve.point_count==50 and path.road.size()>500)
   for index in 50:assert(path.curve.get_point_position(index)==path.node_position(index))
   await shot("map-%d"%game.selected_world)
+ game.save.data.unlocked=250
  for height in [960,1080,1200]:
   root.size=Vector2i(540,height);game.size=Vector2(540,height);game.start_level(25);game.close_goal_tip();await process_frame
   var top: float=game.game_hud.position.y+game.game_hud.size.y+12
