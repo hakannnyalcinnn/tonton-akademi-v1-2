@@ -59,6 +59,9 @@ func run() -> void:
  game.open_world_map(3);await process_frame
  assert(game.screen=="map" and game.selected_world==3 and game.map_buttons.size()==50)
  assert(game.map_scroll.get_child(0).curve.point_count==51)
+ var terrain=game.page.get_node("MapSceneBackdrop");assert(terrain.texture!=null and terrain.scroll==game.map_scroll)
+ assert(game.page.get_node("WorldsButton").icon!=null and terrain.road_layer.material==null)
+ for biome in ["garden","ocean","canyon","cloud","lava"]:assert(ResourceLoader.exists("res://assets/casual/terrain-"+biome+".png"))
  game.request_level(101);await process_frame
  assert(game.overlay.find_child("PreviewLayout",true,false) is VBoxContainer)
  game.save.finish_writes();game.queue_free();await process_frame;await process_frame

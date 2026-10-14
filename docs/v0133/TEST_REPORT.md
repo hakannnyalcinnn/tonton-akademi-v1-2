@@ -16,4 +16,4 @@
 
 Gerçek Android cihaz yok: telefon kurulumu, fiziksel dokunma gecikmesi, ses/titreşim ve telefon FPS testi yapılmadı. Beş dünya × 80 masaüstü frame aralığı, 20 ısınma frame; llvmpipe/Compatibility/LP_NUM_THREADS=4; ayrıntılar performance.json. Bunlar GPU profiler veya Android 60 FPS doğrulaması değildir.
 
-APK normal/DEV aynı paket kimliklerini ve önceki sertifikayı koruyacak; sürüm 0.13.3, yapı 22. Final APK ve yayın doğrulaması ayrıca kaydedilir.
+Normal/DEV APK birer kez üretildi ve doğrulandı: sürüm 0.13.3, yapı 22; normal com.prizma.renklerinuyanisi.match3, DEV aynı kimliğin .dev eki. Önceki sertifika, ZIP/CRC, ARM kütüphaneleri ve bütün bölüm JSON baytları doğrulandı. APK içindeki gerçek kaynaklarla beş zemin varlığı, ortak harita tuvali/küre simgesi ve normal/geliştirici özellik kapıları doğrulandı. Yayın ve erişim sonucu publication.json dosyasına kaydedilir.

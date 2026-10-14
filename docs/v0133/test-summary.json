@@ -1,0 +1,44 @@
+{
+  "runtime_source_commit": "f62a127e553f0c1824a16d9e7bef68528a8fa2f9",
+  "runtime_digest": "1446dd6c402f732c13d705b356bafe8f66cc103a5357c701e1df2deb7118eb7d",
+  "passed": [
+    "v0133_ui_tests:377",
+    "v0131_tests:49",
+    "persistence_probe",
+    "workflow_smoke",
+    "render_continuity:464400pixels",
+    "apk_normal_identity_signature_integrity",
+    "apk_dev_identity_signature_integrity",
+    "exported_apk_ui_and_feature_gates"
+  ],
+  "screen_sizes": [
+    [
+      540,
+      960
+    ],
+    [
+      540,
+      1170
+    ],
+    [
+      540,
+      1200
+    ],
+    [
+      320,
+      568
+    ]
+  ],
+  "real_android_tested": false,
+  "protected_gameplay_save_data_unchanged": true,
+  "apk": {
+    "prizma-v0.13.3.apk": {
+      "bytes": 95767616,
+      "sha256": "b50bf50f594aed01150adb9b89494562258bbbfbda23fcd65a566d9562563938"
+    },
+    "prizma-v0.13.3-dev.apk": {
+      "bytes": 95767616,
+      "sha256": "716a9bad9d27e7223120f57126a2c6c0ff031a84ea98fb37a985b86058cd72c9"
+    }
+  }
+}
