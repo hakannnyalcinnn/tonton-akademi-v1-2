@@ -1,0 +1,30 @@
+[
+  {
+    "area": "scripts/core",
+    "validated_baseline": "85ea7a9",
+    "final_source": "57e3a86",
+    "git_tree": "4adef220241ca530808b488ac74490a397a875ea",
+    "unchanged": true
+  },
+  {
+    "area": "scripts/mechanics",
+    "validated_baseline": "85ea7a9",
+    "final_source": "57e3a86",
+    "git_tree": "1e42d7c95d62e60fbc6155d45d55c94d9ce2e6ef",
+    "unchanged": true
+  },
+  {
+    "area": "scripts/generation",
+    "validated_baseline": "85ea7a9",
+    "final_source": "57e3a86",
+    "git_tree": "8ada18c337b32ca3aeb8495fad58a2c0d45e5db4",
+    "unchanged": true
+  },
+  {
+    "area": "data",
+    "validated_baseline": "85ea7a9",
+    "final_source": "57e3a86",
+    "git_tree": "76dd6c8f3d3af9c777982ac0c24f56926df2fe07",
+    "unchanged": true
+  }
+]

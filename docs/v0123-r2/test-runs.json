@@ -1,0 +1,1130 @@
+[
+  {
+    "report": "build/test-policy/1791978814534188750-targeted.json",
+    "source_commit": "abaf9fcc9132783b17a0323f98d5dee402741f2b",
+    "fingerprint": "178d16082f5cbeac406c6b24ca3500acbb8ba83e7d5e351f62db7b5f795aa766",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "a15e14e428dbfb73e1ce8e67df658544ffc8c3dde90d427c6c3b845c96e3d82a",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 4.116,
+        "log": "build/test-policy/ea4f0752839c8b0b32c8fd90d319f4ac897d752014c4240f99353552f00ccb0a.log",
+        "log_sha256": "869128fc631b9005ffb3c66fb13514b8b49cce1ac5254196742a456993fdef3e"
+      },
+      {
+        "name": "mechanic_tests",
+        "status": "passed",
+        "seconds": 55.635,
+        "log": "build/test-policy/605ceae942eb45e9b495039fc3b39446aa6d8463e05ca21604d8307096e699a3.log",
+        "log_sha256": "3ec470414969a09603f0ed003ae3b32f9a3e3f24b467fb7b57030b2440d2d118"
+      },
+      {
+        "name": "package2_tests",
+        "status": "passed",
+        "seconds": 2.817,
+        "log": "build/test-policy/d481f6f01c503ecf0449655fd01bbd0b4e94a0e82700dc5c6ca3cc882623e285.log",
+        "log_sha256": "44abbfd919ddd62764a2d922fdef83a929415762b8d5dc39c6c75c14c638f019"
+      },
+      {
+        "name": "package4_tests",
+        "status": "failed",
+        "seconds": 9.569,
+        "log": "build/test-policy/5b18ca4edcd6ff46f50c1381bbd76e8a850657173f44b586f187315aaea0e773.log",
+        "log_sha256": "09e94fed3a2881150f751509c78108a20d2135458109574162a828c80346c782"
+      },
+      {
+        "name": "package5_mechanics",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/0ed43c95eaff77c4f509d1261a98bdb280ef6bb350476981a9baa5014251abfc.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/e7f7bfdbc42322c655dabd6babfc451d04d0c3df400253893a6d6d09ae2c8d34.log",
+        "log_sha256": null
+      },
+      {
+        "name": "deadlock_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/0203da68a2070d8ad5eca51c897c8591e617236ba81f7363a494402cf21b2886.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_mechanics_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/aa63c4dafe85f081cfe4567cbbe41f226a71485a15996e9b5390e0a519ed0742.log",
+        "log_sha256": null
+      },
+      {
+        "name": "quality_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/9bf7d0342147aee5820494cc88ca9743a31a94d90dff0f2b863bb3639cc279e1.log",
+        "log_sha256": null
+      },
+      {
+        "name": "mechanic_ui_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/28095b92a24a47263a1ce1910133469982ce3de84442dfab8ac8a94150d3b2d5.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/2c4c85fe6d4c56923a10857331354b8c2fbbdc421fc40fbd52cd25e2df0ea3a5.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package4_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/b0e4ed25342d03ae24911a07de386d71637bc33c6b5938cb75d927bc12566657.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package5_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/b8336e0022bab64b8d009dc5b7fe93e07532eb09ad0c3f3cf5c48db422007f4a.log",
+        "log_sha256": null
+      },
+      {
+        "name": "casual_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/c8183433ca4a6f81e4f68c1cb656d317a7046cbf9ab917f0bf4210fc1dbe8c26.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/6314f9e2aba7c829438683272bfc4183d60007196526993c096bed77d351f64e.log",
+        "log_sha256": null
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/316e5a666eda0ec3050c08cddcd4fdc3da8470eeefde2453b537f8f7c9c63521.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/17f847ae43dc2df735537e8d465e586b42cab1d7d5e07419cb78e581ae6afaa0.log",
+        "log_sha256": null
+      },
+      {
+        "name": "finale_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/6522536986bf4df6e89d1c49ea22271f48e3dd95eeabd204976a61ce161e13b4.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_probe",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/00cbb187287ef14db3b5e2c3e6d2d8baf563e120ccde19351e22b3efdf7fcd57.log",
+        "log_sha256": null
+      },
+      {
+        "name": "r2_campaign_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/9379200a2d14a2761be52ddde7220087328141dde0180bb40de0feb0510c9d0d.log",
+        "log_sha256": null
+      },
+      {
+        "name": "v0123_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/ca561a5b68ed38f4cc4929330519e2594eb5e4a1536348a135531009683c4f25.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791978296391727982-full.json",
+    "source_commit": "85ea7a9b4c9c8b334dc85fb0ab653ac9299193cb",
+    "fingerprint": "66aad30bd2762d903def5e590258f44df4099c87f066122b95f21fc3124ed72e",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "86249e6478a8f1b7b39226d1628dc048ef39880ac8773a7f71cf84dc53b19396",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.774,
+        "log": "build/test-policy/b15bdd324c0946139a46a22e83ba527db932cba5ce0034889398293868099d37.log",
+        "log_sha256": "2f34da9f68d3be99e8b96ce3935cfb422bdd616caee6ae1f5611a918322d7411"
+      },
+      {
+        "name": "v012_tests",
+        "status": "passed",
+        "seconds": 0.917,
+        "log": "build/test-policy/b00f16f60795d9758da0b0761db2fface4a6fc56883e3f125c4da1f938aad8a8.log",
+        "log_sha256": "4476e116bfbe1212692157db0370c61544feb6d0c6f3d30ff0b918fbb7aa54f8"
+      },
+      {
+        "name": "adventure_campaign",
+        "status": "passed",
+        "seconds": 10.144,
+        "log": "build/test-policy/8ec608a3c64595a31c9f4ac9742a43b6bd7bfd30e16beb57b3107dc1ce3060bf.log",
+        "log_sha256": "6ef86004b977015277e5d565d5fd8564918d19903105bd2af36ba4c34c996c55"
+      },
+      {
+        "name": "workflow_smoke",
+        "status": "passed",
+        "seconds": 0.866,
+        "log": "build/test-policy/d9327f29725c1a7bbfffa9dd85045cba7c8d3139f6e54037bbb650d670a2df49.log",
+        "log_sha256": "4d52714f4f9adccfb98b2695b08a37402455306bb31b794166efb0e0241c99c5"
+      },
+      {
+        "name": "generator_tests",
+        "status": "passed",
+        "seconds": 0.466,
+        "log": "build/test-policy/b98c27d0d48f124d5d42ce3aa3c6321501d5a0eee71c1bd155502bef0cfbe2ed.log",
+        "log_sha256": "fd7a657e585cabab7eaa49b8d801a51175eca3453fe7ae9374e8aa035f38af11"
+      },
+      {
+        "name": "world_expansion_tests",
+        "status": "interrupted",
+        "seconds": 140.337,
+        "log": "build/test-policy/e7c2877f63fea8d3c0b1349014a41adf1600e0fbe91760ca187d48585f587066.log",
+        "log_sha256": "06450c369187a8981f5a606e7da9e65e808d7227170c6bfe9296cba19a8f8a35"
+      },
+      {
+        "name": "generator_data_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/de92f4154acfec99ff4c8be031900e8015a8bd33993fc6d40bd211a1d36ffb03.log",
+        "log_sha256": null
+      },
+      {
+        "name": "run_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/6b70958b5cf27edf5e32e7a04ce2598abc213565284b0315c044299cdf596650.log",
+        "log_sha256": null
+      },
+      {
+        "name": "mechanic_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/e3367a599c8274a5d35663d92402d1aa20c30763828e045d85c577a15adbd74c.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package2_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/323e631e7b1880fbfd6e1afa047424ec93f40528d3fcff4011a0aac13dcfe790.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package4_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/63662c8f2871169566008eb5098eac1acc39ba30e8282a185b6bb98043df633f.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package5_mechanics",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/7ad2b20b367a26b106d615c23b977ad54db66904a70584bf92ac35ebf3dc5ebe.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/8ce499f688b931ae54bd4d2a0db20df83381922faea5fdadd26b7c3b85b05ccf.log",
+        "log_sha256": null
+      },
+      {
+        "name": "deadlock_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/2278b0392ba2bc6afd6213dbe5d659bad5b40ebffb97b421bd4870034fc4dc2a.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_mechanics_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/77318c254b10a159042a06362778cd9f1d78d0b9b4b59cd7f37580fa77b5e6b6.log",
+        "log_sha256": null
+      },
+      {
+        "name": "quality_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/c4489c498e926c48581c6e2732631225dff86ca71aeceb8aadbbebcf5aa2f4f2.log",
+        "log_sha256": null
+      },
+      {
+        "name": "mechanic_ui_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/91e25048ba54a2304d037b4717d544116f52388cbe53f17f3ed33ac7383292f2.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/782719a0feb09c6b9d4972ce634fd966f7df7965e0fa6dec62e2b2f20e2f7f61.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package4_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/1492f5ba5303804bf8ff545e4cf18a989dc84e892483f5212f9c6d89db8ff242.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package5_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/95eeb48d15fbdcf3fcdcb6e0aa271b9d5fb4d22c151a72d10a103d62bfa89a64.log",
+        "log_sha256": null
+      },
+      {
+        "name": "casual_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/be802ce7534019412c31e4a48a925af09d9a728c3d89e12459d19c8cba5d2b79.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/26741f4fafc11d53b0e432772a67ee9a5108f7101c0dc08a05d1c438875e0e91.log",
+        "log_sha256": null
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/2d25a538704490a2c3834c7aee69dcf48317511f8c8be9cea85e421a8df1afd5.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/6b51f201975963bcd6432482f598e355490453e6350aae10be1fad44cf2bb433.log",
+        "log_sha256": null
+      },
+      {
+        "name": "finale_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/8c45b3c65621c5a93142ecdbd81aedf7064b1db3ff087cc51396cf585cad761d.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_write",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/d62892115f476a3c546cc08df7f910060a552d4a0a89f6fe172eb8e38c45c3e2.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_read",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/f7adcfae848075db21645743d00acc556fc6d93bc4bcad269398279dfcf90181.log",
+        "log_sha256": null
+      },
+      {
+        "name": "campaign_all",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/d53a9b2602abdeead5ba6f41edaa502f3e07c89dbad89b72f9ba04de81bfcdb3.log",
+        "log_sha256": null
+      },
+      {
+        "name": "android",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/a392f2ef6e79452f242baa6796bf3ee8cad255e7e9e7fb5b56a61b5a565f4783.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791979429832397921-targeted.json",
+    "source_commit": "b1be21b55910bac8e21d83057e1ae51aac991a8d",
+    "fingerprint": "2fcd172b2b031aa73fbdab7cffead5e2f105ac6123ee575fe5efef365275156a",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "70bc6b1d4e0aea601a090f7f5b20a2b15f02e38b806934bb28949a21078ee1a0",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.818,
+        "log": "build/test-policy/94feefd2458f632fc05bb2a907fd1b83b0d13a41cf5356e9d3577856bfe25a00.log",
+        "log_sha256": "3fecb0dc3a61cff278542aed0db46b9add56a0928d5dfb4facb11c8d44a847c8"
+      },
+      {
+        "name": "r2_helper_tests",
+        "status": "passed",
+        "seconds": 0.917,
+        "log": "build/test-policy/7fc66176b7ffda5b558da5db410ca5039ba20b70f1d5ced40eab0cb87d56a70d.log",
+        "log_sha256": "cfd862af022ef3f1a24011781372c221d4d2fdae143be0d2b03055223119c603"
+      },
+      {
+        "name": "package5_ui",
+        "status": "passed",
+        "seconds": 2.968,
+        "log": "build/test-policy/ba63e04a531a657644c5df9da0bd57878ea403982f90326b89f9e37fa28c9645.log",
+        "log_sha256": "d2b2c387ec10ba6c3756d6cab12b87c54e5647400bb391749bc81eb04ad6f078"
+      },
+      {
+        "name": "casual_ui",
+        "status": "failed",
+        "seconds": 1.566,
+        "log": "build/test-policy/19238326d8d5e2986082710a234396309b57c8e20c35cfd013a41ba43d475d6e.log",
+        "log_sha256": "321e5a5f7ff0c43f26f313fd2b94a15bb26dada9c50a7616067811e90432b089"
+      },
+      {
+        "name": "canyon_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/21ab1a5239fe361f61bb54d2589aa8bf521f5647c639437962e32a2ea8d133d6.log",
+        "log_sha256": null
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/d0e910c2e5b776b53b48ad4205f9c3b5b0b6ddc6ab39caad540515dd60f680ed.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/7ad21221f65cee8f98efcbba8521e2409dcd398dfc8192d4924592cfb7660720.log",
+        "log_sha256": null
+      },
+      {
+        "name": "finale_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/b1a4ea769f18882ad2e95a78ab37b34c1144505ab03993e9a05cd5d38830cdaa.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_probe",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/ea2084cacf4bdd7b3edaf1bd34a63256067790c46728bce6d11010be1a5fe0de.log",
+        "log_sha256": null
+      },
+      {
+        "name": "r2_campaign_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/688e856e5071c83229c96f802cf96861c3a10734b359d75c1f3e1ca55fc349f5.log",
+        "log_sha256": null
+      },
+      {
+        "name": "v0123_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/17e49c48a1adf96b349987ba27986ddb80822a8711aaa6da86e3b1954ab40abf.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791978595594242640-full.json",
+    "source_commit": "abaf9fcc9132783b17a0323f98d5dee402741f2b",
+    "fingerprint": "4239d442af1d03c1b89ba19439d9f647f63248327cf4472f14ea4eb8d14c04c8",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "e371f18ba91248dac2404e0165da914f87ced3292002068dc62533ace3a45331",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.717,
+        "log": "build/test-policy/4f32531612d769c17f43e3378cdac339f240e335bd079615132dfdaee71fd779.log",
+        "log_sha256": "3fecb0dc3a61cff278542aed0db46b9add56a0928d5dfb4facb11c8d44a847c8"
+      },
+      {
+        "name": "v012_tests",
+        "status": "passed",
+        "seconds": 1.004,
+        "log": "build/test-policy/7b4c9cd6619346cda2219a454387b303b30d1fefd6f48622414e4d387d00a40e.log",
+        "log_sha256": "4476e116bfbe1212692157db0370c61544feb6d0c6f3d30ff0b918fbb7aa54f8"
+      },
+      {
+        "name": "adventure_campaign",
+        "status": "passed",
+        "seconds": 9.568,
+        "log": "build/test-policy/7d2489d5c6146ecef4ac5d1014b01876bdda1c2b404ecdd3a5944b58dd5cef7d.log",
+        "log_sha256": "6ef86004b977015277e5d565d5fd8564918d19903105bd2af36ba4c34c996c55"
+      },
+      {
+        "name": "workflow_smoke",
+        "status": "passed",
+        "seconds": 0.817,
+        "log": "build/test-policy/3c91950ec9cb77ea1bc4596ed6219f6b769e3e44e5c115acb3c8db402f45e3a9.log",
+        "log_sha256": "4d52714f4f9adccfb98b2695b08a37402455306bb31b794166efb0e0241c99c5"
+      },
+      {
+        "name": "generator_tests",
+        "status": "passed",
+        "seconds": 0.465,
+        "log": "build/test-policy/48600788f08a5d9bb1f1b3c0da6ed2278f8984bb9ecd3123c5b4c178764babcc.log",
+        "log_sha256": "fd7a657e585cabab7eaa49b8d801a51175eca3453fe7ae9374e8aa035f38af11"
+      },
+      {
+        "name": "world_expansion_tests",
+        "status": "passed",
+        "seconds": 1.566,
+        "log": "build/test-policy/2e975c73132d55288853c5b8815759a6216199bb8c5578e62470dd46f650966a.log",
+        "log_sha256": "e35701f6d32b445385136d7a697d744431bc292a2706053993b3651460fb329e"
+      },
+      {
+        "name": "generator_data_tests",
+        "status": "passed",
+        "seconds": 0.566,
+        "log": "build/test-policy/6b77726617f8aba125d6e0599496ba14aa7f46fbc57792c9d6cec28c9ee5e512.log",
+        "log_sha256": "23e6bba5bc775ea5e2458a436fe1c7c0642cf085ecc7557f837535b362f18aeb"
+      },
+      {
+        "name": "run_tests",
+        "status": "passed",
+        "seconds": 50.393,
+        "log": "build/test-policy/2cce6f5ccbdf63ebcd92cf8b0265c2ee4bbff5d1ac3dfc9b725d79e928c721b2.log",
+        "log_sha256": "fa08e8c7dd737ad4ab1b45db4bbf23099126be25db9aea55d781735ed6cbc871"
+      },
+      {
+        "name": "mechanic_tests",
+        "status": "failed",
+        "seconds": 58.691,
+        "log": "build/test-policy/5b71fe3ea29ea95e66b56822d417cf1067f5f85803d5c07dfb413f7283214f54.log",
+        "log_sha256": "9c2a3d12cb0c583b4f435996fa967851d525a0ffe024443460878c63021af88e"
+      },
+      {
+        "name": "package2_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/c9425ee4d72528d5d713d73472ccbd5137e2d5a99e58b48445c3aa6b21ecfc4c.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package4_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/959675da1a04f83f275a8cc139f67e0676639151c0d8cb41c8d5846221c9389d.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package5_mechanics",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/b80caf078325f49cca7ecbb3b718d494de92d0742a14d8875d9e69be27b46e6e.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/f57ec64f7b87f49848b31b75abd7023ffe6c85bdf879f5385cedebed52003757.log",
+        "log_sha256": null
+      },
+      {
+        "name": "deadlock_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/863a5ca074809f3338b5c23636491e90ddbed608a2ccfd41637044ff426cf62a.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_mechanics_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/6fd2ead8edeedeb3c5a1c668b02bf0a23e171c74b2be8dc61d40e0104918d4c1.log",
+        "log_sha256": null
+      },
+      {
+        "name": "quality_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/4f49eb1c2ce22b329963fb5e53315af2bf6a8f897db589fafd93070aec1fb273.log",
+        "log_sha256": null
+      },
+      {
+        "name": "mechanic_ui_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/2147c31c47770ebd8491deb8eb684a2370c968ad794398a161c89d85bee98d88.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/42d02e65156d27c1def4b90ac6e7f730c0af87383837fcb6976948e497bcaf54.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package4_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/57af5d450eb12ef489c240663d9afbf5a84b877adc9cbc90c069bff27a4e9be6.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package5_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/f7df13ce72258dedc58964107efac88b0484a23580dc1dfdd59794832742ed40.log",
+        "log_sha256": null
+      },
+      {
+        "name": "casual_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/4252ac39e3782f6fa91f7330c689330fa6c4e18ba5a6c19f4cd259d18f007c8e.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/ad5b0593793cbf830b51d6f7a742eaa1a86d333ba365c7e9034c3f792de285d2.log",
+        "log_sha256": null
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/8ce6a678c6cca936198332682030946d8afa9119b27b2942a537d8e3d2298cc5.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/cd2b3e984289cc8c65005477290ad9ec965646f2d2df4a12303a2d2566972c2e.log",
+        "log_sha256": null
+      },
+      {
+        "name": "finale_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/fd24edf72004da8513d7211b6c6d2f8f6926d7e415ab7e924cb92202981b3830.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_write",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/43e5752d30cb045a7f1d59eea1531da3919ebf0750a3b676407225e6a5c40b7d.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_read",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/50974d94ed3e074b21094c6423b9f665dd97b461a379d798bb5b4f2c1a7b774b.log",
+        "log_sha256": null
+      },
+      {
+        "name": "campaign_all",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/9473d0434cf2d88b9d6e2a867ba9d8ecd51bba19d12cb4ed40ef4eb2b599ea5f.log",
+        "log_sha256": null
+      },
+      {
+        "name": "android",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/f80c095784c0b6e7ea1d8df00ac6748f7bbaa0413eafecd0d97fa3e519db46c4.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791978487707489349-targeted.json",
+    "source_commit": "85ea7a9b4c9c8b334dc85fb0ab653ac9299193cb",
+    "fingerprint": "0a6803f92635921d153f14666f0ffbeee0e29f06595b8824d8ad5edbe2db75ea",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "a0f2e96f0669d7b47c5e0a9336f891b4fff921d5e9723611d58f7572e8fe8ba0",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 4.577,
+        "log": "build/test-policy/bd587ed6fd91d9687044afa381981a0c0a6e8733da4629d3241e1a30d8e72384.log",
+        "log_sha256": "60cf9454eba9527b75dfd4af12cee26462a25f1e5663ccf2c34f951feb4291ca"
+      },
+      {
+        "name": "world_expansion_tests",
+        "status": "failed",
+        "seconds": 1.67,
+        "log": "build/test-policy/4253b068d53864284ca3e761536e284fb062325ff6c6d309d10a5cd442faf34d.log",
+        "log_sha256": "746d4a3d69f8f4a272f71c2acc7f243310937acdfd544d72878d1d791b672bd4"
+      },
+      {
+        "name": "v0121_ui_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/37b27dc37ab248fbb98170245444991d4c7e1854491135f376f50b3e07f1fce8.log",
+        "log_sha256": null
+      },
+      {
+        "name": "v0123_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/c51dabeb197e43a1e5804d384e4ac020de6a8477e78bfa78ee389fe89c027da0.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791978991097366816-targeted.json",
+    "source_commit": "abaf9fcc9132783b17a0323f98d5dee402741f2b",
+    "fingerprint": "5387753114a32eb0467ffe4d3e72df0a84d31c7960d3cb29d14c22765189cc94",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "19feeef7a0729dba228bbb5aff7859ecf7d8e4dd40433fd9266b81480a07d5cd",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.667,
+        "log": "build/test-policy/2f060b3f0e99a1a4600406282e4d632dd3a825c231070f30feb61749b1a5d8a0.log",
+        "log_sha256": "3fecb0dc3a61cff278542aed0db46b9add56a0928d5dfb4facb11c8d44a847c8"
+      },
+      {
+        "name": "package4_tests",
+        "status": "passed",
+        "seconds": 8.067,
+        "log": "build/test-policy/c62bddfb46b459fb380ee4408c4ed22dca6e7a8edf11af863b0d26f397bf4a15.log",
+        "log_sha256": "b69150e92687be68adbff5eec8f6d0d50a6e3d5aad8c822a811111c5b79d704a"
+      },
+      {
+        "name": "package5_mechanics",
+        "status": "passed",
+        "seconds": 154.965,
+        "log": "build/test-policy/320a97d2205ed0b5b66219d6d9f16f972461bafb3fb55052eac4606b4fe729fc.log",
+        "log_sha256": "04385ec3ba173c9ccfd5228e4897e8da82834e5288af2751c2bec1dc69f1977d"
+      },
+      {
+        "name": "gameplay2_tests",
+        "status": "passed",
+        "seconds": 57.082,
+        "log": "build/test-policy/77959f7b4eff4c66b6b613870f995f85370a6ab79d3208c9b8420542c5ba27cb.log",
+        "log_sha256": "74b58ea6eafa78ee034607524f290afcd5a531e12d53a5cd223ca7480c7240d8"
+      },
+      {
+        "name": "deadlock_tests",
+        "status": "passed",
+        "seconds": 3.065,
+        "log": "build/test-policy/e87b8a21700ffacbc9a8f3d87125b54fa21e8104e810b29a64680e36f7470ff3.log",
+        "log_sha256": "992a354a975260de1c80972e304620bfe203e8dd903439bf8f0e9e52b1a3247f"
+      },
+      {
+        "name": "canyon_mechanics_tests",
+        "status": "passed",
+        "seconds": 0.265,
+        "log": "build/test-policy/5c42e653a9ca4e381ebe27d75f9902ff9cf7886f1e33d77a7c91b116af4222a4.log",
+        "log_sha256": "e26ce17ede36431925e2b0311a1b38a9aaf746d3366790b00dbb5492c28beeb0"
+      },
+      {
+        "name": "quality_tests",
+        "status": "failed",
+        "seconds": 1.008,
+        "log": "build/test-policy/3ef128f1c0d67db5f065d0e2bc23e8b7b78865eab99c45a69e4ac98a60d8ef3f.log",
+        "log_sha256": "572fd028fe11b653e0cae5f873f40dd7fa3408278746fbf63af7ec6fb1bf5f4e"
+      },
+      {
+        "name": "mechanic_ui_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/558d8bbfbf2572561d0a0483d06cf4031839cc8892599f6663236db3c8cbb55b.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/d0bf1ba98e91cf81a2a2896761fb4982effe59eda347df3d588ebe8b2de5f24d.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package4_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/18db44e2636cd0bd1f6159cc41b48202b9dc6accb6f598e8c0cabdc7bb54bb64.log",
+        "log_sha256": null
+      },
+      {
+        "name": "package5_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/96476beea2196dbca5f7f874a6da0a684f68347f821762d03c475cc7a11b6ed3.log",
+        "log_sha256": null
+      },
+      {
+        "name": "casual_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/461fa43910fe977e5c4741ccd47fe51cbac99110b884eb19ec19912a09cb588b.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/8ba11771aee1fc32b1d12a837c317ff9c499d0e0d118a662acb11c0c60af94f8.log",
+        "log_sha256": null
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/3d51bf6d2a9f672be41138fb2cf28860e1d40c6ca91125951c681ec62fdd76bb.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/e86399cbca69f6696d7c224ed791c1d47f3ca5895f917de25b034189dbe61884.log",
+        "log_sha256": null
+      },
+      {
+        "name": "finale_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/127b28ea9e3b3642d194e015d676d5fb6eb9fa45b47d9ea5693026eccd7a4d1f.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_probe",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/1a74fa2e7c3ebe7d7aec9caef9efca3f2f97cf02c068d0b58261f5457c6b7e1f.log",
+        "log_sha256": null
+      },
+      {
+        "name": "r2_campaign_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/dcfb64f2c377f4af53b204b8057dcd4736036c453c92619f8821bd29440fcb3b.log",
+        "log_sha256": null
+      },
+      {
+        "name": "v0123_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/9e51eb026da539884900f078e1ff54da1532d4b48b77deb39fcffd3bd1e5dddb.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791978519953307689-targeted.json",
+    "source_commit": "85ea7a9b4c9c8b334dc85fb0ab653ac9299193cb",
+    "fingerprint": "028665856d6770dd847e0b07e08d8b7a7a3e52a0ba48e5f49d84af7e4c374ef1",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "8e7ff885bb58e1881b02a13a55265f0fec6fc09582d97b01ef922db5ec984b2d",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.925,
+        "log": "build/test-policy/098199f481637e1e82d76fc8d123f8b92b69458ce8290878a828af813ad3bbb9.log",
+        "log_sha256": "f1457a786f4a8528cb0e49831f920fec9a36a085be8edd09955e8264ee23867b"
+      },
+      {
+        "name": "world_expansion_tests",
+        "status": "passed",
+        "seconds": 1.569,
+        "log": "build/test-policy/bfe24c18e351a96dbb0aa32ed5f488388061ca3498c509c72e0f3ad35c61478b.log",
+        "log_sha256": "e35701f6d32b445385136d7a697d744431bc292a2706053993b3651460fb329e"
+      },
+      {
+        "name": "v0121_ui_tests",
+        "status": "failed",
+        "seconds": 2.12,
+        "log": "build/test-policy/aa9b28b1b28c1dd7b60d142c556e813277f1704997c776d3f79057ba0556c1a7.log",
+        "log_sha256": "324e78d66fcf108c8afffcd20b11fb9029f714f368455411af115d0bd33f389a"
+      },
+      {
+        "name": "v0123_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/5da188d0f25cd0a74dedc764f6073659b31b4f4b7d86fdfaa816a5f3bdd05cce.log",
+        "log_sha256": null
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791979583752086201-targeted.json",
+    "source_commit": "b1be21b55910bac8e21d83057e1ae51aac991a8d",
+    "fingerprint": "79c0e1b3abec2663b97767d30566800ca172eb6094f3d078378de8a66d8f1338",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "8f5fc9ea6cde4d1231a08ade9146c5dd39b76e5bb162ad71516851fc226b5d0c",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.617,
+        "log": "build/test-policy/838fc43b58d91529720a205a8c7d261db0886f6305727cd274802b58520a7148.log",
+        "log_sha256": "3fecb0dc3a61cff278542aed0db46b9add56a0928d5dfb4facb11c8d44a847c8"
+      },
+      {
+        "name": "casual_ui",
+        "status": "passed",
+        "seconds": 1.62,
+        "log": "build/test-policy/152ec81d6fde31924d448934d987324fdfda8455585294f9fd088cd83cff347c.log",
+        "log_sha256": "42d396aaff1d6bbdec80cd70336f04d18860ae4bc82e24d666d7c7673f0983ea"
+      },
+      {
+        "name": "canyon_ui",
+        "status": "passed",
+        "seconds": 1.316,
+        "log": "build/test-policy/08700dd3cd7ab0ad59cb98c36e1a8a699f7ad9af09129181b0e1e1a0cfa86d6a.log",
+        "log_sha256": "fbffd0b3f1791fcb3f4eeec04f056c641150b5d787c408abb8426d041004ef05"
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "passed",
+        "seconds": 7.067,
+        "log": "build/test-policy/e581795c2d221d5c1fc1c6faae2badccb826fa68284697db3f4c504d01feee51.log",
+        "log_sha256": "75c1e7e83fa9cb7c20a51f36e950193eb7c0a087ce58e104f7fac0742592122b"
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "passed",
+        "seconds": 4.065,
+        "log": "build/test-policy/cd5fd31b56c18af038d0398e7c0d6e6bbdcdbc5f92e27bc6345fd8a988410460.log",
+        "log_sha256": "f2557e6331f21cb600ac1dc885c7d120059405a3341601cf373840bb64508a7a"
+      },
+      {
+        "name": "finale_ui",
+        "status": "passed",
+        "seconds": 1.215,
+        "log": "build/test-policy/25cfca024091e2e61ccd06850bf0809f0ccac446425945babcf6b634681f9607.log",
+        "log_sha256": "998915c7e4413f3f3567f3a1518b3797e91a57ef81474d61719a1772bfe30757"
+      },
+      {
+        "name": "persistence_probe",
+        "status": "passed",
+        "seconds": 1.001,
+        "log": "build/test-policy/2eee0ebf6e21a735c6920257bb6d413bf423695a4fd1fc66be493dc4e1ed6676.log",
+        "log_sha256": "fdfb51acec2836810755a2727295c4fa011f93bc63339adaef498e952beb232c"
+      },
+      {
+        "name": "r2_campaign_tests",
+        "status": "passed",
+        "seconds": 51.05,
+        "log": "build/test-policy/be9aec6eece242feb26c166f51e567360d96fdbd1403f627b274ec7853ca20bc.log",
+        "log_sha256": "bfa481a9d70130a4b710589dc22071b6d82483f8d5a61da8ccc39594c86c7337"
+      },
+      {
+        "name": "v0123_tests",
+        "status": "passed",
+        "seconds": 14.119,
+        "log": "build/test-policy/ebc5fcf35758fea5682431f5714cd490b0fc601e4d8035755f41f4aa75a5479b.log",
+        "log_sha256": "b1a7974f8d56562bc2441500a9ed20d32cc7dade8ecbf011d943306155873922"
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791978557613484064-targeted.json",
+    "source_commit": "85ea7a9b4c9c8b334dc85fb0ab653ac9299193cb",
+    "fingerprint": "60e78a2f75d61fcc53d6f15d79450c2525771d57bc92afea9e508f692a6e048f",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "9578ec7b2bc195c01323fdcbffd36a0e264bbc9011f5fffe37d553c88091dd39",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.918,
+        "log": "build/test-policy/1a24494ab2e079bbd954e0e1093917281313a8343acc6484fd5b46734fd665e1.log",
+        "log_sha256": "f101345b0dab67b2533b276bd25587325d7cd3bb7d48451fc017ff353cacd96a"
+      },
+      {
+        "name": "v0121_ui_tests",
+        "status": "passed",
+        "seconds": 2.316,
+        "log": "build/test-policy/81c0904062ac51490d8fd3904655f6f6c00ddfc21155af5f258a7dab1bf42f11.log",
+        "log_sha256": "940f2a873860455975eabaafacd908555abeedbbb18a6c1ad82a5d3f81d0f0c5"
+      },
+      {
+        "name": "v0123_tests",
+        "status": "failed",
+        "seconds": 14.038,
+        "log": "build/test-policy/7f63ea12e0bfc5a34d127e031a7b5f02fa5682cc3ce43e4e88e42be1546c664e.log",
+        "log_sha256": "bb1c4d67504f0b6705887ebf02176406af1d66faf72ed334e33d00765738f2b0"
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791980488287810633-targeted.json",
+    "source_commit": "02cd793c6c1446683e316e357324550039cbeb7d",
+    "fingerprint": "d4b213a7c75ab25413af353cf832fbcc93801d736473112e330e379bffcfd72b",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "b510f90f9e7f4653f852c43e95321282dc16e7513ffdb6f9e93dc886d617fde1",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 4.317,
+        "log": "build/test-policy/83f8ef902acd5c85221c7fef88103264d8391956f34277e59ef8fcc7f41ad3d7.log",
+        "log_sha256": "9572934ad4d57fbab2c09b2c82f3821584fba7ba71d7e1dec5055bc7fa531f3f"
+      },
+      {
+        "name": "v0123_tests",
+        "status": "passed",
+        "seconds": 14.169,
+        "log": "build/test-policy/b439ac22f3dfceadd7f13bc935a91204d3e83cc9dc85f2fb5e511f2224e68d90.log",
+        "log_sha256": "b1a7974f8d56562bc2441500a9ed20d32cc7dade8ecbf011d943306155873922"
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "passed",
+        "seconds": 4.266,
+        "log": "build/test-policy/a6def148280daf328f40d3ba2174da78d39901ac88fd106f0f4da6b018eb7601.log",
+        "log_sha256": "f2557e6331f21cb600ac1dc885c7d120059405a3341601cf373840bb64508a7a"
+      }
+    ]
+  },
+  {
+    "report": "build/test-policy/1791979273846887693-targeted.json",
+    "source_commit": "b1be21b55910bac8e21d83057e1ae51aac991a8d",
+    "fingerprint": "9a0a76455fe64dfdf9b0a5c4b3b749339130417c36248b0602d472fa2b1add96",
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "sha256": "34c91439a862f7f43a329124ea35595af4c23153f47728df58c42885f78ce63c",
+    "results": [
+      {
+        "name": "import",
+        "status": "passed",
+        "seconds": 3.92,
+        "log": "build/test-policy/27e3378a8d9ea05545f2c4d801f89d0838fb21f9a1099d52f3b97934359e8f31.log",
+        "log_sha256": "b80ec8024c9fa71eb402b0c82ec1f14743fb405cdcc18736706e4bdb3a475eef"
+      },
+      {
+        "name": "quality_tests",
+        "status": "passed",
+        "seconds": 5.868,
+        "log": "build/test-policy/45426744380d2671f258c4bd54448d5d0cab06f6f920f7497764b32a7dc331f2.log",
+        "log_sha256": "42582be2dae44fc1306959a77772cd9e6440b521e27d4acf2ec05bd661de598d"
+      },
+      {
+        "name": "r2_helper_tests",
+        "status": "passed",
+        "seconds": 1.001,
+        "log": "build/test-policy/e4faeabf9d771daeae5edf820f59dd5388f6c4898b0b12620c1c88a545bf452d.log",
+        "log_sha256": "cfd862af022ef3f1a24011781372c221d4d2fdae143be0d2b03055223119c603"
+      },
+      {
+        "name": "mechanic_ui_tests",
+        "status": "passed",
+        "seconds": 8.919,
+        "log": "build/test-policy/3b48231294cd76a0470548bd5b281f86234d7fada1049ce2f9ea4772854b6325.log",
+        "log_sha256": "214974effb65fe163e874156a8b372013d1c0da4f9528d8080f31e32d1ab3027"
+      },
+      {
+        "name": "package2_ui",
+        "status": "passed",
+        "seconds": 7.818,
+        "log": "build/test-policy/69e8e07a0211af3dbb1c35baf3ff0edde19e71453c4d56a916e002991c7eca6b.log",
+        "log_sha256": "ac24abf862f767cdc42c3e74c4f3dff0436a02825810e60abfa667081278cd2b"
+      },
+      {
+        "name": "package4_ui",
+        "status": "passed",
+        "seconds": 7.467,
+        "log": "build/test-policy/a53d97afd76dc82bb9d4043a8b493228521130d924f4fd0aaefd1b358a937a53.log",
+        "log_sha256": "15c480b3ae0292f8591f46e3a1e4f34fbaecc9c41eb13a763e67c8818f27e9a3"
+      },
+      {
+        "name": "package5_ui",
+        "status": "failed",
+        "seconds": 3.065,
+        "log": "build/test-policy/eca713246ae4b374a0c251a42533b67d198206b172b6d45f05b7fbb29e87febf.log",
+        "log_sha256": "48ffcacc1832c14fe8b61833dc411045a5b7762486a6ed4bd79f19fea85844cc"
+      },
+      {
+        "name": "casual_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/677ba35541a213428d0f0ed6f861562448aa46c719367906a85be90b2399568a.log",
+        "log_sha256": null
+      },
+      {
+        "name": "canyon_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/2c7dda0df4aca5d72b3a8e02e872810bc333501f24e65fb653b260155e4e29fd.log",
+        "log_sha256": null
+      },
+      {
+        "name": "goals_panel_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/b7fcecf084a7b4becacbc3e1ed1c52ecc04dc88e4fcea0e7b543795677d61a81.log",
+        "log_sha256": null
+      },
+      {
+        "name": "gameplay2_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/662a155fc4431a08972252cf322ac0ae35f21792ec9327847cd8f5cd2ab2339b.log",
+        "log_sha256": null
+      },
+      {
+        "name": "finale_ui",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/695490a1e2f5a5a9c06540672f965ae74395709f16a01e32fd1af34b33ed3ac0.log",
+        "log_sha256": null
+      },
+      {
+        "name": "persistence_probe",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/f01f156d87fa8190a55c404e1f3b0a5d63fd7adb2ec5ea739ea23114411cef36.log",
+        "log_sha256": null
+      },
+      {
+        "name": "r2_campaign_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/552496f8619960512464e9caff05e31334525587d9c3e581a0d3c9c24d8c9a46.log",
+        "log_sha256": null
+      },
+      {
+        "name": "v0123_tests",
+        "status": "not_run",
+        "seconds": null,
+        "log": "build/test-policy/fb3bddb56bb4f86a9f2c671e684bf55602e11872f951a9a7f42343f70d503f2a.log",
+        "log_sha256": null
+      }
+    ]
+  }
+]

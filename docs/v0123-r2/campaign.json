@@ -1,0 +1,1752 @@
+[
+  {
+    "default_win": true,
+    "level": 1,
+    "used": 2,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 2,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 3,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 4,
+    "used": 2,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 5,
+    "used": 2,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 6,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 7,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 8,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 9,
+    "used": 1,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 10,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 11,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 12,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 13,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 14,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 15,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 16,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 17,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 18,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 19,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 20,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 21,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 22,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 23,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 24,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": false,
+    "level": 25,
+    "used": 7,
+    "win": true,
+    "witness": "objective"
+  },
+  {
+    "default_win": true,
+    "level": 26,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 27,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 28,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 29,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 30,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 31,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 32,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 33,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 34,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 35,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 36,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 37,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 38,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 39,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 40,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 41,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 42,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 43,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 44,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 45,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 46,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 47,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 48,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 49,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 50,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 51,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 52,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 53,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 54,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 55,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 56,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 57,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 58,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 59,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 60,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 61,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 62,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 63,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 64,
+    "used": 14,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 65,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 66,
+    "used": 14,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 67,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 68,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 69,
+    "used": 14,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 70,
+    "used": 19,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 71,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 72,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 73,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 74,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 75,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 76,
+    "used": 18,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 77,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 78,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 79,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 80,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 81,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 82,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 83,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 84,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 85,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 86,
+    "used": 18,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 87,
+    "used": 12,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 88,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 89,
+    "used": 17,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 90,
+    "used": 17,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 91,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 92,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 93,
+    "used": 16,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 94,
+    "used": 20,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 95,
+    "used": 20,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 96,
+    "used": 21,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 97,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 98,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 99,
+    "used": 12,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 100,
+    "used": 14,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 101,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 102,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 103,
+    "used": 2,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 104,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 105,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 106,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 107,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 108,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 109,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 110,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 111,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 112,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 113,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 114,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 115,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 116,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 117,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 118,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 119,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 120,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 121,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 122,
+    "used": 12,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 123,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 124,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 125,
+    "used": 12,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 126,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 127,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 128,
+    "used": 12,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 129,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 130,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 131,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 132,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 133,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 134,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 135,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 136,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 137,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 138,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 139,
+    "used": 15,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 140,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 141,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 142,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 143,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 144,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 145,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 146,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 147,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 148,
+    "used": 17,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 149,
+    "used": 14,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 150,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 151,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 152,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 153,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 154,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 155,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 156,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 157,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 158,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 159,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 160,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 161,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 162,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 163,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 164,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 165,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 166,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 167,
+    "used": 16,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 168,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 169,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 170,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 171,
+    "used": 3,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 172,
+    "used": 2,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 173,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 174,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 175,
+    "used": 10,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 176,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 177,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 178,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 179,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 180,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 181,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 182,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 183,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 184,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 185,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 186,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 187,
+    "used": 12,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 188,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 189,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 190,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 191,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 192,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 193,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 194,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 195,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 196,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": false,
+    "level": 197,
+    "used": 11,
+    "win": true,
+    "witness": "powers"
+  },
+  {
+    "default_win": true,
+    "level": 198,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 199,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 200,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 201,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 202,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 203,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 204,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 205,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 206,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 207,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 208,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 209,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 210,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 211,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 212,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": false,
+    "level": 213,
+    "used": 15,
+    "win": true,
+    "witness": "powers"
+  },
+  {
+    "default_win": true,
+    "level": 214,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 215,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 216,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 217,
+    "used": 16,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 218,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 219,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 220,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 221,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 222,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 223,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 224,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 225,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 226,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 227,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 228,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 229,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 230,
+    "used": 11,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 231,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 232,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 233,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 234,
+    "used": 9,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 235,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 236,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 237,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 238,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 239,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 240,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 241,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 242,
+    "used": 5,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 243,
+    "used": 8,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 244,
+    "used": 7,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 245,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 246,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 247,
+    "used": 4,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 248,
+    "used": 6,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 249,
+    "used": 13,
+    "win": true,
+    "witness": "default"
+  },
+  {
+    "default_win": true,
+    "level": 250,
+    "used": 14,
+    "win": true,
+    "witness": "default"
+  }
+]

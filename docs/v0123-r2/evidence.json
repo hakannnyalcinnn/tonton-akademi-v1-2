@@ -1,0 +1,50 @@
+[
+  {
+    "log": "build/r2-campaign.log",
+    "bytes": 236,
+    "sha256": "9b430c617f06af9343ad39fe201a47f93ecadf094fed7bd624f1c116ec1227f2",
+    "reported_errors": 3
+  },
+  {
+    "log": "build/r2-risk-seeds.log",
+    "bytes": 1316,
+    "sha256": "75470cbc876aeef9a938c45b90a3515a5932a044b0a84fa19b0af5d2c882886a",
+    "reported_errors": 0
+  },
+  {
+    "log": "build/r2-star-probe.log",
+    "bytes": 667,
+    "sha256": "16906f7defdee430132257da34550a5c18202179ea05da4694e3356a1ad9237a",
+    "reported_errors": 0
+  },
+  {
+    "log": "build/r2-gravity-specific.log",
+    "bytes": 206,
+    "sha256": "5e3f82d69a4e3d4301448dca61a6f63240f4b5e4bbff1c290c99153c1e56dc8b",
+    "reported_errors": 0
+  },
+  {
+    "log": "build/r2-interface-fixed.log",
+    "bytes": 505,
+    "sha256": "2d2c5c2fd734b3dea710299c1eea7783ad86c8e0aa19bee88c377e10a07b12ed",
+    "reported_errors": 0
+  },
+  {
+    "log": "build/r2-preview-fixed.log",
+    "bytes": 459,
+    "sha256": "60324fff2ec8d6551b5cb35df99bd630b67d206eba3d925d8252fc3c3570bbaa",
+    "reported_errors": 0
+  },
+  {
+    "log": "build/r2-map-capture.log",
+    "bytes": 449,
+    "sha256": "25d8b8bf1ce567d02360330945690c58757d50942971db7068097f7672e7d420",
+    "reported_errors": 0
+  },
+  {
+    "log": "build/r2-effect-capture.log",
+    "bytes": 414,
+    "sha256": "4a274d5ee36427f3e2374636dcedacb0bccd1e63918a74faa37ded587a36a8d4",
+    "reported_errors": 0
+  }
+]

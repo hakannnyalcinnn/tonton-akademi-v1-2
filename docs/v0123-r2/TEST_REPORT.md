@@ -1,0 +1,15 @@
+# v0.12.3-r2 test özeti
+
+Normal ve geliştirici uygulama: 0.12.3 / Android kod16. Önceki v0.12.3 Release korunur. Yeni yayın etiketi v0.12.3-r2.
+
+Kapsamlı regresyon ilk hatalardan sonra yalnız eksik/etkilenen paketlerle sürdürüldü; tek bir FULL komutunun kesintisiz başarıyla bittiği iddia edilmez. Çalıştırmaların başarılı, başarısız ve çalıştırılmamış durumları test-runs.json içinde ayrı kaydedildi. Varsayılan botun başarısızlığı kazanılmazlık kabul edilmedi; gerçek motor üzerinde alternatif kazanma ve üç yıldız rotaları doğrulandı. Eski test assertions'ları kaldırılmadı: kazanma, gerçek üç yıldız rotası, %70 örnek kazanma, benzersiz hücreler ve kayıt bütünlüğü koşulları korundu.
+
+Başarılı kapsam: temel Match-3 (19.246 kontrol; 2.000 başlangıç tahtası ve 1.000 oyun), eski/yeni mekanik paketleri (800 seed dahil), kombinasyon/fırtına/dalga, engel/portal/konveyör/baloncuk, ölü tahta karıştırması, kurtarma/boss ve dünya finalleri, eski profil ve süreçler arası kayıt, hızlı yinelenen girdiler, kenar koordinatları, arka plan/pause/resume ve arayüz paketleri. 250 bölümün tamamı yüklendi ve gerçek motorla oynandı; 6.895 kontrol geçti. İlk strateji 247 bölüm kazandı; 25/197/213 alternatif stratejilerle kazanıldı. Bu üç bölüm × üç seed × beş strateji ayrıca incelendi; her seed'de en az bir kazanma bulundu. Hamle, hedef veya yıldız eşikleri körlemesine değiştirilmedi.
+
+Ek kontroller: 2.267 aşağı yönlü hücre hareketi, on deterministik tek-hamle fırtınası, enerji/hamle korunumu ve sabit engel altındaki dolum girişleri. Gerçek stok kullanımı, kilit, iptal, geçersiz hedef, çift kullanım ve geliştirici test sahnesinde kampanya kaydına dokunmama geçti. Önizlemede 120 hızlı hedef sinyali; dört ekran oranında 200 büyütülmüş uzun metin güncellemesi; tek açıklama nesnesi, OYNA alanı ayrımı ve stok iptali geçti. Beş harita ve efekt ekran görüntüleri gerçek Godot renderidir; kontrollü test profilleri/efekt tahtaları oyuncu bölüm dengesi olarak sunulmaz.
+
+Masaüstü Godot 4.6.3 / Xvfb / yazılım llvmpipe ölçümü: 14 oynanış senaryosunda 1.389 kare, beş harita ve önizlemede 510 kare. Oynanış p95 19,49–38,86 ms, en uzun kare 78,48 ms; mantık çözümlemesi yaklaşık 1,93–5,57 ms. Harita p95 17,38–20,60 ms; önizleme p95 25,52 ms, maksimum 37,13 ms. Bazı kareler 16,7 ms hedefini aşıyor. Bunlar Android FPS garantisi değildir. Ayrıntılar performance.json ve navigation-performance.json.
+
+İlk artefaktlar son kısmi dolum render düzeltmesi nedeniyle geçersiz sayıldı; kaynak değiştiği için final iki APK yeniden oluşturuldu: ZIP/JSON/ARM kitaplıkları, paket kimliği, 0.12.3 / kod16, aynı sertifika ve runtime parmak izi doğrulandı. İki APK içinden açılan kaynaklarda normal üretim kapısı geliştirici mutasyonlarını reddetti; ayrı geliştirici sürümünde gerçek test komutları çalıştı. artifacts.json dosya boyutu/SHA256 içerir.
+
+Test edilmemiş: fiziksel Android kurulumu, hoparlör/miks algısı, titreşim, çentik/sistem çubuğunun gerçek cihaz davranışı, cihaz FPS ve dokunma gecikmesi. İnsan zorluk testleri gereklidir; bot rotaları matematiksel çözüm veya kusursuz denge garantisi değildir. APK yayımlama/erişim sonucu publication.json içinde ayrıca kaydedilecek.

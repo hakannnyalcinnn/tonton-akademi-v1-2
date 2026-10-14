@@ -1,9 +1,8 @@
 # Güncel çalışma
 
-v0.12.3-r2; geri dönüş: backup/before-v0.12.3-r2 (6729814). Önceki Release korunur, uygulama 0.12.3 / kod16 planlandı.
-
-A tamam: tek sınırlı açıklama paneli, gerçek stok/kilit güçleri; 120 hızlı hedef dokunuşu ve gerçek render kontrolü.
-B tamam: beş özgün dünya yapısı, aşağıdan yukarı 50 düğümlü kıvrımlı harita; beş harita render testi.
-C tamam: sakin kontrast, gerçek stok tüketen iptal edilebilir iki güç; geçersiz hedef/çift kullanım koruması test edildi.
-D sürüyor: normal yer çekimi aşağı, eski kayıt yönü güvenle normalleştirilir; Fırtına yön değiştirmeden üç uygun kristali temizler. İlk 250 bölüm regresyonunda varsayılan bot 247 kazandı, 25/197/213 kaybetti; beş stratejili ek kontrolde üçü de farklı stratejilerle kazanıldı. Bu ilk koşu başarılı olarak raporlanmaz.
-D dolum animasyonu üstten ve sabit engel altında giriş sınırına uygun. Riskli üç bölüm × üç seed × beş strateji değerlendirildi; sonuçlar build/r2-balance-probe.json. E yeni özgün dokunma/takas/gruplu düşüş/yerleşme/önizleme/kilit/güç sesleri; beş ses kanalı, yeniden tetikleme sınırı korundu. Kalan: F final regresyon/perf/iki APK/Release. Gerçek Android cihaz erişimi yok.
+v0.12.3-r2: A–F geliştirme ve bulutta doğrulanabilir testler tamamlandı. Geri dönüş backup/before-v0.12.3-r2 (6729814); eski Release korunur.
+Tamam: tek önizleme açıklaması/gerçek stok ve kilit öğretimi; beş özgün aşağıdan-yukarı macera haritası; sakin tahta ve iki gerçek yardımcı; yalnız aşağı normal dolum/kısmi kristal giriş animasyonu/yön değiştirmeyen Fırtına; özgün sınırlı gruplu sesler. Eski profil ve geliştirici sahne izolasyonu düzeltildi.
+Kapsamlı regresyon seçici devamla tamamlandı; 250 bölüm, mekanikler (800 seed dahil), kayıtlar, hedef paneli, dokunma/harita ve animasyon verisi geçti. İlk bot 247/250; üç riskli bölüm alternatif stratejilerle kazanıldı. İlk başarısızlıklar raporda saklandı. Motor/veri ağaçlarının değişmediği Git ağaç hash'iyle doğrulandı; son render düzeltmesinden sonra yalnız etkilenen testler/ölçüm/artefaktlar yenilendi.
+Final APK'lar 0.12.3 / kod16; aynı sertifika, ZIP/veri/ABI, parmak izi ve gerçek APK üretim/geliştirici kapıları doğrulandı. Dosyalar build/prizma-v0.12.3.apk ve build/prizma-v0.12.3-dev.apk; artefakt commit 8d40da2bc0f8aad3af0aa4ac4440dd5545efbc85. GitHub gönderimi/yayın ve erişim doğrulaması kaldı.
+Son masaüstü yazılım render ölçümü: tepe 78,48 ms; Android 60 FPS iddiası yok. Fiziksel kurulum/FPS/ses/titreşim ve insan bölüm dengesi test edilmedi. Ayrıntı docs/v0123-r2/TEST_REPORT.md.
+Yeni aşamaya geçilmez.

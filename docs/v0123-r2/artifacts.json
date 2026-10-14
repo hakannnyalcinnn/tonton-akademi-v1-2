@@ -1,0 +1,21 @@
+{
+  "application_version": "0.12.3",
+  "android_version_code": 16,
+  "release_tag": "v0.12.3-r2",
+  "runtime": "a5fd3e71146f36d122b7beea3d2ab31b285bd5157d426cba7074e2abf8f28435",
+  "source": "57e3a860a5ca25f81ffa67b3df3b47d4cb19b431",
+  "artifacts": [
+    {
+      "file": "prizma-v0.12.3.apk",
+      "bytes": 82223701,
+      "sha256": "5b280ba792c32a5a40cef68e9e4208ed6a9985cf0a5c97478f48dbba507d4ad3",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3' versionCode='16' versionName='0.12.3' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'"
+    },
+    {
+      "file": "prizma-v0.12.3-dev.apk",
+      "bytes": 82223701,
+      "sha256": "3b54b4869cedde311dc7c9a5ec038aef0b6edd0590b63225e1b6f3a68c0fa860",
+      "manifest": "package: name='com.prizma.renklerinuyanisi.match3.dev' versionCode='16' versionName='0.12.3' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'"
+    }
+  ]
+}

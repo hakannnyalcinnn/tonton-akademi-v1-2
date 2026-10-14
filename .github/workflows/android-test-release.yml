@@ -1,8 +1,8 @@
-name: PRIZMA v0.12.3 premium gameplay feedback test release
+name: PRIZMA v0.12.3-r2 adventure map and downward gameplay test release
 
 on:
   push:
-    branches: [prizma-release-v0.12.3]
+    branches: [prizma-release-v0.12.3-r2]
     paths-ignore:
       - "**/*.md"
   workflow_dispatch:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: prizma-test-release-v0.12.3
+  group: prizma-test-release-v0.12.3-r2
   cancel-in-progress: true
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 45
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: 9cce7130e14f4947d836626074de7fd9a6d45b2e
+      PRIZMA_ARTIFACT_COMMIT: 8d40da2bc0f8aad3af0aa4ac4440dd5545efbc85
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
@@ -53,10 +53,10 @@ jobs:
         run: bash tools/test_release_acceptance.sh
       - name: Retrieve exact tested artifacts
         run: |
-          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.12.3
+          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.12.3-r2
           test "$(git rev-parse FETCH_HEAD)" = "$PRIZMA_ARTIFACT_COMMIT"
           mkdir -p build
-          for file in prizma-v0.12.3.apk prizma-v0.12.3-dev.apk checksums.sha256 prizma-runtime.sha256 prizma-v0123-report.zip v0123-247-before.png v0123-247-after.png v0123-effect-double.png v0123-effect-bomb_normal.png v0123-effect-rockets.png v0123-effect-storm.png; do
+          for file in prizma-v0.12.3.apk prizma-v0.12.3-dev.apk checksums.sha256 prizma-runtime.sha256 prizma-v0123-r2-report.zip r2-map-4.png r2-preview-25.png r2-goal-explanation.png r2-effect-chain.png r2-normal-fall.png r2-three-moves.png; do
             git show "$PRIZMA_ARTIFACT_COMMIT:$file" > "build/$file"
           done
       - name: Verify exact runtime, APK bytes and signatures
@@ -72,27 +72,27 @@ jobs:
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          if gh release view v0.12.3 >/dev/null 2>&1; then
+          if gh release view v0.12.3-r2 >/dev/null 2>&1; then
             mkdir -p build/published
-            gh release download v0.12.3 --pattern checksums.sha256 --pattern prizma-runtime.sha256 --dir build/published
+            gh release download v0.12.3-r2 --pattern checksums.sha256 --pattern prizma-runtime.sha256 --dir build/published
             cmp build/checksums.sha256 build/published/checksums.sha256
             cmp build/prizma-runtime.sha256 build/published/prizma-runtime.sha256
             echo "Existing release matches exact tested source and artifacts."
             exit 0
           fi
-          gh release create v0.12.3 \
+          gh release create v0.12.3-r2 \
             build/prizma-v0.12.3.apk \
             build/prizma-v0.12.3-dev.apk \
             build/checksums.sha256 \
             build/prizma-runtime.sha256 \
-            build/prizma-v0123-report.zip \
-            build/v0123-247-before.png \
-            build/v0123-247-after.png \
-            build/v0123-effect-double.png \
-            build/v0123-effect-bomb_normal.png \
-            build/v0123-effect-rockets.png \
-            build/v0123-effect-storm.png \
+            build/prizma-v0123-r2-report.zip \
+            build/r2-map-4.png \
+            build/r2-preview-25.png \
+            build/r2-goal-explanation.png \
+            build/r2-effect-chain.png \
+            build/r2-normal-fall.png \
+            build/r2-three-moves.png \
             --target "$GITHUB_SHA" \
-            --title "PRİZMA v0.12.3 — Premium kristal geri bildirimi" \
+            --title "PRİZMA v0.12.3-r2 — Macera haritası ve aşağı yönlü oynanış" \
             --prerelease \
-            --notes-file docs/RELEASE_v0.12.3.md
+            --notes-file docs/RELEASE_v0.12.3-r2.md

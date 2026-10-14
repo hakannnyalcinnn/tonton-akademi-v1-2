@@ -1,0 +1,72 @@
+{
+  "platform": "Godot actual viewport/Xvfb llvmpipe, not Android device",
+  "rows": [
+    {
+      "frame_interval": {
+        "frames": 90,
+        "max_ms": 22.298,
+        "mean_ms": 16.5895333333333,
+        "p95_ms": 19.935,
+        "p99_ms": 21.344
+      },
+      "scenario": "world_1_scroll"
+    },
+    {
+      "frame_interval": {
+        "frames": 90,
+        "max_ms": 20.032,
+        "mean_ms": 16.6652333333333,
+        "p95_ms": 17.382,
+        "p99_ms": 19.233
+      },
+      "scenario": "world_2_scroll"
+    },
+    {
+      "frame_interval": {
+        "frames": 90,
+        "max_ms": 23.493,
+        "mean_ms": 16.7148777777778,
+        "p95_ms": 20.144,
+        "p99_ms": 22.203
+      },
+      "scenario": "world_3_scroll"
+    },
+    {
+      "frame_interval": {
+        "frames": 90,
+        "max_ms": 24.596,
+        "mean_ms": 16.9984,
+        "p95_ms": 20.596,
+        "p99_ms": 23.987
+      },
+      "scenario": "world_4_scroll"
+    },
+    {
+      "frame_interval": {
+        "frames": 90,
+        "max_ms": 24.056,
+        "mean_ms": 16.9780111111111,
+        "p95_ms": 19.964,
+        "p99_ms": 22.099
+      },
+      "scenario": "world_5_scroll"
+    },
+    {
+      "callback_ms": {
+        "frames": 60,
+        "max_ms": 11.135,
+        "mean_ms": 0.568183333333333,
+        "p95_ms": 2.379,
+        "p99_ms": 4.018
+      },
+      "frame_interval": {
+        "frames": 60,
+        "max_ms": 37.128,
+        "mean_ms": 19.9978,
+        "p95_ms": 25.521,
+        "p99_ms": 32.755
+      },
+      "scenario": "preview_open_close"
+    }
+  ]
+}
