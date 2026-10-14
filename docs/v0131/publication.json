@@ -1,0 +1,69 @@
+{
+  "version": "0.13.1",
+  "build": 20,
+  "source_commit": "5c9b18677e8f5bae4a0eca6894763871b203791b",
+  "tag_commit": "1981317",
+  "artifact_commit": "3244ecae4704084519b5005d7d19853dbc498fab",
+  "release_url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.1",
+  "ci_url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/actions/runs/38636638461",
+  "ci_status": "success",
+  "earlier_releases_preserved": true,
+  "access_checks": [
+    {
+      "file": "prizma-v0.13.1.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/prizma-v0.13.1.apk",
+      "status": 206,
+      "content_range": "bytes 0-3/84395327",
+      "prefix_hex": "504b0304"
+    },
+    {
+      "file": "prizma-v0.13.1-dev.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/prizma-v0.13.1-dev.apk",
+      "status": 206,
+      "content_range": "bytes 0-3/84395327",
+      "prefix_hex": "504b0304"
+    },
+    {
+      "file": "map-world-1.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/map-world-1.png",
+      "status": 206,
+      "content_range": "bytes 0-7/888344",
+      "prefix_hex": "89504e470d0a1a0a"
+    },
+    {
+      "file": "map-world-2.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/map-world-2.png",
+      "status": 206,
+      "content_range": "bytes 0-7/847211",
+      "prefix_hex": "89504e470d0a1a0a"
+    },
+    {
+      "file": "map-world-3.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/map-world-3.png",
+      "status": 206,
+      "content_range": "bytes 0-7/931785",
+      "prefix_hex": "89504e470d0a1a0a"
+    },
+    {
+      "file": "map-world-4.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/map-world-4.png",
+      "status": 206,
+      "content_range": "bytes 0-7/913862",
+      "prefix_hex": "89504e470d0a1a0a"
+    },
+    {
+      "file": "map-world-5.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/map-world-5.png",
+      "status": 206,
+      "content_range": "bytes 0-7/855996",
+      "prefix_hex": "89504e470d0a1a0a"
+    },
+    {
+      "file": "prizma-v0.13.1-haritalar.zip",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.1/prizma-v0.13.1-haritalar.zip",
+      "status": 206,
+      "content_range": "bytes 0-3/8877027",
+      "prefix_hex": "504b0304"
+    }
+  ]
+}

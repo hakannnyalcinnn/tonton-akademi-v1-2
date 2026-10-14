@@ -34,3 +34,7 @@ Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrula
 - SMOKE; 49 v0131 kontrolü; persistence_probe, goals_panel_tests, r2_gravity_tests, güncellenmiş v0121_ui_tests ve v012_tests geçti. Eski 3D seçici kontrolü yeni beş kart/gezegensiz akışa uyarlandı; test atlanmadı. İlk S genişliği testi yalnız düğümleri örnekliyordu; gerçek Bézier uçlarını içeren baked yol kontrolüyle düzeltildi.
 - Çekirdek/mekanik/veri Git ağaçları aynı. 250 bölüm yeniden üretilmedi veya geniş simülasyona sokulmadı. Masaüstü llvmpipe p95 24,75–35,99 ms; Android 60 FPS doğrulanmadı.
 - İki imzalı APK ve v0.13.1 yayını hazırlanıyor; sonraki sürüme geçilmeyecek.
+
+- v0.13.1 final: normal ve DEV APK birer kez üretildi; aynı sertifika/paketler, sürüm 0.13.1/yapı 20, ZIP/veri/ABI ve gerçek APK kaynak probe kontrolleri geçti. APK içinde eski gezegen scripti/3D sanat prototipleri yok.
+- Kaynak 5c9b186, artefakt 3244ecae4704084519b5005d7d19853dbc498fab. Actions 38636638461 success; yeni APK derlenmeden GitHub Releases v0.13.1 yayımlandı. İki APK, beş PNG ve harita ZIP bağlantısı 206 Range/doğru boyut/dosya başlangıcı ile doğrulandı.
+- Yayın https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.1 . Önceki sürümler korundu; fiziksel Android testi yok. Aşama tamamlandı, onaysız sonraki geliştirmeye geçilmedi.
