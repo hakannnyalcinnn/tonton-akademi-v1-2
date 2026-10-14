@@ -1,0 +1,17 @@
+{
+  "prizma-v0.12.1.apk": {
+    "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.12.1/prizma-v0.12.1.apk?download=1",
+    "status": 200,
+    "bytes": 82099928
+  },
+  "prizma-v0.12.1-dev.apk": {
+    "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.12.1/prizma-v0.12.1-dev.apk?download=1",
+    "status": 200,
+    "bytes": 82095832
+  },
+  "release": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.12.1",
+  "ci": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/actions/runs/38529774521",
+  "ci_status": "Success",
+  "source_commit": "b02b35e",
+  "checks": "HEAD exact file size; release assets present; no APK redownload"
+}
