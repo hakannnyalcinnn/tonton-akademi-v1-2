@@ -350,12 +350,12 @@ func show_map(group: int=-1) -> void:
 	var first:=int(metadata.start);var last:=mini(Catalog.count(),int(metadata.end))
 	path.count=last-first+1;path.ocean=selected_world==2;path.canyon=selected_world==3;path.world_theme=str(metadata.map_style);path.accent=Color(metadata.accent)
 	path.quiet=save.data.settings.reduced_motion;path.completed_count=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==selected_world).size()
-	path.custom_minimum_size=Vector2(456,path.count*112+110);map_scroll.add_child(path)
+	path.custom_minimum_size=Vector2(456,path.count*128+188);map_scroll.add_child(path)
 	for n in range(first,last+1):
 		var center: Vector2=path.node_position(n-first)
 		var node:=preload("res://scripts/ui/level_node.gd").new()
 		node.number=n;node.text=str(n);node.stars=int(save.data.results.get(str(n),{}).get("stars",0));node.active=n==current_level();node.finale=n==last
-		node.size=Vector2(88,88) if node.finale else Vector2(76,76);node.position=center-node.size/2;node.disabled=n>save.data.unlocked
+		node.size=Vector2(88,88) if node.finale or node.active else Vector2(76,76);node.position=center-node.size/2;node.disabled=n>save.data.unlocked
 		var special: Dictionary=Design.marker_for(n)
 		if not special.get("treasure",{}).is_empty():node.marker=preload("res://assets/casual/treasure-lid.svg")
 		elif special.has("kind"):node.marker=preload("res://scripts/ui/goal_registry.gd").icon("rescues" if special.kind=="rescue" else "bosses")
@@ -363,7 +363,7 @@ func show_map(group: int=-1) -> void:
 		if node.active and not save.data.settings.reduced_motion:
 			node.pivot_offset=node.size/2;var pulse:=node.create_tween().set_loops();pulse.tween_property(node,"scale",Vector2(1.05,1.05),.6);pulse.tween_property(node,"scale",Vector2.ONE,.6)
 	var focus:=current_level() if current_level()>=first and current_level()<=last else first
-	map_scroll.set_deferred("scroll_vertical",maxi(0,(focus-first)*112-230))
+	map_scroll.set_deferred("scroll_vertical",maxi(0,int(path.node_position(focus-first).y-map_scroll.size.y*.7)))
 	button(page,"GÜNCEL BÖLÜM",Rect2(316,812,188,41),show_home,false,12).set_meta("base_y",812)
 	var bar:=card(page,Rect2(17,868,506,80));bar.set_meta("base_y",868);footer_nodes.append(bar)
 	var names: Array=["Harita","Günlük","Dostlar","Ödüller","Ayarlar"]
@@ -392,7 +392,9 @@ func request_level(number: int) -> void:
 	button(overlay,"×",Rect2(426,169,48,48),close_overlay,false,22)
 	var preview:=preload("res://scripts/ui/goals_panel.gd").new();preview.position=Vector2(72,264);preview.size=Vector2(396,112);preview.compact=true;preview.preview_mode=true;preview.quiet=true;overlay.add_child(preview)
 	preview.configure(definition.targets,save.data.active.get("collected",{}) if resume_requested else {})
-	var explanation_panel:=PanelContainer.new();explanation_panel.name="PreviewExplanation";explanation_panel.position=Vector2(78,418);explanation_panel.size=Vector2(384,100);explanation_panel.add_theme_stylebox_override("panel",Design.surface());overlay.add_child(explanation_panel)
+	var explanation_panel:=PanelContainer.new();explanation_panel.name="PreviewExplanation";explanation_panel.position=Vector2(78,418);explanation_panel.size=Vector2(384,100);var explanation_style:=Design.surface();
+	for side in [SIDE_LEFT,SIDE_RIGHT,SIDE_TOP,SIDE_BOTTOM]:explanation_style.set_content_margin(side,12)
+	explanation_panel.add_theme_stylebox_override("panel",explanation_style);overlay.add_child(explanation_panel)
 	var explanation:=RichTextLabel.new();explanation.name="ExplanationText";explanation.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;explanation.scroll_active=true;explanation.add_theme_font_size_override("normal_font_size",14);explanation.add_theme_color_override("default_color",Design.INK);explanation_panel.add_child(explanation)
 	explanation.text="Hedeflerin nasıl tamamlandığını görmek için bir simgeye dokun."
 	preview.goal_pressed.connect(func(key):explanation.text=preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])))
