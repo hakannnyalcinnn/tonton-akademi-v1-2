@@ -1,0 +1,15 @@
+{
+  "prizma-v0.12.2.apk": {
+    "bytes": 82104181,
+    "sha256": "80ea20da8ac9c7662dd3ad440609cbb6e57a348594dc80ff386ab90da8dfaaa5"
+  },
+  "prizma-v0.12.2-dev.apk": {
+    "bytes": 82104181,
+    "sha256": "96fbec535270a35e419f1c6f4e78e26fe7cf969641a53c144ba38ce93d2c6022"
+  },
+  "version": "0.12.2",
+  "version_code": 14,
+  "certificate_sha256": "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a",
+  "exported_resource_probes": "passed; no script errors; production gate rejects developer mutation; developer commands isolated",
+  "physical_android_test": false
+}

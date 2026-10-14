@@ -1,8 +1,8 @@
-name: PRIZMA v0.12.1 premium UI test release
+name: PRIZMA v0.12.2 compact HUD test release
 
 on:
   push:
-    branches: [prizma-release-v0.12.1]
+    branches: [prizma-release-v0.12.2]
     paths-ignore:
       - "**/*.md"
   workflow_dispatch:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: prizma-test-release-v0.12.1
+  group: prizma-test-release-v0.12.2
   cancel-in-progress: true
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 45
     env:
       PRIZMA_TOOLS_DIR: /tmp/prizma-tools
-      PRIZMA_ARTIFACT_COMMIT: 6d7a0d6c1f4d92fefbdc0343d73d83369e4df811
+      PRIZMA_ARTIFACT_COMMIT: 8298faeb7fbe264456f4ab1c0db3307d58183efa
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout exact source
@@ -53,10 +53,10 @@ jobs:
         run: bash tools/test_release_acceptance.sh
       - name: Retrieve exact tested artifacts
         run: |
-          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.12.1
+          git fetch --no-tags --depth=1 origin refs/heads/prizma-apk-v0.12.2
           test "$(git rev-parse FETCH_HEAD)" = "$PRIZMA_ARTIFACT_COMMIT"
           mkdir -p build
-          for file in prizma-v0.12.1.apk prizma-v0.12.1-dev.apk checksums.sha256 prizma-runtime.sha256 prizma-v0121-report.zip prizma-map.png prizma-preview.png prizma-hud.png prizma-success.png prizma-failure.png prizma-worlds.png; do
+          for file in prizma-v0.12.2.apk prizma-v0.12.2-dev.apk checksums.sha256 prizma-runtime.sha256 prizma-v0122-report.zip v0122-106-before.png v0122-106-after.png; do
             git show "$PRIZMA_ARTIFACT_COMMIT:$file" > "build/$file"
           done
       - name: Verify exact runtime, APK bytes and signatures
@@ -64,7 +64,7 @@ jobs:
           python3 tools/runtime_digest.py > build/current-runtime.sha256
           cmp build/current-runtime.sha256 build/prizma-runtime.sha256
           (cd build && sha256sum --check checksums.sha256)
-          for apk in build/prizma-v0.12.1.apk build/prizma-v0.12.1-dev.apk; do
+          for apk in build/prizma-v0.12.2.apk build/prizma-v0.12.2-dev.apk; do
             "$PRIZMA_TOOLS_DIR/android-sdk/build-tools/36.0.0/apksigner" verify --print-certs "$apk" > build/signing-certificate.txt
             python3 -c 'from pathlib import Path; assert "01bb7474354b56e234ce24df50fd2e1ef45c838111b364cd0b3894bf8bb8360a" in Path("build/signing-certificate.txt").read_text()'
           done
@@ -72,27 +72,23 @@ jobs:
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          if gh release view v0.12.1 >/dev/null 2>&1; then
+          if gh release view v0.12.2 >/dev/null 2>&1; then
             mkdir -p build/published
-            gh release download v0.12.1 --pattern checksums.sha256 --pattern prizma-runtime.sha256 --dir build/published
+            gh release download v0.12.2 --pattern checksums.sha256 --pattern prizma-runtime.sha256 --dir build/published
             cmp build/checksums.sha256 build/published/checksums.sha256
             cmp build/prizma-runtime.sha256 build/published/prizma-runtime.sha256
             echo "Existing release matches exact tested source and artifacts."
             exit 0
           fi
-          gh release create v0.12.1 \
-            build/prizma-v0.12.1.apk \
-            build/prizma-v0.12.1-dev.apk \
+          gh release create v0.12.2 \
+            build/prizma-v0.12.2.apk \
+            build/prizma-v0.12.2-dev.apk \
             build/checksums.sha256 \
             build/prizma-runtime.sha256 \
-            build/prizma-v0121-report.zip \
-            build/prizma-map.png \
-            build/prizma-preview.png \
-            build/prizma-hud.png \
-            build/prizma-success.png \
-            build/prizma-failure.png \
-            build/prizma-worlds.png \
+            build/prizma-v0122-report.zip \
+            build/v0122-106-before.png \
+            build/v0122-106-after.png \
             --target "$GITHUB_SHA" \
-            --title "PRİZMA v0.12.1 — Premium harita ve oyun akışı" \
+            --title "PRİZMA v0.12.2 — Üç katmanlı kompakt oyun HUD" \
             --prerelease \
-            --notes-file docs/RELEASE_v0.12.1.md
+            --notes-file docs/RELEASE_v0.12.2.md
