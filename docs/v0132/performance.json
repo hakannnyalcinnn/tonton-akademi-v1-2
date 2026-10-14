@@ -1,0 +1,46 @@
+{
+  "real_android_tested": false,
+  "renderer": "Godot Compatibility / llvmpipe software, LP_NUM_THREADS=4",
+  "results": [
+    {
+      "max_ms": 33.937,
+      "measurement": "desktop wall-frame intervals, Engine.max_fps=60; not Android or GPU timings",
+      "p50_ms": 20.057,
+      "p95_ms": 27.146,
+      "samples": 80,
+      "world": 1
+    },
+    {
+      "max_ms": 27.475,
+      "measurement": "desktop wall-frame intervals, Engine.max_fps=60; not Android or GPU timings",
+      "p50_ms": 19.42,
+      "p95_ms": 24.228,
+      "samples": 80,
+      "world": 2
+    },
+    {
+      "max_ms": 28.86,
+      "measurement": "desktop wall-frame intervals, Engine.max_fps=60; not Android or GPU timings",
+      "p50_ms": 19.37,
+      "p95_ms": 28.0,
+      "samples": 80,
+      "world": 3
+    },
+    {
+      "max_ms": 24.534,
+      "measurement": "desktop wall-frame intervals, Engine.max_fps=60; not Android or GPU timings",
+      "p50_ms": 18.102,
+      "p95_ms": 23.011,
+      "samples": 80,
+      "world": 4
+    },
+    {
+      "max_ms": 30.545,
+      "measurement": "desktop wall-frame intervals, Engine.max_fps=60; not Android or GPU timings",
+      "p50_ms": 20.615,
+      "p95_ms": 25.964,
+      "samples": 80,
+      "world": 5
+    }
+  ]
+}

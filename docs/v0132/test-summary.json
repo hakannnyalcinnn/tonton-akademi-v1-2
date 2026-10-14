@@ -1,0 +1,33 @@
+{
+  "source_commit": "889111d45baa55eeb3020bad468d6356a21ce5ff",
+  "ui_checks": 840,
+  "passed": [
+    "workflow_smoke",
+    "v0131_tests:49",
+    "persistence_probe",
+    "goals_panel_tests",
+    "v0121_ui_tests",
+    "v0132_tests:840",
+    "normal_apk_integrity_identity_signature",
+    "dev_apk_integrity_identity_signature",
+    "exported_apk_feature_gates"
+  ],
+  "real_android_tested": false,
+  "protected_core_and_data_unchanged": true,
+  "render_sizes": [
+    [
+      540,
+      960
+    ],
+    [
+      540,
+      1170
+    ],
+    [
+      540,
+      1200
+    ]
+  ],
+  "normal_sha256": "8f7337c6d4c345f0603d93b1544ab448104a7c2d785c68605b6332137d549802",
+  "dev_sha256": "8b42424567fe44fd0b4f84c1455144b268fdb542b9b35dfb8a947a50928949ed"
+}
