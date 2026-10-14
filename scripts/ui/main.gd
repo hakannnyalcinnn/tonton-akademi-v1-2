@@ -161,6 +161,7 @@ func _process(delta: float) -> void:
 	if board_view and is_instance_valid(board_view): garden.quality = board_view.quality
 
 func _exit_tree() -> void:
+	preload("res://scripts/ui/world_art_cache.gd").shutdown()
 	if save:
 		if settings_dirty: save.flush()
 		save.finish_writes()

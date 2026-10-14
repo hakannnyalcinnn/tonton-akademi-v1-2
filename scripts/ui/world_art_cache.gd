@@ -21,3 +21,9 @@ static func ready(path: String) -> Texture2D:
 static func prefetch(world: int) -> void:
  for metadata in preload("res://scripts/core/world_catalog.gd").playable_worlds():
   if absi(int(metadata.id)-world)<=1:request(str(metadata.art))
+static func shutdown() -> void:
+ # Flush embedded-file jobs only when the application controller exits.
+ for path in pending.keys():
+  var status:=ResourceLoader.load_threaded_get_status(path)
+  if status in [ResourceLoader.THREAD_LOAD_IN_PROGRESS,ResourceLoader.THREAD_LOAD_LOADED]:ResourceLoader.load_threaded_get(path)
+ pending.clear();textures.clear();order.clear()
