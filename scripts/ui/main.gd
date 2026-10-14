@@ -60,6 +60,7 @@ var score_target := 0.0
 var board_view
 var screen := "home"
 var paused := false
+var game_hud
 var score_label: Label
 var moves_label: Label
 var level_label: Label
@@ -123,13 +124,16 @@ func layout_stage() -> void:
 			for node in footer_nodes:
 				if is_instance_valid(node):node.position.y=float(node.get_meta("base_y"))+extra
 	if screen == "game" and board_view:
-		board_view.position.y = Design.BOARD_Y+extra*.5
+		game_hud.position=Vector2(23,12+minf(24,extra*.1));game_hud.size.x=stage.size.x-46
+		game_hud.update_height()
+		board_view.position.y = game_hud.position.y+game_hud.size.y+12
 		for node in page.get_children():
-			if node is Control and node.has_meta("hud_y"):node.position.y=float(node.get_meta("hud_y"))+extra*.5
+			if node is Control and node.has_meta("hud_y") and node!=game_hud:node.position.y=float(node.get_meta("hud_y"))+extra*.5
 		for node in footer_nodes:
 			if is_instance_valid(node):
-				node.position.y = float(node.get_meta("base_y"))+extra*.5
+				node.position.y = float(node.get_meta("base_y"))-56+(board_view.position.y-200)
 				if node.get_script()==preload("res://scripts/ui/companion.gd"):node.base_y=node.position.y
+	if screen=="game" and is_instance_valid(goal_tip):goal_tip.position.y=board_view.position.y+board_view.size.y+75
 	if overlay_root:
 		overlay_root.size = stage.size
 		overlay_root.get_child(0).size = stage.size
@@ -154,10 +158,10 @@ func _process(delta: float) -> void:
 	if score_label and is_instance_valid(score_label) and screen == "game":
 		if absf(score_display-score_target)>1:
 			score_display = lerpf(score_display,score_target,minf(1,delta*14))
-			score_label.text = str(int(round(score_display)))
+			game_hud.show_score(int(round(score_display)))
 		elif score_display!=score_target:
 			score_display = score_target
-			score_label.text = str(int(score_target))
+			game_hud.show_score(int(score_target))
 	if board_view and is_instance_valid(board_view): garden.quality = board_view.quality
 
 func _exit_tree() -> void:
@@ -434,24 +438,12 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	selected_booster=""
 	begin_page("game")
 	apply_world_progress(Catalog.world_for(number))
-	card(page,Rect2(23,12,494,215),Color(1,.98,.94,.9))
-	label(page,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),Rect2(146,57,290,19),11,Palette.GOLD)
-	level_label=label(page,"%02d  /  %s"%[number,board.level.name],Rect2(146,24,290,29),19)
-	button(page,"Ⅱ",Rect2(456,23,52,40),show_pause,false,23)
-	
-	label(page,Strings.text("score"),Rect2(146,107,150,17),11,Palette.MUTED)
-	score_label=label(page,"0",Rect2(146,80,140,27),23)
-	label(page,Strings.text("moves"),Rect2(38,101,100,17),11,Palette.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
-	moves_label=label(page,"",Rect2(38,30,100,68),46,Palette.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
-	star_progress=preload("res://scripts/ui/star_progress.gd").new()
-	star_progress.position=Vector2(301,86);star_progress.size=Vector2(142,24)
-	star_progress.thresholds=board.level.stars;star_progress.quiet=save.data.settings.reduced_motion
-	page.add_child(star_progress)
-	goals_panel=preload("res://scripts/ui/goals_panel.gd").new()
-	goals_panel.position=Vector2(59,127);goals_panel.size=Vector2(480,112);goals_panel.scale=Vector2(.88,.88)
-	goals_panel.quiet=save.data.settings.reduced_motion
-	page.add_child(goals_panel)
-	goals_panel.configure(board.active_targets(),board.collected)
+	game_hud=preload("res://scripts/ui/game_hud.gd").new()
+	game_hud.position=Vector2(23,12);game_hud.size=Vector2(494,176);page.add_child(game_hud)
+	game_hud.configure(board.level,"GELİŞTİRİCİ TESTİ" if test_mode else world_name(selected_world),board.collected,save.data.settings.reduced_motion)
+	game_hud.pause_requested.connect(show_pause)
+	level_label=game_hud.title;score_label=game_hud.score;moves_label=game_hud.moves;star_progress=game_hud.stars;goals_panel=game_hud.goals
+	goals_panel.configure(board.active_targets(),board.collected);game_hud.update_height()
 	goals_panel.goal_pressed.connect(show_goal_description)
 	goals_panel.goal_completed.connect(func(_key):audio.play("resonance"))
 	companion=preload("res://scripts/ui/companion.gd").new();companion.position=Vector2(458,873);companion.size=Vector2(48,48);companion.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(companion)
@@ -509,20 +501,22 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 			entering_level=false)
 
 func update_hud(update_goals: bool=true) -> void:
-	if update_goals and board.level.has("objective_stages"):level_label.text="%d / %s · %d/%d"%[int(board.level.id),board.level.name,board.objective_stage+1,board.level.objective_stages.size()]
+	if update_goals and board.level.has("objective_stages"):level_label.text="BÖLÜM %d · %s · %d/%d"%[int(board.level.id),board.level.name,board.objective_stage+1,board.level.objective_stages.size()]
 	star_progress.target=board.score
 	score_target = board.score
 	score_display = board.score
-	score_label.text = str(board.score)
+	game_hud.show_score(board.score)
 	moves_label.text = str(board.moves)
-	if board.moves!=last_move_badge and board.moves<=5 and not save.data.settings.reduced_motion:
+	if board.moves!=last_move_badge and not save.data.settings.reduced_motion:
 		if move_tween and move_tween.is_valid():move_tween.kill()
-		moves_label.pivot_offset=Vector2(50,34);move_tween=moves_label.create_tween();move_tween.tween_property(moves_label,"scale",Vector2(1.06,1.06),.12);move_tween.tween_property(moves_label,"scale",Vector2.ONE,.2)
+		moves_label.pivot_offset=moves_label.size*.5;move_tween=moves_label.create_tween();move_tween.tween_property(moves_label,"scale",Vector2(1.06,1.06),.12);move_tween.tween_property(moves_label,"scale",Vector2.ONE,.2)
 	last_move_badge=board.moves
 	moves_label.add_theme_color_override("font_color",Color("d63e69") if board.moves<=3 else Color("ce8129") if board.moves<=5 else Design.INK)
 	if update_goals:
 		if goals_panel.targets!=board.active_targets():goals_panel.configure(board.active_targets(),board.collected)
 		goals_panel.update_progress(board.collected,false)
+		game_hud.update_height()
+		layout_stage()
 	resonance_label.text = "YANKI  ·  %s %d/3" % [Strings.COLORS[board.resonance.color] if board.resonance.color >= 0 else "", board.resonance.count] if board.level.resonance else ""
 	if board.adventure.has("boss"):
 		if is_instance_valid(boss_badge):boss_badge.update_state(board.adventure.boss)
@@ -576,7 +570,7 @@ func process_event(event: Dictionary) -> void:
 	score_display = board.score - int(event.points)
 	score_target = score_display
 	star_progress.target=score_display
-	score_label.text = str(int(score_display))
+	game_hud.show_score(int(score_display))
 	# Persist only the completely settled logical result, before cosmetic playback.
 	if not test_mode:
 		earned_treasure=board.outcome=="won" and not board.level.get("treasure",{}).is_empty() and "level-%d"%int(board.level.id) not in save.data.adventure_progress.claimed
@@ -668,7 +662,7 @@ func show_seal_description(index: int) -> void:
 	if screen!="game" or board_view.busy:return
 	var m: Dictionary=board.cells[index].get("obstacle",{})
 	if m.get("kind","")!="seal":return
-	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,867+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,76);page.add_child(goal_tip)
+	close_goal_tip();goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+75);goal_tip.size=Vector2(480,76);page.add_child(goal_tip)
 	card(goal_tip,Rect2(0,0,480,76),Color("fffaf0"))
 	label(goal_tip,"ŞİFRELİ MÜHÜR · RENK SIRASI",Rect2(18,4,400,20),12,Palette.GOLD)
 	for k in m.sequence.size():
@@ -680,7 +674,7 @@ func show_goal_description(key: String,tutorial: bool=false) -> void:
 	close_goal_tip()
 	board_view.highlight_goal(key)
 	if is_instance_valid(companion):companion.hide()
-	goal_tip=Control.new();goal_tip.position=Vector2(30,867+(stage.size.y-960)*.5);goal_tip.size=Vector2(480,76)
+	goal_tip=Control.new();goal_tip.position=Vector2(30,board_view.position.y+board_view.size.y+75);goal_tip.size=Vector2(480,76)
 	page.add_child(goal_tip)
 	card(goal_tip,Rect2(0,0,480,76),Color("fffaf0"))
 	var registry=preload("res://scripts/ui/goal_registry.gd")
@@ -897,7 +891,7 @@ func show_settings() -> void:
 	button(page,"YARDIM / ÖĞRETİCİLER",Rect2(42,768,222,44),show_help,false,13)
 	button(page,"Performans raporu",Rect2(274,768,224,44),show_diagnostics,false,13)
 	button(page,Strings.text("resume") if settings_origin=="game" and not save.data.active.is_empty() else Strings.text("map"),Rect2(42,835,456,56),play_latest if settings_origin=="game" and not save.data.active.is_empty() else show_home,true)
-	label(page,"PRİZMA 0.12.1 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+	label(page,"PRİZMA 0.12.2 · RENKLERİN MACERASI",Rect2(32,920,476,28),12,Palette.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 
 	if developer_tools_available():
 		button(page,"Geliştirici: mekanik laboratuvarı",Rect2(42,896,456,27),show_developer_menu,false,12)

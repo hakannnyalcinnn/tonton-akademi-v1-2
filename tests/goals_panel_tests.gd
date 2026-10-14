@@ -47,17 +47,17 @@ func run() -> void:
   root.size=extent;game.size=Vector2(extent);game.safe_rect_override=Rect2(0,24,540,extent.y-48)
   game.start_level(49);game.layout_stage();await process_frame
   check(game.goals_panel.targets.size()==6,"six goals fit two rows")
-  check(game.board_view.position.y-game.goals_panel.position.y-game.goals_panel.size.y<=14,"goals remain adjacent to board on tall screens")
+  check(game.board_view.get_global_rect().position.y-game.goals_panel.get_global_rect().end.y<=14*game.stage.scale.y,"goals remain adjacent to board on tall screens")
   for key in game.goals_panel.rects:check(Rect2(Vector2.ZERO,game.goals_panel.size).encloses(game.goals_panel.rects[key]),"six icons all in bounds")
   for i in 72:check(game.board_view.index_at(game.board_view.cell_position(i)+Vector2(28,28))==i,"cell coordinates unchanged")
  game.safe_rect_override=Rect2();root.size=Vector2i(540,960);game.size=Vector2(540,960)
  game.start_level(1);game.close_goal_tip()
  var panel=game.goals_panel
- panel.configure({"0":1},{});check(panel.rects["0"].get_center().x==240,"single goal centered")
+ panel.configure({"0":1},{});check(is_equal_approx(panel.rects["0"].get_center().x,panel.size.x*.5),"single goal centered")
  panel.configure({"0":1,"1":2},{});check(panel.rects.size()==2 and panel.rects["0"].end.x<panel.rects["1"].position.x,"two balanced goals")
- panel.configure({"0":1,"1":1,"2":1,"3":1,"4":1,"total":1,"ice":1},{})
- check(panel.content_height>panel.size.y,"seven targets scroll with explicit count cue")
- panel.offset=panel.content_height-112;check(panel.key_at(panel.rects.ice.get_center()-Vector2(0,panel.offset))=="ice","seventh goal remains accessible")
+ panel.configure({"0":1,"1":1,"2":1,"3":1,"4":1,"total":1,"stones":1,"lock":1,"ice":1},{})
+ check(panel.content_height>panel.size.y,"nine targets scroll with explicit count cue")
+ panel.offset=panel.content_height-panel.size.y;check(panel.key_at(panel.rects.ice.get_center()-Vector2(0,panel.offset))=="ice","ninth goal remains accessible")
  game.start_level(49);game.close_goal_tip();game.board.collected["1"]=3;game.board.collected.total=3;game.save.save_active(game.board);game.start_level(49,true)
  check(game.goals_panel.amounts["1"]==3,"saved target progress restores")
  game.save.finish_writes();var path: String=game.save.path;game.audio._notification(Node.NOTIFICATION_APPLICATION_PAUSED);await create_timer(.25).timeout

@@ -1,0 +1,30 @@
+{
+  "level": 106,
+  "fixture": {
+    "moves": 9,
+    "score": 3210,
+    "seed": "unchanged authored level seed",
+    "target_progress": "0/75 and 0/1"
+  },
+  "viewport": [
+    540,
+    1200
+  ],
+  "old_hud_height": 215,
+  "new_hud_height": 176,
+  "height_reduction_percent": 18.14,
+  "board_cell_dimensions": [
+    56,
+    56
+  ],
+  "board_view_dimensions": [
+    476,
+    536
+  ],
+  "new_hud_board_gap": 12,
+  "screens": [
+    "v0122-106-before.png",
+    "v0122-106-after.png"
+  ],
+  "physical_android_test": false
+}
