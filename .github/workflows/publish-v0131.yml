@@ -1,0 +1,68 @@
+name: Publish PRIZMA living adventure maps build 20
+on:
+  push:
+    branches: [prizma-release-v0.13.1]
+    paths: [.github/workflows/publish-v0131.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: prizma-publish-v0131
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Checkout tested runtime
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Checkout exact locally verified APKs
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3244ecae4704084519b5005d7d19853dbc498fab
+          path: release-artifacts
+          persist-credentials: false
+      - name: Verify runtime and exact artifact bytes without rebuilding
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/runtime_digest.py > current-runtime.sha256
+          cmp current-runtime.sha256 release-artifacts/prizma-runtime.sha256
+          (cd release-artifacts && sha256sum --check checksums.sha256)
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          for path in Path('release-artifacts').glob('*.apk'):
+              with ZipFile(path) as apk:
+                  assert apk.testzip() is None
+                  assert 'lib/arm64-v8a/libgodot_android.so' in apk.namelist()
+                  assert not any('planet_view' in name or 'garden-review-r3' in name or 'planet-review' in name for name in apk.namelist())
+          print('PASS: exact locally signed/verified artifacts and unchanged runtime')
+          PY
+      - name: Publish new revision while preserving all earlier releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v0.13.1 >/dev/null 2>&1; then
+            echo 'Revision already exists; refusing to overwrite any release assets.' >&2
+            exit 1
+          fi
+          gh release create v0.13.1 \
+            release-artifacts/prizma-v0.13.1.apk \
+            release-artifacts/prizma-v0.13.1-dev.apk \
+            release-artifacts/checksums.sha256 \
+            release-artifacts/map-world-1.png \
+            release-artifacts/map-world-2.png \
+            release-artifacts/map-world-3.png \
+            release-artifacts/map-world-4.png \
+            release-artifacts/map-world-5.png \
+            release-artifacts/prizma-v0.13.1-haritalar.zip \
+            release-artifacts/TEST_REPORT.md \
+            --verify-tag --prerelease \
+            --title 'PRİZMA v0.13.1 — Yaşayan Macera Haritası' \
+            --notes-file release-artifacts/release-notes.md
