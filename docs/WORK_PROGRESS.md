@@ -15,4 +15,5 @@ Fiziksel Android ölçümü yok; final masaüstü tepe 62,17 ms, 60 FPS doğrula
 - v0.13.0 final: native 360° / beş ray seçimi / kilit / yakınlaşma / tek açıklama testleri geçti; eski UI/helper/Storm/kurtarma-boss/kayıt ve 250 HUD yüklemeleri başarılı.
 - Beş gezegen/bölüm yolu, hareketli kare dizileri, 320×568 ve 390×844 gerçek render'ları kontrol edildi. Son llvmpipe p95: dengeli 44,17 ms, performans 29,99 ms; cihaz FPS doğrulanmadı.
 - İki APK v0.13.0/code18 tek sefer üretildi, aynı sertifika/paket ve ZIP/data/ARM doğrulandı. Paketlenmiş kaynak probe'ları normal/dev geçti; sabit 80 ms fixture beklemesi gerçek geçiş koşuluna dönüştürüldü, APK yeniden derlenmedi.
-- Yayın için doğrulanmış artefakt dalı prizma-apk-v0.13.0 hazır; GitHub push/CI/erişim doğrulaması kalan adımlar.
+- v0.13.0 yayımlandı: kaynak ad5b8e9, artefakt 1bf2d38c3919a0c50e0b5f457576948c13d3537c. CI 38596989187 Success; iki APK 206 Range GET ile 4 bayt / doğru toplam boyut / APK-ZIP başlangıcı doğrulandı. Yayın: https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.0
+- Bu aşama tamamlandı; yeni geliştirmeye geçilmedi. Fiziksel Android performans/görsel kabulü kullanıcı cihazında bekliyor.

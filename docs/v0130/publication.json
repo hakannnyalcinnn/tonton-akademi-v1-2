@@ -1,0 +1,25 @@
+{
+  "source_commit": "ad5b8e9",
+  "artifact_commit": "1bf2d38c3919a0c50e0b5f457576948c13d3537c",
+  "release_url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.13.0",
+  "ci_url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/actions/runs/38596989187",
+  "ci_status": "Success",
+  "access_checks": [
+    {
+      "file": "prizma-v0.13.0.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.0/prizma-v0.13.0.apk",
+      "status": 206,
+      "content_range": "bytes 0-3/82248440",
+      "bytes": 82248440,
+      "prefix_hex": "504b0304"
+    },
+    {
+      "file": "prizma-v0.13.0-dev.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.13.0/prizma-v0.13.0-dev.apk",
+      "status": 206,
+      "content_range": "bytes 0-3/82244344",
+      "bytes": 82244344,
+      "prefix_hex": "504b0304"
+    }
+  ]
+}
