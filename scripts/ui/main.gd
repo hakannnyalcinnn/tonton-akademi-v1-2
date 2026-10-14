@@ -385,27 +385,35 @@ func request_level(number: int) -> void:
 	open_overlay("","")
 	for child in overlay.get_children():child.queue_free()
 	overlay.set_meta("preview_level",number)
-	card(overlay,Design.MODAL)
+	card(overlay,Rect2(54,155,432,650))
 	var kind: String="DÜNYA FİNALİ" if number==int(Worlds.get_world(Catalog.world_for(number)).end) else "KURTARMA" if definition.get("adventure",{}).get("kind","")=="rescue" else "BEKÇİ MÜCADELESİ" if definition.get("adventure",{}).get("kind","")=="boss" else "HAZİNE" if definition.has("treasure") else "KRİSTAL MACERASI"
-	label(overlay,kind,Rect2(78,278,348,24),12,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
-	label(overlay,"BÖLÜM %d"%number,Rect2(78,305,348,39),30,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
-	button(overlay,"×",Rect2(426,277,48,48),close_overlay,false,22)
-	var preview:=preload("res://scripts/ui/goals_panel.gd").new();preview.position=Vector2(72,356);preview.size=Vector2(480,112);preview.scale=Vector2(.825,.825);preview.quiet=true;overlay.add_child(preview)
+	label(overlay,kind,Rect2(78,172,348,24),12,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+	label(overlay,"BÖLÜM %d"%number,Rect2(78,201,348,39),30,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
+	button(overlay,"×",Rect2(426,169,48,48),close_overlay,false,22)
+	var preview:=preload("res://scripts/ui/goals_panel.gd").new();preview.position=Vector2(72,264);preview.size=Vector2(396,112);preview.compact=true;preview.preview_mode=true;preview.quiet=true;overlay.add_child(preview)
 	preview.configure(definition.targets,save.data.active.get("collected",{}) if resume_requested else {})
-	preview.goal_pressed.connect(func(key):
-		var explanation:=label(overlay,preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])),Rect2(78,649,384,40),12,Design.INK,HORIZONTAL_ALIGNMENT_CENTER)
-		explanation.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART)
-	label(overlay,"%d hamle%s"%[int(save.data.active.get("moves",definition.moves)) if resume_requested else int(definition.moves)," · kayıtlı oyun" if resume_requested else ""],Rect2(94,457,352,28),16,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+	var explanation_panel:=PanelContainer.new();explanation_panel.name="PreviewExplanation";explanation_panel.position=Vector2(78,418);explanation_panel.size=Vector2(384,100);explanation_panel.add_theme_stylebox_override("panel",Design.surface());overlay.add_child(explanation_panel)
+	var explanation:=RichTextLabel.new();explanation.name="ExplanationText";explanation.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;explanation.scroll_active=true;explanation.add_theme_font_size_override("normal_font_size",14);explanation.add_theme_color_override("default_color",Design.INK);explanation_panel.add_child(explanation)
+	explanation.text="Hedeflerin nasıl tamamlandığını görmek için bir simgeye dokun."
+	preview.goal_pressed.connect(func(key):explanation.text=preload("res://scripts/ui/goal_registry.gd").description(key,int(definition.targets[key])))
+	label(overlay,"%d hamle%s"%[int(save.data.active.get("moves",definition.moves)) if resume_requested else int(definition.moves)," · kayıtlı oyun" if resume_requested else ""],Rect2(94,383,352,28),16,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+	label(overlay,"GÜÇLENDİRİCİLER",Rect2(78,531,384,23),14,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 	preload("res://scripts/core/adventure_progress.gd").ensure(save.data)
 	for i in 2:
 		var key: String=["rocket","prism"][i];var stock:=int(save.data.adventure_progress.inventory.get(key,0))
-		var choose:=IconButton.new();choose.position=Vector2(170+i*119,493);choose.size=Vector2(82,70);choose.image=Design.icon("gems",5 if i==0 else 7);choose.amount=stock;choose.tooltip_text="Roket" if i==0 else "Gökkuşağı Yıldızı"
-		choose.disabled=stock<=0 or resume_requested;choose.set_meta("booster",key);overlay.add_child(choose)
+		var choose:=IconButton.new();choose.position=Vector2(153+i*138,566);choose.size=Vector2(96,92);choose.caption="Roket" if key=="rocket" else "Prizma";choose.icon_radius=38;choose.image=Design.icon("gems",5 if i==0 else 7);choose.amount=stock;choose.tooltip_text="Roket" if i==0 else "Gökkuşağı Yıldızı"
+		choose.locked=not preload("res://scripts/core/booster_catalog.gd").unlocked(save.data,key);choose.disabled=resume_requested;choose.unavailable=choose.locked or stock<=0;choose.set_meta("booster",key);overlay.add_child(choose)
 		choose.pressed.connect(func():
+			var rules=preload("res://scripts/core/booster_catalog.gd")
+			if not rules.available(save.data,key):
+				explanation.text="Bu güç %d. bölümde açılır."%int(rules.ITEMS[key].unlock) if not rules.unlocked(save.data,key) else "Stok yok. Bölüm ve hazine ödülleriyle kazanabilirsin."
+				audio.play("invalid");return
+			explanation.text=rules.ITEMS[key].help
+			audio.play("click")
 			selected_booster=key if selected_booster!=key else ""
 			for item in overlay.get_children():
 				if item is IconButton:item.chosen=str(item.get_meta("booster",""))==selected_booster;item.queue_redraw())
-	button(overlay,"OYNA!",Rect2(83,593,374,63),func():
+	button(overlay,"OYNA!",Rect2(83,711,374,63),func():
 		close_overlay();begin_page("transition")
 		var trail:=preload("res://scripts/ui/level_transition.gd").new();trail.quiet=save.data.settings.reduced_effects or save.data.settings.reduced_motion;page.add_child(trail)
 		var guide:=preload("res://scripts/ui/companion.gd").new();guide.position=Vector2(198,299);guide.size=Vector2(144,144);guide.quiet=save.data.settings.get("companion_quiet",false) or save.data.settings.reduced_motion;page.add_child(guide);guide.react("excited")
@@ -425,7 +433,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 	if resume and not save.data.active.is_empty():definition=save.data.active.get("level_definition",definition)
 	board = Board.new(definition)
 	if resume and not save.data.active.is_empty(): board.restore(save.data.active)
-	elif selected_booster!="" and not test_mode:
+	elif selected_booster!="" and not test_mode and preload("res://scripts/core/booster_catalog.gd").available(save.data,selected_booster):
 		var slot:=-1
 		var hint: Array=board.level.get("tutorial_swap",[])
 		var preserve_hint: bool=hint.size()==2 and Match.can_swap(board.cells,int(hint[0]),int(hint[1]),8,9)

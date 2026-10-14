@@ -1,5 +1,7 @@
 # Güncel çalışma
 
-v0.12.3 test sürümü yayımlandı. HUD/bildirim, Dev Kristal durumları, roket/renk bağları/parçalanma, özgün ses ve dev tanılama hazır. SMOKE / ilgili regresyon ve son kaynak GitHub Actions 38551811050 başarılı. Normal/dev kod15 APK imza/bütünlük/veri/çıkarılmış kod ve yeni komut kontrolleri geçti; iki indirme HEAD 200 / 82142685 byte. Release önce/sonra, efekt görüntüleri ve kısa rapor içeriyor.
+v0.12.3-r2: kullanıcı yeni ana talimatı okundu. Kaynak temiz 6729814; backup/before-v0.12.3-r2 oluşturuldu. Önceki Release korunacak; yeni Release v0.12.3-r2, uygulama 0.12.3 / kod16.
 
-Sınırlar: masaüstü profiler bazı p95 artışları ve kare sıçramaları gösterdi; gerçek Android FPS/kurulum/ses/titreşim/input testi yapılmadı. Bunlar raporda açık; 60 FPS doğrulanmış değil. Mekanik/bölüm/kayıt kuralları korundu; çekirdek değişikliği yalnızca sunum selected_color alanı. Sonraki aşamaya geçilmedi.
+A: başlangıç açıklaması her dokunuşta Label oluşturuyordu; tek sabit PreviewExplanation paneli/Label ile değiştirildi. Hedef/moves/açıklama/büyük iki gerçek stok gücü/OYNA ayrı bölgelerde yeniden yerleştirildi.
+
+Kalan: A render/UI ve stok kilit kuralları; B aşağıdan yukarı macera haritası; C sakin tahta/arka plan ve gerçek alt yardımcılar; D yalnız aşağı dolum + yön değiştirmeyen Fırtına + 250 bölüm oynanabilirlik/denge + kayıt dönüşümü; E gruplanmış hareket/düşüş/menü sesleri; F kapsamlı risk regresyonu/perf/APK/Release. Eski paketteki efektler, 250 bölüm ve kayıtlar korunacak. Bu yeni görev henüz tamamlanmış değildir.

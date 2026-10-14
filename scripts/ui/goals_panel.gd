@@ -8,6 +8,7 @@ var amounts: Dictionary={}
 var displayed: Dictionary={}
 var pulses: Dictionary={}
 var rects: Dictionary={}
+var preview_mode:=false
 var compact:=false
 var remaining_mode:=false
 var quiet:=false
@@ -31,11 +32,11 @@ func layout_cards() -> void:
  var columns:=mini(4 if compact and targets.size()>6 else 3,targets.size())
  if columns==0:return
  var rows:=ceili(float(targets.size())/columns)
- var stride:=44.0 if compact and rows>1 else 58.0 if compact else 50.0 if rows>2 else 56.0
+ var stride:=56.0 if preview_mode else 44.0 if compact and rows>1 else 58.0 if compact else 50.0 if rows>2 else 56.0
  content_height=maxf(size.y,rows*stride+(12 if rows>2 else 0)) if compact else maxf(112,rows*stride+(12 if rows>2 else 0))
- var height:=stride if compact else 112.0 if rows==1 else stride
+ var height:=112.0 if preview_mode and rows==1 else stride if compact else 112.0 if rows==1 else stride
  var available:=size.x if compact else 480.0
- var width:=minf(94 if compact else 156,available/columns)
+ var width:=minf(122 if preview_mode else 94 if compact else 156,available/columns)
  var left:=(available-width*columns)/2
  var i:=0
  for key in targets:
@@ -87,8 +88,8 @@ func _draw() -> void:
   var r: Rect2=rects[key];r.position.y-=offset
   var done:=int(amounts[key])>=int(targets[key])
   draw_style_box(styles[1 if done else 0],r)
-  var icon_size:=40.0 if compact and targets.size()<=3 else 32.0 if compact else 64.0 if r.size.y>80 else (30.0 if content_height>112 else 34.0)
-  var side_by_side:=compact and targets.size()>3
+  var icon_size:=64.0 if preview_mode and targets.size()<=3 else 32.0 if preview_mode else 40.0 if compact and targets.size()<=3 else 32.0 if compact else 64.0 if r.size.y>80 else (30.0 if content_height>112 else 34.0)
+  var side_by_side:=compact and targets.size()>3 and not preview_mode
   var icon_rect:=Rect2(r.position.x+3 if side_by_side else r.get_center().x-icon_size/2,r.position.y+2,icon_size,icon_size)
   if pulses[key]>0:draw_circle(icon_rect.get_center(),icon_size*.55,Color(1,.85,.35,float(pulses[key])*.5))
   if key=="total":
