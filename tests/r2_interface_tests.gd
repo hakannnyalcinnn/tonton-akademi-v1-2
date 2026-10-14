@@ -9,16 +9,16 @@ func run() -> void:
  root.size=Vector2i(540,1200);game=load("res://scenes/main.tscn").instantiate();game.production_mode=true;game.save=Save.new("user://r2-interface-only.json");game.save.data=Save.defaults();game.save.data.unlocked=250;game.save.data.settings.music=false;game.save.data.settings.sfx=false;root.add_child(game);await process_frame
  for height in [960,1080,1170,1200]:
   root.size=Vector2i(540,height);game.size=Vector2(540,height);game.request_level(49);await process_frame
-  var panel=game.overlay.get_node("PreviewExplanation");var text=panel.get_child(0).get_node("ExplanationText");var child_count: int=panel.get_child_count()
+  var panel=game.overlay.find_child("PreviewExplanation",true,false);var text=panel.get_child(0).get_node("ExplanationText");var child_count: int=panel.get_child_count()
   text.add_theme_font_size_override("font_size",22)
   for tap in 50:
    text.text="Renk enerjisi toplayarak kilitleri aç. Çok aşamalı hedefleri tamamlamak için kristalleri eşleştir. Uzun Türkçe açıklamalar burada kalır, OYNA düğmesinin üzerine taşmaz."
   assert(panel.get_child_count()==child_count and text.get_parent() is ScrollContainer)
-  var play=game.overlay.get_children().filter(func(node):return node is Button and node.text=="OYNA!")[0]
+  var play=game.overlay.find_children("*","",true,false).filter(func(node):return node is Button and node.text=="OYNA!")[0]
   assert(panel.get_global_rect().end.y<play.get_global_rect().position.y)
   await shot("preview-ratio-%d"%height);game.close_overlay()
  root.size=Vector2i(540,1200);game.size=Vector2(540,1200);game.request_level(25);await process_frame
- var rocket=game.overlay.get_children().filter(func(node):return node is Icons and node.get_meta("booster","")=="rocket")[0]
+ var rocket=game.overlay.find_children("*","",true,false).filter(func(node):return node is Icons and node.get_meta("booster","")=="rocket")[0]
  var stock: int=game.save.data.adventure_progress.inventory.rocket
  rocket.pressed.emit();assert(game.selected_booster=="rocket" and rocket.chosen and game.save.data.adventure_progress.inventory.rocket==stock);await shot("selected-booster");game.close_overlay();assert(game.save.data.adventure_progress.inventory.rocket==stock)
  game.request_level(25);await process_frame;assert(game.selected_booster=="");game.close_overlay()

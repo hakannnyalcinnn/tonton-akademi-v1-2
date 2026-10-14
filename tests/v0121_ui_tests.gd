@@ -11,7 +11,7 @@ func check(ok: bool,message: String) -> void:
  if not ok:failures+=1;push_error(message)
 func _initialize() -> void:call_deferred("run")
 func find_button(text: String) -> Button:
- for child in game.overlay.get_children():
+ for child in game.overlay.find_children("*","",true,false):
   if child is Button and child.text==text:return child
  return null
 func run() -> void:
@@ -30,12 +30,12 @@ func run() -> void:
  game.request_level(1);await process_frame
  var inventory: Dictionary=game.save.data.adventure_progress.inventory
  var initial: int=inventory.prism
- for child in game.overlay.get_children():
+ for child in game.overlay.find_children("*","",true,false):
   if child is Icon and child.get_meta("booster","")=="prism":child.pressed.emit()
  check(game.selected_booster=="prism","visual booster selection")
  game.close_overlay();check(inventory.prism==initial,"cancel does not consume stock")
  inventory.rocket=0;game.request_level(1);await process_frame
- for child in game.overlay.get_children():
+ for child in game.overlay.find_children("*","",true,false):
   if child is Icon and child.get_meta("booster","")=="rocket":check(child.unavailable and child.amount==0,"zero stock explains availability without purchase UI");child.pressed.emit();check(game.selected_booster=="","zero stock cannot select or consume")
   elif child is Icon and child.get_meta("booster","")=="prism":child.pressed.emit()
  find_button("OYNA!").pressed.emit();await create_timer(.1).timeout;await process_frame
@@ -71,7 +71,7 @@ func run() -> void:
  game.close_overlay();game.show_map(5);await process_frame
  var world: int=game.selected_world;game.go_back();check(game.selected_world==world and game.overlay!=null,"map back confirms exit, does not jump worlds")
  game.close_overlay();game.show_worlds();await process_frame
- check(game.page.get_node("WorldsScroll").get_child(0).get_child_count()==5,"five real worlds with same selector")
+ check(game.planet_view.globe!=null and game.page.get_children().filter(func(n):return n is HBoxContainer).size()==1,"five real worlds in a 3D selector")
  game.save.finish_writes()
  var saved_board:=Board.new(Catalog.get_level(60));saved_board.moves=3
  var active: Dictionary=saved_board.snapshot()

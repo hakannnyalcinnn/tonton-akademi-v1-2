@@ -13,7 +13,7 @@ var check_icon: Texture2D
 func _ready() -> void:
  text="";mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
  for key in ["normal","hover","pressed","disabled","focus"]:add_theme_stylebox_override(key,empty_style)
- if caption!="":tooltip_text=caption
+ tooltip_text="" # Captions are visible; native long-press tooltips must not float over modals.
  check_icon=preload("res://scripts/ui/casual_skin.gd").texture("advanced",7,preload("res://scripts/ui/casual_skin.gd").ADVANCED)
 func _draw() -> void:
  var center:=Vector2(size.x/2,minf(size.y/2,icon_radius+1))
@@ -31,4 +31,4 @@ func _draw() -> void:
   var point:=center+Vector2(radius*.72,radius*.68);draw_circle(point,11,Color("584882"));draw_string(font,point+Vector2(-5,5),str(amount),HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color.WHITE)
  if chosen and amount>=0:
   draw_texture_rect(check_icon,Rect2(center+Vector2(-28,13),Vector2(18,18)),false)
- if caption!="" and size.y>=76:draw_string(font,Vector2(1,size.y-6),caption,HORIZONTAL_ALIGNMENT_CENTER,size.x-2,12,Design.INK)
+ if caption!="" and size.y>=60:draw_string(font,Vector2(1,size.y-6),caption,HORIZONTAL_ALIGNMENT_CENTER,size.x-2,12,Design.INK)
