@@ -16,7 +16,7 @@ func run() -> void:
   for w in range(1,6):
    game.show_map((w-1)*5);await process_frame;await process_frame
    var terrain=game.page.get_node("MapSceneBackdrop")
-   check(terrain.size==game.stage.size and not game.garden.visible,"One shared world scene covers header/map/footer")
+   check(terrain.get_global_rect().position.distance_to(Vector2.ZERO)<.1 and terrain.get_global_rect().size.distance_to(Vector2(dimensions))<.1 and not game.garden.visible,"One shared world scene covers header/map/footer")
    check(terrain.texture!=null and terrain.texture.resource_path.ends_with("terrain-"+str(game.Worlds.get_world(w).map_style)+".png"),"Correct terrain theme")
    check(game.page.get_node("WorldsButton").icon!=null,"World button has globe icon")
    check(game.map_buttons.size()==50,"All 50 existing levels remain")
