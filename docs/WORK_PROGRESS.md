@@ -6,4 +6,4 @@
 - Kayıt v3→v4 arşivli geçiş ve atomik işlem/geri alma testleri başarılı.
 - 251–500 beş ayrı pakette; 10 dünya. Yeni 250 varsayılan seed için son bütçeyle kazanma izi doğrulandı; 500 tanım yükleniyor. İlk 250 bölüm ve çekirdek motor korunuyor.
 - Ekonomi/UI/SMOKE ve ilgili eski UI/kayıt regresyonları başarılı; gerçek Godot görüntüleri kontrol edildi. Ayrıntı: `docs/v0140/TEST_REPORT.md`.
-- Normal APK üretildi ve doğrulandı; geliştirici APK ve GitHub yayın doğrulaması sürüyor. Gerçek Android cihaz testi yapılmadı.
+- İki APK üretildi; imza/paket/veri bütünlüğü ve APK kaynak probu başarılı. GitHub yayın adımı sürüyor. Gerçek Android cihaz testi yapılmadı.

@@ -27,3 +27,5 @@
 
 ## APK ve yayın
 Normal ve geliştirici APK paketleri ayrıdır; mevcut sertifika korunur. Nihai dosya SHA256 ve erişim kanıtı GitHub Release varlıklarıyla birlikte sunulur. APK kaynak probu fiziksel Android çalıştırması değildir.
+
+Final artefakt kontrolü: iki APK da üretildi; v0.14.0 / Android versionCode 24, aynı mevcut sertifika, normal/dev ayrı paket kimliği, ZIP CRC, tüm bölüm verileri ve iki ARM ABI doğrulandı. APK içinden çıkarılan gerçek kaynaklarla üretim kapısı, geliştirici araçları/sınırsız can, mağaza ve 500 bölüm/10 dünya akışları başarılı. Bu kontrol masaüstü Godot üzerindedir.

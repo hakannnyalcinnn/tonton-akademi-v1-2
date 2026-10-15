@@ -76,5 +76,16 @@
     }
   ],
   "physical_android_tested": false,
-  "full_profile_rerun": false
+  "full_profile_rerun": false,
+  "apk_source_probe": "passed: production rejects dev commands; developer has isolated tools and infinite lives; actual APK resources load 500 levels/10 worlds and shop",
+  "apks": {
+    "prizma-v0.14.0.apk": {
+      "size": 108852279,
+      "sha256": "70454be88b2a1245ec7dfe934b226753e4d6a7ffd01027d665af17f9500c6365"
+    },
+    "prizma-v0.14.0-dev.apk": {
+      "size": 108852279,
+      "sha256": "b02de9abcd08c01ca40e577245435f568815a250696b2a09ecc4a9cd23b10100"
+    }
+  }
 }
