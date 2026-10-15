@@ -1,0 +1,491 @@
+{
+  "reviewed_levels": 500,
+  "changed_levels": 69,
+  "new_mechanic_levels": 64,
+  "original_packets_unchanged": true,
+  "worlds": [
+    {
+      "world": 1,
+      "range": [
+        1,
+        50
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "seed": 20,
+        "rescue": 3,
+        "ice": 18,
+        "stone": 12,
+        "lock": 9,
+        "dual": 15,
+        "boss": 2,
+        "chameleon": 10
+      },
+      "target_levels": {
+        "total": 50,
+        "0": 2,
+        "1": 11,
+        "4": 1,
+        "flowers": 20,
+        "ice": 13,
+        "stones": 12,
+        "locks": 9,
+        "duals": 15
+      },
+      "board_shapes": 1,
+      "changed_ids": []
+    },
+    {
+      "world": 2,
+      "range": [
+        51,
+        100
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "bridge": 15,
+        "dual": 10,
+        "ice": 20,
+        "pin": 15,
+        "cargo": 4,
+        "rescue": 3,
+        "chameleon": 3,
+        "stone": 9,
+        "lock": 8,
+        "seed": 3,
+        "portals": 9,
+        "vine": 8,
+        "boss": 2,
+        "crate": 9,
+        "mirror": 8
+      },
+      "target_levels": {
+        "total": 50,
+        "bridges": 5,
+        "pins": 6,
+        "deliveries": 4,
+        "ice": 5,
+        "stones": 6,
+        "locks": 8,
+        "flowers": 3,
+        "1": 10,
+        "portals": 9,
+        "vines": 8,
+        "crates": 9,
+        "3": 5,
+        "mirrors": 8
+      },
+      "board_shapes": 1,
+      "changed_ids": [
+        61,
+        66,
+        71,
+        86
+      ]
+    },
+    {
+      "world": 3,
+      "range": [
+        101,
+        150
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "floor": 21,
+        "cargo": 2,
+        "giant": 22,
+        "rescue": 3,
+        "ice": 8,
+        "magnet": 24,
+        "portals": 3,
+        "stone": 2,
+        "conveyors": 2,
+        "bridge": 2,
+        "boss": 2,
+        "core": 1
+      },
+      "target_levels": {
+        "floors": 21,
+        "total": 49,
+        "deliveries": 2,
+        "giants": 22,
+        "ice": 8,
+        "magnets": 24,
+        "stones": 2,
+        "cores": 1,
+        "shield1": 1,
+        "shield0": 1,
+        "shield3": 1,
+        "shield2": 1
+      },
+      "board_shapes": 6,
+      "changed_ids": [
+        106,
+        126
+      ]
+    },
+    {
+      "world": 4,
+      "range": [
+        151,
+        200
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "seed": 4,
+        "shutter": 6,
+        "ice": 2,
+        "dual": 9,
+        "fountain": 5,
+        "cargo": 2,
+        "stone": 3,
+        "lock": 6,
+        "bridge": 2,
+        "pin": 1,
+        "bubble": 10,
+        "portals": 14,
+        "rescue": 3,
+        "conveyors": 11,
+        "chameleon": 5,
+        "boss": 2,
+        "seal": 8,
+        "crate": 2,
+        "vine": 2,
+        "mirror": 2
+      },
+      "target_levels": {
+        "shutters": 6,
+        "flowers": 4,
+        "total": 50,
+        "ice": 2,
+        "duals": 9,
+        "fountains": 5,
+        "deliveries": 2,
+        "stones": 3,
+        "locks": 6,
+        "bridges": 2,
+        "pins": 1,
+        "bubbles": 10,
+        "conveyors": 11,
+        "shifts": 5,
+        "seals": 8,
+        "crates": 2,
+        "vines": 2,
+        "mirrors": 2
+      },
+      "board_shapes": 13,
+      "changed_ids": [
+        156,
+        186,
+        151,
+        161,
+        171,
+        181,
+        191,
+        196
+      ]
+    },
+    {
+      "world": 5,
+      "range": [
+        201,
+        250
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "stone": 17,
+        "ice": 14,
+        "dual": 2,
+        "crate": 4,
+        "vine": 4,
+        "mirror": 2,
+        "shutter": 2,
+        "floor": 13,
+        "rescue": 3,
+        "cargo": 2,
+        "giant": 13,
+        "magnet": 12,
+        "portals": 12,
+        "conveyors": 10,
+        "boss": 2,
+        "lock": 1,
+        "chameleon": 1,
+        "core": 1
+      },
+      "target_levels": {
+        "total": 50,
+        "stones": 17,
+        "ice": 14,
+        "duals": 2,
+        "crates": 4,
+        "vines": 4,
+        "mirrors": 2,
+        "shutters": 2,
+        "floors": 13,
+        "deliveries": 2,
+        "giants": 13,
+        "magnets": 12,
+        "conveyors": 10,
+        "shifts": 1,
+        "locks": 1,
+        "cores": 1,
+        "shield1": 1,
+        "shield0": 1,
+        "shield3": 1,
+        "shield2": 1
+      },
+      "board_shapes": 13,
+      "changed_ids": [
+        216,
+        246,
+        206,
+        236
+      ]
+    },
+    {
+      "world": 6,
+      "range": [
+        251,
+        300
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "seed": 25,
+        "vine": 5,
+        "dual": 39,
+        "fountain": 15,
+        "seal": 10,
+        "ice": 11,
+        "cargo": 2,
+        "shutter": 1
+      },
+      "target_levels": {
+        "flowers": 25,
+        "duals": 39,
+        "vines": 5,
+        "total": 50,
+        "fountains": 15,
+        "seals": 10,
+        "ice": 11,
+        "deliveries": 2,
+        "shutters": 1
+      },
+      "board_shapes": 13,
+      "changed_ids": [
+        266,
+        286,
+        276,
+        251,
+        261,
+        271,
+        281,
+        291
+      ]
+    },
+    {
+      "world": 7,
+      "range": [
+        301,
+        350
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "relay": 7,
+        "dual": 14,
+        "ice": 25,
+        "bubble": 15,
+        "portals": 25,
+        "conveyors": 10,
+        "seed": 11,
+        "cargo": 2,
+        "shutter": 1
+      },
+      "target_levels": {
+        "relays": 7,
+        "ice": 25,
+        "duals": 14,
+        "total": 50,
+        "bubbles": 15,
+        "conveyors": 10,
+        "flowers": 11,
+        "deliveries": 2,
+        "shutters": 1
+      },
+      "board_shapes": 13,
+      "changed_ids": [
+        316,
+        336,
+        326,
+        301,
+        306,
+        311,
+        321,
+        331,
+        341,
+        346
+      ]
+    },
+    {
+      "world": 8,
+      "range": [
+        351,
+        400
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "key": 7,
+        "gate": 7,
+        "mirror": 14,
+        "stone": 24,
+        "pin": 15,
+        "bridge": 15,
+        "conveyors": 10,
+        "lock": 11,
+        "chameleon": 11,
+        "cargo": 2,
+        "relay": 1,
+        "shutter": 1
+      },
+      "target_levels": {
+        "gates": 7,
+        "mirrors": 14,
+        "total": 50,
+        "stones": 24,
+        "pins": 15,
+        "bridges": 15,
+        "conveyors": 10,
+        "shifts": 11,
+        "locks": 11,
+        "deliveries": 2,
+        "relays": 1,
+        "shutters": 1
+      },
+      "board_shapes": 13,
+      "changed_ids": [
+        366,
+        386,
+        376,
+        371,
+        351,
+        356,
+        361,
+        381,
+        391,
+        396
+      ]
+    },
+    {
+      "world": 9,
+      "range": [
+        401,
+        450
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "bubble": 14,
+        "balance": 7,
+        "portals": 24,
+        "giant": 15,
+        "ice": 15,
+        "relay": 2,
+        "magnet": 10,
+        "bridge": 11,
+        "floor": 11,
+        "cargo": 2,
+        "key": 1,
+        "gate": 1,
+        "shutter": 1
+      },
+      "target_levels": {
+        "bubbles": 14,
+        "balances": 7,
+        "total": 50,
+        "giants": 15,
+        "ice": 15,
+        "relays": 2,
+        "magnets": 10,
+        "floors": 11,
+        "bridges": 11,
+        "deliveries": 2,
+        "gates": 1,
+        "shutters": 1
+      },
+      "board_shapes": 12,
+      "changed_ids": [
+        416,
+        436,
+        426,
+        411,
+        441,
+        421,
+        401,
+        406,
+        431,
+        446
+      ]
+    },
+    {
+      "world": 10,
+      "range": [
+        451,
+        500
+      ],
+      "levels_reviewed": 50,
+      "mechanic_levels": {
+        "key": 3,
+        "gate": 3,
+        "core": 15,
+        "stone": 15,
+        "rescue": 7,
+        "magnet": 15,
+        "portals": 15,
+        "conveyors": 15,
+        "cargo": 3,
+        "relay": 3,
+        "balance": 4,
+        "bridge": 10,
+        "floor": 10,
+        "seal": 10,
+        "fountain": 10,
+        "shutter": 2
+      },
+      "target_levels": {
+        "cores": 15,
+        "rescues": 7,
+        "shield1": 15,
+        "shield0": 15,
+        "shield2": 15,
+        "shield3": 15,
+        "gates": 3,
+        "stones": 15,
+        "total": 50,
+        "magnets": 15,
+        "conveyors": 15,
+        "deliveries": 3,
+        "balances": 4,
+        "relays": 3,
+        "floors": 10,
+        "bridges": 10,
+        "seals": 10,
+        "fountains": 10,
+        "shutters": 2
+      },
+      "board_shapes": 12,
+      "changed_ids": [
+        456,
+        476,
+        496,
+        466,
+        486,
+        461,
+        481,
+        491,
+        451,
+        471,
+        493,
+        498,
+        500
+      ]
+    }
+  ]
+}
