@@ -1,0 +1,91 @@
+{
+  "runtime_sha256": "21a6c9ac97360348ceb5a2ddfd096ac53acba536866a9242628c3a06de69f16d",
+  "godot": "4.6.3",
+  "results": [
+    {
+      "name": "economy_tests",
+      "status": "passed",
+      "seconds": 0.365,
+      "commit": "884a4224042f31c4eda48b5e29af745cf3f217a5",
+      "fingerprint": "7034d71e2b7fc8896e921dd115ed33769111b57c3474dbc6da56a6077ae4b01d",
+      "log_sha256": "c60fd6be3caed08414f434981fe76542348cfeff20c2abf8d96dfe7eb27852b3"
+    },
+    {
+      "name": "economy_ui_tests",
+      "status": "passed",
+      "seconds": 1.766,
+      "commit": "884a4224042f31c4eda48b5e29af745cf3f217a5",
+      "fingerprint": "7034d71e2b7fc8896e921dd115ed33769111b57c3474dbc6da56a6077ae4b01d",
+      "log_sha256": "05d5c380bfb8d3e3eee5720d4b8e06a8797972d3371cb3fda52f2aad7be51387"
+    },
+    {
+      "name": "workflow_smoke",
+      "status": "passed",
+      "seconds": 1.004,
+      "commit": "884a4224042f31c4eda48b5e29af745cf3f217a5",
+      "fingerprint": "7034d71e2b7fc8896e921dd115ed33769111b57c3474dbc6da56a6077ae4b01d",
+      "log_sha256": "4d52714f4f9adccfb98b2695b08a37402455306bb31b794166efb0e0241c99c5"
+    },
+    {
+      "name": "campaign_014_tests",
+      "status": "passed",
+      "seconds": 9.119,
+      "commit": "be7d71759ba49971f39115237ebba09089f4d915",
+      "fingerprint": "c7850e29edb5b6a709e60164983a173fdfa008e2367f17ec57d884fb264a1575",
+      "log_sha256": "4806756bab2309585e75737b67962a9ebc5e3bf2536233e6fc871808f34a9eff"
+    },
+    {
+      "name": "v012_tests",
+      "status": "passed",
+      "seconds": 1.115,
+      "commit": "d4a995c8b6edbe9e55c41a755d629cb15ac203fa",
+      "fingerprint": "2f1e3e4942db1441501284ca5e73ca0a1414a62e21402d87a02cbb8076b00007",
+      "log_sha256": "4476e116bfbe1212692157db0370c61544feb6d0c6f3d30ff0b918fbb7aa54f8"
+    },
+    {
+      "name": "v0121_ui_tests",
+      "status": "passed",
+      "seconds": 3.416,
+      "commit": "d4a995c8b6edbe9e55c41a755d629cb15ac203fa",
+      "fingerprint": "2f1e3e4942db1441501284ca5e73ca0a1414a62e21402d87a02cbb8076b00007",
+      "log_sha256": "19da922d7e00037c06b58e0a3fbf09f6b9cc7a48cb6acdabcfec8a0196cdba15"
+    },
+    {
+      "name": "v0131_tests",
+      "status": "passed",
+      "seconds": 2.316,
+      "commit": "d4a995c8b6edbe9e55c41a755d629cb15ac203fa",
+      "fingerprint": "2f1e3e4942db1441501284ca5e73ca0a1414a62e21402d87a02cbb8076b00007",
+      "log_sha256": "623917dcc4d83edc53e0519085d67e22ec67ab42fba5867bbb75c2e1016394e7"
+    },
+    {
+      "name": "persistence_probe",
+      "status": "passed",
+      "seconds": 1.016,
+      "commit": "d4a995c8b6edbe9e55c41a755d629cb15ac203fa",
+      "fingerprint": "2f1e3e4942db1441501284ca5e73ca0a1414a62e21402d87a02cbb8076b00007",
+      "log_sha256": "fdfb51acec2836810755a2727295c4fa011f93bc63339adaef498e952beb232c"
+    },
+    {
+      "name": "generator_data_tests",
+      "status": "passed",
+      "seconds": 1.566,
+      "commit": "d4a995c8b6edbe9e55c41a755d629cb15ac203fa",
+      "fingerprint": "2f1e3e4942db1441501284ca5e73ca0a1414a62e21402d87a02cbb8076b00007",
+      "log_sha256": "64b6af7776a75b1c9f70596b9d6e830e1dc5da5ca085a24e1e76128199cd027c"
+    }
+  ],
+  "physical_android_tested": false,
+  "full_profile_rerun": false,
+  "apk_source_probe": "passed: production rejects dev commands; developer has isolated tools and infinite lives; actual APK resources load 500 levels/10 worlds and shop",
+  "apks": {
+    "prizma-v0.14.0.apk": {
+      "size": 108852279,
+      "sha256": "70454be88b2a1245ec7dfe934b226753e4d6a7ffd01027d665af17f9500c6365"
+    },
+    "prizma-v0.14.0-dev.apk": {
+      "size": 108852279,
+      "sha256": "b02de9abcd08c01ca40e577245435f568815a250696b2a09ecc4a9cd23b10100"
+    }
+  }
+}
