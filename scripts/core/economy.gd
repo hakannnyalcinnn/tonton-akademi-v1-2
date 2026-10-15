@@ -62,7 +62,11 @@ static func metrics(data: Dictionary) -> Dictionary:
  var e:=ensure(data);var result: Dictionary=e.stats.duplicate();result.levels=data.results.size();result.three_stars=0
  for key in data.results:
   if int(data.results[key].stars)==3:result.three_stars+=1
- result.worlds=data.get("world_rewards",[]).size();return result
+ var worlds: Dictionary={}
+ for id in data.get("world_rewards",[]):worlds[int(id)]=true
+ for world in preload("res://scripts/core/world_catalog.gd").all():
+  if data.results.has(str(int(world.end))):worlds[int(world.id)]=true
+ result.worlds=worlds.size();return result
 static func characters(data: Dictionary) -> Array:
  var result: Array=[]
  for c in rules().characters:
@@ -82,10 +86,10 @@ static func add_stat(data: Dictionary,key: String,value: int,at: int=-1) -> void
  if e.stats.has(key):e.stats[key]=mini(2147483647,int(e.stats[key])+maxi(0,value))
  for m in missions(data,at):
   if m.id==key:m.progress=mini(int(m.goal),int(m.progress)+maxi(0,value))
-static func action(data: Dictionary,event: Dictionary,board,at: int=-1) -> void:
+static func action(data: Dictionary,event: Dictionary,board,at: int=-1) -> bool:
  var e:=ensure(data,at)
  var key:="%d:%d:%d:%d"%[board.moves,board.serial,board.score,board.rng.state]
- if not e.run.is_empty() and str(e.run.get("last_action",""))==key:return
+ if not e.run.is_empty() and str(e.run.get("last_action",""))==key:return false
  if not e.run.is_empty():e.run.last_action=key
  var crystals:=0;var blue:=0;var rockets:=0;var combo:=false
  for frame in event.get("frames",[]):
@@ -101,6 +105,7 @@ static func action(data: Dictionary,event: Dictionary,board,at: int=-1) -> void:
  add_stat(data,"crystals",crystals,at);add_stat(data,"blue",blue,at);add_stat(data,"rockets",rockets,at)
  if combo:add_stat(data,"combos",1,at)
  if str(event.get("combo_kind",""))!="":add_stat(data,"combinations",1,at)
+ return true
 static func complete(data: Dictionary,board,stars: int) -> Dictionary:
  var e:=ensure(data)
  if e.run.is_empty() or int(e.run.level)!=int(board.level.id):begin_run(data,int(board.level.id),false,true)

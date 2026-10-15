@@ -59,7 +59,15 @@ with ZipFile(sys.argv[1]) as apk:
     for first,last in [(151,200),(201,250)]:
         rows=json.loads(apk.read(f'assets/data/levels-{first}-{last}.json'))['levels']
         assert [level['id'] for level in rows] == list(range(first,last+1))
-    assert json.loads(apk.read('assets/data/campaign.json'))['packages'][-1]['end'] == 250
+    campaign=json.loads(apk.read('assets/data/campaign.json'))
+    published=int(campaign['capacity']['published_levels'])
+    assert published==campaign['packages'][-1]['end']
+    ids=[]
+    for packet in campaign['packages']:
+        rows=json.loads(apk.read('assets/'+packet['path'].removeprefix('res://')))['levels']
+        assert [int(row['id']) for row in rows]==list(range(int(packet['start']),int(packet['end'])+1))
+        ids.extend(int(row['id']) for row in rows)
+    assert ids==list(range(1,published+1))
     assert 'lib/arm64-v8a/libgodot_android.so' in names
     assert 'lib/armeabi-v7a/libgodot_android.so' in names
     assert not any(name.startswith(('assets/tests/', 'assets/tools/')) for name in names)

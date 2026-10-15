@@ -963,6 +963,10 @@ func show_result_popup(won: bool,finale: bool=false) -> void:
 	if won and not save.data.economy.last_receipt.get("characters",[]).is_empty():face.texture=preload("res://scripts/ui/companion.gd").sprite(int(str(save.data.economy.last_receipt.characters[0]).get_slice("-",1)))
 	face.react("happy" if won else "sad")
 	if won:
+		var mission_ready:=Economy.missions(save.data).filter(func(m):return not m.claimed and int(m.progress)>=int(m.goal)).size()
+		var achievement_values:=Economy.metrics(save.data)
+		var achievement_ready: int=Economy.rules().achievements.filter(func(a):return a.id not in save.data.economy.achievement_claims and int(achievement_values.get(a.stat,0))>=int(a.goal)).size()
+		var award_summary:="%d görev · %d başarım ödülü hazır"%[mission_ready,achievement_ready]
 		var count:=Score.stars(board.score,board.level.stars)
 		for i in 3:
 			var star:=TextureRect.new();star.texture=Design.icon("ui",3);star.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;star.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;star.position=Vector2(175+i*67,377);star.size=Vector2(56,56);star.pivot_offset=Vector2(28,28);star.modulate=Color.WHITE if i<count else Color(.55,.59,.65,.4);star.set_meta("result_star",true);overlay.add_child(star)
@@ -973,12 +977,11 @@ func show_result_popup(won: bool,finale: bool=false) -> void:
 		var goals:=preload("res://scripts/ui/goals_panel.gd").new();goals.position=Vector2(83,479);goals.size=Vector2(480,112);goals.scale=Vector2(.78,.78);goals.quiet=true;overlay.add_child(goals);goals.configure(board.level.targets,board.collected)
 		if earned_treasure:
 			var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.position=Vector2(392,315);chest.size=Vector2(61,57);chest.quiet=save.data.settings.reduced_motion;overlay.add_child(chest);audio.play("chest")
-			label(overlay,"HAZİNE +%d kristal"%int(board.level.treasure.coins),Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
-		elif not save.data.economy.last_receipt.get("characters",[]).is_empty():label(overlay,"Yeni PRİZMA dostu koleksiyonuna katıldı!",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+			label(overlay,"HAZİNE +%d Kristal · %d başarım hazır"%[int(board.level.treasure.coins),achievement_ready],Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+		elif not save.data.economy.last_receipt.get("characters",[]).is_empty():label(overlay,"Yeni dost! · "+award_summary,Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		elif finale:label(overlay,str(metadata.reward)+" kaydedildi",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		else:
-			var ready:=Economy.missions(save.data).filter(func(m):return not m.claimed and int(m.progress)>=int(m.goal)).size()
-			label(overlay,"%d görev ödülü hazır · Ödüller menüsünden alabilirsin."%ready if ready>0 else "Kristallerin ve ilerlemen kaydedildi.",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
+			label(overlay,award_summary if mission_ready+achievement_ready>0 else "Kristallerin ve ilerlemen kaydedildi.",Rect2(80,568,380,24),13,Design.ACCENT,HORIZONTAL_ALIGNMENT_CENTER)
 		if not save.data.settings.reduced_motion and not save.data.settings.reduced_effects:
 			var confetti:=Celebration.new();confetti.world_finale=finale;confetti.world_theme=str(metadata.theme);confetti.ocean=int(metadata.id)==2;confetti.canyon=int(metadata.id)==3;overlay.add_child(confetti)
 		if int(board.level.id)<Catalog.count():button(overlay,"SONRAKİ BÖLÜM",Rect2(83,604,374,57),advance_after_win.bind(int(board.level.id)),true,22)

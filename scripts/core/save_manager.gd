@@ -256,8 +256,7 @@ func fail_run(board) -> bool:
 	return result.ok
 func record_action(board,event: Dictionary) -> bool:
 	var result:=economy_transaction(func(payload):
-		Economy.action(payload,event,board)
-		preload("res://scripts/core/adventure_progress.gd").action(payload,event)
+		if Economy.action(payload,event,board):preload("res://scripts/core/adventure_progress.gd").action(payload,event)
 		if board.outcome=="won":_complete(board)
 		elif board.outcome=="lost":Economy.fail(payload,int(board.level.id),infinite_lives);payload.active={}
 		else:payload.active=board.snapshot()

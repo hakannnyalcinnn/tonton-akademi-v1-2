@@ -31,9 +31,9 @@ func run() -> void:
   assert(pair>=0);game.on_swap(pair,pair+1)
   while game.board_view.busy:await process_frame
   assert(game.board.collected.giants==1)
-  game.dev_command("lose");assert(game.board.outcome=="lost")
+  game.dev_command("lose");assert(game.board.outcome=="lost" and game.save.infinite_lives and game.save.data.economy.lives==5)
  else:
-  assert(not game.developer_tools_available())
+  assert(not game.developer_tools_available() and not game.save.infinite_lives)
   game.start_level(1);await process_frame
   var state: Dictionary=game.board.snapshot()
   game.dev_command("win");game.dev_command("moves");game.dev_command("jump",237)
@@ -54,13 +54,17 @@ func run() -> void:
  assert(game.board_view.bomb_origin>=0 and game.board_view.duration>=.5)
  while game.board_view.busy:await process_frame
  game.selected_world=3;game.show_worlds();await process_frame
- assert(game.page.get_node("WorldCardsScroll").get_child(0).get_child_count()==5)
+ assert(game.page.get_node("WorldCardsScroll").get_child(0).get_child_count()==preload("res://scripts/core/world_catalog.gd").playable_worlds().size())
  assert(game.find_children("*","SubViewport",true,false).is_empty())
  game.open_world_map(3);await process_frame
  assert(game.screen=="map" and game.selected_world==3 and game.map_buttons.size()==50)
  assert(game.map_scroll.get_child(0).curve.point_count==51)
  var terrain=game.page.get_node("MapSceneBackdrop");assert(terrain.texture!=null and terrain.scroll==game.map_scroll)
  assert(game.page.get_node("WorldsButton").icon!=null and terrain.road_layer.material==null)
+ assert(game.Catalog.count()==500 and game.Worlds.playable_worlds().size()==10)
+ game.EconomyScreen.build(game,"shop");await process_frame
+ assert(game.overlay.get_node("EconomyPanel")!=null and not load("res://scripts/core/purchase_service.gd").new().available())
+ game.close_overlay()
  for biome in ["garden","ocean","canyon","cloud","lava"]:assert(ResourceLoader.exists("res://assets/casual/terrain-"+biome+".png"))
  game.request_level(101);await process_frame
  assert(game.overlay.find_child("PreviewLayout",true,false) is VBoxContainer)

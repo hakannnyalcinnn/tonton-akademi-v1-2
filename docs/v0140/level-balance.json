@@ -1,0 +1,1752 @@
+[
+  {
+    "id": 251.0,
+    "original": 23,
+    "moves": 16,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 252.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 253.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 254.0,
+    "original": 24,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 255.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 256.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 257.0,
+    "original": 24,
+    "moves": 20,
+    "strategy": "objective",
+    "winning_moves": 18
+  },
+  {
+    "id": 258.0,
+    "original": 23,
+    "moves": 23,
+    "strategy": "powers",
+    "winning_moves": 20
+  },
+  {
+    "id": 259.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 260.0,
+    "original": 26,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 261.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 262.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 263.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 264.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 265.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 266.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 267.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 268.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 269.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 270.0,
+    "original": 26,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 271.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 272.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 273.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 274.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 275.0,
+    "original": 23,
+    "moves": 16,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 276.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 277.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 278.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 279.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 280.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 281.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 282.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 283.0,
+    "original": 23,
+    "moves": 16,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 284.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 285.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 286.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 287.0,
+    "original": 24,
+    "moves": 20,
+    "strategy": "objective",
+    "winning_moves": 18
+  },
+  {
+    "id": 288.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 2
+  },
+  {
+    "id": 289.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 290.0,
+    "original": 26,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 14
+  },
+  {
+    "id": 291.0,
+    "original": 23,
+    "moves": 18,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 292.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 293.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 294.0,
+    "original": 24,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 295.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 296.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 297.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 298.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 299.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 300.0,
+    "original": 28,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 301.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 302.0,
+    "original": 23,
+    "moves": 16,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 303.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 304.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 305.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 306.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 307.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 308.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 309.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 310.0,
+    "original": 26,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 13
+  },
+  {
+    "id": 311.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 312.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 313.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 314.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 315.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 316.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 317.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 318.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 319.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 320.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 321.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 322.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 323.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 324.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 325.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 326.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 327.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 328.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 329.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 330.0,
+    "original": 26,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 331.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 332.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 2
+  },
+  {
+    "id": 333.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 334.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 335.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 336.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 337.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 338.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 339.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 340.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 341.0,
+    "original": 23,
+    "moves": 16,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 342.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 343.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 344.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 345.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 346.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 347.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 348.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 349.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 350.0,
+    "original": 28,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 351.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 352.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 353.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 2
+  },
+  {
+    "id": 354.0,
+    "original": 24,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 13
+  },
+  {
+    "id": 355.0,
+    "original": 23,
+    "moves": 21,
+    "strategy": "powers",
+    "winning_moves": 15
+  },
+  {
+    "id": 356.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 357.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 358.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 359.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 360.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 361.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 362.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 363.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 364.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 365.0,
+    "original": 23,
+    "moves": 20,
+    "strategy": "objective",
+    "winning_moves": 14
+  },
+  {
+    "id": 366.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 367.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 368.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 369.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 370.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 371.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 372.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "obstacles",
+    "winning_moves": 7
+  },
+  {
+    "id": 373.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 374.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 375.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 376.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 377.0,
+    "original": 24,
+    "moves": 19,
+    "strategy": "objective",
+    "winning_moves": 17
+  },
+  {
+    "id": 378.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 379.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 380.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 381.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 382.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 383.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 384.0,
+    "original": 24,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 385.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 386.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 387.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 388.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 389.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 390.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 391.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 392.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 393.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 394.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 395.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 396.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 397.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 398.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 399.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 400.0,
+    "original": 28,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 401.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 402.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 403.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 404.0,
+    "original": 24,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 405.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 406.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 407.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 408.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 2
+  },
+  {
+    "id": 409.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 410.0,
+    "original": 26,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 411.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 412.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 413.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 414.0,
+    "original": 24,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 415.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 416.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 417.0,
+    "original": 24,
+    "moves": 16,
+    "strategy": "objective",
+    "winning_moves": 14
+  },
+  {
+    "id": 418.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 419.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 420.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 421.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 422.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 423.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 424.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 425.0,
+    "original": 23,
+    "moves": 17,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 426.0,
+    "original": 23,
+    "moves": 17,
+    "strategy": "objective",
+    "winning_moves": 13
+  },
+  {
+    "id": 427.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 428.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 429.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 430.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 431.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 432.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 433.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 434.0,
+    "original": 24,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 435.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 436.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 437.0,
+    "original": 24,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 438.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 439.0,
+    "original": 23,
+    "moves": 19,
+    "strategy": "objective",
+    "winning_moves": 15
+  },
+  {
+    "id": 440.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 441.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 442.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 443.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 444.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 445.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 446.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 447.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 448.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 449.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 450.0,
+    "original": 28,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 451.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 452.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 453.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 454.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 455.0,
+    "original": 23,
+    "moves": 23,
+    "strategy": "objective",
+    "winning_moves": 22
+  },
+  {
+    "id": 456.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 457.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "obstacles",
+    "winning_moves": 11
+  },
+  {
+    "id": 458.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 459.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 460.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 461.0,
+    "original": 23,
+    "moves": 21,
+    "strategy": "objective",
+    "winning_moves": 15
+  },
+  {
+    "id": 462.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 463.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 464.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 465.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 466.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 467.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 468.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 469.0,
+    "original": 23,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 3
+  },
+  {
+    "id": 470.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 471.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 472.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 473.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 474.0,
+    "original": 24,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 475.0,
+    "original": 23,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 476.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 477.0,
+    "original": 24,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 478.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 479.0,
+    "original": 23,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 480.0,
+    "original": 26,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 7
+  },
+  {
+    "id": 481.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 482.0,
+    "original": 23,
+    "moves": 15,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 483.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 484.0,
+    "original": 24,
+    "moves": 8,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 485.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 486.0,
+    "original": 23,
+    "moves": 23,
+    "strategy": "objective",
+    "winning_moves": 23
+  },
+  {
+    "id": 487.0,
+    "original": 24,
+    "moves": 11,
+    "strategy": "objective",
+    "winning_moves": 9
+  },
+  {
+    "id": 488.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 4
+  },
+  {
+    "id": 489.0,
+    "original": 23,
+    "moves": 17,
+    "strategy": "objective",
+    "winning_moves": 13
+  },
+  {
+    "id": 490.0,
+    "original": 26,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 8
+  },
+  {
+    "id": 491.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 492.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 493.0,
+    "original": 23,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 10
+  },
+  {
+    "id": 494.0,
+    "original": 24,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 11
+  },
+  {
+    "id": 495.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 496.0,
+    "original": 23,
+    "moves": 9,
+    "strategy": "objective",
+    "winning_moves": 5
+  },
+  {
+    "id": 497.0,
+    "original": 24,
+    "moves": 14,
+    "strategy": "objective",
+    "winning_moves": 12
+  },
+  {
+    "id": 498.0,
+    "original": 23,
+    "moves": 12,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 499.0,
+    "original": 23,
+    "moves": 10,
+    "strategy": "objective",
+    "winning_moves": 6
+  },
+  {
+    "id": 500.0,
+    "original": 32,
+    "moves": 13,
+    "strategy": "objective",
+    "winning_moves": 7
+  }
+]

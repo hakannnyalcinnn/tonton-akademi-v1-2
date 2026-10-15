@@ -19,6 +19,20 @@ func run() -> void:
    var panel=game.overlay.get_node("EconomyPanel");check(panel.size.x<=492 and panel.size.y<=832,"Economy panel fits responsive overlay")
    for label in panel.find_children("*","Label",true,false):check(label.get_combined_minimum_size().x<=464,"Labels fit panel width")
    check(panel.find_child("EconomyScroll",true,false) is ScrollContainer,"Long content scrolls independently of close button")
+ game.EconomyScreen.build(game,"shop");await process_frame;await process_frame
+ var purchase: Button
+ for candidate in game.overlay.find_children("*","Button",true,false):
+  if candidate.text.begins_with("75 KRİSTAL"):purchase=candidate;break
+ check(purchase!=null,"Rocket product has real purchase action")
+ if purchase:
+  purchase.pressed.emit();await process_frame;await process_frame
+  check(game.save.data.adventure_progress.coins==425 and game.save.data.adventure_progress.inventory.rocket==3,"Shop button purchases real persisted inventory")
+ game.EconomyScreen.build(game,"login");await process_frame;await process_frame
+ var claim: Button
+ for candidate in game.overlay.find_children("*","Button",true,false):
+  if candidate.text=="HEDİYEMİ AL":claim=candidate;break
+ if claim:claim.pressed.emit();await process_frame
+ check(game.save.data.adventure_progress.coins==450,"Daily UI action delivers actual reward")
  game.close_overlay();game.save.data.economy.lives=0;game.save.data.economy.refill_at=E.now()+1800
  game.request_level(11);check(game.screen=="map" and game.life_wait_label!=null,"Zero lives blocks level preview and shows countdown")
  game.close_overlay();game.start_level(11);check(game.screen=="map","Direct gameplay admission also rejects zero lives")

@@ -18,7 +18,7 @@ func run() -> void:
  var before: Dictionary=game.save.data.results.duplicate(true)
  game.show_worlds();await process_frame;await process_frame
  var scroll=game.page.get_node("WorldCardsScroll");var cards=scroll.get_child(0).get_children()
- check(cards.size()==5,"Five world cards")
+ check(cards.size()==preload("res://scripts/core/world_catalog.gd").playable_worlds().size(),"Five world cards")
  for i in 5:
   check(int(cards[i].metadata.start)==i*50+1 and int(cards[i].metadata.end)==(i+1)*50,"World card ranges")
   check(cards[i].disabled==(i>=3),"World locks preserved")

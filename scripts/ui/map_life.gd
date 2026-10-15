@@ -20,7 +20,7 @@ func _ready() -> void:
  biome=str(metadata.get("decor_style",biome))
  var decor_world:=int(metadata.get("decor_world",clampi(world_id,1,5)))
  creature=preload("res://scripts/ui/companion.gd").sprite(decor_world)
- gem=CasualSkin.texture("gems",[4,1,0][clampi(world_id-3,0,2)],CasualSkin.GEMS)
+ gem=CasualSkin.texture("gems",[4,1,0][clampi(decor_world-3,0,2)],CasualSkin.GEMS)
  for i in 8:sprites.append(CasualSkin.texture("decor",i,CasualSkin.DECOR))
  if ResourceLoader.exists("res://assets/casual/map-landmarks.png"):
   var atlas: Texture2D=load("res://assets/casual/map-landmarks.png")

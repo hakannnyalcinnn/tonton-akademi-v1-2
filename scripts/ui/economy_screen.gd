@@ -29,7 +29,7 @@ static func build(game,tab: String="missions",notice: String="",celebrate: bool=
  E.ensure(game.save.data);var d: Dictionary=game.save.data;var e: Dictionary=d.economy
  game.open_overlay("","")
  for child in game.overlay.get_children():game.overlay.remove_child(child);child.queue_free()
- var panel:=PanelContainer.new();panel.name="EconomyPanel";panel.position=Vector2(24,66);panel.size=Vector2(492,832);panel.add_theme_stylebox_override("panel",Design.surface());game.overlay.add_child(panel)
+ var panel:=PanelContainer.new();panel.name="EconomyPanel";var height:=700 if tab=="shop" else 832;panel.position=Vector2(24,(960-height)/2);panel.size=Vector2(492,height);panel.add_theme_stylebox_override("panel",Design.surface());game.overlay.add_child(panel)
  var margin:=MarginContainer.new()
  for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,14)
  panel.add_child(margin);var layout:=VBoxContainer.new();layout.add_theme_constant_override("separation",10);margin.add_child(layout)
@@ -45,10 +45,10 @@ static func build(game,tab: String="missions",notice: String="",celebrate: bool=
   var message:=HBoxContainer.new();content.add_child(message);text(message,notice,16)
   if celebrate and new_character!="":
    icon(message,Companion.sprite(int(new_character.get_slice("-",1))),54)
-   if not d.settings.reduced_motion:
+   if not d.settings.reduced_motion and not d.settings.reduced_effects:
     var face: Control=message.get_child(message.get_child_count()-1);face.pivot_offset=Vector2(27,27);face.scale=Vector2(.7,.7);face.create_tween().tween_property(face,"scale",Vector2.ONE,.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
   elif celebrate:
-   var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.custom_minimum_size=Vector2(54,52);chest.quiet=d.settings.reduced_motion;message.add_child(chest)
+   var chest:=preload("res://scripts/ui/treasure_visual.gd").new();chest.custom_minimum_size=Vector2(54,52);chest.quiet=d.settings.reduced_motion or d.settings.reduced_effects;message.add_child(chest)
  if tab=="login":
   text(content,"YEDİ GÜNLÜK MACERA",20);text(content,"Her UTC takvim gününde bir hediye. Kaçırdığın günler seriyi silmez.",13)
   var taken:=int(e.login_day)>=E.day(d);var index: int=(int(e.login_index)-1)%7 if taken else int(e.login_index)%7
@@ -56,7 +56,7 @@ static func build(game,tab: String="missions",notice: String="",celebrate: bool=
   for i in 7:
    var c:=card(grid);c.get_parent().get_parent().size_flags_horizontal=Control.SIZE_EXPAND_FILL
    var row:=HBoxContainer.new();c.add_child(row);icon(row,preload("res://assets/casual/treasure-body.svg") if i==6 else reward_icon(E.rules().login[i]),38);text(row,"%d. GÜN %s"%[i+1,"✓" if i<index or (taken and i==index) else "★" if i==index else ""],16)
-   text(c,"Büyük sandık" if i==6 else reward_text(E.rules().login[i]),13)
+   text(c,"Büyük sandık · "+reward_text(E.rules().login[i]) if i==6 else reward_text(E.rules().login[i]),13)
   button(game,content,"BUGÜN ALINDI" if taken else "HEDİYEMİ AL",func():execute(game,"login",func(payload):return E.login(payload)),not taken)
  elif tab=="missions":
   text(content,"BUGÜNÜN GÖREVLERİ",20)
@@ -84,7 +84,8 @@ static func build(game,tab: String="missions",notice: String="",celebrate: bool=
   text(content,"BAŞARIMLAR",20);var values:=E.metrics(d)
   for entry in E.rules().achievements:
    var c:=card(content);var row:=HBoxContainer.new();c.add_child(row);icon(row,Design.icon("ui",3),42);text(row,entry.title,18)
+   text(c,str(entry.get("description","")),14)
    text(c,"%d / %d   ·   %s"%[mini(int(values.get(entry.stat,0)),int(entry.goal)),int(entry.goal),reward_text(entry.reward)],14)
    button(game,c,"ALINDI ✓" if entry.id in e.achievement_claims else "ÖDÜLÜ AL",func():execute(game,"achievements",func(payload):return E.claim_achievement(payload,entry.id)),entry.id not in e.achievement_claims and int(values.get(entry.stat,0))>=int(entry.goal))
- text(layout,"İlerlemen bu cihazda saklanır. Gerçek para satın alma kapalı.",12)
+ text(layout,"Birikimlerin ve dostların bu cihazda saklanır.",12)
  if E.clock_warning:text(layout,"Saat değişikliği algılandı; son güvenilir zaman kullanılıyor.",12)

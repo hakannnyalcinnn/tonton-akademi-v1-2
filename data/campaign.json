@@ -79,7 +79,8 @@
       "accent": "#a9a8f5",
       "reward": "Ayışığı Korusu Madalyası",
       "reward_id": "world-6-medal",
-      "success_text": "Ayışığı Korusu ışıldıyor!"
+      "success_text": "Ayışığı Korusu ışıldıyor!",
+      "path_color": "#a9b3d5"
     },
     {
       "id": 7,
@@ -95,7 +96,8 @@
       "accent": "#ffb1cf",
       "reward": "Mercan Sarayı Madalyası",
       "reward_id": "world-7-medal",
-      "success_text": "Mercan Sarayı ışıldıyor!"
+      "success_text": "Mercan Sarayı ışıldıyor!",
+      "path_color": "#e5c5bd"
     },
     {
       "id": 8,
@@ -111,7 +113,8 @@
       "accent": "#f5c777",
       "reward": "Yıldız Çölü Madalyası",
       "reward_id": "world-8-medal",
-      "success_text": "Yıldız Çölü ışıldıyor!"
+      "success_text": "Yıldız Çölü ışıldıyor!",
+      "path_color": "#e7c58f"
     },
     {
       "id": 9,
@@ -127,7 +130,8 @@
       "accent": "#8ee6e1",
       "reward": "Aurora Vadisi Madalyası",
       "reward_id": "world-9-medal",
-      "success_text": "Aurora Vadisi ışıldıyor!"
+      "success_text": "Aurora Vadisi ışıldıyor!",
+      "path_color": "#c4e1eb"
     },
     {
       "id": 10,
@@ -143,7 +147,8 @@
       "accent": "#7ce0aa",
       "reward": "Zümrüt Harabeleri Madalyası",
       "reward_id": "world-10-medal",
-      "success_text": "Zümrüt Harabeleri ışıldıyor!"
+      "success_text": "Zümrüt Harabeleri ışıldıyor!",
+      "path_color": "#b8c8a0"
     }
   ],
   "packages": [

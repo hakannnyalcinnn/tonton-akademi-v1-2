@@ -27,6 +27,7 @@ func _ready() -> void:
 func paint_road(canvas: CanvasItem) -> void:
  # Shared world canvas continues the path behind floating menus, without a clipped end.
  var soil:=Color("e6c595") if world_theme=="garden" else Color("d6d6af") if world_theme=="ocean" else Color("dfb290") if world_theme=="canyon" else Color("d7c8f5") if world_theme=="cloud" else Color("c7a1a5")
+ soil=Color(preload("res://scripts/core/world_catalog.gd").get_world(world_id).get("path_color",soil))
  canvas.draw_polyline(road,Color(.10,.14,.23,.14),86,true)
  canvas.draw_polyline(road,soil.darkened(.25),78,true)
  canvas.draw_polyline(road,soil.lightened(.25),72,true)

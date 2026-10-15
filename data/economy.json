@@ -122,7 +122,8 @@
       "reward": {
         "coins": 25,
         "character": "creature-1"
-      }
+      },
+      "description": "İlk bölümünü tamamla."
     },
     {
       "id": "three_stars",
@@ -131,7 +132,8 @@
       "goal": 1,
       "reward": {
         "rocket": 1
-      }
+      },
+      "description": "Bir bölümde üç yıldız kazan."
     },
     {
       "id": "ten",
@@ -140,7 +142,8 @@
       "goal": 10,
       "reward": {
         "coins": 75
-      }
+      },
+      "description": "10 farklı bölüm tamamla."
     },
     {
       "id": "fifty",
@@ -149,7 +152,8 @@
       "goal": 50,
       "reward": {
         "coins": 150
-      }
+      },
+      "description": "50 farklı bölüm tamamla."
     },
     {
       "id": "hundred",
@@ -158,7 +162,8 @@
       "goal": 100,
       "reward": {
         "coins": 250
-      }
+      },
+      "description": "100 farklı bölüm tamamla."
     },
     {
       "id": "rocket100",
@@ -167,7 +172,8 @@
       "goal": 100,
       "reward": {
         "prism": 2
-      }
+      },
+      "description": "Eşleşmelerle 100 roket oluştur."
     },
     {
       "id": "combo10",
@@ -176,7 +182,8 @@
       "goal": 10,
       "reward": {
         "coins": 100
-      }
+      },
+      "description": "10 özel güç birleşimi gerçekleştir."
     },
     {
       "id": "world1",
@@ -185,7 +192,8 @@
       "goal": 1,
       "reward": {
         "coins": 100
-      }
+      },
+      "description": "Bir dünyanın finalini tamamla."
     }
   ],
   "characters": [
