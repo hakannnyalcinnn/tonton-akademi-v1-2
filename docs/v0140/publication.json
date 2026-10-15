@@ -1,0 +1,71 @@
+{
+  "release": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/tag/v0.14.0",
+  "workflow": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/actions/runs/38689415727",
+  "published_at": "2026-10-15T05:55:41Z",
+  "assets": [
+    {
+      "name": "achievements.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/achievements.png",
+      "size": 431690,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "collection.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/collection.png",
+      "size": 473146,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "level-rewards.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/level-rewards.png",
+      "size": 588315,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "login.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/login.png",
+      "size": 437543,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "missions.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/missions.png",
+      "size": 427541,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "prizma-v0.14.0-dev.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/prizma-v0.14.0-dev.apk",
+      "size": 108852279,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "prizma-v0.14.0-gorseller.zip",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/prizma-v0.14.0-gorseller.zip",
+      "size": 9531727,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "prizma-v0.14.0.apk",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/prizma-v0.14.0.apk",
+      "size": 108852279,
+      "http_status": 206,
+      "access_verified": true
+    },
+    {
+      "name": "shop.png",
+      "url": "https://github.com/hakannnyalcinnn/tonton-akademi-v1-2/releases/download/v0.14.0/shop.png",
+      "size": 577282,
+      "http_status": 206,
+      "access_verified": true
+    }
+  ],
+  "physical_android_tested": false
+}
