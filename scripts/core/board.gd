@@ -1,4 +1,5 @@
 extends RefCounted
+const Evolution=preload("res://scripts/mechanics/evolution.gd")
 const Canyon=preload("res://scripts/mechanics/canyon_mechanics.gd")
 const Storm=preload("res://scripts/core/prizma_storm.gd")
 const Wave=preload("res://scripts/core/crystal_wave.gd")
@@ -29,6 +30,7 @@ const RULES := 2
 const MAX_CASCADES := 128
 
 enum State { READY, SWAPPING, CHECKING_MATCHES, REVERTING_SWAP, RESOLVING_MATCHES, PLAYING_EFFECTS, APPLYING_GRAVITY, REFILLING, CHECKING_CASCADES, CHECKING_OBJECTIVES, SHUFFLING, LEVEL_COMPLETED, LEVEL_FAILED, PAUSED }
+var evolution: Dictionary={}
 var canyon: Dictionary={}
 var recovery_failed:=false
 var state: State = State.READY
@@ -83,6 +85,8 @@ func _init(definition: Dictionary = {}) -> void:
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]: collected[key] = 0
 	canyon=Canyon.install(cells,level)
 	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:collected[key]=0
+	evolution=Evolution.install(cells,level)
+	for key in Evolution.TARGETS:collected[key]=0
 	adventure=preload("res://scripts/core/adventure.gd").initial(level)
 	collected.rescues=0;collected.bosses=0
 	Generator.repair_start(cells, rng, WIDTH, HEIGHT,palette)
@@ -102,7 +106,7 @@ func transition(next_state: State) -> void:
 	state_trace.append(next_state)
 
 func frame(kind: String, before: Array, extra: Dictionary = {}) -> void:
-	var item := {"kind": kind, "before": before, "after": cells.duplicate(true), "state": state, "direction": direction,"storm_energy":storm_charge(),"canyon":canyon.duplicate(true)}
+	var item := {"kind": kind, "before": before, "after": cells.duplicate(true), "state": state, "direction": direction,"storm_energy":storm_charge(),"canyon":canyon.duplicate(true),"evolution":evolution.duplicate(true)}
 	item.merge(extra)
 	frames.append(item)
 
@@ -178,7 +182,7 @@ func swap(a: int, b: int) -> Dictionary:
 		if vine_count==0:
 			var before_vine:=cells.duplicate(true)
 			var vine_started:=Time.get_ticks_usec()
-			var growing:=Vines.spread(cells,int(level.get("vine_max",6)),WIDTH,HEIGHT)
+			var growing:=Vines.spread(cells,int(level.get("vine_max",6)),WIDTH,HEIGHT,evolution.nodes.filter(func(n):return not n.done and n.kind!="cargo").map(func(n):return int(n.index)))
 			Metrics.elapsed("vine_logic",vine_started)
 			if not growing.is_empty():
 				frame("vine",before_vine,{"growth":growing})
@@ -216,6 +220,7 @@ func activate(index: int, selected_color: int = -1) -> Dictionary:
 
 func storm_charge() -> int:return energy*Storm.COST+energy_blocks
 func begin_action(origin: int=0) -> void:
+	Evolution.begin(evolution)
 	last_match_origin=origin
 	portal_used.clear();fountain_used.clear();movement_queue.clear()
 	action_match_stages=0;action_magnet_used=false;action_wave_used=false;action_storm_used=false;action_combo="";action_virtual=[]
@@ -224,6 +229,12 @@ func credit_storm(normal_count: int) -> void:
 	var amount:=energy_blocks+normal_count
 	energy+=amount/Storm.COST;energy_blocks=amount%Storm.COST
 func complete_action(event: Dictionary,selected_color: int) -> void:
+	var evolution_before:=cells.duplicate(true)
+	var device_changes:=Evolution.advance(cells,evolution,make_cell)
+	if not device_changes.is_empty():
+		frame("evolution",evolution_before,{"evolution_events":device_changes,"collected":collected.duplicate()})
+		settle(true)
+		merge_event(event,resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count)))
 	var magnetic_before:=cells.duplicate(true)
 	var magnetic_events: Array=[]
 	if not action_magnet_used:
@@ -234,7 +245,7 @@ func complete_action(event: Dictionary,selected_color: int) -> void:
 			pending_portal_arrivals[int(cells[motion.a].id)]=true
 			pending_portal_arrivals[int(cells[motion.b].id)]=true
 		frame("magnet",magnetic_before,{"magnetic":magnetic_events,"collected":collected.duplicate()})
-		if cells.any(func(c):return c==null):settle(true)
+		if cells.any(func(c):return c==null) or cells.slice(64).any(func(c):return c!=null and c.get("delivery",false)):settle(true)
 		merge_event(event,resolve(find_matches(),[],[],-1,selected_color,false,false,false,int(event.cascade_count)))
 	apply_crystal_wave(event,selected_color)
 	if level.gravity and level.get("automatic_storm",true) and energy>0 and not action_storm_used and not event.cascade_guard:
@@ -352,7 +363,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 			cursor += 1
 		var unique: Array = []
 		for i in removed:
-			if i >= 0 and i < cells.size() and cells[i] != null and not cells[i].get("fixed", false) and i not in unique: unique.append(i)
+			if i >= 0 and i < cells.size() and cells[i] != null and not cells[i].get("fixed", false) and not cells[i].get("delivery",false) and i not in unique: unique.append(i)
 		unique.sort()
 		var effective_colors: Dictionary={}
 		for component in matches:
@@ -369,7 +380,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 			var chain:=Chain.resolve(cells,removed,selected_color,effective_colors,collected,WIDTH,HEIGHT,action_virtual if combined else [])
 			triggered=chain.triggered;mechanic_events=chain.mechanics;effect_events=chain.events
 			for i in chain.removed:
-				if cells[i]!=null and not cells[i].get("fixed",false) and i not in unique:
+				if cells[i]!=null and not cells[i].get("fixed",false) and not cells[i].get("delivery",false) and i not in unique:
 					unique.append(i)
 					effective_colors[i]=selected_color if Traits.flexible(cells[i]) and Traits.supports(cells[i],selected_color) else int(cells[i].c)
 		else:mechanic_events=Mechanics.wave(cells,unique,removed,triggered,normal_colors,collected,WIDTH,HEIGHT,action_virtual if combined else [])
@@ -413,6 +424,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 			for source in triggered:
 				for index in Powers.area(source,before[source].p,before,WIDTH,selected_color):
 					if index not in special_area:special_area.append(index)
+		var evolution_events:=Evolution.wave(cells,evolution,unique,removed,normal_colors,collected,special or combined or not triggered.is_empty())
 		var canyon_events:=Canyon.wave(cells,canyon,unique,canyon_direct,canyon_colors,special or not triggered.is_empty() or combined,collected,special_area)
 		var normal_count := 0
 		for i in unique:
@@ -440,7 +452,7 @@ func resolve(matches: Array, extra: Array, preferred: Array, primary_color: int,
 		var points: int = Score.move_points(normal_count, matched.size(), resonated, special or not triggered.is_empty(), combined, depth)
 		score += points
 		transition(State.PLAYING_EFFECTS)
-		frame("clear", before, {"removed": unique, "points": points, "score": score, "collected":collected.duplicate(), "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events,"adventure_events":adventure_events,"adventure":adventure.duplicate(true),"canyon_events":canyon_events,"canyon":canyon.duplicate(true), "beams":beams, "selected_color":selected_color, "colors":effective_colors, "origin":last_match_origin,"combo_kind":action_combo if combined else "","virtual_powers":action_virtual if combined else []})
+		frame("clear", before, {"removed": unique, "points": points, "score": score, "collected":collected.duplicate(), "special": not triggered.is_empty(), "combo": depth, "multiplier": mini(depth, 5), "resonated": resonated, "creations": creations, "triggered": triggered, "mechanics": mechanic_events, "effects":effect_events,"adventure_events":adventure_events,"evolution_events":evolution_events,"adventure":adventure.duplicate(true),"canyon_events":canyon_events,"canyon":canyon.duplicate(true), "beams":beams, "selected_color":selected_color, "colors":effective_colors, "origin":last_match_origin,"combo_kind":action_combo if combined else "","virtual_powers":action_virtual if combined else []})
 		Metrics.elapsed("clear_logic", clear_started)
 		var pre_paint:=cells.duplicate(true) if cells.any(func(c):return c!=null and c.get("obstacle",{}).get("kind","")=="fountain") else []
 		var paint_started:=Time.get_ticks_usec()
@@ -491,6 +503,13 @@ func settle(record: bool = false) -> void:
 	pending_portal_arrivals.clear()
 	Metrics.elapsed("gravity_logic", gravity_started)
 	if record and portals.is_empty():frame("fall",before)
+	# Cargo exits are processed after compaction and before normal refill.
+	for delivery_pass in 9:
+		var cargo_before:=cells.duplicate(true)
+		var delivered:=Evolution.deliver(cells,evolution,collected)
+		if delivered.is_empty():break
+		if record:frame("evolution",cargo_before,{"evolution_events":delivered,"collected":collected.duplicate()})
+		Bubble.compact(cells,WIDTH,HEIGHT,direction)
 	before = cells.duplicate(true) if record else []
 	transition(State.REFILLING)
 	var refill_started := Time.get_ticks_usec()
@@ -581,7 +600,7 @@ func resume() -> void:
 	if state == State.PAUSED: state = paused_state
 
 func snapshot() -> Dictionary:
-	return {"adventure":adventure.duplicate(true),"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":4,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
+	return {"evolution":evolution.duplicate(true),"adventure":adventure.duplicate(true),"recovery_failed":recovery_failed,"canyon":canyon.duplicate(true),"level_definition":canonical_definition(level),"gameplay_version":4,"move_budget":initial_moves,"objective_stage":objective_stage,"vine_count":vine_count,"rules": RULES, "state": stable_state(), "level_id": int(level.id), "cells": cells.duplicate(true), "moves": moves, "score": score, "collected": collected.duplicate(), "direction": direction, "energy": energy, "energy_blocks": energy_blocks, "serial": serial, "rng": rng.state, "resonance_color": resonance.color, "resonance_count": resonance.count, "outcome": outcome, "refill_stream": refill_stream.duplicate()}
 
 static func whole(value: Variant, minimum: int, maximum: int) -> bool:
 	if not (value is int or value is float): return false
@@ -616,12 +635,19 @@ func restore(data: Dictionary) -> bool:
 		for layer in ["armor","obstacle","trait","motion"]:
 			if cell.has(layer):
 				if not cell[layer] is Dictionary: return false
-				normalized_cell[layer] = cell[layer].duplicate(true)
+				normalized_cell[layer] = canonical_definition(cell[layer])
+		if cell.has("delivery"):
+			if cell.delivery!=true:return false
+			normalized_cell.delivery=true
+		if cell.has("evolution"):
+			if not cell.evolution is Dictionary:return false
+			normalized_cell.evolution=canonical_definition(cell.evolution)
 		if cell.has("canyon"):
 			if not cell.canyon is Dictionary or cell.canyon.get("kind","") not in ["void","giant","magnet","core"] or not whole(cell.canyon.get("anchor",-1),0,71) or not cell.get("fixed",false):return false
-			normalized_cell.canyon=cell.canyon.duplicate(true)
+			normalized_cell.canyon=canonical_definition(cell.canyon)
 		if not Registry.valid_cell(normalized_cell): return false
 		normalized.append(normalized_cell)
+	if not Evolution.valid(canonical_definition(data.get("evolution",evolution)),level,normalized,data.collected):return false
 	if not Canyon.valid_state(canonical_definition(data.get("canyon",canyon)),level,normalized):return false
 	var flexible_count:=0
 	for cell in normalized:
@@ -640,6 +666,7 @@ func restore(data: Dictionary) -> bool:
 	if data.outcome == "playing" and data.moves == 0: return false
 	objective_stage=int(data.get("objective_stage",0))
 	vine_count=int(data.get("vine_count",0))
+	evolution=canonical_definition(data.get("evolution",evolution))
 	canyon=canonical_definition(data.get("canyon",canyon))
 	cells = normalized
 	initial_moves=int(data.get("move_budget",maxi(int(level.moves),int(level.get("legacy_moves",level.moves)))))
@@ -651,6 +678,8 @@ func restore(data: Dictionary) -> bool:
 	for key in ["flowers","ice","stones","locks","duals","shifts","pins","vines","crates","mirrors","bridges","fountains","bubbles","conveyors","seals","portals"]:
 		if not collected.has(key): collected[key] = 0
 	for key in ["floors","giants","magnets","cores","shield0","shield1","shield2","shield3"]:
+		if not collected.has(key):collected[key]=0
+	for key in Evolution.TARGETS:
 		if not collected.has(key):collected[key]=0
 	direction = "down"
 	energy = int(data.energy)
@@ -683,7 +712,7 @@ static func canonical_definition(value: Variant) -> Variant:
 func deploy_power(index: int,kind: String) -> Dictionary:
 	if not available() or index<0 or index>=cells.size() or kind not in ["rocket_h","prism"]:return {"accepted":false}
 	var cell=cells[index]
-	if cell==null or cell.get("fixed",false) or cell.p!="" or cell.has("obstacle") or cell.has("armor") or cell.has("trait") or cell.has("motion"):return {"accepted":false}
+	if cell==null or cell.get("fixed",false) or cell.get("delivery",false) or cell.p!="" or cell.has("obstacle") or cell.has("armor") or cell.has("trait") or cell.has("motion"):return {"accepted":false}
 	frames.clear();var before:=cells.duplicate(true);cell.p=kind
 	frame("trait",before,{"traits":[]})
 	return {"accepted":true,"attempted":true,"frames":frames.duplicate(),"helper":true,"points":0}

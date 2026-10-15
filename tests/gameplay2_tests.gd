@@ -81,7 +81,7 @@ func run() -> void:
  var data:=Save.defaults();data.version=2;data.unlocked=100;data.active=active;data.world_rewards=[1];data.settings.music=false
  var file:=FileAccess.open(path,FileAccess.WRITE);file.store_string(JSON.stringify(data));file.close()
  var saved=Save.new(path)
- check(saved.data.version==3 and not saved.read_only and FileAccess.file_exists(path+".v2-before-gameplay2"),"v2 archived and migrated without reset")
+ check(saved.data.version==Save.SCHEMA and not saved.read_only and FileAccess.file_exists(path+".v2-before-gameplay2"),"v2 archived and migrated without reset")
  check(saved.data.active.level_definition.targets==Save.canonical(legacy.levels[99].targets) and saved.data.active.moves==52,"old active goals and remaining moves preserved")
  check(saved.data.world_rewards==[1] and not saved.data.settings.music,"rewards and settings preserved")
  check(saved.flush() and Save.new(path).data.active==saved.data.active,"upgraded save survives disk reopen")

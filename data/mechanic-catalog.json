@@ -386,6 +386,86 @@
       "sound": "core_break",
       "title": "Prizma Çekirdeği",
       "hint": "Dört renk kalkanını doldur; çekirdeği özel güçle aç."
+    },
+    {
+      "id": 21,
+      "kind": "cargo",
+      "first_level": 61,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "bounded_action",
+        "reviewed_layout"
+      ],
+      "compatible": [],
+      "visual": "res://assets/casual/evolution-cargo.svg",
+      "sound": "evolution-cargo",
+      "title": "Kristal Teslimatı",
+      "hint": "Sandığın altını temizle; alt çıkışa indir."
+    },
+    {
+      "id": 22,
+      "kind": "shutter",
+      "first_level": 151,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "bounded_action",
+        "reviewed_layout"
+      ],
+      "compatible": [],
+      "visual": "res://assets/casual/evolution-shutter.svg",
+      "sound": "evolution-shutter",
+      "title": "Zaman Kapısı",
+      "hint": "Hamlelerle açılır; açık hücrede eşleştir veya güçle kır."
+    },
+    {
+      "id": 23,
+      "kind": "relay",
+      "first_level": 301,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "bounded_action",
+        "reviewed_layout"
+      ],
+      "compatible": [],
+      "visual": "res://assets/casual/evolution-relay.svg",
+      "sound": "evolution-relay",
+      "title": "Röle Ağı",
+      "hint": "Aynı numaralı röleleri tek hamlede etkinleştir."
+    },
+    {
+      "id": 24,
+      "kind": "key_gate",
+      "first_level": 351,
+      "difficulty": 2,
+      "conditions": [
+        "distinct_cells",
+        "bounded_action",
+        "reviewed_layout"
+      ],
+      "compatible": [],
+      "visual": "res://assets/casual/evolution-key.svg",
+      "sound": "evolution-key",
+      "title": "Anahtar ve Bağlı Kapı",
+      "hint": "Anahtarın yanında eşleştir; aynı numaralı kapıyı aç."
+    },
+    {
+      "id": 25,
+      "kind": "balance",
+      "first_level": 401,
+      "difficulty": 3,
+      "conditions": [
+        "distinct_cells",
+        "bounded_action",
+        "reviewed_layout"
+      ],
+      "compatible": [],
+      "visual": "res://assets/casual/evolution-balance.svg",
+      "sound": "evolution-balance",
+      "title": "Denge Kristali",
+      "hint": "İki rengi topla, farkı en fazla ikiye indir."
     }
   ],
   "reviewed_combinations": [

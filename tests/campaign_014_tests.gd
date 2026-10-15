@@ -12,7 +12,7 @@ func check(ok: bool,message: String) -> void:
  if not ok:errors+=1;push_error(message)
 func run() -> void:
  check(L.count()==500 and W.all().size()==10 and W.capacity()==10000,"500 published definitions / 10 worlds / capacity10000")
- var rows=JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v0140-witnesses.json"));var layouts: Dictionary={}
+ var rows=JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v0140-witnesses.json"));rows.merge(JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/v0141-witnesses.json")),true);var layouts: Dictionary={}
  for n in range(1,501):
   var d:=L.get_level(n);check(int(d.id)==n and L.validate(d),"Every existing/new level loads "+str(n))
   if n<=250:continue

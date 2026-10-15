@@ -4,6 +4,7 @@ const Objectives = preload("res://scripts/mechanics/objective_manager.gd")
 
 static var cache: Array = []
 static var adventures: Dictionary={}
+static var evolution_levels: Dictionary={}
 
 const Worlds=preload("res://scripts/core/world_catalog.gd")
 static var loaded: Dictionary={}
@@ -38,6 +39,18 @@ static func get_level(number: int) -> Dictionary:
 
 static func decorate(source: Dictionary) -> Dictionary:
 	var definition: Dictionary=source.duplicate(true)
+	if evolution_levels.is_empty():evolution_levels=JSON.parse_string(FileAccess.get_file_as_string("res://data/evolution-levels.json")).levels
+	var evolution_addition: Dictionary=evolution_levels.get(str(int(definition.id)),{})
+	if not evolution_addition.is_empty():
+		definition.evolution=evolution_addition.evolution.duplicate(true)
+		definition.evolution_revision=1
+		definition.mechanics=definition.get("mechanics",[])+evolution_addition.get("mechanics",[])
+		for flag in ["vine_enabled","vine_max","adventure"]:
+			if evolution_addition.has(flag):definition[flag]=evolution_addition[flag].duplicate(true) if evolution_addition[flag] is Dictionary else evolution_addition[flag]
+		definition.targets.merge(evolution_addition.targets,true)
+		for key in ["moves","layout","powers"]:
+			if evolution_addition.has(key):definition[key]=evolution_addition[key].duplicate(true) if evolution_addition[key] is Array or evolution_addition[key] is Dictionary else evolution_addition[key]
+		if definition.has("objective_stages"):definition.objective_stages[-1].merge(evolution_addition.targets,true)
 	if adventures.is_empty():adventures=JSON.parse_string(FileAccess.get_file_as_string("res://data/adventure-levels.json")).levels
 	var addition: Dictionary=adventures.get(str(int(definition.id)),{})
 	if addition.has("treasure"):definition.treasure=addition.treasure.duplicate(true)
@@ -115,4 +128,5 @@ static func validate(level: Dictionary) -> bool:
 		if spec.kind in ["bridge","pin"] and level.id<=50 and not level.get("development_only",false): return false
 		if spec.kind=="dual" or spec.kind=="bridge": flexible_count+=1
 	if not preload("res://scripts/mechanics/canyon_mechanics.gd").validate(level):return false
+	if not preload("res://scripts/mechanics/evolution.gd").validate(level):return false
 	return not level.targets.is_empty() and flexible_count<=Registry.Traits.MAX_FLEXIBLE

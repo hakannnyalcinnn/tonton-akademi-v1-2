@@ -2,7 +2,7 @@ extends RefCounted
 ## Pure crystal capabilities and one hook per successful player swap.
 const MAX_FLEXIBLE := 8
 static func normal(cell: Variant) -> bool:
-	return cell!=null and cell.p=="" and not cell.get("fixed",false)
+	return cell!=null and cell.p=="" and not cell.get("fixed",false) and not cell.get("delivery",false)
 static func domains(cell: Variant) -> Array:
 	if not normal(cell): return []
 	var t: Dictionary=cell.get("trait",{})

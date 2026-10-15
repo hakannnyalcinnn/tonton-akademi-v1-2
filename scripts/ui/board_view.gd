@@ -303,7 +303,7 @@ func next_frame() -> void:
 	origins.clear()
 	for i in previous.size():
 		if previous[i] != null: origins[previous[i].id] = cell_position(i)
-	duration = 0.02 if reduced_motion else {"swap": 0.16, "revert": 0.12, "clear": 0.17, "fall": 0.12, "refill": 0.13, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.48,"crystal_wave":.22}.get(current.kind, 0.12)
+	duration = 0.02 if reduced_motion else {"evolution":.22,"swap": 0.16, "revert": 0.12, "clear": 0.17, "fall": 0.12, "refill": 0.13, "shuffle": 0.26,"magnet":.20,"trait":0.16,"portal":0.26,"vine":0.19,"paint":.22,"bubble":.14,"conveyor":.20,"seal":.20,"storm":.48,"crystal_wave":.22}.get(current.kind, 0.12)
 	bomb_impact_sent=false
 	bomb_origin=-1
 	bomb_sources.clear()
@@ -351,7 +351,7 @@ func next_frame() -> void:
 	elif current.kind in ["fall","refill"] and previous!=target:feedback.emit("fall_group")
 	age = 0
 	board.visual_phase(int(current.state))
-	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave","shuffle","magnet"]:
+	if current.kind in ["portal","vine","paint","bubble","conveyor","seal","trait","storm","crystal_wave","shuffle","magnet","evolution"]:
 		environment_started.emit(current)
 		start_environment(current)
 		if current.kind in ["storm","crystal_wave"]:
@@ -617,6 +617,7 @@ func _draw() -> void:
 	if drag_index >= 0:
 		draw_texture_rect(GLOW,Rect2(cell_position(drag_index)+drag_offset+Vector2(0,6),Vector2(CELL,CELL)),false,Color(0,0,0,.5))
 		draw_cell(displayed[drag_index], Rect2(cell_position(drag_index) + drag_offset, Vector2(CELL, CELL)), true)
+	draw_evolution(current.get("evolution",board.evolution) if busy else board.evolution,t)
 	if busy and current.kind in ["storm","crystal_wave"]:
 		var center:=Vector2(238,268) if current.kind=="storm" else cell_position(int(current.origin))+Vector2(28,28)
 		var color: Color=Color("b5f4ff") if current.kind=="storm" else Palette.COLORS[int(current.color)].lightened(.4)
@@ -786,6 +787,10 @@ func _draw() -> void:
 
 func draw_cell(cell: Dictionary, rect: Rect2, highlighted: bool, match_color: int = -1) -> void:
 	var center := rect.get_center()
+	if cell.get("delivery",false):
+		draw_texture_rect(preload("res://assets/casual/evolution-cargo.svg"),rect.grow(-3),false);return
+	if cell.has("evolution"):
+		return
 	if cell.has("canyon"):
 		return
 	var pulse := 1.035 if highlighted else 1.0
@@ -999,3 +1004,31 @@ func draw_large_shards(center: Vector2,t: float) -> void:
 		var source:=Rect2(region.position+corner*region.size*.5,region.size*.5)
 		var dest:=Rect2(fitted.position+corner*fitted.size*.5+axis*(10+t*35),fitted.size*.5)
 		draw_texture_rect_region(canyon_atlas,dest,source,Color(1,1,1,1-t))
+
+func draw_evolution(state: Dictionary,phase: float) -> void:
+	for n in state.get("nodes",[]):
+		if n.kind!="relay" or n.done:continue
+		for other in state.nodes:
+			if other.kind=="relay" and other.group==n.group and int(other.index)>int(n.index) and not other.done:
+				draw_line(cell_position(int(n.index))+Vector2(28,28),cell_position(int(other.index))+Vector2(28,28),Color(.5,1,1,.7 if n.lit else .25),2,true)
+	for n in state.get("nodes",[]):
+		if n.done or n.kind=="cargo":continue
+		var rect:=Rect2(cell_position(int(n.index))+Vector2(3,3),Vector2(50,50))
+		if n.kind=="shutter" and n.open:
+			draw_style_box(Palette.panel(Color(0,0,0,0),8,Color("ffe3a0")),rect.grow(1));continue
+		var texture: Texture2D=preload("res://scripts/ui/goal_registry.gd").icon({"shutter":"shutters","relay":"relays","key":"keys","gate":"gates","balance":"balances"}[n.kind])
+		draw_texture_rect(texture,rect,false,Color("c3ffff") if n.lit else Color.WHITE)
+		var caption: String=str(int(n.group)) if n.has("group") else "%d:%d ≥%d"%[int(n.left),int(n.right),int(n.need)] if n.kind=="balance" else ""
+		if caption!="":draw_string(ThemeDB.fallback_font,rect.position+Vector2(12,47),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color.WHITE)
+		if n.kind=="balance":
+			for k in 2:draw_circle(rect.position+Vector2(9+k*31,8),5,Palette.COLORS[int(n.colors[k])])
+	if busy:
+		for e in current.get("evolution_events",[]):
+			var center:=cell_position(int(e.index))+Vector2(28,28)
+			draw_arc(center,8+phase*42,0,TAU,20,Color(.7,1,.9,(1-phase)*.85),3,true)
+			if e.kind=="cargo":
+				var extent:=Vector2.ONE*(48-12*phase);var point:=center+Vector2(0,-phase*50)
+				draw_texture_rect(preload("res://assets/casual/evolution-cargo.svg"),Rect2(point-extent/2,extent),false,Color(1,1,1,1-phase))
+			if e.kind=="key" and e.opened:
+				for target_event in current.evolution_events:
+					if target_event.kind=="gate":draw_line(center,center.lerp(cell_position(int(target_event.index))+Vector2(28,28),phase),Color(1,.9,.5,1-phase*.6),3,true)

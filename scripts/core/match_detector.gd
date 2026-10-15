@@ -4,7 +4,7 @@ const Flexible=preload("res://scripts/core/flexible_match_resolver.gd")
 ## Straight-line Match-3 scanner. Specials and fixed cells never form color runs.
 
 static func normal(cell: Variant) -> bool:
-	return cell != null and cell.p == "" and not cell.get("fixed", false)
+	return cell != null and cell.p == "" and not cell.get("fixed", false) and not cell.get("delivery",false)
 
 static func neighbors(index: int, width: int, height: int) -> Array:
 	var result: Array = []
@@ -118,7 +118,7 @@ static func legal_swaps(cells: Array, width: int, height: int) -> Array:
 static func has_move(cells: Array, width: int, height: int) -> bool:
 	# An isolated movable power still has a legal tap activation (color choice included).
 	for cell in cells:
-		if cell != null and not cell.get("fixed",false) and cell.p != "": return true
+		if cell != null and not cell.get("fixed",false) and not cell.get("delivery",false) and cell.p != "": return true
 	for a in cells.size():
 		for b in neighbors(a, width, height):
 			if b > a and can_swap(cells, a, b, width, height): return true

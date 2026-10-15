@@ -40,6 +40,23 @@ static func preview(board,a: int,b: int) -> Dictionary:
   else:
    for i in removed:
     if Match.normal(probe[i]) and phase.colors.has(int(probe[i].c)):objective+=10
+ for node in board.evolution.get("nodes",[]):
+  if node.done:continue
+  var anchor:=int(node.index)
+  var hit: bool=Match.neighbors(anchor,8,9).any(func(i):return i in removed) or (special and anchor in removed)
+  if node.kind in ["key","relay"] and hit:objective+=100
+  if node.kind=="shutter" and ((node.open and anchor in removed) or (special and anchor in removed)):objective+=110
+  if node.kind=="cargo":
+   for i in probe.size():
+    if probe[i]!=null and probe[i].get("delivery",false):
+     for target in removed:
+      if int(target)%8==i%8 and int(target)>i:objective+=30+float(target)/8
+  if node.kind=="balance":
+   for i in removed:
+    if not Match.normal(probe[i]):continue
+    if int(probe[i].c)==int(node.colors[0]):objective+=14 if node.left<=node.right else -8
+    if int(probe[i].c)==int(node.colors[1]):objective+=14 if node.right<=node.left else -8
+   if special and anchor in removed:objective+=90
  var hits:=Damage.plan(probe,removed,removed,[],8,9)
  obstruction+=hits.size()*12
  for key in board.canyon.giants:

@@ -3,7 +3,7 @@ const E=preload("res://scripts/core/economy.gd")
 const Design=preload("res://scripts/ui/ui_theme.gd")
 const Companion=preload("res://scripts/ui/companion.gd")
 static func text(parent: Node,value: String,font_size: int=16) -> Label:
- var l:=Label.new();l.text=value;l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;l.add_theme_font_size_override("font_size",font_size);l.add_theme_color_override("font_color",Design.INK);l.size_flags_horizontal=Control.SIZE_EXPAND_FILL;parent.add_child(l);return l
+ var l:=Label.new();l.text=value;l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;l.add_theme_font_size_override("font_size",font_size);l.add_theme_color_override("font_color",Design.INK);l.mouse_filter=Control.MOUSE_FILTER_IGNORE;l.size_flags_horizontal=Control.SIZE_EXPAND_FILL;parent.add_child(l);return l
 static func icon(parent: Node,texture: Texture2D,extent: int=56) -> void:
  var t:=TextureRect.new();t.texture=texture;t.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;t.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;t.custom_minimum_size=Vector2(extent,extent);t.mouse_filter=Control.MOUSE_FILTER_IGNORE;parent.add_child(t)
 static func card(parent: Node) -> VBoxContainer:
@@ -39,7 +39,7 @@ static func build(game,tab: String="missions",notice: String="",celebrate: bool=
  var tabs:=GridContainer.new();tabs.columns=3;tabs.add_theme_constant_override("h_separation",6);tabs.add_theme_constant_override("v_separation",6);layout.add_child(tabs)
  for row in [["login","7 Gün"],["missions","Görevler"],["shop","Mağaza"],["collection","Dostlar"],["achievements","Başarımlar"]]:
   var b:=button(game,tabs,row[1],func():build(game,row[0]));b.size_flags_horizontal=Control.SIZE_EXPAND_FILL;b.modulate=Color("ffe3a7") if tab==row[0] else Color.WHITE
- var scroll:=ScrollContainer.new();scroll.name="EconomyScroll";scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;layout.add_child(scroll)
+ var scroll:=preload("res://scripts/ui/world_scroll.gd").new();scroll.name="EconomyScroll";scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;layout.add_child(scroll)
  var content:=VBoxContainer.new();content.name="EconomyContent";content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
  if notice!="":
   var message:=HBoxContainer.new();content.add_child(message);text(message,notice,16)
@@ -78,8 +78,9 @@ static func build(game,tab: String="missions",notice: String="",celebrate: bool=
   var unlocked:=E.characters(d)
   for entry in E.rules().characters:
    var c:=card(content);var row:=HBoxContainer.new();c.add_child(row)
-   var portrait:=TextureRect.new();portrait.texture=Companion.sprite(int(entry.world));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.custom_minimum_size=Vector2(88,88);portrait.modulate=Color.WHITE if entry.id in unlocked else Color(.5,.5,.6,.55);row.add_child(portrait)
+   var portrait:=TextureRect.new();portrait.texture=Companion.sprite(int(entry.world));portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.mouse_filter=Control.MOUSE_FILTER_IGNORE;portrait.custom_minimum_size=Vector2(88,88);portrait.modulate=Color.WHITE if entry.id in unlocked else Color(.5,.5,.6,.55);row.add_child(portrait)
    var info:=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(info);text(info,entry.name,20);text(info,str(game.Worlds.get_world(int(entry.world)).title),14);text(info,"AÇIK ✓" if entry.id in unlocked else "%d. bölümü tamamla veya kurtarma kafesini aç.%s"%[int(entry.level)," İlk Adım başarımı da açar." if entry.id=="creature-1" else ""],13);text(c,entry.description,14)
+   button(game,c,"DOSTU İNCELE",func():build(game,"collection",entry.name+" · "+entry.description,false))
  else:
   text(content,"BAŞARIMLAR",20);var values:=E.metrics(d)
   for entry in E.rules().achievements:

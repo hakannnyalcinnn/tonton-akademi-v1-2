@@ -77,4 +77,8 @@ func run() -> void:
  var observed:=E.now();E.wall_anchor=observed-86400;E.ticks_anchor=Time.get_ticks_msec();var guarded:=E.now()
  check(E.clock_warning and guarded<observed,"Foreground forward clock jump is limited by monotonic session time")
  E.wall_anchor=-1;E.clock_warning=false
+ var backup_profile:=S.new("user://v0141-economy-backup.json");backup_profile.data=fresh();backup_profile.data.adventure_progress.coins=200;backup_profile.flush()
+ backup_profile.economy_transaction(func(payload):return E.buy(payload,"rocket","backup-purchase"));backup_profile.flush()
+ var corrupt:=FileAccess.open(backup_profile.path,FileAccess.WRITE);corrupt.store_string("{broken");corrupt.close()
+ var recovered:=S.new(backup_profile.path);check(recovered.data.adventure_progress.coins==125 and recovered.data.adventure_progress.inventory.rocket==3,"Canonical backup restores actual economy after primary corruption")
  print(("PASS:" if failures==0 else "FAIL:")+" %d economy checks"%checks);quit(0 if failures==0 else 1)

@@ -197,7 +197,7 @@ func write_snapshot(payload: Dictionary) -> String:
 	if FileAccess.file_exists(path):
 		var old_parser := JSON.new()
 		var parse_error := old_parser.parse(FileAccess.get_file_as_string(path))
-		var old_data = old_parser.data if parse_error == OK else null
+		var old_data = canonical(old_parser.data) if parse_error == OK else null
 		if valid(old_data) or valid_meta(old_data,1) or valid_meta(old_data,2) or valid_meta(old_data,3):
 			if DirAccess.copy_absolute(absolute, absolute + ".bak") != OK: return "Kayıt yedeği yazılamadı."
 	var error := DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), absolute)

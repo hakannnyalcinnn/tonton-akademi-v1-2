@@ -3,6 +3,12 @@ extends RefCounted
 const Art=preload("res://scripts/ui/casual_skin.gd")
 const COLORS=["Kırmızı","Mavi","Yeşil","Sarı","Mor"]
 const ENTRIES={
+ "deliveries":["evolution",0,"Kristal teslimatı","Altındaki kristalleri temizleyerek %d sandığı alt çıkışa indir. Güçler sandığı yok etmez."],
+ "shutters":["evolution",1,"Zaman kapısı","Her başarılı hamlede açılıp kapanan %d geçidi açıldığında üstünde eşleştir veya kapalıyken güçle kır."],
+ "relays":["evolution",2,"Röle ağı","Aynı bağlantıdaki %d röleyi tek oyuncu hamlesinde yanlarında eşleştirerek etkinleştir. Zincirler de sayılır."],
+ "keys":["evolution",3,"Anahtar","Yanında eşleştirerek %d anahtar topla; aynı numaralı kapılar açılır."],
+ "gates":["evolution",4,"Bağlı kapı","İlgili numaralı anahtarı toplayarak %d kapı aç. Güç kapıyı anahtarsız açmaz."],
+ "balances":["evolution",5,"Denge kristali","Gösterilen iki renkten en az eşik kadar topla; farkı en fazla 2 yaparak %d teraziyi etkinleştir. Doğrudan güç zayıf tarafa 2 enerji verir."],
  "rescues":["adventure",1,"Kristal kurtarma","Kafesin çevresinde eşleştirerek %d canlı kurtar."],
  "bosses":["adventure",0,"Mini boss","Gösterilen renkler ve özel güçlerle %d rakibin kalkanını kır."],
  "floors":["canyon",0,"Kırılgan zemin","Üzerindeki kristalleri iki ayrı kez temizleyerek %d zemini kır. Kırılan hücre kapanır."],
@@ -37,6 +43,8 @@ static func entry(key: String) -> Array:
  return ENTRIES.get(key,["ui",3,key,"Bu hedeften %d adet tamamla."])
 static func icon(key: String) -> Texture2D:
  if not icons.has(key):
+  if entry(key)[0]=="evolution":
+   icons[key]=load("res://assets/casual/evolution-"+["cargo","shutter","relay","key","gate","balance"][int(entry(key)[1])]+".svg");return icons[key]
   if key in ["giants","cores","ice","duals"]:
    icons[key]=load("res://assets/casual/goal-"+key+".svg");return icons[key]
   var e:=entry(key)
@@ -54,6 +62,8 @@ static func relevant(key: String,cell: Variant,index: int=-1,terrain: Dictionary
  if key=="rescues":return terrain.get("cages",[]).any(func(c):return int(c.index)==index and int(c.remaining)>0)
  if key=="floors":return terrain.get("floors",{}).has(str(index))
  if cell==null:return false
+ if key=="deliveries":return cell.get("delivery",false)
+ if key in ["shutters","relays","keys","gates","balances"]:return cell.get("evolution",{}).get("kind","")=={"shutters":"shutter","relays":"relay","keys":"key","gates":"gate","balances":"balance"}[key]
  if key in ["giants","magnets","cores"]:return cell.get("canyon",{}).get("kind","")=={"giants":"giant","magnets":"magnet","cores":"core"}[key]
  if key.begins_with("shield"):return cell.get("canyon",{}).get("kind","")=="core"
  if key=="total":return not cell.get("fixed",false)

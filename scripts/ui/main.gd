@@ -287,6 +287,10 @@ func button(parent: Node, text: String, rect: Rect2, callback: Callable, primary
 	btn.add_theme_color_override("font_pressed_color", Color("102d32") if primary else Palette.INK)
 	btn.add_theme_color_override("font_disabled_color", Color("707f93"))
 	btn.pressed.connect(func():
+		var ancestor: Node=btn.get_parent()
+		while ancestor!=null:
+			if ancestor.has_method("may_select") and not ancestor.may_select():return
+			ancestor=ancestor.get_parent()
 		audio.play("click")
 		callback.call())
 	parent.add_child(btn)
@@ -305,6 +309,10 @@ func current_level() -> int:
 func show_home() -> void:
 	persist_board()
 	show_map(int((current_level()-1)/10))
+
+func continue_latest() -> void:
+	var number:=clampi(int(save.data.unlocked),1,Catalog.count())
+	show_map(int((number-1)/10));request_level(number)
 
 func play_latest() -> void:
 	if not save.data.active.is_empty():
@@ -338,8 +346,10 @@ func show_worlds() -> void:
 	var scroll:=preload("res://scripts/ui/world_scroll.gd").new();scroll.name="WorldCardsScroll";scroll.position=Vector2(22,110);scroll.size=Vector2(496,760);scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
 	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override("separation",14);scroll.add_child(column)
 	for world in Worlds.playable_worlds():
-		var tile:=preload("res://scripts/ui/world_card.gd").new();tile.metadata=world;tile.selected=int(world.id)==selected_world;tile.completed=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==int(world.id)).size();tile.disabled=int(save.data.unlocked)<int(world.start);tile.pressed.connect(open_world_map.bind(int(world.id)));column.add_child(tile)
-	var back:=button(page,"GÜNCEL BÖLÜME DÖN",Rect2(68,886,404,56),show_home,true,18);back.set_meta("base_y",886);footer_nodes.append(back)
+		var tile:=preload("res://scripts/ui/world_card.gd").new();tile.metadata=world;tile.selected=int(world.id)==selected_world;tile.completed=save.data.results.keys().filter(func(k):return Catalog.world_for(int(k))==int(world.id)).size();tile.disabled=int(save.data.unlocked)<int(world.start);tile.pressed.connect(func():
+			if scroll.may_select():open_world_map(int(world.id)))
+		column.add_child(tile)
+	var back:=button(page,"KALDIĞIM YERDEN BAŞLA",Rect2(68,886,404,56),continue_latest,true,18);back.set_meta("base_y",886);footer_nodes.append(back)
 	layout_stage()
 
 func open_world_map(world: int) -> void:
@@ -387,10 +397,12 @@ func show_map(group: int=-1) -> void:
 		var special: Dictionary=Design.marker_for(n)
 		if not special.get("treasure",{}).is_empty():node.marker=preload("res://assets/casual/treasure-lid.svg")
 		elif special.has("kind"):node.marker=preload("res://scripts/ui/goal_registry.gd").icon("rescues" if special.kind=="rescue" else "bosses")
-		node.pressed.connect(request_level.bind(n));path.add_child(node);map_buttons[n]=node
+		node.action_mode=BaseButton.ACTION_MODE_BUTTON_RELEASE
+		node.pressed.connect(func():
+			if map_scroll.may_select() and overlay==null:request_level(n));path.add_child(node);map_buttons[n]=node
 	var focus:=current_level() if current_level()>=first and current_level()<=last else first
 	map_scroll.set_deferred("scroll_vertical",maxi(0,int(path.node_position(focus-first).y-map_scroll.size.y*.7)))
-	var current_button:=button(page,"GÜNCEL BÖLÜME DÖN",Rect2(68,820,404,54),show_home,true,18);current_button.name="CurrentLevelButton";current_button.set_meta("base_y",820)
+	var current_button:=button(page,"KALDIĞIM YERDEN BAŞLA",Rect2(68,820,404,54),continue_latest,true,18);current_button.name="CurrentLevelButton";current_button.set_meta("base_y",820)
 	var bar:=card(page,Rect2(17,878,506,70));bar.set_meta("base_y",878);footer_nodes.append(bar)
 	var names: Array=["Dünyalar","Günlük","Dostlar","Ödüller","Ayarlar"]
 	var images: Array=[preload("res://assets/casual/navigation-worlds.svg"),preload("res://assets/casual/navigation-tasks.svg"),preload("res://scripts/ui/companion.gd").sprite(1),preload("res://assets/casual/treasure-lid.svg"),preload("res://assets/casual/navigation-settings.svg")]
@@ -505,7 +517,7 @@ func start_level(number: int, resume: bool = false, test_definition: Dictionary 
 		var preserve_hint: bool=hint.size()==2 and Match.can_swap(board.cells,int(hint[0]),int(hint[1]),8,9)
 		var kind: String="rocket_h" if selected_booster=="rocket" else "prism"
 		for i in range(board.cells.size()-1,-1,-1):
-			if board.cells[i]==null or board.cells[i].get("fixed",false) or board.cells[i].p!="" or (preserve_hint and i in hint):continue
+			if board.cells[i]==null or board.cells[i].get("fixed",false) or board.cells[i].get("delivery",false) or board.cells[i].p!="" or (preserve_hint and i in hint):continue
 			board.cells[i].p=kind
 			var valid: bool=not preserve_hint or Match.can_swap(board.cells,int(hint[0]),int(hint[1]),8,9)
 			board.cells[i].p=""
@@ -677,6 +689,9 @@ func process_event(event: Dictionary) -> void:
 	board_view.animate(event)
 
 func on_environment(data: Dictionary) -> void:
+	for change in data.get("evolution_events",[]):
+		audio.play("evolution-"+str(change.kind))
+		break
 	if data.kind in ["storm","crystal_wave"] and not test_mode:
 		var marker: String="gameplay2_"+str(data.kind)
 		if marker not in save.data.tutorials:
@@ -689,6 +704,9 @@ func on_environment(data: Dictionary) -> void:
 	if data.has("collected"):goals_panel.update_progress(data.collected)
 
 func on_wave(data: Dictionary) -> void:
+	for change in data.get("evolution_events",[]):
+		audio.play("evolution-"+str(change.kind))
+		break
 	if data.get("adventure",{}).has("boss"):
 		var boss: Dictionary=data.adventure.boss
 		if is_instance_valid(boss_badge):boss_badge.update_state(boss)
@@ -785,7 +803,10 @@ func show_goal_description(key: String,tutorial: bool=false) -> void:
 	text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	button(goal_tip,"×",Rect2(423,5,48,48),advance_goal_tutorial if tutorial else close_goal_tip,false,20)
 	if tutorial:
-		var timeout:=Timer.new();timeout.wait_time=2.6;timeout.one_shot=true;goal_tip.add_child(timeout);timeout.timeout.connect(advance_goal_tutorial);timeout.start()
+		if registry.entry(key)[0]=="evolution":
+			var swaps:=preload("res://scripts/core/match_detector.gd").legal_swaps(board.cells,8,9)
+			if not swaps.is_empty():board_view.hint_index=int(swaps[0][0]);board_view.hint_target=int(swaps[0][1])
+		var timeout:=Timer.new();timeout.wait_time=5.0 if registry.entry(key)[0]=="evolution" else 2.6;timeout.one_shot=true;goal_tip.add_child(timeout);timeout.timeout.connect(advance_goal_tutorial);timeout.start()
 	
 func close_goal_tip() -> void:
 	reading_goal=false
@@ -861,6 +882,9 @@ func show_migration_notice() -> void:
 func open_overlay(title: String, subtitle: String = "") -> Control:
 	close_overlay()
 	paused = true
+	if is_instance_valid(page):
+		for scroll in page.find_children("*","ScrollContainer",true,false):
+			if scroll.has_method("suspend"):scroll.suspend(true)
 	if screen == "game" and board != null and (board.outcome == "playing" or (board_view != null and board_view.busy)):
 		board.pause()
 		if board_view != null: board_view.cancel_drag()
@@ -897,6 +921,9 @@ func close_overlay() -> void:
 		overlay = null
 		overlay_root = null
 	paused = false
+	if is_instance_valid(page):
+		for scroll in page.find_children("*","ScrollContainer",true,false):
+			if scroll.has_method("suspend"):scroll.suspend(false)
 	if board != null: board.resume()
 
 func show_pause(already_saved: bool = false) -> void:
@@ -1233,7 +1260,7 @@ func show_settlement_retry(event: Dictionary) -> void:
 
 func show_developer_menu() -> void:
 	if not developer_tools_available():return
-	open_overlay("Geliştirici testi","Ayrı test APK ve kayıt profili · 1–250")
+	open_overlay("Geliştirici testi","Ayrı test APK ve kayıt profili · 1–500")
 	var number:=SpinBox.new();number.min_value=1;number.max_value=Catalog.count();number.value=int(board.level.id) if board!=null else 1;number.position=Vector2(70,369);number.size=Vector2(210,40);overlay.add_child(number)
 	button(overlay,"BÖLÜME GİT",Rect2(293,369,178,40),func():dev_command("jump",int(number.value)),true,14)
 	var commands: Array=[["Kazan","win"],["Kaybet","lose"],["Önceki","previous"],["Sonraki","next"],["+10 hamle","moves"],["İki bomba","double"],["Roket ekle","rocket"],["Yıldız ekle","prism"],["Boss aç","boss"],["Kurtarma aç","rescue"],["Seed ile başlat","seed"],["Hızlı / normal","speed"],["Mekanik laboratuvarı","lab"],["Dünyaları aç","worlds"],["Mekanik araçları","layers"],["Yeniden başlat","seed"],["Önizleme","preview"],["Harita testi","map"],["Testi sıfırla","reset"],["Roket + roket","rr"],["Bomba + roket","cr"],["Fırtına","storm"],["Dev kırılması","giant"]]

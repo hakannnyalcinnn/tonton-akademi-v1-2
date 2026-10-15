@@ -42,6 +42,9 @@ func clear_save(path: String) -> void:
 		if FileAccess.file_exists(path + suffix): DirAccess.remove_absolute(ProjectSettings.globalize_path(path + suffix))
 
 func run() -> void:
+	if "save-ui" in OS.get_cmdline_user_args():
+		test_save_and_migration();await test_ui();await create_timer(.15).timeout
+		print("MATCH3 SAVE/UI RESULT: %d assertions, %d failures"%[checks,failures]);quit(1 if failures else 0);return
 	test_scanner()
 	test_swap_and_cascade()
 	test_powers()
@@ -361,6 +364,7 @@ func test_save_and_migration() -> void:
 	for key in ["moves","score","serial","rng","energy","state","rules"]:
 		invalid = restored.snapshot(); invalid[key] = "bad"
 		check(not restored.restore(invalid), "reject invalid save type " + key)
+	check(save.flush(),"sync final valid checkpoint for backup recovery probe")
 	var file := FileAccess.open(path,FileAccess.WRITE)
 	file.store_string("{broken"); file.close()
 	check(Save.new(path).data.unlocked == 2, "corrupt primary recovers backup")
@@ -489,7 +493,7 @@ func test_ui() -> void:
 	game.show_home(); game.play_latest()
 	await process_frame
 	check(game.overlay!=null and game.board==null,"new game requires explicit preflight Play")
-	for child in game.overlay.get_children():
+	for child in game.overlay.find_children("*","Button",true,false):
 		if child is Button and child.text=="OYNA!":child.pressed.emit();break
 	await create_timer(.08).timeout
 	await process_frame
