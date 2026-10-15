@@ -63,8 +63,14 @@ func run() -> void:
  assert(game.page.get_node("WorldsButton").icon!=null and terrain.road_layer.material==null)
  assert(game.Catalog.count()==500 and game.Worlds.playable_worlds().size()==10)
  game.EconomyScreen.build(game,"shop");await process_frame
+ assert(game.map_scroll.blocked and game.overlay.find_child("EconomyScroll",true,false).has_method("may_select"))
+ assert(game.page.get_node("CurrentLevelButton").text=="KALDIĞIM YERDEN BAŞLA")
  assert(game.overlay.get_node("EconomyPanel")!=null and not load("res://scripts/core/purchase_service.gd").new().available())
- game.close_overlay()
+ game.close_overlay();assert(not game.map_scroll.blocked)
+ for n in [61,151,301,351,401]:
+  var d=game.Catalog.get_level(n);assert(not d.evolution.is_empty())
+  var b=load("res://scripts/core/board.gd").new(d)
+  assert(load("res://scripts/mechanics/evolution.gd").valid(b.evolution,d,b.cells,b.collected))
  for biome in ["garden","ocean","canyon","cloud","lava"]:assert(ResourceLoader.exists("res://assets/casual/terrain-"+biome+".png"))
  game.request_level(101);await process_frame
  assert(game.overlay.find_child("PreviewLayout",true,false) is VBoxContainer)

@@ -1,0 +1,148 @@
+{
+  "runtime_sha256": "2c05f64558ee9e6c1e17caa37b2640561cce73c931214c9dbfefb18357db1479",
+  "results": [
+    {
+      "name": "evolution_replay_tests",
+      "status": "passed",
+      "seconds": 2.967,
+      "commit": "3da07ef7d25be5e1419e7a1416b1dea9caaebf0a",
+      "fingerprint": "b48e64e5f94bfd705b5d79f53c7c76fda50c1b0f06d2b638e9e5402950b9a411",
+      "log_sha256": "8602c0b4da0a689897ad86aac0e8b09b0d91425ce8e2f7f88ff786e289d5a08c"
+    },
+    {
+      "name": "evolution_tests",
+      "status": "passed",
+      "seconds": 11.423,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "9266cf566cb7c2a5c69541e06284811e26255c3438727b938ef47a49b4a6243f",
+      "log_sha256": "90724df45e57b760cad68b290a956d1318990c3d330b3b6c8bda0932d45bb920"
+    },
+    {
+      "name": "campaign_014_tests",
+      "status": "passed",
+      "seconds": 8.919,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "9266cf566cb7c2a5c69541e06284811e26255c3438727b938ef47a49b4a6243f",
+      "log_sha256": "76952b583ec166c79cf9e832d6f4da2bf158e04222cf11d33692b523eaee354d"
+    },
+    {
+      "name": "evolution_ui_tests",
+      "status": "passed",
+      "seconds": 1.767,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "9266cf566cb7c2a5c69541e06284811e26255c3438727b938ef47a49b4a6243f",
+      "log_sha256": "d4b421f269466380835a103e63c9d9f973394e02ce7196b319a0b52ddb772db4"
+    },
+    {
+      "name": "economy_tests",
+      "status": "passed",
+      "seconds": 0.366,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "9266cf566cb7c2a5c69541e06284811e26255c3438727b938ef47a49b4a6243f",
+      "log_sha256": "c47771ee9228128f97119121e05cc1a3d8a5dd90c80cb8e3f8590b912a210e95"
+    },
+    {
+      "name": "generator_data_tests",
+      "status": "passed",
+      "seconds": 1.767,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "74f1fa8d5897b928aa4a5d6df8a5818fd6cf5f616d69c15eb2cc77c8dee64b70",
+      "log_sha256": "64b6af7776a75b1c9f70596b9d6e830e1dc5da5ca085a24e1e76128199cd027c"
+    },
+    {
+      "name": "economy_ui_tests",
+      "status": "passed",
+      "seconds": 1.766,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "74f1fa8d5897b928aa4a5d6df8a5818fd6cf5f616d69c15eb2cc77c8dee64b70",
+      "log_sha256": "05d5c380bfb8d3e3eee5720d4b8e06a8797972d3371cb3fda52f2aad7be51387"
+    },
+    {
+      "name": "persistence_probe",
+      "status": "passed",
+      "seconds": 1.265,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "74f1fa8d5897b928aa4a5d6df8a5818fd6cf5f616d69c15eb2cc77c8dee64b70",
+      "log_sha256": "fdfb51acec2836810755a2727295c4fa011f93bc63339adaef498e952beb232c"
+    },
+    {
+      "name": "gameplay2_tests",
+      "status": "passed",
+      "seconds": 62.335,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "6c02a69222fa02fa3a05d7c33f24d6242b5c427005c26d228312842e9ce67ca1",
+      "log_sha256": "22d78553bce786fed319150651f906977d241b18a22bf0e3658c29d07558b5a1"
+    },
+    {
+      "name": "deadlock_tests",
+      "status": "passed",
+      "seconds": 3.266,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "6c02a69222fa02fa3a05d7c33f24d6242b5c427005c26d228312842e9ce67ca1",
+      "log_sha256": "992a354a975260de1c80972e304620bfe203e8dd903439bf8f0e9e52b1a3247f"
+    },
+    {
+      "name": "v012_tests",
+      "status": "passed",
+      "seconds": 1.115,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "6c02a69222fa02fa3a05d7c33f24d6242b5c427005c26d228312842e9ce67ca1",
+      "log_sha256": "4476e116bfbe1212692157db0370c61544feb6d0c6f3d30ff0b918fbb7aa54f8"
+    },
+    {
+      "name": "mechanic_tests",
+      "status": "passed",
+      "seconds": 59.936,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "71bbc24230f220035ca9438b9619ca3a786fe6c228a74b1df3032b06635f8605",
+      "log_sha256": "3ec470414969a09603f0ed003ae3b32f9a3e3f24b467fb7b57030b2440d2d118"
+    },
+    {
+      "name": "package2_tests",
+      "status": "passed",
+      "seconds": 2.516,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "71bbc24230f220035ca9438b9619ca3a786fe6c228a74b1df3032b06635f8605",
+      "log_sha256": "44abbfd919ddd62764a2d922fdef83a929415762b8d5dc39c6c75c14c638f019"
+    },
+    {
+      "name": "package4_tests",
+      "status": "passed",
+      "seconds": 9.268,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "71bbc24230f220035ca9438b9619ca3a786fe6c228a74b1df3032b06635f8605",
+      "log_sha256": "5acfb733271d2c7d2657c1ed0d06bb737b13a7bd4f9f2505b4ad9ba1302fc4a0"
+    },
+    {
+      "name": "package5_mechanics",
+      "status": "passed",
+      "seconds": 166.668,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "71bbc24230f220035ca9438b9619ca3a786fe6c228a74b1df3032b06635f8605",
+      "log_sha256": "04385ec3ba173c9ccfd5228e4897e8da82834e5288af2751c2bec1dc69f1977d"
+    },
+    {
+      "name": "canyon_mechanics_tests",
+      "status": "passed",
+      "seconds": 0.365,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "71bbc24230f220035ca9438b9619ca3a786fe6c228a74b1df3032b06635f8605",
+      "log_sha256": "e26ce17ede36431925e2b0311a1b38a9aaf746d3366790b00dbb5492c28beeb0"
+    },
+    {
+      "name": "workflow_smoke",
+      "status": "passed",
+      "seconds": 1.215,
+      "commit": "717af5c8d8f7a5339df6a52061bd8a15b4395195",
+      "fingerprint": "6c02a69222fa02fa3a05d7c33f24d6242b5c427005c26d228312842e9ce67ca1",
+      "log_sha256": "4d52714f4f9adccfb98b2695b08a37402455306bb31b794166efb0e0241c99c5"
+    }
+  ],
+  "save_ui": {
+    "status": "passed",
+    "checks": 55,
+    "log_sha256": "1b2e5a8eb8922ca8494c0f56aa486fb4dba038795985c08ff2179acd4b45d298"
+  },
+  "apk_source_probe": "passed: normal/developer feature gates, 500 levels, modal blocking, continue action and new mechanism state in actual APK resources",
+  "physical_android_tested": false
+}
